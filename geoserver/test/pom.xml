@@ -48,4 +48,8 @@
 
   </dependencies>
 
+  <properties>
+    <test.exclude.pattern>**/BasicTest.*</test.exclude.pattern> 
+  </properties>
+
 </project>
