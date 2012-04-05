@@ -264,7 +264,7 @@
       <exclude>${test.exclude.pattern}</exclude>
      </excludes>
      <forkMode>once</forkMode>
-     <argLine>-Xmx${test.maxHeapSize} -enableassertions -Djava.awt.headless=${java.awt.headless}</argLine>
+     <argLine>-Xmx${test.maxHeapSize} --XX:MaxPermSize=${test.maxPermSize} -enableassertions -Djava.awt.headless=${java.awt.headless}</argLine>
      <printSummary>true</printSummary>
      <testFailureIgnore>${allow.test.failure.ignore}</testFailureIgnore>
     </configuration>
@@ -418,6 +418,7 @@
  <properties>
   <java.awt.headless>true</java.awt.headless>
   <test.maxHeapSize>512M</test.maxHeapSize>
+  <test.maxPermSize>128M</test.maxPermSize>
   <sde.version>9.2</sde.version>
   <spring.version>3.1.1.RELEASE</spring.version>
   <spring.security.version>3.1.0.RELEASE</spring.security.version>
