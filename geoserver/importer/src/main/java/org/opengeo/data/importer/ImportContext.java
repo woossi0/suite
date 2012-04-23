@@ -184,6 +184,16 @@ public class ImportContext implements Serializable {
         }
     }
 
+    public void reattach() {
+        if (data != null) {
+            data.reattach();
+        }
+
+        for (ImportTask task : tasks) {
+            task.setContext(this);
+            task.reattach();
+        }
+    }
 
     @Override
     public int hashCode() {

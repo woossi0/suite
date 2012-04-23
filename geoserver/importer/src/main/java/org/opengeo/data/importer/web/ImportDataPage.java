@@ -83,7 +83,9 @@ public class ImportDataPage extends GeoServerBasePage {
     
     String storeName;
     TextField storeNameTextField;
-    
+
+    ImportContextTable importTable;
+
     GeoServerDialog dialog;
     
     public ImportDataPage(PageParameters params) {
@@ -292,17 +294,26 @@ public class ImportDataPage extends GeoServerBasePage {
             }
         }.add(new Label("message", new Model("Next"))));
 
-        ImportContextTable importTable = 
-            new ImportContextTable("imports", new ImportContextProvider() {
-                @Override
-                protected List<org.geoserver.web.wicket.GeoServerDataProvider.Property<ImportContext>> getProperties() {
-                    return Arrays.asList(ID, CREATED, STATE);
-                }
+        importTable = new ImportContextTable("imports", new ImportContextProvider() {
+            @Override
+            protected List<org.geoserver.web.wicket.GeoServerDataProvider.Property<ImportContext>> getProperties() {
+                return Arrays.asList(ID, CREATED, STATE);
+            }
         });
+        importTable.setOutputMarkupId(true);
         importTable.setFilterable(false);
         importTable.setSortable(false);
         form.add(importTable);
 
+        form.add(new AjaxLink("removeAll") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                Importer importer = ImporterWebUtils.importer();
+                importer.getStore().removeAll();
+                target.addComponent(importTable);
+            }
+        });
+        
         add(dialog = new GeoServerDialog("dialog"));
         
         updateSourcePanel(Source.SPATIAL_FILES);

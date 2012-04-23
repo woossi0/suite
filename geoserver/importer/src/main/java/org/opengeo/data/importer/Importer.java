@@ -78,7 +78,11 @@ public class Importer implements InitializingBean, DisposableBean {
         this.contextStore = new BDBImportStore(this);
         this.styleGen = new StyleGenerator(catalog);
     }
-    
+
+    public ImportStore getStore() {
+        return contextStore;
+    }
+
     public ImportItem getCurrentlyProcessingItem(long contextId) {
         return currentlyProcessing.get(new Long(contextId));
     }
@@ -461,7 +465,19 @@ public class Importer implements InitializingBean, DisposableBean {
 
         //add the store, may have been added in a previous iteration of this task
         if (task.getStore().getId() == null) {
-            task.getStore().setName(findUniqueStoreName(task.getStore()));
+            StoreInfo store = task.getStore();
+
+            //ensure a unique name
+            store.setName(findUniqueStoreName(task.getStore()));
+            
+            //ensure a namespace connection parameter set matching workspace/namespace
+            if (!store.getConnectionParameters().containsKey("namespace")) {
+                WorkspaceInfo ws = task.getContext().getTargetWorkspace();
+                NamespaceInfo ns = catalog.getNamespaceByPrefix(ws.getName());
+                if (ns != null) {
+                    store.getConnectionParameters().put("namespace", ns.getURI());
+                }
+            }
             catalog.add(task.getStore());
         }
 

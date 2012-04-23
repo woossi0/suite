@@ -173,6 +173,12 @@ public class ImportTask implements Serializable {
         state = newState;
     }
 
+    public void reattach() {
+        for (ImportItem item : items) {
+            item.setTask(this);
+        }
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
