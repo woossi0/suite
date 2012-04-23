@@ -131,9 +131,7 @@ public class ImportDataPage extends GeoServerSecuredPage {
         workspaceChoice.add(new AjaxFormComponentUpdatingBehavior("onchange") {
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-                store.setObject(GeoServerApplication.get().getCatalog()
-                    .getDefaultDataStore((WorkspaceInfo) workspace.getObject()));
-                target.addComponent(storeChoice);
+                updateDefaultStore(target);
             }
         });
         form.add(workspaceChoice);
@@ -286,8 +284,20 @@ public class ImportDataPage extends GeoServerSecuredPage {
         add(dialog = new GeoServerDialog("dialog"));
         
         updateSourcePanel(Source.SPATIAL_FILES);
+        updateDefaultStore(null);
     }
-    
+
+    void updateDefaultStore(AjaxRequestTarget target) {
+        WorkspaceInfo ws = (WorkspaceInfo) workspace.getObject();
+        if (workspace != null) {
+            store.setObject(GeoServerApplication.get().getCatalog().getDefaultDataStore(ws));
+        }
+
+        if (target != null) {
+            target.addComponent(storeChoice);
+        }
+    }
+
     void updateSourcePanel(Source source) {
         Panel old = (Panel) sourcePanel.get(0);
         if (old != null) {
