@@ -387,6 +387,7 @@ Section "-Jetty" SectionJetty ; dash = hidden
   File /r  "${SOURCEPATHROOT}\lib"
   File /r  "${SOURCEPATHROOT}\logs"
   File /r  "${SOURCEPATHROOT}\resources"
+  File /r  "${SOURCEPATHROOT}\webapps"
  
   ; Copy our own JRE (which includes native JAI)
   File /r "${SOURCEPATHROOT}\jre"
@@ -398,11 +399,14 @@ Section "-Jetty" SectionJetty ; dash = hidden
   ;                              "/S=1" $1
 
   ; Create some dirs
-  CreateDirectory "$INSTDIR\webapps"
   CreateDirectory "$INSTDIR\icons"
   SetOutPath "$INSTDIR\icons"
   File /a "icons\opengeo.ico"
   File /a "icons\uninstall.ico"
+  
+  ; make webapps directory writable
+  AccessControl::GrantOnFile \
+      "$INSTDIR\webapps" "(BU)" "GenericRead + GenericWrite + GenericExecute"
  
   CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
 
