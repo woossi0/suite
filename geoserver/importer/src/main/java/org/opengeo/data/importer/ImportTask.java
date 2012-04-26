@@ -20,10 +20,6 @@ public class ImportTask implements Serializable {
     public static enum State {
         PENDING, READY, RUNNING, INCOMPLETE, COMPLETE
     }
-    
-    public static enum UpdateMode {
-        REPLACE, APPEND, UPDATE
-    }
 
     /**
      * task id
@@ -145,10 +141,16 @@ public class ImportTask implements Serializable {
         return null;
     }
 
+    /**
+     * @deprecated
+     */
     public UpdateMode getUpdateMode() {
         return updateMode;
     }
 
+    /**
+     * @deprecated
+     */
     public void setUpdateMode(UpdateMode updateMode) {
         this.updateMode = updateMode;
     }
@@ -176,6 +178,7 @@ public class ImportTask implements Serializable {
     public void reattach() {
         for (ImportItem item : items) {
             item.setTask(this);
+            item.reattach();
         }
     }
 
@@ -205,5 +208,12 @@ public class ImportTask implements Serializable {
         if (id != other.id)
             return false;
         return true;
+    }
+
+    private Object readResolve() {
+        if (items == null) {
+            items = new ArrayList();
+        }
+        return this;
     }
 }

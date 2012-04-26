@@ -98,40 +98,9 @@ public class BDBImportStore implements ImportStore {
             seqDb.openSequence(null, new DatabaseEntry("import_id".getBytes()), seqConfig);
         
         importBinding = new XStreamInfoSerialBinding<ImportContext>(
-            createXSteamPersister(), ImportContext.class);
+            importer.createXSteamPersister(), ImportContext.class);
     }
 
-    XStreamPersister createXSteamPersister() {
-        XStreamPersister xp = new XStreamPersisterFactory().createXMLPersister();
-        xp.setInlineReferences();
-        xp.setCatalog(importer.getCatalog());
-
-        XStream xs = xp.getXStream();
-
-        //ImportContext
-        xs.alias("import", ImportContext.class);
-
-        //ImportTask
-        xs.alias("task", ImportTask.class);
-        xs.omitField(ImportTask.class, "context");
-
-        //ImportItem
-        xs.alias("item", ImportItem.class);
-        xs.omitField(ImportItem.class, "task");
-
-        //DataFormat
-        xs.alias("dataStoreFormat", DataStoreFormat.class);
-
-        //ImportData
-        xs.alias("spatialFile", SpatialFile.class);
-        xs.alias("database", org.opengeo.data.importer.Database.class);
-        xs.alias("table", Table.class);
-        xs.omitField(Table.class, "db");
-
-        xs.alias("vectorTransformChain", VectorTransformChain.class);
-
-        return xp;
-    }
 
     public ImportContext get(long id) {
         DatabaseEntry val = new DatabaseEntry();

@@ -14,6 +14,7 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.wicket.Application;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
@@ -47,6 +48,7 @@ import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.web.GeoServerApplication;
 import org.geoserver.web.GeoServerBasePage;
+import org.geoserver.web.GeoServerSecuredPage;
 import org.geoserver.web.data.store.StoreChoiceRenderer;
 import org.geoserver.web.data.store.StoreModel;
 import org.geoserver.web.data.store.StoresModel;
@@ -68,7 +70,7 @@ import org.opengeo.data.importer.Importer;
  * @author Justin Deoliveira, OpenGeo
  */
 @SuppressWarnings("serial")
-public class ImportDataPage extends GeoServerBasePage {
+public class ImportDataPage extends GeoServerSecuredPage {
 
     static Logger LOGGER = Logging.getLogger(ImportDataPage.class);
 
@@ -111,9 +113,9 @@ public class ImportDataPage extends GeoServerBasePage {
                     link.add(new AttributeAppender("class", true, new Model("selected"), " "));
                 }
                 item.add(link);
-                
+
                 item.add(new Label("description", source .getDescription(ImportDataPage.this)));
-                
+
                 Image icon = new Image("icon", source.getIcon());
                 icon.add(
                     new AttributeModifier("alt", true, source.getDescription(ImportDataPage.this)));
@@ -312,7 +314,7 @@ public class ImportDataPage extends GeoServerBasePage {
                 importer.getStore().removeAll();
                 target.addComponent(importTable);
             }
-        });
+        }.setVisible(ImporterWebUtils.isDevMode()));
         
         add(dialog = new GeoServerDialog("dialog"));
         

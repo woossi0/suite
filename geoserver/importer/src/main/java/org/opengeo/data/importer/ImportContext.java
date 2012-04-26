@@ -219,5 +219,12 @@ public class ImportContext implements Serializable {
             return false;
         return true;
     }
+
+    private Object readResolve() {
+        if (tasks == null) {
+            tasks = new ArrayList();
+        }
+        return this;
+    }
 }
     

@@ -13,6 +13,8 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.markup.repeater.DefaultItemReuseStrategy;
+import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IChainingModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -25,6 +27,7 @@ import org.geoserver.web.wicket.CRSPanel;
 import org.geoserver.web.wicket.GeoServerDataProvider.Property;
 import org.geoserver.web.wicket.GeoServerDialog;
 import org.geoserver.web.wicket.GeoServerDialog.DialogDelegate;
+import org.geoserver.web.wicket.GeoServerDataProvider;
 import org.geoserver.web.wicket.GeoServerTablePanel;
 import org.geoserver.web.wicket.Icon;
 import org.geoserver.web.wicket.SRSToCRSModel;
@@ -36,9 +39,10 @@ public class ImportItemTable extends GeoServerTablePanel<ImportItem> {
 
     GeoServerDialog dialog;
     
-    public ImportItemTable(String id, ImportItemProvider dataProvider, boolean selectable) {
+    public ImportItemTable(String id, GeoServerDataProvider<ImportItem> dataProvider, boolean selectable) {
         super(id, dataProvider, selectable);
-        add(dialog = new GeoServerDialog("dialog")); 
+        add(dialog = new GeoServerDialog("dialog"));
+        ((DataView)get("listContainer:items")).setItemReuseStrategy(DefaultItemReuseStrategy.getInstance());
     }
 
     @Override
@@ -74,6 +78,7 @@ public class ImportItemTable extends GeoServerTablePanel<ImportItem> {
                 new StatusDescriptionModel(property.getModel(itemModel)));
         }
         if (property == ImportItemProvider.ACTION) {
+            
             ImportItem.State state = (State) property.getModel(itemModel).getObject();
             switch(state) {
                 case COMPLETE:
@@ -324,6 +329,7 @@ public class ImportItemTable extends GeoServerTablePanel<ImportItem> {
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     ImporterWebUtils.importer().changed(model.getObject());
+                    //ImportItemTable.this.modelChanged();
                     target.addComponent(ImportItemTable.this);
                 }
             });

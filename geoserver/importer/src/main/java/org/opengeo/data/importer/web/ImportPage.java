@@ -2,22 +2,34 @@ package org.opengeo.data.importer.web;
 
 import static org.opengeo.data.importer.web.ImporterWebUtils.importer;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Future;
+import java.util.logging.Level;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.time.Duration;
+import org.geoserver.config.util.XStreamPersister;
 import org.geoserver.web.GeoServerSecuredPage;
+import org.geoserver.web.wicket.GeoServerDataProvider;
+import org.geoserver.web.wicket.GeoServerDialog;
+import org.geoserver.web.wicket.GeoServerDialog.DialogDelegate;
 import org.geoserver.web.wicket.Icon;
 import org.opengeo.data.importer.BasicImportFilter;
 import org.opengeo.data.importer.Database;
@@ -34,7 +46,8 @@ public class ImportPage extends GeoServerSecuredPage {
 
     //GeoServerTablePanel<LayerSummary> layerTable; 
     //AtomicBoolean job = new AtomicBoolean(false);
-    
+    GeoServerDialog dialog;
+
     public ImportPage(PageParameters pp) {
         this(new ImportContextModel(pp.getAsLong("id")));
     }
@@ -61,6 +74,35 @@ public class ImportPage extends GeoServerSecuredPage {
             }
         };
 
+        add(new AjaxLink("raw") {
+            @Override
+            public void onClick(AjaxRequestTarget target) {
+                dialog.setInitialHeight(500);
+                dialog.setInitialWidth(700);
+                dialog.showOkCancel(target, new DialogDelegate() {
+                    @Override
+                    protected Component getContents(String id) {
+                        XStreamPersister xp = importer().createXSteamPersister();
+                        ByteArrayOutputStream bout = new ByteArrayOutputStream();
+                        try {
+                            xp.save(model.getObject(), bout);
+                        } catch (IOException e) {
+                            bout = new ByteArrayOutputStream();
+                            LOGGER.log(Level.FINER, e.getMessage(), e);
+                            e.printStackTrace(new PrintWriter(bout));
+                        }
+
+                        return new TextAreaPanel(id, new Model(new String(bout.toByteArray())));
+                    }
+
+                    @Override
+                    protected boolean onSubmit(AjaxRequestTarget target,  Component contents) {
+                        return true;
+                    }
+                });
+            }
+        }.setVisible(ImporterWebUtils.isDevMode()));
+
         ImportContextTable headerTable = new ImportContextTable("header", provider);
         headerTable.setFilterable(false);
         headerTable.setPageable(false);
@@ -68,6 +110,7 @@ public class ImportPage extends GeoServerSecuredPage {
 
         ImportContext imp = model.getObject();
         ListView<ImportTask> tasksView = new ListView<ImportTask>("tasks", new ImportTasksModel(imp)) {
+        //ListView<ImportTask> tasksView = new ListView<ImportTask>("tasks", new ImportTasksDetachableModel(imp)) {
             @Override
             protected void populateItem(final ListItem<ImportTask> item) {
                 IModel<ImportTask> model = item.getModel();
@@ -91,8 +134,22 @@ public class ImportPage extends GeoServerSecuredPage {
 
                 item.add(new Icon("icon", icon.getIcon()));
                 item.add(new Label("title", new PropertyModel(model, "data")));
-                
-                ImportItemProvider provider = new ImportItemProvider(item.getModelObject());
+
+                //item.getModelObject().getStore() 
+                //ImportItemProvider provider = new ImportItemProvider(item.getModelObject());
+                GeoServerDataProvider<ImportItem> provider = new GeoServerDataProvider<ImportItem>() {
+
+                    @Override
+                    protected List<Property<ImportItem>> getProperties() {
+                        return new ImportItemProvider((IModel)null).getProperties();
+                    }
+
+                    @Override
+                    protected List<ImportItem> getItems() {
+                        return item.getModelObject().getItems();
+                    }
+                    
+                };
                 final ImportItemTable itemTable = new ImportItemTable("items", provider, true);
                 item.add(itemTable);
                 
@@ -163,6 +220,8 @@ public class ImportPage extends GeoServerSecuredPage {
         };
         add(tasksView);
 
+        add(dialog = new GeoServerDialog("dialog"));
+
 //        LayerSummaryProvider provider = new LayerSummaryProvider(imp);
 //
 //        add(layerTable = new LayerSummaryTable("layers", provider, true));
@@ -217,6 +276,15 @@ public class ImportPage extends GeoServerSecuredPage {
         return null;
     }
 
+    static class TextAreaPanel extends Panel {
+
+        public TextAreaPanel(String id, IModel textAreaModel) {
+            super(id);
+            
+            add(new TextArea("textArea", textAreaModel));
+        }
+    
+    }
 //    class ImportTaskPanel extends Panel {
 //
 //        //TODO: use a model

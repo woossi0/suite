@@ -40,12 +40,6 @@
      <artifactId>restconfig</artifactId>
     </dependency>
     <dependency>
-     <groupId>org.geoserver.community</groupId>
-     <artifactId>ftp</artifactId>
-     <optional>true</optional>
-     <version>${gs.version}</version>
-    </dependency>
-    <dependency>
      <groupId>org.restlet</groupId>
      <artifactId>org.restlet.ext.fileupload</artifactId>
     </dependency>
@@ -165,6 +159,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <excludes>
+            <exclude>org/geoserver/uploader/**</exclude>
           </excludes>
         </configuration>
       </plugin>

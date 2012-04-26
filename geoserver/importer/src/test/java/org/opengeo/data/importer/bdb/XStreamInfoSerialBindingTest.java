@@ -25,8 +25,7 @@ public class XStreamInfoSerialBindingTest extends ImporterTestSupport {
         File dir = unpack("shape/archsites_epsg_prj.zip");
         ImportContext context = importer.createContext(new Directory(dir));
 
-        XStreamPersister xp = 
-            ((BDBImportStore)importer.getStore()).createXSteamPersister();
+        XStreamPersister xp = importer.createXSteamPersister();
         XStreamInfoSerialBinding<ImportContext> binding = 
                 new XStreamInfoSerialBinding<ImportContext>(xp, ImportContext.class);
         binding.setCompress(false);
@@ -88,7 +87,7 @@ public class XStreamInfoSerialBindingTest extends ImporterTestSupport {
 
         ds = cat.getDataStore(ds.getId());
         ImportContext context = importer.createContext(new Directory(dir), ds);
-        assertEquals(2, context.getTasks().size());
+        assertEquals(1, context.getTasks().size());
 
         XStreamPersister xp = new XStreamPersisterFactory().createXMLPersister();
         xp.getXStream().omitField(ImportTask.class, "context");
@@ -100,7 +99,5 @@ public class XStreamInfoSerialBindingTest extends ImporterTestSupport {
 
         DatabaseEntry e = new DatabaseEntry();
         binding.objectToEntry(context, e);
-
-        //System.out.println(new String(e.getData()));
     }
 }
