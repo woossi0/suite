@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.geoserver.catalog.StoreInfo;
+import org.geoserver.ows.util.OwsUtils;
 
 /**
  * A unit of work during an import.
@@ -176,6 +177,9 @@ public class ImportTask implements Serializable {
     }
 
     public void reattach() {
+        if (getStore() != null) {
+            OwsUtils.resolveCollections(getStore());
+        }
         for (ImportItem item : items) {
             item.setTask(this);
             item.reattach();
