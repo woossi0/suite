@@ -106,7 +106,7 @@
                                     <fileset dir="${geoexplorer}/app/static/externals/openlayers"/>
                                 </copy>
                                 <copy todir="${project.build.directory}/sdk/src/main/resources/client/src/geoext">
-                                    <fileset dir="${geoexplorer}/app/static/externals/geoext"/>
+                                    <fileset dir="${geoexplorer}/app/static/externals/GeoExt"/>
                                 </copy>
                                 <copy todir="${project.build.directory}/sdk/src/main/resources/client/src/ext">
                                     <fileset dir="${geoexplorer}/app/static/externals/ext"/>
