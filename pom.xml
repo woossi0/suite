@@ -201,6 +201,7 @@
       </activation>
      <modules>
        <module>docs</module>
+       <module>sdk</module>
        <module>recipes</module>
      </modules>
    </profile>
