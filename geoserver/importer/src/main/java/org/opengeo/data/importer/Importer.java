@@ -954,11 +954,17 @@ public class Importer implements InitializingBean, DisposableBean {
     }
 
     public XStreamPersister createXStreamPersister() {
-        return init(new XStreamPersisterFactory().createXMLPersister());
+        return initXStreamPersister(new XStreamPersisterFactory().createXMLPersister());
     }
     
-    public XStreamPersister init(XStreamPersister xp) {
-        xp.setEncodeByReference();
+    public XStreamPersister initXStreamPersister(XStreamPersister xp) {
+        return initXStreamPersister(xp, true);
+    }
+
+    public XStreamPersister initXStreamPersister(XStreamPersister xp, boolean encodeByRef) { 
+        if (encodeByRef) {
+            xp.setEncodeByReference();
+        }
         xp.setCatalog(catalog);
 
         XStream xs = xp.getXStream();
