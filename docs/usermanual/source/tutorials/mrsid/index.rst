@@ -86,7 +86,7 @@ Mac OS X
 
 MrSID support is enabled during the installation process.
 
-#. On the first page of the installer, click :guilabel:`Customize`.
+#. On the third page of the installer, click :guilabel:`Customize`.
 
    .. figure:: img/mrsid_mac_customize.png
       :align: center
