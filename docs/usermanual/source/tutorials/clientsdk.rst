@@ -71,13 +71,11 @@ Deploying the application
 
 To deploy your application to your (remote) OpenGeo Suite instance, run the following command from within the :file:`sdk` directory::
 
-  $ suite-sdk deploy path/to/myapp -c tomcat5x -p 8080 -u <username> -s <password>
+  $ suite-sdk deploy path/to/myapp -c tomcat5x -h http://example.com:8080 -p 8080 -u <username> -s <password>
 
-In the above command, the :command:`-c tomcat5x` parameter sets the target server to be Tomcat 5.x.  The other parameters set the port, username, and password for the remote server.
+In the above command, the :command:`-c tomcat5x` parameter sets the target server to be Tomcat 5.x.  The other parameters set the host, port, username, and password for the remote server.
 
 .. note::  Type :command:`suite-sdk` without any arguments to see a full list of possible arguments.
-
-.. warning:: WAIT, WHERE IS THE REMOTE SERVER'S URL?
 
 When deploying the application, all JavaScript resources will be concatenated and minified.
 
