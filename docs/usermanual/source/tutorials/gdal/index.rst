@@ -32,7 +32,7 @@ CentOS / Red Hat
 
 #. Install the following packages from the OpenGeo repository.  (See HERE for instructions on how to add the OpenGeo repository)::
 
-     # apt-get install gdal
+     # yum install gdal
 
    .. note::  You must run this command as root or use :command:`sudo`.
 
