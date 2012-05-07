@@ -112,3 +112,4 @@ Verifying installation
       :align: center
       
       *Verifying that GDAL is an option in the Raster Data Sources*
+
