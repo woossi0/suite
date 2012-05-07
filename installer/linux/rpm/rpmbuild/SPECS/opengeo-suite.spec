@@ -14,6 +14,7 @@ Patch: geoexplorer_webxml.patch
 %else
 %define TOMCAT tomcat5 
 %endif
+Requires %{TOMCAT}-admin-webapps
 
 # the current patch will fail under newer rpmbuild package which
 # uses fuzz 0 - this implies the patch needs rediffing - hack for now
@@ -54,6 +55,8 @@ components.  It is comprised of the following core components:
    cp -rp $RPM_SOURCE_DIR/opengeo-suite/geowebcache.war $RPM_BUILD_ROOT/var/lib/%{TOMCAT}/webapps/.
    cp -rp $RPM_SOURCE_DIR/opengeo-suite/recipes.war $RPM_BUILD_ROOT/var/lib/%{TOMCAT}/webapps/.
    cp -rp $RPM_SOURCE_DIR/opengeo-suite/geoexplorer.war $RPM_BUILD_ROOT/var/lib/%{TOMCAT}/webapps/.
+   cp -rp ../../../common/tomcat-admin-setup.sh $RPM_BUILD_ROOT/usr/share/opengeo-suite/.
+   chmod +x $RPM_BUILD_ROOT/usr/share/opengeo-suite/tomcat-admin-setup.sh
 
 %post
    # check for upgrade, if so preserve geoexp web.xml
@@ -93,6 +96,10 @@ components.  It is comprised of the following core components:
 
    chown tomcat /var/lib/%{TOMCAT}/webapps/*.war
    chkconfig %{TOMCAT} on
+   
+   echo ""
+   echo "NOTICE: Please run /usr/share/opengeo-suite/tomcat-admin-setup.sh to complete this installation."
+   echo ""
 
 %preun
 
@@ -119,6 +126,7 @@ components.  It is comprised of the following core components:
 
 %files
 %defattr(-,root,root,-)
+/usr/share/opengeo-suite/tomcat-admin-setup.sh
 /var/lib/%{TOMCAT}/webapps/dashboard.war
 /var/lib/%{TOMCAT}/webapps/geoeditor.war
 /var/lib/%{TOMCAT}/webapps/geoexplorer.war
