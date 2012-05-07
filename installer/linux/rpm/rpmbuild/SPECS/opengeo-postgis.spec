@@ -6,7 +6,7 @@ Group: Applications/Database
 License: see http://opengeo.org
 Requires(post): bash
 Requires(preun): bash
-Requires: geos >= 3.3.1, postgis >= 1.5.3, pgadmin3
+Requires: geos >= 3.3.3, postgis >= 1.5.4, pgadmin3
 %if 0%{?centos} == 6
 Requires: postgresql, postgresql-contrib
 %else
