@@ -1,12 +1,12 @@
 Name: opengeo-suite
-Version: 2.4.6
+Version: 2.5
 Release: 1
 Summary: A full geospatial software stack that allows you to allows you to easily compose, style, and publish data and maps.
 Group: Applications/Engineering
 License: see http://opengeo.org
 Requires(post): bash
 Requires(preun): bash
-Requires: opengeo-postgis >= 2.4.4, opengeo-geoserver >= 2.4.5, opengeo-docs >= 2.4.5
+Requires: opengeo-postgis >= 2.5, opengeo-geoserver >= 2.5, opengeo-docs >= 2.5
 Patch: geoexplorer_webxml.patch
 
 %if 0%{?centos} == 6
@@ -14,7 +14,7 @@ Patch: geoexplorer_webxml.patch
 %else
 %define TOMCAT tomcat5 
 %endif
-Requires %{TOMCAT}-admin-webapps
+Requires: %{TOMCAT}-admin-webapps
 
 # the current patch will fail under newer rpmbuild package which
 # uses fuzz 0 - this implies the patch needs rediffing - hack for now
