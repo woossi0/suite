@@ -75,7 +75,7 @@ done
 # fix version info to respect new ABI
 sed -i -e 's|5\:4\:5|6\:4\:6|' src/Makefile*
 
-%configure
+%configure --with-jni=no
 make OPTIMIZE="$RPM_OPT_FLAGS" %{?_smp_mflags}
 
 %install
