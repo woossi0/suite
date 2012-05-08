@@ -237,6 +237,7 @@ public class ImportDataPage extends GeoServerSecuredPage {
                         try {
                             ImportContext imp = importer.createContext(source, targetWorkspace,
                                     targetStore);
+                            imp.setArchive(false);
                             PageParameters pp = new PageParameters();
                             pp.put("id", imp.getId());
 
