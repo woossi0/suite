@@ -15,4 +15,4 @@ For information about basic component functionality, please see the component do
    gdal/index
    mrsid/index
    clientsdk
-   gxpintro/index
+   clientsdkintro/index
