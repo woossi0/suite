@@ -1,4 +1,4 @@
-﻿.. _apps.clientsdk:
+﻿.. _apps.sdk.client.script:
 
 Creating and deploying apps with the Client SDK
 ===============================================
