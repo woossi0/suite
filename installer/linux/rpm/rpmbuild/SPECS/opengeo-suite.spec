@@ -6,7 +6,7 @@ Group: Applications/Engineering
 License: see http://opengeo.org
 Requires(post): bash
 Requires(preun): bash
-Requires: opengeo-postgis >= 2.5, opengeo-geoserver >= 2.5, opengeo-docs >= 2.5
+Requires: opengeo-postgis >= 2.5, opengeo-geoserver >= 2.5, opengeo-docs >= 2.5, opengeo-suite-client-sdk >= 2.5
 Patch: geoexplorer_webxml.patch
 
 %if 0%{?centos} == 6
