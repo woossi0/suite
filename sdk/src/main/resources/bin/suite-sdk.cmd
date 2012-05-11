@@ -19,9 +19,9 @@ goto Usage
 
 
 :Create
-
 :: Create takes no arguments
 if "x%~2"=="x" goto Usage
+if "%~2"=="-h" goto UsageCreate
 if "%~2"=="--help" goto UsageCreate
 set COMMAND="%~1"
 set APP_PATH="%~2"
@@ -29,8 +29,8 @@ goto Run
 
 
 :Debug
-
 if "x%~2"=="x" goto Usage
+if "%~2"=="-h" goto UsageDebug
 if "%~2"=="--help" goto UsageDebug
 set COMMAND="%~1"
 shift
@@ -49,10 +49,12 @@ goto DebugFlagLoop
 
 :: Checking for a valid flag
 rem TODO What about bad flags?
-set flagvalid=0
-if "%~1"=="-g" set flagvalid=1
-if "%~1"=="-p" set flagvalid=1
-if not "%flagvalid%"=="1" (
+set flag=0
+if "%~1"=="-l" set flag=l
+if "%~1"=="--local-port" set flag=l
+if "%~1"=="-g" set flag=g
+if "%~1"=="--geoserver" set flag=g
+if "%flag%"=="0" (
   :: Must be one arg remaining, otherwise fail
   rem TODO Edge case - Any valid flags after app-path are ignored
   rem but don't cause an error:
@@ -67,15 +69,15 @@ if not "%flagvalid%"=="1" (
   )
 )
 
-if "%~1"=="-g" (
+if "%flag%"=="l" (
   if "x%~2"=="x" goto Usage
-  set ANT_ARGS=%ANT_ARGS% -Dapp.proxy.geoserver=%2
+  set ANT_ARGS=%ANT_ARGS% -Dapp.port=%2
   shift && shift
 )
 
-if "%~1"=="-p" (
+if "%flag%"=="g" (
   if "x%~2"=="x" goto Usage
-  set ANT_ARGS=%ANT_ARGS% -Dapp.port=%2
+  set ANT_ARGS=%ANT_ARGS% -Dapp.proxy.geoserver=%2
   shift && shift
 )
 
@@ -92,6 +94,7 @@ goto Run
 
 :Deploy
 if "x%~2"=="x" goto Usage
+if "%~2"=="-h" goto UsageDeploy
 if "%~2"=="--help" goto UsageDeploy
 set COMMAND="%~1"
 shift
@@ -101,13 +104,18 @@ shift
 rem TODO: Same issues as in DebugFlagLoop
 
 :: Checking for a valid flag
-set flagvalid=0
-if "%~1"=="-c" set flagvalid=1
-if "%~1"=="-u" set flagvalid=1
-if "%~1"=="-s" set flagvalid=1
-if "%~1"=="-p" set flagvalid=1
-if "%~1"=="-d" set flagvalid=1
-if not "%flagvalid%"=="1" (
+set flag=0
+if "%~1"=="-d" set flag=d
+if "%~1"=="--domain" set flag=d
+if "%~1"=="-r" set flag=r
+if "%~1"=="--remote-port" set flag=r
+if "%~1"=="-u" set flag=u
+if "%~1"=="--username" set flag=u
+if "%~1"=="-p" set flag=p
+if "%~1"=="--password" set flag=p
+if "%~1"=="-c" set flag=c
+if "%~1"=="--container" set flag=c
+if "%flag%"=="0" (
   :: Must be one arg remaining, otherwise fail
   if not "x%~1"=="%~1" (
     if not "x%~2"=="%~2" (
@@ -121,35 +129,36 @@ if not "%flagvalid%"=="1" (
 
 :: TODO Figure out which of these are required!
 
-if "%~1"=="-c" (
-  if "x%~2"=="x" goto Usage
-  set ANT_ARGS=%ANT_ARGS% -Dsuite.container=%2
-  shift && shift
-)
-
-if "%~1"=="-u" (
-  if "x%~2"=="x" goto Usage
-  set ANT_ARGS=%ANT_ARGS% -Dsuite.username=%2
-  shift && shift
-)
-
-if "%~1"=="-s" (
-  if "x%~2"=="x" goto Usage
-  set ANT_ARGS=%ANT_ARGS% -Dsuite.password=%2
-  shift && shift
-)
-
-if "%~1"=="-p" (
+if "%flag%"=="d" (
   if "x%~2"=="x" goto Usage
   set ANT_ARGS=%ANT_ARGS% -Dsuite.domain=%2
   shift && shift
 )
 
-if "%~1"=="-d" (
+if "%flag%"=="r" (
   if "x%~2"=="x" goto Usage
   set ANT_ARGS=%ANT_ARGS% -Dsuite.port=%2
   shift && shift
 )
+
+if "%flag%"=="u" (
+  if "x%~2"=="x" goto Usage
+  set ANT_ARGS=%ANT_ARGS% -Dsuite.username=%2
+  shift && shift
+)
+
+if "%flag%"=="p" (
+  if "x%~2"=="x" goto Usage
+  set ANT_ARGS=%ANT_ARGS% -Dsuite.password=%2
+  shift && shift
+)
+
+if "%flag%"=="c" (
+  if "x%~2"=="x" goto Usage
+  set ANT_ARGS=%ANT_ARGS% -Dsuite.container=%2
+  shift && shift
+)
+
 
 :: Keep going until one arg left
 goto DeployFlagLoop
