@@ -53,6 +53,7 @@ import org.geoserver.web.wicket.ParamResourceModel;
 import org.geotools.util.logging.Logging;
 import org.opengeo.data.importer.ImportContext;
 import org.opengeo.data.importer.ImportData;
+import org.opengeo.data.importer.ImportTask;
 import org.opengeo.data.importer.Importer;
 
 /**
@@ -237,13 +238,37 @@ public class ImportDataPage extends GeoServerSecuredPage {
                         try {
                             ImportContext imp = importer.createContext(source, targetWorkspace,
                                     targetStore);
-                            imp.setArchive(false);
-                            importer.changed(imp);
 
-                            PageParameters pp = new PageParameters();
-                            pp.put("id", imp.getId());
+                            //check the import for actual things to do
+                            boolean proceed = !imp.getTasks().isEmpty();
+                            if (proceed) {
+                                //check that all the tasks are non-empty
+                                proceed = false;
+                                for (ImportTask t : imp.getTasks()) {
+                                    if (!t.getItems().isEmpty()) {
+                                        proceed = true;
+                                        break;
+                                    }
+                                }
+                            }
 
-                            setResponsePage(ImportPage.class, pp);
+                            if (proceed) {
+                                imp.setArchive(false);
+                                importer.changed(imp);
+    
+                                PageParameters pp = new PageParameters();
+                                pp.put("id", imp.getId());
+    
+                                setResponsePage(ImportPage.class, pp);
+                            }
+                            else {
+                                info("No data to import was found");
+                                target.addComponent(feedbackPanel);
+
+                                importer.delete(imp);
+
+                                resetNextButton(self, target);
+                            }
                         } catch (Exception e) {
                             LOGGER.log(Level.SEVERE, e.getLocalizedMessage(), e);
                             error(e);
@@ -251,10 +276,7 @@ public class ImportDataPage extends GeoServerSecuredPage {
                             target.addComponent(feedbackPanel);
 
                             //update the button back to original state
-                            self.add(new AttributeModifier("class", true, new Model("")));
-                            self.setEnabled(true);
-                            self.get(0).setDefaultModelObject("Next");
-                            target.addComponent(self);
+                            resetNextButton(self, target);
                         }
                         finally {
                             stop();
@@ -323,6 +345,13 @@ public class ImportDataPage extends GeoServerSecuredPage {
             }
             target.addComponent(link);
         }
+    }
+
+    void resetNextButton(AjaxSubmitLink next, AjaxRequestTarget target) {
+        next.add(new AttributeModifier("class", true, new Model("")));
+        next.setEnabled(true);
+        next.get(0).setDefaultModelObject("Next");
+        target.addComponent(next);
     }
 
     /**
