@@ -1,5 +1,80 @@
 #!/bin/bash
 
+NAME=$(basename -- "$0")
+
+## General usage
+HELP_USAGE=$(cat <<SETVAR
+
+Usage: $NAME <command> <args>
+
+List of commands:
+    create      Create a new application.
+    debug       Run an existing application in debug mode.
+    deploy      Deploy an application to a remote OpenGeo Suite instance.
+    
+See '$NAME <command> --help' for more detail on a specific command.
+SETVAR)
+
+## Usage for create command
+CREATE_USAGE=$(cat <<SETVAR
+
+Usage: $NAME create <app-path>
+
+Create a new application.  A new directory will be created using the <app-path> 
+argument (it must not already exist).
+SETVAR)
+
+## Usage for debug command
+DEBUG_USAGE=$(cat <<SETVAR
+
+Usage: $NAME debug [<options>] <app-path>
+
+Debug an existing application.  The <app-path> argument must be the path to an
+existing application.
+
+List of options:
+
+    -l | --local-port   port    Port for the local debug server.  Default is 
+                                9080.
+
+    -g | --geoserver    url     URL for a remote GeoServer to proxy.  The debug
+                                server will make the remote GeoServer available
+                                from the "/geoserver" path within the 
+                                application.
+SETVAR)
+
+## Usage for deploy command
+DEPLOY_USAGE=$(cat <<SETVAR
+
+Usage: $NAME deploy <options> <app-path>
+
+Debug an existing application.  The <app-path> argument must be the path to an
+existing application.
+
+List of options:
+
+    -d | --domain       name    Domain name for remote Suite container (for 
+                                example: yourdomain.com).  The domain name does
+                                not include the protocol (e.g. http), port, or
+                                any other part of the URL.  Domain must be 
+                                provided to deploy an app.
+
+    -r | --remote-port  port    Port for the remote Suite container.  Default is
+                                8080.
+
+    -u | --username     user    Username for manager of remote Suite container.
+                                Username must be provided to deploy an app.
+
+    -p | --password     secret  Password for manager of remote Suite container.
+                                Password must be provided to deploy an app.
+
+    -c | --container    type    Identifier for remote Suite container.  Default
+                                is "tomcat6x".  Possible values include 
+                                "jetty6x", "jboss7x", "weblogic9x".  See
+                                http://cargo.codehaus.org/ for details on
+                                supported containers.
+SETVAR)
+
 # find sdk home
 if [ -z "$0" ]; then
     # as a last recourse, use the present working directory
@@ -28,37 +103,118 @@ else
 
 fi
 
-# parse options
-COMMAND=$1
-OPTIND=2
-ANT_ARGS=""
-case $COMMAND in 
-    debug )
-        while getopts g:p: OPTION; do
-            case $OPTION in
-                g )
-                    ANT_ARGS="$ANT_ARGS -Dapp.proxy.geoserver=$OPTARG" ;;
-                p )
-                    ANT_ARGS="$ANT_ARGS -Dapp.port=$OPTARG" ;;
-            esac
-        done ;;
-    deploy )
-        while getopts c:u:s:d:p: OPTION; do
-            case $OPTION in
-                c )
-                    ANT_ARGS="$ANT_ARGS -Dsuite.container=$OPTARG" ;;
-                u )
-                    ANT_ARGS="$ANT_ARGS -Dsuite.username=$OPTARG" ;;
-                s )
-                    ANT_ARGS="$ANT_ARGS -Dsuite.password=$OPTARG" ;;
-                d )
-                    ANT_ARGS="$ANT_ARGS -Dsuite.domain=$OPTARG" ;;
-                p )
-                    ANT_ARGS="$ANT_ARGS -Dsuite.port=$OPTARG" ;;
-            esac
-        done ;;
+COMMAND=help
+if [ $# -gt 0 ]; then
+    COMMAND=$1
+    shift
+    case $COMMAND in 
+        -h|--help)
+        COMMAND=help
+        ;;
+    esac
+fi
+
+case $COMMAND in
+    create|debug|deploy)
+        # PASS
+        ;;
+    *)
+        echo "$HELP_USAGE"
+        exit 1
+        ;;
 esac
-shift $(($OPTIND - 1))
-APP_PATH=$1
+
+# parse options and assemble ant args
+ANT_ARGS=""
+HELP=false
+until [ -z "$1" ]; do
+    case $1 in
+        -g|--geoserver)
+            shift; GEOSERVER_URL=$1; shift
+            ANT_ARGS="$ANT_ARGS -Dapp.proxy.geoserver=$GEOSERVER_URL"
+            ;;
+        -l|--local-port)
+            shift; LOCAL_PORT=$1; shift
+            ANT_ARGS="$ANT_ARGS -Dapp.port=$LOCAL_PORT"
+            ;;
+        -c|--container)
+            shift; CONTAINER=$1; shift
+            ANT_ARGS="$ANT_ARGS -Dsuite.container=$CONTAINER"
+            ;;
+        -u|--username)
+            shift; USERNAME=$1; shift
+            ANT_ARGS="$ANT_ARGS -Dsuite.username=$USERNAME"
+            ;;
+        -p|--password)
+            shift; PASSWORD=$1; shift
+            ANT_ARGS="$ANT_ARGS -Dsuite.password=$PASSWORD"
+            ;;
+        -d|--domain)
+            shift; DOMAIN=$1; shift
+            ANT_ARGS="$ANT_ARGS -Dsuite.domain=$DOMAIN"
+            ;;
+        -r|--remote-port)
+            shift; REMOTE_PORT=$1; shift
+            ANT_ARGS="$ANT_ARGS -Dsuite.port=$REMOTE_PORT"
+            ;;
+        -h|--help)
+            shift
+            HELP=true
+            ;;
+        *)
+            break;;
+    esac
+done
+
+case $COMMAND in 
+    create )
+        if $HELP ; then
+            echo "$CREATE_USAGE"
+            exit 0
+        fi
+        APP_PATH=$1
+        if [ $# -ne 1 -o -z "$APP_PATH" ]; then
+            echo "$CREATE_USAGE"
+            exit 1
+        fi
+        if [ -d "$APP_PATH" ]; then
+            echo "Directory '$APP_PATH' already exists.  Supply the path for a new directory."
+            exit 1
+        fi
+        ANT_ARGS="$ANT_ARGS -Dapp.path=$APP_PATH"
+        ;;
+    debug )
+        if $HELP ; then
+            echo "$DEBUG_USAGE"
+            exit 0
+        fi
+        APP_PATH=$1
+        if [ $# -ne 1 -o -z "$APP_PATH" ]; then
+            echo "$DEBUG_USAGE"
+            exit 1
+        fi
+        if [ ! -d "$APP_PATH" ]; then
+            echo "Directory '$APP_PATH' doesn't exist.  Supply the path for an existing app directory."
+            exit 1
+        fi
+        ANT_ARGS="$ANT_ARGS -Dapp.path=$APP_PATH"
+        ;;
+    deploy )
+        if $HELP ; then
+            echo "$DEPLOY_USAGE"
+            exit 0
+        fi
+        APP_PATH=$1
+        if [ $# -ne 1 -o -z "$APP_PATH" ]; then
+            echo "$DEPLOY_USAGE"
+            exit 1
+        fi
+        if [ ! -d "$APP_PATH" ]; then
+            echo "Directory '$APP_PATH' doesn't exist.  Supply the path for an existing app directory."
+            exit 1
+        fi
+        ANT_ARGS="$ANT_ARGS -Dapp.path=$APP_PATH"
+        ;;
+esac
 
 ant -e -f $SDK_HOME/build.xml -Dsdk.home=$SDK_HOME -Dbasedir=. $COMMAND -Dapp.path=$APP_PATH $ANT_ARGS

@@ -50,9 +50,9 @@ Typing :command:`Ctrl-C` in the terminal window will shut down the server.
 Changing the port
 ~~~~~~~~~~~~~~~~~
 
-By default, the application will be published on port 9080.  To run the server on another port, provide the :command:`-p <port>` option to the debug command::
+By default, the application will be published on port 9080.  To run the server on another port, provide the :command:`-l <port>` option to the debug command::
 
-    suite-sdk debug -p 8000 path/to/myapp
+    suite-sdk debug -l 8000 path/to/myapp
 
 This will make your application available for debugging at ``http://localhost:8000/``.
 
@@ -66,9 +66,9 @@ When deploying the application in the OpenGeo Suite, the application will have a
 
 This will make your remote GeoServer available locally at ``http://localhost:9080/geoserver`` .
 
-Note that the :command:`-p` and :command:`-g` options can be used together.  For example, you could debug your application on port 8000 while accessing a local GeoServer running on port 8080::
+Note that the :command:`-l` and :command:`-g` options can be used together.  For example, you could debug your application on port 8000 while accessing a local GeoServer running on port 8080::
 
-    suite-sdk debug -p 8000 -g http://localhost:8080/geoserver path/to/myapp 
+    suite-sdk debug -l 8000 -g http://localhost:8080/geoserver path/to/myapp 
 
 Again, this would make your application available at ``http://localhost:8000/`` while making GeoServer available on the same port at ``http://localhost:8000/geoserver``.
 
@@ -81,7 +81,7 @@ Deploying the application
 
 To deploy your application to your (remote) OpenGeo Suite instance, run the following command::
 
-    suite-sdk deploy -d example.com  -u <username> -s <password> path/to/myapp
+    suite-sdk deploy -d example.com  -u <username> -p <password> path/to/myapp
 
 The above command assumes your Suite instance is available at ``http://example.com:8080/``.  Using the :command:`-u` and :command:`s` options you supply your remote manager credentials for the Suite.
 
