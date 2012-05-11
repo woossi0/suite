@@ -211,8 +211,8 @@ exit /b
 :UsageDeploy
 echo Usage: %NAME% deploy ^<options^> ^<app-path^>
 echo.
-echo Deploy an existing application to a remote server.  The ^<app-path^> argument 
-echo must be the path to an existing application.
+echo Deploy an existing application.  The ^<app-path^> argument must be the path to an
+echo existing application.
 echo.
 echo List of options:
 echo.
