@@ -48,7 +48,7 @@ DEPLOY_USAGE=$(cat <<SETVAR
 
 Usage: $NAME deploy <options> <app-path>
 
-Debug an existing application.  The <app-path> argument must be the path to an
+Deploy an existing application.  The <app-path> argument must be the path to an
 existing application.
 
 List of options:
