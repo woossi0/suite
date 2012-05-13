@@ -94,7 +94,6 @@
                 </fileset>
             </classpath>
             <sysproperty key="ringo.home" path="${sdk.home}/"/>
-            <sysproperty key="ringo.modulepath" path="${sdk.home}/lib"/>
             <arg path="${sdk.home}/lib/buildkit/lib/buildkit/build.js"/>
             <arg line="-o ${sdk.home}/build/${app.name}/lib ${app.path}/buildjs.cfg"/>
         </java>
