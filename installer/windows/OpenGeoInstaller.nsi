@@ -545,7 +545,7 @@ Section "ClientSDK" SectionCSDK
 
   !insertmacro DisplayImage "graphics\slide_1_suite.bmp"
 
-  SetOutPath "$INSTDIR\sdk"
+  SetOutPath "$INSTDIR"
   File /r "${SOURCEPATHROOT}\sdk"
 
 SectionEnd
