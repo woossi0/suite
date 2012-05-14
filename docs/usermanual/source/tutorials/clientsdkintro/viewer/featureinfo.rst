@@ -3,9 +3,9 @@
 Adding a WMS GetFeatureInfo tool
 ================================
 
-On file system navigate to :file:`app/static/script/app/app.js` in the ``myviewer`` directory. Open up this file in your favorite editor. Open up the API docs for gxp, and find a tool provides the WMS GetFeatureInfo functionality (look in the section titled ``gxp.plugins``):
+On file system navigate to :file:`app/static/script/app/app.js` in the ``myviewer`` directory. Open up this file in your favorite editor. Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/gxp/>`_, and find a tool provides the WMS GetFeatureInfo functionality (look in the section titled ``gxp.plugins``):
 
-http://gxp.opengeo.org/master/doc/lib/plugins/WMSGetFeatureInfo.html
+http://suite.opengeo.org/opengeo-docs/gxp/lib/plugins/WMSGetFeatureInfo.html
 
 Its ``ptype`` is ``gxp_wmsgetfeatureinfo``, so we will add an entry in the tools configuration of :file:`app.js`:
 

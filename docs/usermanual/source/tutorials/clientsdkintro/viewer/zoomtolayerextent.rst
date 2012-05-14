@@ -5,9 +5,9 @@ Adding a Zoom to Layer Extent tool
 
 After adding a layer, it would be useful to be able to zoom to its full extent. This is what the **Zoom to Layer Extent** does.  We will add this tool to the toolbar on top of the layer tree, and to the context menu that appears when we right-click on a layer in the tree.
 
-Navigate to the :file:`app/static/script/app/app.js` in the myviewer directory. Open up this file in a text editor. Open up the API docs for gxp, and find the tool that provides the Zoom to Layer Extent functionality (look in the section titled ``gxp.plugins``):
+Navigate to the :file:`app/static/script/app/app.js` in the myviewer directory. Open up this file in a text editor. Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/gxp/>`_ , and find the tool that provides the Zoom to Layer Extent functionality (look in the section titled ``gxp.plugins``):
 
-http://gxp.opengeo.org/master/doc/lib/plugins/ZoomToLayerExtent.html
+http://suite.opengeo.org/opengeo-docs/gxp/lib/plugins/ZoomToLayerExtent.html
 
 Its ``ptype`` is ``gxp_zoomtolayerextent``, so we will add an entry in the tools configuration of :file:`app.js`:
 

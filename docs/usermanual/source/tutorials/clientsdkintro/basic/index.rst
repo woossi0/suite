@@ -53,7 +53,7 @@ Run the following commands::
 The application will run in debug mode on port 8080. If you want to run on a
 different port, specify it with the :command:`-p` flag::
 
-  suite-sdk debug /path/to/myviewer -p 9090
+  suite-sdk debug -p 9090 /path/to/myviewer 
 
 Now start up a browser, and type in the address of the application:
 
@@ -105,7 +105,7 @@ The viewer configuration defines two layer sources, a WMS-C (cacheable WMS) sour
 
 In the above application, if there isn't a local GeoServer running, it is possible to proxy a remote GeoServer::
 
-  suite-sdk debug /path/to/myviewer -g http://www.example.com/geoserver/ 
+  suite-sdk debug -g http://www.example.com/geoserver/ /path/to/myviewer 
 
 If this GeoServer has the ``usa:states`` layer, it will be added to the application:
 

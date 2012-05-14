@@ -3,9 +3,9 @@
 Adding a legend tool
 ====================
 
-We will now add a legend to the bottom-left area of the viewer application. Open up the gxp API docs and search for a plugin that could provide legend functionality:
+We will now add a legend to the bottom-left area of the viewer application. Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/gxp>`_ and search for a plugin that could provide legend functionality:
 
-http://gxp.opengeo.org/master/doc/lib/plugins/Legend.html
+http://suite.opengeo.org/opengeo-docs/gxp/lib/plugins/Legend.html
 
 The ``ptype`` to use is ``gxp_legend``. Open up :file:`app.js`, and configure this tool:
 
