@@ -1,4 +1,4 @@
-.. _apps.clientsdkdev:
+.. _apps.sdk.client.dev:
 
 Application development with the Client SDK
 ===========================================

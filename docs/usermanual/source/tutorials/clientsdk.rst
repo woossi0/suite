@@ -19,7 +19,7 @@ Prerequisites:
 * This same machine should have `Apache Ant <http://ant.apache.org>`_ installed and on the path.  To verify this, type :command:`ant -version` at a terminal prompt.
 * The instructions below assume that you have added the :file:`suite-sdk` (or :file:`suite-sdk.bat`) script from the :file:`bin` directory of the Client SDK to your system path.  This will allow you to run the ``suite-sdk`` command from anywhere on your filesystem.
 
-.. _apps.clientsdk.create:
+.. _apps.sdk.client.script.create:
 
 Creating a new application
 --------------------------
@@ -30,7 +30,7 @@ The Client SDK comes with an application template that can be useful for getting
 
 The app will be placed in the :file:`path/to/myapp` directory.  This directory will contain all required client-side resources for your application.
 
-.. _apps.clientsdk.debug:
+.. _apps.sdk.client.script.debug:
 
 Testing the application
 -----------------------
@@ -74,7 +74,7 @@ Again, this would make your application available at ``http://localhost:8000/`` 
 
 The debug server and proxy are suitable for debugging purposes only.  Use the :command:`suite-sdk deploy` command to prepare your application for production.
 
-.. _apps.clientsdk.deploy:
+.. _apps.sdk.client.script.deploy:
 
 Deploying the application
 -------------------------
