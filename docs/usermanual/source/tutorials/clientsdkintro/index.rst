@@ -7,6 +7,8 @@ This tutorial will discuss how to create an application using the OpenGeo Suite 
 
 The full API documentation for the OpenGeo Suite Client SDK is available at http://suite.opengeo.org/opengeo-docs/gxp,  and is included with this documentation bundle.
 
+The Client SDK is usually bundled with the OpenGeo Suite itself (under the :file:`sdk` subdirectory), but is available separately from http://opengeo.org/technology/sdk/ .
+
 .. toctree::
    :maxdepth: 2
 

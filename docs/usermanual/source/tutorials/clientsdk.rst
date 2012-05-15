@@ -15,9 +15,18 @@ This tutorial will discuss creating, testing, and deploying of an application.
 
 Prerequisites:
 
-* The Client SDK should be already installed onto a machine where development will occur.
+* The Client SDK should be already installed onto a machine where development will occur.  This is typically bundled with the OpenGeo Suite itself (under the :file:`sdk` subdirectory), but is available separately from http://opengeo.org/technology/sdk/ .
 * This same machine should have `Apache Ant <http://ant.apache.org>`_ installed and on the path.  To verify this, type :command:`ant -version` at a terminal prompt.
 * The instructions below assume that you have added the :file:`suite-sdk` (or :file:`suite-sdk.bat`) script from the :file:`bin` directory of the Client SDK to your system path.  This will allow you to run the ``suite-sdk`` command from anywhere on your filesystem.
+
+.. _apps.sdk.client.script.install:
+
+SDK Installation
+----------------
+
+The SDK doesn't require installation.  If the archive was downloaded from http://opengeo.org/technology/sdk/, it only needs to be extracted to a suitable place (such as :file:`/opt/opengeo/suite/sdk` or :file:`C:\\Program Files\\OpenGeo\\OpenGeo Suite\\sdk`).
+
+Once extracted, the script used will be inside the :file:`bin` directory and is named :file:`suite-sdk` (:file:`suite-sdk.cmd` on Windows).
 
 .. _apps.sdk.client.script.create:
 
