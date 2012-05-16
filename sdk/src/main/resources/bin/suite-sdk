@@ -181,7 +181,7 @@ case $COMMAND in
             echo "Directory '$APP_PATH' already exists.  Supply the path for a new directory."
             exit 1
         fi
-        ANT_ARGS="$ANT_ARGS -Dapp.path=$APP_PATH"
+        ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\""
         ;;
     debug )
         if $HELP ; then
@@ -197,7 +197,7 @@ case $COMMAND in
             echo "Directory '$APP_PATH' doesn't exist.  Supply the path for an existing app directory."
             exit 1
         fi
-        ANT_ARGS="$ANT_ARGS -Dapp.path=$APP_PATH"
+        ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\""
         ;;
     deploy )
         if $HELP ; then
@@ -213,8 +213,8 @@ case $COMMAND in
             echo "Directory '$APP_PATH' doesn't exist.  Supply the path for an existing app directory."
             exit 1
         fi
-        ANT_ARGS="$ANT_ARGS -Dapp.path=$APP_PATH"
+        ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\""
         ;;
 esac
 
-ant -e -f $SDK_HOME/build.xml -Dsdk.home=$SDK_HOME -Dbasedir=. $COMMAND -Dapp.path=$APP_PATH $ANT_ARGS
+ant -e -f "$SDK_HOME/build.xml" -Dsdk.home="$SDK_HOME" -Dbasedir=. $COMMAND $ANT_ARGS
