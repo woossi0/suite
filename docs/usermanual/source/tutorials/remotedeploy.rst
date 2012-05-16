@@ -3,7 +3,7 @@
 Preparing a Servlet Container for Remote Application Deployment
 ===============================================================
 
-The servlet containers used with the OpenGeo Suite are configured to accept remote deployments of applications.  This means that one can develop an application locally, or just on some machine other than where the OpenGeo Suite is installed.  All one needs is a copy of the `SDK <http://opengeo.org/technology/sdk/>`_ to :ref:`develop an application <apps.sdk.client.dev>`.
+The servlet containers used with the OpenGeo Suite are configured to accept remote deployments of applications.  This means that one can develop an application locally, or just on some machine other than where the OpenGeo Suite is installed.  You can `download the SDK <http://opengeo.org/technology/sdk/>`_ from the OpenGeo website.
 
 It is necessary to set a "manager" password on the OpenGeo Suite servlet container so it can accept a deployed application.  This process only needs only to be done once per server.  Subsequent application deployments will use the same credentials.
 
