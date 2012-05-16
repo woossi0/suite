@@ -110,9 +110,12 @@ The container type also needs to be supplied by the ``-c`` flag (default is ``to
    * - Ubuntu
      - Tomcat 6
      - ``-c tomcat6x``
-   * - Red Hat / CentOS
+   * - Red Hat / CentOS 5
      - Tomcat 5
      - ``-c tomcat5x``
+   * - Red Hat / CentOS 6
+     - Tomcat 6
+     - ``-c tomcat6x``
    * - Windows installer
      - Jetty 6
      - ``-c jetty6x``
