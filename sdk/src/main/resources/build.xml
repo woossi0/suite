@@ -21,7 +21,8 @@
     <property name="suite.port" value="8080"/>
     <property name="suite.container" value="tomcat6x"/>
     <property name="suite.username" value="manager"/>
-    <property name="suite.password" value=""/>
+    <property name="suite.password" value="geoserver"/>
+    <property name="sdk.build" location="${java.io.tmpdir}/suite-sdk/build"/>
 
     <target name="checkpath">
         <condition property="app.path.set">
@@ -62,31 +63,32 @@
 
     <target name="build" depends="checkpath">
         <fail message="Directory '${app.path}' doesn't exist." unless="${app.path.exists}"/>
-        <mkdir dir="${sdk.home}/build/${app.name}"/>
-        <copy todir="${sdk.home}/build/${app.name}">
+        <property name="app.build" location="${sdk.build}/${app.name}"/>
+        <mkdir dir="${app.build}"/>
+        <copy todir="${app.build}">
             <fileset dir="${sdk.home}/src/main/webapp"/>
             <filterset>
                 <filter token="APP_NAME" value="${app.name}"/>
             </filterset>
         </copy>
         <!-- copy Ext resources -->
-        <copy todir="${sdk.home}/build/${app.name}/src/ext">
+        <copy todir="${app.build}/src/ext">
             <fileset dir="${app.path}/src/ext"/>
         </copy>
         <!-- copy OpenLayers resources -->
-        <copy todir="${sdk.home}/build/${app.name}/src/openlayers/theme">
+        <copy todir="${app.build}/src/openlayers/theme">
             <fileset dir="${app.path}/src/openlayers/theme"/>
         </copy>
         <!-- copy GeoExt resources -->
-        <copy todir="${sdk.home}/build/${app.name}/src/geoext/resources">
+        <copy todir="${app.build}/src/geoext/resources">
             <fileset dir="${app.path}/src/geoext/resources"/>
         </copy>
         <!-- copy gxp resources -->
-        <copy todir="${sdk.home}/build/${app.name}/src/gxp/theme">
+        <copy todir="${app.build}/src/gxp/theme">
             <fileset dir="${app.path}/src/gxp/theme"/>
         </copy>
         <!-- build app js -->
-        <mkdir dir="${sdk.home}/build/${app.name}/lib"/>
+        <mkdir dir="${app.build}/lib"/>
         <java classname="org.ringojs.tools.launcher.Main" failonerror="true">
             <classpath>
                 <fileset dir="${sdk.home}/lib">
@@ -95,13 +97,13 @@
             </classpath>
             <sysproperty key="ringo.home" path="${sdk.home}/"/>
             <arg path="${sdk.home}/lib/buildkit/lib/buildkit/build.js"/>
-            <arg line="-o ${sdk.home}/build/${app.name}/lib ${app.path}/buildjs.cfg"/>
+            <arg line="-o ${app.build}/lib ${app.path}/buildjs.cfg"/>
         </java>
         <!-- copy additional app resources -->
-        <copy todir="${sdk.home}/build/${app.name}/theme">
+        <copy todir="${app.build}/theme">
             <fileset dir="${app.path}/theme"/>
         </copy>
-        <copy todir="${sdk.home}/build/${app.name}">
+        <copy todir="${app.build}">
             <fileset dir="${app.path}">
                 <include name="*"/>
             </fileset>
@@ -109,21 +111,11 @@
     </target>
 
     <target name="package" depends="build">
-        <war destfile="${sdk.home}/build/${app.name}.war" needxmlfile="false">
-            <fileset dir="${sdk.home}/build/${app.name}"/>
+        <war destfile="${sdk.build}/${app.name}.war" needxmlfile="false">
+            <fileset dir="${sdk.build}/${app.name}"/>
         </war>
     </target>
     
-    <target name="initcargo">
-        <taskdef resource="cargo.tasks">
-            <classpath>
-                <fileset dir="${sdk.home}/lib">
-                    <include name="**/*.jar"/>
-                </fileset>
-            </classpath>
-        </taskdef>
-    </target>
-
     <target name="deploy" depends="package">
         <taskdef resource="cargo.tasks">
             <classpath>
@@ -138,7 +130,7 @@
                 <property name="cargo.servlet.port" value="${suite.port}"/>
                 <property name="cargo.remote.username" value="${suite.username}"/>
                 <property name="cargo.remote.password" value="${suite.password}"/>
-                <deployable type="war" file="${sdk.home}/build/${app.name}.war">
+                <deployable type="war" file="${sdk.build}/${app.name}.war">
                     <property name="context" value="${app.name}"/>
                 </deployable>
             </configuration>
