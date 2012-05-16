@@ -426,4 +426,18 @@ public class ImporterDataTest extends ImporterTestSupport {
         importer.run(context);
         assertTrue(dir.exists());
     }
+
+    public void testImportDatabaseIntoDatabase() throws Exception {
+        File dir = unpack("h2/cookbook.zip");
+
+        DataStoreInfo ds = createH2DataStore("gs", "cookbook");
+
+        Map params = new HashMap();
+        params.put(H2DataStoreFactory.DBTYPE.key, "h2");
+        params.put(H2DataStoreFactory.DATABASE.key, new File(dir, "cookbook").getAbsolutePath());
+     
+        ImportContext context = importer.createContext(new Database(params), ds);
+        assertEquals(1, context.getTasks().size());
+        assertEquals(3, context.getTasks().get(0).getItems().size());
+    }
 }
