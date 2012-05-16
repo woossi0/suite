@@ -89,7 +89,7 @@
         </copy>
         <!-- build app js -->
         <mkdir dir="${app.build}/lib"/>
-        <java classname="org.ringojs.tools.launcher.Main" failonerror="true">
+        <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
             <classpath>
                 <fileset dir="${sdk.home}/lib">
                     <include name="**/*.jar"/>
@@ -97,7 +97,9 @@
             </classpath>
             <sysproperty key="ringo.home" path="${sdk.home}/"/>
             <arg path="${sdk.home}/lib/buildkit/lib/buildkit/build.js"/>
-            <arg line="-o ${app.build}/lib ${app.path}/buildjs.cfg"/>
+            <arg value="-o"/>
+            <arg path="${app.build}/lib"/>
+            <arg path="${app.path}/buildjs.cfg"/>
         </java>
         <!-- copy additional app resources -->
         <copy todir="${app.build}/theme">
