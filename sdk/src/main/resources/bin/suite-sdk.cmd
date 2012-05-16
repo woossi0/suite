@@ -6,8 +6,8 @@ set ANT_ARGS=
 set NAME=%~n0
 
 :: Find the full path of SDK_HOME 
-pushd %~dp0..
-set SDK_HOME=%cd%
+pushd "%~dp0.."
+set SDK_HOME="%cd%"
 popd
 
 :: Determine if proper arguments have been supplied
