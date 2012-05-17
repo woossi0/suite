@@ -33,6 +33,11 @@
             <available file="${app.path}" type="dir"/>
         </condition>
         <basename property="app.name" file="${app.path}"/>
+        <script language="javascript" classpath="${sdk.home}/lib/*.jar"><![CDATA[
+            var name = project.getProperty("app.name");
+            project.setProperty("app.name", String(name).replace(/\s+/g, "-"));
+        ]]></script>
+        <echo message="${app.name}"/>
     </target>
 
     <target name="create" depends="checkpath">
@@ -42,7 +47,7 @@
             <fileset dir="${sdk.home}/src/main/resources/client"/>
         </copy>
     </target>
-
+    
     <target name="debug" depends="checkpath">
         <fail message="Directory '${app.path}' doesn't exist." unless="${app.path.exists}"/>
         <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
