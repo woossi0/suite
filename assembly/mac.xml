@@ -81,7 +81,7 @@
     </fileSet>
     <fileSet>
       <directory>docs/gxp/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/gxp</outputDirectory>
+      <outputDirectory>webapps/opengeo-docs/sdk-api</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>recipes</directory>
