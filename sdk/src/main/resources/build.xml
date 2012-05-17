@@ -37,7 +37,6 @@
             var name = project.getProperty("app.name");
             project.setProperty("app.name", String(name).replace(/\s+/g, "-"));
         ]]></script>
-        <echo message="${app.name}"/>
     </target>
 
     <target name="create" depends="checkpath">
