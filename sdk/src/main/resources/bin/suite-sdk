@@ -3,8 +3,7 @@
 NAME=$(basename -- "$0")
 
 ## General usage
-HELP_USAGE=$(cat <<SETVAR
-
+HELP_USAGE="
 Usage: $NAME <command> <args>
 
 List of commands:
@@ -13,20 +12,18 @@ List of commands:
     deploy      Deploy an application to a remote OpenGeo Suite instance.
     
 See '$NAME <command> --help' for more detail on a specific command.
-SETVAR)
+"
 
 ## Usage for create command
-CREATE_USAGE=$(cat <<SETVAR
-
+CREATE_USAGE="
 Usage: $NAME create <app-path>
 
 Create a new application.  A new directory will be created using the <app-path> 
 argument (it must not already exist).
-SETVAR)
+"
 
 ## Usage for debug command
-DEBUG_USAGE=$(cat <<SETVAR
-
+DEBUG_USAGE="
 Usage: $NAME debug [<options>] <app-path>
 
 Debug an existing application.  The <app-path> argument must be the path to an
@@ -39,13 +36,12 @@ List of options:
 
     -g | --geoserver    url     URL for a remote GeoServer to proxy.  The debug
                                 server will make the remote GeoServer available
-                                from the "/geoserver" path within the 
+                                from the '/geoserver' path within the 
                                 application.
-SETVAR)
+"
 
 ## Usage for deploy command
-DEPLOY_USAGE=$(cat <<SETVAR
-
+DEPLOY_USAGE="
 Usage: $NAME deploy <options> <app-path>
 
 Deploy an existing application.  The <app-path> argument must be the path to an
@@ -69,11 +65,11 @@ List of options:
                                 Password must be provided to deploy an app.
 
     -c | --container    type    Identifier for remote Suite container.  Default
-                                is "tomcat6x".  Possible values include 
-                                "jetty6x", "jboss7x", "weblogic9x".  See
+                                is 'tomcat6x'.  Possible values include 
+                                'jetty6x', 'jboss7x', 'weblogic9x'.  See
                                 http://cargo.codehaus.org/ for details on
                                 supported containers.
-SETVAR)
+"
 
 # find sdk home
 if [ -z "$0" ]; then
