@@ -28,7 +28,7 @@
         <condition property="app.path.set">
             <isset property="app.path"/>
         </condition>
-        <fail message="Missing app path." unless="${app.path.set}"/>
+        <fail message="Missing app path." unless="app.path.set"/>
         <condition property="app.path.exists">
             <available file="${app.path}" type="dir"/>
         </condition>
@@ -40,7 +40,7 @@
     </target>
 
     <target name="create" depends="checkpath">
-        <fail message="Directory '${app.path}' already exists.  Specify the name for a new app directory." if="${app.path.exists}"/>
+        <fail message="Directory '${app.path}' already exists.  Specify the name for a new app directory." if="app.path.exists"/>
         <mkdir dir="${app.path}"/>
         <copy todir="${app.path}">
             <fileset dir="${sdk.home}/src/main/resources/client"/>
@@ -48,7 +48,7 @@
     </target>
     
     <target name="debug" depends="checkpath">
-        <fail message="Directory '${app.path}' doesn't exist." unless="${app.path.exists}"/>
+        <fail message="Directory '${app.path}' doesn't exist." unless="app.path.exists"/>
         <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
             <classpath>
                 <fileset dir="${sdk.home}/lib">
@@ -66,7 +66,7 @@
     </target>
 
     <target name="build" depends="checkpath">
-        <fail message="Directory '${app.path}' doesn't exist." unless="${app.path.exists}"/>
+        <fail message="Directory '${app.path}' doesn't exist." unless="app.path.exists"/>
         <property name="app.build" location="${sdk.build}/${app.name}"/>
         <mkdir dir="${app.build}"/>
         <copy todir="${app.build}">
