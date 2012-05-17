@@ -9,7 +9,14 @@ Navigate to the :file:`app/static/script/app/app.js` in the myviewer directory. 
 
 http://suite.opengeo.org/opengeo-docs/gxp/lib/plugins/ZoomToLayerExtent.html
 
-Its ``ptype`` is ``gxp_zoomtolayerextent``, so we will add an entry in the tools configuration of :file:`app.js`:
+Its ``ptype`` is ``gxp_zoomtolayerextent``, so we will add an entry to the list of dependencies at the top of :file:`app.js`:
+
+.. code-block:: javascript
+
+    * @require plugins/ZoomToLayerExtent.js
+
+Now find the ``tools`` section in :file:`app.js` and add the following tool
+configuration:
 
 .. code-block:: javascript
 
