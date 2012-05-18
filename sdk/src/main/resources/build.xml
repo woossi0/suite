@@ -32,7 +32,11 @@
         <condition property="app.path.exists">
             <available file="${app.path}" type="dir"/>
         </condition>
-        <basename property="app.name" file="${app.path}"/>
+        <basename property="temp.app.name" file="${app.path}"/>
+        <tempfile property="temp.file" destDir="${java.io.tmpdir}" suffix=".properties" deleteonexit="true"/>
+        <echo message="${temp.app.name}" file="${temp.file}"/>
+        <replace file="${temp.file}" token=" " value="-"/>
+        <loadfile property="app.name" srcFile="${temp.file}"/>
     </target>
 
     <target name="create" depends="checkpath">
