@@ -5,9 +5,9 @@ Adding a Google Geocoder search field
 
 .. warning::  Before adding Google components to your applications, make sure that Google's Terms of Use allow you to do so.
 
-Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/gxp/>`_ again, and search for a plugin that could provide the geocoder functionality.
+Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/sdk-api/>`_ again, and search for a plugin that could provide the geocoder functionality.
 
-http://suite.opengeo.org/opengeo-docs/gxp/lib/plugins/GoogleGeocoder.html
+http://suite.opengeo.org/opengeo-docs/sdk-api/lib/plugins/GoogleGeocoder.html
 
 This requires the Google Maps v3 API to be present in the application. Add the following script tag in :file:`app/static/index.html`:
 

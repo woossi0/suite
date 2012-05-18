@@ -5,7 +5,7 @@ Adding a WMS GetFeatureInfo tool
 
 On the file system navigate to :file:`src/app/app.js` in the :file:`myviewer` directory. Open up this file in a text editor. Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/sdk-api/>`_, and find a tool provides the WMS GetFeatureInfo functionality (look in the section titled ``gxp.plugins``):
 
-http://suite.opengeo.org/opengeo-docs/gxp/lib/plugins/WMSGetFeatureInfo.html
+http://suite.opengeo.org/opengeo-docs/sdk-api/lib/plugins/WMSGetFeatureInfo.html
 
 Its ``ptype`` is ``gxp_wmsgetfeatureinfo``, so we will add an entry in the tools configuration of :file:`app.js`:
 

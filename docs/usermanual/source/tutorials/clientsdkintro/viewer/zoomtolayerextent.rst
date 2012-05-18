@@ -7,7 +7,7 @@ After adding a layer, it would be useful to be able to zoom to its full extent. 
 
 Navigate to the :file:`src/app/app.js` in the :file:`myviewer` directory. Open up this file in a text editor. Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/sdk-api/>`_ , and find the tool that provides the Zoom to Layer Extent functionality (look in the section titled ``gxp.plugins``):
 
-http://suite.opengeo.org/opengeo-docs/gxp/lib/plugins/ZoomToLayerExtent.html
+http://suite.opengeo.org/opengeo-docs/sdk-api/lib/plugins/ZoomToLayerExtent.html
 
 Its ``ptype`` is ``gxp_zoomtolayerextent``, so we will add an entry to the list of dependencies at the top of :file:`app.js`:
 
