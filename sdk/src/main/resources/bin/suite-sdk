@@ -129,6 +129,7 @@ esac
 # parse options and assemble ant args
 ANT_ARGS=""
 HELP=false
+LOCAL_PORT=9080 # default repeated in build.xml, but used here for success message
 until [ -z "$1" ]; do
     case $1 in
         -g|--geoserver)
@@ -219,4 +220,99 @@ case $COMMAND in
         ;;
 esac
 
-ant -e -f "$SDK_HOME/build.xml" -Dsdk.home="$SDK_HOME" -Dbasedir=. $COMMAND $ANT_ARGS
+# create log file (in case it doesn't already exist)
+LOG_FILE=~/.opengeo/logs/suite-sdk.log
+LOG_DIR=$(dirname -- "$LOG_FILE")
+
+mkdir "$LOG_DIR" &> /dev/null
+touch "$LOG_FILE" &> /dev/null
+
+if [ $? -ne 0 ]; then
+    LOG_FILE=/dev/null
+fi
+
+CREATE_START="
+Creating application ..."
+
+CREATE_SUCCESS="
+Successfully created: '$APP_PATH'
+"
+
+CREATE_FAILURE="
+The '$NAME create' command failed.
+
+A common cause of this is the failure to create the provided directory:
+'$APP_PATH'
+
+Please ensure that the directory name is valid and that you have permission
+to create this directory.  Run '$NAME create --help' for help on the usage.
+"
+
+DEBUG_START="
+Starting debug server: http://localhost:$LOCAL_PORT/ 
+This may take a few moments to start.  Use CTRL+C to stop."
+
+DEBUG_SUCCESS="
+Debug server stopped.
+"
+
+DEBUG_FAILURE="
+The '$NAME debug' command failed.
+
+A common cause of this is a conflict with the provided local port (-l): $LOCAL_PORT
+
+Please ensure that there is not another service running on this port.  Run
+'$NAME debug --help' for help on the usage.
+"
+
+DEPLOY_START="
+Deploying application (this may take a few moments) ..."
+
+DEPLOY_SUCCESS="
+Successfully deployed: '$APP_PATH'
+"
+
+DEPLOY_FAILURE="
+The '$NAME deploy' command failed.
+
+Common causes for this are misconfiguration of the container type (-c) or
+improper credentials (-u and -p) for your remote Suite instance.  Run
+'$NAME deploy --help' for help on the usage.
+"
+
+# provide feedback that work is starting
+case $COMMAND in
+    create) echo "$CREATE_START";;
+    debug) echo "$DEBUG_START";;
+    deploy) echo "$DEPLOY_START";;
+esac
+
+# run the command via ant
+ant -e -f "$SDK_HOME/build.xml" -Dsdk.home="$SDK_HOME" -Dbasedir=. $COMMAND $ANT_ARGS &> "$LOG_FILE"
+STATUS=$?
+
+# handle results
+if [ $STATUS -eq 0 ]; then
+    case $COMMAND in 
+        create) echo "$CREATE_SUCCESS";;
+        deploy) echo "$DEPLOY_SUCCESS";;
+    esac
+    exit 0
+else
+    case $COMMAND in 
+        create) echo "$CREATE_FAILURE";;
+        debug)
+            if [ $STATUS -eq 130 ]; then
+                echo
+                echo "Debug server stopped."
+            else
+                echo "$DEBUG_FAILURE"
+            fi
+            ;;
+        deploy) echo "$DEPLOY_FAILURE";;
+    esac
+    echo "See the logfile '$LOG_FILE' for more detail."
+    echo
+    exit 1
+fi
+
