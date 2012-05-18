@@ -43,6 +43,7 @@ import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.geometry.GeneralEnvelope;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.jdbc.JDBCDataStore;
+import org.geotools.referencing.CRS;
 import org.geotools.util.logging.Logging;
 import org.opengeo.data.importer.ImportTask.State;
 import org.opengeo.data.importer.bdb.BDBImportStore;
@@ -55,6 +56,7 @@ import org.opengis.feature.simple.SimpleFeatureType;
 
 import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -400,6 +402,18 @@ public class Importer implements InitializingBean, DisposableBean {
         if (r.getSRS() == null) {
             item.setState(ImportItem.State.NO_CRS);
             return false;
+        }
+        else if (item.getState() == ImportItem.State.NO_CRS) {
+            //changed after setting srs manually, compute the lat long bounding box
+            try {
+                computeLatLonBoundingBox(item, false);
+            }
+            catch(Exception e) {
+                LOGGER.log(Level.WARNING, "Error computing lat long bounding box", e);
+                item.setState(ImportItem.State.ERROR);
+                item.setError(e);
+                return false;
+            }
         }
 
         //bounds
@@ -914,6 +928,22 @@ public class Importer implements InitializingBean, DisposableBean {
         }
         
         return name;
+    }
+
+    /*
+     * computes the lat/lon bounding box from the native bounding box and srs, optionally overriding
+     * the value already set.
+     */
+    boolean computeLatLonBoundingBox(ImportItem item, boolean force) throws Exception {
+        ResourceInfo r = item.getLayer().getResource();
+        if (force || r.getLatLonBoundingBox() == null && r.getNativeBoundingBox() != null) {
+            CoordinateReferenceSystem nativeCRS = CRS.decode(r.getSRS());
+            ReferencedEnvelope nativeBbox = 
+                new ReferencedEnvelope(r.getNativeBoundingBox(), nativeCRS);
+            r.setLatLonBoundingBox(nativeBbox.transform(CRS.decode("EPSG:4326"), true));
+            return true;
+        }
+        return false;
     }
 
     //file location methods
