@@ -21,7 +21,7 @@ We will now change the viewer application to be in EPSG:4326 (WGS84) instead of 
         selected: true
     }],
 
-  Next, we will reconfigure the map options in EPSG:4326, so remove (or comment out) the entries for ``projection``, ``units``, ``maxResolution``, ``maxExtent`` and ``center``, and add the following:
+In place of that, we will add the following:
 
 .. code-block:: javascript
 
