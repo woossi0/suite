@@ -33,10 +33,6 @@
             <available file="${app.path}" type="dir"/>
         </condition>
         <basename property="app.name" file="${app.path}"/>
-        <script language="javascript" classpath="${sdk.home}/lib/*.jar"><![CDATA[
-            var name = project.getProperty("app.name");
-            project.setProperty("app.name", String(name).replace(/\s+/g, "-"));
-        ]]></script>
     </target>
 
     <target name="create" depends="checkpath">
