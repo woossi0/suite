@@ -1,5 +1,11 @@
 @echo off
 
+:: Check for ant on the path
+call ant -version >NUL 2>NUL || (
+  echo Requires Apache Ant ^(see http://ant.apache.org/^)
+  exit /b 1
+)
+
 set COMMAND=
 set APP_PATH=
 set ANT_ARGS=
