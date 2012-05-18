@@ -23,7 +23,7 @@ if "%~1"=="debug" goto Debug
 if "%~1"=="deploy" goto Deploy
 goto Usage
 
-
+ 
 :Create
 :: Create takes no arguments
 if "x%~2"=="x" goto Usage
@@ -33,7 +33,7 @@ set COMMAND="%~1"
 set APP_PATH="%~2"
 goto Run
 
-
+ 
 :Debug
 if "x%~2"=="x" goto Usage
 if "%~2"=="-h" goto UsageDebug
@@ -48,7 +48,7 @@ for %%a in (%*) do set /a ARGCOUNT += 1
 set /a ARGODD = "%ARGCOUNT% %% 2"
 if %ARGODD% == 1 goto Usage
 goto DebugFlagLoop
-
+ 
 :DebugFlagLoop
 :: Sets all of the command flags (ant arguments)
 :: And whatever remains should be the app-path
@@ -90,14 +90,14 @@ if "%flag%"=="g" (
 :: Keep going until one arg left
 goto DebugFlagLoop
 
-
+ 
 :DebugPath
 :: First argument is not a flag, so must assume that
 :: it's the app-path.
 set APP_PATH="%~1"
 goto Run
 
-
+ 
 :Deploy
 if "x%~2"=="x" goto Usage
 if "%~2"=="-h" goto UsageDeploy
@@ -105,7 +105,7 @@ if "%~2"=="--help" goto UsageDeploy
 set COMMAND="%~1"
 shift
 
-
+ 
 :DeployFlagLoop
 rem TODO: Same issues as in DebugFlagLoop
 
@@ -168,14 +168,14 @@ if "%flag%"=="c" (
 
 :: Keep going until one arg left
 goto DeployFlagLoop
-
+ 
 :DeployPath
 :: First argument is not a flag, so must assume that
 :: it's the app-path.
 set APP_PATH="%~1"
 goto Run
 
-
+ 
 :Usage
 echo Usage: %NAME% ^<command^> ^<args^>
 echo.
@@ -187,7 +187,7 @@ echo.
 echo See '%NAME% ^<command^> --help' for more detail on a specific command.
 echo.
 exit /b
-
+ 
 :UsageCreate
 echo Usage: %NAME% create ^<app-path^>
 echo.
@@ -195,7 +195,7 @@ echo Create a new application.  A new directory will be created using the ^<app-
 echo argument (it must not already exist).
 echo.
 exit /b
-
+ 
 :UsageDebug
 echo Usage: %NAME% debug [^<options^>] ^<app-path^>
 echo.
@@ -213,7 +213,7 @@ echo                                 from the "/geoserver" path within the
 echo                                 application.
 echo.
 exit /b
-
+ 
 :UsageDeploy
 echo Usage: %NAME% deploy ^<options^> ^<app-path^>
 echo.
@@ -245,7 +245,7 @@ echo                                 supported containers.
 echo.
 exit /b
 
-
+ 
 :Run
 ant -e -f %SDK_HOME%\build.xml -Dsdk.home=%SDK_HOME% -Dbasedir=. %COMMAND% -Dapp.path=%APP_PATH% %ANT_ARGS%
 
