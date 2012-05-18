@@ -9,7 +9,7 @@ Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/sdk-api/>`
 
 http://suite.opengeo.org/opengeo-docs/sdk-api/lib/plugins/GoogleGeocoder.html
 
-This requires the Google Maps v3 API to be present in the application. Add the following script tag in :file:`app/static/index.html`:
+This requires the Google Maps v3 API to be present in the application. Add the following script tag to :file:`index.html` in your app directory:
 
 .. code-block:: html
 
@@ -32,10 +32,9 @@ However to make this happen, we also need to add a tbar to the map's config, oth
 .. code-block:: javascript
 
     map: {
-        id: "mymap", // id needed to reference map in portalConfig above
+        ...
         tbar: {id: 'geocoder'},
-        title: "Map",
-        ..
+        ...   
     }
 
 Add the plugin to the list of dependencies in :file:`app.js`. The file name is :file:`plugins/GoogleGeocoder.js`. Restart the application and reload the browser.  The Google geocoder will now be in our viewer:
