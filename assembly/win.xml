@@ -28,6 +28,13 @@
       </includes>
     </fileSet>
     <fileSet>
+      <directory>geoserver/extension/target/dependency</directory>
+      <outputDirectory>extension/sqlserver</outputDirectory>
+      <includes>
+        <include>gt-jdbc-sqlserver-*</include>
+      </includes>
+    </fileSet>
+    <fileSet>
       <directory>styler/target/styler</directory>
       <outputDirectory>webapps/styler</outputDirectory>
     </fileSet>
