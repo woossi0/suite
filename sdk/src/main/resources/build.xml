@@ -33,10 +33,11 @@
             <available file="${app.path}" type="dir"/>
         </condition>
         <basename property="temp.app.name" file="${app.path}"/>
-        <tempfile property="temp.file" destDir="${java.io.tmpdir}" suffix=".properties" deleteonexit="true"/>
+        <tempfile property="temp.file" destDir="${java.io.tmpdir}" suffix=".properties"/>
         <echo message="${temp.app.name}" file="${temp.file}"/>
         <replace file="${temp.file}" token=" " value="-"/>
         <loadfile property="app.name" srcFile="${temp.file}"/>
+        <delete file="${temp.file}" failonerror="false"/>
     </target>
 
     <target name="create" depends="checkpath">
