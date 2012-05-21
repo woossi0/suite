@@ -44,7 +44,7 @@ with:
 .. code-block:: javascript
 
     {
-        id: "westpanel",
+        id: "westpanelmain",
         xtype: "container",
         layout: "vbox",
         region: "west",
