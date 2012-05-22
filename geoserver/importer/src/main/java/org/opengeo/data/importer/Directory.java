@@ -122,6 +122,12 @@ public class Directory extends FileData {
                     continue;
                 }
 
+                //special case for .aux files, they are metadata but get picked up as readable 
+                // by the erdas imagine reader...just ignore them for now 
+                if ("aux".equalsIgnoreCase(FilenameUtils.getExtension(f.getName()))) {
+                    continue;
+                }
+
                 //determine if this is a spatial format or not
                 DataFormat format = DataFormat.lookup(f);
 
