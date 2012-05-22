@@ -53,16 +53,14 @@ This will generate a template application.  Now run the following command::
 
   suite-sdk debug /path/to/myviewer
 
-The application will now run in debug mode on port 9080 of the local machine. If you want to run on a different port, specify it with the ``-l`` flag::
-
-  suite-sdk debug -l 9090 /path/to/myviewer 
-
-Now start up a browser, and type in the address of the application (such as ``http://localhost:9080/``:
+The application will now run in debug mode on port 9080 of the local machine.  Now start up a browser, and type in the address of the application (such as ``http://localhost:9080/``:
 
 .. figure:: ../img/basic_viewer.png
    :align: center
 
 What you get is a basic web mapping application which contains a layer tree, a map panel and some map tools. The map panel contains an OpenStreetMap base layer.
+
+.. note:: If you want to run on a different port, specify it with the ``-l`` flag (e.g. ``suite-sdk debug -l 9090 /path/to/myviewer``).
 
 Dissecting the Viewer
 ---------------------
