@@ -113,11 +113,11 @@ Proxying GeoServer
 
 A GeoServer instance will not be accessible by default unless you add the ``-g`` option to the ``debug`` command.  This will proxy a remote GeoServer, or just one running on a different port.  If you have a GeoServer instance running locally on port 8080, use the following command::
 
-  suite-sdk debug -g http://localhost:8080/geoserver/ /path/to/myviewer 
+  suite-sdk debug -g http://localhost:8080/geoserver /path/to/myviewer 
 
 To proxy a remote GeoServer, simply replace the URL with the location of the remote GeoServer instance::
 
-  suite-sdk debug -g http://suite.opengeo.org/geoserver/ /path/to/myviewer 
+  suite-sdk debug -g http://demo.opengeo.org/geoserver /path/to/myviewer 
 
 .. note::  Pressing ``Ctrl-C`` in the terminal will shut down the server and allow the new command to be issued.
 
