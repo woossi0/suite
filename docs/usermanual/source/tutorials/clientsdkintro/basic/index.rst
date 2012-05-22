@@ -49,7 +49,7 @@ Run the following command, replacing ``path/to/myviewer`` with the desired name 
 
   suite-sdk create /path/to/myviewer
 
-This will generate a template application.  Now run the following command:
+This will generate a template application.  Now run the following command::
 
   suite-sdk debug /path/to/myviewer
 
