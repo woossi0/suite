@@ -38,7 +38,9 @@ The Client SDK comes with an application template that can be useful for getting
 
   suite-sdk create path/to/myapp
 
-The app will be placed in the :file:`path/to/myapp` directory.  This directory will contain all required client-side resources for your application.
+In the above command, the app will be called :file:`myapp` and will be placed in the :file:`path/to/myapp` directory.  This directory will contain all required client-side resources for your application.
+
+.. warning:: Be sure to not name your application :file:`geoserver`, :file:`geoexplorer`, :file:`manager`, or any other name that might cause a conflict when :ref:`apps.sdk.client.script.deploy`.
 
 .. _apps.sdk.client.script.debug:
 
