@@ -24,6 +24,11 @@
     <property name="suite.password" value="geoserver"/>
     <property name="sdk.build" location="${java.io.tmpdir}/suite-sdk/build"/>
     <property name="sdk.logfile" location="${java.io.tmpdir}/suite-sdk/error.log"/>
+    
+    <target name="version">
+        <property file="${sdk.home}/version.ini"/>
+        <echo message="Suite Client SDK ${suite_version} (${build_revision})"/>
+    </target>
 
     <target name="checkpath">
         <echo file="${sdk.logfile}" append="true" message="Checking provided application path.${line.separator}"/>
@@ -132,6 +137,7 @@
     </target>
     
     <target name="deploy" depends="package">
+        <echo message="Deploying application (disregard message about undeployment failure if this is the first deployment)"/>
         <echo file="${sdk.logfile}" append="true" message="Deploying application archive '${sdk.build}/${app.name}.war'.${line.separator}"/>
         <taskdef resource="cargo.tasks">
             <classpath>
