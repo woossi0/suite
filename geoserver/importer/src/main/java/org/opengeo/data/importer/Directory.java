@@ -105,6 +105,7 @@ public class Directory extends FileData {
             //scan all the files looking for spatial ones
             for (File f : dir.listFiles()) {
                 if (f.isHidden()) {
+                    all.remove(f);
                     continue;
                 }
                 if (f.isDirectory()) {
