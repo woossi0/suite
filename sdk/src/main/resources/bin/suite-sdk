@@ -227,7 +227,7 @@ esac
 LOG_FILE=~/.opengeo/logs/suite-sdk.log
 LOG_DIR=$(dirname -- "$LOG_FILE")
 
-mkdir "$LOG_DIR" &> /dev/null
+mkdir -p "$LOG_DIR" &> /dev/null
 rm "$LOG_FILE" &> /dev/null
 touch "$LOG_FILE" &> /dev/null
 
