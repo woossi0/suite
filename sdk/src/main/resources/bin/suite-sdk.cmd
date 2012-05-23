@@ -247,5 +247,27 @@ exit /b
 
 
 :Run
-ant -e -f %SDK_HOME%\build.xml -Dsdk.home=%SDK_HOME% -Dbasedir=. %COMMAND% -Dapp.path=%APP_PATH% %ANT_ARGS%
+:: create log files (in case they don't already exist)
+set LOG_DIR=%USERPROFILE%\.opengeo\logs
+set LOG_FILE=%LOG_DIR%\suite-sdk.log
+set ANT_LOG=%LOG_DIR%\ant.log
 
+mkdir "%LOG_DIR%" >nul 2>nul
+del "%LOG_FILE%" >nul 2>nul
+del "%ANT_LOG%" >nul 2>nul
+type nul>"%LOG_FILE%"
+type nul>"%ANT_LOG%"
+
+if not exist "%LOG_FILE%" (
+  set LOG_FILE=nul
+)
+if not exist "%ANT_LOG%" (
+  set ANT_LOG=nul
+)
+
+
+call ant -e -f %SDK_HOME%\build.xml -Dsdk.logfile="%LOG_FILE%" -Dsdk.home=%SDK_HOME% -Dbasedir=. %COMMAND% -Dapp.path=%APP_PATH% %ANT_ARGS% 2>>"%ANT_LOG%"
+
+::Merge the two different log files at the end
+copy /y %LOG_FILE%+%ANT_LOG% "%LOG_FILE%" >nul 2>nul
+del %ANT_LOG% >nul 2>nul
