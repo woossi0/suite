@@ -1,2 +1,2 @@
 *.cmd eol=crlf
-*.bat eol=clrf
+*.bat eol=crlf
