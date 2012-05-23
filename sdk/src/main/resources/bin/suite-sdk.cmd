@@ -265,6 +265,20 @@ if not exist "%ANT_LOG%" (
   set ANT_LOG=nul
 )
 
+:: provide feedback that work is starting
+if %COMMAND%=="create" (
+  echo.
+  echo Creating application ...
+)
+if %COMMAND%=="debug" (
+  echo.
+  echo Starting debug server for application ^(use CTRL+C to stop^)
+)
+if %COMMAND%=="deploy" (
+  echo.
+  echo Deploying application ^(this may take a few moments^) ...
+)
+
 
 call ant -e -f %SDK_HOME%\build.xml -Dsdk.logfile="%LOG_FILE%" -Dsdk.home=%SDK_HOME% -Dbasedir=. %COMMAND% -Dapp.path=%APP_PATH% %ANT_ARGS% 2>>"%ANT_LOG%"
 
