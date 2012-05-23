@@ -131,7 +131,7 @@
 
     <target name="package" depends="build">
         <echo file="${sdk.logfile}" append="true" message="Building application archive for '${app.fullpath}'.${line.separator}"/>
-        <war destfile="${sdk.build}/${app.name}.war" needxmlfile="false">
+        <war destfile="${sdk.build}/${app.name}.war" webxml="${sdk.build}/${app.name}/WEB-INF/web.xml">
             <fileset dir="${sdk.build}/${app.name}"/>
         </war>
     </target>
