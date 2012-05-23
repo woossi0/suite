@@ -44,25 +44,22 @@ with:
 .. code-block:: javascript
 
     {
-        id: "westpanelmain",
+        id: "westcontainer",
         xtype: "container",
         layout: "vbox",
         region: "west",
-        align: "stretch",
-        pack: "start",
-        defaults: {
-            width: 200
-        },
         width: 200,
+        defaults: {
+            width: "100%",
+            layout: "fit"                
+        },
         items: [{
             title: "Layers",
             id: "westpanel",
-            flex: 1,
-            layout: "fit"
+            border: false,
+            flex: 1
         }, {
-            xtype: "container",
             id: "legendpanel",
-            layout: "fit",
             height: 250
         }]
     }
