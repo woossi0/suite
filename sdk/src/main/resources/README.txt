@@ -10,5 +10,5 @@ The most current documentation on how to use this script is available at:
   http://suite.opengeo.org/opengeo-docs/usermanual/tutorials/clientsdk.html
 
 API documentation for the Client SDK is found at:
-  http://suite.opengeo.org/opengeo-docs/gxp/
+  http://suite.opengeo.org/opengeo-docs/sdk-api/
 

@@ -38,7 +38,9 @@ The Client SDK comes with an application template that can be useful for getting
 
   suite-sdk create path/to/myapp
 
-The app will be placed in the :file:`path/to/myapp` directory.  This directory will contain all required client-side resources for your application.
+In the above command, the app will be called :file:`myapp` and will be placed in the :file:`path/to/myapp` directory.  This directory will contain all required client-side resources for your application.
+
+.. warning:: Be sure to not name your application :file:`geoserver`, :file:`geoexplorer`, :file:`manager`, or any other name that might cause a conflict when :ref:`apps.sdk.client.script.deploy`.
 
 .. _apps.sdk.client.script.debug:
 
@@ -66,15 +68,14 @@ By default, the application will be published on port 9080.  To run the server o
 
 This will make your application available for debugging at ``http://localhost:8000/``.
 
-
 Accessing GeoServer while testing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When deploying the application in the OpenGeo Suite, the application will have access to GeoServer at the relative URL of :file:`/geoserver`.  To set up this same relationship while testing your application, you can proxy your remote Suite GeoServer to make it look as if it were available locally.  To proxy a GeoServer located at ``http://example.com:8080/geoserver``, run the following command::
+When deploying the application in the OpenGeo Suite, the application will have access to GeoServer at the relative URL of :file:`/geoserver`.  If a GeoServer is not available on that path, or to set up this relationship with a remote GeoServer while testing your application, you can proxy a remote GeoServer to make it look as if it were available locally.  To proxy a GeoServer located at ``http://example.com:8080/geoserver``, run the following command::
 
   suite-sdk debug -g http://example.com:8080/geoserver path/to/myapp 
 
-This will make your remote GeoServer available locally at ``http://localhost:9080/geoserver`` .
+This will make your remote GeoServer available locally to your application at the relative URL of :file:`/geoserver`.
 
 Note that the ``-l`` and ``-g`` options can be used together.  For example, you could debug your application on port 8000 while accessing a local GeoServer running on port 8080::
 

@@ -49,21 +49,18 @@ Run the following command, replacing ``path/to/myviewer`` with the desired name 
 
   suite-sdk create /path/to/myviewer
 
-This will generate a template application.  Now run the following command:
+This will generate a template application.  Now run the following command::
 
   suite-sdk debug /path/to/myviewer
 
-The application will now run in debug mode on port 9080 of the local machine. If you want to run on a
-different port, specify it with the ``-l`` flag::
-
-  suite-sdk debug -l 9090 /path/to/myviewer 
-
-Now start up a browser, and type in the address of the application (such as ``http://localhost:9080/``:
+The application will now run in debug mode on port 9080 of the local machine.  Now start up a browser, and type in the address of the application (such as ``http://localhost:9080/``:
 
 .. figure:: ../img/basic_viewer.png
    :align: center
 
 What you get is a basic web mapping application which contains a layer tree, a map panel and some map tools. The map panel contains an OpenStreetMap base layer.
+
+.. note:: If you want to run on a different port, specify it with the ``-l`` flag (e.g. ``suite-sdk debug -l 9090 /path/to/myviewer``).
 
 Dissecting the Viewer
 ---------------------
@@ -107,18 +104,29 @@ Our application creates a ``gxp.Viewer`` instance. The viewport is filled with a
 * The **Zoom** tool, which will create two buttons in the map top toolbar, to zoom in and zoom out with a factor 2 centered on the current map center.
 * The **Navigation History** tool, which will create two buttons in the map's top toolbar, to navigate through visited map extents.
 
-The viewer configuration defines two layer sources, a WMS-C (cacheable WMS) source to a local GeoServer (with the embedded GeoWebCache), and an OpenStreetMap source. Layer sources are also implemented as Ext plugins, so configured with a ``ptype``. The configuration for the map defines the initial map extent (centered on the USA) and the layers to load in the map, in this case an OSM base layer and the ``usa:states`` layer from an OpenGeo Suite's default GeoServer setup. If no local GeoServer can be found, this layer will not be loaded of course. Finally, a zoom slider is defined. Note that this can also be done using ``mapItems``.
+The viewer configuration defines two layer sources, a WMS-C (cacheable WMS) source to a local GeoServer (with the embedded GeoWebCache), and an OpenStreetMap source. Layer sources are also implemented as Ext plugins, so configured with a ``ptype``. The configuration for the map defines the initial map extent (centered on the USA) and the layers to load in the map, in this case an OSM base layer and the ``usa:states`` layer from an OpenGeo Suite's default GeoServer setup.  (See :ref:`apps.sdk.client.dev.basics.proxy` for how to link this application to a GeoServer instance.)  Finally, a zoom slider is defined. Note that this can also be done using ``mapItems``.
 
-In the above application, it is possible to proxy a remote GeoServer, or even just a GeoServer running on a different port locally::
+.. _apps.sdk.client.dev.basics.proxy:
 
-  suite-sdk debug -g http://localhost:8080/geoserver/ /path/to/myviewer 
+Proxying GeoServer
+------------------
 
-If this GeoServer has the ``usa:states`` layer, it will be added to the application:
+A GeoServer instance will not be accessible by default unless you add the ``-g`` option to the ``debug`` command.  This will proxy a remote GeoServer, or just one running on a different port.  If you have a GeoServer instance running locally on port 8080, use the following command::
+
+  suite-sdk debug -g http://localhost:8080/geoserver /path/to/myviewer 
+
+To proxy a remote GeoServer, simply replace the URL with the location of the remote GeoServer instance::
+
+  suite-sdk debug -g http://demo.opengeo.org/geoserver /path/to/myviewer 
+
+.. note::  Pressing ``Ctrl-C`` in the terminal will shut down the server and allow the new command to be issued.
+
+The commands above will allow GeoServer to be accessible to the application at the relative path of :file:`/geoserver`.
 
 .. figure:: ../img/basic_states.png
    :align: center
 
-.. note:: You can use ``http://suite.opengeo.org/geoserver/`` if you don't have a GeoServer instance running locally.
+   *Application with a GeoServer proxy showing usa:states layer*
 
 Next we will add more components to our app, and start with some basic viewer components.
 

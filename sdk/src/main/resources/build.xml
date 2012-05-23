@@ -23,40 +23,46 @@
     <property name="suite.username" value="manager"/>
     <property name="suite.password" value="geoserver"/>
     <property name="sdk.build" location="${java.io.tmpdir}/suite-sdk/build"/>
+    <property name="sdk.logfile" location="${java.io.tmpdir}/suite-sdk/error.log"/>
 
     <target name="checkpath">
+        <echo file="${sdk.logfile}" append="true" message="Checking provided application path.${line.separator}"/>
         <condition property="app.path.set">
             <isset property="app.path"/>
         </condition>
         <fail message="Missing app path." unless="app.path.set"/>
-        <condition property="app.path.exists">
-            <available file="${app.path}" type="dir"/>
+        <property name="app.fullpath" location="${app.path}"/>
+        <condition property="app.exists">
+            <available file="${app.fullpath}" type="dir"/>
         </condition>
-        <basename property="temp.app.name" file="${app.path}"/>
+        <basename property="temp.app.name" file="${app.fullpath}"/>
         <tempfile property="temp.file" destDir="${java.io.tmpdir}" suffix=".properties"/>
         <echo message="${temp.app.name}" file="${temp.file}"/>
         <replace file="${temp.file}" token=" " value="-"/>
         <loadfile property="app.name" srcFile="${temp.file}"/>
-        <delete file="${temp.file}" failonerror="false"/>
+        <!-- <delete file="${temp.file}" failonerror="false" verbose="false"/> -->
     </target>
 
     <target name="create" depends="checkpath">
-        <fail message="Directory '${app.path}' already exists.  Specify the name for a new app directory." if="app.path.exists"/>
-        <mkdir dir="${app.path}"/>
-        <copy todir="${app.path}">
+        <fail message="Directory '${app.fullpath}' already exists.  Specify the name for a new app directory." if="app.exists"/>
+        <echo file="${sdk.logfile}" append="true" message="Creating application in '${app.fullpath}'.${line.separator}"/>
+        <mkdir dir="${app.fullpath}"/>
+        <copy todir="${app.fullpath}">
             <fileset dir="${sdk.home}/src/main/resources/client"/>
         </copy>
+        <echo message="Created application: ${app.fullpath}"/>
     </target>
     
     <target name="debug" depends="checkpath">
-        <fail message="Directory '${app.path}' doesn't exist." unless="app.path.exists"/>
-        <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
+        <fail message="Directory '${app.fullpath}' doesn't exist." unless="app.exists"/>
+        <echo file="${sdk.logfile}" append="true" message="Starting debug server for '${app.fullpath}.${line.separator}"/>
+        <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true" error="${sdk.logfile}" append="true">
             <classpath>
                 <fileset dir="${sdk.home}/lib">
                     <include name="**/*.jar"/>
                 </fileset>
             </classpath>
-            <sysproperty key="app.static" path="${app.path}"/>
+            <sysproperty key="app.static" path="${app.fullpath}"/>
             <sysproperty key="app.debug" value="1"/>
             <sysproperty key="app.proxy.geoserver" value="${app.proxy.geoserver}"/>
             <sysproperty key="ringo.home" path="${sdk.home}"/>
@@ -67,7 +73,8 @@
     </target>
 
     <target name="build" depends="checkpath">
-        <fail message="Directory '${app.path}' doesn't exist." unless="app.path.exists"/>
+        <fail message="Directory '${app.fullpath}' doesn't exist." unless="app.exists"/>
+        <echo file="${sdk.logfile}" append="true" message="Building application resources for '${app.fullpath}'.${line.separator}"/>
         <property name="app.build" location="${sdk.build}/${app.name}"/>
         <mkdir dir="${app.build}"/>
         <copy todir="${app.build}">
@@ -78,23 +85,23 @@
         </copy>
         <!-- copy Ext resources -->
         <copy todir="${app.build}/src/ext">
-            <fileset dir="${app.path}/src/ext"/>
+            <fileset dir="${app.fullpath}/src/ext"/>
         </copy>
         <!-- copy OpenLayers resources -->
         <copy todir="${app.build}/src/openlayers/theme">
-            <fileset dir="${app.path}/src/openlayers/theme"/>
+            <fileset dir="${app.fullpath}/src/openlayers/theme"/>
         </copy>
         <!-- copy GeoExt resources -->
         <copy todir="${app.build}/src/geoext/resources">
-            <fileset dir="${app.path}/src/geoext/resources"/>
+            <fileset dir="${app.fullpath}/src/geoext/resources"/>
         </copy>
         <!-- copy gxp resources -->
         <copy todir="${app.build}/src/gxp/theme">
-            <fileset dir="${app.path}/src/gxp/theme"/>
+            <fileset dir="${app.fullpath}/src/gxp/theme"/>
         </copy>
         <!-- build app js -->
         <mkdir dir="${app.build}/lib"/>
-        <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
+        <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true" output="${sdk.logfile}" append="true">
             <classpath>
                 <fileset dir="${sdk.home}/lib">
                     <include name="**/*.jar"/>
@@ -104,26 +111,28 @@
             <arg path="${sdk.home}/lib/buildkit/lib/buildkit/build.js"/>
             <arg value="-o"/>
             <arg path="${app.build}/lib"/>
-            <arg path="${app.path}/buildjs.cfg"/>
+            <arg path="${app.fullpath}/buildjs.cfg"/>
         </java>
         <!-- copy additional app resources -->
         <copy todir="${app.build}/theme">
-            <fileset dir="${app.path}/theme"/>
+            <fileset dir="${app.fullpath}/theme"/>
         </copy>
         <copy todir="${app.build}">
-            <fileset dir="${app.path}">
+            <fileset dir="${app.fullpath}">
                 <include name="*"/>
             </fileset>
         </copy>
     </target>
 
     <target name="package" depends="build">
+        <echo file="${sdk.logfile}" append="true" message="Building application archive for '${app.fullpath}'.${line.separator}"/>
         <war destfile="${sdk.build}/${app.name}.war" needxmlfile="false">
             <fileset dir="${sdk.build}/${app.name}"/>
         </war>
     </target>
     
     <target name="deploy" depends="package">
+        <echo file="${sdk.logfile}" append="true" message="Deploying application archive '${sdk.build}/${app.name}.war'.${line.separator}"/>
         <taskdef resource="cargo.tasks">
             <classpath>
                 <fileset dir="${sdk.home}/lib">
@@ -142,6 +151,7 @@
                 </deployable>
             </configuration>
         </cargo>
+        <echo message="Successfully deployed application: http://${suite.domain}:${suite.port}/${app.name}/"/>
     </target>
 
 </project>
