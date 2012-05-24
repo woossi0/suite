@@ -151,6 +151,12 @@
     </fileSet>
   </fileSets>
   <files>
+        <file>
+            <source>sdk/target/version.ini</source>
+            <outputDirectory>sdk</outputDirectory>
+        </file>
+    </files>
+  <files>
     <file>
       <source>jetty/lib/jetty-start-${jetty.version}.jar</source>
       <outputDirectory>/</outputDirectory>
