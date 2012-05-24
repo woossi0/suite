@@ -20,11 +20,16 @@ popd
 
 :: Determine if proper arguments have been supplied
 if "x%~1"=="x" goto Usage
+if "%~1"=="version" goto Version
+if "%~1"=="--version" goto Version
 if "%~1"=="create" goto Create
 if "%~1"=="debug" goto Debug
 if "%~1"=="deploy" goto Deploy
 goto Usage
 
+:Version
+set COMMAND="version"
+goto Run
 
 :Create
 :: Create takes no arguments
@@ -33,6 +38,7 @@ if "%~2"=="-h" goto UsageCreate
 if "%~2"=="--help" goto UsageCreate
 set COMMAND="%~1"
 set APP_PATH="%~2"
+set ANT_ARGS=%ANT_ARGS% -Dapp.path=%APP_PATH%
 goto Run
 
 
@@ -98,6 +104,7 @@ goto DebugFlagLoop
 :: First argument is not a flag, so must assume that
 :: it's the app-path.
 set APP_PATH="%~1"
+set ANT_ARGS=%ANT_ARGS% -Dapp.path=%APP_PATH%
 goto Run
 
 
@@ -176,6 +183,7 @@ goto DeployFlagLoop
 :: First argument is not a flag, so must assume that
 :: it's the app-path.
 set APP_PATH="%~1"
+set ANT_ARGS=%ANT_ARGS% -Dapp.path=%APP_PATH%
 goto Run
 
 
@@ -285,8 +293,7 @@ if %COMMAND%=="deploy" (
   echo.
 )
 
-
-call ant -e -f %SDK_HOME%\build.xml -Dsdk.logfile="%LOG_FILE%" -Dsdk.home=%SDK_HOME% -Dbasedir=. %COMMAND% -Dapp.path=%APP_PATH% %ANT_ARGS% 2>>"%ANT_LOG%"
+call ant -e -f %SDK_HOME%\build.xml -Dsdk.logfile="%LOG_FILE%" -Dsdk.home=%SDK_HOME% -Dbasedir=. %COMMAND% %ANT_ARGS% 2>>"%ANT_LOG%"
 
 :: Handle results
 IF %ERRORLEVEL% NEQ 0 (
