@@ -26,9 +26,6 @@ The map configuration contains a few projection related properties:
 .. code-block:: javascript
 
     projection: "EPSG:900913",
-    units: "m",
-    maxResolution: 156543.0339,
-    maxExtent: [-20037508, -20037508, 20037508, 20037508],
     center: [-10764594.758211, 4523072.3184791],
 
 To change the projection, substitute the lines above with the following:
@@ -51,7 +48,7 @@ Now we can add a WMS of the world as our new base layer, first defining a new so
         ptype: "gxp_olsource"
     }
 
-This type is an "OpenLayers Source", which will allow us to define any OpenLayers Layer type. We want to configure an OpenLayers.Layer.WMS to a vmap0 tilecache instance, so add the following to the layers configuration:
+This type is an "OpenLayers Source", which will allow us to define any OpenLayers Layer type. We want to configure an OpenLayers.Layer.WMS to a vmap0 tilecache instance, so add the following to the ``layers`` configuration:
 
 .. code-block:: javascript
 
@@ -67,7 +64,7 @@ This will result in:
 .. figure:: ../img/viewer_projection_vmap.png
    :align: center
 
-As a last step, we will add a blank base layer to the application.  Add the following to the layers configuration:
+As a last step, we will add a blank base layer to the application.  Add the following to the ``layers`` configuration:
 
 .. code-block:: javascript
 

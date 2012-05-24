@@ -15,7 +15,7 @@
     </fileSet>
     <fileSet>
       <directory>docs/gxp/target/html</directory>
-      <outputDirectory>gxp</outputDirectory>
+      <outputDirectory>sdk-api</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>docs/geoserver/target/html</directory>
