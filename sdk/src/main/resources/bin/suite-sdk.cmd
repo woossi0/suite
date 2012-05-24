@@ -1,7 +1,7 @@
 @echo off
 
 :: Check for ant on the path
-call ant -version >NUL 2>NUL || (
+call ant -version >nul 2>nul || (
   echo Requires Apache Ant ^(see http://ant.apache.org/^)
   exit /b 1
 )
@@ -10,6 +10,8 @@ set COMMAND=
 set APP_PATH=
 set ANT_ARGS=
 set NAME=%~n0
+:: default repeated in build.xml, but used here for success message
+set LOCAL_PORT=9080 
 
 :: Find the full path of SDK_HOME 
 pushd "%~dp0.."
@@ -78,6 +80,7 @@ if "%flag%"=="0" (
 if "%flag%"=="l" (
   if "x%~2"=="x" goto Usage
   set ANT_ARGS=%ANT_ARGS% -Dapp.port=%2
+  set LOCAL_PORT=%2
   shift && shift
 )
 
@@ -247,7 +250,7 @@ exit /b
 
 
 :Run
-:: create log files (in case they don't already exist)
+:: Create log files (in case they don't already exist)
 set LOG_DIR=%USERPROFILE%\.opengeo\logs
 set LOG_FILE=%LOG_DIR%\suite-sdk.log
 set ANT_LOG=%LOG_DIR%\ant.log
@@ -265,23 +268,63 @@ if not exist "%ANT_LOG%" (
   set ANT_LOG=nul
 )
 
-:: provide feedback that work is starting
+:: Provide feedback that work is starting
 if %COMMAND%=="create" (
   echo.
   echo Creating application ...
+  echo.
 )
 if %COMMAND%=="debug" (
   echo.
   echo Starting debug server for application ^(use CTRL+C to stop^)
+  echo.
 )
 if %COMMAND%=="deploy" (
   echo.
   echo Deploying application ^(this may take a few moments^) ...
+  echo.
 )
 
 
 call ant -e -f %SDK_HOME%\build.xml -Dsdk.logfile="%LOG_FILE%" -Dsdk.home=%SDK_HOME% -Dbasedir=. %COMMAND% -Dapp.path=%APP_PATH% %ANT_ARGS% 2>>"%ANT_LOG%"
 
+:: Handle results
+IF %ERRORLEVEL% NEQ 0 (
+  if %COMMAND%=="create" (
+    echo.
+    echo The '%NAME% create' command failed.
+    echo.
+    echo A common cause of this is the failure to create the provided directory:
+    echo %APP_PATH%
+    echo.
+    echo Please ensure that the directory name is valid and that you have permission
+    echo to create this directory.  Run '%NAME% create --help' for help on the usage.
+    echo.
+  )
+  if %COMMAND%=="debug" (
+    echo.
+    echo The '%NAME% debug' command failed.
+    echo.
+    echo A common cause of this is a conflict with the provided local port ^(-l^): %LOCAL_PORT%
+    echo.
+    echo Please ensure that there is not another service running on this port.  Run
+    echo '%NAME% debug --help' for help on the usage.
+    echo.
+  )
+  if %COMMAND%=="deploy" (
+    echo.
+    echo The '%NAME% deploy' command failed.
+    echo.
+    echo Common causes for this are misconfiguration of the container type ^(-c^) or
+    echo improper credentials ^(-u and -p^) for your remote Suite instance.  Run
+    echo '%NAME% deploy --help' for help on the usage.
+    echo.
+  )
+  echo See the logfile '%LOG_FILE%' for more detail on what went wrong.
+  echo.
+)
+ 
+
 ::Merge the two different log files at the end
-copy /y %LOG_FILE%+%ANT_LOG% "%LOG_FILE%" >nul 2>nul
-del %ANT_LOG% >nul 2>nul
+copy /y "%LOG_FILE%"+"%ANT_LOG%" "%LOG_FILE%" >nul 2>nul
+del "%ANT_LOG%" >nul 2>nul
