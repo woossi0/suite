@@ -1,4 +1,4 @@
-.. _installation.linux.geoserver-centos:
+.. _installation.linux.centos.geoserver:
 
 Installing GeoServer on CentOS
 ==============================
@@ -7,27 +7,36 @@ The easiest way to install and set up GeoServer is by :ref:`installing the full 
 
 This page will describe how to install GeoServer on CentOS 5.  Earlier versions of CentOS are not supported at this time.
 
-Access the OpenGeo RPM repository
----------------------------------
 
-OpenGeo provides a repository for packages in RPM format.  To access this repository, you need to first add the OpenGeo Yum repository to your local list of repositories:  These commands differ depending on whether your system is 32 or 64 bit.
+Access the OpenGeo repository
+-----------------------------
+
+OpenGeo provides a repository for packages in RPM format.  To access this repository, you need to first add the OpenGeo  repository to your local list of repositories.
 
 .. note:: You will need to run these commands on an account with root access.
 
-For 32 bit systems:
+Change to the :file:`/etc/yum.repos.d` directory:
 
 .. code-block:: bash
 
    cd /etc/yum.repos.d
-   wget http://yum.opengeo.org/centos/5/i386/OpenGeo.repo
 
-For 64 bit systems:
+Add the OpenGeo YUM repository.  The exact command will differ depending on whether you are using CentOS 5 or 6, and whether you are using a 32 bit installation or 64 installation.
 
-.. code-block:: bash
+.. list-table::
+   :widths: 20 80
+   :header-rows: 1
 
-   cd /etc/yum.repos.d
-   wget http://yum.opengeo.org/centos/5/x86_64/OpenGeo.repo
-
+   * - System
+     - Command
+   * - CentOS 5, 32 bit
+     - ``wget http://yum.opengeo.org/centos/5/i386/OpenGeo.repo``
+   * - CentOS 5, 64 bit
+     - ``wget http://yum.opengeo.org/centos/5/x86_64/OpenGeo.repo``
+   * - CentOS 6, 32 bit
+     - ``wget http://yum.opengeo.org/centos/6/i686/OpenGeo.repo``
+   * - CentOS 6, 64 bit
+     - ``wget http://yum.opengeo.org/centos/6/x86_64/OpenGeo.repo``
 
 Package management
 ------------------

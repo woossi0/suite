@@ -1,32 +1,41 @@
-.. _installation.linux.postgis-centos:
+.. _installation.linux.centos.postgis:
 
 Installing PostGIS on CentOS
 ============================
 
 The easiest way to install and set up PostGIS is by :ref:`installing the full OpenGeo Suite <installation.linux.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
 
-This page will describe how to install PostGIS on CentOS 5.  Earlier versions of Ubuntu are not supported at this time.
+This page will describe how to install PostGIS on CentOS 5.  Earlier versions are not supported at this time.
 
-Access the OpenGeo RPM repository
----------------------------------
+Access the OpenGeo repository
+-----------------------------
 
-OpenGeo provides a repository for packages in RPM format.  To access this repository, you need to first add the OpenGeo Yum repository to your local list of repositories:  These commands differ depending on whether your system is 32 or 64 bit.
+OpenGeo provides a repository for packages in RPM format.  To access this repository, you need to first add the OpenGeo  repository to your local list of repositories.
 
 .. note:: You will need to run these commands on an account with root access.
 
-For 32 bit systems:
+Change to the :file:`/etc/yum.repos.d` directory:
 
 .. code-block:: bash
 
    cd /etc/yum.repos.d
-   wget http://yum.opengeo.org/centos/5/i386/OpenGeo.repo
 
-For 64 bit systems:
+Add the OpenGeo YUM repository.  The exact command will differ depending on whether you are using CentOS 5 or 6, and whether you are using a 32 bit installation or 64 installation.
 
-.. code-block:: bash
+.. list-table::
+   :widths: 20 80
+   :header-rows: 1
 
-   cd /etc/yum.repos.d
-   wget http://yum.opengeo.org/centos/5/x86_64/OpenGeo.repo
+   * - System
+     - Command
+   * - CentOS 5, 32 bit
+     - ``wget http://yum.opengeo.org/centos/5/i386/OpenGeo.repo``
+   * - CentOS 5, 64 bit
+     - ``wget http://yum.opengeo.org/centos/5/x86_64/OpenGeo.repo``
+   * - CentOS 6, 32 bit
+     - ``wget http://yum.opengeo.org/centos/6/i686/OpenGeo.repo``
+   * - CentOS 6, 64 bit
+     - ``wget http://yum.opengeo.org/centos/6/x86_64/OpenGeo.repo``
 
 
 Package management
@@ -68,9 +77,8 @@ If PostGIS is installed correctly, you should see information about the installe
 pgAdmin III
 ~~~~~~~~~~~
 
-The graphical management utility pgAdmin is included with the install.  To run pgAdmin, type :command:`pgadmin3` at a terminal, or navigate to :menuselection:`Applications --> Programming --> pgAdmin III`.
+The graphical management utility pgAdmin is included with the install.  To run pgAdmin, type :command:`pgadmin3` at a terminal, or navigate to :guilabel:`pgAdmin III` in the :guilabel:`Applications` menu.
 
 
-
-For more information about running PostGIS, please see the `PostGIS Documentation <http://suite.opengeo.org/docs/postgis/>`_
+For more information about running PostGIS, please see the `PostGIS Documentation <http://suite.opengeo.org/opengeo-docs/postgis/>`_
 

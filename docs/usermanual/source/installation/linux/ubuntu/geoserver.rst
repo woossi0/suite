@@ -1,4 +1,4 @@
-.. _installation.linux.geoserver-ubuntu:
+.. _installation.linux.ubuntu.geoserver:
 
 Installing GeoServer on Ubuntu
 ==============================
@@ -7,8 +7,8 @@ The easiest way to install and set up GeoServer is by :ref:`installing the full 
 
 This page will describe how to install GeoServer on Ubuntu 10.04 (Lucid).  Earlier versions of Ubuntu are not supported at this time.
 
-Access the OpenGeo APT repository
----------------------------------
+Access the OpenGeo repository
+-----------------------------
 
 OpenGeo provides a repository for packages in APT (Debian) format.  To access this repository, you need to first import the OpenGeo GPG key in to your apt registry:
 
@@ -30,9 +30,6 @@ Now update APT to pull in your changes:
 
    apt-get update
 
-Package management
-------------------
-
 Search for packages from OpenGeo:
 
 .. code-block:: bash
@@ -40,6 +37,9 @@ Search for packages from OpenGeo:
    apt-cache search opengeo
 
 If the search command does not return any results, the repository was not added properly. Examine the output of the ``apt`` commands for any errors or warnings.
+
+Package management
+------------------
 
 Now you can install GeoServer.  The name of the package is :guilabel:`opengeo-geoserver`:
 
@@ -59,4 +59,4 @@ This will load the Web Administration Interface.  Most management of GeoServer f
 
 .. note:: The username and password for the GeoServer administrator account is **admin** / **geoserver**
 
-For more information about running GeoServer, please see the `GeoServer Documentation <http://suite.opengeo.org/docs/geoserver/>`_
+For more information about GeoServer, please see the `GeoServer Documentation <http://suite.opengeo.org/opengeo-docs/geoserver/>`_
