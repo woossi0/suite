@@ -96,9 +96,10 @@ public class BDBImportStore implements ImportStore {
         seqDb = env.openDatabase(null, "seq", dbConfig);
         importIdSeq = 
             seqDb.openSequence(null, new DatabaseEntry("import_id".getBytes()), seqConfig);
-        
-        importBinding = new XStreamInfoSerialBinding<ImportContext>(
-            importer.createXStreamPersister(), ImportContext.class);
+
+        importBinding = new SerialVersionSafeSerialBinding<ImportContext>();
+        //importBinding = new XStreamInfoSerialBinding<ImportContext>(
+        //    importer.createXStreamPersister(), ImportContext.class);
     }
 
 
@@ -116,8 +117,8 @@ public class BDBImportStore implements ImportStore {
     ImportContext reattach(ImportContext context) {
         //reload store and workspace objects from catalog so they are "attached" with 
         // the proper references to the catalog initialized
-        context.reattach();
         Catalog catalog = importer.getCatalog();
+        context.reattach(catalog);
         for (ImportTask task : context.getTasks()) {
             StoreInfo store = task.getStore();
             if (store != null && store.getId() != null) {
@@ -139,7 +140,7 @@ public class BDBImportStore implements ImportStore {
                         }
 
                         if (r.getStore().getCatalog() == null) {
-                            ((StoreInfoImpl) r.getStore()).setCatalog(catalog);
+                            //((StoreInfoImpl) r.getStore()).setCatalog(catalog);
                         }
 
                     }

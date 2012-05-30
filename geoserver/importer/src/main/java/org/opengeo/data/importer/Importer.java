@@ -163,7 +163,8 @@ public class Importer implements InitializingBean, DisposableBean {
     }
 
     public void init(ImportContext context) throws IOException {
-        //context.getTasks().clear();
+        context.reattach(catalog);
+
         ImportData data = context.getData();
         if (data != null) {
             init(context, data); 
@@ -994,15 +995,9 @@ public class Importer implements InitializingBean, DisposableBean {
     }
     
     public XStreamPersister initXStreamPersister(XStreamPersister xp) {
-        return initXStreamPersister(xp, true);
-    }
-
-    public XStreamPersister initXStreamPersister(XStreamPersister xp, boolean encodeByRef) { 
-        if (encodeByRef) {
-            xp.setEncodeByReference();
-        }
         xp.setCatalog(catalog);
-
+        //xp.setReferenceByName(true);
+        
         XStream xs = xp.getXStream();
 
         //ImportContext

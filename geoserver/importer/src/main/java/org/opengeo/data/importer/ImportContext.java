@@ -7,8 +7,11 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
+
+import static org.opengeo.data.importer.ImporterUtils.*;
 
 /**
  * Maintains state about an import.
@@ -198,14 +201,21 @@ public class ImportContext implements Serializable {
         }
     }
 
-    public void reattach() {
+    public void reattach(Catalog catalog) {
         if (data != null) {
             data.reattach();
         }
 
+        targetWorkspace = resolve(targetWorkspace, catalog);
+
+        if (targetStore != null && targetStore.getWorkspace() == null) {
+            targetStore.setWorkspace(targetWorkspace);
+        }
+        targetStore = resolve(targetStore, catalog);
+
         for (ImportTask task : tasks) {
             task.setContext(this);
-            task.reattach();
+            task.reattach(catalog);
         }
     }
 
