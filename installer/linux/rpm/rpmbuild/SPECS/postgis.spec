@@ -1,26 +1,40 @@
+
+%define pgdir /usr/pgsql-9.2
+%define mver 2.1
+%define ver 2.1.0SVN
+
 Summary:        Geographic Information Systems Extensions to PostgreSQL
 Name:           postgis
-Version:        1.5.4
+Version:        %{ver}
 Release:        1
 License:        GPL v2
 Group:          Applications/Databases
-Source:         %{name}-%{version}.tar.gz
+Source:         http://postgis.org/download/%{name}-%{version}.tar.gz
 Source1:	%{name}.rpmlintrc
 Vendor:         The PostGIS Project
 Packager:       Otto Dassau <dassau@gbd-consult.de>
-URL:            http://postgis.refractions.net/
-BuildRequires:  proj-devel proj geos-devel >= 2.1.1
-BuildRequires:  gcc-c++ libxslt-devel dos2unix flex
+URL:            http://postgis.org/
+
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-%(%{__id_u} -n)
-%if 0%{?centos} == 6
-BuildRequires: postgresql-devel postgresql
-Requires:       postgresql
-Requires:	postgresql-server
-%else
-BuildRequires:  postgresql84-devel postgresql84
-Requires:       postgresql84
-Requires:	postgresql84-server
-%endif
+
+BuildRequires:  geos-devel >= 3.3.3
+BuildRequires:  gdal-devel >= 1.8.1
+BuildRequires:  proj-devel >= 4.6.0
+BuildRequires:  libxml2-devel
+BuildRequires:  json-c-devel
+BuildRequires:  gtk2-devel
+BuildRequires:  gettext-devel
+BuildRequires:  perl
+BuildRequires:  gcc-c++ libxslt-devel dos2unix
+BuildRequires:  postgresql92-devel
+
+AutoReq:        no
+Requires:       postgresql92 
+Requires:	postgresql92-server
+Requires:       geos >= 3.3.3
+Requires:       proj >= 4.6.0
+Requires:       gdal >= 1.8.1
+Requires:       libxml2 json-c perl gtk2 gettext
 
 %description
 PostGIS adds support for geographic objects to the PostgreSQL object-relational
@@ -29,10 +43,6 @@ allowing it to be used as a backend spatial database for geographic information
 systems (GIS), much like ESRI's SDE or Oracle's Spatial extension. PostGIS
 follows the OpenGIS "Simple Features Specification for SQL" and will be
 submitted for conformance testing at version 1.0.
-
-%if 0%{?mandriva_version} < 2007
-%debug_package
-%endif
 
 %package utils
 Summary:        The utils for PostGIS
@@ -45,25 +55,25 @@ The postgis-utils package provides the utilities for PostGIS.
 %prep
 %setup -q
 
-%define sqldir %{_datadir}/postgresql
 
 %build
-%configure --datadir=%{sqldir} --mandir=%{_mandir} --with-gui
-make LPATH="%{_libdir}/postgresql" \
-	shlib="%{name}.so"
+%configure --with-pgconfig=%{pgdir}/bin/pg_config --with-gui
+make
 
 %install
 make install DESTDIR=%{buildroot}
-install -d %{buildroot}%{sqldir}
-install -m 755 *.sql %{buildroot}%{sqldir}
-install -d %{buildroot}%{_bindir}
-install -m 755 utils/*.pl %{buildroot}%{_bindir}
+#install -d %{buildroot}%{sqldir}
+#install -m 755 *.sql %{buildroot}%{sqldir}
+install -d %{buildroot}%{pgdir}/bin
+install -m 755 utils/create_undef.pl %{buildroot}%{pgdir}/bin
+install -m 755 utils/postgis_restore.pl %{buildroot}%{pgdir}/bin
 
 #JD: issue on centos with the perl Pg module, remove all developer scripts
-rm %{buildroot}%{_bindir}/test_*.pl
-rm %{buildroot}%{_bindir}/profile*.pl
-install -d %{buildroot}%{_mandir}/man1/
-install -m 644 doc/man/*.1 %{buildroot}%{_mandir}/man1/
+#rm %{buildroot}%{_bindir}/test_*.pl
+#rm %{buildroot}%{_bindir}/profile*.pl
+install -d %{buildroot}%{pgdir}/share/man
+install -d %{buildroot}%{pgdir}/share/man/man1
+install -m 644 doc/man/*.1 %{buildroot}%{pgdir}/share/man/man1
 
 perl -e '
 foreach $d (split "\n",`find -type d`)
@@ -93,28 +103,30 @@ ls -R
 %clean
 rm -rf %{buildroot}
 
+
 %files
 %defattr(-,root,root)
 %doc COPYING CREDITS NEWS README* TODO* doc/html/* loader/README.* 
 %doc doc/ZMSgeoms.txt doc/postgis_comments.sql
-%{_bindir}/*
-%{_mandir}/man1/*
-%{_libdir}/pgsql/*.so*
-%defattr(755,root,root)
-%{sqldir}/
+%{_libdir}/*
+%{_includedir}/*
+%{pgdir}/lib/*
 %defattr(644,root,root)
-%{sqldir}/*.sql
-/usr/share/pgsql/contrib/postgis-1.5/postgis.sql
-/usr/share/pgsql/contrib/postgis-1.5/postgis_upgrade_13_to_15.sql
-/usr/share/pgsql/contrib/postgis-1.5/postgis_upgrade_14_to_15.sql
-/usr/share/pgsql/contrib/postgis-1.5/postgis_upgrade_15_minor.sql
-/usr/share/pgsql/contrib/postgis-1.5/spatial_ref_sys.sql
-/usr/share/pgsql/contrib/postgis-1.5/uninstall_postgis.sql
+%{pgdir}/share/contrib/postgis-%{mver}/*
+%{pgdir}/share/extension/*
+%{pgdir}/share/man/man1/*
+%defattr(755,root,root)
+%{pgdir}/bin/shp2pgsql
+%{pgdir}/bin/shp2pgsql-gui
+%{pgdir}/bin/pgsql2shp
+%{pgdir}/bin/raster2pgsql
+%exclude %{_libdir}/debug/*
+
 
 %files utils
 %defattr(755,root,root)
-%{_bindir}/create_undef.pl
-%{_bindir}/postgis_restore.pl
+%{pgdir}/bin/create_undef.pl
+%{pgdir}/bin/postgis_restore.pl
 
 %changelog
 * Fri Mar 19 2010 Otto Dassau 1.5.1
