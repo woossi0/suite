@@ -20,7 +20,7 @@
    <dependency>
      <groupId>org.opengeo.geoserver</groupId>
      <artifactId>analytics</artifactId>
-     <version>${project.version}</version>
+     <version>${gs.version}</version>
    </dependency>
    <dependency>
      <groupId>org.geoserver.extension</groupId>

@@ -347,8 +347,6 @@
  <modules>
   <module>externals</module>
   <module>extension</module>
-  <module>importer</module>
-  <module>analytics</module>
   <module>web</module>
   <module>test</module>
  </modules>
