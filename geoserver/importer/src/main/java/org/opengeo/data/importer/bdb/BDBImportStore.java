@@ -98,10 +98,36 @@ public class BDBImportStore implements ImportStore {
             seqDb.openSequence(null, new DatabaseEntry("import_id".getBytes()), seqConfig);
 
         importBinding = new SerialVersionSafeSerialBinding<ImportContext>();
+        checkAndFixDbIncompatability(db, dbConfig, env);
         //importBinding = new XStreamInfoSerialBinding<ImportContext>(
         //    importer.createXStreamPersister(), ImportContext.class);
     }
 
+
+    void checkAndFixDbIncompatability(Database db, DatabaseConfig dbConfig, Environment env) {
+        // check for potential class incompatibilities and attempt recovery
+        try {
+            iterator().next();
+        } catch (RuntimeException re) {
+            if (re.getCause() instanceof java.io.InvalidClassException) {
+                LOGGER.warning("Attempting database recovery related to class changes: " 
+                        + re.getCause().getMessage());
+                // wipe out the catalog
+                //classCatalog.close();
+                //classDb.close();
+                env.removeDatabase(null, "classes");
+                // and the import db
+                db.close();
+                env.removeDatabase(null, "imports");
+                // reopen
+                db = env.openDatabase(null, "imports", dbConfig);
+                //classDb = env.openDatabase(null, "classes", dbConfig);
+                //classCatalog = new StoredClassCatalog(classDb);
+                //importBinding = new SerialBinding<ImportContext>(classCatalog, ImportContext.class);
+            }
+        }
+
+    }
 
     public ImportContext get(long id) {
         DatabaseEntry val = new DatabaseEntry();
