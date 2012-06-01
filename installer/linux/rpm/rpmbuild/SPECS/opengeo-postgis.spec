@@ -1,17 +1,13 @@
 Name: opengeo-postgis
-Version: 2.5
+Version: 3.0.0
 Release: 1
 Summary: Robust, spatially-enabled object-relational database built on PostgreSQL.
 Group: Applications/Database
 License: see http://opengeo.org
 Requires(post): bash
 Requires(preun): bash
-Requires: geos >= 3.3.3, postgis >= 1.5.4, pgadmin3
-%if 0%{?centos} == 6
-Requires: postgresql, postgresql-contrib
-%else
-Requires: postgresql84, postgresql84-contrib
-%endif
+Requires: geos >= 3.3.3, postgis >= 2.0.0, pgadmin3
+Requires: postgresql92, postgresql92-contrib
 
 %define _rpmdir ../
 %define _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
