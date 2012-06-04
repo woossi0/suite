@@ -8,7 +8,7 @@
  <groupId>org.opengeo</groupId>
  <artifactId>suite</artifactId>
  <packaging>pom</packaging>
- <version>2.4-SNAPSHOT</version>
+ <version>3.0-SNAPSHOT</version>
  <name>OpenGeo Suite</name>
 
  <organization>
@@ -148,13 +148,14 @@
      <plugin>
        <artifactId>maven-assembly-plugin</artifactId>
        <configuration>
-         <finalName>opengeosuite-${project.version}</finalName>
+         <finalName>opengeosuite-${build.revision}</finalName>
          <descriptors>
            <descriptor>assembly/bin.xml</descriptor>
            <descriptor>assembly/win.xml</descriptor>
            <descriptor>assembly/mac.xml</descriptor>
            <descriptor>assembly/doc.xml</descriptor>
            <descriptor>assembly/ext.xml</descriptor>
+           <descriptor>assembly/sdk.xml</descriptor>
            <descriptor>assembly/readme.xml</descriptor>
            <descriptor>assembly/war-geoserver.xml</descriptor>
            <descriptor>assembly/war-geoexplorer.xml</descriptor>
@@ -200,6 +201,7 @@
       </activation>
      <modules>
        <module>docs</module>
+       <module>sdk</module>
        <module>recipes</module>
      </modules>
    </profile>
@@ -223,7 +225,7 @@
        <plugin>
          <artifactId>maven-assembly-plugin</artifactId>
          <configuration>
-           <finalName>opengeosuite-ee-${project.version}</finalName>
+           <finalName>opengeosuite-ee-${build.revision}</finalName>
            <descriptors>
              <descriptor>assembly/bin.xml</descriptor>
              <descriptor>assembly/win.xml</descriptor>
@@ -233,8 +235,6 @@
              <descriptor>assembly/war.xml</descriptor>
              <descriptor>assembly/analytics.xml</descriptor>
              <descriptor>assembly/dashboard-win32.xml</descriptor>
-             <descriptor>assembly/dashboard-lin32.xml</descriptor>
-             <descriptor>assembly/dashboard-lin64.xml</descriptor>
              <descriptor>assembly/dashboard-osx.xml</descriptor>
            </descriptors>
            <outputDirectory>${project.build.directory}/ee</outputDirectory>
@@ -285,12 +285,13 @@
  </distributionManagement>
 
  <properties>
-   <gs.version>2.1.3</gs.version>
-   <gt.version>2.7.4</gt.version>
-   <gwc.version>1.3-RC2</gwc.version>
+   <gs.version>2.2-SNAPSHOT</gs.version>
+   <gt.version>8-SNAPSHOT</gt.version>
+   <gwc.version>1.3-RC3</gwc.version>
    <jetty.version>6.1.8</jetty.version>
    <ant.version>1.6.5</ant.version>
    <dashboard.version>1.0.0</dashboard.version>
    <build.profile></build.profile>
+   <build.revision>${project.version}</build.revision>
  </properties>
 </project>
