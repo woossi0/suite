@@ -47,7 +47,7 @@ def buildServerIsDone(server):
 
 def startNightlyBuild(server, dist_path="latest", revision="latest", repo="test"):
 	"""Starts a build of all components on the server"""
-	urllib2.urlopen("%s/hudson/job/build/buildWithParameters?DIST_PATH=%s&REVISION=%s&REPO=%s" % (server.url, dist_path, revision, repo))
+	urllib2.urlopen("%s/hudson/job/build/buildWithParameters?DIST_PATH=%s&REV=%s&REPO=%s" % (server.url, dist_path, revision, repo))
 	print "Building revision %s on %s %s into %s" % (revision, server.os, server.arch, repo)
 	active_builds.append(server)
 
