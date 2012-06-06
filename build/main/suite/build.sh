@@ -128,23 +128,9 @@ start_remote_job http://10.52.11.58:8080/hudson/job/windows-installer "win insta
 # start the build of the Windows installer (ee)
 start_remote_job http://10.52.11.58:8080/hudson/job/windows-installer "win installer" ee
 
-# start the build of the Linux32 installer
-#start_remote_job http://10.52.11.55:8080/job/linux32-installer "lin32 installer"
+# start the build of the Linux packages
+python build_linux.py
 
-# start the build of the Linux64 installer
-#start_remote_job http://10.52.11.57:8080/job/linux64-installer "lin64 installer"
-
-# start the build of the 32 bit Ubuntu 10.4 package
-#start_remote_job https://packaging-u1040-32.dev.opengeo.org/hudson/job/build "ubuntu 10.4 32 bit"
-
-# start the build of the 64 bit Ubuntu 10.4 package
-#start_remote_job https://packaging-u1040-64.dev.opengeo.org/hudson/job/build "ubuntu 10.4 64 bit"
-
-# start the build of the 32 bit CenTOS 5.5 package
-#start_remote_job https://packaging-c55-32.dev.opengeo.org/hudson/job/build "CentOS 5.5 32 bit"
-
-# start the build of the 64 bit CenTOS 5.5 package
-#start_remote_job https://packaging-c55-64.dev.opengeo.org/hudson/job/build "CentOS 5.5 64 bit"
 
 echo "Done."
 
