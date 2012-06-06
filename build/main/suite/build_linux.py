@@ -17,7 +17,7 @@ class Server:
     @property
     def arch(self):
 	    """Architecture of server"""
-        return self._arch
+	    return self._arch
     @property
     def url(self):
     	"""Location of server"""
@@ -38,17 +38,17 @@ ubuntu_build_servers = [
 
 def buildServerIsDone(server):
 	"""Polls the server's queue API to check if all jobs have completed."""
-    jobs = json.loads(urllib2.urlopen(server.url + queue_api_path).read())
-    if len(jobs['items']) == 0:
-    	active_builds.remove(server)
-        return True
-    else:
-        return False
+	jobs = json.loads(urllib2.urlopen(server.url + queue_api_path).read())
+	if len(jobs['items']) == 0:
+	    active_builds.remove(server)
+	    return True
+	else:
+	    return False
 
 def startNightlyBuild(server, dist_path="latest", revision="latest", repo="test"):
 	"""Starts a build of all components on the server"""
-    urllib2.urlopen("%s/hudson/job/build-all/buildWithParameters?DIST_PATH=%s&REVISION=%s&REPO=%s" % (server.url, dist_path, revision, repo))
-    active_builds.append(server)
+	urllib2.urlopen("%s/hudson/job/build-all/buildWithParameters?DIST_PATH=%s&REVISION=%s&REPO=%s" % (server.url, dist_path, revision, repo))
+	active_builds.append(server)
 
 def main():
     try:
