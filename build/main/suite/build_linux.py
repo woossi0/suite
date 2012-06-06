@@ -82,7 +82,6 @@ def main():
             		queue_not_empty = False
             else:
             	time.sleep(120)
-	print "Done."
 
 if __name__ == "__main__":
     main()
