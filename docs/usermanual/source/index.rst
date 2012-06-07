@@ -15,7 +15,7 @@ The OpenGeo User Manual will help you get the most out of your OpenGeo Suite exp
    installation/index
    webmaps/index
    apps/index
-   analysis/index
+   processing/index
    dataadmin/index
    sysadmin/index
    cartography/index
