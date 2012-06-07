@@ -3,7 +3,7 @@
 Installation
 ============
 
-This section will describe how to install the OpenGeo Suite.  Please choose the appropriate platform below.
+This section will describe how to install the OpenGeo Suite in various configurations, as well as some optional components.
 
 
 .. toctree::
@@ -12,7 +12,8 @@ This section will describe how to install the OpenGeo Suite.  Please choose the 
    windows/index
    mac/index
    linux/index
-   skygone/index
+   war/index
+   skygone
    aws/index
    gdal/index
    mrsid/index
