@@ -1,7 +1,7 @@
-Getting Started
-===============
+Introduction
+============
 
-This **Getting Started** guide will guide you through the basic functionality of the OpenGeo Suite, including a simple workflow for creating a map.  More detailed information is available in the other included documentation projects.
+This section will guide you through the basic functionality of the OpenGeo Suite.  More detailed information is available in upcoming sections.
 
 .. toctree::
    :maxdepth: 2

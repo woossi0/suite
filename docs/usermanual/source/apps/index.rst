@@ -5,8 +5,7 @@ Building Complete Applications
 ==============================
 
 
-INTRO NEEDS TO GO HERE
-
+This section discuss how to build complete web mapping applications from scratch using the OpenGeo Client SDK, included as part of the OpenGeo Suite.
 
 .. toctree::
    :maxdepth: 2
