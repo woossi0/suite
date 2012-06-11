@@ -116,17 +116,20 @@ function start_remote_job() {
    checkrv $? "trigger $2 $3 with ${DIST_PATH} r${revision}"
 }
 
+WIN=192.168.50.40
+OSX=192.168.50.35
+
 # start the build of the OSX installer
-start_remote_job http://10.52.11.40:8080/job/osx-installer "osx installer"
+start_remote_job http://$OSX:8080/job/osx-installer "osx installer"
 
 # start the build of the OSX installer (ee)
-start_remote_job http://10.52.11.40:8080/job/osx-installer "osx installer" ee
+start_remote_job http://$OSX:8080/job/osx-installer "osx installer" ee
 
 # start the build of the Windows installer
-start_remote_job http://10.52.11.58:8080/hudson/job/windows-installer "win installer"
+start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer"
 
 # start the build of the Windows installer (ee)
-start_remote_job http://10.52.11.58:8080/hudson/job/windows-installer "win installer" ee
+start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer" ee
 
 # start the build of the Linux packages
 python build_linux.py
