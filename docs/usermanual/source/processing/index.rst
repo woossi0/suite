@@ -10,3 +10,4 @@ This section will discuss spatial processing and analysis tools using the OpenGe
    :maxdepth: 2
 
    intro
+   tutorials
