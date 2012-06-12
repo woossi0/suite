@@ -11,7 +11,7 @@ First, we need to prepare the build profile.  Open :file:`app.js` and add :file:
 
 .. code-block:: javascript
 
-    * @require plugins/SnappingAgent.js
+    * @require plugins/Styler.js
 
 Search for the ``tools`` section, and add the Styler plugin:
 
