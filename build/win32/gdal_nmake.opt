@@ -83,7 +83,7 @@ SWIG = c:\swig\swig.exe
 
 # SWIG Java settings
 !IFNDEF JAVA_HOME
-JAVA_HOME = c:\java
+JAVA_HOME = c:\java\jdk1.6.0_32
 !ENDIF
 !IFNDEF ANT_HOME
 ANT_HOME=c:\ant
