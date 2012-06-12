@@ -7,7 +7,7 @@ License: see http://geoserver.org
 Requires(post): bash
 Requires(preun): bash
 
-Requires:  unzip, java-1.6.0-openjdk, opengeo-jai, opengeo-suite-data >= 2.5, gdal == 1.8.1
+Requires:  unzip, java-1.6.0-openjdk, opengeo-jai, opengeo-suite-data >= 2.5, gdal == 1.9.1
 Patch: geoserver_webxml.patch
 %if 0%{?centos} == 6
 Requires: tomcat6
@@ -80,9 +80,9 @@ EOF
    fi
    
    if [ -e /usr/lib/gdal.jar ]; then
-     cp /usr/lib/gdal.jar $APP/WEB-INF/lib/gdal-1.8.1.jar
+     cp /usr/lib/gdal.jar $APP/WEB-INF/lib/gdal-1.9.1.jar
    elif [ -e /usr/lib64/gdal.jar ]; then
-     cp /usr/lib64/gdal.jar $APP/WEB-INF/lib/gdal-1.8.1.jar
+     cp /usr/lib64/gdal.jar $APP/WEB-INF/lib/gdal-1.9.1.jar
    else
      echo ""
      echo "/usr/lib/gdal.jar not found, geoserver extended raster support will be disabled"
