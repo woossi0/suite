@@ -6,7 +6,7 @@ gtkroot=/c/opt/gtk+-bundle_2.16.6
 
 # Versions we are going to continuously integrate...
 geos_version=3.3.3
-gdal_version=1.8.1
+gdal_version=1.9.1
 postgis_version=1.5.4
 proj_version=4.8.0
 pgsql_version=8.4.9

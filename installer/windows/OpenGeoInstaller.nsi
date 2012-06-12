@@ -559,12 +559,12 @@ Section "GDAL" SectionGDAL
   !insertmacro DisplayImage "graphics\slide_1_suite.bmp"
 
   SetOutPath "$INSTDIR\jre\bin"
-  File /r "${SOURCEPATHROOT}\jre\bin\gdal18.dll"
+  File /r "${SOURCEPATHROOT}\jre\bin\gdal19.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\gdalconstjni.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\gdaljni.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\ogrjni.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\osrjni.dll"
-  File /r "${SOURCEPATHROOT}\webapps\geoserver\WEB-INF\lib\gdal-1.8.1.jar"
+  File /r "${SOURCEPATHROOT}\webapps\geoserver\WEB-INF\lib\gdal-1.9.1.jar"
 
 SectionEnd
 

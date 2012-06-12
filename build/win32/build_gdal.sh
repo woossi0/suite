@@ -63,7 +63,7 @@ nmake -f makefile.vc devinstall
 cp /c/build/mrsid_sdk/lib/lti_dsdk*.dll ${buildroot}/gdal/bin
 # Install the Java bindings
 cp swig/java/*.dll ${buildroot}/gdal/bin
-cp swig/java/gdal.jar ${buildroot}/gdal/bin/gdal-1.8.1.jar
+cp swig/java/gdal.jar ${buildroot}/gdal/bin/gdal-1.9.1.jar
 
 checkrc $? "GDAL install"
 
