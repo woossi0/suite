@@ -58,6 +58,8 @@ def main():
         dist_path = "latest"
     try:
         revision = os.environ['REV']
+        if revision.upper() == 'HEAD':
+            revision = "latest"
     except:
         revision = "latest"
     try:
