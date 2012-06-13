@@ -665,12 +665,6 @@ Section "Documentation" SectionDocs
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Documentation\GeoExplorer Documentation.lnk" \
 		         "$INSTDIR\webapps\opengeo-docs\geoexplorer\index.html" \
                  "" "$INSTDIR\icons\geoexplorer.ico" 0
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Documentation\GeoEditor Documentation.lnk" \
-		         "$INSTDIR\webapps\opengeo-docs\geoeditor\index.html" \
-                 "" "$INSTDIR\icons\geoeditor.ico" 0
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Documentation\Styler Documentation.lnk" \
-		         "$INSTDIR\webapps\opengeo-docs\styler\index.html" \
-                 "" "$INSTDIR\icons\styler.ico" 0
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Documentation\GeoWebCache Documentation.lnk" \
 		         "$INSTDIR\webapps\opengeo-docs\geoserver\geowebcache\index.html" \
                  "" "$INSTDIR\icons\geowebcache.ico" 0
