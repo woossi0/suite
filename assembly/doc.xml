@@ -27,15 +27,10 @@
     </fileSet>
     <fileSet>
       <directory>docs/usermanual/target/html</directory>
-      <outputDirectory>usermanual</outputDirectory>
+      <outputDirectory>.</outputDirectory>
     </fileSet>
   </fileSets>
   <files>
-    <file>
-      <source>docs/index.html</source>
-      <outputDirectory>/</outputDirectory>
-      <fileMode>744</fileMode>
-    </file>
     <file>
       <source>target/version.ini</source>
       <outputDirectory>/</outputDirectory>

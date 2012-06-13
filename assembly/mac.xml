@@ -53,7 +53,7 @@
     </fileSet>
     <fileSet>
       <directory>docs/usermanual/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/usermanual</outputDirectory>
+      <outputDirectory>webapps/opengeo-docs</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>docs/geoexplorer/target/html</directory>

@@ -68,7 +68,7 @@
     </fileSet>
     <fileSet>
       <directory>docs/usermanual/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/usermanual</outputDirectory>
+      <outputDirectory>webapps/opengeo-docs</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>docs/geoexplorer/target/html</directory>
@@ -161,11 +161,6 @@
       <source>jetty/opengeo-suite.bat</source>
       <outputDirectory>/</outputDirectory>
       <fileMode>544</fileMode>
-    </file>
-    <file>
-      <source>docs/index.html</source>
-      <outputDirectory>webapps/opengeo-docs</outputDirectory>
-      <fileMode>644</fileMode>
     </file>
     <file>
       <source>target/version.ini</source>
