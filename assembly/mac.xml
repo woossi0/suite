@@ -126,11 +126,6 @@
       <fileMode>544</fileMode>
     </file>
     <file>
-      <source>docs/index.html</source>
-      <outputDirectory>webapps/opengeo-docs</outputDirectory>
-      <fileMode>644</fileMode>
-    </file>
-    <file>
       <source>target/version.ini</source>
       <outputDirectory>/</outputDirectory>
     </file>
