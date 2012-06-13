@@ -33,10 +33,6 @@
       <outputDirectory>webapps/opengeo-docs/usermanual</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>docs/styler/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/styler</outputDirectory>
-    </fileSet>
-    <fileSet>
       <directory>docs/geoexplorer/target/html</directory>
       <outputDirectory>webapps/opengeo-docs/geoexplorer</outputDirectory>
     </fileSet>
@@ -51,10 +47,6 @@
     <fileSet>
       <directory>docs/geowebcache/target/html</directory>
       <outputDirectory>webapps/opengeo-docs/geowebcache</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>docs/geoeditor/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/geoeditor</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>docs/gxp/target/html</directory>
