@@ -24,7 +24,7 @@
   <module>geowebcache</module>
   <module>production</module>
   <module>usermanual</module>
-  <module>gxp</module>
+  <module>sdk-api</module>
  </modules>
 
 </project>

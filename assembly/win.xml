@@ -87,7 +87,7 @@
       <outputDirectory>webapps/opengeo-docs/geowebcache</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>docs/gxp/target/html</directory>
+      <directory>docs/sdk-api/target/html</directory>
       <outputDirectory>webapps/opengeo-docs/sdk-api</outputDirectory>
     </fileSet>
     <fileSet>
