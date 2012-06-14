@@ -27,7 +27,7 @@
     </fileSet>
     <fileSet>
       <directory>docs/usermanual/target/html</directory>
-      <outputDirectory>.</outputDirectory>
+      <outputDirectory>/</outputDirectory>
     </fileSet>
   </fileSets>
   <files>
