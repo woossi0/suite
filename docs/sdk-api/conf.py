@@ -152,6 +152,9 @@ html_short_title = "OpenGeo SDK"
 # If true, the index is split into individual pages for each letter.
 #html_split_index = False
 
+# If true, the reST sources are included in the HTML build as _sources/<name>.
+html_copy_source = False
+
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = False
 
