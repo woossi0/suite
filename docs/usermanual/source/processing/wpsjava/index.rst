@@ -278,6 +278,12 @@ Once in the WPS request builder, select the process called ``gs:splitPolygon`` f
 
 An example of a request using the WPS Request Builder with our custom Split Polygon WPS process is shown below, taking a polygon and a line as parameters to the request
 
+You can use the following input polygon and line to test the process:
+
+POLYGON ((110 20, 120 20, 120 10, 110 10, 110 20),(112 17, 118 18, 118 16, 112 15, 112 17))
+
+LINESTRING (1117 22, 112 18, 118 13, 115 8)
+
 .. figure:: img/request-builder.png
 
    *Newly created process in WPS request builder*
