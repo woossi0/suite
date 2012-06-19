@@ -9,4 +9,5 @@ There are many ways to load data into the OpenGeo Suite.  This section will disc
 .. toctree::
    :maxdepth: 2
 
+   shp2pgsql
    pgshapeloader

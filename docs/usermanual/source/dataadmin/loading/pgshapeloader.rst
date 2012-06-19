@@ -28,7 +28,7 @@ Here are some initial steps:
 
 #. Determine the SRID ("projection") of your data.  This is often determined in the layer metadata.  If not known, use a service like `prj2epsg.org <http://prj2epsg.org>`_ to upload and convert the ``.prj`` file in the shapefile to an SRID code.
 
-#. Determine which database you would like to load the data, or create a new database.  The OpenGeo Suite comes with a default database that can be used, which is named for your username on the system (or the user that installed the OpenGeo Suite).
+#. Determine into which database you would like to load the data, or create a new database.  The OpenGeo Suite comes with a default database that can be used, which is named for your username on the system (or the user that installed the OpenGeo Suite).
 
 
 Loading data

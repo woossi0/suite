@@ -137,9 +137,9 @@ To verify that your data was loaded properly, you can use :guilabel:`pgAdmin`, a
 
    .. note:: There will be two extra tables in the list, :guilabel:`geometry_columns`, and :guilabel:`spatial_ref_sys`.  Those two tables are automatically created by PostGIS.
 
-   .. figure:: img/load_pgadmin_table.png
+   .. figure:: ../../dataadmin/loading/img/pgshp_pgadminconfirm.png
       :align: center
 
       *Database table listing*
 
-For more information about pgAdmin and PostGIS, please see the PostGIS Documentation. You can access this by clicking the :guilabel:`PostGIS Documentation` link in the :ref:`dashboard`, or online at http://suite.opengeo.org/opengeo-docs/postgis/ .
+For more information about pgAdmin and PostGIS, please see the `PostGIS Documentation <../../postgis/>`_. You can access this by clicking the :guilabel:`PostGIS Documentation` link in the :ref:`dashboard`.
