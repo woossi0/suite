@@ -11,3 +11,4 @@ This section will discuss best practices for working with data sources with the 
    :maxdepth: 2
 
    loading/index
+   postgis/index
