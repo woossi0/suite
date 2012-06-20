@@ -46,12 +46,12 @@
 Summary:	PostgreSQL client programs and libraries
 Name:		%{oname}%{packageversion}
 Version:	9.2
-Release:	beta1-OG1%{?dist}
+Release:	beta2OG1%{?dist}
 License:	PostgreSQL
 Group:		Applications/Databases
 Url:		http://www.postgresql.org/ 
 
-Source0:	ftp://ftp.postgresql.org/pub/source/v%{version}.0beta1/postgresql-%{version}beta1.tar.bz2
+Source0:	ftp://ftp.postgresql.org/pub/source/v%{version}.0beta2/postgresql-%{version}beta2.tar.bz2
 Source3:	postgresql.init
 Source4:	Makefile.regress
 Source5:	pg_config.h
@@ -268,7 +268,7 @@ system, including regression tests and benchmarks.
 %define __perl_requires %{SOURCE16}
 
 %prep
-%setup -q -n %{oname}-%{version}beta1
+%setup -q -n %{oname}-%{version}beta2
 %patch1 -p1
 %patch3 -p1
 # patch5 is applied later
@@ -837,5 +837,8 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Wed June 20 2012 Michael Weisman <mweisman@opengeo.org> - 9.2beta2-1
+- Upgrade to 9.2 Beta 2
+
 * Fri May 18 2012 Devrim GÜNDÜZ <devrim@gunduz.org> - 9.2beta1-1
 - Initial cut for 9.2 Beta 1

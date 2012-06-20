@@ -8,8 +8,8 @@ POSTGRESQL=postgresql-9.2beta2
 VER_DIR=9.2.0beta2
 
 # grab files
-get_file http://ftp.postgresql.org/pub/source/v$VER_DIR/$POSTGRESQL.tar.gz
-cp files/$POSTGRESQL.tar.gz $RPM_SOURCE_DIR
+get_file http://ftp.postgresql.org/pub/source/v$VER_DIR/$POSTGRESQL.tar.bz2
+cp files/$POSTGRESQL.tar.bz2 $RPM_SOURCE_DIR
 
 # build
 build_rpm yes
