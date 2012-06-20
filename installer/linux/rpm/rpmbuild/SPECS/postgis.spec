@@ -57,6 +57,7 @@ The postgis-utils package provides the utilities for PostGIS.
 
 
 %build
+LDFLAGS=-L/usr/pgsql-9.2/lib
 %configure --with-pgconfig=%{pgdir}/bin/pg_config --with-gui
 make
 
