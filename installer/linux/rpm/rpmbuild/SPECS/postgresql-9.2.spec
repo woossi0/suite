@@ -837,7 +837,7 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
-* Wed June 20 2012 Michael Weisman <mweisman@opengeo.org> - 9.2beta2-1
+* Wed Jun 20 2012 Michael Weisman <mweisman@opengeo.org> - 9.2beta2-1
 - Upgrade to 9.2 Beta 2
 
 * Fri May 18 2012 Devrim GÜNDÜZ <devrim@gunduz.org> - 9.2beta1-1
