@@ -1,7 +1,7 @@
 .. _workflow.style:
 
-Step 5: Style Your Layers with GeoExplorer
-==========================================
+Style Your Layers with GeoExplorer
+==================================
 
 .. note:: This section is optional, although recommended.  If you don't wish to style your layers, you can skip to the next section, :ref:`workflow.publish`.
 

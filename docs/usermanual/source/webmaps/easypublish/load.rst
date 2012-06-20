@@ -1,7 +1,7 @@
 .. _workflow.load:
 
-Step 1: Load Your Data Using PostGIS
-====================================
+Load Your Data With PostGIS
+===========================
 
 .. note:: If you'd like to serve data directly from shapefiles, you can skip to the next section, :ref:`workflow.import`.
 

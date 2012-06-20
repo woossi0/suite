@@ -1,7 +1,7 @@
 .. _workflow.edit:
 
-Step 4: Edit Your Data With GeoExplorer
-=======================================
+Edit Your Data With GeoExplorer
+===============================
 
 .. note:: This step is optional.  If you don't wish to edit any of your existing data, you can skip to the next section, :ref:`workflow.style`.
 

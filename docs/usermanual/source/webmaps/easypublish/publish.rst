@@ -1,7 +1,7 @@
 .. _workflow.publish:
 
-Step 6: Compose and Publish Your Map With GeoExplorer
-=====================================================
+Compose and Publish Your Map With GeoExplorer
+=============================================
 
 With your layers :ref:`edited <workflow.edit>` and :ref:`styled <workflow.style>` you are at last ready to compose and publish your map.  Map composition involves loading all the layers you wish to publish, setting layer order, and the zoom level.  Once this is accomplished, you can save your map in a format that makes it easy to embed in any web page.
 

@@ -1,7 +1,7 @@
 .. _workflow.import:
 
-Step 2: Import Your Data Using GeoServer
-========================================
+Import Your Data Using GeoServer
+================================
 
 The next step is to import your data into GeoServer so it can be published.  GeoServer comes with a **Layer Importer** to make this process easy.  The Layer Importer can import data from shapefiles, PostGIS databases, and ArcSDE/Oracle Spatial databases (with appropriate extension files installed).
 
