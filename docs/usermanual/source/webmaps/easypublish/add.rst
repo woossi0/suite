@@ -1,7 +1,7 @@
 .. _workflow.add:
 
-Step 3: Add Layers To A Map With GeoExplorer
-============================================
+Add Layers To A Map With GeoExplorer
+====================================
 
 Now that your layer data is imported, you can organize and compose your layers into a map. **GeoExplorer** allows you to create web maps based on layers served through GeoServer and a variety of other sources.
 
