@@ -121,7 +121,6 @@ rm -rf %{buildroot}
 %{pgdir}/bin/shp2pgsql-gui
 %{pgdir}/bin/pgsql2shp
 %{pgdir}/bin/raster2pgsql
-%exclude %{_libdir}/debug/*
 
 
 %files utils
