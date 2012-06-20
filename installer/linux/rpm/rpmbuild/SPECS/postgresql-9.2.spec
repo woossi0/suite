@@ -71,7 +71,8 @@ Buildrequires:	perl glibc-devel bison flex
 Requires:	/sbin/ldconfig initscripts
 
 %if %plperl
-BuildRequires: perl-ExtUtils-Embed
+# TODO: figure out why perl-ExtUtils-Embed was in here in the first place
+#BuildRequires: perl-ExtUtils-Embed
 BuildRequires: perl(ExtUtils::MakeMaker) 
 %endif
 
