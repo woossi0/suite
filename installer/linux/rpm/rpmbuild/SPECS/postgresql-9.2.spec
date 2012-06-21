@@ -517,8 +517,6 @@ echo "[ -f /etc/profile ] && source /etc/profile
 PGDATA=/var/lib/pgsql/9.2/data
 export PGDATA" >  /var/lib/pgsql/.bash_profile
 chown postgres: /var/lib/pgsql/.bash_profile
-/sbin/service postgresql-9.2 initdb
-/sbin/service postgresql-9.2 start
 
 %preun server
 if [ $1 = 0 ] ; then
