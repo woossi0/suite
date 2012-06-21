@@ -55,7 +55,7 @@ fi
 
 if [ -f $OG_POSTGIS/adminpack ]; then
   echo "Uninstalling admin pack"
-  pg_run "psql -w -f $PG_CONTRIB/uninstall_adminpack.sql -d postgres"
+  pg_run "psql -w -d postgres -c 'DROP EXTENSION adminpack'"
   [ "$?" == "0" ] && rm $OG_POSTGIS/adminpack
 fi
 
