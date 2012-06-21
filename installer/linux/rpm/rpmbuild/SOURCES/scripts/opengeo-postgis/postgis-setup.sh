@@ -115,3 +115,5 @@ if [ "$?" != "0" ]; then
   pg_run "psql -w -d geoserver -c 'CREATE EXTENSION postgis'"
   touch $OG_POSTGIS/geoserver_db
 fi
+
+/etc/init.d/postgresql-9.2 restart
