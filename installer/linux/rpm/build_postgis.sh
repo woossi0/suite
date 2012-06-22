@@ -4,7 +4,7 @@
 
 build_info
 
-POSTGIS=postgis-2.1.0SVN
+POSTGIS=postgis-2.0.1
 
 # grab files
 get_file http://postgis.refractions.net/download/$POSTGIS.tar.gz

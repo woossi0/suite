@@ -1,7 +1,7 @@
 
 %define pgdir /usr/pgsql-9.2
-%define mver 2.1
-%define ver 2.1.0SVN
+%define mver 2.0
+%define ver 2.0.1
 
 Summary:        Geographic Information Systems Extensions to PostgreSQL
 Name:           postgis
