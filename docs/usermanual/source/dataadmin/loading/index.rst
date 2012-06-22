@@ -11,3 +11,4 @@ There are many ways to load data into the OpenGeo Suite.  This section will disc
 
    shp2pgsql
    pgshapeloader
+   restload

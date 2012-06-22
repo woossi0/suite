@@ -1,4 +1,4 @@
-.. _dataadmin.loading.pgshp:
+.. _dataadmin.loading.pgshapeloader:
 
 
 Loading data into PostGIS with pgShapeloader
