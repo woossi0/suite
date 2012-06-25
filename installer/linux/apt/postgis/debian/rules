@@ -89,8 +89,8 @@ install-arch: build-arch
 		--with-gui
 	$(MAKE) -j16
 	$(MAKE) -C doc
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/postgresql-9.2-postgis
-	$(MAKE) -C doc install DESTDIR=$(CURDIR)/debian/postgis
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/postgresql-9.2-postgis2
+	$(MAKE) -C doc install DESTDIR=$(CURDIR)/debian/postgis2
 	
 	mkdir -p $(CURDIR)/debian/opengeo-postgis-shapeloader/usr/sbin
 	mkdir -p $(CURDIR)/debian/opengeo-postgis-shapeloader/usr/share/pixmaps
@@ -104,17 +104,17 @@ install-arch: build-arch
 	sed -e 's/@POSTGIS_VERSION@/$(VERSION)/' \
 	    -e 's/@POSTGRES_VERSION@/9.2/' \
 	    -e 's/@SOVERSION@/$(MAJOR_VERSION).$(MINOR_VERSION)/' \
-	    $(CURDIR)/debian/postgis-postgresql-generic.postinst.in >$(CURDIR)/debian/postgresql-9.2-postgis.postinst
+	    $(CURDIR)/debian/postgis-postgresql-generic.postinst.in >$(CURDIR)/debian/postgresql-9.2-postgis2.postinst
 	
 	sed -e 's/@POSTGRES_VERSIONS@/9.2/' \
 	    -e 's/@SOVERSION@/$(MAJOR_VERSION).$(MINOR_VERSION)/' \
-	    $(CURDIR)/debian/postgis-generic.postrm.in >$(CURDIR)/debian/postgis.postrm
+	    $(CURDIR)/debian/postgis-generic.postrm.in >$(CURDIR)/debian/postgis2.postrm
 	
 	dh_install -s
 	
 	# copy utils
-	mkdir -p $(CURDIR)/debian/postgresql-9.2-postgis/usr/share/postgresql-9.2-postgis/utils
-	cp utils/*.pl utils/README $(CURDIR)/debian/postgresql-9.2-postgis/usr/share/postgresql-9.2-postgis/utils
+	mkdir -p $(CURDIR)/debian/postgresql-9.2-postgis2/usr/share/postgresql-9.2-postgis/utils
+	cp utils/*.pl utils/README $(CURDIR)/debian/postgresql-9.2-postgis2/usr/share/postgresql-9.2-postgis/utils
 
 check: install-arch
 	$(MAKE) check
