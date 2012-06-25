@@ -1,0 +1,79 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ 
+
+build:
+	$(CURDIR)/debian/build_geonode.sh
+	tar xvf $(CURDIR)/shared/GeoNode-1.2-SUITE-SNAPSHOT.tar.gz
+	cp $(CURDIR)/debian/static/install.sh $(CURDIR)/GeoNode-1.2-SUITE-SNAPSHOT/.
+	cp $(CURDIR)/debian/static/config_ubuntu.sh $(CURDIR)/GeoNode-1.2-SUITE-SNAPSHOT/support/.
+	cd $(CURDIR)/GeoNode-1.2-SUITE-SNAPSHOT; fakeroot ./install.sh ./support/config_ubuntu.sh
+
+install:
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-java/usr/share/opengeo-suite-data/geoserver_data/workspaces
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/var/lib/geonode/
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/var/www/geonode
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/usr/bin/
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/usr/share/geonode
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/etc/geonode
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/var/log/geonode
+	mkdir -p $(CURDIR)/debian/opengeo-geonode/etc/apache2/sites-available
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geonetwork $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/commons-codec-1.2.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/commons-collections-3.2.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/commons-httpclient-3.1.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/commons-lang-2.4.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/commons-logging-1.0.4.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/ezmorph-1.0.6.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/gt-process-8-SNAPSHOT.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/jai_core-1.1.3.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/jai_imageio-1.1.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/json-lib-2.2.3-jdk15.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/.
+	cp -rp $(CURDIR)/src/geoserver-geonode-ext/target/geonode-geoserver-ext-0.1-SNAPSHOT.jar $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/geonode-geoserver-ext.jar
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/data/workspaces/geonode $(CURDIR)/debian/opengeo-geonode-java/usr/share/opengeo-suite-data/geoserver_data/workspaces/.
+	cp -rp $(CURDIR)/stage/var/lib/geonode/* $(CURDIR)/debian/opengeo-geonode-python/var/lib/geonode/.
+	cp -rp $(CURDIR)/stage/var/www/geonode/* $(CURDIR)/debian/opengeo-geonode-python/var/www/geonode/.
+	cp -rp $(CURDIR)/stage/usr/bin/* $(CURDIR)/debian/opengeo-geonode-python/usr/bin/.
+	cp -rp $(CURDIR)/stage/usr/share/geonode/* $(CURDIR)/debian/opengeo-geonode-python/usr/share/geonode/.
+	cp -rp $(CURDIR)/stage/etc/geonode/* $(CURDIR)/debian/opengeo-geonode-python/etc/geonode/.
+	cp -rp $(CURDIR)/stage/var/log/geonode/* $(CURDIR)/debian/opengeo-geonode-python/var/log/geonode/.
+	cp -rp $(CURDIR)/stage/etc/apache2/sites-available/* $(CURDIR)/debian/opengeo-geonode/etc/apache2/sites-available/.
+	cp -rp $(CURDIR)/debian/static/geonode.sql $(CURDIR)/debian/opengeo-geonode-python/var/lib/geonode/.
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdebconf
+	dh_installdocs
+#       dh_installmenu
+#       dh_link
+#       dh_strip
+	dh_compress
+#	dh_shlibdeps
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+#       .PHONY: build clean binary-indep binary-arch binary install
+
