@@ -14,7 +14,7 @@ Vcs-Svn: svn://svn.debian.org/pkg-grass/packages/postgis/
 
 Package: postgresql-9.2-postgis2
 Architecture: any
-Depends: ${shlibs:Depends}, postgis, postgresql-9.2, libgeos-c1, libgdal, ${misc:Depends}
+Depends: ${shlibs:Depends}, postgresql-9.2, libgeos-c1, libgdal, ${misc:Depends}
 Conflicts: postgis (<< 1.2.1)
 Description: geographic objects support for PostgreSQL 9.2
  PostGIS adds support for geographic objects to the PostgreSQL object-relational
