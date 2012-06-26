@@ -6,9 +6,9 @@ export buildroot
 # Versions we are going to continuously integrate...
 gdal_version=1.9.1
 geos_version=3.3.3
-postgis_version=1.5.4
+postgis_version=2.0.1
 proj_version=4.8.0
-pgsql_version=8.4.9-1
+pgsql_version=9.1.4-1
 
 # Special binaries
 proj_nad=proj-datumgrid-1.5.zip

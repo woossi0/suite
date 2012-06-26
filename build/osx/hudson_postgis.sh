@@ -18,7 +18,7 @@ get_file $postgis_url
 
 # Clean up anything from a previous build and extract the sources into place
 pushd files
-rm -rf postgie
+rm -rf postgis
 tar zxvf postgis-${postgis_version}.tar.gz
 mv postgis-${postgis_version} postgis
 popd
@@ -46,6 +46,14 @@ patch -p0 < ${p}/pgxs.patch
 checkrv $? "PostGIS makefile patch"
 popd
 
+# We need to patch the liblwgeom Makefile to use our ARCHFLAGS
+# so we can build a fat binary. Bug in PostGIS build system stops
+# LDFLAGS from being passed through.
+pushd ${p}/files/postgis/liblwgeom/
+patch -p0 < ${p}/liblwgeom.patch
+checkrv $? "liblwgeom makefile patch"
+popd
+
 # Copy the Proj libraries into the pgsql build directory
 if [ -d ${buildroot}/proj ]; then
   cp -rf ${buildroot}/proj/* ${buildroot}/pgsql
@@ -59,6 +67,14 @@ if [ -d ${buildroot}/geos ]; then
   cp -rf ${buildroot}/geos/* ${buildroot}/pgsql
 else
   echo "Cannot find GEOS files."
+  exit 1
+fi
+
+# Copy the GDAL libraries into the pgsql build directory                        
+if [ -d ${buildroot}/gdal/ ]; then
+  cp -rf ${buildroot}/gdal/* ${buildroot}/pgsql
+else
+  echo "Cannot find GDAL files."
   exit 1
 fi
 
@@ -78,16 +94,17 @@ export DYLD_LIBRARY_PATH=${buildroot}/pgsql/lib
 
 # Configure PostGIS
 ./autogen.sh
-export CC=gcc-4.0 
-export CFLAGS="-O2 -arch i386 -arch ppc -mmacosx-version-min=10.4" 
-export CXX=g++-4.0 
-export CXXFLAGS="-O2 -arch i386 -arch ppc -mmacosx-version-min=10.4" 
+export CC=gcc-4.2
+export CFLAGS="-O2 -arch i386 -arch x86_64 -mmacosx-version-min=10.5"
+export CXX=g++-4.2
+export CXXFLAGS="-O2 -arch i386 -arch x86_64 -mmacosx-version-min=10.5"
 ./configure \
+  --prefix=${buildroot}/pgsql/ \
   --with-pgconfig=${buildroot}/pgsql/bin/pg_config \
   --with-geosconfig=${buildroot}/pgsql/bin/geos-config \
   --with-projdir=${buildroot}/pgsql \
   --with-xml2config=/usr/bin/xml2-config \
-  --disable-dependency-tracking 
+  --with-gdalconfig=${buildroot}/pgsql/bin/gdal-config
 checkrv $? "PostGIS configure"
 
 # Build PostGIS
@@ -95,18 +112,19 @@ make clean && make && make install
 checkrv $? "PostGIS build"
 
 # Re-Configure without ppc arch so we can link to GTK
-export CFLAGS="-O2 -arch i386 -mmacosx-version-min=10.4" 
-export CXXFLAGS="-O2 -arch i386 -mmacosx-version-min=10.4" 
+#export CFLAGS="-O2 -arch i386 -mmacosx-version-min=10.5"
+#export CXXFLAGS="-O2 -arch i386 -mmacosx-version-min=10.5"
 
 # Re-configure with GTK on the path
 jhbuild run \ 
 ./configure \
+  --prefix=${buildroot}/pgsql/ \
   --with-pgconfig=${buildroot}/pgsql/bin/pg_config \
   --with-geosconfig=${buildroot}/pgsql/bin/geos-config \
   --with-projdir=${buildroot}/pgsql \
   --with-xml2config=/usr/bin/xml2-config \
+  --with-gdalconfig=${buildroot}/pgsql/bin/gdal-config
   --with-gui \
-  --disable-dependency-tracking
 checkrv $? "PostGIS configure GUI"
 
 pushd liblwgeom
