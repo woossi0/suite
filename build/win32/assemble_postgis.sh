@@ -10,7 +10,7 @@ LIB=${ROOT}/pgsql/lib
 CONTRIB=${ROOT}/pgsql/share/contrib
 
 PGSQL_BIN=postgresql-$pgsql_version-1-windows-binaries.zip
-get_file http://downloads.enterprisedb.com/postgresql/$PGSQL_BIN
+get_file http://get.enterprisedb.com/postgresql/$PGSQL_BIN
 checkrc $? "$PGSQL_BIN download"
 
 if [ -e $ROOT ]; then
@@ -49,6 +49,11 @@ popd
 pushd $buildroot/geos/bin
 cp libgeos*.dll $BIN
 checkrc $? "Copy geos libs"
+popd
+
+pushd $buildroot/gdal/bin
+cp lib*.dll $BIN
+checkrc $? "Copy gdal libs"
 popd
 
 pushd $gtkroot/lib
