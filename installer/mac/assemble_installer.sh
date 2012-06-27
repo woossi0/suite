@@ -18,7 +18,7 @@ id=${REVISION}
 pro=$(echo $PROFILE|sed 's/\(.\{1,\}\)/\1-/g')
 
 dashboard_version=1.0.0
-pgsql_version=8.4
+pgsql_version=9.2
 
 base_url=http://suite.opengeo.org/builds/${DIST_PATH}/${REVISION}
 dashboard_url=$base_url/opengeosuite-${pro}${id}-dashboard-osx.zip
@@ -26,7 +26,6 @@ suite_url=$base_url/opengeosuite-${pro}${id}-mac.zip
 ext_url=${base_url}/opengeosuite-${id}-ext.zip
 sdk_url=${base_url}/opengeosuite-${id}-sdk.zip
 pgsql_url=http://suite.opengeo.org/osxbuilds/postgis-osx.zip
-gdal_url=http://suite.opengeo.org/osxbuilds/gdal-osx.zip
 
 export PATH=$PATH:/usr/local/bin
 
@@ -240,12 +239,6 @@ checkrv $? "Ext packaging"
 #
 # Build the GDAL Package
 #
-getfile $gdal_url binaries/gdal.zip
-if [ -d binaries/gdal ]; then
-  rm -rf binaries/gdal
-fi
-unzip -o binaries/gdal.zip -d binaries/gdal
-checkrv $? "GDAL unzip"
 if [ -d "./build/GDAL.pkg" ]; then
   find "./build/GDAL.pkg" -type f -exec chmod 664 {} ';'
   find "./build/GDAL.pkg" -type d -exec chmod 775 {} ';'

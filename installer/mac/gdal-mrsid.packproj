@@ -293,11 +293,62 @@
 															<array>
 																<dict>
 																	<key>Children</key>
+																	<array>
+																		<dict>
+																			<key>Children</key>
+																			<array/>
+																			<key>GID</key>
+																			<integer>80</integer>
+																			<key>Path</key>
+																			<string>binaries/pgsql/lib/gdalplugins/gdal_MrSID.dylib</string>
+																			<key>Path Type</key>
+																			<integer>2</integer>
+																			<key>Privileges</key>
+																			<integer>493</integer>
+																			<key>Type</key>
+																			<integer>3</integer>
+																			<key>UID</key>
+																			<integer>0</integer>
+																		</dict>
+																	</array>
+																	<key>Expanded</key>
+																	<true/>
+																	<key>GID</key>
+																	<integer>80</integer>
+																	<key>Path</key>
+																	<string>binaries/pgsql/lib/gdalplugins</string>
+																	<key>Path Type</key>
+																	<integer>2</integer>
+																	<key>Privileges</key>
+																	<integer>493</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+																<dict>
+																	<key>Children</key>
 																	<array/>
 																	<key>GID</key>
 																	<integer>80</integer>
 																	<key>Path</key>
-																	<string>binaries/gdal/lib/gdalplugins/gdal_MrSID.dylib</string>
+																	<string>binaries/pgsql/lib/libltidsdk.8.dylib</string>
+																	<key>Path Type</key>
+																	<integer>2</integer>
+																	<key>Privileges</key>
+																	<integer>493</integer>
+																	<key>Type</key>
+																	<integer>3</integer>
+																	<key>UID</key>
+																	<integer>0</integer>
+																</dict>
+																<dict>
+																	<key>Children</key>
+																	<array/>
+																	<key>GID</key>
+																	<integer>80</integer>
+																	<key>Path</key>
+																	<string>binaries/pgsql/lib/libltidsdk.dylib</string>
 																	<key>Path Type</key>
 																	<integer>2</integer>
 																	<key>Privileges</key>
@@ -313,39 +364,7 @@
 															<key>GID</key>
 															<integer>80</integer>
 															<key>Path</key>
-															<string>binaries/gdal/lib/gdalplugins</string>
-															<key>Path Type</key>
-															<integer>2</integer>
-															<key>Privileges</key>
-															<integer>493</integer>
-															<key>Type</key>
-															<integer>3</integer>
-															<key>UID</key>
-															<integer>0</integer>
-														</dict>
-														<dict>
-															<key>Children</key>
-															<array/>
-															<key>GID</key>
-															<integer>80</integer>
-															<key>Path</key>
-															<string>binaries/gdal/lib/libltidsdk.8.dylib</string>
-															<key>Path Type</key>
-															<integer>2</integer>
-															<key>Privileges</key>
-															<integer>493</integer>
-															<key>Type</key>
-															<integer>3</integer>
-															<key>UID</key>
-															<integer>0</integer>
-														</dict>
-														<dict>
-															<key>Children</key>
-															<array/>
-															<key>GID</key>
-															<integer>80</integer>
-															<key>Path</key>
-															<string>binaries/gdal/lib/libltidsdk.dylib</string>
+															<string>binaries/pgsql/lib</string>
 															<key>Path Type</key>
 															<integer>2</integer>
 															<key>Privileges</key>
@@ -356,18 +375,16 @@
 															<integer>0</integer>
 														</dict>
 													</array>
-													<key>Expanded</key>
-													<true/>
 													<key>GID</key>
 													<integer>80</integer>
 													<key>Path</key>
-													<string>binaries/gdal/lib</string>
+													<string>9.2</string>
 													<key>Path Type</key>
-													<integer>2</integer>
+													<integer>1</integer>
 													<key>Privileges</key>
-													<integer>493</integer>
+													<integer>509</integer>
 													<key>Type</key>
-													<integer>3</integer>
+													<integer>2</integer>
 													<key>UID</key>
 													<integer>0</integer>
 												</dict>
@@ -377,11 +394,11 @@
 											<key>GID</key>
 											<integer>80</integer>
 											<key>Path</key>
-											<string>binaries/gdal</string>
+											<string>binaries/pgsql</string>
 											<key>Path Type</key>
 											<integer>2</integer>
 											<key>Privileges</key>
-											<integer>509</integer>
+											<integer>493</integer>
 											<key>Type</key>
 											<integer>3</integer>
 											<key>UID</key>
@@ -671,13 +688,13 @@
 						<key>IFPkgDescriptionTitle</key>
 						<string>MrSID Support for OpenGeo Suite</string>
 						<key>IFPkgDescriptionVersion</key>
-						<string>1.8.1</string>
+						<string>1.9.1</string>
 					</dict>
 				</dict>
 				<key>Display Information</key>
 				<dict>
 					<key>CFBundleGetInfoString</key>
-					<string>GDAL-MrSID 1.8.1 Copyrights © 2010 OpenGeo</string>
+					<string>GDAL-MrSID 1.9.1 Copyrights © 2012 OpenGeo</string>
 					<key>CFBundleIconFile</key>
 					<string></string>
 					<key>CFBundleIconFile Path Type</key>
@@ -687,7 +704,7 @@
 					<key>CFBundleName</key>
 					<string>GDAL-MrSID</string>
 					<key>CFBundleShortVersionString</key>
-					<string>1.8.1</string>
+					<string>1.9.1</string>
 				</dict>
 				<key>Options</key>
 				<dict>
@@ -715,7 +732,7 @@
 					<key>IFMajorVersion</key>
 					<integer>1</integer>
 					<key>IFMinorVersion</key>
-					<integer>8</integer>
+					<integer>9</integer>
 				</dict>
 			</dict>
 		</dict>
