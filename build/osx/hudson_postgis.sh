@@ -112,8 +112,8 @@ make clean && make && make install
 checkrv $? "PostGIS build"
 
 # Re-Configure without ppc arch so we can link to GTK
-#export CFLAGS="-O2 -arch i386 -mmacosx-version-min=10.5"
-#export CXXFLAGS="-O2 -arch i386 -mmacosx-version-min=10.5"
+export CFLAGS="-O2 -arch i386 -mmacosx-version-min=10.4"
+export CXXFLAGS="-O2 -arch i386 -mmacosx-version-min=10.4"
 
 # Re-configure with GTK on the path
 jhbuild run \ 
@@ -123,8 +123,8 @@ jhbuild run \
   --with-geosconfig=${buildroot}/pgsql/bin/geos-config \
   --with-projdir=${buildroot}/pgsql \
   --with-xml2config=/usr/bin/xml2-config \
-  --with-gdalconfig=${buildroot}/pgsql/bin/gdal-config
-  --with-gui \
+  --with-gdalconfig=${buildroot}/pgsql/bin/gdal-config \
+  --with-gui
 checkrv $? "PostGIS configure GUI"
 
 pushd liblwgeom
