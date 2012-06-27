@@ -52,7 +52,7 @@ checkrc $? "Copy geos libs"
 popd
 
 pushd $buildroot/gdal/bin
-cp lib*.dll $BIN
+cp gdal*.dll $BIN
 checkrc $? "Copy gdal libs"
 popd
 
