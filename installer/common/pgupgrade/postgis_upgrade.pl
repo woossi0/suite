@@ -6,6 +6,7 @@
 
 use warnings;
 use strict;
+use Getopt::Long;
 
 #TODO: Use DBI?
 
@@ -13,12 +14,35 @@ my $me = $0;
 
 # Usage
 my $usage = qq{
-Usage:	$me [--backup|--restore] [dumppath]
-        Creates a backup of an OpenGeo Suite 2.x database system.
-        Restores this backup for use in an OpenGeo Suite 3.x database system. 
-        [dumppath] = location to save backup files, or current directory.
-        Uses default connection parameters. Please ensure that
-        PGHOST, PGUSER, PGPORT, PGPASSWORD are set correctly.
+Creates a backup of an OpenGeo Suite 2.x database system or restores
+an existing backup for use in an OpenGeo Suite 3.x database system.
+
+Usage:	
+  $me [backup|restore] [OPTION]... 
+
+General options:
+ -h, --host=HOSTNAME      database server host or socket directory
+ -p, --port=PORT          database server port
+ -U, --username=USERNAME  database user name
+ --help                   show this help, then exit
+
+Backup options:
+ -o, --outputpath         Location to save all dump files
+                            (default is current directory)
+ -d, --database=DATABASE  PostGIS 1.x template database
+                            (default is "template_postgis")
+ -s, --dumplist=[DBLIST]  List of databases to backup
+                            (default is all databases found)
+ 
+Restore options:
+ -o, --outputpath         Location of existing dump files
+                            (default is current directory)
+ -d, --database=DATABASE  PostgreSQL master database
+                            (default is "postgres")
+ -s, --dumplist=[DBLIST]  List of databases to restore
+                            (default is all dump files in outputpath)
+
+
 };
 
 print "OpenGeo Suite PostGIS backup/restore utility.\n";
@@ -32,17 +56,30 @@ die "$me:\tUnable to find 'pg_restore' on the path.\n" if ! `pg_restore --versio
 die "$me:\tUnable to find 'createdb' on the path.\n" if ! `createdb --version`;
 die "$me:\tUnable to find 'psql' on the path.\n" if ! `psql --version`;
 
-# Check for proper arguments
-die $usage if ((@ARGV > 2) || (@ARGV == 0));
+my $dumppath = ".";
+my $pgport = "";
+my $pguser = "";
+my $pghost = "";
+my $database = "";
+my @dumplist = "";
 
-# If dumppath not specified, using current directory
+# Check for proper arguments
+GetOptions ("output|o=s" => \$dumppath,
+            "host|h=s" => \$pghost,
+            "username|U=s" => \$pguser,
+            "port|p=i" => \$pgport,
+            "database|d=s" => \$database,
+            "dumplist|s=s{,}" => \@dumplist)
+  || die $usage;
+
+# Only backup/restore are valid
+die $usage if (!@ARGV == 1);
 my $operation = $ARGV[0];
-my $dumppath;
-if (@ARGV == 1) {
+die $usage if (!($operation eq "backup") && !($operation eq "restore"));
+
+# If dumppath not specified
+if ($dumppath eq ".") {
   print "Dumppath not specified, using current directory.\n";
-  $dumppath = ".";
-} else {
-  $dumppath = $ARGV[1];
 }
 
 # Check that $dumppath exists
@@ -58,10 +95,10 @@ unlink("$dumppath/tmp"); # Clean up;
 
 # Do it!
 my $result;
-if (($operation eq "-b") || ($operation eq "--backup")) {
+if ($operation eq "backup") {
   $result = backup($dumppath);
 }
-if (($operation eq "-r") || ($operation eq "--restore")) {
+if ($operation eq "restore") {
   $result = restore($dumppath);
 }
 
