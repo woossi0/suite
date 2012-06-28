@@ -56,6 +56,7 @@ die "$me:\tUnable to find 'pg_restore' on the path.\n" if ! `pg_restore --versio
 die "$me:\tUnable to find 'createdb' on the path.\n" if ! `createdb --version`;
 die "$me:\tUnable to find 'psql' on the path.\n" if ! `psql --version`;
 
+my $help = "";
 my $dumppath = ".";
 my $pgport = "";
 my $pguser = "";
@@ -64,13 +65,17 @@ my $database = "";
 my @dumplist = "";
 
 # Check for proper arguments
-GetOptions ("output|o=s" => \$dumppath,
+GetOptions ("help" => \$help,
+            "output|o=s" => \$dumppath,
             "host|h=s" => \$pghost,
             "username|U=s" => \$pguser,
             "port|p=i" => \$pgport,
             "database|d=s" => \$database,
             "dumplist|s=s{,}" => \@dumplist)
   || die $usage;
+
+# Show help
+die $usage if ($help);
 
 # Only backup/restore are valid
 die $usage if (!@ARGV == 1);
