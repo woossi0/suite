@@ -14,11 +14,17 @@ set PGPORT=%pg_port%
 set pgdatalist=%TEMP%\pg_data.txt
 
 :: Create the Medford Database
-call "%pg_bin_dir%\createdb" --owner="%USERNAME%" --template=template_postgis medford 
+call "%pg_bin_dir%\createdb" --owner="%USERNAME%" medford 
 if not errorlevel 0 (
   echo There was an error while creating the Medford database.
   goto Fail
 )
+call "%pg_bin_dir%\psql" -c "CREATE EXTENSION postgis" -d medford -U "%USERNAME%"
+if not errorlevel 0 (
+  echo There was an error while creating the Medford database.
+  goto Fail
+)
+
 
 :: Create the GeoServer/Analytics Database
 call "%pg_bin_dir%\createdb" --owner="%USERNAME%" --template=template_postgis geoserver 
@@ -26,6 +32,12 @@ if not errorlevel 0 (
   echo There was an error while creating the GeoServer database.
   goto Fail
 )
+call "%pg_bin_dir%\psql" -c "CREATE EXTENSION postgis" -d geoserver -U "%USERNAME%"
+if not errorlevel 0 (
+  echo There was an error while creating the GeoServer database.
+  goto Fail
+)
+
 
 :: Load the SQL files
 :: Too bad, must create a file listing
