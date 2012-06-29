@@ -8,6 +8,7 @@ ROOT=${buildroot}/postgis-win
 BIN=${ROOT}/pgsql/bin
 LIB=${ROOT}/pgsql/lib
 CONTRIB=${ROOT}/pgsql/share/contrib
+EXT=${ROOT}/pgsql/share/extension
 
 PGSQL_BIN=postgresql-$pgsql_version-1-windows-binaries.zip
 get_file http://get.enterprisedb.com/postgresql/$PGSQL_BIN
@@ -24,6 +25,7 @@ checkrc $? "$PGSQL_BIN unzip"
 PGSQL_BIN=${buildroot}/pgsql/bin
 PGSQL_LIB=${buildroot}/pgsql/lib
 PGSQL_CONTRIB=${buildroot}/pgsql/share/contrib
+PGSQL_EXT=${buildroot}/pgsql/share/extension
 
 pushd $PGSQL_BIN
 cp shp2pgsql* $BIN
@@ -39,6 +41,11 @@ popd
 pushd $PGSQL_CONTRIB
 cp -R postgis-* $CONTRIB
 checkrc $? "Copy postgis contrib"
+popd
+
+pushd $PGSQL_EXT
+cp -R postgis* $EXT
+checkrc $? "Copy postgis extension"
 popd
 
 pushd $buildroot/proj/bin
