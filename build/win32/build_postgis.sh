@@ -25,7 +25,7 @@ checkrc $? "PostGIS build"
 
 rm -rf ${buildroot}/postgis
 mkdir ${buildroot}/postgis
-make DESTDIR=${buildroot}/postgis install
+make install
 checkrc $? "PostGIS install"
 
 popd
