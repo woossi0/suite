@@ -100,8 +100,10 @@ if ($dumppath eq ".") {
   print "Dumppath not specified, using current directory.\n";
 }
 
-#TODO: Strip off trailing slash on $dumppath if exists
-
+# Strip off trailing slash on $dumppath if exists
+if ((substr($dumppath, -1) eq "/") || (substr($dumppath, -1) eq "\\")) {
+  $dumppath = substr($dumppath, 0, -1) ;
+}
 
 # Check that $dumppath exists
 if (not -d $dumppath) {
