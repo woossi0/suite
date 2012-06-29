@@ -20,12 +20,14 @@ pushd build/$POSTGIS
 checkrc $? "PostGIS configure"
 
 export PATH=${buildroot}/pgsql/bin:$PATH
-make clean && make 
+make clean && make
+(cd extensions; make)
 checkrc $? "PostGIS build"
 
 rm -rf ${buildroot}/postgis
 mkdir ${buildroot}/postgis
 make install
+(cd extensions; make install)
 checkrc $? "PostGIS install"
 
 popd
