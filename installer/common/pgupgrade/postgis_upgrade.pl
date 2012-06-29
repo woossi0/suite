@@ -31,7 +31,7 @@ Backup options:
                             (default is current directory)
  -d, --database=DATABASE  PostGIS 1.x template database
                             (default is "template_postgis")
- -s, --dumplist=[DBLIST]  List of databases to backup
+ -s, --dblist=[DBLIST]    List of databases to backup
                             (default is all databases found)
  
 Restore options:
@@ -39,9 +39,22 @@ Restore options:
                             (default is current directory)
  -d, --database=DATABASE  PostgreSQL master database
                             (default is "postgres")
- -s, --dumplist=[DBLIST]  List of databases to restore
+ -s, --dblist=[DBLIST]    List of databases to restore
                             (default is all dump files in outputpath)
 
+Examples:
+
+ $me backup
+   Backup all databases to the current directory, using all default 
+   connection parameters
+
+ $me backup -o files/backup -d template_postgis -s geoserver medford
+   Backup the "geoserver" and "medford" databases to the "files/backup"
+   directory using "template_postgis" as a template database 
+
+ $me restore -h example.com -p 5432 -U postgres -o files/backup
+   Restore all backed up databases found in "files/backup" to a remote 
+   server at example.com, port 5432, connecting as user "postgres"
 
 };
 
@@ -58,11 +71,11 @@ die "$me:\tUnable to find 'psql' on the path.\n" if ! `psql --version`;
 
 my $help = "";
 my $dumppath = ".";
-my $pgport = "";
-my $pguser = "";
 my $pghost = "";
+my $pguser = "";
+my $pgport = "";
 my $database = "";
-my @dumplist = "";
+my @dblist = "";
 
 # Check for proper arguments
 GetOptions ("help" => \$help,
@@ -71,7 +84,7 @@ GetOptions ("help" => \$help,
             "username|U=s" => \$pguser,
             "port|p=i" => \$pgport,
             "database|d=s" => \$database,
-            "dumplist|s=s{,}" => \@dumplist)
+            "dblist|s=s{,}" => \@dblist)
   || die $usage;
 
 # Show help
@@ -87,6 +100,9 @@ if ($dumppath eq ".") {
   print "Dumppath not specified, using current directory.\n";
 }
 
+#TODO: Strip off trailing slash on $dumppath if exists
+
+
 # Check that $dumppath exists
 if (not -d $dumppath) {
   die "Path \"$dumppath\" doesn't exist.\n";
@@ -100,11 +116,12 @@ unlink("$dumppath/tmp"); # Clean up;
 
 # Do it!
 my $result;
+
 if ($operation eq "backup") {
-  $result = backup($dumppath);
+  $result = backup($dumppath, $pghost, $pgport, $pguser, $database, @dblist);
 }
 if ($operation eq "restore") {
-  $result = restore($dumppath);
+  $result = restore($dumppath, $pghost, $pgport, $pguser, $database, @dblist);
 }
 
 # Bad $operation will have no $result
@@ -112,7 +129,7 @@ if (!defined($result)) {
   die $usage;
 }
 
-print "Operations complete.";
+print "\nOperations complete.\n";
 exit;
 
 # End
@@ -125,15 +142,37 @@ exit;
 
 sub backup {
 
-  #TODO: Not rely on env vars for connection params
-  my $pgcheck = `psql -t -A -c "SELECT postgis_version()"` ||
+  # Build connection parameter strings
+  my $pghostcmd = "";
+  my $pgportcmd = "";
+  my $pgusercmd = "";
+  my $databasecmd = "";
+  my $dblistcmd = "";
+
+  if (!$pghost eq "") {
+    $pghostcmd = "-h $pghost";
+  }
+  if (!$pgport eq "") {
+    $pgportcmd = "-p $pgport";
+  }
+  if (!$pguser eq "") {
+    $pgusercmd = "-U $pguser";
+  }
+  if (!$database eq "") {
+    $databasecmd = "-d $database";
+  }
+  if (!$dblist[1] eq "") {
+    shift(@dblist); #TODO: Extra element added where?
+    $dblistcmd = "-s@dblist";
+  }
+  my $dumppathcmd = "-o $dumppath";
+
+  my $pgcheck = `psql -t -A $pghostcmd $pgportcmd $pgusercmd $databasecmd -c "SELECT postgis_version()"` ||
     die "FATAL: Can't connect to database.  Please check connection parameters.\n";
 
+  # Check for PostGIS 1.x
   my @pgver = split(/ /,"$pgcheck");
   my $pgver = $pgver[0];
-
-
-  # Check for PostGIS 1.x
   if (substr($pgver, 0, 1) != 1) {
     die "FATAL: PostGIS 1.x required for this operation.\n";
   }
@@ -141,45 +180,63 @@ sub backup {
 
   print "Backing up databases to $dumppath\n";
 
-  # Get a list of all relevant databases
-  #TODO: How to exclude non-spatial DBs?
-  my @dblist = `psql -t -A -d postgres --command "SELECT datname FROM pg_database WHERE datistemplate IS FALSE and datname NOT LIKE 'postgres';"`;
-
-  # Total number of databases found
-  my $dbtot = scalar @dblist;
+  my $dbtot;
   my $count;
-  print "Found the following $dbtot databases:\n {";
-  for (my $count = 0; $count < $dbtot; $count++) {
-    chomp($dblist[$count]);
-    print "$dblist[$count] ";
+  # Get list of databases
+  if (!$dblist[0] eq "") {
+  # From args
+    $dbtot = scalar @dblist;
+    print "Attempting to back up the following $dbtot databases:\n { ";
+    for (my $count = 0; $count < $dbtot; $count++) {
+        chomp($dblist[$count]);
+        print "$dblist[$count] ";
+      }
+      print "}\n";
+  } else {
+    # From server
+    #TODO: How to exclude non-spatial DBs?
+    @dblist = `psql -t -A $pghostcmd $pgportcmd $pgusercmd $databasecmd -c "SELECT datname FROM pg_database WHERE datistemplate IS FALSE and datname NOT LIKE 'postgres';"`;
+    # Total number of databases found
+    $dbtot = scalar @dblist;
+    print "Found the following $dbtot databases:\n { ";
+    for (my $count = 0; $count < $dbtot; $count++) {
+      chomp($dblist[$count]);
+      print "$dblist[$count] ";
+    }
+    print "}\n";
   }
-  print "}\n";
 
+  my @dbverify;
   # Dump each database to disk
   #TODO: Suppress ftell mismatch warning
   for my $db (@dblist) {
     print "Dumping: $db\n";
-    my $dbdump = `pg_dump -Fc $db`;
-    open (MYFILE, ">$dumppath/$db.dmp");
-    print MYFILE $dbdump;
-    close (MYFILE);
+    my $dbdump = `pg_dump -Fc $pghostcmd $pgportcmd $pgusercmd $db`
+      || print "WARNING: Database $db not found on server. Skipping...\n";
+    if (length($dbdump) > 1) { # Only create file if database was found
+      open (MYFILE, ">$dumppath/$db.dmp");
+      print MYFILE $dbdump;
+      close (MYFILE);
+      push(@dbverify, $db);
+    }
   }
 
   # Dump the database roles
-  print "Dumping: roles\n";
-  my $dbroledump = `pg_dumpall -r`;
+  print "Dumping roles...\n";
+  my $dbroledump = `pg_dumpall -r $pghostcmd $pgportcmd $pgusercmd`;
   open (MYFILE, ">$dumppath/roles.sql");
   print MYFILE $dbroledump;
   close (MYFILE);
 
   # Summary
   #TODO: Verify this list?
-  print "\nCreated the following files in \"$dumppath\":\n";
-  for ($count = 0; $count < $dbtot; $count++) {
-    chomp($dblist[$count]);
-    print " $dblist[$count].dmp\n";
+  print "Successfully backed up the following databases:\n";
+  for ($count = 0; $count < scalar @dbverify; $count++) {
+    chomp($dbverify[$count]);
+    print " $dbverify[$count]\n";
   }
-  print "Users/Roles saved in:\n roles.sql\n";
+  print "Users and roles saved as roles.sql\n";
+  print "All files saved to directory: $dumppath\n";
 
 }
 
