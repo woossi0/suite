@@ -2,7 +2,7 @@
 
 :: Global variables
 set pg_version=9.2
-set postgis_version=2.0.1
+set postgis_version=2.0
 set pg_default_port=54321
 
 set pg_data_dir=%USERPROFILE%\.opengeo\pgdata\%USERNAME%
@@ -14,7 +14,6 @@ set pg_lib_dir=%pg_dir%\lib
 set pg_port=%pg_default_port%
 set pg_version=9.2
 set pg_data_load_dir=%CD%\..\pgdata
-set postgis_version=2.0.1
 :: Get the existing pgport number from config.ini
 if not exist "%USERPROFILE%\.opengeo\config.ini" goto End
 set pg_default_port=54321
