@@ -8,8 +8,6 @@ use warnings;
 use strict;
 use Getopt::Long;
 
-#TODO: Use DBI?
-
 my $me = $0;
 
 # Usage
@@ -62,12 +60,12 @@ print "OpenGeo Suite PostGIS backup/restore utility.\n";
 
 my $os = $^O; # MSWin32 for Windows
 
-#TODO: Silent running of these programs for failure
-die "$me:\tUnable to find 'pg_dump' on the path.\n" if ! `pg_dump --version`;
-die "$me:\tUnable to find 'pg_dumpall' on the path.\n" if ! `pg_dumpall --version`;
-die "$me:\tUnable to find 'pg_restore' on the path.\n" if ! `pg_restore --version`;
-die "$me:\tUnable to find 'createdb' on the path.\n" if ! `createdb --version`;
-die "$me:\tUnable to find 'psql' on the path.\n" if ! `psql --version`;
+#TODO: Silent running of these programs on failure
+die "FATAL: Unable to find 'pg_dump' on the path.\n" if ! `pg_dump --version`;
+die "FATAL: Unable to find 'pg_dumpall' on the path.\n" if ! `pg_dumpall --version`;
+die "FATAL: Unable to find 'pg_restore' on the path.\n" if ! `pg_restore --version`;
+die "FATAL: Unable to find 'createdb' on the path.\n" if ! `createdb --version`;
+die "FATAL: Unable to find 'psql' on the path.\n" if ! `psql --version`;
 
 my $help = "";
 my $dumppath = ".";
@@ -90,7 +88,7 @@ GetOptions ("help" => \$help,
 # Show help
 die $usage if ($help);
 
-# Only backup/restore are valid
+# Only backup/restore are valid options
 die $usage if (!@ARGV == 1);
 my $operation = $ARGV[0];
 die $usage if (!($operation eq "backup") && !($operation eq "restore"));
@@ -100,7 +98,7 @@ if ($dumppath eq ".") {
   print "Dumppath not specified, using current directory.\n";
 }
 
-# Strip off trailing slash on $dumppath if exists
+# Strip off trailing slash on $dumppath if there
 if ((substr($dumppath, -1) eq "/") || (substr($dumppath, -1) eq "\\")) {
   $dumppath = substr($dumppath, 0, -1) ;
 }
@@ -124,11 +122,6 @@ if ($operation eq "backup") {
 }
 if ($operation eq "restore") {
   $result = restore($dumppath, $pghost, $pgport, $pguser, $database, @dblist);
-}
-
-# Bad $operation will have no $result
-if (!defined($result)) {
-  die $usage;
 }
 
 print "\nOperations complete.\n";
@@ -165,7 +158,7 @@ sub backup {
   }
   if (!$dblist[1] eq "") {
     shift(@dblist); #TODO: Extra element added where?
-    $dblistcmd = "-s@dblist";
+    $dblistcmd = "-s @dblist";
   }
   my $dumppathcmd = "-o $dumppath";
 
@@ -193,7 +186,7 @@ sub backup {
         chomp($dblist[$count]);
         print "$dblist[$count] ";
       }
-      print "}\n";
+    print "}\n";
   } else {
     # From server
     #TODO: How to exclude non-spatial DBs?
@@ -249,17 +242,33 @@ sub backup {
 
 sub restore {
 
-  # If on Windows and lacking postgis_restore.exe, try to muddle through
-  # by hoping for Perl
-  # TODO: Need to check for postgis_restore.exe when it's not on the path
-  #       Below only checks for the current directory
-  #  if (($os eq "MSWin32") && (! -f "postgis_restore.exe")) {
-  #  print qq{
-  #WARNING: postgis_restore.exe not found.  Will assume that you have Perl installed
-  #         and try to move forward.\n
-  #};
-  #  $os = "test" # So that we can try running Perl below
-  #}
+  # TODO: If on Windows and lacking postgis_restore.exe, 
+  #       muddle through by hoping for Perl
+
+  # Build connection parameter strings
+  my $pghostcmd = "";
+  my $pgportcmd = "";
+  my $pgusercmd = "";
+  my $databasecmd = "";
+  my $dblistcmd = "";
+
+  if (!$pghost eq "") {
+    $pghostcmd = "-h $pghost";
+  }
+  if (!$pgport eq "") {
+    $pgportcmd = "-p $pgport";
+  }
+  if (!$pguser eq "") {
+    $pgusercmd = "-U $pguser";
+  }
+  if (!$database eq "") {
+    $databasecmd = "-d $database";
+  }
+  if (!$dblist[1] eq "") {
+    shift(@dblist); #TODO: Extra element added where?
+    $dblistcmd = "-s @dblist";
+  }
+  my $dumppathcmd = "-o $dumppath";
 
   # Require postgis_restore.pl if not on Windows
   if ((! $os eq "MSWin32") && (! -f "postgis_restore.pl")) {
@@ -271,43 +280,53 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
 
   # Check that database is responding
   #TODO: Better way to do this?
-  my $psqlcheck = `psql -t -A -d postgres -c "SELECT 1+1"` ||
-    die "FATAL: Can't connect to database.  Please check connection parameters.\n";
+  my $psqlcheck = `psql -t -A $pghostcmd $pgportcmd $pgusercmd $databasecmd -c "SELECT 1+1"` ||
+    die "FATAL: Can't connect to database.  Please check connection parameterss.\n";
 
   # Check for PostGIS 2.x
-  #TODO: Not rely on env vars for connection params
-  #TODO: May not be necessary to query postgres for postgis extension
-  my $pgcheck = `psql -t -A -d postgres -c "SELECT default_version from pg_available_extensions where name = 'postgis'"` ||
+  my $pgcheck = `psql -t -A $pghostcmd $pgportcmd $pgusercmd $databasecmd -c "SELECT default_version from pg_available_extensions where name = 'postgis'"` ||
     die "FATAL: PostGIS 2.x not found.\n";
 
   my @pgver = split(/ /,"$pgcheck");
   my $pgver = $pgver[0];
   chomp $pgver;
-
-  # May not be necessary anymore
-  if (substr($pgver, 0, 1) != 2) {
-    die "FATAL: PostGIS 2.x required for this operation.\n";
-  }
   print "PostGIS version $pgver found.\n";
 
   print "Restoring databases and roles from directory: $dumppath\n";
 
   # Restore the roles
-  #TODO: What to do with role that already exist?
+  #TODO: What to do with roles that already exist?
   print "Restoring roles...\n";
-  my $dbrolerestore = `psql -f $dumppath/roles.sql` ||
-    die "FATAL: roles.sql not found.  Maybe the dumppath isn't correct?";
+  my $dbrolerestore = `psql $pghostcmd $pgportcmd $pgusercmd $databasecmd -f $dumppath/roles.sql` ||
+    die "FATAL: roles.sql not found.  Maybe the dumppath isn't correct?\n";
 
-  # Find all the dump files
-  opendir my $dir, $dumppath || die "Cannot open directory: $!";
-  my @dmpfiles = grep { -f && /\.dmp$/ } readdir $dir;
-  closedir $dir;
-  print "Found the following files:\n";
-  for my $file (@dmpfiles) {
-    print "$file\n";
+  my $dbtot;
+  my $count;
+  my @dmpfiles;
+  # Get list of databases
+  if (!$dblist[0] eq "") {
+    # From args
+    $dbtot = scalar @dblist;
+    print "Attempting to restore the following $dbtot databases:\n";
+    for (my $count = 0; $count < $dbtot; $count++) {
+        chomp($dblist[$count]);
+        print " $dblist[$count]\n";
+        push(@dmpfiles, "$dblist[$count].dmp"); # Add .dmp
+      }
+  } else {
+    # From server
+    # Find all the dump files
+    opendir my $dir, $dumppath || die "Cannot open directory: $!";
+    @dmpfiles = grep { -f && /\.dmp$/ } readdir $dir;
+    closedir $dir;
+    print "Found the following dump files:\n";
+    for my $file (@dmpfiles) {
+      print " $file\n";
+    }
   }
 
   # Strip off the ".dmp"
+  #TODO: Fix pointless adding/subtracting of the ".dmp" string
   my @newdblist;
   for my $file (@dmpfiles) {
     my $noextfile = substr($file, 0, -4);
@@ -316,32 +335,38 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
 
   # Create, convert, and load the new DBs
   for my $newdb (@newdblist) {
-    print "Restoring database: $newdb\n";
-    print "Creating new database in system...\n";
-    #TODO: What if database already exists?
-    my $createdb = `createdb $newdb`;
-    print "Adding postgis extension to new database...\n";
-    my $createpg = `psql -t -A -d $newdb -c "create extension postgis"`;
-    my $newdbfile = $newdb.".dmp";
-    print "Converting $newdbfile to PostGIS 2.0 format...\n";
-    # Windows will run the .exe, others will run the separate Perl file
-    my $convert;
-    if ($os eq "MSWin32") {
-      $convert = `postgis_restore.exe $newdbfile > $newdb.sql`
-    } else { # All others will have Perl
-      $convert = `perl postgis_restore.pl $newdbfile > $newdb.sql`;
-    }
-    unlink("$dumppath/$newdbfile.lst");
-    # Did it work? If zero byte file, no
-    my $filesize = -s "$newdb.sql";
-    if ($filesize != 0) {
-      print "File: $dumppath/$newdb.sql created.\n";
-      print "Loading into PostGIS 2.0...\n";
-      my $psql = `psql -d $newdb -f $newdb.sql`;
-      print "Restore of database $newdb complete.\n\n";
+    # Make sure file exists first, in case of args
+    if (-f "$newdb.dmp") {
+      print "Restoring database: $newdb\n";
+      print "Creating new database in system...\n";
+      #TODO: What if database already exists?
+      my $createdb = `createdb $pghostcmd $pgportcmd $pgusercmd $newdb` ||
+      print "Adding postgis extension to new database...\n";
+      my $createpg = `psql -t -A $pghostcmd $pgportcmd $pgusercmd -d $newdb -c "create extension postgis"`;
+      my $newdbfile = $newdb.".dmp";
+      print "Converting $newdbfile to PostGIS 2 format...\n";
+      # Windows will run the .exe, others will run the separate Perl file
+      my $convert;
+      if ($os eq "MSWin32") {
+        $convert = `postgis_restore.exe $newdbfile > $newdb.sql`;
+        print "ole";
+      } else { # All others will have Perl
+        $convert = `perl postgis_restore.pl $newdbfile > $newdb.sql`;
+      }
+      unlink("$dumppath/$newdbfile.lst");
+      # Did postgis_restore work? If zero byte file, no
+      my $filesize = -s "$newdb.sql";
+      if ($filesize != 0) {
+        print "File: $dumppath/$newdb.sql created.\n";
+        print "Loading into PostGIS 2...\n";
+        my $psql = `psql $pghostcmd $pgportcmd $pgusercmd -d $newdb -f $newdb.sql`;
+        print "Restore of database $newdb complete.\n\n";
+      } else {
+        print "WARNING: Conversion of $newdb database failed. Skipping...\n\n";
+      } 
     } else {
-      print "WARNING: Conversion of $newdb database failed. Skipping...\n\n";
-    } 
+      print "WARNING: File $newdb.dmp could not be found. Skipping...\n";
+    }
   }
 
 }
