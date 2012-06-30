@@ -7,7 +7,7 @@ The OpenGeo Suite version 3 contains numerous major version updates to its compo
 
 For GeoServer, it is strongly recommended to :ref:`back up your existing data directory <sysadmin.backup.geoserver>` before continuing.
 
-In addition, the upgrade process to 3.x will reinitialize the PostGIS database, removing all PostGIS data**.  Therefore, it is required to follow the upgrade steps below to ensure that your data is retained.
+In addition, the upgrade process to 3.x will reinitialize the PostGIS database, removing all PostGIS data.  Therefore, it is required to follow the upgrade steps below to ensure that your data is retained.
 
 .. warning:: Upgrading from 2.x to 3.x will delete all of your PostGIS data.  You will need to backup your data according to the specific procedures listed below.  This procedure is different from the usual backup process.
 
@@ -23,13 +23,9 @@ The procedure for upgrading your PostGIS data is as follows:
    * :file:`pg_restore`
    * :file:`createdb`
 
-#. Ensure that the connection parameters are set as defaults, such as by setting the environment variables PGHOST, PGUSER, etc.  You can verify that these settings are correct by passing a command with no connection parameters, such as:
-
-   .. code-block:: console
-
-      psql -c "\echo hello world"
-
 #. Download `this archive <http://LINKNEEDED.com>`_ and extract it to a temporary directory.
+
+   .. note:: For the time being, file is available at https://github.com/opengeo/suite/blob/dev/installer/common/pgupgrade/postgis_upgrade.pl .
 
    .. todo:: DOWNLOAD LINKS NEEDED.
 
@@ -45,17 +41,19 @@ The procedure for upgrading your PostGIS data is as follows:
 
    .. code-block:: console
 
-      perl pgdbupgrade.pl --backup path/to/backup/
+      perl postgis_upgrade.pl backup -o path/to/backup/
 
    **Windows:**
 
    .. code-block:: console
 
-      pgdbupgrade.exe --backup C:\path\to\backup\
+      postgis_upgrade.exe backup -o C:\path\to\backup\
+
+   .. note:: You can use standard postgis flags, such as ``--host``, ``--port`` and ``--username``.  You can also select only certain databases to backup by using the ``-s`` flag followed by a list of databases:  ``-s db1 db2 db3``.  Full syntax is available by running with ``--help``.
 
 #. The script will run and create a number of files:
 
-   * Compressed dump files for every database found (:file:`<database>.dmp`)
+   * Compressed dump files for every database backed up (:file:`<database>.dmp`)
    * SQL output of server roles (:file:`roles.sql`)
 
 #. The PostGIS data backup process is complete.  You may now shut down the OpenGeo Suite 2.x.
@@ -76,13 +74,15 @@ The procedure for upgrading your PostGIS data is as follows:
 
    .. code-block:: console
 
-      perl pgdbupgrade.pl --restore path/to/backup/
+      perl postgis_upgrade.pl restore -o path/to/backup/
 
    **Windows:**
 
    .. code-block:: console
 
-      pgdbupgrade.exe --restore C:\path\to\backup\
+      postgis_upgrade.exe restore -o C:\path\to\backup\
 
-#. Your databases and roles will be restored.  You can verify that the data was restored properly by running ``psql -l`` on the command line.
+   .. note:: As with the backup, standard PostGIS connection parameters may be used.  You can also select only certain databases to restore with the ``-s`` flag as detailed above.
+
+#. Your databases and roles will be restored.  You can verify that the databases were created and data restored by running ``psql -l`` on the command line.
 
