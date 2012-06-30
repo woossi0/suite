@@ -31,16 +31,16 @@ if not errorlevel 0 (
   goto End
 )
 
-"%pg_bin_dir%\createdb" --owner="%USERNAME%" "%USERNAME%" >> "%pg_log%" >nul
+"%pg_bin_dir%\createdb" --owner="%USERNAME%" --template=template_postgis "%USERNAME%" >> "%pg_log%" >nul
 :: Any errors?
 if not errorlevel 0 (
   echo There was an error while attempting to create user.
 )
-call "%pg_bin_dir%\psql" -c "CREATE EXTENSION postgis" -d "%USERNAME%" -U "%USERNAME%"
-if not errorlevel 0 (
-  echo There was an error while creating the Medford database.
-  goto Fail
-)
+::call "%pg_bin_dir%\psql" -c "CREATE EXTENSION postgis" -d "%USERNAME%" -U "%USERNAME%"
+::if not errorlevel 0 (
+::  echo There was an error while creating the Medford database.
+::  goto Fail
+::)
 
 
 :End
