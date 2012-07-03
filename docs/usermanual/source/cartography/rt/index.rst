@@ -1,26 +1,22 @@
-.. _rt:
+.. _cartography.rt:
 
 
 Rendering Transformations
 =========================
 
-**Rendering Transformations** are a feature in GeoServer 
-that allow creating sophisticated, dynamic visualizations of geospatial data.
-Rendering transformations are defined in an SLD style,
-and allow transforming input data into 
-a more effective format for visualization.
-A good overview is provided in the Geoserver User Guide section on 
-Rendering Transformations.
+**Rendering Transformations** in GeoServer allow the creation of sophisticated, dynamic visualizations of geospatial data.  Rendering transformations are defined in an SLD style, and allow transforming of input data into a more effective format for visualization.
 
-This section describes how to use some of the most powerful 
-rendering transformations.
+A basic overview of rendering trandformations is provided in the Geoserver User Guide section on 
+`Rendering Transformations <../../../geoserver/styling/sld-extensions/rendering-transform.html>`_.
+
+This section describes how to use some of the most powerful rendering transformations.
 
 .. toctree::
    :maxdepth: 2
 
-   rt-heatmap
-   rt-pointstacker
-   rt-barnes
+   heatmap
+   pointstacker
+   barnes
    
    
 

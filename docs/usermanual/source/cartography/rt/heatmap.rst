@@ -1,74 +1,61 @@
-.. _rt_heatmap:
+.. _cartography.rt.heatmap:
 
 
-Heatmap Rendering Transformation
-================================
+Heatmap
+=======
 
-The *Heatmap Rendering Transformation** 
-is a **Vector-to-Raster** transformation which
-displays a dataset as a heatmap surface (also known as a density surface).   
-The heatmap surface is generated dynamically, so it can be used to visualize changing data.
-It can be applied to very large datasets with good performance.   
-The heatmap view is created by configuring a layer 
-with an SLD style which invokes the Heatmap Rendering Transformation.  
+The Heatmap rendering transformation is a **Vector-to-Raster** transformation which displays a dataset as a heatmap surface (also known as a "density surface").  The heatmap surface is generated dynamically, so it can be used to visualize dynamic data.  It can be applied to very large datasets with good performance.
+
+The heatmap view is created by configuring a layer with an SLD style which invokes the Heatmap rendering transformation.  
 
 .. figure:: img/heatmap_urban_us_east.png
-   :align: center
+
+   *Heatmap rendering transformation*
 
 Usage
 -----
 
-As with all rendering transformations, the transformation is invoked
-by adding a ``<Transformation>`` element to a ``<FeatureTypeStyle>`` in an SLD style.
-The SLD can be applied to any layer which is backed by a suitable dataset (featuretype). 
-The dataset may have a weight attribute, whose name is supplied to the process via the ``weightAttr`` process parameter.
+As with all rendering transformations, the transformation is invoked by adding a ``<Transformation>`` element to a ``<FeatureTypeStyle>`` in an SLD style. The SLD can then be applied to any layer which is backed by a suitable dataset (featuretype).  The dataset may have a weight attribute, whose name is supplied to the process via the ``weightAttr`` process parameter.
 
-The transformation is specified with a ``<ogc:Function mame="gs:Heatmap">`` element, 
-with arguments which supply the transformation parameters.  
-The arguments are specified 
-using the special function ``<ogc:Function name='parameter'>``.  
-Each function has as arguments:
+The transformation is specified with a ``<ogc:Function name="gs:Heatmap">`` element, with arguments which supply the transformation parameters.   
+The arguments are specified using the special function ``<ogc:Function name='parameter'>``.  Each function has as arguments:
 
 * an ``<ogc:Literal>`` giving the name of the parameter
 * one or more literals containing the value(s) of the parameter. 
 
-The transformation parameters are:
+The transformation parameters are as follows.  The order of parameters is not significant.
 
 .. list-table::
    :widths: 25 10 65 
+   :header-rows: 1
    
-   * - **Name** 
-     - **Required/Optional**
-     - **Description**
+   * - Name
+     - Required?
+     - Description
    * - ``data``
-     - R
-     - Input FeatureCollection containing the features to map  
+     - Yes
+     - Input FeatureCollection containing the features to map.
    * - ``radiusPixels``	
-     - R	
-     - Radius of the density kernel (in pixels)
+     - Yes
+     - Radius of the density kernel (in pixels).
    * - ``weightAttr``	
-     - O	
-     - Name of the weight attribute.  (Default weight is 1)
+     - No
+     - Name of the weight attribute. (default = 1)
    * - ``pixelsPerCell``	
-     - O	
-     - Resolution of the computed grid. Larger values improve performance, but may degrade appearance if too large. (Default = 1)
+     - No
+     - Resolution of the computed grid. Larger values improve performance, but may degrade appearance if too large. (default = 1)
    * - ``outputBBOX``	
-     - R	
-     - Georeferenced bounding box of the output
+     - Yes
+     - Georeferenced bounding box of the output.
    * - ``outputWidth``	
-     - R	
-     - Output image width
-   * - ``outputHeight``	
-     - R	
-     - Output image height
+     - Yes
+     - Output image width.
+   * - ``outputHeight``
+     - Yes
+     - Output image height.
 
-Required process parameters must be present, while optional parameters may be omitted if the default value is acceptable.  
-The order of parameters is not significant.
 
-The transformation has required parameters which specify the input data extent and the output image dimensions.  
-The values of these parameters are obtained from environment variables accessed via the function ``<ogc:Function name="env">``. 
-The environment variable values are determined from the WMS request which initiated the rendering process. 
-The parameters and corresponding environment variables are:
+The transformation has required parameters which specify the input data extent and the output image dimensions.  The values of these parameters are obtained from environment variables accessed via the function ``<ogc:Function name="env">``.  The environment variable values are determined from the WMS request which initiated the rendering process.  The parameters and corresponding environment variables are:
 
 * ``outputBBOX`` uses variable ``wms_bbox`` to obtain the surface extent
 * ``outputWidth`` uses variable ``wms_width`` to obtain the output raster width
@@ -77,34 +64,22 @@ The parameters and corresponding environment variables are:
 Input
 -----
 
-The Heatmap rendering transformation is applied to an input dataset containing features with vector geometry.  
-The geometry may be of any type.  
-Point geometries are used directly.  
-Non-point geometry types are converted to points using the centroid of the geometry.   
-The dataset is supplied in the ``data`` parameter.
+The Heatmap rendering transformation is applied to an input dataset containing features with **vector** geometry.  The geometry may be of any type.  Point geometries are used directly, while non-point geometry types are converted to points using the centroid of the geometry.  The dataset is supplied in the ``data`` parameter.
 
-Optionally, features can be weighted by supplying an weight attribute name using the ``weightAttr`` parameter. 
-The value of the attribute is used to weight the influence of each point feature.  
+Optionally, features can be weighted by supplying an weight attribute name using the ``weightAttr`` parameter.  The value of the attribute is used to weight the influence of each point feature.  
 
 
 Output 
 ------
 
-The output of the transformation is a single-band raster.  
-Each pixel has a floating-point value in the range [0..1] measuring the density of the pixel relative to the rest of the surface.     
-The raster can be styled using a ``<RasterSymbolizer>``.  
+The output of the transformation is a single-band **raster**.  Each pixel has a floating-point value in the range [0..1] measuring the density of the pixel relative to the rest of the surface.  The raster can be styled using a ``<RasterSymbolizer>``.
 
-In order for the SLD to be correctly validated, 
-the RasterSymbolizer ``<Geometry>`` element must be present 
-to specify the name of the input geometry attribute 
-(using ``<Geometry><ogc:PropertyName>...</ogc:PropertyName></Geometry>``)
+In order for the SLD to be correctly validated, the RasterSymbolizer ``<Geometry>`` element must be present to specify the name of the input geometry attribute (using ``<Geometry><ogc:PropertyName>...</ogc:PropertyName></Geometry>``)
 
 Example
 -------
 
-The heatmap surface in the map image above is produced by the following SLD.
-(The map image also shows the original input data points styled by another SLD,
-as well as a base map layer.)
+The heatmap surface in the map image above is produced by the following SLD.  (The map image also shows the original input data points styled by another SLD, as well as a base map layer.)  You can adapt this SLD to your data with minimal effort by adjusting the parameters.
 
 .. code-block:: xml
    :linenos:

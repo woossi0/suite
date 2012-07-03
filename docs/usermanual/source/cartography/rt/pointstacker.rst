@@ -1,68 +1,53 @@
-.. _rt_pointstack:
+.. _cartography.rt.pointstacker:
 
 
-Point Stacker Rendering Transformation
-======================================
+Point Stacker
+=============
 
-The **Point Stacker Rendering Transformation** 
-is a **Vector-to-Vector** transformation which
-displays a dataset of points with nearby points aggregated together. 
-This provides a more readable map when many points are in view.
-The stacking is performed dynamically, so it can be used to visualize changing data.
-It can be applied to very large datasets with good performance.   
-The stacked view is created by configuring a layer 
-with an SLD style which invokes the PointStacker Rendering Transformation.  
+The Point Stacker rendering transformation is a **Vector-to-Vector** transformation which displays a data set of points with nearby points aggregated together.  This can produce a much more readable map in situations when there are many points displayed at once.  The stacking is performed dynamically, so it can be used to visualize changing data.  It can also be applied to very large datasets with good performance.
+
+The stacked view is created by configuring a layer with an SLD style which invokes the PointStacker rendering transformation.  
 
 .. figure:: img/pointstacker-volcanoes.png
-   :align: center
+
+   *Point Stacker rendering transformation*
 
 Usage
 -----
 
-As with all rendering transformations, the transformation is invoked
-by adding a ``<Transformation>`` element to a ``<FeatureTypeStyle>`` in an SLD style.
-The SLD can be applied to any layer which is backed by a suitable dataset (featuretype). 
+As with all rendering transformations, the transformation is invoked by adding a ``<Transformation>`` element to a ``<FeatureTypeStyle>`` in an SLD style. The SLD can then be applied to any layer which is backed by a suitable dataset (featuretype).
 
-The transformation is specified with a ``<ogc:Function mame="gs:PointStacker">`` element, 
-with arguments which supply the transformation parameters.  
-The arguments are specified 
-using the special function ``<ogc:Function name='parameter'>``.  
-Each function has as arguments:
+The transformation is specified with a ``<ogc:Function name="gs:PointStacker">`` element, with arguments which supply the transformation parameters.  The arguments are specified using the special function ``<ogc:Function name='parameter'>``.  Each function has as arguments:
 
 * an ``<ogc:Literal>`` giving the name of the parameter
 * one or more literals containing the value(s) of the parameter. 
 
-The transformation parameters are:
+The transformation parameters are as follows.  The order of parameters is not significant.
 
 .. list-table::
    :widths: 25 10 65 
-   
-   * - **Name** 
-     - **Required/Optional**
-     - **Description**
+   :header-rows: 1   
+
+   * - Name
+     - Required?
+     - Description
    * - ``data``
-     - R
+     - Yes
      - Input FeatureCollection containing the features to map  
    * - ``cellSize``     
-     - O     
+     - No   
      - Size of the cells in which to aggregate points (in pixels)   Default = 1
    * - ``outputBBOX``     
-     - R     
+     - Yes    
      - Georeferenced bounding box of the output
    * - ``outputWidth``     
-     - R     
+     - Yes   
      - Output image width
    * - ``outputHeight``     
-     - R     
+     - Yes   
      - Output image height
 
-Required process parameters must be present, while optional parameters may be omitted if the default value is acceptable.  
-The order of parameters is not significant.
-
-The transformation has required parameters which specify the input data extent and the output image dimensions.  
-The values of these parameters are obtained from environment variables accessed via the function ``<ogc:Function name="env">``. 
-The environment variable values are determined from the WMS request which initiated the rendering process. 
-The parameters and corresponding environment variables are:
+The transformation has required parameters which specify the input data extent and the output image dimensions.  The values of these parameters are obtained from environment variables accessed via the function ``<ogc:Function name="env">``.  The environment variable values are determined from the WMS request which initiated the rendering process.  The parameters and corresponding environment variables are:
 
 * ``outputBBOX`` uses variable ``wms_bbox`` to obtain the surface extent
 * ``outputWidth`` uses variable ``wms_width`` to obtain the output raster width
@@ -71,32 +56,28 @@ The parameters and corresponding environment variables are:
 Input
 -----
 
-The PointStacker rendering transformation can be applied to datasets 
-containing features with vector geometry. 
-The geometry may be of any type.  
-Point geometries are used directly.  
-Non-point geometry types are converted to points using the centroid of the geometry.   
-The dataset is supplied in the ``data`` parameter.
+The PointStacker rendering transformation can be applied to datasets containing features with **vector** geometry.  The geometry may be of any type.  Point geometries are used directly, while non-point geometry types are converted to points using the centroid of the geometry.  The dataset is supplied in the ``data`` parameter.
 
-.. note:: Due to a bug in the current release of the RenderingTransformation functionality, 
-          the input dataset must contains attributes with the names ``count`` and ``countUnique``.  
-          The contents of the fields is not significant.  
-          If the input is a file store, the file must be altered to contain columns with these names.  
-          If the input is a database store, one way to provide the required columns is to define a SQL View with a query which includes extra columns with dummy values.   
+.. note::
+
+   Due to a bug in the current release of the RenderingTransformation functionality, the input dataset must contains attributes with the names ``count`` and ``countUnique``.  The contents of the fields is not significant.
+   
+    * If the input is a file store, the file must be altered to contain columns with these names.
+    * If the input is a database store, one way to provide the required columns is to define a SQL View with a query which includes extra columns with dummy values.   
 
 
 Output 
 ------
 
-The output of the transformation is a featuretype containing point features.
-Each feature has the following attributes:
+The output of the transformation is a **vector** featuretype containing point features.  Each feature has the following attributes:
 
 .. list-table::
    :widths: 20 15 65 
-   
-   * - **Name** 
-     - **Type**
-     - **Description**
+   :header-rows: 1   
+
+   * - Name
+     - Type
+     - Description
    * - ``geom``
      - Point
      - Point geometry representing the group of input features  
@@ -108,15 +89,12 @@ Each feature has the following attributes:
      - Count of all different input points represented by this point  
 
 
-The output can be styled as desired using a ``<PointSymbolizer>``.  
+The output can be styled as desired using a standard ``<PointSymbolizer>``.  
 
 Example
 -------
 
-The map image above shows point stacking applied to a dataset of world volcanoes.
-(The map image also shows a base map layer.)
-The stacked points are symbolized by appropriate icons and labels.
-This is produced by the following SLD:
+The map image above shows point stacking applied to a dataset of world volcanoes.    (The map image also shows a base map layer.)  The stacked points are symbolized by appropriate icons and labels.  It is produced by the following SLD.  You can adapt this SLD to your data with minimal effort by adjusting the parameters.
 
 
 .. code-block:: xml
@@ -229,7 +207,7 @@ This is produced by the following SLD:
                  </PointPlacement>
               </LabelPlacement>
               <Stroke>
-                <CssParameter name="stroke">#ffffff</CssParameter>
+                <CssParameter name="stroke">#FFFFFF</CssParameter>
               </Stroke>
              <Halo>
                 <Radius>2</Radius>
