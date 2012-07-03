@@ -131,7 +131,7 @@
     </fileSet-->
     <fileSet>
       <directory>assembly/postgres-win/pgsql</directory>
-      <outputDirectory>pgsql/8.4</outputDirectory>
+      <outputDirectory>pgsql/9.1</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>assembly/pgdata</directory>

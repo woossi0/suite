@@ -436,7 +436,7 @@ Section "PostGIS" SectionPostGIS
   File /a "scripts\postgis.cmd"
   File /a "scripts\pg_*.cmd"
 
-  SetOutPath "$INSTDIR\pgsql\8.4\pgAdmin III"
+  SetOutPath "$INSTDIR\pgsql\9.1\pgAdmin III"
   File /a "..\common\postgis\plugins.ini" ; Adds the link to shp2pgsql-gui
   File /a "..\common\postgis\settings.ini" ; Adds the default entry in PgAdmin
 
@@ -448,18 +448,18 @@ Section "PostGIS" SectionPostGIS
   SetOutPath "$INSTDIR"
   File /r "${SOURCEPATHROOT}\pgdata"
 
-  CreateDirectory "$INSTDIR\pgsql\8.4\pgAdmin III\branding"
-  SetOutPath "$INSTDIR\pgsql\8.4\pgAdmin III\branding"
+  CreateDirectory "$INSTDIR\pgsql\9.1\pgAdmin III\branding"
+  SetOutPath "$INSTDIR\pgsql\9.1\pgAdmin III\branding"
   File /a "..\common\postgis\branding.ini" ; Adds the custom splash
   File /a "..\common\postgis\pgadmin_splash.gif" ; Ditto
 
   ; Shortcuts
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\pgAdmin.lnk" \
-                 "$INSTDIR\pgsql\8.4\bin\pgAdmin3.exe" \
+                 "$INSTDIR\pgsql\9.1\bin\pgAdmin3.exe" \
                  "" "$INSTDIR\icons\postgis.ico" 0
 
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\pgShapeLoader.lnk" \
-                 "$INSTDIR\pgsql\8.4\bin\shp2pgsql-gui.exe" \
+                 "$INSTDIR\pgsql\9.1\bin\shp2pgsql-gui.exe" \
                  "-p 54321" "$INSTDIR\icons\pgshapeloader.ico" 0
 
 SectionEnd
@@ -721,11 +721,11 @@ Section "-Dashboard" SectionDashboard ;dash means hidden
                                 "/S=1" $1
   ${textreplace::ReplaceInFile} "$INSTDIR\dashboard\Resources\config.ini" \
                                 "$INSTDIR\dashboard\Resources\config.ini" \
-                                "@PGADMIN_PATH@" "$INSTDIR\pgsql\8.4\bin\pgadmin3.exe" \ 
+                                "@PGADMIN_PATH@" "$INSTDIR\pgsql\9.1\bin\pgadmin3.exe" \ 
                                 "/S=1" $1
   ${textreplace::ReplaceInFile} "$INSTDIR\dashboard\Resources\config.ini" \
                                 "$INSTDIR\dashboard\Resources\config.ini" \
-                                "@PGSHAPELOADER_PATH@" "$INSTDIR\pgsql\8.4\bin\shp2pgsql-gui.exe" \ 
+                                "@PGSHAPELOADER_PATH@" "$INSTDIR\pgsql\9.1\bin\shp2pgsql-gui.exe" \ 
                                 "/S=1" $1
   ;Skip:
 
