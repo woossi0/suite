@@ -12,7 +12,7 @@ set revision=%2
 set alias=%3
 set profile=%4
 
-set HTDOCS=C:\Program Files\Apache Software Foundation\Apache2.2\htdocs
+set REMOTE_WEB_ROOT=/var/www/winbuilds
 set PATH=%PATH%;C:\Program Files\wget\bin;C:\Program Files\NSIS;C:\Program Files\Git\bin
 
 :: This is where the actual build process happens
@@ -32,13 +32,12 @@ set outfile=OpenGeoSuite-%id%-b%BUILD_NUMBER%.exe
 ren OpenGeo*.exe %outfile%
 
 :: Create output directory
-set outpath=%HTDOCS%\winbuilds\%dist_path%
-if not exist "%outpath%" mkdir "%outpath%"
+set outpath=%REMOTE_WEB_ROOT%/%dist_path%
 
 :: Move files into place
 echo Moving the EXE into its proper place...
 echo.
-move /y %outfile% "%outpath%"
+scp -i C:\hudson\.ssh\installer_upload_key %outfile% jetty@astromech.opengeo.org:%outpath%
 
 :: Copy to OpenGeoSuite-latest.exe and cleanup directory if latest
 if "%profile%"=="ee" (
@@ -49,7 +48,7 @@ if "%profile%"=="ee" (
 
 echo Copying to %aliasedfile%
 echo.
-copy /y "%outpath%\%outfile%" "%outpath%\%aliasedfile%"
+scp -i C:\hudson\.ssh\installer_upload_key %outfile%" jetty@astromech.opengeo.org:%outpath%/%aliasedfile%
 echo Deleting old files from the "latest" directory...
 echo.
 :: Keep only the most recent 7 builds (8 includes "latest")
