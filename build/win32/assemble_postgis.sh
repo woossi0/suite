@@ -68,3 +68,8 @@ cp -R gtk-2.0 $ROOT/pgsql/lib
 cp -R glib-2.0 $ROOT/pgsql/lib
 checkrc $? "Copy gtk libs"
 popd
+
+pushd $buildroot
+cp -R postgis_upgrade $ROOT/pgsql
+checkrc $? "Copy upgrade scripts"
+popd
