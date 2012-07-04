@@ -526,18 +526,6 @@ Section "Styler" SectionStyler
 
 SectionEnd
 
-Section "GeoEditor" SectionGE
-
-  SectionIn RO ; mandatory
-  SetOverwrite on
-
-  !insertmacro DisplayImage "graphics\slide_6_geoext.bmp"
-
-  SetOutPath "$INSTDIR\webapps\"
-  File /r "${SOURCEPATHROOT}\webapps\geoeditor"
-
-SectionEnd
-
 Section "ClientSDK" SectionCSDK
 
   SectionIn RO ; mandatory
@@ -641,7 +629,6 @@ Section "Documentation" SectionDocs
   !insertmacro DisplayImage "graphics\slide_4_gwc.bmp"
 
   SetOutPath "$INSTDIR\icons"
-  File /a "icons\geoeditor.ico"
   File /a "icons\geoserver.ico"
   File /a "icons\geoexplorer.ico"
   File /a "icons\styler.ico"
@@ -838,7 +825,6 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGWC} "Includes GeoWebCache, a tile cache server."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGX} "Installs GeoExplorer, a graphical map composer."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionStyler} "Installs Styler, a graphical map style editor."
-  !insertmacro MUI_DESCRIPTION_TEXT ${SectionGE} "Installs GeoEditor, a graphical map editor."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionCSDK} "Installs the Client SDK, tools for building web mapping applications backed by the OpenGeo Suite."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGDAL} "Installs GDAL, a spatial data reading library."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionDocs} "Includes full documentation for all applications."
