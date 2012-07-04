@@ -293,9 +293,10 @@ DMGTMP="tmp-${VOL}.dmg"
 DMGFINAL="OpenGeoSuite-${pro}r$svn_revision.dmg"
 BACKGROUND="dmg_background.tiff"
 APP="OpenGeo Suite.mpkg"
+UPGRADE="Suite 2.x to 3.x upgrade"
 
 # DMG window dimensions
-dmg_width=640
+dmg_width=875
 dmg_height=314
 dmg_topleft_x=200
 dmg_topleft_y=200
@@ -337,6 +338,13 @@ checkrv $? "Suite make background dir"
 cp -v resources/${BACKGROUND} "/Volumes/${VOL}/.background/${BACKGROUND}"
 checkrv $? "Suite copy background img"
 
+# Copy the upgrade scripts into place
+mkdir "/Volumes/${VOL}/${UPGRADE}"
+checkrv $? "Created upgrade dir"
+cp -v ../common/pgupgrade/postgis_upgrade.pl "/Volumes/${VOL}/${UPGRADE}"
+cp -v installer/mac/binaries/pgsql/share/postgresql/contrib/postgis-2.0/postgis_restore.pl "/Volumes/${VOL}/${UPGRADE}"
+checkrv $? "Copied upgrade files into place"
+
 # Set the background image and icon location
 echo '
    tell application "Finder"
@@ -352,6 +360,7 @@ echo '
            set background picture of theViewOptions to file ".background:'${BACKGROUND}'"
            set position of item "'${APP}'" of container window to {325, 130}
            set position of item "'${README}'" of container window to {480, 130}
+           set position of item "'${UPGRADE}'" of container window to {635, 130}
            close
            open
            update without registering applications
