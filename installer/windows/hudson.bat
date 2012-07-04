@@ -48,7 +48,7 @@ if "%profile%"=="ee" (
 
 echo Copying to %aliasedfile%
 echo.
-scp -P 7777 -i C:\hudson\.ssh\installer_upload_key %outfile%" jetty@astromech.opengeo.org:%outpath%/%aliasedfile%
+scp -P 7777 -i C:\hudson\.ssh\installer_upload_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no %outfile%" jetty@astromech.opengeo.org:%outpath%/%aliasedfile%
 echo Deleting old files from the "latest" directory...
 echo.
 :: Keep only the most recent 7 builds (8 includes "latest")

@@ -31,6 +31,8 @@ checkrc $? "building postgis_upgrade.exe"
 checkrc $? "Zipping exes"
 
 scp -i /c/hudson/.ssh/installer_upload_key -P 7777 ${buildroot}/postgis_upgrade.zip \
+-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
 jetty@astromech.opengeo.org:/var/www/winbuilds
+
 rm ${buildroot}/postgis_upgrade.zip
 checkrc $? "Uploaded zip to winbuilds"
