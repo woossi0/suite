@@ -9,30 +9,20 @@ with an SLD style which invokes the Barnes Surface rendering transformation.
 
 .. figure:: img/barnes_surface.png
 
-   *Barnes Surface rendering transformation*
+   *Barnes Surface rendering transformation used to render a maximum temperature surface*
 
 Description
 -----------
 
 The Barnes Surface algorithm operates on a regular grid of cells covering a specified extent in the input data space.  It computes an initial pass to produce an interpolated value for each grid cell.  The value of a cell is determined by its proximity to the input observation points, using a summation of exponential (Gaussian) decay functions for each observation point.  Refinement passes may be used to improve the estimate, by reducing the error between the computed surface and the observations.
 
-The rendering transformation uses the Barnes Surface algorithm to compute a surface over a set of irregular data points, providing a raster surface as output.  The input is a dataset of point features (``data``), with an attribute (``valueAttr``) providing an observed value for each point.  The operation of the Barnes algorithm is controlled by the length scale (``scale``), convergence factor (``convergenceFactor``) and number of refinement passes (``passes``).
-
-To prevent extrapolation into areas unsupported by observations the influence of observation points can be limited using the ``minObservations`` and ``maxObservationDistance`` parameters.  This also increases performance by reducing the observations evaluated for each grid cell.  Uncomputed grid cells are given the value ``noDataValue``.
-
-To ensure the computed surface is stable under panning and zooming the extent for the input data can be expanded by a user-specified distance (``queryBuffer``).  This ensures enough data points are included to avoid edge effects on the computed surface.  The expansion distance depends on the length scale, convergence factor, and data spacing in a complex way, so must be manually determined (a good heuristic is to set the distance at least as large as the length scale.)
-
-To improve performance the surface grid can be computed at lower resolution than the output raster, using the ``pixelsPerCell`` parameter.  The computed grid is upsampled to the output raster size using *Bilinear Interpolation with Edge Smoothing* to maintain quality.  There is minimal impact on appearance for small cell sizes (10 pixels or less).
-
-To prevent excessive CPU consumption the number of data points processed can be limited using the ``dataLimit`` parameter.  If the limit is exceeded an output is still produced using the maximum number of points.
-
-The surface is computed in the CRS (coordinate reference system) of the output.  If the output CRS is different to the input CRS the data points are transformed into the output CRS.  Likewise, the distance-based parameters ``scale`` and ``maxObservationDistance`` are converted into the units of the output CRS.
-
-
-References
-~~~~~~~~~~
-
-* Barnes, S. L (1964). "A technique for maximizing details in numerical weather-map analysis". *Journal of Applied Meteorology* 3 (4): 396 - 409
+The rendering transformation uses the Barnes Surface algorithm to compute a surface over a set of irregular data points, 
+providing a raster surface as output.  
+The input is a dataset of **points**, 
+with an attribute providing an **observed value** for each point.  
+The radius of influence of each observation point is controlled by the **length scale**.
+A number of **refinement passes** can be performed to improve the surface estimate,
+with the degree of refinement controlled by the **convergence factor**.
 
 Usage
 -----
@@ -105,11 +95,24 @@ The transformation has required parameters which specify the input data extent a
 * ``outputWidth`` uses variable ``wms_width`` to obtain the output raster width
 * ``outputHeight`` uses variable ``wms_height`` to obtain the output raster height
 
+
 Input
 -----
 
 The Barnes Surface rendering transformation is applied to a **vector** input dataset containing features with point geometry.  
 The dataset is supplied in the ``data`` parameter.  The observation value for features is supplied in the attribute named in the ``valueAttr`` parameter.
+
+To prevent extrapolation into areas unsupported by observations the influence of observation points can be limited using the ``minObservations`` and ``maxObservationDistance`` parameters.  
+This also increases performance by reducing the observations evaluated for each grid cell.  Uncomputed grid cells are given the value ``noDataValue``.
+
+To ensure the computed surface is stable under panning and zooming the extent for the input data can be expanded by a user-specified distance (``queryBuffer``).  This ensures enough data points are included to avoid edge effects on the computed surface.  The expansion distance depends on the length scale, convergence factor, and data spacing in a complex way, so must be manually determined (a good heuristic is to set the distance at least as large as the length scale.)
+
+To prevent excessive CPU consumption the number of data points processed can be limited using the ``dataLimit`` parameter.  If the limit is exceeded an output is still produced using the maximum number of points.
+
+To improve performance the surface grid can be computed at lower resolution than the output raster, using the ``pixelsPerCell`` parameter.  The computed grid is upsampled to the output raster size using *Bilinear Interpolation with Edge Smoothing* to maintain quality.  There is minimal impact on appearance for small cell sizes (10 pixels or less).
+
+The surface is computed in the CRS (coordinate reference system) of the output.  If the output CRS is different to the input CRS the data points are transformed into the output CRS.  Likewise, the distance-based parameters ``scale`` and ``maxObservationDistance`` are converted into the units of the output CRS.
+
 
 Output 
 ------
@@ -121,7 +124,12 @@ In order for the SLD to be correctly validated, the RasterSymbolizer ``<Geometry
 Example
 -------
 
-The interpolated surface in the map image above is produced by the following SLD.  (The map image also shows the original input data points styled by another SLD, as well as a base map layer.)  You can adapt this SLD to your data with minimal effort by adjusting the parameters.
+The map image above shows a temperature surface interpolated across a set of data
+points with a attribute giving the maximum daily temperature on a given day.
+The surface layer in the image is produced by the following SLD.  
+(The map image also shows the original input data points styled by another SLD, as well as a base map layer.)  
+You can adapt this SLD to your own data by adjusting the transformation parameters,
+and by choosing a color map definition that provides an appropriate styling.
 
 .. code-block:: xml
    :linenos:
@@ -137,7 +145,7 @@ The interpolated surface in the map image above is produced by the following SLD
 	    <Name>Barnes surface</Name>
 	    <UserStyle>
 	      <Title>Barnes Surface</Title>
-	      <Abstract>A style that produces a Barnes surface using a RenderingTransformation</Abstract>
+	      <Abstract>A style that produces a Barnes surface using a rendering transformation</Abstract>
 	      <FeatureTypeStyle>
 		<Transformation>
 		  <ogc:Function name="gs:BarnesSurface">
@@ -207,7 +215,7 @@ The interpolated surface in the map image above is produced by the following SLD
 		      <ColorMapEntry color="#41A0FC" quantity="-6" label="values" />
 		      <ColorMapEntry color="#58CCFB" quantity="-3" label="values" />
 		      <ColorMapEntry color="#76F9FC" quantity="0" label="values" />
-		      <ColorMapEntry color="#6AC597" quantity="3"/>
+		      <ColorMapEntry color="#6AC597" quantity="3" label="values" />
 		      <ColorMapEntry color="#479364" quantity="6" label="values" />
 		      <ColorMapEntry color="#2E6000" quantity="9" label="values" />
 		      <ColorMapEntry color="#579102" quantity="12" label="values" />
@@ -227,3 +235,36 @@ The interpolated surface in the map image above is produced by the following SLD
 	    </UserStyle>
 	  </NamedLayer>
 	</StyledLayerDescriptor>
+	
+In the SLD, **Lines 15-71** define the Barnes surface rendering transformation,
+giving values for the transformation parameters which are appropriate for the input dataset.
+**Line 18** specifies the input dataset parameter name.
+**Line 22** specifies the name of the observation value attribute.
+**Line 26** sets a length scale of 15 degrees.
+**Line 30** sets the convergence factor to be 0.2.
+**Line 33** requests that 3 passes be performed (one for the initial estimate, and two refinement passes).
+**Line 38** specifies that the minimum number of observations required to support an estimated cell is 1
+(which means every observation point will be represented in the output).
+**Line 42** specifies the maximum distance from a computed grid cell to an observation point is 10 degrees.
+**Line 46** defines the resolution of computation to be 10 pixels per cell, 
+which provides efficient rendering time while still providing output of reasonable visual quality.
+**Line 50** specifies the query buffer to be 40 degrees, which is chosen to be
+at least double the length scale for stability.
+**Lines 52-69** define the output parameters, which are
+obtained from internal environment variables set during rendering, as described above.
+
+**Lines 73-98** define the symbolizer used to style the raster computed by the transformation.
+**Line 75** defines the geometry property of the input dataset, which is required for SLD validation purposes.
+**Line 76** specifies an overall opacity of 0.8 for the rendered layer.
+**Lines 77-97** define a color map with which to symbolize the output raster.
+In this case the color map uses a **type** of ``ramp``, which produces a smooth
+transition between colors.  The type could also be ``intervals``,
+which produces a contour effect with discrete transition between colors
+(as shown in the image below). 
+**Line 78** specifies that the NO_DATA value of -990 should be displayed with a fully transparent color of white
+(making uncomputed pixels invisible).
+
+.. figure:: img/barnes_surface_intervals.png
+
+   *Barnes surface using intervals color map*
+

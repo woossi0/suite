@@ -137,22 +137,44 @@ The heatmap surface in the map image above is produced by the following SLD.  (T
                   </ogc:Function>
                 </ogc:Function>
               </Transformation>
-             <Rule>
-               <RasterSymbolizer>
-               <!-- specify geometry attribute of input to pass validation -->
-                 <Geometry><ogc:PropertyName>the_geom</ogc:PropertyName></Geometry>
-                 <Opacity>0.6</Opacity>
-                 <ColorMap type="ramp" >
-                   <ColorMapEntry color="#FFFFFF" quantity="0" label="nodata" opacity="0"/>
-                   <ColorMapEntry color="#FFFFFF" quantity="0.02" label="nodata" opacity="0"/>
-                   <ColorMapEntry color="#4444FF" quantity=".1" label="nodata"/>
-                   <ColorMapEntry color="#FF0000" quantity=".5" label="values" />
-                   <ColorMapEntry color="#FFFF00" quantity="1.0" label="values" />
-                 </ColorMap>
-               </RasterSymbolizer>
+              <Rule>
+                <RasterSymbolizer>
+                <!-- specify geometry attribute of input to pass validation -->
+                  <Geometry><ogc:PropertyName>the_geom</ogc:PropertyName></Geometry>
+                  <Opacity>0.6</Opacity>
+                  <ColorMap type="ramp" >
+                    <ColorMapEntry color="#FFFFFF" quantity="0" label="nodata" opacity="0"/>
+                    <ColorMapEntry color="#FFFFFF" quantity="0.02" label="nodata" opacity="0"/>
+                    <ColorMapEntry color="#4444FF" quantity=".1" label="nodata"/>
+                    <ColorMapEntry color="#FF0000" quantity=".5" label="values" />
+                    <ColorMapEntry color="#FFFF00" quantity="1.0" label="values" />
+                  </ColorMap>
+                </RasterSymbolizer>
               </Rule>
             </FeatureTypeStyle>
           </UserStyle>
         </NamedLayer>
        </StyledLayerDescriptor>
+       
+In the SLD **lines 14-53** define the Heatmap rendering transformation,
+giving values for the transformation parameters which are appropriate for the input dataset.
+**Line 17** specifies the input dataset parameter name.
+**Line 21** specifies the dataset attribute which provides a weighting for the input points.
+**Line 27** specifies a kernel density radius of 100 pixels.
+**Line 32** defines the resolution of computation to be 10 pixels per cell, 
+which provides efficient rendering time while still providing output of reasonable visual quality.
+**Lines 34-52** define the output parameters, which are
+obtained from internal environment variables set during rendering, as described above.
+
+**Lines 55-66** define the symbolizer used to style the raster computed by the transformation.
+**Line 57** defines the geometry property of the input dataset, which is required for SLD validation purposes.
+**Line 58** specifies an overall opacity of 0.6 for the rendered layer.
+**Lines 59-65** define a color map with which to symbolize the output raster.
+The color map uses a **type** of ``ramp``, which produces a smooth
+transition between colors. 
+**Line 60-61** specifies that raster values of 0.02 or less should be displayed with a fully transparent color of white,
+which makes areas where there no influence from data points invisible.
+
+
+
 
