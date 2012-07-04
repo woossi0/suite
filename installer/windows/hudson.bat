@@ -37,7 +37,7 @@ set outpath=%REMOTE_WEB_ROOT%/%dist_path%
 :: Move files into place
 echo Moving the EXE into its proper place...
 echo.
-scp -P 7777 -i C:\hudson\.ssh\installer_upload_key %outfile% jetty@astromech.opengeo.org:%outpath%
+scp -P 7777 -i C:\hudson\.ssh\installer_upload_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no %outfile% jetty@astromech.opengeo.org:%outpath%
 
 :: Copy to OpenGeoSuite-latest.exe and cleanup directory if latest
 if "%profile%"=="ee" (
