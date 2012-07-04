@@ -7,6 +7,8 @@ package org.geoserver.web.demo;
 import static org.geoserver.ows.util.ResponseUtils.*;
 import static org.geoserver.web.demo.OpenGeoPreviewProvider.*;
 
+import java.util.logging.Level;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
@@ -14,10 +16,16 @@ import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.geoserver.catalog.LayerInfo;
 import org.geoserver.web.GeoServerBasePage;
 import org.geoserver.web.demo.PreviewLayer.PreviewLayerType;
 import org.geoserver.web.wicket.GeoServerTablePanel;
 import org.geoserver.web.wicket.GeoServerDataProvider.Property;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.referencing.CRS;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
  * Shows a paged list of the available layers and points to previews in various formats
@@ -25,18 +33,26 @@ import org.geoserver.web.wicket.GeoServerDataProvider.Property;
 @SuppressWarnings("serial")
 public class OpenGeoMapPreviewPage extends GeoServerBasePage {
 
+    static CoordinateReferenceSystem EPSG_3857;
+    static {
+        try {
+            EPSG_3857 = CRS.decode("EPSG:3857");
+        } catch (Exception e) {
+            LOGGER.log(Level.FINER, e.getMessage(), e);
+        }
+    }
     OpenGeoPreviewProvider provider = new OpenGeoPreviewProvider();
 
-    GeoServerTablePanel<PreviewLayer> table;
+    GeoServerTablePanel<OpenGeoPreviewLayer> table;
 
     public OpenGeoMapPreviewPage() {
         // build the table
-        table = new GeoServerTablePanel<PreviewLayer>("table", provider) {
+        table = new GeoServerTablePanel<OpenGeoPreviewLayer>("table", provider) {
 
             @Override
             protected Component getComponentForProperty(String id, final IModel itemModel,
-                    Property<PreviewLayer> property) {
-                PreviewLayer layer = (PreviewLayer) itemModel.getObject();
+                    Property<OpenGeoPreviewLayer> property) {
+                OpenGeoPreviewLayer layer = (OpenGeoPreviewLayer) itemModel.getObject();
 
                 if (property == TYPE) {
                     Fragment f = new Fragment(id, "iconFragment", OpenGeoMapPreviewPage.this);
@@ -56,14 +72,31 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                     Fragment f = new Fragment(id, "exlink", OpenGeoMapPreviewPage.this);
                     f.add(new ExternalLink("link", new Model(kmlUrl),  new Model("Google Earth")));
                     return f;
-                } else if (property == STYLER) {
+                } else if (property == GEOEXPLORER) {
                     if(layer.getType() == PreviewLayerType.Group || layer.getType() == PreviewLayerType.Raster) {
                         return new Label(id, "");
                     } else {
-                        // styler link
-                        final String stylerUrl = "../www/styler/index.html?layer=" + urlEncode(layer.getName());
+                        // geoexplorer link
+                        String gxpLink = 
+                            System.getProperty("opengeo.geoexplorer.url", "/geoexplorer");
+                        gxpLink = gxpLink.endsWith("/") ? gxpLink.substring(0,gxpLink.length()-1) : gxpLink;
+
+                        gxpLink += "/composer/?layers=" + urlEncode(layer.getName());
+                        LayerInfo l = layer.getLayer();
+                        try {
+                            ReferencedEnvelope e = 
+                                l.getResource().getLatLonBoundingBox().transform(EPSG_3857, true);
+                            if (e != null) {
+                                gxpLink += "&bbox=" + urlEncode(String.format("%f,%f,%f,%f", e.getMinX(), 
+                                    e.getMinY(), e.getMaxX(), e.getMaxY()));
+                            }
+                        }
+                        catch(Exception e) {
+                            LOGGER.log(Level.WARNING, "Unable to reproject to spherical mercator", e);
+                        }
+
                         Fragment f = new Fragment(id, "newpagelink", OpenGeoMapPreviewPage.this);
-                        f.add(new ExternalLink("link", new Model(stylerUrl),  new Model("Styler")));
+                        f.add(new ExternalLink("link", new Model(gxpLink),  new Model("GeoExplorer")));
                         return f;
                     }
                 }
