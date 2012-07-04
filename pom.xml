@@ -159,7 +159,6 @@
            <descriptor>assembly/readme.xml</descriptor>
            <descriptor>assembly/war-geoserver.xml</descriptor>
            <descriptor>assembly/war-geoexplorer.xml</descriptor>
-           <descriptor>assembly/war-geoeditor.xml</descriptor>
            <descriptor>assembly/war-geowebcache.xml</descriptor>
            <descriptor>assembly/war-geoserver-jboss.xml</descriptor>
            <descriptor>assembly/war.xml</descriptor>
@@ -184,9 +183,7 @@
  <modules>
   <module>geoserver</module>
   <module>geowebcache</module>
-  <module>styler</module>
   <module>geoexplorer</module>
-  <module>geoeditor</module>
   <module>dashboard</module>
   <module>jetty</module>
  </modules>
