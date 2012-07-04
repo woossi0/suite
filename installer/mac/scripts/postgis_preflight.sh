@@ -31,11 +31,11 @@ dosysctl kern.sysv.shmmax $shmmax $pg_shmmax
 # Add paths
 if [ -d /private/etc/paths.d ]
 then
-  echo "/opt/opengeo/pgsql/8.4/bin" > /private/etc/paths.d/opengeo-pgsql
+  echo "/opt/opengeo/pgsql/9.1/bin" > /private/etc/paths.d/opengeo-pgsql
 fi
 if [ -d /private/etc/manpaths.d ]
 then
-  echo "/opt/opengeo/pgsql/8.4/share/man" > /private/etc/manpaths.d/opengeo-pgsql
+  echo "/opt/opengeo/pgsql/9.1/share/man" > /private/etc/manpaths.d/opengeo-pgsql
 fi
 
 exit 0
