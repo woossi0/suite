@@ -5,7 +5,7 @@ set -x
 source hudson_config.sh
 
 
-POSTGIS_UTILS=${buildroot}/postgis/utils/
+POSTGIS_UTILS=${buildroot}/postgis-win/pgsql/share/contrib/postgis-2.0/
 
 mkdir -p ${buildroot}/postgis_restore
 mkdir -p ${buildroot}/postgis_restore/scripts
