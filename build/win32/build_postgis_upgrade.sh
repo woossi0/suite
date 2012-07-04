@@ -4,7 +4,7 @@ set -x
 # load version info and utility functions
 source hudson_config.sh
 
-
+PATH=$PATH:"/c/Program Files/Active State Perl Dev Kit 9.1.1/bin"
 POSTGIS_UTILS=${buildroot}/postgis-win/pgsql/share/contrib/postgis-2.0/
 
 mkdir -p ${buildroot}/postgis_restore
