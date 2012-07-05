@@ -342,7 +342,7 @@ checkrv $? "Suite copy background img"
 mkdir "/Volumes/${VOL}/${UPGRADE}"
 checkrv $? "Created upgrade dir"
 cp -v ../common/pgupgrade/postgis_upgrade.pl "/Volumes/${VOL}/${UPGRADE}"
-cp -v installer/mac/binaries/pgsql/share/postgresql/contrib/postgis-2.0/postgis_restore.pl "/Volumes/${VOL}/${UPGRADE}"
+cp -v binaries/pgsql/share/postgresql/contrib/postgis-2.0/postgis_restore.pl "/Volumes/${VOL}/${UPGRADE}"
 checkrv $? "Copied upgrade files into place"
 
 # Set the background image and icon location
