@@ -1,5 +1,5 @@
 Name: opengeo-suite-data
-Version: 2.5
+Version: 3.0
 Release: 3
 Summary: Sample geospatial data required for use with the OpenGeo Suite.
 Group: Unspecified

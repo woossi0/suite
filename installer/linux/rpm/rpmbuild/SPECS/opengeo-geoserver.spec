@@ -1,5 +1,5 @@
 Name: opengeo-geoserver
-Version: 2.5
+Version: 3.0
 Release: 1
 Summary: High performance, standards-compliant map and geospatial data server.
 Group: Applications/Engineering
@@ -7,7 +7,7 @@ License: see http://geoserver.org
 Requires(post): bash
 Requires(preun): bash
 
-Requires:  unzip, java-1.6.0-openjdk, opengeo-jai, opengeo-suite-data >= 2.5, gdal == 1.9.1
+Requires:  unzip, java-1.6.0-openjdk, opengeo-jai, opengeo-suite-data >= 3.0, gdal == 1.9.1
 Patch: geoserver_webxml.patch
 %if 0%{?centos} == 6
 Requires: tomcat6
