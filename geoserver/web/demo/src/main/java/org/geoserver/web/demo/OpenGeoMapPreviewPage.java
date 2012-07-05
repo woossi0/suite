@@ -23,8 +23,6 @@ import org.geoserver.web.wicket.GeoServerTablePanel;
 import org.geoserver.web.wicket.GeoServerDataProvider.Property;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.CRS;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
@@ -73,34 +71,37 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                     f.add(new ExternalLink("link", new Model(kmlUrl),  new Model("Google Earth")));
                     return f;
                 } else if (property == GEOEXPLORER) {
-                    if(layer.getType() == PreviewLayerType.Group || layer.getType() == PreviewLayerType.Raster) {
-                        return new Label(id, "");
-                    } else {
-                        // geoexplorer link
-                        String gxpLink = 
-                            System.getProperty("opengeo.geoexplorer.url", "/geoexplorer");
-                        gxpLink = gxpLink.endsWith("/") ? gxpLink.substring(0,gxpLink.length()-1) : gxpLink;
+                    // geoexplorer link
+                    String gxpLink = 
+                        System.getProperty("opengeo.geoexplorer.url", "/geoexplorer");
+                    gxpLink = gxpLink.endsWith("/") ? gxpLink.substring(0,gxpLink.length()-1) : gxpLink;
 
-                        gxpLink += "/composer/?layers=" + urlEncode(layer.getName());
-                        LayerInfo l = layer.getLayer();
+                    gxpLink += "/composer/?layers=" + urlEncode(layer.getName());
+                    ReferencedEnvelope env = null;
+                    if (layer.getType() == PreviewLayerType.Group) {
+                        env = layer.getLayerGroup().getBounds();
+                    }
+                    else {
+                        env = layer.getLayer().getResource().getLatLonBoundingBox();
+                    }
+                    if (env != null) {
                         try {
-                            ReferencedEnvelope e = 
-                                l.getResource().getLatLonBoundingBox().transform(EPSG_3857, true);
-                            if (e != null) {
-                                gxpLink += "&bbox=" + urlEncode(String.format("%f,%f,%f,%f", e.getMinX(), 
-                                    e.getMinY(), e.getMaxX(), e.getMaxY()));
+                            env = env.transform(EPSG_3857, true);
+                            if (env != null) {
+                                gxpLink += "&bbox=" + urlEncode(String.format("%f,%f,%f,%f", 
+                                    env.getMinX(), env.getMinY(), env.getMaxX(), env.getMaxY()));
+                                //gxpLink += "&lazy=true";
                             }
                         }
                         catch(Exception e) {
                             LOGGER.log(Level.WARNING, "Unable to reproject to spherical mercator", e);
                         }
-
-                        Fragment f = new Fragment(id, "newpagelink", OpenGeoMapPreviewPage.this);
-                        f.add(new ExternalLink("link", new Model(gxpLink),  new Model("GeoExplorer")));
-                        return f;
                     }
+
+                    Fragment f = new Fragment(id, "newpagelink", OpenGeoMapPreviewPage.this);
+                    f.add(new ExternalLink("link", new Model(gxpLink),  new Model("GeoExplorer")));
+                    return f;
                 }
-                
                 return null;
             }
 

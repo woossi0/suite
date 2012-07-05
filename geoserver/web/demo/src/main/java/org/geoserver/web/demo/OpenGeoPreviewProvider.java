@@ -45,7 +45,7 @@ public class OpenGeoPreviewProvider extends GeoServerDataProvider<OpenGeoPreview
         new PropertyPlaceholder<OpenGeoPreviewLayer>("");
 
     public static final List<Property<OpenGeoPreviewLayer>> PROPERTIES = 
-        Arrays.asList(TYPE, NAME, TITLE, ABSTRACT, KEYWORDS, OL, GE, GEOEXPLORER);
+        Arrays.asList(TYPE, NAME, TITLE, ABSTRACT, KEYWORDS, GEOEXPLORER, OL, GE);
 
     @Override
     protected List<OpenGeoPreviewLayer> getItems() {
