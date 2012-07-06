@@ -128,7 +128,21 @@ case "$1" in
       unpack_war
 
       # restore old web.xml
-      cp $TMP/web.xml $APP/WEB-INF
+      # special case for upgrade from 2.x to 3.0, we actually can't keep the    
+      # old web.xml since the 2.x web.xml is incompatible
+      if [ ! -z $2 ]; then
+        OLD_VER=$2
+        if [ "${OLD_VER:0:1}" != "2" ]; then
+          # an upgrade from 3.x, restore the existing web.xml
+          cp $TMP/web.xml $APP/WEB-INF
+        else
+          # an upgrade from 2.x, keep the new xml
+          cp $TMP/web.xml $APP/WEB-INF/web.xml.bak
+        fi
+      else
+        # shouldn't happen but copy over old web.xml anyways
+        cp $TMP/web.xml $APP/WEB-INF
+      fi
 
       rm -rf $TMP
     else

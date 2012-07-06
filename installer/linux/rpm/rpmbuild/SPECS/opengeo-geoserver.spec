@@ -75,7 +75,20 @@ EOF
    unzip  $APP.war -d $APP > /dev/null 2>&1
 
    if [ -e $TMP/web.xml ]; then
-     cp $TMP/web.xml $APP/WEB-INF
+     if [ "$1" == "2" ]; then
+        # upgrade, check the old version
+        OLD_VER=`rpm -q --queryformat="%{VERSION}\n" opengeo-geoserver | sort | head -n 1`
+        if [ "${OLD_VER:0:1}" == "2" ]; then
+          # upgrade from 2.x, we need to keep the new web.xml
+          cp $TMP/web.xml $APP/WEB-INF/web.xml.bak
+        else
+          # upgrade from 3.x, preserve the old web.xml
+          cp $TMP/web.xml $APP/WEB-INF
+        fi
+     else
+        # shouldn't happen, but copy old web.xml over anyways
+        cp $TMP/web.xml $APP/WEB-INF
+     fi
      rm -rf $TMP
    fi
    
