@@ -18,7 +18,7 @@ check_root () {
 }
 
 function check_pg() {
-  local status=$( echo "`service postgresql status`" | awk '{print $NF}' )
+  local status=$( echo "`service postgresql-9.2 status`" | awk '{print $NF}' )
   if [ $status != "running..." ]; then
      #attempt to start postgresql, first check if we need to init db
      if [ -e $PG_DATA ] && [ $( ls $PG_DATA | wc -l ) == 0 ]; then
@@ -29,7 +29,7 @@ function check_pg() {
      service postgresql-9.2 start
   fi
 
-  status=$( echo "`service postgresql status`" | awk '{print $NF}' )
+  status=$( echo "`service postgresql-9.2 status`" | awk '{print $NF}' )
   if [ $status != "running..." ]; then
      echo "Could not start postgresql. Check above for the error and run /usr/share/opengeo-postgis/setup-postgis.sh once postgresql has been started."
      exit 1
