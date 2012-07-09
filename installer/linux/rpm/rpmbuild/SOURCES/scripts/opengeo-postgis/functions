@@ -23,10 +23,10 @@ function check_pg() {
      #attempt to start postgresql, first check if we need to init db
      if [ -e $PG_DATA ] && [ $( ls $PG_DATA | wc -l ) == 0 ]; then
         #init db
-        service postgresql initdb
+        service postgresql-9.2 initdb
      fi
 
-     service postgresql start
+     service postgresql-9.2 start
   fi
 
   status=$( echo "`service postgresql status`" | awk '{print $NF}' )
