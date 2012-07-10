@@ -95,13 +95,11 @@ Upgrading from version 2.x to 3.x
 
 The OpenGeo Suite version 3 contains numerous major version updates to its components.  This upgrade is also **not-backward compatible**; irreversible changes are made to the data so that they can't be used with earlier versions of the OpenGeo Suite.
 
-For GeoServer, it is strongly recommended to :ref:`back up your existing data directory <sysadmin.backup.geoserver>` before continuing.
-
 In addition, the upgrade process to 3.x will reinitialize the PostGIS database, removing all PostGIS data.  Therefore, it is required to follow the upgrade steps below to ensure that your data is retained.
 
 .. warning:: Upgrading from 2.x to 3.x will delete all of your PostGIS data.  You will need to backup your data according to the specific procedures listed below.  This procedure is different from the usual backup process.
 
-The procedure for upgrading your PostGIS data is as follows:
+The procedure for upgrading is as follows:
 
 #. Ensure the old (2.x) version of the OpenGeo Suite is running.
  
@@ -119,16 +117,16 @@ The procedure for upgrading your PostGIS data is as follows:
 
       postgis_upgrade.exe backup --port 54321 
 
-   .. note:: You can use standard PostGIS command line flags, such as ``--host``, ``--port`` and ``--username`` if you have customized your installation.  You can also select only certain databases to backup by using the ``--dblist`` flag followed by a list of databases:  ``--dblist db1 db2 db3``.  Full syntax is available by running with ``--help``.
+   .. note:: You can use standard PostGIS command line flags such as ``--host``, ``--port`` and ``--username`` if you have customized your installation.  You can also select only certain databases to backup by using the ``--dblist`` flag followed by a list of databases:  ``--dblist db1 db2 db3``.  Full syntax is available by running with ``--help``.
 
 #. The script will run and create a number of files:
 
    * Compressed dump files for every database backed up (:file:`<database>.dmp`)
-   * SQL output of server roles (:file:`roles.sql`)
+   * SQL output of server roles
 
 #. The PostGIS data backup process is complete.  You may now shut down the OpenGeo Suite 2.x.
 
-#. Back up your GeoServer data directory.  This directory is located by default in :file:`<user_home_directory>\\.opengeo\\data_dir`.
+#. Back up your GeoServer data directory.  This directory is located by default in :file:`<user_home_directory>\\.opengeo\\data_dir`.  To back up this directory, you can create an archive of it, or simply copy it to another location.
 
 #. Uninstall the OpenGeo Suite 2.x.  (See :ref:`installation.windows.uninstall` below.)
 
@@ -146,7 +144,7 @@ The procedure for upgrading your PostGIS data is as follows:
 
    .. code-block:: console
 
-      set PATH=%PATH%;C:\Program Files\OpenGeo\OpenGeo Suite\pgsql\9.1\bin
+      set PATH=%PATH%;C:\Program Files\OpenGeo\OpenGeo Suite\pgsql\9.2\bin
 
 #. Restore your PostGIS data by running the script again:
 

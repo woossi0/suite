@@ -12,4 +12,4 @@ This section will discuss how to manage  OpenGeo Suite deployments, including se
    analytics/index
    production/index
    backup
-   upgrading/index
+
