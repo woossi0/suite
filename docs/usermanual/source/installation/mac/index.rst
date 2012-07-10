@@ -106,7 +106,7 @@ The procedure for upgrading your PostGIS data is as follows:
 
    .. code-block:: console
 
-      perl postgis_upgrade.pl backup
+      perl postgis_upgrade.pl backup --port 54321
 
    .. note:: You can use standard PostGIS command line flags, such as ``--host``, ``--port`` and ``--username`` if you have customized your installation.  You can also select only certain databases to backup by using the ``--dblist`` flag followed by a list of databases:  ``--dblist db1 db2 db3``.  Full syntax is available by running with ``--help``.
 
@@ -133,7 +133,7 @@ The procedure for upgrading your PostGIS data is as follows:
 
    .. code-block:: console
 
-      postgis_upgrade.exe restore
+      postgis_upgrade.exe restore --port 54321
 
    .. note:: As with the backup, standard PostGIS connection parameters may be used.  You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.
 
