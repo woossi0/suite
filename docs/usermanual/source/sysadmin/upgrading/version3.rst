@@ -3,6 +3,15 @@
 Upgrading from version 2.x to 3.x
 =================================
 
+.. warning::
+
+   Note to all OpenGeo testers.  This page is going away soon.
+
+   * Windows upgrade guide is now at :ref:`installation.windows.v3`.
+   * Mac OS X upgrade guide is now at :ref:`installation.osx.v3`.
+   * Ubuntu upgrade guide isn't broken out yet, but when it is it will be near :ref:`installation.linux.suite`.
+   * CentOS upgrade guide isn't broken out yet, but when it is it will be near :ref:`installation.linux.suite`.
+
 The OpenGeo Suite version 3 contains numerous major version updates to its components.  This upgrade is also **not-backward compatible**; irreversible changes are made to the data so that they can't be used with earlier versions of the OpenGeo Suite.
 
 For GeoServer, it is strongly recommended to :ref:`back up your existing data directory <sysadmin.backup.geoserver>` before continuing.
