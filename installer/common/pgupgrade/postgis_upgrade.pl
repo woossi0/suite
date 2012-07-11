@@ -155,6 +155,8 @@ sub backup {
   }
   if (!$database eq "") {
     $databasecmd = "-d $database";
+  } else {
+      $databasecmd = "-d template_postgis";
   }
   if (!$dblist[1] eq "") {
     shift(@dblist); #TODO: Extra element added where?
