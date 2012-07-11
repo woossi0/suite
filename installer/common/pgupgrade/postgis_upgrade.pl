@@ -284,8 +284,10 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
     die "FATAL: Can't connect to database.  Please check connection parameterss.\n";
 
   # Check for PostGIS 2.x
-  my $pgcheck = `psql -t -A $pghostcmd $pgportcmd $pgusercmd $databasecmd -c "SELECT default_version from pg_available_extensions where name = 'postgis'"` ||
-    die "FATAL: PostGIS 2.x not found.\n";
+  my $pgcheck = `psql -t -A $pghostcmd $pgportcmd $pgusercmd $databasecmd -c "SELECT default_version from pg_available_extensions where name = 'postgis'"`;
+  if (!defined($pgcheck)) {
+    $pgcheck = `psql -t -A $pghostcmd $pgportcmd $pgusercmd $databasecmd -c "SELECT postgis_version()"` || die "FATAL: PostGIS not found.\n";
+  }
 
   my @pgver = split(/ /,"$pgcheck");
   my $pgver = $pgver[0];
