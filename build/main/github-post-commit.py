@@ -79,3 +79,4 @@ def post_to_jira(iid, commit, obj):
 if __name__ == "__main__":
   f = open('x') 
   handle_payload(f.read(), True)
+
