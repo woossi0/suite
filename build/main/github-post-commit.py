@@ -27,7 +27,6 @@ def handle_commit(c, dry=False):
 
   acts = parse_commit(msg)
   for act in acts:
-    import pdb; pdb.set_trace()
     a,i  = act
     obj = {}
     if a == "fix" or a == "close":
@@ -42,7 +41,7 @@ def handle_commit(c, dry=False):
     if dry == True:
       print obj
     else:
-      post_to_jira(i, obj)
+      post_to_jira(i, c, obj)
 
 def parse_commit(msg):
   m = re.findall('(fix(?:es|ing)?|close(?:s|ing)?) *#SUITE-(\d+)', msg, re.IGNORECASE)
