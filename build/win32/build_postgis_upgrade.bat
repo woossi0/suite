@@ -16,7 +16,8 @@ copy ..\..\installer\common\pgupgrade\postgis_upgrade.pl %buildroot%\postgis_upg
 copy postgis_upgrade.exe %buildroot%\postgis_upgrade\
 echo "building postgis_upgrade.exe"
 
-zip -r postgis_upgrade.zip %buildroot%\postgis_upgrade
+cd %buildroot%
+zip -r postgis_upgrade.zip postgis_upgrade
 echo "Zipping exes"
 
 scp -P 7777 -i C:\hudson\.ssh\installer_upload_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no postgis_upgrade.zip jetty@astromech.opengeo.org:/var/www/winbuilds
