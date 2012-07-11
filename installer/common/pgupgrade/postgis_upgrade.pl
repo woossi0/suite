@@ -208,23 +208,18 @@ sub backup {
   #TODO: Suppress ftell mismatch warning
   for my $db (@dblist) {
     print "Dumping: $db\n";
-    my $dbdump = `pg_dump -Fc $pghostcmd $pgportcmd $pgusercmd $db`
-      || print "WARNING: Database $db not found on server. Skipping...\n";
-    if (length($dbdump) > 1) { # Only create file if database was found
-      open (MYFILE, ">$dumppath/$db.dmp");
-      print MYFILE $dbdump;
-      close (MYFILE);
-      push(@dbverify, $db);
+    my $pgdumprv = system("pg_dump --file=$dumppath/$db.dmp --format=c $pghostcmd $pgportcmd $pgusercmd $db");
+    if ($pgdumprv != 0) {
+      print "Error dumping database $db\n";
     }
   }
 
   # Dump the database roles
   print "Dumping roles...\n";
-  my $dbroledump = `pg_dumpall -r $pghostcmd $pgportcmd $pgusercmd`;
-  open (MYFILE, ">$dumppath/roles.sql");
-  print MYFILE $dbroledump;
-  close (MYFILE);
-
+  my $dbroledumprv = system("pg_dumpall -r --file=$dumppath/roles.sql $pghostcmd $pgportcmd $pgusercmd");
+  if ($dbroledumprv != 0) {
+    die "FATAL: Error dumping postgres roles";
+  }
   # Summary
   #TODO: Verify this list?
   print "Successfully backed up the following databases:\n";
@@ -301,8 +296,13 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
   # Restore the roles
   #TODO: What to do with roles that already exist?
   print "Restoring roles...\n";
-  my $dbrolerestore = `psql $pghostcmd $pgportcmd $pgusercmd $databasecmd -f $dumppath/roles.sql` ||
+  if (! -f "$dumppath/roles.sql") {
     die "FATAL: roles.sql not found.  Maybe the dumppath isn't correct?\n";
+  }
+  my $dbrolerestorerv = system("psql $pghostcmd $pgportcmd $pgusercmd $databasecmd -f $dumppath/roles.sql");
+  if ($dbrolerestorerv != 0) {
+    die "FATAL: Error restoring roles";
+  }
 
   my $dbtot;
   my $count;
@@ -351,12 +351,14 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
       my $newdbfile = $dblocation.".dmp";
       print "Converting $newdbfile to PostGIS 2 format...\n";
       # Windows will run the .exe, others will run the separate Perl file
-      my $convert;
+      my $convertrv;
       if ($os eq "MSWin32") {
-        $convert = `postgis_restore.exe $newdbfile > $dblocation.sql`;
-        print "ole";
+        $convertrv = system("postgis_restore.exe $newdbfile > $dblocation.sql");
       } else { # All others will have Perl
-        $convert = `perl postgis_restore.pl $newdbfile > $dblocation.sql`;
+        $convertrv = system("perl postgis_restore.pl $newdbfile > $dblocation.sql");
+      }
+      if ($convertrv != 0) {
+        print "Error creating $dblocation.sql\n";
       }
       unlink("$dumppath/$newdbfile.lst");
       # Did postgis_restore work? If zero byte file, no
@@ -364,8 +366,12 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
       if ($filesize != 0) {
         print "File: $db.sql created.\n";
         print "Loading into PostGIS 2...\n";
-        my $psql = `psql $pghostcmd $pgportcmd $pgusercmd -d $db -f $dblocation.sql`;
-        print "Restore of database $db complete.\n\n";
+        my $psqlrv = system("psql $pghostcmd $pgportcmd $pgusercmd -d $db -f $dblocation.sql");
+        if ($psqlrv != 0) {
+          print "WARNING: Conversion of $db database failed. Skipping...\n\n";
+        } else {
+          print "Restore of database $db complete.\n\n";
+        }
       } else {
         print "WARNING: Conversion of $db database failed. Skipping...\n\n";
       } 
@@ -373,5 +379,4 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
       print "WARNING: File $dblocation.dmp could not be found. Skipping...\n";
     }
   }
-
 }
