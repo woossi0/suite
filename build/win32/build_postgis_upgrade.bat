@@ -12,7 +12,7 @@ echo "building postgis_restore.exe"
 
 
 %PERL_PATH%\perlapp.exe --bind postgis_restore.exe[file=postgis_restore.exe,extract,mode=777] --shared public --norunlib --nologo --verbose --warnings --force --info "CompanyName=OpenGeo;FileDescription=Backs up databases from OpenGeo Suite 2.x (PostGIS 1.x) and restores to OpenGeo Suite 3.x (PostGIS 2.x).;FileVersion=1.0;OriginalFilename=postgis_upgrade.exe;ProductName=OpenGeo Suite PostGIS Upgrade Utility;ProductVersion=1.0" --exe postgis_upgrade.exe ..\..\installer\common\pgupgrade\postgis_upgrade.pl
-copy ..\..\installer\common\pgupgrade\postgis_upgrade.pl %buildroot%\postgis_restore\scripts\
+copy ..\..\installer\common\pgupgrade\postgis_upgrade.pl %buildroot%\postgis_upgrade\scripts\
 copy postgis_upgrade.exe %buildroot%\postgis_upgrade\
 echo "building postgis_upgrade.exe"
 
