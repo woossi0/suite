@@ -28,20 +28,12 @@ def handle_commit(c, dry=False):
   acts = parse_commit(msg)
   for act in acts:
     a,i  = act
-    obj = {}
-    if a == "fix" or a == "close":
-      obj['transition'] = { 'id': '5' }
 
     comment = '%s ([%s|%s])' % (c['message'], c['id'], c['url']) 
-    obj['update'] = {'comment': [
-      { 'add': { 'body': comment }}
-    ]}
-
-    log.info('Posting %s to issue %s' % (str(obj), i))
-    if dry == True:
-      print obj
-    else:
-      post_to_jira(i, c, obj)
+    if a == "fix" or a == "close":
+      fix_in_jira(i, c, comment)
+    elif a == "comment":
+      comment_in_jira(i, c, comment)
 
 def parse_commit(msg):
   m = re.findall('(fix(?:es|ing)?|close(?:s|ing)?) *#SUITE-(\d+)', msg, re.IGNORECASE)
@@ -54,7 +46,25 @@ def parse_commit(msg):
       m[i] = ('fix', m[i][1])
   return m
 
-def post_to_jira(iid, commit, obj):
+def fix_in_jira(iid, commit, comment):
+  obj = {}
+  obj['transition'] = { 'id': '5' }
+  obj['update'] = {'comment': [
+    { 'add': { 'body': comment }}
+  ]}
+
+  log.info('Resolving issue %s' % iid)
+  url = 'http://product.opengeo.org:8080/rest/api/2/issue/SUITE-%s/transitions' % iid
+  do_post(url, obj, 204, iid, commit)
+
+def comment_in_jira(iid, commit, comment):
+  obj = {'body': comment}
+  log.info('Commenting on issue %s' % iid)
+
+  url = 'http://product.opengeo.org:8080/rest/api/2/issue/SUITE-%s/comment' % iid
+  do_post(url, obj, 201, iid, commit)
+
+def do_post(url, obj, code, iid, commit):
   cid = commit['id']
   post = json.dumps(obj)
 
@@ -62,13 +72,13 @@ def post_to_jira(iid, commit, obj):
   passwd = 'opengeo2012'
 
   auth = base64.encodestring('%s:%s' % (user,passwd)).replace('\n','')
-  req = urllib2.Request('http://product.opengeo.org:8080/rest/api/2/issue/SUITE-%s/transitions' % iid, post) 
+  req = urllib2.Request(url, post) 
   req.add_header('Authorization', "Basic %s" % auth)
   req.add_header('Content-type', 'application/json')
 
   try:
     r = urllib2.urlopen(req)
-    if r.getcode() != 204:
+    if r.getcode() != code:
       log.warning('Update SUITE-%s (commit %s) failed, status = %d' 
          % (iid, cid, r.getcode()))
       log.warning(r.read())
