@@ -1,4 +1,4 @@
-﻿#! /usr/bin/perl
+#!/usr/bin/perl
 
 # OpenGeo Suite PostGIS database upgrade script
 # Automates the data loading process from OpenGeo Suite 2.5 to 3.0
@@ -317,7 +317,7 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
     # From server
     # Find all the dump files
     opendir my $dir, $dumppath || die "Cannot open directory: $!";
-    @dmpfiles = grep { -f && /\.dmp$/ } readdir $dir;
+    @dmpfiles = grep(/\.dmp$/,readdir($dir));
     closedir $dir;
     print "Found the following dump files:\n";
     for my $file (@dmpfiles) {
@@ -334,38 +334,39 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
   }
 
   # Create, convert, and load the new DBs
-  for my $newdb (@newdblist) {
+  for my $db (@newdblist) {
+    my $dblocation = "$dumppath/$db";
     # Make sure file exists first, in case of args
-    if (-f "$newdb.dmp") {
-      print "Restoring database: $newdb\n";
+    if (-f "$dblocation.dmp") {
+      print "Restoring database: $db\n";
       print "Creating new database in system...\n";
       #TODO: What if database already exists?
-      my $createdb = `createdb $pghostcmd $pgportcmd $pgusercmd $newdb` ||
+      my $createdb = `createdb $pghostcmd $pgportcmd $pgusercmd $db` ||
       print "Adding postgis extension to new database...\n";
-      my $createpg = `psql -t -A $pghostcmd $pgportcmd $pgusercmd -d $newdb -c "create extension postgis"`;
-      my $newdbfile = $newdb.".dmp";
+      my $createpg = `psql -t -A $pghostcmd $pgportcmd $pgusercmd -d $db -c "create extension postgis"`;
+      my $newdbfile = $dblocation.".dmp";
       print "Converting $newdbfile to PostGIS 2 format...\n";
       # Windows will run the .exe, others will run the separate Perl file
       my $convert;
       if ($os eq "MSWin32") {
-        $convert = `postgis_restore.exe $newdbfile > $newdb.sql`;
+        $convert = `postgis_restore.exe $newdbfile > $dblocation.sql`;
         print "ole";
       } else { # All others will have Perl
-        $convert = `perl postgis_restore.pl $newdbfile > $newdb.sql`;
+        $convert = `perl postgis_restore.pl $newdbfile > $dblocation.sql`;
       }
       unlink("$dumppath/$newdbfile.lst");
       # Did postgis_restore work? If zero byte file, no
-      my $filesize = -s "$newdb.sql";
+      my $filesize = -s "$dblocation.sql";
       if ($filesize != 0) {
-        print "File: $dumppath/$newdb.sql created.\n";
+        print "File: $db.sql created.\n";
         print "Loading into PostGIS 2...\n";
-        my $psql = `psql $pghostcmd $pgportcmd $pgusercmd -d $newdb -f $newdb.sql`;
-        print "Restore of database $newdb complete.\n\n";
+        my $psql = `psql $pghostcmd $pgportcmd $pgusercmd -d $db -f $dblocation.sql`;
+        print "Restore of database $db complete.\n\n";
       } else {
-        print "WARNING: Conversion of $newdb database failed. Skipping...\n\n";
+        print "WARNING: Conversion of $db database failed. Skipping...\n\n";
       } 
     } else {
-      print "WARNING: File $newdb.dmp could not be found. Skipping...\n";
+      print "WARNING: File $dblocation.dmp could not be found. Skipping...\n";
     }
   }
 
