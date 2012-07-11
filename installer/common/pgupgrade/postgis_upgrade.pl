@@ -260,6 +260,8 @@ sub restore {
   }
   if (!$database eq "") {
     $databasecmd = "-d $database";
+  } else {
+    $database = "template_postgis";
   }
   if (!$dblist[1] eq "") {
     shift(@dblist); #TODO: Extra element added where?
@@ -281,8 +283,10 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
     die "FATAL: Can't connect to database.  Please check connection parameterss.\n";
 
   # Check for PostGIS 2.x
+  my $extensions_enabled = 1;
   my $pgcheck = `psql -t -A $pghostcmd $pgportcmd $pgusercmd $databasecmd -c "SELECT default_version from pg_available_extensions where name = 'postgis'"`;
-  if (!defined($pgcheck)) {
+  if (!$pgcheck) {
+    $extensions_enabled = 0;
     $pgcheck = `psql -t -A $pghostcmd $pgportcmd $pgusercmd $databasecmd -c "SELECT postgis_version()"` || die "FATAL: PostGIS not found.\n";
   }
 
@@ -344,10 +348,16 @@ FATAL: postgis_restore.pl not found. Must be in current directory. This
     if (-f "$dblocation.dmp") {
       print "Restoring database: $db\n";
       print "Creating new database in system...\n";
-      #TODO: What if database already exists?
-      my $createdb = `createdb $pghostcmd $pgportcmd $pgusercmd $db` ||
-      print "Adding postgis extension to new database...\n";
-      my $createpg = `psql -t -A $pghostcmd $pgportcmd $pgusercmd -d $db -c "create extension postgis"`;
+      my $createdb;
+      if ($extensions_enabled) {
+        #TODO: What if database already exists?
+        $createdb = `createdb $pghostcmd $pgportcmd $pgusercmd $db` ||
+        print "Adding postgis extension to new database...\n";
+        my $createpg = `psql -t -A $pghostcmd $pgportcmd $pgusercmd -d $db -c "create extension postgis"`;
+      } else {
+        $createdb = `createdb $pghostcmd $pgportcmd $pgusercmd  --template=$database $db` ||
+        print "Creating new spatial database...\n";
+      }
       my $newdbfile = $dblocation.".dmp";
       print "Converting $newdbfile to PostGIS 2 format...\n";
       # Windows will run the .exe, others will run the separate Perl file
