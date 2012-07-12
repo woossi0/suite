@@ -1,5 +1,5 @@
-PG_DATA=/var/lib/pgsql/data
-PG_CONTRIB=/usr/share/pgsql/contrib
+PG_DATA=/var/lib/pgsql/9.2/data
+PG_CONTRIB=/usr/pgsql-9.2/share/contrib
 OG_POSTGIS=/usr/share/opengeo-postgis
 
 check_headless() {
@@ -21,7 +21,7 @@ function check_pg() {
   local status=$( echo "`service postgresql-9.2 status`" | awk '{print $NF}' )
   if [ $status != "running..." ]; then
      #attempt to start postgresql, first check if we need to init db
-     if [ -e $PG_DATA ] && [ $( ls $PG_DATA | wc -l ) == 0 ]; then
+     if [ $( ls $PG_DATA | wc -l ) == 0 ]; then
         #init db
         service postgresql-9.2 initdb
      fi
