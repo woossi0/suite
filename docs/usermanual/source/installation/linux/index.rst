@@ -15,19 +15,17 @@ Ubuntu
 .. toctree::
    :maxdepth: 1
 
-   ubuntu/suite-enterprise
-   ubuntu/suite-community
+   ubuntu/suite
    ubuntu/geoserver
    ubuntu/postgis
 
-CentOS
-------
+CentOS/RedHat
+-------------
 
 .. toctree::
    :maxdepth: 1
 
-   centos/suite-enterprise
-   centos/suite-community
+   centos/suite
    centos/geoserver
    centos/postgis
 

@@ -1,7 +1,7 @@
 .. _installation.linux.centos.postgis:
 
-Installing PostGIS on CentOS
-============================
+Installing PostGIS on CentOS and RedHat
+=======================================
 
 The easiest way to install and set up PostGIS is by :ref:`installing the full OpenGeo Suite <installation.linux.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
 
@@ -81,4 +81,9 @@ The graphical management utility pgAdmin is included with the install.  To run p
 
 
 For more information about running PostGIS, please see the `PostGIS Documentation <http://suite.opengeo.org/opengeo-docs/postgis/>`_
+
+Upgrading
+---------
+
+See :ref:`Upgrading the OpenGeo Suite <installation.linux.centos.suite.upgrade>` for general information about upgrading. In particular users who wish to upgrade to PostGIS 2.0 should follow the steps outlined in :ref:`installation.linux.centos.suite.upgrade.v3`.
 

@@ -10,7 +10,7 @@ This page will describe how to install PostGIS on Ubuntu 10.04 (Lucid).  Earlier
 Access the OpenGeo repository
 -----------------------------
 
-OpenGeo provides a repository for packages in APT (Debian) format.  To access this repository, you need to first import the OpenGeo GPG key in to your apt registry:
+OpenGeo provides a repository for packages in APT (Debian/Ubuntu) format.  To access this repository, you need to first import the OpenGeo GPG key in to your apt registry:
 
 .. note:: You will need to run these commands on an account with root access.
 
@@ -53,12 +53,17 @@ After installation
 
 When completed, PostGIS will be installed on your system as a service, running on port **5432**.  
 
-.. note:: The username and password for the PostGIS administrator account is **opengeo** / **opengeo**
+.. note:: During installation a PostgreSQL user account named **opengeo** (password **opengeo**) will be created.
 
 To verify that PostGIS is installed properly, you can run the following command in a terminal (you will be prompted for a password):
 
 .. code-block:: bash
 
-   $ psql -Uopengeo -p5432 -c"SELECT postgis_full_version();" medford
+   $ psql -U opengeo -p 5432 -c "SELECT postgis_full_version();" medford
 
 If PostGIS is installed correctly, you should see information about the installed database.
+
+Upgrading
+---------
+
+See :ref:`Upgrading the OpenGeo Suite <installation.linux.ubuntu.suite.upgrade>` for general information about upgrading. In particular users who wish to upgrade to PostGIS 2.0 should follow the steps outlined in :ref:`installation.linux.ubuntu.suite.upgrade.v3`.

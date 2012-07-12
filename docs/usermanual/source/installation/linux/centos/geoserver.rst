@@ -1,7 +1,7 @@
 .. _installation.linux.centos.geoserver:
 
-Installing GeoServer on CentOS
-==============================
+Installing GeoServer on CentOS and RedHat
+========================================
 
 The easiest way to install and set up GeoServer is by :ref:`installing the full OpenGeo Suite <installation.linux.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
 
@@ -68,3 +68,9 @@ This will load the Web Administration Interface.  Most management of GeoServer f
 .. note:: The username and password for the GeoServer administrator account is **admin** / **geoserver**
 
 For more information about running GeoServer, please see the `GeoServer Documentation <http://suite.opengeo.org/docs/geoserver/>`_
+
+Upgrading   
+---------
+
+See :ref:`Upgrading the OpenGeo Suite <installation.linux.centos.suite.upgrade>` for general information about upgrading. In particular users who wish to upgrade to GeoServer 2.2 should follow the steps outlined in :ref:`installation.linux.centos.suite.upgrade.v3`.
+

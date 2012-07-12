@@ -21,7 +21,7 @@ The OpenGeo Suite has the following system requirements:
 New Installation
 ----------------
 
-.. warning:: If upgrading from version 2.x, please see the section on :ref:`installation.osx.v3`.
+.. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.osx.upgrade`.
 
 #. Double click to mount the :file:`OpenGeoSuite.dmg` file.  Inside the mounted image, double click on :file:`OpenGeo Suite.mpkg`
 
@@ -77,7 +77,14 @@ For more information, please see the **User Manual**, which is available from th
 
       file:///opt/opengeo/suite/webapps/opengeo-docs/usermanual/index.html
 
-.. _installation.osx.v3:
+.. _installation.osx.upgrade:
+
+Upgrading
+---------
+
+Minor version upgrades of the OpenGeo Suite can be installed on top of previous versions and all previous data and configuration is preserved. Major upgrades however may not preserve data and configuration and require more steps as outlined in the following sections.
+
+.. _installation.osx.upgrade.v3:
 
 Upgrading from version 2.x to 3.x
 ---------------------------------
@@ -137,6 +144,7 @@ The procedure for upgrading is as follows:
 
    .. code-block:: console
 
+      sudo rm -rf /opt/opengeo/suite/data_dir
       sudo mv  ~/suite_backup/data_dir /opt/opengeo/suite
       
    .. warning:: If instead of moving you copied the data directory in order to back it up you must restore group write permission to it after moving it back into place. This can be achieved with the command ``sudo chmod -R g+w /opt/opengeo/suite/data_dir``. 
@@ -156,16 +164,9 @@ The procedure for upgrading is as follows:
 
 #. Restart the OpenGeo Suite.
 
-.. todo::
+   .. warning:: Due to data directory upgrades, we recommend against an in-place upgrade when upgrading from versions **prior to 2.4.2**. To get the latest version, please back up your data, uninstall, manually remove your data directory, then reinstall the new version. Your data directory is located here:  ``/opt/opengeo/suite/``  Please delete this directory before upgrading.
 
-    Will put this back in for 3.0.1
-
-    Minor version upgrades
-    
-
-    .. warning:: Due to data directory upgrades, we recommend against an in-place upgrade when upgrading from versions **prior to 2.4.2**. To get the latest version, please back up your data, uninstall, manually remove your data directory, then reinstall the new version. Your data directory is located here:  ``/opt/opengeo/suite/``  Please delete this directory before upgrading.
-
-    You can upgrade from a previous version of the OpenGeo Suite, and your settings and data will be preserved.  To do this, follow the regular installation procedure, and if a previous version is detected, the software will be automatically upgraded.
+   You can upgrade from a previous version of the OpenGeo Suite, and your settings and data will be preserved.  To do this, follow the regular installation procedure, and if a previous version is detected, the software will be automatically upgraded.
 
 .. _installation.osx.uninstall:
 
