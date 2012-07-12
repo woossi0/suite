@@ -82,11 +82,9 @@ For more information, please see the **User Manual**, which is available from th
 Upgrading from version 2.x to 3.x
 ---------------------------------
 
-The OpenGeo Suite version 3 contains numerous major version updates to its components.  This upgrade is also **not-backward compatible**; irreversible changes are made to the data so that they can't be used with earlier versions of the OpenGeo Suite.
+The OpenGeo Suite version 3 contains numerous major version updates to its components.  This upgrade is **not-backward compatible** and all previously installed versions must be uninstalled before continuing.
 
-In addition, the upgrade process to 3.x will reinitialize the PostGIS database, removing all PostGIS data.  Therefore, it is required to follow the upgrade steps below to ensure that your data is retained.
-
-.. warning:: Upgrading from 2.x to 3.x will delete all of your PostGIS data.  You will need to backup your data according to the specific procedures listed below.  This procedure is different from the usual backup process.
+.. warning:: Uninstalling OpenGeo Suite 2.x will remove all your data and configuration therefore you will need to backup your data according to the specific procedures listed below.
 
 The procedure for upgrading is as follows:
 
@@ -98,7 +96,15 @@ The procedure for upgrading is as follows:
 
       export PATH=$PATH:/opt/opengeo/pgsql/8.4/bin
 
-#. Download the archive available at http://files.opengeo.org/suite/postgis_upgrade_pl.zip and extract it to a temporary directory.  To avoid permissions issues, it is best to put this directory on your desktop or in your home directory.  By default, the backup files created from using this script will be saved into this directory.
+#. Download the archive available at http://files.opengeo.org/suite/postgis_upgrade.zip and extract it to a temporary directory.  To avoid permissions issues, it is best to put this directory on your desktop or in your home directory.  By default, the backup files created from using this script will be saved into this directory.
+
+   .. code-block:: console
+   
+      cd ~
+      mkdir -p suite_backup/pg_backup
+      cd suite_backup/pg_backup
+      wget  http://files.opengeo.org/suite/postgis_upgrade.zip
+      unzip postgis_upgrade.zip
 
 #. Run the backup command:
 
@@ -113,13 +119,13 @@ The procedure for upgrading is as follows:
    * Compressed dump files for every database backed up (:file:`<database>.dmp`)
    * SQL output of server roles
 
-#. The PostGIS data backup process is complete.  You may now shut down the OpenGeo Suite 2.x.
+#. The PostGIS data backup process is complete. You may now shut down the OpenGeo Suite 2.x.
 
-#. Back up your GeoServer data directory.  This directory is located by default in :file:`/opt/opengeo/suite/data_dir`.  To back up this directory, you can create an archive of it, or simply copy it to another location.
+#. Back up your GeoServer data directory. This directory is located by default in :file:`/opt/opengeo/suite/data_dir`.  To back up this directory, you can create an archive of it, or simply move/copy it to another location.
 
    .. code-block:: console
 
-      cp -r /opt/opengeo/suite/data_dir ~/data_dir_backup
+      sudo mv /opt/opengeo/suite/data_dir ~/suite_backup/
 
 #. Uninstall the OpenGeo Suite 2.x.  (See :ref:`installation.osx.uninstall` below.)
 
@@ -131,7 +137,9 @@ The procedure for upgrading is as follows:
 
    .. code-block:: console
 
-      cp -r ~/data_dir_backup /opt/opengeo/suite/data_dir 
+      sudo mv  ~/suite_backup/data_dir /opt/opengeo/suite
+      
+   .. warning:: If instead of moving you copied the data directory in order to back it up you must restore group write permission to it after moving it back into place. This can be achieved with the command ``sudo chmod -R g+w /opt/opengeo/suite/data_dir``. 
 
 #. Start the newly-upgraded OpenGeo Suite.
 
@@ -139,13 +147,14 @@ The procedure for upgrading is as follows:
 
    .. code-block:: console
 
+      cd ~/suite_backup/pg_backup
       perl postgis_upgrade.pl restore --port 54321
 
    .. note:: As with the backup, standard PostGIS connection parameters may be used.  You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.
 
 #. Your databases and roles will be restored.  You can verify that the databases were created and data restored by running ``psql -l`` on the command line.
 
-
+#. Restart the OpenGeo Suite.
 
 .. todo::
 
@@ -167,11 +176,11 @@ Uninstallation
 
 .. note:: Please make sure that the Dashboard is closed and the OpenGeo Suite is offline before starting the uninstallation.
   
-To run the uninstaller, navigate to :menuselection:`Applications --> OpenGeo --> OpenGeo Suite Uninstaller`.  You can also uninstall the OpenGeo Suite from the Terminal by typing the following (as root or using ``sudo``):
+To run the uninstaller, navigate to :menuselection:`Applications --> OpenGeo --> OpenGeo Suite Uninstaller`.  You can also uninstall the OpenGeo Suite from the Terminal by typing the following.
 
   .. code-block:: console
        
-     sh /opt/opengeo/suite/suite-uninstall.sh
+     open /Applications/OpenGeo/OpenGeo\ Suite\ Uninstaller.app/
 
 For More Information
 --------------------

@@ -2529,7 +2529,7 @@
 							<key>International</key>
 							<dict>
 								<key>MessageKey</key>
-								<string>Before installing OpenGeo Suite 3.0, run the PostGIS backup utility and uninstall the currently installed version. You can restore your data with the backup tool after re-installing.</string>
+								<string>OpenGeo Suite 3.0 may not be installed on top of an existing installation. To proceed you must first back up your existing data, uninstall previous versions of the OpenGeo Suite, and re-run this installer. Consult the documentation included with this package for more instructions.</string>
 								<key>TitleKey</key>
 								<string>Upgrade not Supported</string>
 							</dict>
