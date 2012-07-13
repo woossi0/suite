@@ -31,8 +31,6 @@ function check_pg() {
         #init db
         service postgresql-9.2 initdb
      fi
-     # The server won't start on CentOS 5 without an /etc/hosts entry for localhost
-     echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
      service postgresql-9.2 start
   fi
 
