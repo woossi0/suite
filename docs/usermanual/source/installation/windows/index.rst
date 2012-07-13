@@ -126,25 +126,23 @@ The procedure for upgrading is as follows:
 
 #. The PostGIS data backup process is complete.  You may now shut down the OpenGeo Suite 2.x.
 
-#. Back up your GeoServer data directory.  This directory is located by default in :file:`<user_home_directory>\\.opengeo\\data_dir`.  To back up this directory, you can create an archive of it, or simply copy it to another location.
+#. *Optional but recommended:*  Back up your GeoServer data directory.  This directory is located by default in :file:`<user_home_directory>\\.opengeo\\data_dir`.  To back up this directory, you can create an archive of it, or simply copy it to another location.
 
 #. Uninstall the OpenGeo Suite 2.x.  (See :ref:`installation.windows.uninstall` below.)
 
-#. The uninstallation will not remove data or settings, so those will need to be deleted manually.  This directory is typically at :file:`<user_home_directory>\\.opengeo`.  Remove (or rename) this directory.
+#. The uninstallation will not remove the existing PostGIS data store, so that will need to be done manually.  This directory is typically at :file:`<user_home_directory>\\.opengeo\\pgdata\\`.  Remove (or rename) this directory.
 
 #. Install the OpenGeo Suite 3.x.  (See :ref:`installation.windows.new` above.)
 
    .. todo:: DETAILS AND SCREENSHOTS ABOUT THIS UPGRADE PROCESS NEEDED
 
-#. After installation is complete.  Restore the GeoServer data directory to its original location.
-
-#. Start the newly-upgraded OpenGeo Suite.
+#. After installation is complete, start the newly-upgraded OpenGeo Suite.
 
 #. As before, you will need to add the new PostGIS commands to your path once again.  From a command prompt, type the following to temporarily add the new directory to your path (substituting the correct path if your installation was in a different location):
 
    .. code-block:: console
 
-      set PATH=%PATH%;C:\Program Files\OpenGeo\OpenGeo Suite\pgsql\9.2\bin
+      set PATH=%PATH%;C:\Program Files\OpenGeo\OpenGeo Suite\pgsql\9.1\bin
 
 #. Restore your PostGIS data by running the script again:
 
