@@ -20,6 +20,12 @@ check_root () {
 function check_pg() {
   local status=$( echo "`service postgresql-9.2 status`" | awk '{print $NF}' )
   if [ $status != "running..." ]; then
+       # Stop any running postgres instances
+       for DB in `ls /etc/init.d/postgres*`
+       do
+        $DB stop 
+       done
+  
      #attempt to start postgresql, first check if we need to init db
      if [ $( ls $PG_DATA | wc -l ) == 0 ]; then
         #init db
