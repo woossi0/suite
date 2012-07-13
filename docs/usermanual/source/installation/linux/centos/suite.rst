@@ -198,7 +198,15 @@ Uninstall OpenGeo Suite 2.x
 Install OpenGeo Suite 3.x
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Now you are ready to install OpenGeo Suite 3.x.  To do this, it is now necessary to add an additional repository.  This repository contains the version 3 packages.  Run the following command (as root or with ``sudo``):
+Now you are ready to install OpenGeo Suite 3.x.  To do this, it is now necessary to add an additional repository.  This repository contains the version 3 packages.
+
+#. First, change to the :file:`/etc/yum.repos.d` directory:
+
+   .. code-block:: bash
+
+      cd /etc/yum.repos.d
+
+#. Run the following command (as root or with ``sudo``):
 
    .. list-table::
       :widths: 20 80
