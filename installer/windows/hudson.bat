@@ -51,8 +51,7 @@ echo.
 scp -P 7777 -i C:\hudson\.ssh\installer_upload_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no %outfile% jetty@astromech.opengeo.org:%outpath%/%aliasedfile%
 echo Deleting old files from the "latest" directory...
 echo.
-:: Keep only the most recent 7 builds (8 includes "latest")
-for /f "skip=8" %%a in ('dir /b /o-d "%outpath%"') do del "%outpath%\%%a"
+del %outfile%
 
 :: Final output
 echo Summary:
@@ -62,7 +61,6 @@ echo The files were built from: %dist_path%
 echo The revision is: %rev% (%revision%) (%alias%)
 echo The profile (if any) is: %profile% 
 echo Output file is called: %outfile%
-echo Output file saved to: %outpath%
 echo Available for download at: http://suite.opengeo.org/winbuilds/%dist_path%/%outfile%
 echo.
 echo Done.
