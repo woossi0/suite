@@ -1,7 +1,7 @@
 .. _installation.linux.centos.geoserver:
 
-Installing GeoServer on CentOS and RedHat
-========================================
+Installing GeoServer on CentOS and Red Hat
+=========================================
 
 The easiest way to install and set up GeoServer is by :ref:`installing the full OpenGeo Suite <installation.linux.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
 

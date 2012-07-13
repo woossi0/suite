@@ -1,13 +1,13 @@
 .. _installation.linux.centos.suite:
 
-Installing OpenGeo Suite on CentOS and RedHat
-=============================================
+Installing OpenGeo Suite on CentOS and Red Hat
+==============================================
 
 The commands contained in the following installation instructions assume root privileges. 
 
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.centos.suite.upgrade`.
 
-.. warning:: Packages are available for CentOS 5 and above, and RedHat Enterprise Linux (RHEL) 5 and above.
+.. warning:: Packages are available for CentOS 5 and above, and Red Hat Enterprise Linux (RHEL) 5 and above.
 
 #. Change to the :file:`/etc/yum.repos.d` directory:
 
