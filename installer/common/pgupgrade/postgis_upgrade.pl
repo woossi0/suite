@@ -77,7 +77,7 @@ my @dblist = "";
 
 # Check for proper arguments
 GetOptions ("help" => \$help,
-            "output|o=s" => \$dumppath,
+            "outputpath|o=s" => \$dumppath,
             "host|h=s" => \$pghost,
             "username|U=s" => \$pguser,
             "port|p=i" => \$pgport,
