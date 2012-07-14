@@ -187,11 +187,18 @@ The procedure for upgrading is as follows:
 
       apt-get update
 
-#. Update the ``opengeo-suite`` package:
+#. Install the OpenGeo Suite package:
 
-   .. code-block:: console
+   .. list-table::
+      :widths: 20 80
+      :header-rows: 1
 
-      apt-get install opengeo-suite
+      * - Edition
+        - Command
+      * - Community Edition
+        - ``apt-get install opengeo-suite``
+      * - Enterprise Edition
+        - ``apt-get install opengeo-suite-ee``
 
 #. Ensure the newly-upgraded OpenGeo Suite is running.
 

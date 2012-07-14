@@ -237,11 +237,19 @@ Now you are ready to install OpenGeo Suite 3.x.  To do this, it is now necessary
 
       yum update
 
-#. Install the ``opengeo-suite`` package:
+#. Install the OpenGeo Suite package:
 
-   .. code-block:: console
+   .. list-table::
+      :widths: 20 80
+      :header-rows: 1
 
-      yum install opengeo-suite
+      * - Edition
+        - Command
+      * - Community Edition
+        - ``yum install opengeo-suite``
+      * - Enterprise Edition
+        - ``yum install opengeo-suite-ee``
+
 
 Restore PostGIS data
 ^^^^^^^^^^^^^^^^^^^^
