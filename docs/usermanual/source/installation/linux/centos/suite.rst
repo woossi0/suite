@@ -143,7 +143,7 @@ Backup PostGIS data
 
 #. Ensure the old (2.x) version of the OpenGeo Suite is running.
  
-#. Make sure that your PostgreSQL binaries are on the path.  By default they should be located in ``/usr/bin`` butyour installation may vary.  To test that this is set up correctly, open a Command Prompt and type ``psql --version``.  If you receive an error, find the binaries and update the ``PATH`` environment variable.
+#. Make sure that your PostgreSQL binaries are on the path.  By default they should be located in ``/usr/bin`` but your installation may vary.  To test that this is set up correctly, open a Command Prompt and type ``psql --version``.  If you receive an error, find the binaries and update the ``PATH`` environment variable.
 
 #. Change user to the ``postgres`` user.
 
@@ -178,11 +178,11 @@ Backup PostGIS data
 Backup GeoServer configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Back up your GeoServer data directory.  This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`.  To back up this directory, you can create an archive of it, or simply copy it to another location:
+#. Back up your GeoServer data directory.  This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`.  To back up this directory, you can create an archive of it, or simply copy it to another location:
 
-  .. code-block:: console
+   .. code-block:: console
 
-     cp -r /usr/share/opengeo-suite-data/geoserver_data /tmp/data_dir_backup
+      cp -r /usr/share/opengeo-suite-data/geoserver_data /tmp/data_dir_backup
 
 Uninstall OpenGeo Suite 2.x
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -202,9 +202,15 @@ Now you are ready to install OpenGeo Suite 3.x.  To do this, it is now necessary
 
 #. First, change to the :file:`/etc/yum.repos.d` directory:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       cd /etc/yum.repos.d
+
+#. Rename the existing repository file(s):
+
+   .. code-block:: console
+
+      for REPO in OpenGeo*.repo; do mv $REPO $REPO.old; done;
 
 #. Run the following command (as root or with ``sudo``):
 
@@ -231,7 +237,40 @@ Now you are ready to install OpenGeo Suite 3.x.  To do this, it is now necessary
       * - RHEL 6, 64 bit
         - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
 
-#. Now update your repository sources:
+#. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your username and password:
+
+   .. list-table::
+      :widths: 20 80
+      :header-rows: 1
+
+      * - System
+        - Command
+      * - CentOS 5, 32 bit
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/5/i386/OpenGeoEE.repo``
+      * - CentOS 5, 64 bit
+        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/centos/5/x86_64/OpenGeoEE.repo``
+      * - CentOS 6, 32 bit
+        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/centos/6/i686/OpenGeoEE.repo``
+      * - CentOS 6, 64 bit
+        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/centos/6/x86_64/OpenGeoEE.repo``
+      * - RHEL 5, 32 bit
+        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/5/i386/OpenGeoEE.repo``
+      * - RHEL 5, 64 bit
+        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/5/x86_64/OpenGeoEE.repo``
+      * - RHEL 6, 32 bit
+        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/6/i686/OpenGeoEE.repo``
+      * - RHEL 6, 64 bit
+        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeoEE.repo``
+
+#. Again, if upgrading the OpenGeo Suite Enterprise Edition, edit the :file:`OpenGeoEE.repo` file downloaded in the previous step, filling in your username and password in place of ``<yourUserName>`` and ``<yourPassword>``.
+
+#. Clean your repository sources:
+
+   .. code-block:: console
+
+      yum clean all
+
+#. Update your repository sources:
 
    .. code-block:: console
 
@@ -279,7 +318,7 @@ Restore GeoServer configuration
 
    .. code-block:: console
 
-      service tomcat stop
+      service tomcat5 stop
       rm -rf /usr/share/opengeo-suite-data/geoserver_data
       mv /tmp/data_dir_backup /usr/share/opengeo-suite-data/geoserver_data
       chown -R tomcat /usr/share/opengeo-suite-data/geoserver_data
@@ -288,7 +327,7 @@ Restore GeoServer configuration
 
   .. code-block:: console
 
-     service tomcat start
+     service tomcat5 start
 
 Continue reading at the :ref:`installation.linux.suite.details` section.
 
