@@ -461,7 +461,10 @@ Section "PostGIS" SectionPostGIS
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\pgShapeLoader.lnk" \
                  "$INSTDIR\pgsql\9.1\bin\shp2pgsql-gui.exe" \
                  "-p 54321" "$INSTDIR\icons\pgshapeloader.ico" 0
-
+  ; We need the MSVCRT 2008 library since Enterprise DB 9.x requires it
+  SetOutPath "$INSTDIR"
+  File /a "misc\vcredist_x86_2008.exe"
+  ExecWait '"$INSTDIR\vcredist_x86_2008.exe" /q'
 SectionEnd
 
 SectionGroup /e "Suite Services" SectionServices
