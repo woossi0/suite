@@ -68,6 +68,8 @@ Installing OpenGeo Suite Enterprise Edition
 
 #. Now add the OpenGeo Enterprise APT repository.  This repository is password protected.  You will have received a username and password when you `registered for the Enterprise Edition <http://opengeo.org/products/suite/register/>`_.  Add the following APT repository using the command below, making sure to substitute in your username for ``<username>`` and password for ``<password>``.
 
+   .. note:: If your username is an email address, substitute a ``%40`` for the ``@`` sign.  Example: ``joe@example.com`` would become ``joe%40example.com``.
+
    .. code-block:: console
 
       echo "deb http://<username>:<password>@apt-ee.opengeo.org/ubuntu lucid main" >> /etc/apt/sources.list

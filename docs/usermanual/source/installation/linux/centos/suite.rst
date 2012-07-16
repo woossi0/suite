@@ -94,6 +94,8 @@ Installing OpenGeo Suite Enterprise Edition
 
 #. Edit the downloaded :file:`OpenGeoEE.repo` file, filling in your username and password in place of ``<yourUserName>`` and ``<yourPassword>``.
 
+   .. note:: If your username is an email address, substitute a ``%40`` for the ``@`` sign.  Example: ``joe@example.com`` would become ``joe%40example.com``.
+
 #. Update the YUM databases:
 
    .. code-block:: bash
@@ -262,7 +264,9 @@ Now you are ready to install OpenGeo Suite 3.x.  To do this, it is now necessary
       * - RHEL 6, 64 bit
         - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeoEE.repo``
 
-#. Again, if upgrading the OpenGeo Suite Enterprise Edition, edit the :file:`OpenGeoEE.repo` file downloaded in the previous step, filling in your username and password in place of ``<yourUserName>`` and ``<yourPassword>``.
+   Edit the download :file:`OpenGeoEE.repo` file, filling in your username and password in place of ``<yourUserName>`` and ``<yourPassword>``.
+
+   .. note:: If your username is an email address, substitute a ``%40`` for the ``@`` sign.  Example: ``joe@example.com`` would become ``joe%40example.com``.
 
 #. Clean your repository sources:
 
