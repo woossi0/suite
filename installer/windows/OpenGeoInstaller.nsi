@@ -300,7 +300,7 @@ Function PriorInstall
   IfFileExists "$PGVerPath" OldPGCheck Clean
 
   OldPGCheck:
-  FileOpen $1 "$PROFILE\.opengeo\pgdata\$%Username%\PG_VERSION" r
+  FileOpen $1 "$PGVerPath" r
   FileRead $1 $2 3
   FileClose $1
   StrCmp $2 "8.4" OldPG Clean
