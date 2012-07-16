@@ -553,7 +553,12 @@ Section "GDAL" SectionGDAL
   File /r "${SOURCEPATHROOT}\jre\bin\ogrjni.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\osrjni.dll"
   File /r "${SOURCEPATHROOT}\webapps\geoserver\WEB-INF\lib\gdal-1.9.1.jar"
-
+  
+  ; We need the MSVCRT 2010 library since GDAL needs to be built with
+  ; Visual Studio on Windows.
+  SetOutPath "$INSTDIR"
+  File /a "misc\vcredist_x86_2010.exe"
+  ExecWait '"$INSTDIR\vcredist_x86_2010.exe" /q'
 SectionEnd
 
 SectionGroupEnd
@@ -728,12 +733,6 @@ Section "-Dashboard" SectionDashboard ;dash means hidden
   SetOutPath "$INSTDIR\dashboard"
   File /a "misc\vcredist_x86.exe"
   ExecWait '"$INSTDIR\dashboard\vcredist_x86.exe" /q'
-  
-  ; We also need the MSVCRT 2010 library since GDAL needs to be built with
-  ; Visual Studio on Windows.
-  SetOutPath "$INSTDIR\dashboard"
-  File /a "misc\vcredist_x86_2010.exe"
-  ExecWait '"$INSTDIR\dashboard\vcredist_x86_2010.exe" /q'
 
 SectionEnd
 
