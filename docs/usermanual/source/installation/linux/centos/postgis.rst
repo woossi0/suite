@@ -3,9 +3,10 @@
 Installing PostGIS on CentOS and Red Hat
 ========================================
 
-The easiest way to install and set up PostGIS is by :ref:`installing the full OpenGeo Suite <installation.linux.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
+The easiest way to install and set up PostGIS is by :ref:`installing the full OpenGeo Suite <installation.linux.centos.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
 
-This page will describe how to install PostGIS on CentOS 5.  Earlier versions are not supported at this time.
+This page will describe how to install GeoServer on CentOS 5-6.
+
 
 Access the OpenGeo repository
 -----------------------------
@@ -20,7 +21,7 @@ Change to the :file:`/etc/yum.repos.d` directory:
 
    cd /etc/yum.repos.d
 
-Add the OpenGeo YUM repository.  The exact command will differ depending on whether you are using CentOS 5 or 6, and whether you are using a 32 bit installation or 64 installation.
+Add the OpenGeo YUM repository.  The exact command will differ depending on whether you are using CentOS/RHEL 5 or 6, and whether you are using a 32 bit installation or 64 installation:
 
 .. list-table::
    :widths: 20 80
@@ -29,14 +30,21 @@ Add the OpenGeo YUM repository.  The exact command will differ depending on whet
    * - System
      - Command
    * - CentOS 5, 32 bit
-     - ``wget http://yum.opengeo.org/centos/5/i386/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/suite/v3/centos/5/i386/OpenGeo.repo``
    * - CentOS 5, 64 bit
-     - ``wget http://yum.opengeo.org/centos/5/x86_64/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/suite/v3/centos/5/x86_64/OpenGeo.repo``
    * - CentOS 6, 32 bit
-     - ``wget http://yum.opengeo.org/centos/6/i686/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/suite/v3/centos/6/i686/OpenGeo.repo``
    * - CentOS 6, 64 bit
-     - ``wget http://yum.opengeo.org/centos/6/x86_64/OpenGeo.repo``
-
+     - ``wget http://yum.opengeo.org/suite/v3/centos/6/x86_64/OpenGeo.repo``
+   * - RHEL 5, 32 bit
+     - ``wget http://yum.opengeo.org/suite/v3/rhel/5/i386/OpenGeo.repo``
+   * - RHEL 5, 64 bit
+     - ``wget http://yum.opengeo.org/suite/v3/rhel/5/x86_64/OpenGeo.repo``
+   * - RHEL 6, 32 bit
+     - ``wget http://yum.opengeo.org/suite/v3/rhel/6/i686/OpenGeo.repo``
+   * - RHEL 6, 64 bit
+     - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
 
 Package management
 ------------------

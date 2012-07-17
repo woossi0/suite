@@ -3,9 +3,10 @@
 Installing GeoServer on Ubuntu
 ==============================
 
-The easiest way to install and set up GeoServer is by :ref:`installing the full OpenGeo Suite <installation.linux.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
+The easiest way to install and set up GeoServer is by :ref:`installing the full OpenGeo Suite <installation.linux.ubuntu.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
 
-This page will describe how to install GeoServer on Ubuntu 10.04 (Lucid).  Earlier versions of Ubuntu are not supported at this time.
+This page will describe how to install GeoServer on Ubuntu 10.04 (Lucid).  Later versions may work as well, but are not well-tested at this time.
+
 
 Access the OpenGeo repository
 -----------------------------
@@ -22,7 +23,7 @@ Once added, you can add the OpenGeo APT repository (http://apt.opengeo.org) to y
 
 .. code-block:: bash
 
-   echo "deb http://apt.opengeo.org/ubuntu lucid main" >> /etc/apt/sources.list
+   echo "deb http://apt.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
       
 Now update APT to pull in your changes:
 
