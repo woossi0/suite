@@ -132,20 +132,18 @@ The procedure for upgrading is as follows:
 
    .. code-block:: console
 
-      sudo mv /opt/opengeo/suite/data_dir ~/suite_backup/
+      sudo mv /opt/opengeo/suite/data_dir ~/suite_backup/data_dir/
 
 #. Uninstall the OpenGeo Suite 2.x.  (See :ref:`installation.osx.uninstall` below.)
 
 #. Install the OpenGeo Suite 3.x.  (See :ref:`installation.osx.new` above.)
-
-   .. todo:: DETAILS AND SCREENSHOTS ABOUT THIS UPGRADE PROCESS NEEDED
 
 #. After installation is complete.  Restore the GeoServer data directory to its original location.
 
    .. code-block:: console
 
       sudo rm -rf /opt/opengeo/suite/data_dir
-      sudo mv  ~/suite_backup/data_dir /opt/opengeo/suite
+      sudo mv  ~/suite_backup/data_dir/ /opt/opengeo/suite/data_dir/
       
    .. warning:: If instead of moving you copied the data directory in order to back it up you must restore group write permission to it after moving it back into place. This can be achieved with the command ``sudo chmod -R g+w /opt/opengeo/suite/data_dir``. 
 
