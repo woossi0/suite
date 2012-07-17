@@ -103,14 +103,14 @@ The procedure for upgrading is as follows:
 
       export PATH=$PATH:/opt/opengeo/pgsql/8.4/bin
 
-#. Download the archive available at http://files.opengeo.org/suite/postgis_upgrade.zip and extract it to a temporary directory.  To avoid permissions issues, it is best to put this directory on your desktop or in your home directory.  By default, the backup files created from using this script will be saved into this directory.
+#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory.  To avoid permissions issues, it is best to put this directory on your desktop or in your home directory.  By default, the backup files created from using this script will be saved into this directory.
 
    .. code-block:: console
    
       cd ~
       mkdir -p suite_backup/pg_backup
       cd suite_backup/pg_backup
-      wget  http://files.opengeo.org/suite/postgis_upgrade.zip
+      curl -O http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip
       unzip postgis_upgrade.zip
 
 #. Run the backup command:
