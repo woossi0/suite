@@ -183,6 +183,14 @@ The procedure for upgrading is as follows:
 
       echo "deb http://apt.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
 
+#. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your username and password:
+
+   .. note:: If your username is an email address, substitute a ``%40`` for the ``@`` sign.  Example: ``joe@example.com`` would become ``joe%40example.com``.
+
+   .. code-block:: console
+
+      echo "deb http://<username>:<password>apt-ee.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
+
 #. Now update your repository sources:
 
    .. code-block:: console
