@@ -10,7 +10,7 @@ Prerequisites
 
 The OpenGeo Suite has the following system requirements:
 
-* **Operating System**: 10.5 Leopard, 10.6 Snow Leopard
+* **Operating System**: 10.6 or newer
 * **Memory**: 1GB minimum (higher recommended)
 * **Disk space**: 600MB minimum (plus extra space for any loaded data)
 * **Browser**: Any modern web browser is supported
@@ -97,7 +97,7 @@ The procedure for upgrading is as follows:
 
 #. Ensure the old (2.x) version of the OpenGeo Suite is running.
  
-#. Make sure that your PostgreSQL ``bin`` directory is on your path.  By default, this is :file:`/opt/opengeo/pgsql/8.4/bin`, though your installation may vary.  To test that this is set up correctly, open a Command Prompt and type ``psql --version``.  If you receive an error, type the following to temporarily add the above directory to your path:
+#. Make sure that your PostgreSQL ``bin`` directory is on your path.  By default, this is :file:`/opt/opengeo/pgsql/8.4/bin`, though your installation may vary.  To test that this is set up correctly, open a Command Prompt and type ``pg_dump --version``.  If you receive an error, type the following to temporarily add the above directory to your path:
 
    .. code-block:: console
 
