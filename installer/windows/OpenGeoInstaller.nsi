@@ -224,7 +224,31 @@ FunctionEnd
 Function PriorInstall
 
   ClearErrors
+  ; Even though no prior install, make sure an older postgres is not laying around
+  ; Gets username, needed for path/file check
+  System::Call "advapi32::GetUserName(t .r0, *i ${NSIS_MAX_STRLEN} r1) i.r2"
+  StrCpy $Username $0
+  StrCpy $PGVerPath "$PROFILE\.opengeo\pgdata\$Username\PG_VERSION"
+  IfFileExists "$PGVerPath" OldPGCheck SameVersionCheck
 
+  OldPGCheck:
+  FileOpen $1 "$PGVerPath" r
+  FileRead $1 $2 3
+  FileClose $1
+  StrCmp $2 "8.4" OldPG SameVersionCheck
+
+  OldPG:
+  MessageBox MB_ICONSTOP "Setup has found an old version of the PostgreSQL data directory \
+                          at:$\r$\n$\r$\n  $PROFILE\.opengeo\pgdata\$\r$\n$\r$\n\
+                          This directory will need to be manually backed up and removed \
+                          prior to installation of the OpenGeo Suite. For more information \
+                          about upgrading, please see the documentation available at \
+                          http://suite.opengeo.org/opengeo-docs/"
+  Goto Die
+
+
+  SameVersionCheck:
+  ClearErrors
   ; Is this version already installed?
   ;ReadRegStr $R1 HKLM "Software\${COMPANYNAME}\${APPNAMEANDVERSION}" "InstallDir"
   EnumRegKey $R1 HKLM "SOFTWARE\${COMPANYNAME}" 0 ; Checks if the key even exists
@@ -292,29 +316,6 @@ Function PriorInstall
 
   NoPriorInstall:
   ClearErrors
-  ; Even though no prior install, make sure an older postgres is not laying around
-  ; Gets username, needed for path/file check
-  System::Call "advapi32::GetUserName(t .r0, *i ${NSIS_MAX_STRLEN} r1) i.r2"
-  StrCpy $Username $0
-  StrCpy $PGVerPath "$PROFILE\.opengeo\pgdata\$Username\PG_VERSION"
-  IfFileExists "$PGVerPath" OldPGCheck Clean
-
-  OldPGCheck:
-  FileOpen $1 "$PGVerPath" r
-  FileRead $1 $2 3
-  FileClose $1
-  StrCmp $2 "8.4" OldPG Clean
-
-  OldPG:
-  MessageBox MB_ICONSTOP "Setup has found an old version of the PostgreSQL data directory \
-                          at:$\r$\n$\r$\n  $PROFILE\.opengeo\pgdata\$\r$\n$\r$\n\
-                          This directory will need to be manually backed up and removed \
-                          prior to installation of the OpenGeo Suite. For more information \
-                          about upgrading, please see the documentation available at \
-                          http://suite.opengeo.org/opengeo-docs/"
-  Goto Die
-
-  Clean:
   StrCpy $PreviousVer "Clean"
   Goto End
 
