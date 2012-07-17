@@ -160,7 +160,7 @@ The procedure for upgrading is as follows:
 
    .. note:: As with the backup, standard PostGIS connection parameters may be used.  You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.
 
-#. Your databases and roles will be restored.  You can verify that the databases were created and data restored by running ``psql -l`` on the command line.
+#. Your databases and roles will be restored.  You can verify that the databases were created and data restored by running ``psql --list --port 54321`` on the command line.
 
 #. Restart the OpenGeo Suite.
 
