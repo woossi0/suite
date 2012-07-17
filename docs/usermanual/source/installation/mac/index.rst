@@ -145,9 +145,15 @@ The procedure for upgrading is as follows:
       sudo rm -rf /opt/opengeo/suite/data_dir
       sudo mv  ~/suite_backup/data_dir/ /opt/opengeo/suite/data_dir/
       
-   .. warning:: If instead of moving you copied the data directory in order to back it up you must restore group write permission to it after moving it back into place. This can be achieved with the command ``sudo chmod -R g+w /opt/opengeo/suite/data_dir``. 
+   .. warning:: If instead of moving you copied the data directory in order to back it up you must restore group write permission to it after moving it back into place. This can be achieved with the command ``sudo chmod -R g+w /opt/opengeo/suite/data_dir``.
 
-#. Start the newly-upgraded OpenGeo Suite.
+#. After installation is complete, start the newly-upgraded OpenGeo Suite.
+
+#. As before, you will need to add the new PostGIS commands to your path once again.  From a terminal, type the following to temporarily add the new directory to your path:
+
+   .. code-block:: console
+
+      export PATH=$PATH:/opt/opengeo/pgsql/9.1/bin
 
 #. Restore your PostGIS data by running the script again:
 
