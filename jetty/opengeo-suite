@@ -41,6 +41,7 @@ OPTS="-Dslf4j=false -cp $CLASSPATH -Djava.library.path=/opt/opengeo/pgsql/9.1/li
 if [[ `uname` == 'Darwin' ]]; then
   OPTS+="  -Djava.library.path=/opt/opengeo/pgsql/9.1/lib"
   export DYLD_LIBRARY_PATH=/opt/opengeo/pgsql/9.1/lib
+  export GDAL_DRIVER_PATH=/opt/opengeo/pgsql/9.1/lib/gdalplugins
 fi
 
 # Check for PostGIS script in Linux and OSX locations

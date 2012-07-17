@@ -51,7 +51,7 @@ sed -i -e 's:^JAVA_HOME.*:JAVA_HOME=/Library/Java/Home:' swig/java/java.opt
 
 # Build MrSID plugin
 g++ -g frmts/mrsid/*.cpp -dynamiclib -o gdal_MrSID.dylib \
--O2 -arch x86_64 -arch i386 -mmacosx-version-min=10.4 \
+-O2 -arch x86_64 -arch i386 -mmacosx-version-min=10.5 \
 -DOGR_ENABLED -D_REENTRANT -DMRSID_J2K -fPIC -DPIC \
 -Ifrmts/gtiff/libgeotiff/ -Igcore -Iogr -Iport -I${buildroot}/Raster_DSDK/include \
 -L${buildroot}/Raster_DSDK/lib -L.libs \
