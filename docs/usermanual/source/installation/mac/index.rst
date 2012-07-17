@@ -87,7 +87,7 @@ Minor version upgrades of the OpenGeo Suite can be installed on top of previous 
 .. _installation.osx.upgrade.v3:
 
 Upgrading from version 2.x to 3.x
----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The OpenGeo Suite version 3 contains numerous major version updates to its components.  This upgrade is **not-backward compatible** and all previously installed versions must be uninstalled before continuing.
 

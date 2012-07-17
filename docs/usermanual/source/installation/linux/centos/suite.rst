@@ -60,7 +60,7 @@ The commands contained in the following installation instructions assume root pr
 
 Continue reading at the :ref:`installation.linux.suite.details` section.
 
-.. _installation.linux.ubuntu.suite.ee:
+.. _installation.linux.centos.suite.ee:
 
 Installing OpenGeo Suite Enterprise Edition
 -------------------------------------------
