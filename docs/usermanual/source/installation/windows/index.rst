@@ -21,7 +21,7 @@ The OpenGeo Suite has the following system requirements:
 New Installation
 ----------------
 
-.. warning:: If upgrading from version 2.x, please see the section on :ref:`installation.windows.v3`.
+.. warning:: If upgrading from version 2.x, please see the section on :ref:`installation.windows.upgrade.v3`.
 
 #. Double click on the :file:`OpenGeoSuite.exe` file.
 
@@ -88,10 +88,18 @@ For more information, please see the **User Manual**, which is available through
 .. note:: The OpenGeo Suite must be online in order to view documentation from the Dashboard.  If you would like to view the documentation when the Suite is offline, please use the shortcuts in the Start Menu.
 
 
-.. _installation.windows.v3:
+
+.. _installation.windows.upgrade:
+
+Upgrading
+---------
+
+Minor version upgrades of the OpenGeo Suite can be installed on top of previous versions and all previous data and configuration is preserved. Major upgrades however may not preserve data and configuration and require more steps as outlined in the following sections.
+
+.. _installation.windows.upgrade.v3:
 
 Upgrading from version 2.x to 3.x
----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The OpenGeo Suite version 3 contains numerous major version updates to its components.  This upgrade is also **not-backward compatible**; irreversible changes are made to the data so that they can't be used with earlier versions of the OpenGeo Suite.
 
@@ -109,7 +117,7 @@ The procedure for upgrading is as follows:
 
       set PATH=%PATH%;C:\Program Files\OpenGeo\OpenGeo Suite\pgsql\8.4\bin
 
-#. Download the archive available at http://files.opengeo.org/suite/postgis_upgrade.zip and extract it to a temporary directory.  To avoid permissions issues, it is best to put this directory on your desktop or in your home directory.  By default, the backup files created from using this script will be saved into this directory.
+#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory.  To avoid permissions issues, it is best to put this directory on your desktop or in your home directory.  By default, the backup files created from using this script will be saved into this directory.
 
 #. Run the backup command:
 
@@ -134,8 +142,6 @@ The procedure for upgrading is as follows:
 
 #. Install the OpenGeo Suite 3.x.  (See :ref:`installation.windows.new` above.)
 
-   .. todo:: DETAILS AND SCREENSHOTS ABOUT THIS UPGRADE PROCESS NEEDED
-
 #. After installation is complete, start the newly-upgraded OpenGeo Suite.
 
 #. As before, you will need to add the new PostGIS commands to your path once again.  From a command prompt, type the following to temporarily add the new directory to your path (substituting the correct path if your installation was in a different location):
@@ -154,20 +160,6 @@ The procedure for upgrading is as follows:
 
 #. Your databases and roles will be restored.  You can verify that the databases were created and data restored by running ``psql -l`` on the command line.
 
-
-.. todo::
-
-    Will put this back in for 3.0.1
-
-    Minor version upgrades
-
-
-    You can upgrade from a previous version of the OpenGeo Suite, and your settings and data will be preserved.  To do this, follow the regular installation procedure, and if a previous version is detected, a notice will display saying so.
-
-       .. figure:: img/upgrade.png
-          :align: center
-
-          *Upgrading from a previous version*
 
 .. _installation.windows.uninstall:
 
