@@ -3,8 +3,8 @@
 #
 # see: dh_installdeb(1)
 
-. /usr/share/debconf/confmodule
-
+## Do we need this? With it enabled the script hangs.
+# . /usr/share/debconf/confmodule
 
 # Move site into place
 ln -sf /etc/apache2/sites-available/geonode /etc/apache2/sites-enabled/.
@@ -14,8 +14,6 @@ rm /etc/apache2/sites-enabled/*default*
 sed -i -e 's:python-path=/var/lib/geonode:python-path=/var/lib/geonode/lib/python2.6/site-packages:g' /etc/apache2/sites-enabled/geonode
 
 # Enable apache modules
-ln -sf /etc/apache2/mods-available/proxy.* /etc/apache2/mods-enabled/.
-ln -sf /etc/apache2/mods-available/wsgi.* /etc/apache2/mods-enabled/.
+a2enmod proxy proxy_http wsgi
 
-
-service apache2 restart
+/etc/init.d/apache2 restart
