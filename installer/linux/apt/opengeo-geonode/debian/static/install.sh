@@ -136,6 +136,7 @@ function setup_django_every_time() {
 
     source bin/activate
     pip install geonode-webapp.pybundle
+    /usr/local/bin/virtualenv --relocatable .
 
     # FIXME: What is this doing here?
     test -d src/GeoNodePy/geonode/media/static &&
