@@ -50,7 +50,7 @@ fi
 # install postgresql admin pack
 if [ $( pg_run "psql -w -c \"select count(*) from pg_proc where proname = 'pg_logdir_ls'\"" "no" | head -n 3 | tail -n 1 | sed 's/ *//g' ) == "0" ]; then
   echo "Installing postgresql admin pack"
-  pg_run "psql -w -f $PG_CONTRIB/adminpack.sql -d postgres" 
+  pg_run "psql -w -d postgres -c 'CREATE EXTENSION adminpack'"
   touch $OG_POSTGIS/adminpack
 fi
 
@@ -58,29 +58,7 @@ pg_check_db template_postgis
 if [ "$?" != "0" ]; then
   echo "Creating template_postgis database"
   pg_run "createdb -w template_postgis"
-  pg_run "createlang -w plpgsql template_postgis"
-  
-  POSTGIS_SQL=""
-  SPATIAL_REF_SYS_SQL=""
-  if [ -d $PG_CONTRIB/postgis-1.5 ]; then
-     POSTGIS_SQL=$PG_CONTRIB/postgis-1.5/postgis.sql
-     SPATIAL_REF_SYS_SQL=$PG_CONTRIB/postgis-1.5/spatial_ref_sys.sql
-  else 
-     # look for file as installed by postgis 1.4
-     if [ -e $PG_CONTRIB/postgis.sql ]; then
-        POSTGIS_SQL=$PG_CONTRIB/postgis.sql
-        SPATIAL_REF_SYS_SQL=$PG_CONTRIB/spatial_ref_sys.sql
-     else
-       # lookf or default on centos 5, which is postgis 1.3 style
-       if [ -e $PG_CONTRIB/lwpostgis.sql ]; then
-         POSTGIS_SQL=$PG_CONTRIB/lwpostgis.sql
-         SPATIAL_REF_SYS_SQL=$PG_CONTRIB/spatial_ref_sys.sql
-       fi
-     fi
-  fi
-
-  pg_run "psql -w -d template_postgis -f $POSTGIS_SQL"
-  pg_run "psql -w -d template_postgis -f $SPATIAL_REF_SYS_SQL"
+  pg_run "psql -w -d template_postgis -c 'CREATE EXTENSION postgis'"
 
   pg_run "psql -w -d template_postgis -c \"update pg_database set datistemplate = true where datname = 'template_postgis'\""
   touch $OG_POSTGIS/template_postgis
@@ -94,7 +72,7 @@ if [ "$?" == "0" ]; then
   pg_run "psql -w -d postgres -c \"alter user opengeo password 'opengeo'\""
 
   # update pg_hba.conf
-  PG_HBA=/var/lib/pgsql/data/pg_hba.conf
+  PG_HBA=/var/lib/pgsql/9.2/data/pg_hba.conf
 
   if [ ! -e $PG_HBA ]; then
     printf "Unable to locate pg_hba.conf. Please add the following lines to finalize opengeo user:
@@ -122,7 +100,8 @@ fi
 pg_check_db "medford"
 if [ "$?" != "0" ]; then
   echo "Creating medford database"
-  pg_run "createdb -w --owner=opengeo --template=template_postgis medford"
+  pg_run "createdb -w --owner=opengeo medford"
+  pg_run "psql -w -d medford -c 'CREATE EXTENSION postgis'"
   pg_run "psql -w -f /usr/share/opengeo-postgis/medford_taxlots_schema.sql -d medford"
   pg_run "psql -w -f /usr/share/opengeo-postgis/medford_taxlots.sql -d medford" 
   touch $OG_POSTGIS/medford_db
@@ -132,8 +111,9 @@ fi
 pg_check_db "geoserver"
 if [ "$?" != "0" ]; then
   echo "Creating geoserver database"
-  pg_run "createdb -w --owner=opengeo --template=template_postgis geoserver"
+  pg_run "createdb -w --owner=opengeo geoserver"
+  pg_run "psql -w -d geoserver -c 'CREATE EXTENSION postgis'"
   touch $OG_POSTGIS/geoserver_db
 fi
 
-/etc/init.d/postgresql restart
+/etc/init.d/postgresql-9.2 restart

@@ -16,17 +16,18 @@ checkrc $? "unpacking $POSTGIS"
 
 pushd build/$POSTGIS
 
-./configure --prefix=${buildroot}/postgis --with-xml2config=${buildroot}/libxml2/bin/xml2-config --with-pgconfig=${buildroot}/pgsql/bin/pg_config --with-geosconfig=${buildroot}/geos/bin/geos-config --with-projdir=${buildroot}/proj --with-gui
+./configure --prefix=${buildroot}/postgis --with-xml2config=${buildroot}/libxml2/bin/xml2-config --with-pgconfig=${buildroot}/pgsql/bin/pg_config --with-geosconfig=${buildroot}/geos/bin/geos-config --without-raster --with-projdir=${buildroot}/proj --with-gui
 checkrc $? "PostGIS configure"
 
 export PATH=${buildroot}/pgsql/bin:$PATH
-make clean && make 
+make clean && make
+(cd extensions; make)
 checkrc $? "PostGIS build"
 
 rm -rf ${buildroot}/postgis
 mkdir ${buildroot}/postgis
-#make DESTDIR=${buildroot}/postgis install
 make install
+(cd extensions; make install)
 checkrc $? "PostGIS install"
 
 popd

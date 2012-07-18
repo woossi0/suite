@@ -18,7 +18,7 @@ if [ -z "$CONTINUE" ]; then
   exit 0
 fi
 
-old_status=$( echo "`service postgresql status`" | awk '{print $NF}' )
+old_status=$( echo "`service postgresql-9.2 status`" | awk '{print $NF}' )
 check_pg
 
 HEADLESS=`check_headless $1`
@@ -55,7 +55,7 @@ fi
 
 if [ -f $OG_POSTGIS/adminpack ]; then
   echo "Uninstalling admin pack"
-  pg_run "psql -w -f $PG_CONTRIB/uninstall_adminpack.sql -d postgres"
+  pg_run "psql -w -d postgres -c 'DROP EXTENSION adminpack'"
   [ "$?" == "0" ] && rm $OG_POSTGIS/adminpack
 fi
 
@@ -70,5 +70,5 @@ fi
 set -e
 
 if [ $old_status == "stopped" ]; then
-  service postgresql stop
+  service postgresql-9.2 stop
 fi

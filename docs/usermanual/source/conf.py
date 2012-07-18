@@ -39,7 +39,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'OpenGeo Suite User Manual'
-copyright = u'2011 OpenGeo'
+copyright = u'OpenGeo'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -154,8 +154,11 @@ html_use_index = False
 # If true, the index is split into individual pages for each letter.
 #html_split_index = False
 
+# If true, the reST sources are included in the HTML build as _sources/<name>.
+html_copy_source = False
+
 # If true, links to the reST sources are added to the pages.
-#html_show_sourcelink = True
+html_show_sourcelink = False
 
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the

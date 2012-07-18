@@ -1,0 +1,11 @@
+--- Makefile.in	2012-06-26 17:41:40.000000000 -0400
++++ Makefile.in.new	2012-04-24 05:16:17.000000000 -0400
+@@ -12,7 +12,7 @@
+ 
+ CC = @CC@
+ CFLAGS = @CFLAGS@ @PICFLAGS@ @WARNFLAGS@ @GEOS_CPPFLAGS@ @PROJ_CPPFLAGS@
+-LDFLAGS = @GEOS_LDFLAGS@ -lgeos_c @PROJ_LDFLAGS@ -lproj
++LDFLAGS = -arch i386 -arch x86_64 @GEOS_LDFLAGS@ -lgeos_c @PROJ_LDFLAGS@ -lproj
+ NUMERICFLAGS = @NUMERICFLAGS@
+ top_builddir = @top_builddir@
+ prefix = @prefix@

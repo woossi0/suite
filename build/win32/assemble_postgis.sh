@@ -8,9 +8,10 @@ ROOT=${buildroot}/postgis-win
 BIN=${ROOT}/pgsql/bin
 LIB=${ROOT}/pgsql/lib
 CONTRIB=${ROOT}/pgsql/share/contrib
+EXT=${ROOT}/pgsql/share/extension
 
 PGSQL_BIN=postgresql-$pgsql_version-1-windows-binaries.zip
-get_file http://downloads.enterprisedb.com/postgresql/$PGSQL_BIN
+get_file http://get.enterprisedb.com/postgresql/$PGSQL_BIN
 checkrc $? "$PGSQL_BIN download"
 
 if [ -e $ROOT ]; then
@@ -24,6 +25,7 @@ checkrc $? "$PGSQL_BIN unzip"
 PGSQL_BIN=${buildroot}/pgsql/bin
 PGSQL_LIB=${buildroot}/pgsql/lib
 PGSQL_CONTRIB=${buildroot}/pgsql/share/contrib
+PGSQL_EXT=${buildroot}/pgsql/share/extension
 
 pushd $PGSQL_BIN
 cp shp2pgsql* $BIN
@@ -41,6 +43,11 @@ cp -R postgis-* $CONTRIB
 checkrc $? "Copy postgis contrib"
 popd
 
+pushd $PGSQL_EXT
+cp -R postgis* $EXT
+checkrc $? "Copy postgis extension"
+popd
+
 pushd $buildroot/proj/bin
 cp libproj*.dll $BIN
 checkrc $? "Copy proj libs"
@@ -51,8 +58,18 @@ cp libgeos*.dll $BIN
 checkrc $? "Copy geos libs"
 popd
 
+pushd $buildroot/gdal/bin
+cp gdal*.dll $BIN
+checkrc $? "Copy gdal libs"
+popd
+
 pushd $gtkroot/lib
 cp -R gtk-2.0 $ROOT/pgsql/lib 
 cp -R glib-2.0 $ROOT/pgsql/lib
 checkrc $? "Copy gtk libs"
+popd
+
+pushd $buildroot
+cp -R postgis_upgrade $ROOT/pgsql
+checkrc $? "Copy upgrade scripts"
 popd

@@ -1,8 +1,8 @@
 #
 # GLOBALS
 #
-pg_version=8.4
-postgis_version=1.5
+pg_version=9.1
+postgis_version=2.0.1
 pg_default_port=54321
 
 pg_data_dir=/opt/opengeo/pgdata/${USER}

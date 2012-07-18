@@ -549,13 +549,13 @@
 						<key>IFPkgDescriptionTitle</key>
 						<string>PostGIS Client Tools</string>
 						<key>IFPkgDescriptionVersion</key>
-						<string>1.5</string>
+						<string>2.0.1</string>
 					</dict>
 				</dict>
 				<key>Display Information</key>
 				<dict>
 					<key>CFBundleGetInfoString</key>
-					<string>Copyrights © 2010 OpenGeo</string>
+					<string>Copyrights © 2012 OpenGeo</string>
 					<key>CFBundleIconFile</key>
 					<string>resources/PostGIS.icns</string>
 					<key>CFBundleIconFile Path Type</key>
@@ -565,7 +565,7 @@
 					<key>CFBundleName</key>
 					<string>PostGIS Client Tools</string>
 					<key>CFBundleShortVersionString</key>
-					<string>1.5</string>
+					<string>2.0.1</string>
 				</dict>
 				<key>Options</key>
 				<dict>
@@ -591,9 +591,9 @@
 				<key>Version</key>
 				<dict>
 					<key>IFMajorVersion</key>
-					<integer>1</integer>
+					<integer>2</integer>
 					<key>IFMinorVersion</key>
-					<integer>5</integer>
+					<integer>0</integer>
 				</dict>
 			</dict>
 		</dict>

@@ -160,11 +160,11 @@ publish_deb() {
   pushd build/$name
   checkrc $? "push build/$name"
 
-  rsync -avz -e "ssh -p 7777 -i $HOME/.ssh/id_rsa_apt" * apt@apt.opengeo.org:/home/apt/apt/$profile/incoming/$repo/$dist
-  #scp -i ~/.ssh/id_rsa_apt * apt@apt.opengeo.org:/home/apt/apt/incoming/$repo/$dist
+  rsync -avz -e "ssh -p 7777 -i $HOME/.ssh/id_rsa_apt" * apt@apt.opengeo.org:/home/apt/apt/q/$profile/incoming/$repo/$dist
+  #scp -i ~/.ssh/id_rsa_apt * apt@apt.opengeo.org:/home/apt/apt/q/incoming/$repo/$dist
   checkrc $? "secure copy .deb files"
 
-  ssh -i ~/.ssh/id_rsa_apt -p 7777 apt@apt.opengeo.org "./apt/publish_debs.sh $repo $dist $profile" 
+  ssh -i ~/.ssh/id_rsa_apt -p 7777 apt@apt.opengeo.org "./apt/publish_debs.sh -r $repo -d $dist $(echo $profile|sed 's/\(.\{1,\}\)/-p \1/g')"
   checkrc $? "remote publish"
 
   popd

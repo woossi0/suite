@@ -6,15 +6,11 @@
   <baseDirectory>opengeo-docs</baseDirectory>
   <fileSets>
     <fileSet>
-      <directory>docs/styler/target/html</directory>
-      <outputDirectory>styler</outputDirectory>
-    </fileSet>
-    <fileSet>
       <directory>docs/geoexplorer/target/html</directory>
       <outputDirectory>geoexplorer</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>docs/gxp/target/html</directory>
+      <directory>docs/sdk-api/target/html</directory>
       <outputDirectory>sdk-api</outputDirectory>
     </fileSet>
     <fileSet>
@@ -30,20 +26,11 @@
       <outputDirectory>geowebcache</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>docs/geoeditor/target/html</directory>
-      <outputDirectory>geoeditor</outputDirectory>
-    </fileSet>
-    <fileSet>
       <directory>docs/usermanual/target/html</directory>
-      <outputDirectory>usermanual</outputDirectory>
+      <outputDirectory>/</outputDirectory>
     </fileSet>
   </fileSets>
   <files>
-    <file>
-      <source>docs/index.html</source>
-      <outputDirectory>/</outputDirectory>
-      <fileMode>744</fileMode>
-    </file>
     <file>
       <source>target/version.ini</source>
       <outputDirectory>/</outputDirectory>

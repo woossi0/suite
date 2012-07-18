@@ -83,7 +83,7 @@ SWIG = c:\swig\swig.exe
 
 # SWIG Java settings
 !IFNDEF JAVA_HOME
-JAVA_HOME = c:\java
+JAVA_HOME = c:\java\jdk1.6.0_32
 !ENDIF
 !IFNDEF ANT_HOME
 ANT_HOME=c:\ant
@@ -136,7 +136,7 @@ LDEBUG= /debug
 STDCALL=YES
 
 # Version number embedded in DLL name. 
-VERSION =	18
+VERSION =	19
 
 # Comment the following out if you want PAM supported disabled
 # by default.  

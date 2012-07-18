@@ -73,6 +73,9 @@ Var OracleCheckBoxPrior
 Var MrSIDCheckBox
 Var MrSIDCheckBoxPrior
 
+Var Username
+Var PGVerPath
+
 ;Version Information (Version tab for EXE properties)
 VIProductVersion ${LONGVERSION}
 VIAddVersionKey ProductName "${APPNAME}"
@@ -221,7 +224,31 @@ FunctionEnd
 Function PriorInstall
 
   ClearErrors
+  ; Even though no prior install, make sure an older postgres is not laying around
+  ; Gets username, needed for path/file check
+  System::Call "advapi32::GetUserName(t .r0, *i ${NSIS_MAX_STRLEN} r1) i.r2"
+  StrCpy $Username $0
+  StrCpy $PGVerPath "$PROFILE\.opengeo\pgdata\$Username\PG_VERSION"
+  IfFileExists "$PGVerPath" OldPGCheck SameVersionCheck
 
+  OldPGCheck:
+  FileOpen $1 "$PGVerPath" r
+  FileRead $1 $2 3
+  FileClose $1
+  StrCmp $2 "8.4" OldPG SameVersionCheck
+
+  OldPG:
+  MessageBox MB_ICONSTOP "Setup has found an old version of the PostgreSQL data directory \
+                          at:$\r$\n$\r$\n  $PROFILE\.opengeo\pgdata\$\r$\n$\r$\n\
+                          This directory will need to be manually backed up and removed \
+                          prior to installation of the OpenGeo Suite. For more information \
+                          about upgrading, please see the documentation available at \
+                          http://suite.opengeo.org/opengeo-docs/"
+  Goto Die
+
+
+  SameVersionCheck:
+  ClearErrors
   ; Is this version already installed?
   ;ReadRegStr $R1 HKLM "Software\${COMPANYNAME}\${APPNAMEANDVERSION}" "InstallDir"
   EnumRegKey $R1 HKLM "SOFTWARE\${COMPANYNAME}" 0 ; Checks if the key even exists
@@ -288,6 +315,7 @@ Function PriorInstall
   Goto Die
 
   NoPriorInstall:
+  ClearErrors
   StrCpy $PreviousVer "Clean"
   Goto End
 
@@ -436,7 +464,7 @@ Section "PostGIS" SectionPostGIS
   File /a "scripts\postgis.cmd"
   File /a "scripts\pg_*.cmd"
 
-  SetOutPath "$INSTDIR\pgsql\8.4\pgAdmin III"
+  SetOutPath "$INSTDIR\pgsql\9.1\pgAdmin III"
   File /a "..\common\postgis\plugins.ini" ; Adds the link to shp2pgsql-gui
   File /a "..\common\postgis\settings.ini" ; Adds the default entry in PgAdmin
 
@@ -448,20 +476,23 @@ Section "PostGIS" SectionPostGIS
   SetOutPath "$INSTDIR"
   File /r "${SOURCEPATHROOT}\pgdata"
 
-  CreateDirectory "$INSTDIR\pgsql\8.4\pgAdmin III\branding"
-  SetOutPath "$INSTDIR\pgsql\8.4\pgAdmin III\branding"
+  CreateDirectory "$INSTDIR\pgsql\9.1\pgAdmin III\branding"
+  SetOutPath "$INSTDIR\pgsql\9.1\pgAdmin III\branding"
   File /a "..\common\postgis\branding.ini" ; Adds the custom splash
   File /a "..\common\postgis\pgadmin_splash.gif" ; Ditto
 
   ; Shortcuts
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\pgAdmin.lnk" \
-                 "$INSTDIR\pgsql\8.4\bin\pgAdmin3.exe" \
+                 "$INSTDIR\pgsql\9.1\bin\pgAdmin3.exe" \
                  "" "$INSTDIR\icons\postgis.ico" 0
 
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\pgShapeLoader.lnk" \
-                 "$INSTDIR\pgsql\8.4\bin\shp2pgsql-gui.exe" \
+                 "$INSTDIR\pgsql\9.1\bin\shp2pgsql-gui.exe" \
                  "-p 54321" "$INSTDIR\icons\pgshapeloader.ico" 0
-
+  ; We need the MSVCRT 2008 library since Enterprise DB 9.x requires it
+  SetOutPath "$INSTDIR"
+  File /a "misc\vcredist_x86_2008.exe"
+  ExecWait '"$INSTDIR\vcredist_x86_2008.exe" /q'
 SectionEnd
 
 SectionGroup /e "Suite Services" SectionServices
@@ -526,18 +557,6 @@ Section "Styler" SectionStyler
 
 SectionEnd
 
-Section "GeoEditor" SectionGE
-
-  SectionIn RO ; mandatory
-  SetOverwrite on
-
-  !insertmacro DisplayImage "graphics\slide_6_geoext.bmp"
-
-  SetOutPath "$INSTDIR\webapps\"
-  File /r "${SOURCEPATHROOT}\webapps\geoeditor"
-
-SectionEnd
-
 Section "ClientSDK" SectionCSDK
 
   SectionIn RO ; mandatory
@@ -559,13 +578,18 @@ Section "GDAL" SectionGDAL
   !insertmacro DisplayImage "graphics\slide_1_suite.bmp"
 
   SetOutPath "$INSTDIR\jre\bin"
-  File /r "${SOURCEPATHROOT}\jre\bin\gdal18.dll"
+  File /r "${SOURCEPATHROOT}\jre\bin\gdal19.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\gdalconstjni.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\gdaljni.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\ogrjni.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\osrjni.dll"
-  File /r "${SOURCEPATHROOT}\webapps\geoserver\WEB-INF\lib\gdal-1.8.1.jar"
-
+  File /r "${SOURCEPATHROOT}\webapps\geoserver\WEB-INF\lib\gdal-1.9.1.jar"
+  
+  ; We need the MSVCRT 2010 library since GDAL needs to be built with
+  ; Visual Studio on Windows.
+  SetOutPath "$INSTDIR"
+  File /a "misc\vcredist_x86_2010.exe"
+  ExecWait '"$INSTDIR\vcredist_x86_2010.exe" /q'
 SectionEnd
 
 SectionGroupEnd
@@ -641,7 +665,6 @@ Section "Documentation" SectionDocs
   !insertmacro DisplayImage "graphics\slide_4_gwc.bmp"
 
   SetOutPath "$INSTDIR\icons"
-  File /a "icons\geoeditor.ico"
   File /a "icons\geoserver.ico"
   File /a "icons\geoexplorer.ico"
   File /a "icons\styler.ico"
@@ -665,12 +688,6 @@ Section "Documentation" SectionDocs
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Documentation\GeoExplorer Documentation.lnk" \
 		         "$INSTDIR\webapps\opengeo-docs\geoexplorer\index.html" \
                  "" "$INSTDIR\icons\geoexplorer.ico" 0
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Documentation\GeoEditor Documentation.lnk" \
-		         "$INSTDIR\webapps\opengeo-docs\geoeditor\index.html" \
-                 "" "$INSTDIR\icons\geoeditor.ico" 0
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Documentation\Styler Documentation.lnk" \
-		         "$INSTDIR\webapps\opengeo-docs\styler\index.html" \
-                 "" "$INSTDIR\icons\styler.ico" 0
   CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Documentation\GeoWebCache Documentation.lnk" \
 		         "$INSTDIR\webapps\opengeo-docs\geoserver\geowebcache\index.html" \
                  "" "$INSTDIR\icons\geowebcache.ico" 0
@@ -727,11 +744,11 @@ Section "-Dashboard" SectionDashboard ;dash means hidden
                                 "/S=1" $1
   ${textreplace::ReplaceInFile} "$INSTDIR\dashboard\Resources\config.ini" \
                                 "$INSTDIR\dashboard\Resources\config.ini" \
-                                "@PGADMIN_PATH@" "$INSTDIR\pgsql\8.4\bin\pgadmin3.exe" \ 
+                                "@PGADMIN_PATH@" "$INSTDIR\pgsql\9.1\bin\pgadmin3.exe" \ 
                                 "/S=1" $1
   ${textreplace::ReplaceInFile} "$INSTDIR\dashboard\Resources\config.ini" \
                                 "$INSTDIR\dashboard\Resources\config.ini" \
-                                "@PGSHAPELOADER_PATH@" "$INSTDIR\pgsql\8.4\bin\shp2pgsql-gui.exe" \ 
+                                "@PGSHAPELOADER_PATH@" "$INSTDIR\pgsql\9.1\bin\shp2pgsql-gui.exe" \ 
                                 "/S=1" $1
   ;Skip:
 
@@ -747,12 +764,6 @@ Section "-Dashboard" SectionDashboard ;dash means hidden
   SetOutPath "$INSTDIR\dashboard"
   File /a "misc\vcredist_x86.exe"
   ExecWait '"$INSTDIR\dashboard\vcredist_x86.exe" /q'
-  
-  ; We also need the MSVCRT 2010 library since GDAL needs to be built with
-  ; Visual Studio on Windows.
-  SetOutPath "$INSTDIR\dashboard"
-  File /a "misc\vcredist_x86_2010.exe"
-  ExecWait '"$INSTDIR\dashboard\vcredist_x86_2010.exe" /q'
 
 SectionEnd
 
@@ -844,7 +855,6 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGWC} "Includes GeoWebCache, a tile cache server."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGX} "Installs GeoExplorer, a graphical map composer."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionStyler} "Installs Styler, a graphical map style editor."
-  !insertmacro MUI_DESCRIPTION_TEXT ${SectionGE} "Installs GeoEditor, a graphical map editor."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionCSDK} "Installs the Client SDK, tools for building web mapping applications backed by the OpenGeo Suite."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGDAL} "Installs GDAL, a spatial data reading library."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionDocs} "Includes full documentation for all applications."

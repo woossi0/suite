@@ -4,7 +4,7 @@
 
 build_info
 
-GDAL=gdal-1.8.1
+GDAL=gdal-1.9.1
 
 if [ -z $MRSID_ROOT ];
 then

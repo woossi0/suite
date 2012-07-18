@@ -1,5 +1,5 @@
 Name: opengeo-suite-client-sdk
-Version: 2.5
+Version: 3.0
 Release: 1
 Summary: The OpenGeo Suite Client SDK
 Group: Applications/Development

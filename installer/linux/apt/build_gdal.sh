@@ -4,7 +4,7 @@
 
 build_info
 
-GDAL=gdal-1.8.1
+GDAL=gdal-1.9.1
 
 # Determine which architecture we're building on
 if [ `uname -m` == "i686" ]; then
@@ -25,7 +25,7 @@ popd
 rm -rf $GDAL
 tar xzvf files/$GDAL.tar.gz
 mv $GDAL/* gdal
-checkrc $? "unpacking geos sources"
+checkrc $? "unpacking gdal sources"
 rmdir $gdal 
 
 # get MrSID files
