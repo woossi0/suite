@@ -13,7 +13,8 @@ Description: Geoserver Geonode components for the OpenGeo Suite
 
 Package: opengeo-geonode-python
 Architecture: any
-Depends: debconf, opengeo-suite, python, python-support, python-virtualenv, zip, python-imaging, python-reportlab, python-urlgrabber, python-pastescript, gettext, unzip, python-gdal, python-psycopg2, apache2, libapache2-mod-wsgi, ${misc:Depends}
+Pre-Depends: python-virtualenv
+Depends: debconf, opengeo-suite, python, python-support, zip, python-imaging, python-reportlab, python-urlgrabber, python-pastescript, gettext, unzip, python-gdal, python-psycopg2, apache2, libapache2-mod-wsgi, ${misc:Depends}
 Description: GeoNode components for the OpenGeo Suite
 
 Package: opengeo-geonode
