@@ -11,24 +11,26 @@ su postgres -c "createdb geonode"
 su postgres -c "psql -d geonode -f /var/lib/geonode/geonode.sql > /dev/null"
 
 # Re-build virtualenv locally
-rm /var/lib/geonode/bin/*activate*
 virtualenv /var/lib/geonode/
+(cd /var/lib/geonode/src/GeoNodePy/ && /var/lib/geonode/bin/python setup.py develop)
 
 # Symlink needed files locally
 ln -sf /etc/geonode/local_settings.py /var/lib/geonode/src/GeoNodePy/geonode/local_settings.py
 ln -sf /var/log/apache2/error.log /var/log/geonode/apache.log
 
 # Update paths in virtualenv
-sed -i -e 's:/var/lib/hudson/jobs/bootstrap/workspace/installer/linux/apt/opengeo-geonode/stage/var/lib/geonode/src/GeoNodePy:/var/lib/geonode/src/GeoNodePy:g' /var/lib/geonode/lib/python2.6/site-packages/GeoNodePy.egg-link
-sed -i -e 's:/var/lib/hudson/jobs/bootstrap/workspace/installer/linux/apt/opengeo-geonode/stage/var/lib/geonode/src/:/var/lib/geonode/src/:g' /var/lib/geonode/lib/python2.6/site-packages/easy-install.pth
+sed -i -e 's:/.*/stage/var/lib/geonode/src/GeoNodePy:/var/lib/geonode/src/GeoNodePy:' \
+  /var/lib/geonode/lib/python2.6/site-packages/GeoNodePy.egg-link
+sed -i -e 's:/.*/stage/var/lib/geonode/src/:/var/lib/geonode/src/:' \
+  /var/lib/geonode/lib/python2.6/site-packages/easy-install.pth
 (cd /var/lib/geonode/src/avatar; python setup.py develop)
-#(cd /var/lib/geonode/src/GeoNodePy; python setup.py develop)
-sed -i -e 's:#!/var/lib/hudson/jobs/bootstrap/workspace/installer/linux/apt/opengeo-geonode/stage/var/lib/geonode/bin/python:#!/var/lib/geonode/bin/python:g' /var/lib/geonode/bin/pilconvert.py
-sed -i -e 's:#!/var/lib/hudson/jobs/bootstrap/workspace/installer/linux/apt/opengeo-geonode/stage/var/lib/geonode/bin/python:#!/var/lib/geonode/bin/python:g' /var/lib/geonode/bin/pildriver.py
-sed -i -e 's:#!/var/lib/hudson/jobs/bootstrap/workspace/installer/linux/apt/opengeo-geonode/stage/var/lib/geonode/bin/python:#!/var/lib/geonode/bin/python:g' /var/lib/geonode/bin/pilfile.py
-sed -i -e 's:#!/var/lib/hudson/jobs/bootstrap/workspace/installer/linux/apt/opengeo-geonode/stage/var/lib/geonode/bin/python:#!/var/lib/geonode/bin/python:g' /var/lib/geonode/bin/pilprint.py
-sed -i -e 's:#!/var/lib/hudson/jobs/bootstrap/workspace/installer/linux/apt/opengeo-geonode/stage/var/lib/geonode/bin/python:#!/var/lib/geonode/bin/python:g' /var/lib/geonode/bin/django-admin.py
+sed -i -e 's:#!/.*/stage/var/lib/geonode/bin/python:#!/var/lib/geonode/bin/python:' \
+  /var/lib/geonode/bin/pilconvert.py \
+  /var/lib/geonode/bin/pildriver.py  \
+  /var/lib/geonode/bin/pilfile.py    \
+  /var/lib/geonode/bin/pilprint.py   \
+  /var/lib/geonode/bin/django-admin.py
 
 # Setup static files
-sed -i -e 's:/etc/geonode/media:/etc/geonode/static:g' /etc/geonode/local_settings.py
-geonode collectstatic
+# sed -i -e 's:/etc/geonode/media:/etc/geonode/static:g' /etc/geonode/local_settings.py
+geonode collectstatic --noinput
