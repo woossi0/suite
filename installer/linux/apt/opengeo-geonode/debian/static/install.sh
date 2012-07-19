@@ -41,7 +41,8 @@ function setup_directories() {
 
 function unpack_archives() {
     unzip -qq $INSTALL_DIR/geoserver.war -d $TOMCAT_WEBAPPS/geoserver
-	unzip -qq $INSTALL_DIR/geonetwork.war -d $TOMCAT_WEBAPPS/geonetwork
+    unzip -qq $INSTALL_DIR/geonetwork.war -d $TOMCAT_WEBAPPS/geonetwork
+    cp $INSTALL_DIR/geonetwork.war $TOMCAT_WEBAPPS/
 }
 
 function reorganize_configuration() {

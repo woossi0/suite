@@ -8,13 +8,13 @@ Homepage: http://opengeo.org
 
 Package: opengeo-geonode-java
 Architecture: any
-Depends: debconf, opengeo-suite, apache2, ${misc:Depends}
+Depends: debconf, opengeo-suite, opengeo-geonode-python, apache2, ${misc:Depends}
 Description: Geoserver Geonode components for the OpenGeo Suite
 
 Package: opengeo-geonode-python
 Architecture: any
 Pre-Depends: python-virtualenv
-Depends: debconf, opengeo-suite, python, python-support, zip, python-imaging, python-reportlab, python-urlgrabber, python-pastescript, gettext, unzip, python-gdal, python-psycopg2, apache2, libapache2-mod-wsgi, ${misc:Depends}
+Depends: debconf, opengeo-suite (>= 3.0), python, python-support, zip, python-imaging, python-reportlab, python-urlgrabber, python-pastescript, gettext, unzip, python-gdal, python-psycopg2, apache2, libapache2-mod-wsgi, ${misc:Depends}
 Description: GeoNode components for the OpenGeo Suite
 
 Package: opengeo-geonode
