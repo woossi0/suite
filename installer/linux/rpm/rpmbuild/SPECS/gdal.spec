@@ -56,6 +56,21 @@ a copy of the Lizard Tech raster DSDK libraries.
 %{_libdir}/gdalplugins/gdal_MrSID.so
 %{_libdir}/libltidsdk.so*
 
+%package filegeodatabase
+Summary: ESRI File Geodatabase Plugin for the Geospatial Data Abstraction Library
+Group: Applications/Engineering
+Requires: %{name} = %{version}-%{release}
+
+%description filegeodatabase
+This package contains a plugin that enables %{name} to read ESRI File Geodatabases. This includes
+a copy of the ESRI raster File Geodatabase SDK libraries.
+
+%files filegeodatabase
+%defattr(-, root, root, 0755)
+%{_libdir}/gdalplugins/ogr_FileGDB.so
+%{_libdir}/libfgdbunixrtl.so
+%{_libdir}/libFileGDBAPI.so
+
 %prep
 %setup
 %ifarch x86_64
@@ -75,6 +90,13 @@ g++ -g frmts/mrsid/*.cpp -shared -o gdal_MrSID.so \
 -L$MRSID_ROOT/lib -L.libs \
 -lgdal -lltidsdk -lpthread -ldl
 
+# File Geodatabase Plugin
+LD_LIBRARY_PATH=$FileGDB_API/lib/ \
+g++ -g ogr/ogrsf_frmts/filegdb/*.cpp -shared -o ogr_FileGDB.so \
+-O2 -DOGR_ENABLED -D_REENTRANT -fPIC -DPIC \
+-Igcore -Iogr -Iport -I$FileGDB_API/include \
+-L.libs -L$FileGDB_API/lib -lgdal -lpthread -ldl -lFileGDBAPI
+
 # Java SWIG bindings
 cd swig/java
 sed -i 's:^JAVA_HOME.*:#JAVA_HOME=:' java.opt
@@ -91,7 +113,9 @@ make install DESTDIR=%{buildroot}
 %endif
 mkdir -p %{buildroot}/%{lib_dir}/gdalplugins
 cp gdal_MrSID.so %{buildroot}/%{lib_dir}/gdalplugins/
+cp ogr_FileGDB.so %{buildroot}/%{lib_dir}/gdalplugins/
 cp $MRSID_ROOT/lib/libltidsdk.so* %{buildroot}/%{lib_dir}
+cp $FileGDB_API/lib/*.so %{buildroot}/%{lib_dir}
 cp swig/java/*.so %{buildroot}/%{lib_dir}
 cp swig/java/gdal.jar %{buildroot}/%{lib_dir}
 
