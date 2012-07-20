@@ -17,7 +17,8 @@ Requires: geos >= 3.3.3
 Requires: swig
 Requires: proj
 
-Patch: gdal_driverpath.patch
+Patch0: gdal_driverpath.patch
+Patch1: gdal_ogr_driverpath.patch
 
 %description
 The Geospatial Data Abstraction Library (GDAL) is a unifying C/C++ API for 
@@ -76,7 +77,8 @@ a copy of the ESRI raster File Geodatabase SDK libraries.
 %ifarch x86_64
 # In RedHat land, 32-bit libs go in /usr/lib and 64-bit ones go in /usr/lib64.
 # The default driver search paths need changing to reflect this.
-%patch
+%patch0
+%patch1
 %endif
 
 %build
