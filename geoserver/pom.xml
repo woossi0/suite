@@ -99,6 +99,11 @@
      <artifactId>gt-imageio-ext-gdal</artifactId>
      <version>${gt.version}</version>
    </dependency>
+   <dependency>
+     <groupId>org.geotools</groupId>
+     <artifactId>gt-ogr-jni</artifactId>
+     <version>${gt.version}</version>
+   </dependency>
   <dependency>
    <groupId>org.restlet</groupId>
    <artifactId>org.restlet.ext.fileupload</artifactId>
