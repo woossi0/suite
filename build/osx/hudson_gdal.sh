@@ -56,6 +56,13 @@ g++ -g frmts/mrsid/*.cpp -dynamiclib -o gdal_MrSID.dylib \
 -Ifrmts/gtiff/libgeotiff/ -Igcore -Iogr -Iport -I${buildroot}/Raster_DSDK/include \
 -L${buildroot}/Raster_DSDK/lib -L.libs \
 -lgdal -lltidsdk -lpthread -ldl
+# File Geodatabase Plugin
+g++ -g ogr/ogrsf_frmts/filegdb/*.cpp -dynamiclib -o ogr_FileGDB.dylib \
+-O2 -DOGR_ENABLED -D_REENTRANT -fPIC -DPIC \
+-arch x86_64 -mmacosx-version-min=10.5 \
+-Igcore -Iogr -Iport -Iogr/ogrsf_frmts -I${buildroot}/FileGDB_API/include \
+-L.libs -L${buildroot}/FileGDB_API/lib -lgdal -lpthread -ldl -lFileGDBAPI
+
 # Build Java SWIG bindings
 (cd swig/java; make)
 checkrv $? "GDAL build"
@@ -68,6 +75,9 @@ make install
 mkdir -p ${buildroot}/gdal/lib/gdalplugins
 cp gdal_MrSID.dylib ${buildroot}/gdal/lib/gdalplugins
 cp ${buildroot}/Raster_DSDK/lib/*.dylib ${buildroot}/gdal/lib
+# Install File Geodatabase Plugin
+cp ogr_FileGDB.dylib ${buildroot}/gdal/lib/gdalplugins
+cp ${buildroot}/FileGDB_API/lib/*.dylib ${buildroot}/gdal/lib
 # Install Java SWIG bindings
 cp swig/java/.libs/*.dylib ${buildroot}/gdal/lib
 pushd ${buildroot}/gdal/

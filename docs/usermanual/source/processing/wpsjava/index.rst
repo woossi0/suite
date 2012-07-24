@@ -3,55 +3,66 @@
 Creating WPS processes with Java
 ================================
 
-A Web Processing Service (WPS) process is able to perform almost any kind of computation.  The OpenGeo Suite comes with many built in WPS processes in GeoServer, however, the real power in WPS is in its extensibility.  This section will describe how to create a new WPS process in Java, as well as how to deploy it.
+Web Processing Service (WPS) processes are able to perform almost any kind of computation.  
+The OpenGeo Suite supplies many useful WPS processes built in to GeoServer.
+For even more capability, GeoServer can be extended by adding new WPS processes.  
+This section describes creating a custom WPS process in Java and how to deploy and run it in GeoServer.
 
 Overview
 --------
 
-A WPS process is a **Java class** that provides an ``execute`` method. The ``execute`` method accepts parameters which correspond to the WPS parameters, and it returns a value which becomes the output of the process.  The class must also provide metadata to specify things like the process name and description, as well as the names and descriptions of the process parameters.  The class is instantiated each time it is called, so the class can contain state (instance variables) if required.
+A WPS process is simply a **Java class** that provides an ``execute`` method. 
+The ``execute`` method accepts parameters which correspond to the WPS parameters, and it returns a value which becomes the output of the process.  
+The class also provides metadata to specify the names and descriptions of the process and its parameters.  
 
 .. todo:: An diagram of this would be excellent.  
 
-GeoTools, a set of Java libraries underlying GeoServer, provides a convenient framework for building process classes with a minimum of boilerplate code.  Some benefits to  GeoTools are:
+The GeoTools library used by GeoServer provides a convenient framework for building process classes with a minimum of boilerplate code.  
+The GeoTools **Process API** has the following features:
 
-* uses Java annotations to specify the metadata
+* allows using Java annotations to specify the metadata
 * infers the types of process parameters and outputs via reflection
-* automatically handles the complex interplay between XML representations and Java objects at runtime
+* automatically handles the runtime conversion between XML representations and Java objects
+* handles reporting any exceptions thrown by a process
 
-GeoServer includes many useful libraries that can be leveraged in a process, in addition to the full set of GeoTools libraries.  A process can also use external Java libraries if necessary, but if so, the external libraries will need to be specifically deployed along with the process.
+GeoTools includes many powerful libraries that can be leveraged in a process.  
+A process can also use external Java libraries, but in that case the external libraries need to be deployed along with the process.
 
-To create a custom WPS process, you will need to create a new Java project, either with an `IDE <http://en.wikipedia.org/wiki/Integrated_development_environment>`_ or from the command line. This tutorial will assume that you are using `Eclipse <http://www.eclipse.org>`_, a very popular IDE.  Others, like `Netbeans <http://www.netbeans.org>`_, `IntelliJ IDEA <http://www.jetbrains.com/idea/>`_, or (for the brave) purely command-line Java tools can work just as well.
-
-`Maven <http://maven.apache.org>`_ will also be used to build the project and manage its dependencies.  
+To create a custom WPS process, you will need to create a new Java project, either with an `IDE <http://en.wikipedia.org/wiki/Integrated_development_environment>`_ or using command-line tools. 
+This tutorial shows the use of the popular `Eclipse <http://www.eclipse.org>`_ IDE.  
+Other IDEs such as `Netbeans <http://www.netbeans.org>`_ or `IntelliJ IDEA <http://www.jetbrains.com/idea/>`_ can be used as well.
+In addition, `Maven <http://maven.apache.org>`_ will be used to build the project and manage its dependencies.  
 
 
 About the process
 -----------------
 
-We will create a process called ``gs:splitPolygon`` in a project called ``wps-demo``.  This process will split a polygon by a line.  Both the line and the polygon will be inputs, and the result will be the resulting split Geometry (usually a collection of polygons).
+We will create a process called ``gs:splitPolygon`` in a project called ``wps-demo``.  
+This process splits a polygon geometry by a line crossing it.  
+The inputs are the polygon to split, and the line to split by.
+The output is the geometry representing the collection of polygons resulting from the split.
 
-
-Create the Java Project
+Create the Java project
 -----------------------
 
-Use Maven to create the Java project.  In order to do that, we'll use the `Maven Archetype plugin <http://maven.apache.org/archetype/maven-archetype-plugin/>`_, a Maven project templating toolkit. As a custom WPS process is packaged as a regular JAR file, no special configuration is necessary for this project.  Type the following on a console:
+We'll use Maven to create the Java project for the process.  
+To do that we use the `Maven Archetype plugin <http://maven.apache.org/archetype/maven-archetype-plugin/>`_, a project templating tool. 
+Since a custom WPS process is packaged as a regular JAR file the standard archetype can be used for this project.  
+It will generate the project directory structure, a Maven POM file describing the project, and some useful Java artifacts.  
+Enter the following in a console:
 
 .. code-block:: console
 
-   mvn archetype:generate
+   mvn archetype:generate -DarchetypeArtifactId='maven-archetype-quickstart' -DarchetypeVersion=1.1 -DgroupId=org.example.wps -DartifactId=wps-demo -Dversion=1.0 -DinteractiveMode=false
 
-This will start the generation of the project, including the creation of a valid Maven POM (:file:`pom.xml`) file describing the project.  There will be a list of available archetypes, but as this is a simple project, you shouldn't have to choose any special number from the list. You should however, fill out the project metadata as follows:
+This command instructs Maven to generate a project using the following information:
 
-.. code-block:: console
+* The Maven groupId and the project's Java package are named ``org.example.wps``
+* The name of the project is ``wps-demo``
+* The version for the project build artifacts is ``1.0``
 
-   groupId: org.opengeo.suite.extension.wps
-   artifactId: wps-demo
-   version: 1.0-SNAPSHOT
-   package: org.opengeo.suite.extension.wps.gs
-
-.. note:: The rightmost part of the ``package`` name defines the **namespace** of the WPS process being created (``gs`` in this case, a pre-existing namespace in GeoServer).  
-
-You should end up with a project named ``wps-demo``, inside which you will be able to find the POM file. Add the following dependencies to this file:
+You should end up with a project directory named ``wps-demo`` with the POM file :file:`pom.xml` inside it. 
+Add the following GeoTools library dependencies to this file:
 
 .. code-block:: xml
 
@@ -66,7 +77,8 @@ You should end up with a project named ``wps-demo``, inside which you will be ab
       <version>8-SNAPSHOT</version>
     </dependency>
 
-Please ensure that the GeoTools version matches the one used by the OpenGeo Suite. You can check the version of GeoServer and GeoTools by clicking on the :guilabel:`About Geoserver` section at the bottom of the :guilabel:`About & Status` section of the `GeoServer Web Admin Interface <../../geoserver/webadmin/>`_.
+Please ensure that the GeoTools version matches the one used by the OpenGeo Suite being deployed into. 
+You can check the version of GeoTools by clicking on the :guilabel:`About Geoserver` section at the bottom of the :guilabel:`About & Status` section of the `GeoServer Web Admin Interface <../../geoserver/webadmin/>`_.
 
 .. todo:: Replace this image with an image of version 3.0 showing GeoTools 8
 
@@ -74,7 +86,34 @@ Please ensure that the GeoTools version matches the one used by the OpenGeo Suit
 
    *GeoServer showing GeoTools version*
 
-The entire POM file should look like this:
+You also need to add a reference to the OpenGeo Maven repository to provide access to the required libraries.
+
+.. code-block:: xml
+
+  <repositories>
+   <repository>
+    <id>opengeo</id>
+      <url>http://repo.opengeo.org</url>
+   </repository>
+  </repositories>
+
+Maven also needs to be directed to use the Java 1.5 compiler by adding the following:
+
+.. code-block:: xml
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+The final POM file should look like this:
 
 .. code-block:: xml
 
@@ -112,37 +151,53 @@ The entire POM file should look like this:
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
   <repositories>
    <repository>
     <id>opengeo</id>
       <url>http://repo.opengeo.org</url>
    </repository>
   </repositories>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
  </project>
 
-Now that we have the project definition and dependencies set up, we can create the Eclipse project by going into the :file:`wps-demo` directory and issuing the following command:
+With the project definition and dependencies set up, we can create the Eclipse project by going into the :file:`wps-demo` directory and issuing the following command:
 
 .. code-block:: console
 
    mvn eclipse:eclipse
 
-This will create a Java project that we can import into an Eclipse workspace in order to start working on the code. The initial project structure should look like this:
+This creates a Java project that we can import into an Eclipse workspace in order to start working on the code. The project structure should look like this:
 
 .. figure:: img/project-structure.png
 
-   *Initial Eclipse project structure*
+   *Eclipse project structure*
 
 
-Create custom functionality
----------------------------
+Implement process functionality
+-------------------------------
 
-The previous steps have created a package, ``org.opengeo.suite.extension.wps.gs``, where inside we will implement the custom WPS functionality.  Next, create another package that will contain helper methods for our functionality, called ``org.geotools.geometry.jts``.  After that, add a class called ``PolygonTools``.  This class contains two methods: one to polygonize a set of Geometries (``polygonize(Geometry geometry)``) and one to split a polygon with a line (``splitPolygon(Geometry poly, Geometry line)``).
+The previous steps created a Java package ``org.example.wps`` in which to implement the custom WPS functionality.  
+We first define an auxiliary class to contain the spatial processing code.  
+Create a class called ``PolygonTools``.  This class contains two methods: one to polygonize a set of Geometries (``polygonize(Geometry geometry)``) and one to split a polygon with a line (``splitPolygon(Geometry poly, Geometry line)``).
 
-The code for the ``PolygonTools`` class is below:
+The code for the ``PolygonTools`` class is:
 
 .. code-block:: java
   
-  package org.geotools.geometry.jts;
+  package org.example.wps;
 
   import java.util.ArrayList;
   import java.util.Collection;
@@ -182,14 +237,14 @@ The code for the ``PolygonTools`` class is below:
   }
 
 
-With this class in place, now we can implement a WPS process. Create a class called ``SplitPolygonProcess`` that will have a method called ``execute``, and add it to ``org.geotools.process.geometry.gs`` with the following code:
-
+With this class in place, we can now implement the WPS process. 
+Create a class called ``SplitPolygonProcess`` 
+and populate it with the following code:
 
 .. code-block:: java 
 
-  package org.geotools.process.geometry.gs;
+  package org.example.wps;
 
-  import org.geotools.geometry.jts.PolygonTools;
   import org.geotools.process.factory.DescribeParameter;
   import org.geotools.process.factory.DescribeProcess;
   import org.geotools.process.factory.DescribeResult;
@@ -198,48 +253,53 @@ With this class in place, now we can implement a WPS process. Create a class cal
   import com.vividsolutions.jts.geom.Geometry;
 
   /**
-   * Splits a Polygon (which may contain holes) by a LineString.
-   *  
+   * A GeoServer WPS Process which splits a Polygon by a LineString.
    */
-
   @DescribeProcess(title = "splitPolygon",
-  		   description = "Splits a Polygon
-		    (which may contain holes) by a LineString")
+  		   description = "Splits a Polygon by a LineString")
   public class SplitPolygonProcess implements GSProcess {
 
     @DescribeResult(name = "result",
     			  description = "The collection of result polygons")
     public Geometry execute(
-          @DescribeParameter(name = "polygon",
-	  		  description = "The polygon to be split") Geometry poly,
-          @DescribeParameter(name = "line",
-	  	          description = "The line to split by") Geometry line)
-          throws Exception {
-          	 return PolygonTools.splitPolygon(poly, line);
+          @DescribeParameter(name = "polygon", description = "The polygon to be split") 
+	  Geometry poly,
+          @DescribeParameter(name = "line", description = "The line to split by") 
+	  Geometry line)
+    {
+      return PolygonTools.splitPolygon(poly, line);
     }
   }
 
+  
+The process metadata is used to populate the WPS capabilities documents.  
+It is specified in the source code using the following Java annotations:
 
-The ``execute`` method takes two parameters of the Geometry type: a polygon to be split and the line that will split the polygon.
+* ``DescribeProcess`` - provides the name of the process and a short description of what it does.  GeoServer automatically adds the ``gs:`` namespace to the name.
+* ``DescribeResult`` - provides the name and a short description of the output of the process
+* ``DescribeParameter`` - for each input parameter, provides the name exposed in the capabilities document and a short description of what the parameter is
 
-There is also some metadata embedded with the source code by using Java annotations.  This provides the process metadata to be included with the WPS capabilities document.  The metadata parameters are the following:
-
-* ``DescribeProcess`` - gives the WPS process a name and a short description of what it does
-* ``DescribeResult`` - gives a short description of the expected outcome of executing this process
-* ``DescribeParameter`` - for each input parameter that the execute method accepts,  provides the name that will be exposed in the capabilities document, as well as a short description of what this parameter is
-
-The ``execute`` method contains the logic of the WPS process and will be called when the request is parsed and sent to the WPS module. In this case, we are wrapping a simple method in an auxiliary class:
+The process ``execute`` method will be called when the WPS request is processed by GeoServer. 
+The method takes two parameters of type ``Geometry``: a polygon to be split and the line to split it by.
+It contains the logic implementing the process, which in this case is simply delegated to a method in the auxiliary class:
 
      ``PolygonTools.splitPolygon(poly, line);``
+
+.. note:: While beyond the scope of this tutorial, we recommend creating **unit tests** for your process.
+
+Other aspects of process implementation not shown in this example are:
+
+* The ``execute`` method may throw exceptions if necessary to report errors
+* A process class is instantiated each time it is called, so the class can contain state (instance variables) if required.
+* Any number of auxiliary classes and packages may be used to implement a process
 
 
 Configure GeoServer
 -------------------
 
-The process is now ready to be deployed, but GeoServer needs to be instructed on how to access these classes when required.
-
-
-GeoServer uses the `Dependency Injection <http://en.wikipedia.org/wiki/Dependency_injection>`_ mechanism present in its `Spring Framework <http://www.springsource.org/spring-framework/>`_, allowing it to only instantiate components that are going to be used. For GeoServer to pick up new Spring Beans, we need to configure their names and classes where their functionality resides. Add the following :file:`applicationContext.xml` file inside the maven resources folder (:file:`src/main/resources`) to achieve this:
+GeoServer uses the `Dependency Injection <http://en.wikipedia.org/wiki/Dependency_injection>`_ mechanism of the `Spring Framework <http://www.springsource.org/spring-framework/>`_ to allow instantiating components only when they are used. 
+For GeoServer to discover the new process, we need to configure it as a Spring Bean by providing a id and the process class. 
+To do this, create the directory :file:`src/main/resources` and add the following :file:`applicationContext.xml` file to it:
 
 
 .. code-block:: xml
@@ -247,37 +307,48 @@ GeoServer uses the `Dependency Injection <http://en.wikipedia.org/wiki/Dependenc
   <?xml version="1.0" encoding="UTF-8"?>
   <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
   <beans>
-    <bean id="splitPolygon" class="org.opengeo.suite.extension.wps.gs.SplitPolygonProcess"/>
+    <bean id="splitPolygon" class="org.example.wps.SplitPolygonProcess"/>
   </beans>
 
 
-Your final project structure should look something like this:
+The final project structure should look like this:
 
 .. figure:: img/final-project-structure.png
 
    *Final Eclipse project structure*
+   
+  
 
+Build and deploy
+----------------
 
-Build, deploy, and test
------------------------
-
-.. note:: While beyond the scope of this tutorial, we highly recommend creating **unit tests** for your process.
-
-In order to build your custom process, run the following command from the root of your project:
+In order to build the custom process, run the following command in the root directory of the project:
 
 .. code-block:: console
   
   mvn clean install
 
-This will clean previous runs, compile your code, execute any unit tests that you might have created, and create a JAR file in the :file:`target` directory. The JAR file name is controlled by the name given to the project upon creation (``wps-demo`` in this example).
+This cleans up artifacts from previous builds, compiles the code, executes any unit tests that are present, and creates the process JAR file in the :file:`target` directory. 
+The JAR file name is taken from the project name and version (``wps-demo-1.0.jar`` in this example).
 
-Copy this JAR file inside the ``webapps/geoserver/WEB-INF/lib`` directory and then restart GeoServer.  Once GeoServer is running again, you can verify that the new process was deployed successfully by running the **WPS Request Builder**.  The WPS Request Builder is a utility that can run tests of existing WPS processes through the UI.  You can access this utility by navigating to the :guilabel:`WPS Request Builder` inside the :guilabel:`Demos` section of the `GeoServer Web Admin Interface <../../geoserver/webadmin/>`_.  
+To deploy, copy the process JAR file into the application container's ``webapps/geoserver/WEB-INF/lib`` directory and then restart GeoServer.  
 
-Once in the WPS request builder, select the process called ``gs:splitPolygon`` from the dropdown. The request builder will generate the necessary interface to be able to test the process, based on the parameters and expected outputs described in the capabilities of the process.
 
-An example of a request using the WPS Request Builder with our custom Split Polygon WPS process is shown below, taking a polygon and a line as parameters to the request
+Test the process
+----------------
 
-You can use the following input polygon and line to test the process:
+Once GeoServer is running, you can verify that the new process was deployed successfully by using the **WPS Request Builder**.  
+The WPS Request Builder is a utility that can run WPS processes through the UI.  
+You can access it by navigating to the :guilabel:`WPS Request Builder` inside the :guilabel:`Demos` section of the `GeoServer Web Admin Interface <../../geoserver/webadmin/>`_.  
+
+An example of using the WPS Request Builder with the Split Polygon WPS process is shown below.
+Select the ``gs:splitPolygon`` process from the dropdown. The request builder will generate the necessary interface to be able to test the process, based on the parameters and outputs described in the process capabilities.
+
+.. figure:: img/request-builder.png
+
+   *Newly created process in WPS request builder*
+
+The following input polygon and line can be used to test the process:
 
 .. code-block:: sql
 
@@ -285,10 +356,8 @@ You can use the following input polygon and line to test the process:
 
    LINESTRING (1117 22, 112 18, 118 13, 115 8)
 
-.. figure:: img/request-builder.png
-
-   *Newly created process in WPS request builder*
-
+Visually, the inputs and output from this test look like:   
+   
 .. figure:: img/splitPolygon.png
 
    *Polygon split by line*

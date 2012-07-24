@@ -56,11 +56,23 @@ checkrc $? "GDAL Java bindings build"
 
 popd
 
+# The FGDB plugin doesn't build automatically like MrSID.
+pushd ogr/ogrsf_frmts/filegdb
+
+nmake -nologo -f makefile.vc plugin
+
+checkrc $? "File Geodatabase plugin build"
+
+popd
+
 rm -rf ${buildroot}/gdal
 mkdir ${buildroot}/gdal
 nmake -f makefile.vc devinstall
 # Install MrSID SDK
 cp /c/build/mrsid_sdk/lib/lti_dsdk*.dll ${buildroot}/gdal/bin
+# Install File Geodatabase DLLs
+cp ogr/ogrsf_frmts/filegdb/ogr_FileGDB.dll ${buildroot}/gdal/bin/gdalplugins
+cp /c/build/FileGDB_API/bin/*.dll ${buildroot}/gdal/bin
 # Install the Java bindings
 cp swig/java/*.dll ${buildroot}/gdal/bin
 cp swig/java/gdal.jar ${buildroot}/gdal/bin/gdal-1.9.1.jar

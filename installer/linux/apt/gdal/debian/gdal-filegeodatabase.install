@@ -1,0 +1,3 @@
+usr/lib/libFileGDBAPI.so
+usr/lib/libfgdbunixrtl.so
+usr/lib/gdalplugins/ogr_FileGDB.so

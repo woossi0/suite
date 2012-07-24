@@ -60,6 +60,14 @@ pushd shp2pgsql-ige-mac-bundle
 echo buildroot = $buildroot
 export buildroot
 jhbuild run ige-mac-bundler ShapeLoader.bundle
+# Copy the missing and libraries into place
+cp -f ../files/postgis/loader/.libs/shp2pgsql-gui ${buildroot}/pgsql/pgShapeLoader.app/Contents/MacOS/pgShapeLoader-bin
+cp -f ${buildroot}/pgsql/lib/liblwgeom-2.0.1.dylib ${buildroot}/pgsql/pgShapeLoader.app/Contents/Resources/lib/
+cp -f ${buildroot}/pgsql/lib/libgeos_c.1.dylib ${buildroot}/pgsql/pgShapeLoader.app/Contents/Resources/lib/
+cp -f ${buildroot}/pgsql/lib/libgeos-3.3.3.dylib ${buildroot}/pgsql/pgShapeLoader.app/Contents/Resources/lib/
+cp -f ${buildroot}/pgsql/lib/libproj.0.dylib ${buildroot}/pgsql/pgShapeLoader.app/Contents/Resources/lib/
+cp -f ${buildroot}/pgsql/lib/libz.1.2.6.dylib ${buildroot}/pgsql/pgShapeLoader.app/Contents/Resources/lib/
+cp -f ${HOME}/gtk/source/ige-mac-integration-0.8.6/src/.libs/libigemacintegration.0.dylib ${buildroot}/pgsql/pgShapeLoader.app/Contents/Resources/lib/
 checkrv $? "Bundle pgshapeloader"
 popd
 

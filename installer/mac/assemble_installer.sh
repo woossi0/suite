@@ -253,7 +253,16 @@ if [ -d "./build/GDAL-MrSID.pkg" ]; then
   rm -rf "./build/GDAL-MrSID.pkg"
 fi
 freeze ./gdal-mrsid.packproj
+
+# File Geodatabase Package
+if [ -d "./build/GDAL-FileGeodatabase.pkg" ]; then
+  find "./build/GDAL-FileGeodatabase.pkg" -type f -exec chmod 664 {} ';'
+  find "./build/GDAL-FileGeodatabase.pkg" -type d -exec chmod 775 {} ';'
+  rm -rf "./build/GDAL-FileGeodatabase.pkg"
+fi
+freeze ./gdal-filegeodatabase.packproj
 checkrv $? "GDAL packaging"
+
 
 #
 # Build the SDK Package
@@ -283,6 +292,8 @@ cat ./resources/suite_welcome.html.in | sed "s/@VERSION@/$suite_version/" > ./re
 cat ./suite.packproj | sed "s/@VERSION@/$suite_version/" > ./suite-ver.packproj
 mkdir suitebuild
 freeze ./suite-ver.packproj
+
+freeze ./extensions.packproj
 checkrv $? "Suite packaging"
 
 #
