@@ -112,8 +112,8 @@ make clean && make && make install
 checkrv $? "PostGIS build"
 
 # Re-Configure without ppc arch so we can link to GTK
-export CFLAGS="-O2 -arch i386 -mmacosx-version-min=10.5"
-export CXXFLAGS="-O2 -arch i386 -mmacosx-version-min=10.5"
+export CFLAGS="-O2 -arch i386 -mmacosx-version-min=10.4"
+export CXXFLAGS="-O2 -arch i386 -mmacosx-version-min=10.4"
 
 # Re-configure with GTK on the path
 jhbuild run \ 
