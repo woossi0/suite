@@ -40,8 +40,10 @@ OPTS="-Dslf4j=false -cp $CLASSPATH -Djava.library.path=/opt/opengeo/pgsql/9.1/li
 # GDAL support on Darwin/OS X requires some extra environment vars
 if [[ `uname` == 'Darwin' ]]; then
   OPTS+="  -Djava.library.path=/opt/opengeo/pgsql/9.1/lib"
-  export DYLD_LIBRARY_PATH=/opt/opengeo/pgsql/9.1/lib
-  export GDAL_DRIVER_PATH=/opt/opengeo/pgsql/9.1/lib/gdalplugins
+  base=/opt/opengeo/pgsql/9.1
+  export DYLD_LIBRARY_PATH=$base/lib
+  export GDAL_DRIVER_PATH=$base/lib/gdalplugins
+  export GDAL_DATA=$base/share/gdal
 fi
 
 # Check for PostGIS script in Linux and OSX locations
