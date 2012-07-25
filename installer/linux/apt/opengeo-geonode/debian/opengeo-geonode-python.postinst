@@ -7,8 +7,9 @@
 . /usr/share/debconf/confmodule
 
 # Load Postgres fixtures
-su postgres -c "createdb geonode"
-su postgres -c "psql -d geonode -f /var/lib/geonode/geonode.sql > /dev/null"
+su postgres -c "createdb geonode -T template_postgis"
+su postgres -c 'psql -f /var/lib/geonode/geonode.sql'
+
 
 # Re-build virtualenv locally
 virtualenv /var/lib/geonode/
@@ -33,4 +34,6 @@ sed -i -e 's:#!/.*/stage/var/lib/geonode/bin/python:#!/var/lib/geonode/bin/pytho
 
 # Setup static files
 # sed -i -e 's:/etc/geonode/media:/etc/geonode/static:g' /etc/geonode/local_settings.py
+geonode syncdb --noinput
+geonode migrate --noinput
 geonode collectstatic --noinput

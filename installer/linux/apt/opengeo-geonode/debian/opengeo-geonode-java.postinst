@@ -11,5 +11,6 @@ JAVA_OPTS='-Djava.awt.headless=true -Xmx1024m -Xms1024M -XX:MaxPermSize=256m -XX
 EOF
 
 ln -sf /etc/geonode/geonetwork/config.xml /var/lib/tomcat6/webapps/geonetwork/WEB-INF
+chown tomcat6.tomcat6 -R /var/lib/tomcat6/webapps/geonetwork
 
 service tomcat6 restart
