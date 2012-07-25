@@ -34,3 +34,11 @@ Depends: libgdal (= ${binary:Version})
 Homepage: http://www.gdal.org/gdal_utilities.html
 Description: MrSID Plugin for the Geospatial Data Abstraction Library
  A plugin for GDAL that provides read only access to MrSID files
+ 
+Package: gdal-filegeodatabase
+Section: science
+Architecture: any
+Depends: libgdal (= ${binary:Version})
+Homepage: http://www.gdal.org/gdal_utilities.html
+Description: ESRI File Geodatabase Plugin for the Geospatial Data Abstraction Library
+ A plugin for GDAL that provides access to ESRI File Geodatabases

@@ -13,8 +13,8 @@ Vcs-Browser: http://svn.debian.org/wsvn/pkg-postgresql/trunk/pgadmin3/?op=log
 Package: pgadmin3
 Architecture: any
 Depends: ${misc:Depends}, pgadmin3-data (= ${source:Version}), ${shlibs:Depends}
-Suggests: postgresql-contrib
-Recommends: pgagent, postgresql-client
+Suggests: postgresql-contrib-9.2
+Recommends: pgagent, postgresql-client-9.2
 Description: graphical administration tool for PostgreSQL
  pgAdmin III is a database design and management application for use with 
  PostgreSQL. The application can be used to manage PostgreSQL 7.3 and above

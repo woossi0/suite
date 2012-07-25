@@ -35,14 +35,6 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>styler/target/styler</directory>
-      <outputDirectory>webapps/styler</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>geoeditor/target/geoeditor</directory>
-      <outputDirectory>webapps/geoeditor</outputDirectory>
-    </fileSet>
-    <fileSet>
       <directory>geoexplorer/target/geoexplorer</directory>
       <outputDirectory>webapps/geoexplorer</outputDirectory>
       <excludes>
@@ -131,7 +123,7 @@
     </fileSet-->
     <fileSet>
       <directory>assembly/postgres-win/pgsql</directory>
-      <outputDirectory>pgsql/8.4</outputDirectory>
+      <outputDirectory>pgsql/9.1</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>assembly/pgdata</directory>

@@ -57,6 +57,10 @@
       <artifactId>gt-imageio-ext-gdal</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-ogr-jni</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.gdal</groupId>
       <artifactId>gdal</artifactId>
       <version>1.8.1</version>
@@ -76,11 +80,6 @@
     <dependency>
       <groupId>org.opengeo.geoserver</groupId>
       <artifactId>web-theme</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.opengeo</groupId>
-      <artifactId>styler</artifactId>
       <version>${project.version}</version>
     </dependency>
    <!-- Jetty test deps so that we can start GeoServer from an IDE as well -->
@@ -110,15 +109,6 @@
       <configuration>
         <warName>geoserver</warName>
         <webappDirectory>${project.build.directory}/geoserver</webappDirectory>
-        <webResources>
-          <resource>
-            <directory>../../../styler/target</directory>
-            <targetPath>www</targetPath>
-            <includes>
-              <include>styler/**</include>
-            </includes>
-          </resource>
-        </webResources>
       </configuration>
       <executions>
         <execution>
@@ -146,7 +136,7 @@
   <!-- copy the files from the config dir to the webapp dir -->
   <echo message="Copying data dir from ${configDirectory}/${configId}" />
   <copy todir="${webappSourceDirectory}/data">
-     <fileset dir="${configDirectory}/${configId}" includes="**/**" excludes="data/**/*"/>
+     <fileset dir="${configDirectory}/${configId}" includes="**/**"/>
   </copy>
               </tasks>
             </configuration>

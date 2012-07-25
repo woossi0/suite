@@ -18,7 +18,7 @@ if [ -z "$CONTINUE" ]; then
   exit 0
 fi
 
-old_status=$( echo "`service postgresql status`" | awk '{print $NF}' )
+old_status=$( echo "`service postgresql-9.2 status`" | awk '{print $NF}' )
 check_pg
 
 HEADLESS=`check_headless $1`
@@ -70,5 +70,5 @@ fi
 set -e
 
 if [ $old_status == "stopped" ]; then
-  service postgresql stop
+  service postgresql-9.2 stop
 fi

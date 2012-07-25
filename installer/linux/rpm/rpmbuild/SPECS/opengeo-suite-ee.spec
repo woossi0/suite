@@ -1,12 +1,12 @@
 Name: opengeo-suite-ee
-Version: 2.5
+Version: 3.0
 Release: 1
 Summary: OpenGeo Suite Enterprise Edition.
 Group: Applications/Engineering
 License: see http://geoserver.org
 Requires(post): bash
 Requires(preun): bash
-Requires: opengeo-suite >= 2.5
+Requires: opengeo-suite >= 3.0
 
 %if 0%{?centos} == 6
 %define TOMCAT tomcat6

@@ -3,30 +3,30 @@ Section: misc
 Priority: optional
 Maintainer: Debian GIS Project <pkg-grass-devel@lists.alioth.debian.org>
 Uploaders: Stephen Frost <sfrost@debian.org>, Francesco Paolo Lovergine <frankie@debian.org>
-Build-Depends: debhelper (>= 7), autotools-dev, flex, bison, postgresql-server-dev-8.4,
+Build-Depends: debhelper (>= 7), autotools-dev, flex, bison, postgresql-server-dev-9.2,
  libgeos-dev (>= 3.1.1), libproj-dev (>= 4.5.0), libssl-dev, xsltproc, docbook, docbook-xsl, libpg-java, 
  default-jdk, fastjar, libjts-java (>= 1.7), dpatch, imagemagick, libcunit1-dev, dblatex, libxml2-dev,
- libgtk2.0-dev
+ libgtk2.0-dev, libgdal-dev
 Standards-Version: 3.8.4
 Homepage: http://postgis.refractions.net/
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-grass/packages/postgis/
 Vcs-Svn: svn://svn.debian.org/pkg-grass/packages/postgis/
 
-Package: postgresql-8.4-postgis
+Package: postgresql-9.2-postgis2
 Architecture: any
-Depends: ${shlibs:Depends}, postgis, postgresql-8.4, ${misc:Depends}
+Depends: ${shlibs:Depends}, postgresql-9.2, libgeos-c1, libgdal, ${misc:Depends}
 Conflicts: postgis (<< 1.2.1)
-Description: geographic objects support for PostgreSQL 8.4
+Description: geographic objects support for PostgreSQL 9.2
  PostGIS adds support for geographic objects to the PostgreSQL object-relational
  database. In effect, PostGIS "spatially enables" the PostgreSQL server, 
  allowing it to be used as a backend spatial database for geographic information
  systems (GIS), much like ESRI's SDE or Oracle's Spatial extension. PostGIS
  follows the OpenGIS "Simple Features Specification for SQL".
  .
- This package supports PostgreSQL 8.4.
+ This package supports PostgreSQL 9.2.
 
-Package: postgis
-Suggests: postgresql-8.4-postgis
+Package: postgis2
+Suggests: postgresql-9.2-postgis
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Architecture: any
 Description: geographic objects support for PostgreSQL -- common files
@@ -39,11 +39,11 @@ Description: geographic objects support for PostgreSQL -- common files
  This package contains the PostGIS userland binaries, common files and
  documentation.
 
-Package: libpostgis-java
+Package: libpostgis2-java
 Architecture: all
 Section: java
 Depends: libpg-java
-Suggests: postgresql-8.4-postgis, ${misc:Depends}
+Suggests: postgresql-9.2-postgis, ${misc:Depends}
 Conflicts: libpostgis-jdbc, libpostgisjava, postgresql-postgis-java
 Replaces: libpostgis-jdbc, libpostgisjava, postgresql-postgis-java
 Description: geographic objects support for PostgreSQL -- JDBC support
@@ -55,7 +55,7 @@ Description: geographic objects support for PostgreSQL -- JDBC support
  .
  This package contains JDBC support for PostGIS.
 
-Package: opengeo-postgis-shapeloader
+Package: opengeo-postgis2-shapeloader
 Architecture: any
 Section: database
 Depends: libgtk2.0-0, libpq5,  ${shlibs:Depends}, ${misc:Depends}

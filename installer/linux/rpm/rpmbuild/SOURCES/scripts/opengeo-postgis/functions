@@ -1,5 +1,5 @@
-PG_DATA=/var/lib/pgsql/data
-PG_CONTRIB=/usr/share/pgsql/contrib
+PG_DATA=/var/lib/pgsql/9.2/data
+PG_CONTRIB=/usr/pgsql-9.2/share/contrib
 OG_POSTGIS=/usr/share/opengeo-postgis
 
 check_headless() {
@@ -18,18 +18,23 @@ check_root () {
 }
 
 function check_pg() {
-  local status=$( echo "`service postgresql status`" | awk '{print $NF}' )
+  local status=$( echo "`service postgresql-9.2 status`" | awk '{print $NF}' )
   if [ $status != "running..." ]; then
+       # Stop any running postgres instances
+       for DB in `ls /etc/init.d/postgres*`
+       do
+        $DB stop 
+       done
+  
      #attempt to start postgresql, first check if we need to init db
-     if [ -e $PG_DATA ] && [ $( ls $PG_DATA | wc -l ) == 0 ]; then
+     if [ $( ls $PG_DATA | wc -l ) == 0 ]; then
         #init db
-        service postgresql initdb
+        service postgresql-9.2 initdb
      fi
-
-     service postgresql start
+     service postgresql-9.2 start
   fi
 
-  status=$( echo "`service postgresql status`" | awk '{print $NF}' )
+  status=$( echo "`service postgresql-9.2 status`" | awk '{print $NF}' )
   if [ $status != "running..." ]; then
      echo "Could not start postgresql. Check above for the error and run /usr/share/opengeo-postgis/setup-postgis.sh once postgresql has been started."
      exit 1

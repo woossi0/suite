@@ -18,7 +18,7 @@ id=${REVISION}
 pro=$(echo $PROFILE|sed 's/\(.\{1,\}\)/\1-/g')
 
 dashboard_version=1.0.0
-pgsql_version=8.4
+pgsql_version=9.2
 
 base_url=http://suite.opengeo.org/builds/${DIST_PATH}/${REVISION}
 dashboard_url=$base_url/opengeosuite-${pro}${id}-dashboard-osx.zip
@@ -26,7 +26,6 @@ suite_url=$base_url/opengeosuite-${pro}${id}-mac.zip
 ext_url=${base_url}/opengeosuite-${id}-ext.zip
 sdk_url=${base_url}/opengeosuite-${id}-sdk.zip
 pgsql_url=http://suite.opengeo.org/osxbuilds/postgis-osx.zip
-gdal_url=http://suite.opengeo.org/osxbuilds/gdal-osx.zip
 
 export PATH=$PATH:/usr/local/bin
 
@@ -240,12 +239,6 @@ checkrv $? "Ext packaging"
 #
 # Build the GDAL Package
 #
-getfile $gdal_url binaries/gdal.zip
-if [ -d binaries/gdal ]; then
-  rm -rf binaries/gdal
-fi
-unzip -o binaries/gdal.zip -d binaries/gdal
-checkrv $? "GDAL unzip"
 if [ -d "./build/GDAL.pkg" ]; then
   find "./build/GDAL.pkg" -type f -exec chmod 664 {} ';'
   find "./build/GDAL.pkg" -type d -exec chmod 775 {} ';'
@@ -260,7 +253,16 @@ if [ -d "./build/GDAL-MrSID.pkg" ]; then
   rm -rf "./build/GDAL-MrSID.pkg"
 fi
 freeze ./gdal-mrsid.packproj
+
+# File Geodatabase Package
+if [ -d "./build/GDAL-FileGeodatabase.pkg" ]; then
+  find "./build/GDAL-FileGeodatabase.pkg" -type f -exec chmod 664 {} ';'
+  find "./build/GDAL-FileGeodatabase.pkg" -type d -exec chmod 775 {} ';'
+  rm -rf "./build/GDAL-FileGeodatabase.pkg"
+fi
+freeze ./gdal-filegeodatabase.packproj
 checkrv $? "GDAL packaging"
+
 
 #
 # Build the SDK Package
@@ -290,6 +292,8 @@ cat ./resources/suite_welcome.html.in | sed "s/@VERSION@/$suite_version/" > ./re
 cat ./suite.packproj | sed "s/@VERSION@/$suite_version/" > ./suite-ver.packproj
 mkdir suitebuild
 freeze ./suite-ver.packproj
+
+freeze ./extensions.packproj
 checkrv $? "Suite packaging"
 
 #
@@ -300,9 +304,10 @@ DMGTMP="tmp-${VOL}.dmg"
 DMGFINAL="OpenGeoSuite-${pro}r$svn_revision.dmg"
 BACKGROUND="dmg_background.tiff"
 APP="OpenGeo Suite.mpkg"
+UPGRADE="Suite 2.x to 3.x upgrade"
 
 # DMG window dimensions
-dmg_width=640
+dmg_width=875
 dmg_height=314
 dmg_topleft_x=200
 dmg_topleft_y=200
@@ -344,6 +349,13 @@ checkrv $? "Suite make background dir"
 cp -v resources/${BACKGROUND} "/Volumes/${VOL}/.background/${BACKGROUND}"
 checkrv $? "Suite copy background img"
 
+# Copy the upgrade scripts into place
+mkdir "/Volumes/${VOL}/${UPGRADE}"
+checkrv $? "Created upgrade dir"
+cp -v ../common/pgupgrade/postgis_upgrade.pl "/Volumes/${VOL}/${UPGRADE}"
+cp -v binaries/pgsql/share/postgresql/contrib/postgis-2.0/postgis_restore.pl "/Volumes/${VOL}/${UPGRADE}"
+checkrv $? "Copied upgrade files into place"
+
 # Set the background image and icon location
 echo '
    tell application "Finder"
@@ -359,6 +371,7 @@ echo '
            set background picture of theViewOptions to file ".background:'${BACKGROUND}'"
            set position of item "'${APP}'" of container window to {325, 130}
            set position of item "'${README}'" of container window to {480, 130}
+           set position of item "'${UPGRADE}'" of container window to {635, 130}
            close
            open
            update without registering applications

@@ -9,6 +9,8 @@ VER = $(shell cat VERSION)
 # the MRSID_ROOT variable.
 MRSID_ROOT=$(CURDIR)/Raster_DSDK
 
+FileGDB_API=/opt/FileGDB_API
+
 debian/control:
 	@sed -e 's/@VERSION@/$(VER)/' debian/control.in > $@
 
@@ -33,6 +35,13 @@ build: config.status
 	-Ifrmts/gtiff/libgeotiff/ -Igcore -Iogr -Iport -I$(MRSID_ROOT)/include \
 	-L$(MRSID_ROOT)/lib -L.libs \
 	-lgdal -lltidsdk -lpthread -ldl
+	
+	# File Geodatabase Plugin
+	LD_LIBRARY_PATH=$(FileGDB_API)/lib/ \
+	g++ -g ogr/ogrsf_frmts/filegdb/*.cpp -shared -o ogr_FileGDB.so \
+	-O2 -DOGR_ENABLED -D_REENTRANT -fPIC -DPIC \
+	-Igcore -Iogr -Iport -I$(FileGDB_API)/include \
+	-L.libs -L$(FileGDB_API)/lib -lgdal -lpthread -ldl -lFileGDBAPI
 
 install:
 	dh_testdir
@@ -46,6 +55,10 @@ install:
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/gdalplugins/
 	cp $(CURDIR)/gdal_MrSID.so $(CURDIR)/debian/tmp/usr/lib/gdalplugins/
 	cp $(MRSID_ROOT)/lib/libltidsdk.so* $(CURDIR)/debian/tmp/usr/lib/
+	# File Geodatabase
+	cp $(CURDIR)/ogr_FileGDB.so $(CURDIR)/debian/tmp/usr/lib/gdalplugins/
+	cp $(FileGDB_API)/lib/*.so $(CURDIR)/debian/tmp/usr/lib/
+	
 	dh_install -s --sourcedir=debian/tmp
 clean:
 	dh_testdir

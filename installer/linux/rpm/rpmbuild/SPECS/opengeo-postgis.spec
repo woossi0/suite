@@ -6,7 +6,7 @@ Group: Applications/Database
 License: see http://opengeo.org
 Requires(post): bash
 Requires(preun): bash
-Requires: geos >= 3.3.3, postgis >= 2.0.0, pgadmin3
+Requires: geos >= 3.3.3, postgis >= 2.0.0, pgadmin3_92
 Requires: postgresql92, postgresql92-contrib
 
 %define _rpmdir ../

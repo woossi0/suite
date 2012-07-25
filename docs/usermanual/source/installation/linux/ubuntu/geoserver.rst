@@ -3,14 +3,15 @@
 Installing GeoServer on Ubuntu
 ==============================
 
-The easiest way to install and set up GeoServer is by :ref:`installing the full OpenGeo Suite <installation.linux.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
+The easiest way to install and set up GeoServer is by :ref:`installing the full OpenGeo Suite <installation.linux.ubuntu.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
 
-This page will describe how to install GeoServer on Ubuntu 10.04 (Lucid).  Earlier versions of Ubuntu are not supported at this time.
+This page will describe how to install GeoServer on Ubuntu 10.04 (Lucid).  Later versions may work as well, but are not well-tested at this time.
+
 
 Access the OpenGeo repository
 -----------------------------
 
-OpenGeo provides a repository for packages in APT (Debian) format.  To access this repository, you need to first import the OpenGeo GPG key in to your apt registry:
+OpenGeo provides a repository for packages in APT (Debian/Ubuntu) format.  To access this repository, you need to first import the OpenGeo GPG key in to your apt registry:
 
 .. note:: You will need to run these commands on an account with root access.
 
@@ -22,7 +23,7 @@ Once added, you can add the OpenGeo APT repository (http://apt.opengeo.org) to y
 
 .. code-block:: bash
 
-   echo "deb http://apt.opengeo.org/ubuntu lucid main" >> /etc/apt/sources.list
+   echo "deb http://apt.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
       
 Now update APT to pull in your changes:
 
@@ -57,6 +58,11 @@ When completed, GeoServer will be installed as a servlet inside the local versio
 
 This will load the Web Administration Interface.  Most management of GeoServer functionality can be done from this interface.
 
-.. note:: The username and password for the GeoServer administrator account is **admin** / **geoserver**
+.. note:: The default username and password for the GeoServer administrator account is **admin** / **geoserver**
 
 For more information about GeoServer, please see the `GeoServer Documentation <http://suite.opengeo.org/opengeo-docs/geoserver/>`_
+
+Upgrading   
+---------
+
+See :ref:`Upgrading the OpenGeo Suite <installation.linux.ubuntu.suite.upgrade>` for general information about upgrading. In particular users who wish to upgrade to GeoServer 2.2 should follow the steps outlined in :ref:`installation.linux.ubuntu.suite.upgrade.v3`.

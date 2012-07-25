@@ -131,9 +131,4 @@ start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer"
 # start the build of the Windows installer (ee)
 start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer" ee
 
-# start the build of the Linux packages
-python $WORKSPACE/repo/build/main/suite/build_linux.py
-
-
 echo "Done."
-

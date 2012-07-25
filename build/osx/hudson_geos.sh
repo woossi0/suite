@@ -40,10 +40,10 @@ else
   pushd $srcdir
 fi
 
-export CXX=g++-4.0 
-export CC=gcc-4.0 
-export CXXFLAGS="-O2 -arch i386 -arch ppc -mmacosx-version-min=10.4" 
-export CFLAGS="-O2 -arch i386 -arch ppc -mmacosx-version-min=10.4" 
+export CXX=g++-4.2
+export CC=gcc-4.2
+export CXXFLAGS="-O2 -arch i386 -arch x86_64 -mmacosx-version-min=10.5"
+export CFLAGS="-O2 -arch i386 -arch x86_64 -mmacosx-version-min=10.5"
 ./configure --prefix=${buildroot}/geos --disable-dependency-tracking
 make clean && make all
 checkrv $? "GEOS build"
