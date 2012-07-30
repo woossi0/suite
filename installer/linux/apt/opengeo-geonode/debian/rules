@@ -24,24 +24,29 @@ install:
 	dh_testroot
 	dh_prep
 	dh_installdirs
+	mkdir -p $(CURDIR)/debian/opengeo-geonode-java/etc/geonode/geonetwork/
 	mkdir -p $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/
 	mkdir -p $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib
 	mkdir -p $(CURDIR)/debian/opengeo-geonode-java/usr/share/opengeo-suite-data/geoserver_data/workspaces
+	
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geonetwork $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/
+	unzip $(CURDIR)/src/geoserver-geonode-ext/target/geonode-geoserver-ext-0.1-SNAPSHOT-geoserver-plugin.zip -d $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/
+	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/data/workspaces/geonode $(CURDIR)/debian/opengeo-geonode-java/usr/share/opengeo-suite-data/geoserver_data/workspaces/.
+	cp -p $(CURDIR)/stage/etc/geonode/geonetwork/config.xml $(CURDIR)/debian/opengeo-geonode-java/etc/geonode/geonetwork/
+
 	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/var/lib/geonode/
 	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/var/www/geonode
 	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/usr/bin/
 	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/usr/share/geonode
 	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/etc/geonode
 	mkdir -p $(CURDIR)/debian/opengeo-geonode-python/var/log/geonode
-	mkdir -p $(CURDIR)/debian/opengeo-geonode/etc/apache2/sites-available
-	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geonetwork $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/
-	unzip $(CURDIR)/src/geoserver-geonode-ext/target/geonode-geoserver-ext-0.1-SNAPSHOT-geoserver-plugin.zip -d $(CURDIR)/debian/opengeo-geonode-java/var/lib/tomcat6/webapps/geoserver/WEB-INF/lib/
-	cp -rp $(CURDIR)/stage/var/lib/tomcat6/webapps/geoserver/data/workspaces/geonode $(CURDIR)/debian/opengeo-geonode-java/usr/share/opengeo-suite-data/geoserver_data/workspaces/.
+	mkdir -p $(CURDIR)/debian/opengeo-geonode/etc/apache2/sites-available	
 	cp -rp $(CURDIR)/stage/var/lib/geonode/* $(CURDIR)/debian/opengeo-geonode-python/var/lib/geonode/.
 	cp -rp $(CURDIR)/stage/var/www/geonode/* $(CURDIR)/debian/opengeo-geonode-python/var/www/geonode/.
 	cp -rp $(CURDIR)/stage/usr/bin/* $(CURDIR)/debian/opengeo-geonode-python/usr/bin/.
 	cp -rp $(CURDIR)/stage/usr/share/geonode/* $(CURDIR)/debian/opengeo-geonode-python/usr/share/geonode/.
 	cp -rp $(CURDIR)/stage/etc/geonode/* $(CURDIR)/debian/opengeo-geonode-python/etc/geonode/.
+	rm -rf $(CURDIR)/debian/opengeo-geonode-python/etc/geonode/geonetwork/
 	cp -rp $(CURDIR)/stage/var/log/geonode/* $(CURDIR)/debian/opengeo-geonode-python/var/log/geonode/.
 	cp -rp $(CURDIR)/stage/etc/apache2/sites-available/* $(CURDIR)/debian/opengeo-geonode/etc/apache2/sites-available/.
 	cp -rp $(CURDIR)/debian/static/geonode.sql $(CURDIR)/debian/opengeo-geonode-python/var/lib/geonode/.

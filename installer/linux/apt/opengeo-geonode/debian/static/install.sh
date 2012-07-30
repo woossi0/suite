@@ -33,7 +33,6 @@ function setup_directories() {
 	mkdir -p $GEONODE_BIN
 	mkdir -p $GEONODE_ETC
 	mkdir -p $GEONODE_ETC/geonetwork
-	mkdir -p $GEONODE_ETC/geoserver
 	mkdir -p $GEONODE_ETC/media
 	mkdir -p $GEONODE_ETC/templates
 	mkdir -p $GEONODE_SHARE
@@ -80,7 +79,6 @@ sed -i "s/GEONODE_DATABASE_PASSWORD/$psqlpass/g" $GEONODE_ETC/geonetwork/config.
 
 function setup_tomcat_every_time() {
 rm -rf $TOMCAT_WEBAPPS/geonetwork/WEB-INF/config.xml
-ln -sf $GEONODE_ETC/geonetwork/config.xml $TOMCAT_WEBAPPS/geonetwork/WEB-INF/config.xml
 #rm -rf $TOMCAT_WEBAPPS/geoserver/WEB-INF/web.xml
 #cp -rp $GEONODE_ETC/geoserver/web.xml $TOMCAT_WEBAPPS/geoserver/WEB-INF/web.xml
 
