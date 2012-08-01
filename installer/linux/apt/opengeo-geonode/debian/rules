@@ -50,6 +50,7 @@ install:
 	cp -rp $(CURDIR)/stage/var/log/geonode/* $(CURDIR)/debian/opengeo-geonode-python/var/log/geonode/.
 	cp -rp $(CURDIR)/stage/etc/apache2/sites-available/* $(CURDIR)/debian/opengeo-geonode/etc/apache2/sites-available/.
 	cp -rp $(CURDIR)/debian/static/geonode.sql $(CURDIR)/debian/opengeo-geonode-python/var/lib/geonode/.
+	cp -p $(CURDIR)/debian/static/geonode.command $(CURDIR)/debian/opengeo-geonode-python/usr/bin/geonode
 
 binary-indep: build install
 
