@@ -17,7 +17,7 @@ build:
 	tar xvf $(CURDIR)/shared/GeoNode-1.2-SUITE-SNAPSHOT.tar.gz
 	cp $(CURDIR)/debian/static/install.sh $(CURDIR)/GeoNode-1.2-SUITE-SNAPSHOT/.
 	cp $(CURDIR)/debian/static/config_ubuntu.sh $(CURDIR)/GeoNode-1.2-SUITE-SNAPSHOT/support/.
-	cp $(CURDIR)/debian/static/geonode.command $(CURDIR)/GeoNode-1.2-SUITE-SNAPSHOT/support/.
+	cp $(CURDIR)/debian/static/geonode.command $(CURDIR)/GeoNode-1.2-SUITE-SNAPSHOT/support/geonode.binary
 	cp $(CURDIR)/debian/static/geonetwork.patch $(CURDIR)/GeoNode-1.2-SUITE-SNAPSHOT/support/.
 	cd $(CURDIR)/GeoNode-1.2-SUITE-SNAPSHOT; fakeroot ./install.sh ./support/config_ubuntu.sh
 
@@ -52,7 +52,6 @@ install:
 	cp -rp $(CURDIR)/stage/var/log/geonode/* $(CURDIR)/debian/opengeo-geonode-python/var/log/geonode/.
 	cp -rp $(CURDIR)/stage/etc/apache2/sites-available/* $(CURDIR)/debian/opengeo-geonode/etc/apache2/sites-available/.
 	cp -rp $(CURDIR)/debian/static/geonode.sql $(CURDIR)/debian/opengeo-geonode-python/var/lib/geonode/.
-
 
 binary-indep: build install
 
