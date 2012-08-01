@@ -5,6 +5,9 @@
 
 . /usr/share/debconf/confmodule
 
+# Setup GeoNetwork database
+su postgres -c 'createdb geonetwork -T template_postgis -O geonode'
+
 # Setup tomcat startup options
 cat >> /etc/default/tomcat6 <<- EOF 
 JAVA_OPTS='-Djava.awt.headless=true -Xmx1024m -Xms1024M -XX:MaxPermSize=256m -XX:CompileCommand=exclude,net/sf/saxon/event/ReceivingContentHandler.startElement'
