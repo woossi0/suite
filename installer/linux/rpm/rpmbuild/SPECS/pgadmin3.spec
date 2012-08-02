@@ -54,7 +54,7 @@ for f in configure{,.ac} ; do touch -r $f.stamp $f ; done
 %build
 export LIBS="-lwx_gtk2u_core-2.8"
 ./configure --disable-debug --disable-dependency-tracking --with-wx-version=2.8 --with-wx=/usr --with-pgsql=%{pginstdir} --prefix=%{pginstdir}
-make %{?_smp_mflags} all
+make all
 
 %install
 rm -rf %{buildroot}
