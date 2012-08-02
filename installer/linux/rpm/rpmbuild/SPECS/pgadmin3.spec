@@ -4,7 +4,7 @@
 
 Summary:	Graphical client for PostgreSQL
 Name:		%{sname}_%{pgmajorversion}
-Version:	1.14.2
+Version:	1.16.0beta3
 Release:	0%{?dist}
 License:	BSD
 Group:		Applications/Databases
@@ -97,6 +97,9 @@ unlink %{_bindir}/%{sname}
 %doc docs/*
 
 %changelog
+* Thu Aug 2 2012 Michael Weisman <mweisman@opengeo.org> - 1.16.0-beta1
+-  Bump version to 1.16 beta for better support with Postgres 9.2
+
 * Tue Nov 15 2011 Devrim GÜNDÜZ <devrim@gunduz.org> - 1.14.0-3
 -  Fix paths in desktop file paths, per Stephen Blake. Also bump up the
   alternatives version..
