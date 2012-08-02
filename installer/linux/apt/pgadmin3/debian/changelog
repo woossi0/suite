@@ -1,3 +1,10 @@
+pgadmin3 (1.16.0-beta1build1+opengeo) lucid-proposed; urgency=low
+
+  * Bump version for better Postgres 9.2 support
+
+ -- OpenGeo <inqiry@opengeo.org>  Thu, 2 Aug 2012 15:57:13 -0800
+
+
 pgadmin3 (1.10.2-1build1+opengeo) lucid-proposed; urgency=low
 
   * OpenGeo specific branding and settings.ini

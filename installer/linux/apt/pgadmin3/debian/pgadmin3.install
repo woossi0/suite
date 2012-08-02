@@ -1,4 +1,5 @@
 debian/tmp/usr/bin/pgadmin3
+debian/tmp/usr/bin/png2c
 debian/pgadmin3.xpm usr/share/pixmaps
 debian/pgadmin3.svg usr/share/pixmaps
 debian/pgadmin3.desktop	usr/share/applications
@@ -6,3 +7,5 @@ debian/tmp/usr/share/pgadmin3/settings.ini
 debian/tmp/usr/share/pgadmin3/plugins.ini
 debian/tmp/usr/share/pgadmin3/branding/branding.ini
 debian/tmp/usr/share/pgadmin3/branding/pgadmin_splash.gif
+debian/tmp/usr/share/pgadmin3/plugins.d/plugins.ini
+

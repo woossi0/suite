@@ -4,12 +4,12 @@
 
 build_info
 
-VERSION=1.10.2
+VERSION=1.16.0-beta1
 PGADMIN=pgadmin3-$VERSION
 PGADMIN_POSTGIS=opengeosuite-$REV-pgadmin-postgis.zip
 
 # grab files
-get_file http://data.opengeo.org/suite/$PGADMIN.tar.gz
+get_file ftp://ftp.postgresql.org/pub/pgadmin3/release/v$VERSION/src/$PGADMIN.tar.gz
 get_file $BUILDS/$DIST_PATH/$REV/$PGADMIN_POSTGIS
 
 # unpack files
