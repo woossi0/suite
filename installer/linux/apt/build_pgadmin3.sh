@@ -4,7 +4,7 @@
 
 build_info
 
-VERSION=1.16.0-beta1
+VERSION=1.16.0-beta3
 PGADMIN=pgadmin3-$VERSION
 PGADMIN_POSTGIS=opengeosuite-$REV-pgadmin-postgis.zip
 

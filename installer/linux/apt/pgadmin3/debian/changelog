@@ -1,4 +1,4 @@
-pgadmin3 (1.16.0-beta1build1+opengeo) lucid-proposed; urgency=low
+pgadmin3 (1.16.0-beta3build1+opengeo) lucid-proposed; urgency=low
 
   * Bump version for better Postgres 9.2 support
 
