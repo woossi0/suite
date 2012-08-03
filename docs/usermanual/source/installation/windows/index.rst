@@ -23,7 +23,7 @@ New Installation
 
 .. warning:: If upgrading from version 2.x, please see the section on :ref:`installation.windows.upgrade.v3`.
 
-#. Double click on the :file:`OpenGeoSuite.exe` file.
+#. Double-click the :file:`OpenGeoSuite.exe` file.
 
 #. At the **Welcome** screen, click :guilabel:`Next`.
 
