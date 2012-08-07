@@ -25,7 +25,7 @@ New Installation
 
 #. Double-click the :file:`OpenGeoSuite.exe` file.
 
-#. At the **Welcome** screen, click :guilabel:`Next`.
+#. At the **welcome** screen, click :guilabel:`Next`.
 
    .. figure:: img/welcome.png
       :align: center
