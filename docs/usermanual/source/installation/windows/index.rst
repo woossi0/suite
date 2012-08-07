@@ -3,7 +3,7 @@
 Installing the OpenGeo Suite for Windows
 ========================================
 
-This document will discuss how to install the OpenGeo Suite for Windows.
+This document describes how to install the OpenGeo Suite for Windows.
 
 Prerequisites
 -------------
@@ -25,7 +25,7 @@ New Installation
 
 #. Double-click the :file:`OpenGeoSuite.exe` file.
 
-#. At the **welcome** screen, click :guilabel:`Next`.
+#. At the **Welcome** screen, click :guilabel:`Next`.
 
    .. figure:: img/welcome.png
       :align: center
