@@ -45,9 +45,9 @@ copyright = u'2011 OpenGeo'
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = '1.2.2'
+version = '1.2.5'
 # The full version, including alpha/beta/rc tags.
-release = '1.2.2'
+release = '1.2.5'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
