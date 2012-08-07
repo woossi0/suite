@@ -22,7 +22,14 @@
       <directory>docs/install/linux/target/latex</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>README-linux.pdf</include>
+        <include>README-ubuntu.pdf</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>docs/install/linux/target/latex</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>README-centos.pdf</include>
       </includes>
     </fileSet>
   </fileSets>

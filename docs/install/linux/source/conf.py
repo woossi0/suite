@@ -187,7 +187,9 @@ htmlhelp_basename = 'OpenGeoSuiteInstallationdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('README-linux', 'README-linux.tex', u'OpenGeo Suite for Linux',
+  ('ubuntu/suite', 'README-ubuntu.tex', u'OpenGeo Suite for Linux',
+   u'OpenGeo', 'howto'),
+   ('centos/suite', 'README-centos.tex', u'OpenGeo Suite for Linux',
    u'OpenGeo', 'howto'),
 ]
 
