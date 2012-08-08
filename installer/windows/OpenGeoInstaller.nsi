@@ -70,6 +70,8 @@ Var SDECheckBox
 Var SDECheckBoxPrior
 Var OracleCheckBox
 Var OracleCheckBoxPrior
+Var MSSQLCheckBox
+Var MSSQLCheckBoxPrior
 Var MrSIDCheckBox
 Var MrSIDCheckBoxPrior
 
@@ -176,6 +178,7 @@ Function .onInit
   ; Init vars
   StrCpy $SDECheckBoxPrior 0
   StrCpy $OracleCheckBoxPrior 0
+  StrCpy $MSSQLCheckBoxPrior 0
   StrCpy $MrSIDCheckBoxPrior 0
 
   IfSilent SilentSkip
@@ -609,6 +612,14 @@ SectionGroup "Extensions" SectionGSExt
     File /a "${SOURCEPATHROOT}\extension\oracle\*.*"
 
   SectionEnd
+
+  Section /o "Microsoft SQL Server" SectionGSMSSQL
+
+    SetOutPath "$INSTDIR\webapps\geoserver\WEB-INF\lib"
+    File /a "${SOURCEPATHROOT}\extension\sqlserver\*.*"
+
+  SectionEnd
+
   
   Section /o "MrSID" SectionGSMrSID
 
@@ -634,9 +645,18 @@ Function .onSelChange
 
   SectionGetFlags ${SectionGSOracle} $OracleCheckBox
 
-  StrCmp $OracleCheckBox 1 0 MrSID
-    StrCmp $OracleCheckBoxPrior 0 0 MrSID
+  StrCmp $OracleCheckBox 1 0 MSSQL
+    StrCmp $OracleCheckBoxPrior 0 0 MSSQL
       MessageBox MB_ICONEXCLAMATION|MB_OK "You have elected to install the optional Oracle Spatial extension.  In order for this functionality to be activated, the Oracle JDBC driver will need to be manually copied from your Oracle installation.  The file required is:$\r$\n$\r$\n     ojdbc*.jar$\r$\n$\r$\nThis file must be copied to the following folder:$\r$\n$\r$\n     $INSTDIR\webapps\geoserver\WEB-INF\lib"
+
+  MSSQL:
+
+  SectionGetFlags ${SectionGSMSSQL} $MSSQLCheckBox
+
+  StrCmp $MSSQLCheckBox 1 0 MrSID
+    StrCmp $MSSQLCheckBoxPrior 0 0 MrSID
+      MessageBox MB_ICONEXCLAMATION|MB_OK "You have elected to install the optional Microsoft SQL Server extension.  In order for this functionality to be activated, the Microsoft JDBC Driver for SQL Server will need to be manually copied from your Microsoft JDBC Driver for SQL Server installation.  The files required are:$\r$\n$\r$\n     sqljdbc4.jar, sqljdbc_xa.dll, and sqljdbc_auth.dll$\r$\n$\r$\nThe JDBC jar must be copied to the following folder:$\r$\n$\r$\n     $INSTDIR\webapps\geoserver\WEB-INF\lib$\r$\n$\r$\nThe dlls should be copied to:$\r$\n$\r$\n     C:\Windows\System32"
+
 
   MrSID:
   
@@ -651,6 +671,7 @@ Function .onSelChange
   ; This is to set a flag so both displays don't show at once
   StrCpy $SDECheckBoxPrior $SDECheckBox 
   StrCpy $OracleCheckBoxPrior $OracleCheckBox
+  StrCpy $MSSQLCheckBoxPrior $MSSQLCheckBox
   StrCpy $MrSIDCheckBoxPrior $MrSIDCheckBox
 
 FunctionEnd
@@ -851,6 +872,7 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGSExt} "Includes GeoServer Extensions."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGSArcSDE} "Adds support for ArcSDE databases.  Requires additional ArcSDE files."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGSOracle} "Adds support for Oracle databases.  Requires additional Oracle files."
+  !insertmacro MUI_DESCRIPTION_TEXT ${SectionGSMSSQL} "Adds support for Microsoft SQL Server databases.  Requires additional Microsoft JDBC Driver for SQL Server files."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGSMrSID} "Installs support for MrSID Datastores"
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGWC} "Includes GeoWebCache, a tile cache server."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGX} "Installs GeoExplorer, a graphical map composer."
