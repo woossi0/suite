@@ -54,6 +54,14 @@ fi
 # extract the revision number
 revision=`get_rev .`
 
+gs_externals="geoserver/externals"
+gs_rev=`get_submodule_rev $gs_externals/geoserver`
+gs_branch=`get_submodule_branch $gs_externals/geoserver`
+gt_rev=`get_submodule_rev $gs_externals/geotools`
+gt_branch=`get_submodule_branch $gs_externals/geotools`
+gwc_rev=`get_submodule_rev $gs_externals/geowebcache`
+gwc_branch=`get_submodule_branch $gs_externals/geowebcache`
+
 # only use first seven chars
 revision=${revision:0:7}
 
@@ -67,7 +75,7 @@ fi
 echo "exporting artifacts to: $dist"
 
 # perform a full build
-$MVN -s $MVN_SETTINGS -Dfull -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS -Dbuild.revision=$revision -Dbuild.date=$BUILD_ID $BUILD_FLAGS clean install
+$MVN -s $MVN_SETTINGS -Dfull -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS -Dbuild.revision=$revision -Dbuild.date=$BUILD_ID -Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev -D$BUILD_FLAGS clean install
 checkrv $? "maven install"
 
 $MVN -o -s $MVN_SETTINGS assembly:attached -Dbuild.revision=$revision
