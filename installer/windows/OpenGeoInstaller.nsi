@@ -587,6 +587,7 @@ Section "GDAL" SectionGDAL
   File /r "${SOURCEPATHROOT}\jre\bin\ogrjni.dll"
   File /r "${SOURCEPATHROOT}\jre\bin\osrjni.dll"
   File /r "${SOURCEPATHROOT}\webapps\geoserver\WEB-INF\lib\gdal-1.9.1.jar"
+  File /r "${SOURCEPATHROOT}\jre\data"
   
   ; We need the MSVCRT 2010 library since GDAL needs to be built with
   ; Visual Studio on Windows.
