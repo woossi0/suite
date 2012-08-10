@@ -13,11 +13,10 @@
   </wicket:fragment>
   
   <!-- The fragment for the common links -->
-  <wicket:fragment wicket:id="newpagelink">
-    <a target="_blank" wicket:id="link"></a>
-  </wicket:fragment>
   <wicket:fragment wicket:id="exlink">
-    <a wicket:id="link"></a>
+    <select onchange="void window.open(arguments[0].target.value, '_self')">
+      <option wicket:id="link"></option>
+    </select>
   </wicket:fragment>
 </wicket:extend>
 </body>

@@ -35,17 +35,20 @@ public class OpenGeoPreviewProvider extends GeoServerDataProvider<OpenGeoPreview
     public static final Property<OpenGeoPreviewLayer> KEYWORDS = 
         new BeanProperty<OpenGeoPreviewLayer>("keywords", "keywords", false);
 
-    public static final Property<OpenGeoPreviewLayer> OL = 
-        new PropertyPlaceholder<OpenGeoPreviewLayer>("");
+//    public static final Property<OpenGeoPreviewLayer> OL = 
+//        new PropertyPlaceholder<OpenGeoPreviewLayer>("");
+//
+//    public static final Property<OpenGeoPreviewLayer> GE = 
+//        new PropertyPlaceholder<OpenGeoPreviewLayer>("");
+//
+//    public static final Property<OpenGeoPreviewLayer> GEOEXPLORER = 
+//        new PropertyPlaceholder<OpenGeoPreviewLayer>("");
+    
+    public static final Property<OpenGeoPreviewLayer> LINKS = new PropertyPlaceholder<OpenGeoPreviewLayer>("View");
 
-    public static final Property<OpenGeoPreviewLayer> GE = 
-        new PropertyPlaceholder<OpenGeoPreviewLayer>("");
-
-    public static final Property<OpenGeoPreviewLayer> GEOEXPLORER = 
-        new PropertyPlaceholder<OpenGeoPreviewLayer>("");
-
-    public static final List<Property<OpenGeoPreviewLayer>> PROPERTIES = 
-        Arrays.asList(TYPE, NAME, TITLE, ABSTRACT, KEYWORDS, GEOEXPLORER, OL, GE);
+    @SuppressWarnings("unchecked")
+	public static final List<Property<OpenGeoPreviewLayer>> PROPERTIES = 
+        Arrays.asList(TYPE, NAME, TITLE, ABSTRACT, KEYWORDS, LINKS); // GEOEXPLORER, OL, GE);
 
     @Override
     protected List<OpenGeoPreviewLayer> getItems() {
@@ -75,7 +78,7 @@ public class OpenGeoPreviewProvider extends GeoServerDataProvider<OpenGeoPreview
         return PROPERTIES;
     }
 
-    protected IModel newModel(Object object) {
+    protected IModel<?> newModel(Object object) {
         return new PreviewLayerModel((PreviewLayer) object);
     }
     
