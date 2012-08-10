@@ -31,8 +31,12 @@ the OpenGeo Suite.
                 cp -rp /usr/lib/opengeo-jai/* /usr/lib/jvm/java-6-sun/.
         fi
 
-        if [ -d /usr/lib/jvm/java-1.6.0-openjdk ]; then
-                cp -rp /usr/lib/opengeo-jai/* /usr/lib/jvm/java-1.6.0-openjdk/.
+        if [ -d /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0 ]; then
+                cp -rp /usr/lib/opengeo-jai/* /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0/.
+        fi
+        
+        if [ -d	/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64 ]; then
+        	   	cp -rp /usr/lib/opengeo-jai/* /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64
         fi
 
 
@@ -40,7 +44,8 @@ the OpenGeo Suite.
 # remove files
 # remove users
 locations="/usr/lib/jvm/java-6-sun \
-/usr/lib/jvm/java-1.6.0-openjdk"
+java-1.6.0-openjdk-1.6.0.0 \
+java-1.6.0-openjdk-1.6.0.0.x86_64"
 
 filelist="jre/lib/amd64/libclib_jiio.so \
 jre/lib/i386/libmlib_jai.so \
