@@ -14,8 +14,11 @@
   
   <!-- The fragment for the common links -->
   <wicket:fragment wicket:id="exlink">
-    <select onchange="void window.open(arguments[0].target.value, '_self')">
-      <option wicket:id="link"></option>
+    <select onchange="void (arguments[0].target.value && window.open(arguments[0].target.value, '_self'))">
+      <option value="">Choose one</option>
+      <optgroup wicket:id="group">
+        <option wicket:id="link"></option>
+      </optgroup>
     </select>
   </wicket:fragment>
 </wicket:extend>
