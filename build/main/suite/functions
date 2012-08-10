@@ -72,3 +72,15 @@ function get_last_built_rev {
 function set_last_built_rev {
   echo "$2" > $WORKSPACE/revs/$1
 }
+
+# get_submodule_rev <submodule_path>
+function get_submodule_rev {
+  local rev=`git submodule status $1 | sed 's/^..//' | cut -f 1 -d ' '`
+  echo -n $rev
+}
+
+# get_submodule_branch <submodule_path>
+function get_submodule_branch {
+  local branch=`git submodule status $1 | sed 's/^..//' | cut -f 3 -d ' ' | sed 's/(//g' | sed 's/)//g' | sed 's/.*\/\(.*\)/\1/g'`
+  echo -n $branch
+}
