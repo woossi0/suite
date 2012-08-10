@@ -30,7 +30,6 @@ public class OpenGeoPreviewLayer extends PreviewLayer {
 }
 
 interface LinkTemplate {
-	boolean appliesToLayer(OpenGeoPreviewLayer layer);
 	boolean isExternalLink(OpenGeoPreviewLayer layer);
 	String linkForLayer(OpenGeoPreviewLayer layer);
 	String label();

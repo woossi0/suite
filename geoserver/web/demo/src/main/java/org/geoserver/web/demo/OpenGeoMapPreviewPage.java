@@ -165,11 +165,9 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
     private void addLinkOptions(final List<LinkTemplate> templates,
         final OpenGeoPreviewLayer layer, final RepeatingView view) {
         for (LinkTemplate tpl : templates) {
-            if (tpl.appliesToLayer(layer)) {
-                Label label = new Label(view.newChildId(), new Model<String>(tpl.label()));
-                label.add(new SimpleAttributeModifier("value", tpl.linkForLayer(layer)));
-                view.add(label);
-            }
+            Label label = new Label(view.newChildId(), new Model<String>(tpl.label()));
+            label.add(new SimpleAttributeModifier("value", tpl.linkForLayer(layer)));
+            view.add(label);
         }
     }
 
@@ -182,10 +180,6 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
             this.isExternal = isExternal;
             this.labelText = labelText;
             this.format = format;
-        }
-
-        public boolean appliesToLayer(OpenGeoPreviewLayer layer) {
-            return true;
         }
 
         public boolean isExternalLink(OpenGeoPreviewLayer layer) {
@@ -212,10 +206,6 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
             this.extraParams = extraParams;
         }
 
-        public boolean appliesToLayer(OpenGeoPreviewLayer layer) {
-            return true;
-        }
-
         public boolean isExternalLink(OpenGeoPreviewLayer layer) {
             return isExternal;
         }
@@ -240,10 +230,6 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
             this.extraParams = extraParams;
         }
 
-        public boolean appliesToLayer(OpenGeoPreviewLayer layer) {
-            return layer.getType() == PreviewLayerType.Vector;
-        }
-
         public boolean isExternalLink(OpenGeoPreviewLayer layer) {
             return isExternal;
         }
@@ -266,10 +252,6 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
         public GeoExplorerLinkTemplate(String base, CoordinateReferenceSystem webMercator) {
             this.base = base;
             this.webMercator = webMercator;
-        }
-
-        public boolean appliesToLayer(OpenGeoPreviewLayer layer) {
-            return true;
         }
 
         public boolean isExternalLink(OpenGeoPreviewLayer layer) {
