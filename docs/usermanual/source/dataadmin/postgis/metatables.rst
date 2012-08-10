@@ -60,7 +60,7 @@ The ``geometry_columns`` view is updated automatically to reflect the changes.
 Manually registering geometry columns
 -------------------------------------
 
-There may still be occasions when you are required to manually register a geometry column, such as working wth SQL views or bulk data inserts. With PostGIS 2.0+ if the definition of a geometry column is typmod-based, the view or table creation process will automatically register it correctly, so no further action is required. However, if a geometry column in an existing view is constraint-based, it will not be registered correctly.
+There may still be occasions when you are required to manually register a geometry column, such as working with SQL views or bulk data inserts. With PostGIS 2.0+ if the definition of a geometry column is typmod-based, the view or table creation process will automatically register it correctly, so no further action is required. However, if a geometry column in an existing view is constraint-based, it will not be registered correctly.
 
 For example, if an existing view is defined as:: 
 
