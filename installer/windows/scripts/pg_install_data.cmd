@@ -19,6 +19,9 @@ if not errorlevel 0 (
   echo There was an error while creating the Medford database.
   goto Fail
 )
+:: Add the opengeo schema to the medford DB
+call "%pg_bin_dir%\psql" -c "CREATE SCHEMA opengeo" -d medford -U "%USERNAME%"
+
 ::call "%pg_bin_dir%\psql" -c "CREATE EXTENSION postgis" -d medford -U "%USERNAME%"
 ::if not errorlevel 0 (
 ::  echo There was an error while creating the Medford database.
@@ -32,6 +35,9 @@ if not errorlevel 0 (
   echo There was an error while creating the GeoServer database.
   goto Fail
 )
+:: Add the opengeo schema to the geoserver DB
+call "%pg_bin_dir%\psql" -c "CREATE SCHEMA opengeo" -d geoserver -U "%USERNAME%"
+
 ::call "%pg_bin_dir%\psql" -c "CREATE EXTENSION postgis" -d geoserver -U "%USERNAME%"
 ::if not errorlevel 0 (
 ::  echo There was an error while creating the GeoServer database.

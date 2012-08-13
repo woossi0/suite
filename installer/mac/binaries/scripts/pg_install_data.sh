@@ -29,9 +29,12 @@ function create_db() {
 
 # Create the Medford Database
 create_db medford
+# Add opengeo schema
+"$pg_bin_dir/psql" -d medford -U $USER -c "CREATE SCHEMA opengeo" >> "$pg_log"
 
 # Create the GeoServer/Analytics database
 create_db geoserver
+"$pg_bin_dir/psql" -d geoserver -U $USER -c "CREATE SCHEMA opengeo" >> "$pg_log"
 
 function exec_sql() {
   "$pg_bin_dir/psql" -f "$1" -d medford -U $USER >> "$pg_log"
