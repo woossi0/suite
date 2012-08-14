@@ -11,3 +11,4 @@ This section will discuss spatial processing and analysis tools using the OpenGe
 
    intro
    wpsjava/index
+   wpsclient/index
