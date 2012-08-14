@@ -74,6 +74,9 @@ Var MSSQLCheckBox
 Var MSSQLCheckBoxPrior
 Var MrSIDCheckBox
 Var MrSIDCheckBoxPrior
+Var FGDBCheckBox
+Var FGDBCheckBoxPrior
+
 
 Var Username
 Var PGVerPath
@@ -180,6 +183,7 @@ Function .onInit
   StrCpy $OracleCheckBoxPrior 0
   StrCpy $MSSQLCheckBoxPrior 0
   StrCpy $MrSIDCheckBoxPrior 0
+  StrCpy $FGDBCheckBoxPrior 0
 
   IfSilent SilentSkip
 
@@ -627,9 +631,24 @@ SectionGroup "Extensions" SectionGSExt
     SetOutPath "$INSTDIR\jre\bin"
     File /r "${SOURCEPATHROOT}\jre\bin\lti_dsdk.dll"
     File /r "${SOURCEPATHROOT}\jre\bin\lti_dsdk_cdll.dll"
-    File /r "${SOURCEPATHROOT}\jre\bin\gdalplugins\"
+    
+    SetOutPath "$INSTDIR\jre\bin\gdalplugins"
+    File /r "${SOURCEPATHROOT}\jre\bin\gdalplugins\gdal_MrSID.dll"
 
   SectionEnd
+
+  Section /o "File Geodatabase" SectionGSFGDB
+
+    SetOutPath "$INSTDIR\jre\bin"
+    File /r "${SOURCEPATHROOT}\jre\bin\Esri.FileGDBAPI.dll"
+    File /r "${SOURCEPATHROOT}\jre\bin\FileGDBAPI.dll"
+    File /r "${SOURCEPATHROOT}\jre\bin\FileGDBAPID.dll"
+    
+    SetOutPath "$INSTDIR\jre\bin\gdalplugins"
+    File /r "${SOURCEPATHROOT}\jre\bin\gdalplugins\ogr_FileGDB.dll"
+
+  SectionEnd
+
 
 SectionGroupEnd
 
@@ -663,9 +682,18 @@ Function .onSelChange
   
   SectionGetFlags ${SectionGSMrSID} $MrSIDCheckBox
 
-  StrCmp $MrSIDCheckBox 1 0 End
-    StrCmp $MrSIDCheckBoxPrior 0 0 End
+  StrCmp $MrSIDCheckBox 1 0 FGDB
+    StrCmp $MrSIDCheckBoxPrior 0 0 FGDB
       MessageBox MB_ICONEXCLAMATION|MB_OK "You have elected to install the optional MrSID Support extension."
+
+  FGDB:
+  
+  SectionGetFlags ${SectionGSFGDB} $FGDBCheckBox
+
+  StrCmp $FGDBCheckBox 1 0 End
+    StrCmp $FGDBCheckBoxPrior 0 0 End
+      MessageBox MB_ICONEXCLAMATION|MB_OK "You have elected to install the optional File Geodatabase Support extension."
+
 
   End:
 
@@ -674,6 +702,7 @@ Function .onSelChange
   StrCpy $OracleCheckBoxPrior $OracleCheckBox
   StrCpy $MSSQLCheckBoxPrior $MSSQLCheckBox
   StrCpy $MrSIDCheckBoxPrior $MrSIDCheckBox
+  StrCpy $FGDBCheckBoxPrior $FGDBCheckBox
 
 FunctionEnd
 
@@ -875,6 +904,7 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGSOracle} "Adds support for Oracle databases.  Requires additional Oracle files."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGSMSSQL} "Adds support for Microsoft SQL Server databases.  Requires additional Microsoft JDBC Driver for SQL Server files."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGSMrSID} "Installs support for MrSID Datastores"
+  !insertmacro MUI_DESCRIPTION_TEXT ${SectionGSFGDB} "Installs support for Fie Geodatabase Datastores"
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGWC} "Includes GeoWebCache, a tile cache server."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionGX} "Installs GeoExplorer, a graphical map composer."
   !insertmacro MUI_DESCRIPTION_TEXT ${SectionStyler} "Installs Styler, a graphical map style editor."
