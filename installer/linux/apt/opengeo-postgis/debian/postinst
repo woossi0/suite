@@ -108,6 +108,7 @@ function configure_postgres() {
     if [ "$?" != "0" ]; then
       pg_run "createdb -w --owner=opengeo medford" $1
       pg_run "psql -w -d medford -c 'CREATE EXTENSION postgis'" $1
+      pg_run "psql -w -d medford -c 'CREATE SCHEMA opengeo'"
       # Add the data
       pg_run "psql -w -f /usr/share/opengeo-postgis/medford_taxlots_schema.sql -d medford" $1
       pg_run "psql -w -f /usr/share/opengeo-postgis/medford_taxlots.sql -d medford" $1
@@ -122,6 +123,7 @@ function configure_postgres() {
     if [ "$?" != "0" ]; then
       pg_run "createdb -w --owner=opengeo geoserver" $1
       pg_run "psql -w -d geoserver -c 'CREATE EXTENSION postgis'" $1
+      pg_run "psql -w -d geoserver -c 'CREATE SCHEMA opengeo'"
     else
       db_set opengeo_postgis/install_geoserver_db false
     fi

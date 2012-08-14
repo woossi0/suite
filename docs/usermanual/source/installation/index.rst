@@ -12,7 +12,6 @@ This section will describe how to install the OpenGeo Suite in various configura
    windows/index
    mac/index
    linux/index
-   war/index
    skygone
    aws/index
    gdal/index

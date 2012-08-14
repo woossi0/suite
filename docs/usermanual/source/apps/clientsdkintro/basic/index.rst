@@ -93,9 +93,9 @@ are included in the build.
 Application details
 -------------------
 
-In the example application, everything is wrapped by an anonymous function which is called when ``Ext.onReady`` fires. This is when the DOM is ready, i.e. when content can be added to a web page.
+In the example application, the main component (``gxp.Viewer``) is created with a single configuration object, exposing a single global variable named ``app``.
 
-Our application creates a ``gxp.Viewer`` instance. The viewport is filled with a border layout, which has two items, a container in the 'west' region 200 pixels wide, and the map in the 'center' region. Please note that all tools in the Client SDK are Ext plugins, so they can be created with a ``ptype`` shortcut in the config, similar to the ``xtype`` shortcut for Ext components. This viewer application defines the following tools:
+The ``gxp.Viewer`` instance is configured to create a viewport filled with a border layout, which has two items, a container in the 'west' region 200 pixels wide, and the map in the 'center' region. Please note that all tools in the Client SDK are Ext plugins, so they can be created with a ``ptype`` shortcut in the config, similar to the ``xtype`` shortcut for Ext components. This viewer application defines the following tools:
 
 * A **Layer Tree**, which will be rendered in the 'west' panel defined in the portalConfig.
 * The **Add Layers** tool, a button that, when clicked, creates a dialog to add new layers to the map. This tool will be part of the top toolbar of the layer tree.

@@ -79,6 +79,7 @@ move gdal\c\build\gdal\bin\lti_dsdk.dll ..\..\target\win\jre\bin
 move gdal\c\build\gdal\bin\lti_dsdk_cdll.dll ..\..\target\win\jre\bin
 move gdal\c\build\gdal\bin\gdalplugins ..\..\target\win\jre\bin
 move gdal\c\build\gdal\bin\gdal-1.9.1.jar ..\..\target\win\webapps\geoserver\WEB-INF\lib
+move gdal\c\build\gdal\data ..\..\target\win\jre\
 rd /s /q gdal
 del %gdal_zip%
 

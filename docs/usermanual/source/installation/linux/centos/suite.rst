@@ -40,12 +40,6 @@ The commands contained in the following installation instructions assume root pr
       * - RHEL 6, 64 bit
         - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
 
-#. Update the YUM databases:
-
-   .. code-block:: bash
-
-      yum update
-
 #. Now we are ready to install the OpenGeo Suite.  The package is called ``opengeo-suite``:
 
    .. code-block:: bash
@@ -95,12 +89,6 @@ Installing OpenGeo Suite Enterprise Edition
 #. Edit the downloaded :file:`OpenGeoEE.repo` file, filling in your username and password in place of ``<yourUserName>`` and ``<yourPassword>``.
 
    .. note:: If your username is an email address, substitute a ``%40`` for the ``@`` sign.  Example: ``joe@example.com`` would become ``joe%40example.com``.
-
-#. Update the YUM databases:
-
-   .. code-block:: bash
-
-      yum update
 
 #. Now we are ready to install the OpenGeo Suite.  The package is called ``opengeo-suite-ee``:
 

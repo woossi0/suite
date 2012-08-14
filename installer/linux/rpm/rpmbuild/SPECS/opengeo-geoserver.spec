@@ -51,10 +51,14 @@ OpenGeo Suite.
    cp -rp $RPM_SOURCE_DIR/scripts/geoserver-setup.sh $RPM_BUILD_ROOT/usr/share/opengeo-suite/.
 
 %post
+%ifarch x86_64
+PATH_STR="-Djava.library.path=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64"
+%endif
+
    if [ ! -e %{TOMCAT_HOME}/%{TOMCAT}.original-settings ]; then
       cp  /etc/sysconfig/%{TOMCAT} %{TOMCAT_HOME}/%{TOMCAT}.original-settings
       cat << EOF >> /etc/sysconfig/%{TOMCAT}
-JAVA_OPTS="-Djava.awt.headless=true -Xms256m -Xmx768m -Xrs -XX:PerfDataSamplingInterval=500 -XX:MaxPermSize=128m"
+JAVA_OPTS="${PATH_STR} -Djava.awt.headless=true -Xms256m -Xmx768m -Xrs -XX:PerfDataSamplingInterval=500 -XX:MaxPermSize=128m"
 GEOEXPLORER_DATA="/usr/share/opengeo-suite-data/geoexplorer_data"
 EOF
    fi

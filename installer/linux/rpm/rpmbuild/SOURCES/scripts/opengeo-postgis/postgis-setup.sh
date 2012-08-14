@@ -102,6 +102,7 @@ if [ "$?" != "0" ]; then
   echo "Creating medford database"
   pg_run "createdb -w --owner=opengeo medford"
   pg_run "psql -w -d medford -c 'CREATE EXTENSION postgis'"
+  pg_run "psql -w -d medford -c 'CREATE SCHEMA opengeo'"
   pg_run "psql -w -f /usr/share/opengeo-postgis/medford_taxlots_schema.sql -d medford"
   pg_run "psql -w -f /usr/share/opengeo-postgis/medford_taxlots.sql -d medford" 
   touch $OG_POSTGIS/medford_db
@@ -113,6 +114,7 @@ if [ "$?" != "0" ]; then
   echo "Creating geoserver database"
   pg_run "createdb -w --owner=opengeo geoserver"
   pg_run "psql -w -d geoserver -c 'CREATE EXTENSION postgis'"
+  pg_run "psql -w -d medford -c 'CREATE SCHEMA opengeo'"
   touch $OG_POSTGIS/geoserver_db
 fi
 
