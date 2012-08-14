@@ -146,6 +146,38 @@ processes. The rest of the snippet is equivalent to the configuration for the
 'gs:SplitPolygon' process above.
 
 
+Advanced Configuration
+----------------------
+
+Processes can not only have multiple inputs, they can also have more than one
+output. Just like input, outputs have identifiers that can be looked up in the
+GeoServer WPS Request Builder. When chaining a process output to an input,
+the ``output`` method can be called with an output identifier as argument.
+
+In the same way, a configuration object for the ``execute`` method takes an
+optional ``output`` property. This is the output that will be available as
+property in the outputs argument that is passed to the ``success`` callback. If
+omitted, the first output advertised in the DescribeProcess output will be
+available as ``outputs.result``.
+
+.. code-block:: javascript
+
+    buffer.execute({
+        inputs: {
+            // chain the 'result' output to the 'geom' input
+            geom: intersection.output('result'),
+            distance: 1
+        },
+        // make the 'result' output available in 'outputs'
+        output: 'result',
+        success: function(outputs) {
+            for (var i=0, ii=outputs['result']length; i<ii; ++i) {
+                alert(outputs['result'][i].geometry.toString());
+            }
+        }
+    });
+
+
 Putting it All Together in an Interactive Application
 -----------------------------------------------------
 
