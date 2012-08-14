@@ -13,6 +13,7 @@ import static org.geoserver.web.demo.OpenGeoPreviewProvider.TYPE;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -138,6 +139,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
             linkTemplates.add(new WMSLinkTemplate(translate("format.wms.", f.getMimeType()), true,
                 "&format=" + f.getMimeType()));
         }
+        Collections.sort(linkTemplates, ByLabel);
         return Collections.unmodifiableList(linkTemplates);
     }
 
@@ -150,6 +152,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                     "&maxfeatures=50&outputformat=" + urlEncode(type)));
             }
         }
+        Collections.sort(linkTemplates, ByLabel);
         return Collections.unmodifiableList(linkTemplates);
     }
 
@@ -170,23 +173,30 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
             view.add(label);
         }
     }
+    
+    private static final Comparator<LinkTemplate> ByLabel = 
+        new Comparator<LinkTemplate> () {
+            public int compare(LinkTemplate a, LinkTemplate b) {
+                return String.CASE_INSENSITIVE_ORDER.compare(a.label(), b.label());
+            }
+        };
 
     private static class StringFormattingLinkTemplate implements LinkTemplate, Serializable {
         private final String labelText;
         private final boolean isExternal;
         private final String format;
 
-        public StringFormattingLinkTemplate(boolean isExternal, String labelText, String format) {
+        public StringFormattingLinkTemplate(final boolean isExternal, final String labelText, final String format) {
             this.isExternal = isExternal;
             this.labelText = labelText;
             this.format = format;
         }
 
-        public boolean isExternalLink(OpenGeoPreviewLayer layer) {
+        public boolean isExternalLink(final OpenGeoPreviewLayer layer) {
             return isExternal;
         }
 
-        public String linkForLayer(OpenGeoPreviewLayer layer) {
+        public String linkForLayer(final OpenGeoPreviewLayer layer) {
             return String.format(Locale.ENGLISH, format, urlEncode(layer.getName()));
         }
 
@@ -200,17 +210,17 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
         private final boolean isExternal;
         private final String extraParams;
 
-        public WMSLinkTemplate(String labelText, boolean isExternal, String extraParams) {
+        public WMSLinkTemplate(final String labelText, final boolean isExternal, final String extraParams) {
             this.labelText = labelText;
             this.isExternal = isExternal;
             this.extraParams = extraParams;
         }
 
-        public boolean isExternalLink(OpenGeoPreviewLayer layer) {
+        public boolean isExternalLink(final OpenGeoPreviewLayer layer) {
             return isExternal;
         }
 
-        public String linkForLayer(OpenGeoPreviewLayer layer) {
+        public String linkForLayer(final OpenGeoPreviewLayer layer) {
             return layer.getWmsLink() + extraParams;
         }
 
@@ -224,7 +234,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
         private final boolean isExternal;
         private final String extraParams;
 
-        public WFSLinkTemplate(String labelText, boolean isExternal, String extraParams) {
+        public WFSLinkTemplate(final String labelText, final boolean isExternal, final String extraParams) {
             this.labelText = labelText;
             this.isExternal = isExternal;
             this.extraParams = extraParams;
@@ -249,16 +259,16 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
         private final String base;
         private final CoordinateReferenceSystem webMercator;
 
-        public GeoExplorerLinkTemplate(String base, CoordinateReferenceSystem webMercator) {
+        public GeoExplorerLinkTemplate(final String base, final CoordinateReferenceSystem webMercator) {
             this.base = base;
             this.webMercator = webMercator;
         }
 
-        public boolean isExternalLink(OpenGeoPreviewLayer layer) {
+        public boolean isExternalLink(final OpenGeoPreviewLayer layer) {
             return false;
         }
 
-        public String linkForLayer(OpenGeoPreviewLayer layer) {
+        public String linkForLayer(final OpenGeoPreviewLayer layer) {
             ReferencedEnvelope env = null;
             String boundsAsQueryParam = null;
 
@@ -286,5 +296,11 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
         public String label() {
             return "GeoExplorer";
         }
+    }
+
+    private static interface LinkTemplate {
+    	boolean isExternalLink(OpenGeoPreviewLayer layer);
+    	String linkForLayer(OpenGeoPreviewLayer layer);
+    	String label();
     }
 }

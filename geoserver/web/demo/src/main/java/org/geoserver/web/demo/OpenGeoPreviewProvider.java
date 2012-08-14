@@ -35,15 +35,6 @@ public class OpenGeoPreviewProvider extends GeoServerDataProvider<OpenGeoPreview
     public static final Property<OpenGeoPreviewLayer> KEYWORDS = 
         new BeanProperty<OpenGeoPreviewLayer>("keywords", "keywords", false);
 
-//    public static final Property<OpenGeoPreviewLayer> OL = 
-//        new PropertyPlaceholder<OpenGeoPreviewLayer>("");
-//
-//    public static final Property<OpenGeoPreviewLayer> GE = 
-//        new PropertyPlaceholder<OpenGeoPreviewLayer>("");
-//
-//    public static final Property<OpenGeoPreviewLayer> GEOEXPLORER = 
-//        new PropertyPlaceholder<OpenGeoPreviewLayer>("");
-    
     public static final Property<OpenGeoPreviewLayer> LINKS = new PropertyPlaceholder<OpenGeoPreviewLayer>("View");
 
     @SuppressWarnings("unchecked")

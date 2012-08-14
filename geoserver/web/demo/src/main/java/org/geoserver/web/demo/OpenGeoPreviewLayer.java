@@ -28,9 +28,3 @@ public class OpenGeoPreviewLayer extends PreviewLayer {
         return layerGroup;
     }
 }
-
-interface LinkTemplate {
-	boolean isExternalLink(OpenGeoPreviewLayer layer);
-	String linkForLayer(OpenGeoPreviewLayer layer);
-	String label();
-}
