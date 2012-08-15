@@ -1,24 +1,19 @@
-.. _processing.wpsclient
+.. _processing.wpsclient:
 
 Working with WPS in OpenLayers
 ==============================
 
-With the Web Processing Services (WPS) Client that is included in OpenLayers, it is easy to use server-side processes in browser based mapping application The most common use case is to perform geometry manipulations that are not
-available in a browser environment with OpenLayers. The WPS Client also
-supports process chaining, to perform complex operations without loading the
-result of every step into the client and sending it back to the sever for the
-next process.
+OpenLayers includes a Web Processing Service (WPS) client. This client you can employ server processes in browser-based mapping applications.  For example, you could perform certain geometry manipulations on the server that are not available in a browser environment.
 
-This section describes how to consume the process created in the :ref:`processing.wpsjava` section to manipulate a client-side created geometry
-in the browser, and how to perform more complex geometry operations by chaining
-processes. We will be using the :ref:`Client SDK <apps.sdk.client.dev>` to create our examples.
+The OpenLayers WPS client also supports process chaining. Process chaining allows the server to perform more complex operations without the need to return the result to the client at each step of the chain.
 
-Creating an OpenLayers.WPSClient Instance
+This section describes how to use a WPS process to manipulate a locally-created geometry in the browser.  You'll also learn how to perform more complex geometry operations by chaining processes.  Finally, you will use the :ref:`Client SDK <apps.sdk.client.dev>` to create an interactive application showcasing these processes.
+
+
+Creating an OpenLayers.WPSClient instance
 -----------------------------------------
 
-The starting point for interacting with WPS processes is an
-OpenLayers.WPSClient. Upon instance creation, the servers that the client
-should have access to are configured:
+The starting point for interacting with WPS processes is an ``OpenLayers.WPSClient`` instance. Upon creation, the servers that the client should have access to are configured:
 
 .. code-block:: javascript
 
@@ -28,29 +23,38 @@ should have access to are configured:
         }
     });
 
-This snippet creates a WPSClient that knows about the local GeoServer instance, and configures that server with the defaults.
+This code block creates a ``WPSClient`` instance that points to the local GeoServer. This instance is configured with the server defaults.
 
 
-Using a Single Process to Manipulate Geometries
+Using a single process to manipulate geometries
 -----------------------------------------------
 
-Let's say we have a polygon and want to split it along the line. Polygon and
-line geometries could be programmatically created like this:
+Suppose you have a polygon::
+
+    POLYGON((110 20,120 20,120 10,110 10,110 20),
+            (112 17,118 18,118 16,112 15,112 17))
+
+and you want to split it along this line::
+
+    LINESTRING(117 22,112 18,118 13, 115 8)
+
+.. todo:: Graphics for these two geometries would be really nice here.
+
+These geometries can be programmatically created in OpenLayers using ``OpenLayers.Geometry.fromWKT``:
 
 .. code-block:: javascript
 
-    var polygon = OpenLayers.Geometry.fromWKT(
+    var mypolygon = OpenLayers.Geometry.fromWKT(
         'POLYGON(' +
             '(110 20,120 20,120 10,110 10,110 20),' +
             '(112 17,118 18,118 16,112 15,112 17)' +
         ')'
     );
-    var line = OpenLayers.Geometry.fromWKT(
+    var myline = OpenLayers.Geometry.fromWKT(
         'LINESTRING(117 22,112 18,118 13, 115 8)'
     );
 
-The process we are going to use here is the one we created in the :ref:`processing.wpsjava` section. With our OpenLayers.WPSClient instance, we
-can easily use this process in our web application:
+The specific process we are going to employ here is the ``gs:SplitPolygon`` process.  This takes as input a polygon and line, and returns a multipolygon consisting of the areas of the polygon that are bisected by the line. With the ``OpenLayers.WPSClient`` instance, you can use this process in a web application.  The following code block executes the ``gs:SplitPolygon`` process with the polygon and line geometries as inputs.
 
 .. code-block:: javascript
 
@@ -58,8 +62,8 @@ can easily use this process in our web application:
         server: 'local',
         identifier: 'gs:SplitPolyon',
         inputs: {
-            polygon: polygon,
-            line: line
+            polygon: mypolygon,
+            line: myline
         },
         success: function(outputs) {
             for (var i=0, ii=outputs.result.length; i<ii; ++i) {
@@ -68,63 +72,83 @@ can easily use this process in our web application:
         }
     });
 
-This snippet executes the 'gs:SplitPolygon' process with the polygon and the
-line as inputs. The keys of the ``inputs`` object have to match the input identifiers of the process.
+Process execution is asynchronous. Behind the scenes, the ``WPSClient`` first sends a WPS DescribeProcess request to the server, so the process knows the available inputs and outputs as well as the supported formats. With this information, the process can build the correct configuration for the actual WPS Execute request. Once the response from that Execute request is available, the callback function configured with the ``success`` option will be executed. Outputs for spatial processes are always an array of ``OpenLayers.Feature.Vector`` instances.
 
-Process execution is asynchronous. Behind the scenes, the WPSClient first
-sends a DescribeProcess request to the server, so the process knows the
-available inputs and outputs and the supported formats. With this information,
-the process can create the correct configuration for the Execute request. Once
-the response from that request is available, the callback function we
-configured with the ``success`` option will be executed. Outputs for spatial
-processes are always an array of ``OpenLayers.Feature.Vector`` instances. In
-the above snippet, we just open alert boxes that show the WKT representation
-of the resulting split geometries.
+The final ``success`` function opens alert boxes that display the Well Known Text representation of the resulting split geometries.
+
+.. todo:: Graphic here?
+
+.. _processing.wpsclient.identifiers:
+
+Determining input identifiers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The names of the ``inputs`` must match the input identifiers of the process.  In this case, the input identifiers for the ``gs:SplitPolygon`` process are named ``polygon`` and ``line``. There are two ways to find this information.
+
+#. It is simplest to look up the input identifiers in the WPS Request Builder of the GeoServer instance.  The WPS Request Builder can be found in the :guilabel:`Demos` section of the UI.
+
+   .. figure:: img/requestbuilder.png
+
+      *WPS Request Builder in GeoServer*
+
+   .. todo:: This graphic should be changed to show the SplitPolygon process
+
+#. You can find the input identifiers manually by running a DescribeProcess request and noting the ``<ows:Identifier>`` for each ``<Input>``.  For example::
+
+      http://GEOSERVER_HOME/ows?service=wps&version=1.0.0&request=DescribeProcess&Identifier=gs:SplitPolygon
+
+   This would return:
+
+   .. code-block:: xml
+
+      <ProcessDescription>
+          ...
+          <DataInputs>
+              <Input maxOccurs="1" minOccurs="1">
+                  <ows:Identifier>polygon</ows:Identifier>
+                  ...
+              </Input>
+              <Input maxOccurs="1" minOccurs="1">
+                  <ows:Identifier>line</ows:Identifier>
+                  ...
+              </Input>
+          </DataInputs>
+          ...
+      </ProcessDescription>
 
 
-Chaining Processes for Complex Operations
------------------------------------------
+Chaining processes for more complex operations
+----------------------------------------------
 
-Calling the ``execute`` method of the WPSClient is useful for operation that do
-not require chaining of multiple processes. Now let's see how we can perform a
-more complex operation on the polygon and line geometries we created above: we want to intersect them, and then create buffers around the resulting
-intersection lines. On a map, the result (including the source geometries)
-would look like this:
+Chaining processes involves taking the output of one process and routing it to the input of another.  In this case, the ``execute`` method of the ``WPSClient`` only needs to be called on the final process in the processing chain, while the other processes are configured separately.
+
+An example that uses chaining involves determining the intersection of polygon and line geometries and then creating buffers around the resulting intersection lines. On a map, the result (including the source geometries) would look like this:
 
 .. figure:: img/intersect-buffer.png
 
-In a scenario like this, ``execute`` only needs to be called on the last
-process in the processing chain. The other processes are configured separately,
-and their output is assigned as input to another process. Now instead of
-calling ``execute`` directly from the WPSClient, let's get WPSProcess instances
-of the processes we need from the WPSClient:
+   *Result of intersection/buffer processes*
+
+Instead of calling ``execute`` directly from the ``WPSClient`` as in the previous section, we will get instances of the processes we need:
 
 .. code-block:: javascript
 
     var intersection = wpsClient.getProcess('local', 'JTS:intersection');
     var buffer = wpsClient.getProcess('local', 'JTS:buffer');
 
-The buffer process will be the last process in our chain, so let's first
-configure the ``intersection`` process:
+The ``JTS:intersection`` process is the first process in the chain, so configure it first:
 
 .. code-block:: javascript
 
     intersection.configure({
         inputs: {
-            a: polygon,
-            b: line
+            a: mypolygon,
+            b: myline
         }
     });
 
-How do we know the input identifiers (`a` and `b`) of this process? We can
-easily look them up in the WPS Request Builder (found under 'Demos') of our
-local GeoServer instance:
+.. note:: We are using the same WKT geometries (``mypolygon``, ``myline``) as defined in the previous section.  Also, see the note on :ref:`processing.wpsclient.identifiers` to see where the ``a`` and ``b`` identifiers are determined.
 
-.. figure:: img/requestbuilder.png
-
-We want to use the result of the intersection process as input for the buffer
-process. So let's configure and execute the buffer process to see how this
-works:
+With the intersection function defined, let's configure and execute the buffer process with the output of the intersection process as its input:
 
 .. code-block:: javascript
 
@@ -140,25 +164,19 @@ works:
         }
     });
 
-The intersection process has an ``output`` method which we use to get a handle
-that we can pass as input to the buffer process. That's all we need to chain
-processes. The rest of the snippet is equivalent to the configuration for the
-'gs:SplitPolygon' process above.
+The intersection process has an ``output`` method which we use to get a handle that we can pass as input to the buffer process. The rest of the code block is equivalent to the configuration for the ``gs:SplitPolygon`` example above.
 
 
-Advanced Configuration
-----------------------
+Processes with multiple outputs
+-------------------------------
 
-Processes can not only have multiple inputs, they can also have more than one
-output. Just like input, outputs have identifiers that can be looked up in the
-GeoServer WPS Request Builder. When chaining a process output to an input,
-the ``output`` method can be called with an output identifier as argument.
+Processes can have multiple inputs, but they can also have multiple outputs. When chaining a process output to an input, the ``output`` method can be called with an output identifier as argument.
 
-In the same way, a configuration object for the ``execute`` method takes an
-optional ``output`` property. This is the output that will be available as
-property in the outputs argument that is passed to the ``success`` callback. If
-omitted, the first output advertised in the DescribeProcess output will be
-available as ``outputs.result``.
+In the same way, a configuration object for the ``execute`` method can take an optional ``output`` property. This will be available as a property in the outputs argument that is passed to the ``success`` callback. If omitted, the first output advertised in the DescribeProcess output will be available as ``outputs.result``, as was seen in the previous example.
+
+.. note:: Outputs, like inputs, have identifiers that can be looked up through a DescribeProcess request or through the GeoServer WPS Request Builder.  See :ref:`processing.wpsclient.identifiers` for more information.
+
+The following code block shows how the intersection/buffer example in the previous section could be modified in order to accept multiple outputs.
 
 .. code-block:: javascript
 
@@ -177,15 +195,17 @@ available as ``outputs.result``.
         }
     });
 
+In this case, the ``JTS:buffer`` process doesn't produce multiple outputs, but it is trivial to replace this process in your code with one that does.
 
-Putting it All Together in an Interactive Application
------------------------------------------------------
 
-Using the :ref:`Client SDK <apps.sdk.client.dev>`, we can easily create a small
-demo application that allows us to interactively draw geometries and apply our
-SplitPolygon and Intersect+Buffer processes to them. We will create a minimal
-``app.js`` file and a custom ``app_wpsdemo`` plugin in its own ``WPSDemo.js``
-file. First let's have a look at ``app.js``:
+Building an interactive application
+-----------------------------------
+
+Using the :ref:`Client SDK <apps.sdk.client.dev>`, you can create a lightweight demo application that allows the user to draw geometries and execute the SplitPolygon and Intersection/Buffer processes as created above.
+
+To create this application, we must first create a minimal :file:`app.js` file and a custom ``app_wpsdemo`` plugin in its own :file:`WPSDemo.js` file.
+
+Here is the file :file:`app.js`:
 
 .. code-block:: javascript
 
@@ -229,11 +249,14 @@ file. First let's have a look at ``app.js``:
         }
     });
 
-This is a very minimal application. The things to note are the dependencies,
-the 'app_wpsdemo' plugin, and the vector layer we create from the 'ol' source.
-For the vector layer, we need renderers (``OpenLayers/Renderer/Canvas.js`` and ``OpenLayers/Renderer/VML.js`` in addition to ``OpenLayers/Layer/Vector.js``.
-We also need to include our ``WPSDemo.js`` file, which needs to be created in
-the same folder as ``app.js``. This is the content of ``WPSDemo.js``:
+The important aspects of this minimal application are the the dependencies, the ``app_wpsdemo`` plugin, and the vector layer created from the ``ol`` source.  For the vector layer, we need two additional renderers in addition to ``OpenLayers/Layer/Vector.js``:
+
+* ``OpenLayers/Renderer/Canvas.js``
+* ``OpenLayers/Renderer/VML.js``
+
+.. todo:: Describe why do we need those extra renderers?
+
+The content of the :file:`WPSDemo.js` file is below.  This file should be saved in the same directory as :file:`app.js`:
 
 .. code-block:: javascript
 
@@ -373,14 +396,18 @@ the same folder as ``app.js``. This is the content of ``WPSDemo.js``:
 
     Ext.preg(WPSDemo.prototype.ptype, WPSDemo);
 
-This plugin creates four action buttons in the ``init`` method: Actions for
-drawing, dragging and processing ('Split' and 'Intersect+Buffer'). Both
-splitting and intersection+buffer is performed when the user has finished
-drawing a line. The ``split`` and ``intersectBuffer`` methods are responsible
-for configuring and executing the required processes, and the ``addResult``
-method adds the resulting geometries to a map.
+This plugin creates four action buttons in the ``init`` method:
 
-After drawing two polygons, splitting them, dragging them around a bit, and
-then doing two 'Intersect+Buffer' operation, our map could look like this:
+* Draw
+* Drag
+* Split process
+* Intersection+Buffer process
+
+Both processes are executed when the user finishes drawing a line. The ``split`` and ``intersectBuffer`` methods are responsible for configuring and executing the required processes, and the ``addResult`` method adds the resulting geometries to a map.
+
+After drawing two polygons, splitting them, dragging them around a bit, and then executing two different Intersection/Buffer processes, our map could look like this:
 
 .. figure:: img/wpsdemo.png
+
+   *Sample map showing process output*
+
