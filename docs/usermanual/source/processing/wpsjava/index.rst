@@ -22,10 +22,10 @@ The GeoTools **Process API** has the following features:
 
 * allows using Java annotations to specify the metadata
 * infers the types of process parameters and outputs via reflection
-* automatically handles the runtime conversion between XML representations and Java objects
+* handles conversion between XML representations and Java objects
 * handles reporting any exceptions thrown by a process
 
-GeoTools includes many powerful libraries that can be leveraged in a process.  
+GeoServer includes many powerful libraries that can be leveraged in a process.  
 A process can also use external Java libraries, but in that case the external libraries need to be deployed along with the process.
 
 To create a custom WPS process, you will need to create a new Java project, either with an `IDE <http://en.wikipedia.org/wiki/Integrated_development_environment>`_ or using command-line tools. 
