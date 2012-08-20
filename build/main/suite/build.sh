@@ -90,22 +90,6 @@ profile_rebuild ee
 # copy the new artifacts into place
 cp target/*.zip target/ee/*.zip $dist
 
-# alias the artifacts if necessary
-pushd $dist
-for f in `ls *.zip`; do
-  f2=$( echo $f | sed "s/$revision/$ALIAS/g" )
-  ln -sf $f $f2
-done
-popd
-
-# alias the entire build
-pushd $dist/..
-if [ -e $ALIAS ]; then
-  unlink $ALIAS
-fi
-ln -sf $dist $ALIAS
-popd
-
 # clean up old artifacts
 pushd $dist/..
 if [ "$DIST_PATH" == "latest" ]; then
