@@ -1,4 +1,9 @@
 <html xmlns:wicket="http://wicket.apache.org/">
+<wicket:head>
+<style type="text/css">
+td select { width: 120px }
+</style>
+</wicket:head>
 <head>
 <title><wicket:message key="page.title">Layer Preview</wicket:message></title>
 </head>
@@ -14,12 +19,14 @@
   
   <!-- The fragment for the common links -->
   <wicket:fragment wicket:id="exlink">
-    <select onchange="void (arguments[0].target.value && window.open(arguments[0].target.value, '_self'))">
+    <select wicket:id="selectControl"> 
+<!--     onchange="void (arguments[0].target.value && window.open(arguments[0].target.value, '_self'))"> -->
       <option value=""><wicket:message key="selectOne"/></option>
       <optgroup wicket:id="group">
         <option wicket:id="link"></option>
       </optgroup>
     </select>
+    <a href="#" wicket:id="goButton"><wicket:message key="goButton">Go!</wicket:message></a>
   </wicket:fragment>
 </wicket:extend>
 </body>

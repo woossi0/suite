@@ -19,10 +19,12 @@ import java.util.Locale;
 import java.util.logging.Level;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
@@ -97,6 +99,12 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                     return new Label(id, property.getModel(itemModel));
                 } else if (property == LINKS) {
                     Fragment f = new Fragment(id, "exlink", OpenGeoMapPreviewPage.this);
+                    
+                    final ExternalLink link = new ExternalLink("goButton", "#");
+                    link.setOutputMarkupId(true);
+                    link.getMarkupId();
+                    
+                    WebMarkupContainer selectControl = new WebMarkupContainer("selectControl");
                     RepeatingView group = new RepeatingView("group");
                     WebMarkupContainer groupContainer = new WebMarkupContainer(group.newChildId());
                     groupContainer.add(new SimpleAttributeModifier("label", "Applications"));
@@ -120,8 +128,14 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                         groupContainer.add(view);
                         group.add(groupContainer);
                     }
+                    
+                    IBehavior linkUpdater = new SimpleAttributeModifier("onchange",
+                        "void (arguments[0].target.value && (document.getElementById('" + link.getMarkupId() + "').href = arguments[0].target.value))");
 
-                    f.add(group);
+                    selectControl.add(linkUpdater);
+                    selectControl.add(group);
+                    f.add(selectControl);
+                    f.add(link);
                     return f;
                 }
                 return null;
