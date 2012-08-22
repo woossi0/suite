@@ -13,11 +13,11 @@ This tutorial will create a process called "Distance and Bearing" with the follo
 
 .. todo:: Image needed describing process
 
-Distance is measured in the source units. Bearing will be an `absolute bearing <http://en.wikipedia.org/wiki/Bearing_%28navigation%29>`_, in degrees measured from true north and increasing in the clockwise direction (so true east would be 90 degrees).
+Distance is measured in the source units. Bearing will be an `absolute bearing <http://en.wikipedia.org/wiki/Bearing_%28navigation%29>`_, in degrees measured from true north and increasing in the clockwise direction (so true east would be 90 degrees and true west would be -90 or 270 degrees).
 
-While there is a distance function in both Python and JavaScript, the bearing will need to be caluclated manually, measured from origin to point, according to the following:
+While there is a distance function in both Python and JavaScript, the bearing will need to be calculated manually, measured from origin to point, according to the following:
 
-.. figure:: img/bearingequation.png
+.. figure:: img/processcreate_bearingequation.png
 
 .. This is the LaTeX source for the equation:
 
@@ -27,7 +27,7 @@ While there is a distance function in both Python and JavaScript, the bearing wi
 Creating the script
 -------------------
 
-The script will consist of headers, input and output defintion, metadata, and computation.
+The script will consist of headers, input and output definition, metadata, and computation.
 
 Process headers
 ~~~~~~~~~~~~~~~
@@ -134,7 +134,7 @@ where:
 
 These three variables as a list are then ingested into an entry in ``results``.  The value is then returned.
 
-You can see the full script below:
+Save this file as :file:`distbear.py` or :file:`distbear.js`, depending on the language used.  You can see the full scripts below:
 
 **Python** (:download:`download <distbear.py>`):
 
@@ -165,13 +165,13 @@ Now that the script is in place and activated, the next step is to test it.  We'
 
    .. figure:: img/demos.png
 
-   .. figure:: img/requestbuilderlink.png
+   .. figure:: img/processcreate_requestbuilder.png
 
-      *Accessing the WPS Request Builder
+      *Accessing the WPS Request Builder*
 
 #. Select your process in the menu.  It will be named :file:`py:distbear` or :file:`js:distbear`, depending on the language used.
 
-   .. figure:: img/processlist.png
+   .. figure:: img/processcreate_list.png
 
       *Scripts listed as WPS processes*
 
@@ -238,19 +238,19 @@ Now that the script is in place and activated, the next step is to test it.  We'
 
 #. Now we are ready to fill out the form.  Enter the above JSON in the box named :guilabel:`features`, making sure to select :guilabel:`TEXT` and :guilabel:`application/json` as the source format.
 
-   .. figure:: img/features.png
+   .. figure:: img/processcreate_features.png
 
       *Input features*
 
 #. Then enter ``POINT(0 0)`` in the box named :guilabel:`origin`, making sure to select :guilabel:`TEXT` and :guilabel:`application/wkt` as the source format.
 
-   .. figure:: img/origin.png
+   .. figure:: img/processcreate_origin.png
 
       *Origin point*
 
 #. Finally, select :guilabel:`application/json` as the output format under the :guilabel:`Process outputs` section.
 
-   .. figure:: img/result.png
+   .. figure:: img/processcreate_result.png
 
       *Result format*
 
