@@ -52,7 +52,7 @@ if [ ! -z $REV ]; then
 fi
 
 # extract the revision number
-revision=`get_rev .`
+export revision=`get_rev .`
 
 gs_externals="geoserver/externals"
 gs_rev=`get_submodule_rev $gs_externals/geoserver`
