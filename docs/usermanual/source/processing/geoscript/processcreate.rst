@@ -1,0 +1,358 @@
+.. _processing.geoscript.processcreate:
+
+Creating a process with GeoScript
+=================================
+
+This tutorial will show how to create a script that uses GeoScript to create a new WPS process. As GeoScript has bindings for both Python and JavaScript, examples from both languages will be shown here.
+
+
+Process definition
+------------------
+
+This tutorial will create a process called "Distance and Bearing" with the following functionality: Given a feature collection and a single point, it will return a feature collection with the same number of elements as the source feature collection, but with attributes containing the distance and bearing (angle of orientation) to the source point.
+
+.. todo:: Image needed describing process
+
+Distance is measured in the source units. Bearing will be an `absolute bearing <http://en.wikipedia.org/wiki/Bearing_%28navigation%29>`_, in degrees measured from true north and increasing in the clockwise direction (so true east would be 90 degrees).
+
+While there is a distance function in both Python and JavaScript, the bearing will need to be caluclated manually, measured from origin to point, according to the following:
+
+.. figure:: img/bearingequation.png
+
+.. This is the LaTeX source for the equation:
+
+   \text{Bearing} = 90^{\circ} - \arctan(\frac{y_{point} - y_{origin}}{x_{point} - x_{origin}})\times\frac{180^{\circ}}{\pi}
+
+
+Creating the script
+-------------------
+
+The script will consist of headers, input and output defintion, metadata, and computation.
+
+Process headers
+~~~~~~~~~~~~~~~
+
+The script requires a number of header libraries, including access to the GeoServer catalog, GeoScript, and feature types:
+
+**Python**
+
+.. literalinclude:: distbear.py
+   :language: python
+   :lines: 1-6
+
+**JavaScript**
+
+.. literalinclude:: distbear.js
+   :language: javascript
+   :lines: 1-2
+
+Process inputs and metadata
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Next we define the process inputs and metadata. We first add a title and description for better readability:
+
+**Python**
+
+.. literalinclude:: distbear.py
+   :language: python
+   :lines: 11,14
+
+**JavaScript**
+
+.. literalinclude:: distbear.js
+   :language: javascript
+   :lines: 7,10
+
+
+The process has two inputs, as described above: a feature collection (``features``), and a point from which to compute distance and bearing (``origin``). We will create the inputs list with these two definitions, along with a description:
+
+**Python**
+
+.. literalinclude:: distbear.py
+   :language: python
+   :lines: 17-20
+
+**JavaScript**
+
+.. literalinclude:: distbear.js
+   :language: javascript
+   :lines: 13-24
+
+The single output (``result``) will return a feature collection, and is defined similarly:
+
+**Python**
+
+.. literalinclude:: distbear.py
+   :language: python
+   :lines: 23-25
+
+**JavaScript**
+
+.. literalinclude:: distbear.js
+   :language: javascript
+   :lines: 27-33
+
+
+Process computation
+~~~~~~~~~~~~~~~~~~~
+
+Now that our inputs and outputs are defined, we can create the computation, through a function called ``run``.  We first create a layer container to hold the results of our computation:
+
+**Python**
+
+.. literalinclude:: distbear.py
+   :language: python
+   :lines: 32-33
+
+**JavaScript**
+
+.. literalinclude:: distbear.js
+   :language: javascript
+   :lines: 37-29,41-48
+
+Note that the schema for the layer will contain the identical point geometry as the source features, along with two attributes called ``distance`` and ``bearing``.
+
+The computation iterates over each of the features in our feature collection.  We define the calculation as follows:
+
+**Python**
+
+.. literalinclude:: distbear.py
+   :language: python
+   :lines: 36-43
+
+**JavaScript**
+
+.. literalinclude:: distbear.js
+   :language: javascript
+   :lines: 51-71
+
+where:
+
+* ``p``--Point geometry of the layer
+* ``d``--Distance calculation from the ``origin``
+* ``b``--Angle measure clockwise from true north between origin and point.
+
+These three variables as a list are then ingested into an entry in ``results``.  The value is then returned.
+
+You can see the full script below:
+
+**Python** (:download:`download <distbear.py>`):
+
+.. literalinclude:: distbear.py
+   :language: python
+
+**JavaScript** (:download:`download <distbear.js>`):
+
+.. literalinclude:: distbear.js
+   :language: javascript
+
+
+Activating the script
+---------------------
+
+Now that the script is written, it must be added to GeoServer.  Scripts are placed in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`.  The script will be activated automatically when copied to that location, with *no server restart necessary*.
+
+You can also drop scripts into the :file:`wps/` directory directly through the GeoServer UI.
+
+.. todo:: Please see the section on processing.geoscript.gsui for more details.
+
+Testing the script
+------------------
+
+Now that the script is in place and activated, the next step is to test it.  We'll use the WPS Request Builder in the GeoServer UI to test this script's functionality.
+
+#. Access the WPS Request Builder in the GeoServer UI by clicking on :guilabel:`Demos` then :guilabel:`WPS Request Builder`.
+
+   .. figure:: img/demos.png
+
+   .. figure:: img/requestbuilderlink.png
+
+      *Accessing the WPS Request Builder
+
+#. Select your process in the menu.  It will be named :file:`py:distbear` or :file:`js:distbear`, depending on the language used.
+
+   .. figure:: img/processlist.png
+
+      *Scripts listed as WPS processes*
+
+#. You will see a list of options.  To get a feel for this process, we'll create a very simple data set consisting of four points in the Cartesian plane::
+
+     POINT(1 0)
+     POINT(0 2)
+     POINT(-1 1)
+     POINT(6 3)
+
+   And we will use the origin as our source point::
+
+     POINT(0 0)
+
+   Converting the feature set from WKT into JSON yields:
+
+   .. code-block:: json
+
+        {
+          "type":"FeatureCollection",
+          "features":[
+            {
+              "type":"Feature",
+              "geometry":{
+                "type":"Point",
+                "coordinates":[
+                  1,
+                  0
+                ]
+              }
+            },
+            {
+              "type":"Feature",
+              "geometry":{
+                "type":"Point",
+                "coordinates":[
+                  0,
+                  2
+                ]
+              }
+            },
+            {
+              "type":"Feature",
+              "geometry":{
+                "type":"Point",
+                "coordinates":[
+                  -1,
+                  1
+                ]
+              }
+            },
+            {
+              "type":"Feature",
+              "geometry":{
+                "type":"Point",
+                "coordinates":[
+                  6,
+                  3
+                ]
+              }
+            }
+          ]
+        }
+
+#. Now we are ready to fill out the form.  Enter the above JSON in the box named :guilabel:`features`, making sure to select :guilabel:`TEXT` and :guilabel:`application/json` as the source format.
+
+   .. figure:: img/features.png
+
+      *Input features*
+
+#. Then enter ``POINT(0 0)`` in the box named :guilabel:`origin`, making sure to select :guilabel:`TEXT` and :guilabel:`application/wkt` as the source format.
+
+   .. figure:: img/origin.png
+
+      *Origin point*
+
+#. Finally, select :guilabel:`application/json` as the output format under the :guilabel:`Process outputs` section.
+
+   .. figure:: img/result.png
+
+      *Result format*
+
+#. Now we are ready to go.  Click on :guilabel:`Execute process`.
+
+   .. note:: If you are curious about what the process actually looks like in XML, click on :guilabel:`Generate XML from process inputs/outputs`.
+
+#. The output will look something like this:
+
+   .. code-block:: json
+
+        {
+          "type":"FeatureCollection",
+          "features":[
+            {
+              "type":"Feature",
+              "geometry":{
+                "type":"Point",
+                "coordinates":[
+                  6,
+                  3
+                ]
+              },
+              "properties":{
+                "distance":6.708203932499369,
+                "bearing":63.43494882292201
+              },
+              "id":"fid--ad4a787_1394a31a374_-7bba"
+            },
+            {
+              "type":"Feature",
+              "geometry":{
+                "type":"Point",
+                "coordinates":[
+                  -1,
+                  1
+                ]
+              },
+              "properties":{
+                "distance":1.4142135623730951,
+                "bearing":-45.0
+              },
+              "id":"fid--ad4a787_1394a31a374_-7bb8"
+            },
+            {
+              "type":"Feature",
+              "geometry":{
+                "type":"Point",
+                "coordinates":[
+                  0.0,
+                  2
+                ]
+              },
+              "properties":{
+                "distance":2.0,
+                "bearing":0.0
+              },
+              "id":"fid--ad4a787_1394a31a374_-7bb6"
+            },
+            {
+              "type":"Feature",
+              "geometry":{
+                "type":"Point",
+                "coordinates":[
+                  1,
+                  0.0
+                ]
+              },
+              "properties":{
+                "distance":1.0,
+                "bearing":90.0
+              },
+              "id":"fid--ad4a787_1394a31a374_-7bb4"
+            }
+          ]
+        }
+
+   Or, in a more compact representation:
+
+   .. list-table::
+      :widths: 10 10 40 40 
+      :header-rows: 1
+
+      * - X
+        - Y
+        - Distance
+        - Bearing
+      * - 1
+        - 0
+        - 1.0
+        - 90.0
+      * - 0
+        - 2
+        - 2.0
+        - 0
+      * - -1
+        - 1
+        - 1.4142135623730951
+        - -45.0
+      * - 6
+        - 3
+        - 6.708203932499369
+        - 63.43494882292201
+
+   .. todo:: Diagram of resulting points
