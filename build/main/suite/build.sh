@@ -92,7 +92,7 @@ cp target/*.zip target/ee/*.zip $dist
 
 # Archive build if requested
 if [ "$ARCHIVE_BUILD" == "true" ]; then
-  cp -r $dist /var/www/suite/archive/.
+  cp -r $dist /var/www/suite/archive/$ALIAS
 fi
 
 # start_remote_job <url> <name> <profile>
