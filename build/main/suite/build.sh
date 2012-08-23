@@ -95,18 +95,6 @@ if [ "$ARCHIVE_BUILD" == "true" ]; then
   cp -r $dist /var/www/suite/archive/.
 fi
 
-# clean up old artifacts
-pushd $dist/..
-if [ "$DIST_PATH" == "latest" ]; then
-  # keep around last two build
-  ls -lt | grep -v "^l" | cut -d ' ' -f 8 | tail -n +3 | xargs rm -rf 
-fi
-if [ "$DIST_PATH" == "stable" ]; then
-  # only keep around builds that are less than 2 weeks old
-  find . -type d -mtime +14 -exec rm -f {} \;
-fi
-popd
-
 # start_remote_job <url> <name> <profile>
 function start_remote_job() {
    curl -k --connect-timeout 10 "$1/buildWithParameters?DIST_PATH=${DIST_PATH}&REVISION=${revision}&ALIAS=${ALIAS}&PROFILE=$3"
