@@ -12,3 +12,4 @@ GeoScript is included in the OpenGeo Suite, with bindings for both JavaScript an
    :maxdepth: 1
 
    processcreate
+   gsui
