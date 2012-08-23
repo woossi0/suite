@@ -34,11 +34,13 @@ Suppose you have a polygon::
     POLYGON((110 20,120 20,120 10,110 10,110 20),
             (112 17,118 18,118 16,112 15,112 17))
 
+.. figure:: img/polygon.png
+
 and you want to split it along this line::
 
     LINESTRING(117 22,112 18,118 13, 115 8)
 
-.. todo:: Graphics for these two geometries would be really nice here.
+.. figure:: img/line.png
 
 These geometries can be programmatically created in OpenLayers using ``OpenLayers.Geometry.fromWKT``:
 
@@ -60,7 +62,7 @@ The specific process we are going to employ here is the ``JTS:splitPolygon`` pro
 
     wpsClient.execute({
         server: 'local',
-        identifier: 'JTS:splitPolygon',
+        process: 'JTS:splitPolygon',
         inputs: {
             polygon: mypolygon,
             line: myline
@@ -76,9 +78,11 @@ Process execution is asynchronous. Behind the scenes, the ``WPSClient`` first se
 
 Outputs for spatial processes are always an array of ``OpenLayers.Feature.Vector`` instances.
 
-The final ``success`` function opens alert boxes that display the Well Known Text representation of the resulting split geometries.
+The final ``success`` function opens alert boxes that display the Well Known Text representation of the two resulting split geometries.
 
-.. todo:: Graphic here?
+.. figure:: img/result.png
+
+    *WKT representation of one of the result geometries*   
 
 .. todo:: Would like to see how to actually implement this.
 
@@ -94,8 +98,6 @@ The names of the ``inputs`` must match the input identifiers of the process. In 
    .. figure:: img/requestbuilder.png
 
       *WPS Request Builder in GeoServer*
-
-   .. todo:: This graphic should be changed to show the SplitPolygon process
 
 #. You can find the input identifiers manually by running a DescribeProcess request and noting the ``<ows:Identifier>`` for each ``<Input>``. For example::
 
@@ -209,12 +211,15 @@ Using the :ref:`Client SDK <apps.sdk.client.dev>`, you can create a lightweight 
 
 To create this application, we must first create a minimal :file:`app.js` file and a custom ``app_wpsdemo`` plugin in its own :file:`WPSDemo.js` file.
 
-Here is the file :file:`app.js` (:download:`Download <script/WPSDemo.js>`). The important aspects of this minimal application are the the dependencies, the ``app_wpsdemo`` plugin, and the vector layer created from the ``ol`` source. For the vector layer, we need two additional renderers in addition to ``OpenLayers/Layer/Vector.js``:
+Here is the file :file:`app.js` (:download:`Download <script/WPSDemo.js>`). The important aspects of this minimal application are the dependencies, the ``app_wpsdemo`` plugin, and the vector layer created from the ``ol`` source. For the vector layer, we require renderers in addition to ``OpenLayers/Layer/Vector.js``:
 
 * ``OpenLayers/Renderer/Canvas.js``
 * ``OpenLayers/Renderer/VML.js``
 
-.. todo:: Briefly describe why do we need those extra renderers?
+This is because it is the application developer's decision which platforms
+should be supported by the application. The Canvas renderer works for all
+modern desktop and mobile browsers, and VML works for Internet Explorer 8 and
+older.
 
 .. literalinclude:: script/app.js
    :language: javascript
