@@ -90,6 +90,11 @@ profile_rebuild ee
 # copy the new artifacts into place
 cp target/*.zip target/ee/*.zip $dist
 
+# Archive build if requested
+if [ "$ARCHIVE_BUILD" == "true" ]; then
+  cp -r $dist /var/www/suite/archive/.
+fi
+
 # clean up old artifacts
 pushd $dist/..
 if [ "$DIST_PATH" == "latest" ]; then
