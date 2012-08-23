@@ -26,23 +26,4 @@ Restart the application and reload the browser:
 .. figure:: ../img/styler_popup.png
    :align: center
 
-There will now be a new button which will show a powerful and feature-rich :guilabel:`Styles` dialog. However, in order to edit colors, we still need to add a few things:
-
-#. Copy over the :file:`script/ux/colorpicker` directory from GeoExplorer:
-
-   * https://github.com/opengeo/GeoExplorer/tree/master/app/static/script/ux/colorpicker
-
-#. Copy over the :file:`theme/ux/colorpicker` directory from GeoExplorer:
-
-   * https://github.com/opengeo/GeoExplorer/tree/master/app/static/theme/ux/colorpicker
-
-#. Open up :file:`index.html` in your app directory and add a stylesheet:
-
-   .. code-block:: html
-
-      <link rel="stylesheet" type="text/css" href="theme/ux/colorpicker/color-picker.ux.css" />
-
-When done, restart the application and reload the browser.  It should now be possible to edit color in a styling rule:
-
-  .. figure:: ../img/styler_popup_color.png
-   :align: center
+There will now be a new button which will show a powerful and feature-rich :guilabel:`Styles` dialog.
