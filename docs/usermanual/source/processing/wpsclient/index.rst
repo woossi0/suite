@@ -36,11 +36,15 @@ Suppose you have a polygon::
 
 .. figure:: img/polygon.png
 
+   *Sample polygon*
+
 and you want to split it along this line::
 
     LINESTRING(117 22,112 18,118 13, 115 8)
 
 .. figure:: img/line.png
+
+   *Sample line for splitting*
 
 These geometries can be programmatically created in OpenLayers using ``OpenLayers.Geometry.fromWKT``:
 
@@ -83,8 +87,6 @@ The final ``success`` function opens alert boxes that display the Well Known Tex
 .. figure:: img/result.png
 
     *WKT representation of one of the result geometries*   
-
-.. todo:: Would like to see how to actually implement this.
 
 .. _processing.wpsclient.identifiers:
 
@@ -180,7 +182,7 @@ Processes can have multiple inputs, but they can also have multiple outputs. Whe
 
 In the same way, a configuration object for the ``execute`` method can take an optional ``output`` property. This will be available as a property in the outputs argument that is passed to the ``success`` callback. If omitted, the first output advertised in the DescribeProcess output will be available as ``outputs.result``, as was seen in the previous example.
 
-.. note:: Outputs, like inputs, have identifiers that can be looked up through a DescribeProcess request or through the GeoServer WPS Request Builder.  See :ref:`processing.wpsclient.identifiers` for more information.
+.. note:: Outputs, like inputs, have identifiers that can be looked up through a DescribeProcess request or through the GeoServer WPS Request Builder. See :ref:`processing.wpsclient.identifiers` for more information.
 
 The following code block shows how the intersection/buffer example in the previous section could be modified in order to accept multiple outputs.
 
@@ -209,22 +211,28 @@ Building an interactive application
 
 Using the :ref:`Client SDK <apps.sdk.client.dev>`, you can create a lightweight demo application that allows the user to draw geometries and execute the SplitPolygon and Intersection/Buffer processes as created above.
 
-To create this application, we must first create a minimal :file:`app.js` file and a custom ``app_wpsdemo`` plugin in its own :file:`WPSDemo.js` file.
+To create our custom application, we must first create a minimal :file:`app.js` file and a custom ``app_wpsdemo`` plugin in its own :file:`WPSDemo.js` file. These files will then be copied into a template application.
 
-Here is the file :file:`app.js` (:download:`Download <script/WPSDemo.js>`). The important aspects of this minimal application are the dependencies, the ``app_wpsdemo`` plugin, and the vector layer created from the ``ol`` source. For the vector layer, we require renderers in addition to ``OpenLayers/Layer/Vector.js``:
+app.js
+~~~~~~
 
-* ``OpenLayers/Renderer/Canvas.js``
-* ``OpenLayers/Renderer/VML.js``
-
-This is because it is the application developer's decision which platforms
-should be supported by the application. The Canvas renderer works for all
-modern desktop and mobile browsers, and VML works for Internet Explorer 8 and
-older.
+The :file:`app.js` file is below (:download:`Download <script/WPSDemo.js>`). Replace the existing :file:`app.js` file (found at :file:`<sdk_app>/src/app/app.js`) with this one:
 
 .. literalinclude:: script/app.js
    :language: javascript
 
-The content of the :file:`WPSDemo.js` file is below (:download:`Download <script/WPSDemo.js>`):. This file should be saved in the same directory as :file:`app.js`:
+The important aspects of this minimal application are the dependencies, the ``app_wpsdemo`` plugin, and the vector layer created from the ``ol`` source. For the vector layer, we require renderers in addition to ``OpenLayers/Layer/Vector.js``:
+
+* ``OpenLayers/Renderer/Canvas.js``
+* ``OpenLayers/Renderer/VML.js``
+
+Both renderers are used here for better compatibility. The Canvas renderer works for all modern desktop and mobile browsers, while VML works for Internet Explorer 8 and older. It is the application developer's decision for which platforms should be supported.
+
+
+WPSDemo.js
+~~~~~~~~~~
+
+The :file:`WPSDemo.js` file is below (:download:`Download <script/WPSDemo.js>`). This file should be saved in the same directory as :file:`app.js` (found at :file:`<sdk_app>/src/app/WPSDemo.js`):
 
 .. literalinclude:: script/WPSDemo.js
    :language: javascript
@@ -237,6 +245,13 @@ This script creates four action buttons in the ``init`` method:
 * Intersection+Buffer process
 
 Both processes are executed when the user finishes drawing a line. The ``split`` and ``intersectBuffer`` methods are responsible for configuring and executing the required processes, and the ``addResult`` method adds the resulting geometries to a map.
+
+Results
+~~~~~~~
+
+After these files have been created and placed in the proper directory, the application can be tested.
+
+.. note:: Please see the :ref:`apps.sdk.client.script.debug` section for more information on launching this application.
 
 After drawing two polygons, splitting them, dragging them around a bit, and then executing two different Intersection/Buffer processes, our map could look like this:
 
