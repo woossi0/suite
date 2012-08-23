@@ -22,3 +22,9 @@
 [submodule "geoserver/externals/geoserver-exts"]
 	path = geoserver/externals/geoserver-exts
 	url = git://github.com/opengeo/geoserver-exts.git
+[submodule "geoserver/externals/geoscript/py"]
+	path = geoserver/externals/geoscript/py
+	url = git://github.com/jdeolive/geoscript-py.git
+[submodule "geoserver/externals/geoscript/js"]
+	path = geoserver/externals/geoscript/js
+	url = git://github.com/tschaub/geoscript-js.git
