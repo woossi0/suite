@@ -92,12 +92,14 @@ cp target/*.zip target/ee/*.zip $dist
 
 # Archive build if requested
 if [ "$ARCHIVE_BUILD" == "true" ]; then
-  cp -r $dist /var/www/suite/archive/.
+  cp -r $dist /var/www/suite/archive/$ALIAS
+else
+  ARCHIVE_BUILD="false"
 fi
 
 # start_remote_job <url> <name> <profile>
 function start_remote_job() {
-   curl -k --connect-timeout 10 "$1/buildWithParameters?DIST_PATH=${DIST_PATH}&REVISION=${revision}&ALIAS=${ALIAS}&PROFILE=$3"
+   curl -k --connect-timeout 10 "$1/buildWithParameters?DIST_PATH=${DIST_PATH}&REVISION=${revision}&ALIAS=${ALIAS}&PROFILE=$3&ARCHIVE_BUILD=${ARCHIVE_BUILD}"
    checkrv $? "trigger $2 $3 with ${DIST_PATH} r${revision}"
 }
 
