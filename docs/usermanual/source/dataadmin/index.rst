@@ -1,14 +1,15 @@
 .. _dataadmin:
 
 
-Data Administration
-===================
+Working with PostGIS
+====================
 
-This section will discuss best practices for working with data sources with the OpenGeo Suite, including managing data, PostGIS data optimization, REST API, and more.
+This section describes how to work your OpenGeo Suite PostGIS database—from connecting to the database, loading and managing your data, and working with data. 
 
 
 .. toctree::
    :maxdepth: 2
 
-   loading/index
-   postgis/index
+   pgGettingStarted/index
+   pgBasics/index
+
