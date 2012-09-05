@@ -459,46 +459,6 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
                         }
                         return valid;
                     }
-                }, {
-                    xtype: 'textfield',
-                    fieldLabel: "Username",
-                    toolTip: "GeoServer adminstrator username",
-                    name: "geoserver_username",
-                    value: this.config["geoserver_username"],
-                    validator: function(value) {
-                        return !value.match(/[=,:]/) || 'Invalid user name (cannot contain the following characters: "=,:").';
-                    }
-                }, {
-                    xtype: "textfield",
-                    id: "geoserver-admin-password",
-                    inputType: "password",
-                    fieldLabel: "Password",
-                    toolTip: "GeoServer adminstrator password",
-                    name: "geoserver_password",
-                    value: this.config["geoserver_password"],
-                    validator: function(value) {
-                        return !value.match(/[=,:]/) || 'Invalid password (cannot contain the following characters: "=,:").';
-                    },
-                    listeners: {
-                        change: function(f, e) {
-                            //reset the password confirmation form
-                            var confirm = Ext.getCmp("geoserver_password_confirm");
-                            confirm.setValue("");
-                            confirm.focus();
-                        }, 
-                        scope: this
-                    }
-                }, {
-                    xtype: "textfield",
-                    inputType: "password",
-                    fieldLabel: "Confirm",
-                    validator: function(value) {
-                        var pwd = Ext.getCmp("geoserver-admin-password");
-                        return (value === pwd.getValue()) || "Passwords do not match.";
-                    },
-                    id: "geoserver_password_confirm",
-                    name: "geoserver_password_confirm", 
-                    value: this.config["geoserver_password"]
                 }]
             }, {
                 xtype: "fieldset",
