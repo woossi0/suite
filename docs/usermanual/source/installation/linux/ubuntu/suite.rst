@@ -139,7 +139,7 @@ The procedure for upgrading is as follows:
 
     .. code-block:: console
     
-       su - postgres
+       sudo su postgres
 
 #. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory. To avoid permissions issues, it is best to create this temporary directory under your home directory. By default, the backup files created by this script will be saved to this location.
 
@@ -216,7 +216,7 @@ The procedure for upgrading is as follows:
 
    .. code-block:: console
 
-      su - postgres
+      sudo su postgres
       cd ~/suite_backup/pg_backup
       perl postgis_upgrade.pl restore
 
