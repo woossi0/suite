@@ -1,5 +1,5 @@
 var Process = require("geoscript/process").Process;
-var {Feature, Collection, Schema} = require("geoscript/feature");
+var {Feature, FeatureCollection, Schema} = require("geoscript/feature");
 
 exports.process = new Process({
 
@@ -48,7 +48,7 @@ exports.process = new Process({
         });
 
         // query the source layer and compute the results
-        var collection = new Collection({
+        var collection = new FeatureCollection({
             features: function() {
                 for (var feature in inputs.features) {
 
