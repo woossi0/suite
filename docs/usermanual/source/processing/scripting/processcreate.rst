@@ -1,9 +1,9 @@
-.. _processing.geoscript.processcreate:
+.. _processing.scripting.processcreate:
 
-Creating a process with GeoScript
-=================================
+Creating a process through scripting
+====================================
 
-This tutorial will show how to create a script that uses GeoScript to create a new WPS process. As GeoScript has bindings for both Python and JavaScript, examples from both languages will be shown here.
+This tutorial will show how to create a script that creates a new :term:`WPS` process. As GeoScript has bindings for both Python and JavaScript, examples from both languages will be shown here.
 
 
 Process definition
@@ -38,7 +38,7 @@ The script requires a number of header libraries, including access to the GeoSer
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 1-6
+   :lines: 1-5
 
 **JavaScript**
 
@@ -55,13 +55,13 @@ Next we define the process inputs and metadata. We first add a title and descrip
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 11,14
+   :lines: 8-9
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 7,10
+   :lines: 6-7
 
 
 The process has two inputs, as described above: a feature collection (``features``), and a point from which to compute distance and bearing (``origin``). We will create the inputs list with these two definitions, along with a description:
@@ -70,45 +70,39 @@ The process has two inputs, as described above: a feature collection (``features
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 17-20
+   :lines: 10-13
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 13-24
+   :lines: 9-20
 
-The single output (``result``) will return a feature collection, and is defined similarly:
+The single output will return a feature collection, and is defined similarly:
 
 **Python**
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 23-25
+   :lines: 14-16
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 27-33
+   :lines: 22-28
 
 
 Process computation
 ~~~~~~~~~~~~~~~~~~~
 
-Now that our inputs and outputs are defined, we can create the computation, through a function called ``run``.  We first create a layer container to hold the results of our computation:
-
-**Python**
-
-.. literalinclude:: distbear.py
-   :language: python
-   :lines: 32-33
+Now that our inputs and outputs are defined, we can create the computation, through a function called ``run``.  We first create a layer container to hold the results of our computation (only necessary in the JavaScript example):
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 37-29,41-48
+   :lines: 41-48
 
 Note that the schema for the layer will contain the identical point geometry as the source features, along with two attributes called ``distance`` and ``bearing``.
 
@@ -118,13 +112,13 @@ The computation iterates over each of the features in our feature collection.  W
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 36-43
+   :lines: 20-23
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 51-71
+   :lines: 43-63
 
 where:
 
@@ -132,7 +126,7 @@ where:
 * ``d``--Distance calculation from the ``origin``
 * ``b``--Angle measure clockwise from true north between origin and point.
 
-These three variables as a list are then ingested into an entry in ``results``.  The value is then returned.
+These three variables as a list are then returned.
 
 Save this file as :file:`distbear.py` or :file:`distbear.js`, depending on the language used.  You can see the full scripts below:
 
@@ -152,9 +146,7 @@ Activating the script
 
 Now that the script is written, it must be added to GeoServer.  Scripts are placed in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`.  The script will be activated automatically when copied to that location, with *no server restart necessary*.
 
-You can also drop scripts into the :file:`wps/` directory directly through the GeoServer UI.
-
-.. todo:: Please see the section on processing.geoscript.gsui for more details.
+.. todo:: You can also upload scripts through the REST API.  Please see the section on processing.scripting.rest for more details.
 
 Testing the script
 ------------------
@@ -256,7 +248,7 @@ Now that the script is in place and activated, the next step is to test it.  We'
 
 #. Now we are ready to go.  Click on :guilabel:`Execute process`.
 
-   .. note:: If you are curious about what the process actually looks like in XML, click on :guilabel:`Generate XML from process inputs/outputs`.
+   .. note:: If you are curious about what the actual process request looks like, click on :guilabel:`Generate XML from process inputs/outputs`.
 
 #. The output will look something like this:
 

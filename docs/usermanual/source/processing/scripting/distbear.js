@@ -3,13 +3,9 @@ var {Feature, FeatureCollection, Schema} = require("geoscript/feature");
 
 exports.process = new Process({
 
-    // human readable title
     title: "Distance and Bearing",
-
-    // describe process
     description: "Computes Cartesian distance and bearing from features to an origin.",
 
-    // describe input parameters
     inputs: {
         origin: {
             type: "Point",
@@ -23,7 +19,6 @@ exports.process = new Process({
         }
     },
 
-    // describe output parameters
     outputs: {
         result: {
             type: "FeatureCollection",
@@ -32,12 +27,10 @@ exports.process = new Process({
         }
     },
 
-    // provide a function that accepts inputs and returns outputs
     run: function(inputs) {
         var origin = inputs.origin;
         var geomField = inputs.features.schema.geometry;
 
-        // create a layer to hold the results
         var schema = new Schema({
             name: "result",
             fields: [
@@ -47,7 +40,6 @@ exports.process = new Process({
             ]
         });
 
-        // query the source layer and compute the results
         var collection = new FeatureCollection({
             features: function() {
                 for (var feature in inputs.features) {
