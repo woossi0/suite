@@ -13,4 +13,4 @@ This section will discuss spatial processing and analysis tools using the OpenGe
    wpsjava/index
    wpsclient/index
    common/index
-   geoscript/index
+   scripting/index

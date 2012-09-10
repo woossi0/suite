@@ -59,14 +59,18 @@ Appendix B: Glossary
     WFS
         The `Web Feature Service <http://www.opengeospatial.org/standards/wfs>`_ (WFS) specification from the :term:`OGC` defines an interface for reading and writing geographic features across the web.
 
-    WMS
-        The `Web Map Service <http://www.opengeospatial.org/standards/wms>`_ (WMS) specification from the :term:`OGC` defines an interface for requesting rendered map images across the web.
-
     WKB
         "Well-known binary". Refers to the binary representation of geometries described in the Simple Features for SQL specification (:term:`SFSQL`).
         
     WKT
         "Well-known text". Can refer either to the text representation of geometries, with strings starting "POINT", "LINESTRING", "POLYGON", etc. Or can refer to the text representation of a :term:`CRS`, with strings starting "PROJCS", "GEOGCS", etc.  Well-known text representations are :term:`OGC` standards, but do not have their own specification documents. The first descriptions of WKT (for geometries and for CRS) appeared in the :term:`SFSQL` 1.0 specification.
+
+    WMS
+        The `Web Map Service <http://www.opengeospatial.org/standards/wms>`_ (WMS) specification from the :term:`OGC` defines an interface for requesting rendered map images across the web.
+
+    WPS
+        The `Web Processing Service <http://www.opengeospatial.org/standards/wps>`_ (WPS) specification from the :term:`OGC` provides rules for standardizing inputs and outputs (requests and responses) for geospatial processing services.
+
         
 
   
