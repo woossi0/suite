@@ -61,7 +61,7 @@ Installing OpenGeo Suite Enterprise Edition
 
 #. Follow all of the steps from the previous section.
 
-#. Now add the OpenGeo Enterprise YUM repository. This repository is password protected. You will have received a username and password when you `registered for the Enterprise Edition <http://opengeo.org/products/suite/register/>`_. Add the following YUM repository using the commands below, making sure to substitute in your username for ``<username>`` and password for ``<password>``. Again, the exact command will differ depending on your system.
+#. Now add the OpenGeo Enterprise YUM repository. This repository is password protected. You will have received a user name and password when you `registered for the Enterprise Edition <http://opengeo.org/products/suite/register/>`_. Add the following YUM repository using the commands below, making sure to substitute in your user name for ``<username>`` and password for ``<password>``. Again, the exact command will differ depending on your system.
 
    .. list-table::
       :widths: 20 80
@@ -86,9 +86,9 @@ Installing OpenGeo Suite Enterprise Edition
       * - RHEL 6, 64 bit
         - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/rhel/6/x86_64/OpenGeoEE.repo``
 
-#. Edit the downloaded :file:`OpenGeoEE.repo` file, filling in your username and password in place of ``<yourUserName>`` and ``<yourPassword>``.
+#. Edit the downloaded :file:`OpenGeoEE.repo` file, filling in your user name and password in place of ``<yourUserName>`` and ``<yourPassword>``.
 
-   .. note:: If your username is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
+   .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
 
 #. Now we are ready to install the OpenGeo Suite. The package is called ``opengeo-suite-ee``:
 
@@ -139,16 +139,18 @@ Backup PostGIS data
 
    .. code-block:: console
       
-      su - postgres
+      sudo su postgres
 
-#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory. To avoid permissions issues, it is best to create this temporary directory under your home directory. By default, the backup files created by this script will be saved to this location.
+#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory. To avoid permissions issues, the :file:`/tmp/suite_backup/pg_backup` path will be created and used.
 
-   .. code-block:: console
+    .. warning:: The :file:`/tmp` directory is not recommended for long-term storage of backups, as the directory can often be purged as a part of normal system activity. If using a different directory, make sure that both the ``postgres`` and ``root`` users have read/write permissions to it.
 
-      mkdir ~/suite_backup/pg_backup
-      cd ~/suite_backup/pg_backup
-      wget http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip
-      unzip postgis_upgrade-3.0.zip
+    .. code-block:: console
+
+       mkdir -p /tmp/suite_backup/pg_backup
+       cd /tmp/suite_backup/pg_backup
+       wget http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip
+       unzip postgis_upgrade.zip
 
 #. Run the backup command:
 
@@ -163,7 +165,12 @@ Backup PostGIS data
    * Compressed dump files for every database backed up (:file:`<database>.dmp`)
    * SQL output of server roles
 
-#. The PostGIS data backup process is complete. Switch back to the ``root`` user.
+#. The PostGIS data backup process is complete. Switch from the ``postgres`` user to the ``root`` user:
+
+   .. code-block:: console
+
+      exit
+      sudo su -
 
 Backup GeoServer configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -172,7 +179,7 @@ Backup GeoServer configuration
 
    .. code-block:: console
 
-      cp -r /usr/share/opengeo-suite-data/geoserver_data ~/suite_backup/data_dir_backup
+      cp -r /usr/share/opengeo-suite-data/geoserver_data /tmp/suite_backup/data_dir_backup
 
 Uninstall OpenGeo Suite 2.x
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -190,7 +197,13 @@ Install OpenGeo Suite 3.x
 
 Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary to add an additional repository. This repository contains the version 3 packages.
 
-#. First, change to the :file:`/etc/yum.repos.d` directory:
+#. If not already, make sure you are running as ``root``:
+
+   .. code-block:: console
+
+      sudo su -
+
+#. Change to the :file:`/etc/yum.repos.d` directory:
 
    .. code-block:: console
 
@@ -202,7 +215,7 @@ Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary 
 
       for REPO in OpenGeo*.repo; do mv $REPO $REPO.old; done;
 
-#. Run the following command (as root or with ``sudo``):
+#. Run the following command:
 
    .. list-table::
       :widths: 20 80
@@ -227,7 +240,7 @@ Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary 
       * - RHEL 6, 64 bit
         - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
 
-#. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your username and password:
+#. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your user name for ``<username>`` and password for ``<password>``:
 
    .. list-table::
       :widths: 20 80
@@ -252,9 +265,9 @@ Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary 
       * - RHEL 6, 64 bit
         - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeoEE.repo``
 
-   Edit the download :file:`OpenGeoEE.repo` file, filling in your username and password in place of ``<yourUserName>`` and ``<yourPassword>``.
+   Edit the download :file:`OpenGeoEE.repo` file, filling in your user name and password in place of ``<yourUserName>`` and ``<yourPassword>``.
 
-   .. note:: If your username is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
+   .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
 
 #. Clean your repository sources:
 
@@ -291,8 +304,8 @@ Restore PostGIS data
 
    .. code-block:: console
 
-      su - postgres
-      cd ~/suite_backup/pg_backup
+      sudo su postgres
+      cd /tmp/suite_backup/pg_backup
       perl postgis_upgrade.pl restore
       
    .. note:: As with the backup, standard PostGIS connection parameters may be used. You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.
@@ -300,6 +313,10 @@ Restore PostGIS data
 #. Your databases and roles will be restored. You can verify that the databases were created and data restored by running ``psql -l`` on the command line.
 
 #. Switch back the ``root`` user.
+
+   .. code-block:: console
+
+      exit
    
 Restore GeoServer configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -312,7 +329,7 @@ Restore GeoServer configuration
 
       service tomcat5 stop
       rm -rf /usr/share/opengeo-suite-data/geoserver_data
-      mv ~/suite_backup/data_dir_backup /usr/share/opengeo-suite-data/geoserver_data
+      mv /tmp/suite_backup/data_dir_backup /usr/share/opengeo-suite-data/geoserver_data
       chown -R tomcat /usr/share/opengeo-suite-data/geoserver_data
 
 #. Restart tomcat.

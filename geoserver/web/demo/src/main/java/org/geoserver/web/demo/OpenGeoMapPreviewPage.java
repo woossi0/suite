@@ -100,7 +100,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                 } else if (property == LINKS) {
                     Fragment f = new Fragment(id, "exlink", OpenGeoMapPreviewPage.this);
                     
-                    final ExternalLink link = new ExternalLink("goButton", "#");
+                    final ExternalLink link = new ExternalLink("goButton", openLayers.linkForLayer(layer));
                     link.setOutputMarkupId(true);
                     link.getMarkupId();
                     
@@ -109,14 +109,14 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                     WebMarkupContainer groupContainer = new WebMarkupContainer(group.newChildId());
                     groupContainer.add(new SimpleAttributeModifier("label", "Applications"));
                     RepeatingView view = new RepeatingView("link");
-                    addLinkOptions(applicationLinkTemplates, layer, view);
+                    addLinkOptions(applicationLinkTemplates, layer, view, true);
                     groupContainer.add(view);
                     group.add(groupContainer);
 
                     groupContainer = new WebMarkupContainer(group.newChildId());
                     groupContainer.add(new SimpleAttributeModifier("label", "WMS Formats"));
                     view = new RepeatingView("link");
-                    addLinkOptions(wmsLinkTemplates(), layer, view);
+                    addLinkOptions(wmsLinkTemplates(), layer, view, false);
                     groupContainer.add(view);
                     group.add(groupContainer);
 
@@ -124,7 +124,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                         groupContainer = new WebMarkupContainer(group.newChildId());
                         groupContainer.add(new SimpleAttributeModifier("label", "WFS Formats"));
                         view = new RepeatingView("link");
-                        addLinkOptions(wfsLinkTemplates(), layer, view);
+                        addLinkOptions(wfsLinkTemplates(), layer, view, false);
                         groupContainer.add(view);
                         group.add(groupContainer);
                     }
@@ -180,10 +180,14 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
     }
 
     private void addLinkOptions(final List<LinkTemplate> templates,
-        final OpenGeoPreviewLayer layer, final RepeatingView view) {
+        final OpenGeoPreviewLayer layer, final RepeatingView view, boolean selectOne) {
         for (LinkTemplate tpl : templates) {
             Label label = new Label(view.newChildId(), new Model<String>(tpl.label()));
             label.add(new SimpleAttributeModifier("value", tpl.linkForLayer(layer)));
+            if (selectOne) {
+                label.add(new SimpleAttributeModifier("selected", "selected"));
+                selectOne = false;
+            }
             view.add(label);
         }
     }

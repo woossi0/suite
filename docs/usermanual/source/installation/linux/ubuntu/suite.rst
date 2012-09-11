@@ -66,9 +66,9 @@ Installing OpenGeo Suite Enterprise Edition
 
 #. Follow all of the steps from the previous section.
 
-#. Now add the OpenGeo Enterprise APT repository. This repository is password protected. You will have received a username and password when you `registered for the Enterprise Edition <http://opengeo.org/products/suite/register/>`_. Add the following APT repository using the command below, making sure to substitute in your username for ``<username>`` and password for ``<password>``.
+#. Now add the OpenGeo Enterprise APT repository. This repository is password protected. You will have received a user name and password when you `registered for the Enterprise Edition <http://opengeo.org/products/suite/register/>`_. Add the following APT repository using the command below, making sure to substitute in your user name for ``<username>`` and password for ``<password>``.
 
-   .. note:: If your username is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
+   .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
 
    .. code-block:: console
 
@@ -139,14 +139,16 @@ The procedure for upgrading is as follows:
 
     .. code-block:: console
     
-       su - postgres
+       sudo su postgres
 
-#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory. To avoid permissions issues, it is best to create this temporary directory under your home directory. By default, the backup files created by this script will be saved to this location.
+#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory. To avoid permissions issues, the :file:`/tmp/suite_backup/pg_backup` path will be created and used.
+
+    .. warning:: The :file:`/tmp` directory is not recommended for long-term storage of backups, as the directory can often be purged as a part of normal system activity. If using a different directory, make sure that both the ``postgres`` and ``root`` users have read/write permissions to it.
 
     .. code-block:: console
 
-       mkdir ~/suite_backup/pg_backup
-       cd ~/suite_backup/pg_backup
+       mkdir -p /tmp/suite_backup/pg_backup
+       cd /tmp/suite_backup/pg_backup
        wget http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip
        unzip postgis_upgrade.zip
 
@@ -163,17 +165,18 @@ The procedure for upgrading is as follows:
    * Compressed dump files for every database backed up (:file:`<database>.dmp`)
    * SQL output of server roles
 
-#. The PostGIS data backup process is complete. Switch back to the ``root`` user.
+#. The PostGIS data backup process is complete. Switch from the ``postgres`` user to the ``root`` user:
 
    .. code-block:: console
-   
+
       exit
+      sudo su -
 
 #. *Optional:* Back up your GeoServer data directory. This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`. To back up this directory, you can create an archive of it, or simply copy it to another location.
 
    .. code-block:: console
 
-      cp -r /usr/share/opengeo-suite-data/geoserver_data  ~/suite_backup/data_dir_backup
+      cp -r /usr/share/opengeo-suite-data/geoserver_data  /tmp/suite_backup/data_dir_backup
       
    .. note:: This step is optional but highly recommended. During the upgrade the GeoServer data directory will be automatically upgraded resulting in a data directory that is incompatible with Suite 2.x. Having a backup makes downgrading much easier.
 
@@ -183,9 +186,9 @@ The procedure for upgrading is as follows:
 
       echo "deb http://apt.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
 
-#. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your username and password:
+#. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your user name and password:
 
-   .. note:: If your username is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
+   .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
 
    .. code-block:: console
 
@@ -216,8 +219,8 @@ The procedure for upgrading is as follows:
 
    .. code-block:: console
 
-      su - postgres
-      cd ~/suite_backup/pg_backup
+      sudo su postgres
+      cd /tmp/suite_backup/pg_backup
       perl postgis_upgrade.pl restore
 
    .. note:: As with the backup, standard PostGIS connection parameters may be used. You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.

@@ -354,7 +354,7 @@ The following input polygon and line can be used to test the process:
 
    POLYGON ((110 20, 120 20, 120 10, 110 10, 110 20),(112 17, 118 18, 118 16, 112 15, 112 17))
 
-   LINESTRING (1117 22, 112 18, 118 13, 115 8)
+   LINESTRING (117 22, 112 18, 118 13, 115 8)
 
 Visually, the inputs and output from this test look like:   
    

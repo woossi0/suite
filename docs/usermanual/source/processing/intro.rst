@@ -24,7 +24,7 @@ And when it comes to "deriving insight", one might wish to accomplish the follow
 
 These questions and many more like them can be asked and answered via spatial processing.
 
-In the past, web mapping software has focused primarily on composition and display, leaving processing to desktop clients.  But web-based tools today, such as the OpenGeo Suite, have a wide range of processing capabilities, all but equalling their desktop equivalents.
+In the past, web mapping software has focused primarily on composition and display, leaving processing to desktop clients.  But web-based tools today, such as the OpenGeo Suite, have a wide range of processing capabilities, all but equaling their desktop equivalents.
 
 
 Spatial Processing in the OpenGeo Suite
@@ -37,7 +37,7 @@ Web Processing Service
 
 One powerful method of performing spatial processing is through the **Web Processing Service**, or WPS.  This OGC-based protocol, analogous to other protocols such as Web Map Service (WMS) and Web Feature Service (WFS), allows for client-server interaction with server-hosted "processes".  A server can provide WPS processes, which can then be executed by clients on data they supply or applied to existing server-side datasets.
 
-WPS is an integrated into GeoServer and thus is an integral part of the OpenGeo Suite.  It provides a collection of standard processes (over 50 of them) along with the ability to add additional ones.  These processes can be employed inside custom applications, built with the :ref:`OpenGeo Client SDK <apps.sdk.client.dev>`, for a full web-based spatial processing solution.
+WPS is a service published by GeoServer and so is an integral part of the OpenGeo Suite.  It provides a collection of many standard processes along with the ability to add additional ones.  These processes can be employed inside custom applications, built with the :ref:`OpenGeo Client SDK <apps.sdk.client.dev>`, for a full web-based spatial processing solution.
 
 For example, to take a collection of features, one can run the ``JTS:union`` process to output a single feature that is the union of them.  As a more complex example, one can run the ``gs:Reproject`` process to reproject a raster image to a different SRS, then take the output of that and run ``gs:CropCoverage`` to crop the raster down to a certain bounds.  The result can be fed into the ``gs:Import`` process to save the resulting coverage as a new layer in GeoServer, for use by other clients.
 
