@@ -87,6 +87,11 @@
     </dependency>
     <dependency>
       <groupId>org.opengeo.geoserver</groupId>
+      <artifactId>gsr</artifactId>
+      <version>${gs.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opengeo.geoserver</groupId>
       <artifactId>web-demo</artifactId>
       <version>${project.version}</version>
     </dependency>
