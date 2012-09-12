@@ -48,7 +48,7 @@ To stop::
 Getting Started
 ---------------
 
-The Dashboard contains a Getting Started page, which is designed to show a sample workflow for publishing your data and creating your maps.  A more detailed discussion is available here in the :ref:`workflow`.
+The Dashboard contains a Getting Started page, which is designed to show a sample workflow for publishing your data and creating your maps.  A more detailed discussion is available here in the :ref:`webmaps.basic` tutorial.
 
 .. figure:: img/dashboard_gettingstarted.png
    :align: center
