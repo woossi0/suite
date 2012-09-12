@@ -1,6 +1,6 @@
 .. _webmaps.basic.edit:
 
-Edit Your Data
+Edit your data
 ==============
 
 In addition to :ref:`graphical styling <webmaps.basic.style>`, GeoExplorer also allows for editing of geospatial data when the layer is served through a local copy of GeoServer. Since this is how our data was loaded, we will use GeoExplorer to edit features.

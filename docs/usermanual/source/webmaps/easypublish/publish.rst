@@ -1,6 +1,6 @@
 .. _webmaps.basic.publish:
 
-Compose and Publish Your Map
+Compose and publish your map
 ============================
 
 With your layers :ref:`styled <webmaps.basic.style>` and :ref:`edited <webmaps.basic.edit>`, you are at last ready to compose and publish your map. Map composition involves loading all the layers you wish to publish, determining layer order, and determining map extent and positioning. Once this is accomplished, you can save your map in a format that makes it easy to embed in any web page.
