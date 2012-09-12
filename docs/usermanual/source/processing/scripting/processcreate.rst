@@ -1,15 +1,14 @@
-.. _processing.geoscript.processcreate:
+.. _processing.scripting.processcreate:
 
-Creating a process with GeoScript
-=================================
+Creating a process with a script
+================================
 
-This tutorial will show how to create a script that uses GeoScript to create a new WPS process. As GeoScript has bindings for both Python and JavaScript, examples from both languages will be shown here.
-
+This tutorial will show how to create a script that creates a new :term:`WPS` process. As the scripting engine has bindings for both Python and JavaScript, examples from both languages will be shown here.
 
 Process definition
 ------------------
 
-This tutorial will create a process called "Distance and Bearing" with the following functionality: Given a feature collection and a single point, it will return a feature collection with the same number of elements as the source feature collection, but with attributes containing the distance and bearing (angle of orientation) to the source point.
+This tutorial will create a process called **"Distance and Bearing"** with the following functionality: Given a feature collection and a single point, process will return a feature collection with the same number of elements as the source feature collection and with the same geometries, but with attributes containing the distance and bearing (angle of orientation) to the source point.
 
 .. todo:: Image needed describing process
 
@@ -27,18 +26,18 @@ While there is a distance function in both Python and JavaScript, the bearing wi
 Creating the script
 -------------------
 
-The script will consist of headers, input and output definition, metadata, and computation.
+The script will consist of headers, input/output definitions, metadata, and computation.
 
 Process headers
 ~~~~~~~~~~~~~~~
 
-The script requires a number of header libraries, including access to the GeoServer catalog, GeoScript, and feature types:
+The script requires a number of header libraries, including access to the GeoServer catalog, geometry and feature types, and WPS process hooks:
 
 **Python**
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 1-6
+   :lines: 1-5
 
 **JavaScript**
 
@@ -55,13 +54,13 @@ Next we define the process inputs and metadata. We first add a title and descrip
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 11,14
+   :lines: 8-9
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 7,10
+   :lines: 6-7
 
 
 The process has two inputs, as described above: a feature collection (``features``), and a point from which to compute distance and bearing (``origin``). We will create the inputs list with these two definitions, along with a description:
@@ -70,45 +69,39 @@ The process has two inputs, as described above: a feature collection (``features
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 17-20
+   :lines: 10-13
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 13-24
+   :lines: 9-20
 
-The single output (``result``) will return a feature collection, and is defined similarly:
+The single output will return a feature collection, and is defined similarly:
 
 **Python**
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 23-25
+   :lines: 14-16
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 27-33
+   :lines: 22-28
 
 
 Process computation
 ~~~~~~~~~~~~~~~~~~~
 
-Now that our inputs and outputs are defined, we can create the computation, through a function called ``run``.  We first create a layer container to hold the results of our computation:
-
-**Python**
-
-.. literalinclude:: distbear.py
-   :language: python
-   :lines: 32-33
+Now that our inputs and outputs are defined, we can create the computation, through a function called ``run``.  We first create a layer container to hold the results of our computation (only necessary in the JavaScript example):
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 37-29,41-48
+   :lines: 34-41
 
 Note that the schema for the layer will contain the identical point geometry as the source features, along with two attributes called ``distance`` and ``bearing``.
 
@@ -118,13 +111,13 @@ The computation iterates over each of the features in our feature collection.  W
 
 .. literalinclude:: distbear.py
    :language: python
-   :lines: 36-43
+   :lines: 20-25
 
 **JavaScript**
 
 .. literalinclude:: distbear.js
    :language: javascript
-   :lines: 51-71
+   :lines: 43-63
 
 where:
 
@@ -132,7 +125,8 @@ where:
 * ``d``--Distance calculation from the ``origin``
 * ``b``--Angle measure clockwise from true north between origin and point.
 
-These three variables as a list are then ingested into an entry in ``results``.  The value is then returned.
+These three variables as a list are then returned.
+
 
 Save this file as :file:`distbear.py` or :file:`distbear.js`, depending on the language used.  You can see the full scripts below:
 
@@ -152,9 +146,7 @@ Activating the script
 
 Now that the script is written, it must be added to GeoServer.  Scripts are placed in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`.  The script will be activated automatically when copied to that location, with *no server restart necessary*.
 
-You can also drop scripts into the :file:`wps/` directory directly through the GeoServer UI.
-
-.. todo:: Please see the section on processing.geoscript.gsui for more details.
+.. todo:: You can also upload scripts through the REST API.  Please see the section on processing.scripting.rest for more details.
 
 Testing the script
 ------------------
@@ -175,18 +167,18 @@ Now that the script is in place and activated, the next step is to test it.  We'
 
       *Scripts listed as WPS processes*
 
-#. You will see a list of options.  To get a feel for this process, we'll create a very simple data set consisting of four points in the Cartesian plane::
+#. You will see a list of options.  To get a feel for this process, we'll create a very simple data set.  We'll use the origin as our source point::
+
+     POINT(0 0)
+
+   Our source features will consist of four points in the Cartesian plane::
 
      POINT(1 0)
      POINT(0 2)
      POINT(-1 1)
      POINT(6 3)
 
-   And we will use the origin as our source point::
-
-     POINT(0 0)
-
-   Converting the feature set from WKT into JSON yields:
+   Converting these features from WKT into JSON yields the following:
 
    .. code-block:: json
 
@@ -256,7 +248,7 @@ Now that the script is in place and activated, the next step is to test it.  We'
 
 #. Now we are ready to go.  Click on :guilabel:`Execute process`.
 
-   .. note:: If you are curious about what the process actually looks like in XML, click on :guilabel:`Generate XML from process inputs/outputs`.
+   .. note:: If you are curious about what the actual process request looks like, click on :guilabel:`Generate XML from process inputs/outputs`.
 
 #. The output will look something like this:
 
