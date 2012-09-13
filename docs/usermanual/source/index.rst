@@ -22,14 +22,13 @@ User Manual
 The OpenGeo User Manual will help you get the most out of the OpenGeo Suite.
 
 * `Introduction - Getting Started with the OpenGeo Suite <./introduction/index>`_
-* `Installing the OpenGeo Suite <./installation/index>`_
-* `Building Web Maps <./webmaps/index>`_
-* `Web Cartography <./cartography/index>`_
-* `Building Complete Applications <./apps/index>`_
-* `Spatial Processing and Analysis <./processing/index>`_
-* `Working with PostGIS <./dataadmin/index>`_
-* `System Administration <./sysaadmin/index>`_
-
+* `Installing the OpenGeo Suite <./installation/index.html>`_
+* `Building Web Maps <./webmaps/index.html>`_
+* `Web Cartography <./cartography/index.html>`_
+* `Building Complete Applications <./apps/index.html>`_
+* `Spatial Processing and Analysis <./processing/index.html>`_
+* `Working with PostGIS <./dataadmin/index.html>`_
+* `System Administration <./sysaadmin/index.html>`_
 
 
 
@@ -46,4 +45,4 @@ Component References
 Additional Documentation
 ------------------------
 
-`Glossary <glossary>`_
+`Glossary <glossary.html>`_
