@@ -97,6 +97,12 @@ else
   ARCHIVE_BUILD="false"
 fi
 
+# clean up old artifacts
+pushd $dist/..
+# keep around last two builds
+ls -lt | grep -v "^l" | cut -d ' ' -f 8 | tail -n +3 | xargs rm -rf 
+popd
+
 # start_remote_job <url> <name> <profile>
 function start_remote_job() {
    curl -k --connect-timeout 10 "$1/buildWithParameters?DIST_PATH=${DIST_PATH}&REVISION=${revision}&ALIAS=${ALIAS}&PROFILE=$3&ARCHIVE_BUILD=${ARCHIVE_BUILD}"
