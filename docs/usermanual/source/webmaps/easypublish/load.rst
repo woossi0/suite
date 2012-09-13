@@ -13,7 +13,7 @@ The first step of any workflow is to load your data into the OpenGeo Suite.  For
 
         ./opengeo-suite start
 
-#. Click on the :guilabel:`Import Shapefiles` link which can be found by dragging your mouse down to the PostGIS section under :guilabel:`Components`.  This will load :guilabel:`pgShapeLoader` which will allow you to convert shapefiles to a tables in a PostGIS database.
+#. Click the :guilabel:`Import Shapefiles` link in the PostGIS section under :guilabel:`Components`.  This will load :guilabel:`pgShapeLoader` which will allow you to convert shapefiles to a tables in a PostGIS database.
 
    .. note:: Linux users should run :command:`shp2pgsql-gui` from the terminal.
 
@@ -23,13 +23,13 @@ The first step of any workflow is to load your data into the OpenGeo Suite.  For
 
 #. pgShapeloader will load.
 
-   .. figure:: ../../dataadmin/loading/img/pgshapeloader.png
+   .. figure:: ../../dataadmin/pgGettingStarted/img/pgshapeloader.png
 
       *pgShapeLoader*
 
-#. Next, click on the box that is titled :guilabel:`Shape File.`  In the folder dialog that appears, navigate to the location of your first shapefile, select it, then click :guilabel:`Open`.
+#. Next, click the box titled :guilabel:`Shape File.`  In the folder dialog that appears, navigate to the location of your first shapefile, select it, then click :guilabel:`Open`.
 
-   .. figure:: ../../dataadmin/loading/img/pgshp_select.png
+   .. figure:: ../../dataadmin/pgGettingStarted/img/pgshp_select.png
 
       *Selecting a shapefile to import*
 
@@ -66,7 +66,7 @@ The first step of any workflow is to load your data into the OpenGeo Suite.  For
 
 #. When ready, click :guilabel:`Import`.
 
-   .. figure:: ../../dataadmin/loading/img/pgshp_importing.png
+   .. figure:: ../../dataadmin/pgGettingStarted/img/pgshp_importing.png
 
       *A successful import*
 
@@ -117,7 +117,7 @@ Verifying data
 
 To verify that your data was loaded properly, you can use :guilabel:`pgAdmin`, a desktop interface tool for managing your PostGIS database.
 
-#. Launch pgAdmin by clicking the :guilabel:`PostGIS` link in the Dashboard.  The following screen will display.
+#. To launch the pgAdmin tool, click the :guilabel:`Manage` link next to the PostGIS component in the Dashboard. 
 
    .. figure:: img/load_pgadmin.png
       :align: center
@@ -126,7 +126,7 @@ To verify that your data was loaded properly, you can use :guilabel:`pgAdmin`, a
 
    .. note:: **Linux users:**  pgAdmin will not be available through the Dashboard.  Please run :guilabel:`pgAdmin III` from the Applications menu in your GUI, or via :command:`pgadmin3` from the terminal. 
 
-#. Double click on the server instance called :guilabel:`PostGIS (localhost:54321)` in the Object Browser.
+#. Double-click the server instance :guilabel:`PostGIS (localhost:54321)` in the :guilabel:`Object browser`.
 
    .. note::
 
@@ -135,11 +135,11 @@ To verify that your data was loaded properly, you can use :guilabel:`pgAdmin`, a
 
 #. Expand the tree to view :menuselection:`Databases -> [username] -> Schemas -> public -> Tables`.  You should see a listing of tables corresponding to the shapefiles that you loaded.
 
-   .. note:: There will be two extra tables in the list, :guilabel:`geometry_columns`, and :guilabel:`spatial_ref_sys`.  Those two tables are automatically created by PostGIS.
+   .. note:: PostGIS automatically creates one additional table, :guilabel:`spatial_ref_sys`, and a view, :guilabel:`geometry_columns`, to record spatial reference and geometry column metadata for each table in the database.
 
-   .. figure:: ../../dataadmin/loading/img/pgshp_pgadminconfirm.png
+   .. figure:: ../../dataadmin/pgGettingStarted/img/pgshp_pgadminconfirm.png
       :align: center
 
       *Database table listing*
 
-For more information about pgAdmin and PostGIS, please see the `PostGIS Documentation <../../postgis/>`_. You can access this by clicking the :guilabel:`PostGIS Documentation` link in the :ref:`dashboard`.
+For more information about pgAdmin and PostGIS, please see `Getting Started with PostGIS <../../dataadmin/pgGettingStarted/index.html>`_ or the :guilabel:`PostGIS Documentation` available from the :ref:`dashboard`.
