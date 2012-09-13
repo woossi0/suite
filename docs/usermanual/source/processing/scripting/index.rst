@@ -10,4 +10,3 @@ The OpenGeo Suite includes scripting libraries that add spatial capabilities to 
    :maxdepth: 1
 
    processcreate
-   gsui
