@@ -1,144 +1,101 @@
-.. _workflow.edit:
+.. _webmaps.basic.edit:
 
-Edit Your Data With GeoExplorer
-===============================
+Edit your data
+==============
 
-.. note:: This step is optional.  If you don't wish to edit any of your existing data, you can skip to the next section, :ref:`workflow.style`.
+In addition to :ref:`graphical styling <webmaps.basic.style>`, GeoExplorer also allows for editing of geospatial data when the layer is served through a local copy of GeoServer. Since this is how our data was loaded, we will use GeoExplorer to edit features.
 
-GeoExplorer allows for editing of geospatial data served through a local copy of GeoServer.  We will use GeoExplorer to create and edit features in our data.
+.. note:: Editing data served directly from shapefiles is not recommended, but our shapefiles were converted to PostGIS tables during the :ref:`loading <webmaps.basic.load>` process.
 
-.. note:: Editing data served directly from shapefiles is not recommended.
+If you don't wish to edit any of your data, you can continue on to :ref:`webmaps.basic.publish`.
 
-#. Make sure the OpenGeo Suite is running and that GeoExplorer is open.
+Editing an existing feature
+---------------------------
 
-#. If you haven't already done so, add a layer that you wish to edit.  See the previous step, :ref:`workflow.add` for details.
+To edit features for a given layer:
 
-#. In order to edit data, we will need to log in to GeoExplorer, which uses the same credentials as GeoServer.  Click the Login button at the top right of the screen.
+#. Use the pan and zoom tools to focus in on the area that contains the feature(s) that you would like to edit.
 
-   .. figure:: img/edit_login_button.png
-      :align: center
+   .. figure:: img/edit_mapextent.png
 
-      *Login button*
+      *Zooming in on the features to edit*
 
-#. Enter your username and password.
+#. If it is not already, select the layer you wish to edit by clicking on it in the Layers Panel on the left side of the screen.
 
-   .. note:: By default, the username and password is **admin** and **geoserver**.  The :ref:`dashboard.prefs` in the Dashboard will show the current credentials.
+#. The :guilabel:`Edit` menu on the toolbar will become enabled. Click this menu and select :guilabel:`Modify`. 
 
-   .. figure:: img/edit_login.png
-      :align: center
+   .. figure:: img/edit_modifymenu.png
 
-      *Logging in to GeoExplorer*
+      *Select this menu entry to modify existing features*
 
-#. Once you are logged in, the top right of the screen will show this:
-
-   .. figure:: img/edit_loggedin.png
-      :align: center
-
-      *This will show that you're logged in*
-
-#. Now select the layer you wish to edit by clicking on it in the Layers Panel on the left side of the screen.  A few buttons on the toolbar will become enabled, specifically the :guilabel:`Create new feature` button, and the :guilabel:`Edit existing feature` button.
-
-
-
-
-Editing attribute data
-----------------------
-
-#. To edit attribute data for features in the layer, first click on the :guilabel:`Edit existing feature` button in the menu bar.  
-
-   .. figure:: img/edit_edit_button.png
-      :align: center
-
-      *Edit existing feature button*
-
-#. Click on a feature.  A popup will display, showing the attributes of this feature.
+#. Click on an existing feature. A pop-up will appear showing its current attributes. Click the :guilabel:`Edit` button to change the values for any of these attributes. In addition, clicking the :guilabel:`Edit` button will also enable the feature (if a point) or its vertices to be moved. Click on a feature or its vertices in order to move them.
 
    .. figure:: img/edit_attribute.png
-      :align: center
 
-      *Displaying attributes for a feature*
+      *List of attributes with Edit button for editing*
 
-#.  Click the :guilabel:`Edit` button and then click on any of the fields to change the value.
+   .. figure:: img/edit_attributeedit.png
 
-   .. figure:: img/edit_attribute_edit.png
-      :align: center
+      *Changed attributes*
 
-      *Editing attributes*
-
-#. When done, click :guilabel:`Save`.  Your attribute data will be saved through GeoServer into the original source data format.
-
-   .. figure:: img/edit_attribute_saved.png
-      :align: center
-
-      *Edited attribute saved*
+#. When done making edits, click :guilabel:`Save`. The pop-up can then be closed.
 
 
 Creating a new feature
 ----------------------
 
-#. To create a new feature in a layer, first make sure that the layer is selected, then click the :guilabel:`Create a new feature` button in the menubar the top of the screen.
+To create a new feature in a layer:
 
-   .. figure:: img/edit_create_button.png
-      :align: center
+#. First make sure, as before, that the layer is selected, then click the :guilabel:`Edit` menu and select :guilabel:`Create`.
 
-      *Create new feature button*
+   .. figure:: img/edit_createmenu.png
 
-#. Click anywhere in the map window to start drawing the feature.  This workflow will vary depending on whether the layer consists of points, line and polygons.  Clicking on the map will add new vertices.  Clicking and dragging existing vertices will move them.  Holding the shift button while dragging will draw smooth curves instead of points.
+      *Select this menu entry to create new features*
 
-   .. figure:: img/edit_create_draw.png
-      :align: center
+#. Click anywhere in the map window to start drawing the feature. The behavior will vary depending on the type of geometry in the layer (points, lines, or polygons). Clicking on the map will add new features (for a point layer) or vertices. Clicking and dragging existing vertices will move them. Holding the shift button while dragging will draw smooth curves instead of discrete vertices.
 
-      *Drawing a new feature*
+#. Double-click on the feature when done. A pop-up will display, where attribute data can then be entered. If creating a new point, the pop-up will display immediately.
 
-#. Double-click when done.  A popup will display, where attribute data can then be entered.
+   .. figure:: img/edit_create.png
 
+      *Creating a new feature*
 
-   .. figure:: img/edit_create_attribute.png
-      :align: center
+   .. figure:: img/edit_createattributes.png
 
       *Editing the attributes of a new feature*
 
-#. When finished, click :guilabel:`Save`.  Your new feature will become part of the layer.
+#. When finished, click :guilabel:`Save`. Your new feature will immediately become part of the layer.
 
-   .. figure:: img/edit_create_saved.png
-      :align: center
-
-      *New feature saved*
-
-Editing an existing feature's geometry works very similarly to creating a new one.  Simply click on the :guilabel:`Edit existing feature` button, click on an existing feature, and click :guilabel:`Edit` in the popup that displays.  The vertices of the feature will become editable.  Double-click to finish.
- 
-   .. figure:: img/edit_edit_feature.png
-      :align: center
+   .. figure:: img/edit_created.png
 
       *New feature saved*
 
 
-Deleting a feature
-------------------
+Deleting an existing feature
+----------------------------
 
-.. warning:: This action is not undoable.
+.. warning:: Deleting a feature is not undoable.
 
-#. To delete a feature, click on the :guilabel:`Edit Existing Feature` button in the menu bar.
+#. To delete a feature, click on the :guilabel:`Edit` menu as above and select :guilabel:`Modify`.
 
-   .. figure:: img/edit_edit_button.png
-      :align: center
-
-      *Edit Existing Feature button*
-
-#. Click on a feature.  A popup will display, showing the attributes of this feature.  Click the :guilabel:`Delete` button.
+#. Click on a feature. A pop-up will display, showing the attributes of this feature. Click the :guilabel:`Delete` button.
 
    .. figure:: img/edit_delete.png
-      :align: center
 
       *Deleting a feature*
 
-#. A confirmation popup will display.  Click :guilabel:`Yes` to confirm deletion.
+#. A confirmation dialog will display. Click :guilabel:`Yes` to confirm deletion.
 
-   .. figure:: img/edit_delete_confirm.png
-      :align: center
+   .. figure:: img/edit_deleteconfirm.png
 
       *Confirmation for deleting a feature*
 
-The feature will be removed from the layer.
+#. The feature will be removed from the layer.
 
+   .. figure:: img/edit_deleted.png
+
+      *Feature deleted*
+
+
+Now that the data has been edited, continue on to :ref:`webmaps.basic.publish`.
 

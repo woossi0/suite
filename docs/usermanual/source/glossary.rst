@@ -55,34 +55,41 @@ Glossary
     SQL/MM
        `SQL Multimedia <http://www.fer.hr/_download/repository/SQLMM_Spatial-_The_Standard_to_Manage_Spatial_Data_in_Relational_Database_Systems.pdf>`_; includes several sections on extended types, including a substantial section on spatial types.
 
-    SVG
-       Scalable vector graphics. This is a family of specifications of an XML-based file format for describing two-dimensional vector graphics, both static and dynamic (i.e. interactive or animated). See http://en.wikipedia.org/wiki/Scalable_Vector_Graphics.
+   Scalable Vector Graphics
+       This is a family of specifications of an XML-based file format for describing two-dimensional vector graphics, both static and dynamic (i.e. interactive or animated). See http://en.wikipedia.org/wiki/Scalable_Vector_Graphics.
 
-    WFS
+    SVG
+       Acronym for :term:`Scalable Vector Graphics`.
+
+    Web Feature Service
        The `Web Feature Service <http://www.opengeospatial.org/standards/wfs>`_ (WFS) specification from the :term:`OGC` defines an interface for reading and writing geographic features across the web.
 
-<<<<<<< HEAD
-    WMS
+    WFS
+      Acronym for :term:`Web Feature Service`.
+
+    Web Map Service
        The `Web Map Service <http://www.opengeospatial.org/standards/wms>`_ (WMS) specification from the :term:`OGC` defines an interface for requesting rendered map images across the web.
 
-=======
->>>>>>> 3b52538a8f96d001e67640a3b2375341d20ee706
-    WKB
-       Well-known binary. This refers to the binary representation of geometries described in the Simple Features for SQL specification (:term:`SFSQL`).
-        
-    WKT
-<<<<<<< HEAD
-       Well-known text. This refers either to the text representation of geometries, with strings starting "POINT", "LINESTRING", "POLYGON", and so on, or the text representation of a :term:`CRS`, with strings starting "PROJCS", "GEOGCS", and so on.  Well-known text representations are :term:`OGC` standards, but do not have their own specification documents. The first descriptions of WKT (for geometries and for CRS) appeared in the :term:`SFSQL` 1.0 specification.
-=======
-        "Well-known text". Can refer either to the text representation of geometries, with strings starting "POINT", "LINESTRING", "POLYGON", etc. Or can refer to the text representation of a :term:`CRS`, with strings starting "PROJCS", "GEOGCS", etc.  Well-known text representations are :term:`OGC` standards, but do not have their own specification documents. The first descriptions of WKT (for geometries and for CRS) appeared in the :term:`SFSQL` 1.0 specification.
-
     WMS
-        The `Web Map Service <http://www.opengeospatial.org/standards/wms>`_ (WMS) specification from the :term:`OGC` defines an interface for requesting rendered map images across the web.
+      Acronym for :term:`Web Map Service`.
 
-    WPS
+    Well-Known Binary
+       This refers to the binary representation of geometries described in the Simple Features for SQL specification (:term:`SFSQL`).
+
+    WKB
+       Acronym for :term:`Well-Known Binary`.
+    
+    Well-Known Text
+       This refers either to the text representation of geometries, with strings starting "POINT", "LINESTRING", "POLYGON", and so on, or the text representation of a :term:`CRS`, with strings starting "PROJCS", "GEOGCS", and so on.  Well-known text representations are :term:`OGC` standards, but do not have their own specification documents. The first descriptions of WKT (for geometries and for CRS) appeared in the :term:`SFSQL` 1.0 specification.
+
+    WKT
+       Acronym for :term:`Well-Known Text`.
+
+
+    Web Processing Service
         The `Web Processing Service <http://www.opengeospatial.org/standards/wps>`_ (WPS) specification from the :term:`OGC` provides rules for standardizing inputs and outputs (requests and responses) for geospatial processing services.
 
-        
->>>>>>> 3b52538a8f96d001e67640a3b2375341d20ee706
+    WPS
+       Acronym for :term:`Web Processing Service`.
 
   

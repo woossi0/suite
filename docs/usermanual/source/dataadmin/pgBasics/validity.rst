@@ -1,37 +1,39 @@
-.. _dataadmin.postgis.validity:
+.. _dataadmin.pgBasics.validity:
+
+.. warning:: Document Status: **Draft**
 
 Validity
 ========
 
-Validity is most important for polygons, which define bounded areas and require a good deal of structure. Lines are very simple and cannot be invalid, nor can points.
+A valid geometry is essential for polygons since they define bounded areas and require a consistent structure. Lines and points, on the other hand, are simple contructs and cannot be invalid.
 
-Some of the rules of polygon validity feel obvious, and others feel arbitrary (and in fact, are arbitrary).
+The following validity rules have been adopted by the OGC SFSQL standard, and as such are implemented by PostGIS:
 
-* Polygon rings must close.
-* Rings that define holes should be inside rings that define exterior boundaries.
-* Rings may not self-intersect (they may neither touch nor cross one another).
-* Rings may not touch other rings, except at a point.
+* Polygon rings must close
+* Rings that define holes should be inside rings that define exterior boundaries
+* Rings must not self-intersect—they may neither touch nor cross one another
+* Rings must not touch other rings, except at a point
 
-The last two rules are quite arbitrary. There are other ways to define polygons that are equally self-consistent but the rules above are the ones used by the OGC SFSQL standard that PostGIS conforms to.
+.. Note:: The last two rules are arbitrary. There are other ways to define polygons that are equally self-consistent. 
 
-The reason the rules are important is because algorithms for geometry calculations depend on consistent structure in the inputs. It is possible to build algorithms that have no structural assumptions, but those routines tend to be very slow, because the first step in any structure-free routine is to analyze the inputs and build structure into them.
+These rules are important because algorithms for geometry calculations depend on a consistent structure in the input geometries. Although it is possible to build algorithms that have no structural prerequisites, a structure-free approach often results in slow processing times since the first step is to analyze the inputs and impose a structure.
 
-Here's an example of why structure matters. This polygon is invalid:
+To illustrate why structure matters, the following output represents an invalid polygon:
 
 ::
 
   POLYGON((0 0, 0 1, 2 1, 2 2, 1 2, 1 0, 0 0));
   
-You can see the invalidity a little more clearly in this diagram:
+The reason it is invalid is highlighted in the following diagram:
 
 .. figure:: img/validity_figure8.png
-   :align: center
 
    *Figure-eight polygon*
 
-The outer ring is actually a figure-eight, with a self-intersection in the middle. Note that the graphic routines successfully render the polygon fill, so that visually it is appears to be an "area": two one-unit squares, so a total area of two units of area.
 
-Let's see what the database thinks the area of our polygon is:
+Although the display routine appears to render the polygon as a single area, the outer ring is a figure-eight, with a self-intersection in the middle. This results in two one-unit squares and a total area that is the sum of the two squares.
+
+Applying the :command:`ST_Area` function confirms the polygon's invalid status:
 
 .. code-block:: sql
 
@@ -43,13 +45,17 @@ Let's see what the database thinks the area of our polygon is:
    ---------
           0
 
-What's going on here? The algorithm that calculates area assumes that rings do not self-intersect. A well-behaved ring will always have the area that is bounded (the interior) on one side of the bounding line (it doesn't matter which side, just that it is on *one* side). However, in our (poorly behaved) figure-eight, the bounded area is to the right of the line for one lobe and to the left for the other. This causes the areas calculated for each lobe to cancel out (one comes out as 1, the other as -1) hence the "zero area" result.
+The algorithm that calculates area assumes that rings do not self-intersect. A valid ring will always have the area that is bounded (the interior) on one side of the bounding line. It doesn't matter which side, just as long as it is on *one* side. 
+
+However, in the figure-eight example the bounded area is to the right of the line for one square and to the left for the other. This results in the area calculated for each square being canceled out; one is reported as 1, the other as -1, so a total "zero area" is returned.
 
 
 Detecting Validity
 ------------------
 
-In the previous example we had one polygon that we **knew** was invalid. How do we detect invalidity in a table with millions of geometries? With the ``ST_IsValid(geometry)`` function. Used against our figure-eight, we get a quick answer:
+For a quick test of validity the function :command:`ST_IsValid(geometry)` will return a true/false answer.
+
+Using the figure-eight polygon as an example, the output would be:
 
 .. code-block:: sql
 
@@ -59,7 +65,7 @@ In the previous example we had one polygon that we **knew** was invalid. How do 
 
   f
 
-Result is false.  Now we know that the feature is invalid, but we don't know why. We can use the ``ST_IsValidReason(geometry)`` function to find out the source of the invalidity:
+The result is false. This confirms the feature is invalid, but doesn't explain why. The :command:`ST_IsValidReason(geometry)` function will provide further information as to why it is invalid:
 
 .. code-block:: sql
 
@@ -69,9 +75,9 @@ Result is false.  Now we know that the feature is invalid, but we don't know why
 
   Self-intersection[1 1]
 
-Note that in addition to the reason (self-intersection) the location of the invalidity (coordinate (1 1)) is also returned.
+In addition to the explanation as to why the geometry is invalid (self-intersection), the location of the invalidity (coordinate (1 1)) is also returned.
 
-We can use the ``ST_IsValid(geometry)`` function to test our tables too:
+The :command:`ST_IsValid` function can also test entire tables as well:
 
 .. code-block:: sql
 
@@ -89,13 +95,12 @@ We can use the ``ST_IsValid(geometry)`` function to test our tables too:
   Red Hook                | Brooklyn      | Self-intersection[584306.820375986 4502360.51774956]
 
 
-
 Repairing Invalidity
 --------------------
 
-There is no guaranteed way to fix invalid geometries. The worst case scenario is identifying them with the ``ST_IsValid(geometry)`` function, moving them to a side table, exporting that table, and repairing them externally.
+There is no guaranteed way to fix invalid geometries. One solution is to identify them using the :command:`ST_IsValid(geometry)` function, move invalid geometries out of the main table into a temporary table, export the invalid geometries from the temporary table to another format, and apply an external cleaning process.
 
-Here's an example of SQL to move invalid geometries out of the main table into a side table suitable for dumping to an external cleaning process.
+To move invalid geometries out of the main table into a temporary table, execute the following command:
 
 .. code-block:: sql
 
@@ -106,13 +111,11 @@ Here's an example of SQL to move invalid geometries out of the main table into a
   DELETE FROM nyc_neighborhoods
   WHERE NOT ST_IsValid(the_geom);
   
-A good tool for visually repairing invalid geometry is OpenJump (http://openjump.org) which includes a validation routine under :menuselection:`Tools --> QA --> Validate Selected Layers`.
+A good tool for visually repairing invalid geometry is OpenJump (http://openjump.org), which includes a validation routine :command:`Validate Selected Layers`.
 
-Now the good news: a large proportion of invalidities can be fixed inside the database using the ``ST_Buffer`` function.
+However, a large proportion of invalid geometries can be fixed inside a PostGIS database using the :command:`ST_Buffer` function. A buffered geometry is a new geometry, constructed by offsetting lines from the original geometry. If the original lines are offset by **nothing** (zero) then the new geometry will be structurally identical to the original one with one exception—because it is built using the ``OGC`` topology rules, it will be valid.
 
-The buffer trick takes advantage of the way buffers are built: a buffered geometry is a brand new geometry, constructed by offsetting lines from the original geometry. If you offset the original lines by **nothing** (zero) then the new geometry will be structurally identical to the original one, but because it is built using the ``OGC`` topology rules, it will be valid.
-
-For example, here's a classic invalidity -- the "banana polygon" -- a single ring that encloses an area but bends around to touch itself, leaving a "hole" which is not actually a hole.
+For example, the "banana polygon" (or "inverted shell") is a single ring that encloses an area but bends around to touch itself, leaving a "hole" which is not actually a hole.
 
 :: 
 
@@ -120,7 +123,7 @@ For example, here's a classic invalidity -- the "banana polygon" -- a single rin
   
 .. figure:: img/validity_banana.png
 
-Running the zero-offset buffer on the polygon returns a valid ``OGC`` polygon, consisting of an outer and inner ring that touch at one point.
+Running a zero-offset buffer on the polygon returns a valid ``OGC`` polygon, consisting of an outer and inner ring that touch at one point.
 
 .. code-block:: sql
 
@@ -137,5 +140,5 @@ Running the zero-offset buffer on the polygon returns a valid ``OGC`` polygon, c
 
 .. note::
 
-  The "banana polygon" (or "inverted shell") is a case where the ``OGC`` topology model for valid geometry and the model used internally by ESRI differ. The ESRI model considers rings that touch to be invalid, and prefers the banana form for this kind of shape. The OGC model is the reverse. 
+  The "banana polygon" is an example where the ``OGC`` topology model for valid geometry and the model used internally by Esri differ. The Esri model considers rings that touch to be invalid, and prefers the "banana" form for this type of shape. The OGC model is the reverse. 
   

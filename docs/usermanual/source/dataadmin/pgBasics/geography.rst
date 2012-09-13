@@ -1,14 +1,15 @@
-.. _dataadmin.postgis.geography:
+.. _dataadmin.pgBasics.geography:
 
-Geography data type
+.. warning:: Document Status: **Draft**
+
+Geography Data Type
 ===================
 
-It is very common to have data in which the coordinates are "geographics" or "latitude/longitude".  
+Many spatial datasets are available in a geographic, or "latitude/longitude", coordinate system.
 
 Unlike coordinates in Mercator, UTM, or State Plane, **geographic coordinates are not Cartesian**. Geographic coordinates do not represent a linear distance from an origin as plotted on a plane. Rather, these **spherical coordinates** describe the angular distance between the equator and the poles. In spherical coordinates a point is specified by the distance from the origin (the radius), the angle of rotation from the initial meridian plane, and the angle from the polar axis (analogous to a vector from the origin through the North Pole).
 
 .. figure:: img/geography_cartesian_spherical.png
-   :align: center
 
    *Cartesian versus Spherical coordinates*
 
@@ -65,7 +66,6 @@ Using the ``geography`` instead of ``geometry`` type, let's try again to measure
 The need to support non-point geometries becomes very clear when posing a question like "How close will a flight from Los Angeles to Paris come to Iceland?" 
 
 .. figure:: img/geography_lax_cdg.png
-   :align: center
 
    *Los Angeles (LAX) to Paris (CDG)*
 
@@ -87,7 +87,6 @@ So the closest approach to Iceland on the LAX-CDG route is a relatively small 53
 The Cartesian approach to handling geographic coordinates breaks down entirely for features that cross the international dateline. The shortest great-circle route from Los Angeles to Tokyo crosses the Pacific Ocean. The shortest Cartesian route crosses the Atlantic and Indian Oceans.
 
 .. figure:: img/geography_lax_nrt.png
-   :align: center
 
    *Los Angeles (LAX) to Tokyo (NRT)*
 
@@ -135,23 +134,23 @@ The difference is under the covers: the geography index will correctly handle qu
 
 There are only a small number of native functions for the geography type:
  
- * ``ST_AsText(geography)`` returns ``text``
- * ``ST_GeographyFromText(text)`` returns ``geography``
- * ``ST_AsBinary(geography)`` returns ``bytea``
- * ``ST_GeogFromWKB(bytea)`` returns ``geography``
- * ``ST_AsSVG(geography)`` returns ``text``
- * ``ST_AsGML(geography)`` returns ``text``
- * ``ST_AsKML(geography)`` returns ``text``
- * ``ST_AsGeoJson(geography)`` returns ``text``
- * ``ST_Distance(geography, geography)`` returns ``double``
- * ``ST_DWithin(geography, geography, float8)`` returns ``boolean``
- * ``ST_Area(geography)`` returns ``double``
- * ``ST_Length(geography)`` returns ``double``
- * ``ST_Covers(geography, geography)`` returns ``boolean``
- * ``ST_CoveredBy(geography, geography)`` returns ``boolean``
- * ``ST_Intersects(geography, geography)`` returns ``boolean``
- * ``ST_Buffer(geography, float8)`` returns ``geography``
- * ``ST_Intersection(geography, geography)`` returns ``geography``
+* ``ST_AsText(geography)`` returns ``text``
+* ``ST_GeographyFromText(text)`` returns ``geography``
+* ``ST_AsBinary(geography)`` returns ``bytea``
+* ``ST_GeogFromWKB(bytea)`` returns ``geography``
+* ``ST_AsSVG(geography)`` returns ``text``
+* ``ST_AsGML(geography)`` returns ``text``
+* ``ST_AsKML(geography)`` returns ``text``
+* ``ST_AsGeoJson(geography)`` returns ``text``
+* ``ST_Distance(geography, geography)`` returns ``double``
+* ``ST_DWithin(geography, geography, float8)`` returns ``boolean``
+* ``ST_Area(geography)`` returns ``double``
+* ``ST_Length(geography)`` returns ``double``
+* ``ST_Covers(geography, geography)`` returns ``boolean``
+* ``ST_CoveredBy(geography, geography)`` returns ``boolean``
+* ``ST_Intersects(geography, geography)`` returns ``boolean``
+* ``ST_Buffer(geography, float8)`` returns ``geography``
+* ``ST_Intersection(geography, geography)`` returns ``geography``
 
 .. note::
 
@@ -162,7 +161,7 @@ There are only a small number of native functions for the geography type:
 Creating a Geography Table
 --------------------------
  
-The SQL for creating a new table with a geography column is much like that for creating a geometry table. However, geography includes the ability to specify the object type directly at the time of table creation. For example:
+The SQL for creating a new table with a geography column is similar to creating a geometry table. However, geography includes the ability to specify the data type when the table is created. The following example will create a new geography table for point data:
 
 .. code-block:: sql
 
@@ -174,8 +173,9 @@ The SQL for creating a new table with a geography column is much like that for c
   INSERT INTO airports VALUES ('LAX', 'POINT(-118.4079 33.9434)');
   INSERT INTO airports VALUES ('CDG', 'POINT(2.5559 49.0083)');
   INSERT INTO airports VALUES ('REK', 'POINT(-21.8628 64.1286)');
-  
-In the table definition, the ``GEOGRAPHY(Point)`` specifies our airport data type as points. The new geography fields don't get registered in the ``geometry_columns``. Instead, they are registered in a new view called ``geography_columns`` that is automatically kept up to date without need for ``AddGeom...`` like functions.
+
+
+On creation, all geography fields are automatically registered in the ``geography_columns`` view.
 
 .. code-block:: sql
 
@@ -210,20 +210,20 @@ The ``ST_X(point)`` function only supports the geometry type, so we can read the
   CDG  |    2.5559
   REK  |  -21.8628
 
-By appending ``::geometry`` to our geography value, we convert the object to a geometry with an SRID of 4326. From there we can use as many geometry functions as strike our fancy. But, remember -- now that our object is a geometry, the coordinates will be interpreted as Cartesian coordinates, not spherical ones.
+By appending ``::geometry`` to the geography value, we convert the object to a geometry with an SRID of 4326. From there we can use as many geometry functions as strike our fancy. But, remember -- now that our object is a geometry, the coordinates will be interpreted as Cartesian coordinates, not spherical ones.
  
  
 When Not To Use Geography
 -------------------------
 
-Geographics are universally accepted coordinates -- everyone understands what latitude/longitude mean, but very few people understand what UTM coordinates mean. Why not use geography all the time?
+Although geographic coordinates (latitude/longitude) are universally accepted, it may not always be appropriate to use them for a number of reasons, including:
 
 * There are far fewer functions available that directly support the geography type.
 * The calculations on a sphere are computationally far more expensive than Cartesian calculations. For example, the Cartesian formula for distance (Pythagoras) involves one call to sqrt(). The spherical formula for distance (Haversine) involves two sqrt() calls, an arctan() call, four sin() calls and two cos() calls. Trigonometric functions are very costly, and spherical calculations involve a lot of them.
  
-So, if your data is geographically compact (contained within a state, county or city), use the ``geometry`` type with a Cartesian projection that makes sense with your data.  
+If your data are geographically compact (contained within a state, county or city), use the ``geometry`` type with a Cartesian projection that makes sense with your data.  
 
-If, on the other hand, you need to measure distance with a dataset that is geographically dispersed (covering much of the world), use the ``geography`` type. The application complexity you save by working in ``geography`` will offset any performance issues. And, casting to ``geometry`` can offset most functionality limitations.
+If you need to measure distance with a dataset that is geographically dispersed (covering much of the world), use the ``geography`` type. The advantages of the ``geography`` data type will offset some of the performance issues. On the other hand, casting to ``geometry`` can offset most functionality limitations.
 
 
 For more information about geometry functions in PostGIS, please see the `PostGIS Reference <../../../postgis/postgis/html/reference.html>`_

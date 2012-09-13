@@ -1,15 +1,13 @@
 OpenGeo Suite Library
 =========================
 
-Welcome to the OpenGeo Suite. The Suite a full geospatial software stack that helps you compose, style, and publish maps with ease.
+Welcome to the OpenGeo Suite. The Suite is a full geospatial software stack that helps you compose, style, and publish maps with ease.
 
 User Manual
 -----------
 
-The OpenGeo User Manual will help you get the most out of your OpenGeo Suite experience.
-
 .. toctree::
-   :maxdepth: 2
+   :hidden:   
 
    introduction/index
    installation/index
@@ -19,6 +17,19 @@ The OpenGeo User Manual will help you get the most out of your OpenGeo Suite exp
    dataadmin/index
    sysadmin/index
    cartography/index
+   glossary
+
+The OpenGeo User Manual will help you get the most out of the OpenGeo Suite.
+
+* `Introduction - Getting Started with the OpenGeo Suite <./introduction/index>`_
+* `Installing the OpenGeo Suite <./installation/index>`_
+* `Building Web Maps <./webmaps/index>`_
+* `Web Cartography <./cartography/index>`_
+* `Building Complete Applications <./apps/index>`_
+* `Spatial Processing and Analysis <./processing/index>`_
+* `Working with PostGIS <./dataadmin/index>`_
+* `System Administration <./sysaadmin/index>`_
+
 
 
 
@@ -35,4 +46,4 @@ Component References
 Additional Documentation
 ------------------------
 
-`Glossary <glossary.html>`_
+`Glossary <glossary>`_

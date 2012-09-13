@@ -1,22 +1,23 @@
-.. _dataadmin.postgis.equality:
+.. _dataadmin.pgBasics.equality:
+
+.. warning:: Document Status: **Draft**
 
 Equality
 ========
-
-Determining equality when dealing with geometries can be tricky.  PostGIS supports three different functions that can be used to determine different levels of equality, though for clarity we will use the definitions below.  To illustrate these functions, we will use the following polygons.
+ 
+PostGIS supports three different functions to determine different levels of equality. To illustrate these functions, the following sample polygons are referenced.
 
 .. figure:: img/equality_polygons.png
-   :align: center
 
    *Some "equal" polygons*
 
-These polygons are loaded using the following commands.
+To create these polygons, execute the following SQL commands.
 
 .. code-block:: sql
 
-  CREATE TABLE polygons (name varchar, poly geometry);
+   CREATE TABLE polygons (name varchar, poly geometry);
   
-  INSERT INTO polygons VALUES 
+   INSERT INTO polygons VALUES 
     ('Polygon 1', 'POLYGON((-1 1.732,1 1.732,2 0,1 -1.732,
         -1 -1.732,-2 0,-1 1.732))'),
     ('Polygon 2', 'POLYGON((-1 1.732,-2 0,-1 -1.732,1 -1.732,
@@ -28,13 +29,12 @@ These polygons are loaded using the following commands.
         -2 0,-1.5 0.866,-1 1.732))'),
     ('Polygon 5', 'POLYGON((-2 -1.732,2 -1.732,2 1.732, 
         -2 1.732,-2 -1.732))');
-        
-   SELECT Populate_Geometry_Columns();
+
 
 Exactly Equal
 -------------
 
-Exact equality is determined by comparing two geometries, vertex by vertex, in order, to ensure they are identical in position.  The following examples show how this method can be limited in its effectiveness.
+Exact equality is determined using the :command:`ST_OrderingEquals` function, which compares two geometries, vertex by vertex, and in order, to ensure they are identical in position.
 
 .. code-block:: sql
 
@@ -72,12 +72,12 @@ Exact equality is determined by comparing two geometries, vertex by vertex, in o
    Polygon 5 | Polygon 4 | Not Exactly Equal
    Polygon 5 | Polygon 5 | Exactly Equal
 
-In this example, the polygons are only equal to themselves, not to other seemingly equivalent polygons (as in the case of Polygons 1 through 3).  In the case of Polygons 1, 2, and 3, the vertices are in identical positions but are defined in differing orders.  Polygon 4 has colinear (and thus redundant) vertices on the hexagon edges causing inequality with Polygon 1.
+In this example, the polygons are only equal to themselves, not to other seemingly equivalent polygons (as in the case of Polygons 1, 2, and 3). For Polygons 1, 2, and 3, the vertices are in identical positions but are defined in different orders. Polygon 4 has colinear, and therefore redundant, vertices on the hexagon edges causing inequality with Polygon 1.
 
 Spatially Equal
 ---------------
 
-As we saw above, exact equality does not take into account the spatial nature of the geometries.  There is an function, aptly named :command:`ST_Equals`, available to test the spatial equality or equivalence of geometries.
+Exact equality does not take into account the spatial nature of the geometries. The function :command:`ST_Equals` will test the spatial equality, or equivalence, of geometries.
 
 .. code-block:: sql
 
@@ -115,12 +115,14 @@ As we saw above, exact equality does not take into account the spatial nature of
    Polygon 5 | Polygon 4 | Not Equal
    Polygon 5 | Polygon 5 | Spatially Equal
 
-These results are more in line with our intuitive understanding of equality.  Polygons 1 through 4 are considered equal, since they enclose the same area.  Note that neither the direction of the polygon is drawn, the starting point for defining the polygon, nor the number of points used are important here.  What is important is that the polygons contain the same space.  
+Polygons 1 through 4 are considered equal, since they enclose the same area. Neither the direction of the polygon is drawn, the starting point for defining the polygon, nor the number of points used are important in this comparison. The primary consideration for assessing equality with :command:`ST_Equals` is whether or not the polygons contain the same space. 
 
 Equal Bounds
 ------------
 
-Exact equality requires, in the worst case, comparison of each and every vertex in the geometry to determine equality.  This can be slow, and may not be appropriate for comparing huge numbers of geometries.  To allow for speedier comparison, the equal bounds operator, :command:`=`, is provided.  This operates only on the bounding box (rectangle), ensuring that the geometries occupy the same two dimensional extent, but not necessarily the same space.
+Exact equality requires comparison of each and every vertex in the geometry to determine equality. This may adversely affect processing performance, and may not be appropriate for comparing huge numbers of geometries. 
+
+To allow for speedier comparison, the equal bounds operator "=" is provided. This operates only on the bounding box (rectangle), ensuring that the geometries occupy the same two dimensional extent, but not necessarily the same space.
 
 .. code-block:: sql
 
@@ -158,5 +160,7 @@ Exact equality requires, in the worst case, comparison of each and every vertex 
    Polygon 5 | Polygon 4 | Equal Bounds
    Polygon 5 | Polygon 5 | Equal Bounds
 
-As you can see, all of our spatially equal geometries also have equal bounds.  Unfortunately, Polygon 5 is also returned as equal under this test, because it shares the same bounding box as the other geometries.  Why is this useful, then?  Although this will be covered in detail later, the short answer is that this enables the use of spatial indexing that can quickly reduce huge comparison sets into more manageable blocks when joining or filtering data.
+All of the spatially equal geometries also have equal bounds. Unfortunately, Polygon 5 is also identified as equal using this test, because it shares the same bounding box as the other geometries. However, this equality test supports the use of spatial indexing to reduce huge comparison sets into more manageable blocks when joining and filtering data.
+
+
 

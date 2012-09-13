@@ -1,84 +1,68 @@
-.. _workflow.style:
+.. _webmaps.basic.style:
 
-Style Your Layers with GeoExplorer
-==================================
+Style your layers
+=================
 
-.. note:: This section is optional, although recommended.  If you don't wish to style your layers, you can skip to the next section, :ref:`workflow.publish`.
+After uploading, GeoExplorer will automatically bring up the styling dialog. While a simple style has been generated for your layer by default, you may wish to customize this style. GeoExplorer contains a tool to create and edit styles graphically.
 
-GeoExplorer includes an integrated style editor for layers served through GeoServer.
+.. warning:: All style changes will apply and persist on the server immediately. It is recommended to make a backup of a style before making any changes.
 
-.. note:: Styles in GeoServer are written in Styled Layer Descriptor (SLD).  Not all functionality referenced in the SLD 1.0 specification is available in the style editor.  For more information on SLD, please see the `OGC specification of SLD <http://www.opengeospatial.org/standards/sld>`_ and the GeoServer documentation.
+You can reach the Styles dialog at a later time by selecting a layer in the Layer list and then clicking on the Palette icon, or by right-clicking on the layer and selecting :guilabel:`Edit Styles`.
 
-#. Make sure the OpenGeo Suite is running and that GeoExplorer is open.
+.. figure:: img/style_contextmenu.png
 
-#. Authentication is required to edit styles through GeoExplorer. For security reasons, before editing capabilities are enabled, GeoExplorer needs to authenticate with GeoServer.  See the previous section (:ref:`workflow.edit`) on how to login to GeoExplorer.
+   *Select this menu item to edit the layer style*
 
-   .. warning:: It is recommended to make a backup of your existing SLDs before editing styles in GeoExplorer.  Changes to styles will become live immediately on the server, and the SLDs will be completely overwritten with each edit, causing the code to possibly be restructured.  Please see the GeoServer documentation for details about how to access layer styles.
+To edit a style for a given layer:
 
-#. By default, no layers will be loaded.  Add the layer you wish to style, along with any other layers you may wish to use for context.  A basic distillation of the style rules will be displayed below the layer name in the :guilabel:`Overlays` panel.
+#. In the Styles dialog you will see a default Style containing a single Rule. We'll leave the existing Style alone, but will create a duplicate where we will make edits. Click on the :guilabel:`Duplicate` button underneath the Style name.
 
-   .. note::  For instructions on how to load a layer from your local GeoServer, see the section  :ref:`workflow.add`.
+.. figure:: img/style_duplicatebutton.png
 
-   .. figure:: img/style_layersadded.png
-      :align: center
+   *Duplicating the Style*
 
-      *Layers added to GeoExplorer*
+#. A dialog will appear for entering a new Title and Abstract. Enter this information and click :guilabel:`Save`.
 
-#. Click on a layer to select it.  The :guilabel:`Manage layer styles` button will become enabled (the palette icon).  Also, the :guilabel:`Edit Styles` option will be enabled in the layer context menu (accessed by right-clicking on the layer itself).
+   .. figure:: img/style_metadata.png
 
-   .. note:: If the icon remains disabled, verify that you are logged into GeoExplorer.  Logging out and in, or just reloading GeoExplorer, can solve many simple issues.
+      *Style metadata*
 
-   .. figure:: img/style_layerselected.png
-      :align: center
+   .. figure:: img/style_savebutton.png
 
-      *Selecting a layer for styling*
+      *Click Save when done*
 
-#. Click on :guilabel:`Manage layer styles` (the palette icon) to bring up the style wizard.
+#. Make sure the duplicated Style is selected in the :guilabel:`Choose style` dialog.
 
-   .. figure:: img/style_paletteicon.png
-      :align: center
+   .. figure:: img/style_styleselect.png
 
-      *Selecting a layer for styling*
+      *Selecting the new style*
 
-#. The wizard will display the current/active style, as well has a list of other available styles (if any).  Below this will be a list of rules applied to the layer.
+#. Click on the existing rule in the :guilabel:`Rules` box, and then click the :guilabel:`Edit` button underneath.
 
-   .. figure:: img/style_wizard.png
-      :align: center
+   .. figure:: img/style_editrulebutton.png
 
-      *Style wizard*
+      *Click this button to edit the style rule*
 
-#. Select a rule and click :guilabel:`Edit` below it.
+#. Change the style as you see fit, selecting from a range of options including size, color, opacity, filters, and much more.
 
-   .. figure:: img/style_wizardeditbutton.png
-      :align: center
+   .. note:: Please see the `GeoExplorer Documentation <../../geoexplorer/>`_  for more about what can be styled here.
 
-      *Click to edit selected style rule*
+   .. figure:: img/style_ruleedit.png
 
-#. Change the style as you see fit, selecting from symbol, size, color, opacity, filters, and many other options.
-
-   .. note:: Please see the GeoExplorer Documentation for more about what can be styled here. 
-
-   .. figure:: img/style_editbefore.png
-      :align: center
-
-      *Original style rule*
+      *Editing the style*
 
    .. figure:: img/style_colorpicker.png
-      :align: center
 
-      *Changing colors with the color picker*
+      *Using the color picker* 
 
-   .. figure:: img/style_editafter.png
-      :align: center
+#. Click :guilabel:`Save` to persist your changes. To go back to the main Layers List, click on the :guilabel:`Layers` title in the Layers Panel at the top where it says :guilabel:`Layers >> <your layer>`.
 
-      *Changed style rule*
+   .. figure:: img/style_editcomplete.png
 
-#. Click :guilabel:`Save`, and close the wizard to view the style changes on the map.
+      *A new style for the layer*
 
-   .. figure:: img/style_finished.png
-      :align: center
+#. Repeat this process for any layers that you wish to style. To edit styles for another layer, select the layer in the Layers Panel and then click on the Palette icon, or right-click on the layer and select :guilabel:`Edit Styles` as shown above.
 
-      *The newly styled layer*
+.. note::  If you need a more customized or complex style than what is possible through GeoExplorer, you can code your own style. See the `Styling section <../../geoserver/styling/>`_ of the `GeoServer documentation <../../geoserver/>`_ for more information.
 
-#. Repeat this process for any layers that you wish to style.
-
+Now that your layers are styled, the next step is to :ref:`webmaps.basic.edit`.

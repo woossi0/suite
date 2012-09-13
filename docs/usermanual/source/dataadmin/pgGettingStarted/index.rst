@@ -1,14 +1,24 @@
-.. _dataadmin.loading:
+.. _dataadmin.pgGettingStarted:
 
 
-Data Loading
-============
+Getting started with PostGIS
+============================
 
-There are many ways to load data into the OpenGeo Suite.  This section will discuss the recommended methods for each component.
+This section describes how to get started your OpenGeo Suite PostGIS database—connecting to the database, loading data, and some basic SQL commands.
+
 
 .. toctree::
    :maxdepth: 2
 
+   pgadmin
+   createdb
    shp2pgsql
    pgshapeloader
+   raster2pgsql
    restload
+   basicsql
+
+
+
+
+For detailed reference information, please see the `PostGIS Documentation <../../../postgis/>`_.

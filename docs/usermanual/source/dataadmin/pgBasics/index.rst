@@ -1,27 +1,27 @@
-.. _dataadmin.postgis:
+.. _dataadmin.pgBasics:
 
 
-Working with PostGIS
-====================
+Data Storage and Management in PostGIS
+======================================
 
-This section contains various strategies for how best to use PostGIS in your OpenGeo Suite instance.
-
-For more a detailed reference, please see the `PostGIS Documentation <../../../postgis/>`_.
-
+This section describes how data is stored and managed in your PostGIS database and some of the tools and procedures that are available to work with the data.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   pgadmin
-   createdb
-   metatables
-   basicsql
    geometries
-   spatialrelationships
+   geometry_man
+   generation
+   rasters
+   geography 
+   metatables
+   validity
+   equality
+   spatialrelationships   
    joins
    indexes
    projections
-   geography
-   generation
-   validity
-   equality
+   serialization 
+   ISO_WKT_WKB
+   3d_types
+   indx_knn

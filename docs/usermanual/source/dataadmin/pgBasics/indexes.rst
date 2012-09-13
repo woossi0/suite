@@ -1,13 +1,14 @@
-.. _dataadmin.postgis.indexes:
+.. _dataadmin.pgBasics.indexes:
 
 Spatial Indexes
 ===============
 
-The "spatial index" is one of the three key features of a spatial database. Without indexing, any search for a feature would require a "sequential scan" of every record in the database. Indexing speeds up searching by organizing the data into a search tree which can be quickly traversed to find a particular record. 
+A spatial index is one of the three key components of a spatial database. Without indexing, any search for a feature would require a *sequential scan* of every record in the database. Similarly, comparing whole tables with each other can be computationally expensive. Joining two tables of 10,000 records each without indexes would require 100,000,000 comparisons—with indexes on both tables the processing cost could be as low as 20,000 comparisons. 
 
-Spatial indexes are one of the greatest assets of PostGIS.  Comparing whole tables with each other can get very costly: joining two tables of 10,000 records each without indexes would require 100,000,000 comparisons!  With indexes the cost could be as low as 20,000 comparisons.
+Indexing speeds up searching by organizing the data into a search tree that is quickly traversed to find a particular record. This can save a great deal of processing time for complex queries.
 
-When loading data, a spatial index is typically created called ``<TABLENAME>_the_geom_gist``.  If this is not created, you can create one manually:
+
+When data is loaded into a PostGIS database a spatial index, called  ``<TABLENAME>_the_geom_gist``, is automatically created. If required, indexes can also be created manually:
 
 .. code-block:: sql
 
@@ -15,43 +16,38 @@ When loading data, a spatial index is typically created called ``<TABLENAME>_the
 
 .. note:: The ``USING GIST`` clause tells PostgreSQL to use the generic index structure (GiST) when building the index.
 
-Running a complex query when there is an index on a table can potentially save tremendous amounts of processing time.
-
 
 How Spatial Indexes Work
 ------------------------
 
-Standard database indexes create a hierarchical tree based on the values of the column being indexed. Spatial indexes are a little different -- they are unable to index the geometric features themselves and instead index the bounding boxes of the features.
+Non-spatial database indexes create a hierarchical tree based on the values of the column being indexed. As spatial indexes are unable to index the geometric features themselves, the bounding boxes of the features are indexed instead.
 
 .. figure:: img/indexes_bbox.png
-   :align: center
 
    *Comparing bounding boxes*
 
-In the figure above, the number of lines that intersect the yellow star is **one**, the red line. But the bounding boxes of features that intersect the yellow box is **two**, the red and blue ones.
+In the figure above **one** line, the red line, intersects the yellow star. However, **two** bounding boxes of features, the red and blue ones, intersect the yellow box.
 
-The way the database efficiently answers the question "what lines intersect the yellow star?" is by a "two-pass" system.
+Identifying the lines that intersect the yellow star involves a two-phase approach.
 
 #. Answer the question "what boxes intersect the yellow box?" using the index (which is very fast)
 #. Do an exact calculation of "what lines intersect the yellow star" but **only for those features returned by the first test** 
 
-For a large table, this "two pass" system of evaluating the approximate index first, then carrying out an exact test can radically reduce the amount of calculations necessary to answer a query.
+For a large table, this two-phase approach of evaluating the approximate index first, then carrying out an exact test can significantly reduce the number of calculations necessary to answer a query.
 
-Both PostGIS and Oracle Spatial share the same "R-Tree" spatial index structure. R-Trees break up data into rectangles, and sub-rectangles, and sub-sub rectangles, etc.  It is a self-tuning index structure that automatically handles variable data density and object size.
+Both PostGIS and Oracle Spatial share the same *R-Tree* spatial index structure. R-Trees break up data into rectangles, sub-rectangles, sub-sub rectangles, and so on. It is a self-tuning index structure that automatically handles variable data density and object size.
 
 .. figure:: img/indexes_rtree.png
-   :align: center
 
    *R-tree Hierarchy for geometries*
 
 Index-Only Queries
 ------------------
 
-Most of the commonly used functions in PostGIS (``ST_Contains``, ``ST_Intersects``, ``ST_DWithin``, etc.) include an index filter automatically. But some functions (such as ``ST_Relate``) do not include an index filter.
+Most of the commonly used functions in PostGIS, for example ``ST_Contains``, ``ST_Intersects``, and ``ST_DWithin``, include an index filter automatically. However some functions, such as ``ST_Relate``, do not include an index filter.
+To execute a bounding-box search using the index and no filtering, use the ``&&`` operator. This operator is interpreted as "bounding boxes overlap or touch" in much the same way that the ``=`` operator is interpreted as "values are the same".
 
-To do a bounding-box search using the index (and no filtering), make use of the ``&&`` operator. For geometries, the ``&&`` operator means "bounding boxes overlap or touch" in the same way that for number the ``=`` operator means "values are the same".
-
-Let's compare an index-only query for the population of the 'West Village' to a more exact query. Using ``&&`` our index-only query looks like the following:
+For example: 
 
 .. code-block:: sql
 
@@ -65,7 +61,7 @@ Let's compare an index-only query for the population of the 'West Village' to a 
 
   50325
   
-Now let's do the same query using the more exact ``ST_Intersects`` function.
+To execute the same query using the more precise ``ST_Intersects`` function, use:
 
 .. code-block:: sql
 
@@ -79,19 +75,19 @@ Now let's do the same query using the more exact ``ST_Intersects`` function.
 
   27141
 
-A much lower answer! The first query summed up every block that intersected the neighborhood's bounding box; the second query only summed up those blocks that intersected the neighborhood itself.
+The first query, using ``&&``, identified every block that intersected the neighborhood's bounding box. The second query, using ``St_Intersects``, only identified those blocks that intersected the neighborhood itself.
 
 
 Analyzing
 ---------
 
-Counter-intuitively, it is not always faster to do an index search: if the search is going to return every record in the table, traversing the index tree to get each record will actually be slower than just linearly reading the whole table from the start.
+It is not always faster to do an index search. If the search is going to return every record in the table, traversing the index tree to get each record is slower than just reading the whole table from the start.
 
-The PostgreSQL query planner intelligently chooses when to use or not to use indexes to evaluate a query.  In order to figure out what situation it is dealing with (reading a small part of the table versus reading a large portion of the table), PostgreSQL keeps statistics about the distribution of data in each indexed table column.  By default, PostgreSQL gathers statistics on a regular basis. However, if you dramatically change the make-up of your table within a short period of time, the statistics will not be up-to-date.
+The PostgreSQL query planner chooses when to use, or not to use, indexes to evaluate a query. To assess the most appropriate option (reading a small part of the table versus reading a large portion of the table), PostgreSQL maintains statistics about the distribution of data in each indexed table column. 
 
-To ensure your statistics match your table contents, it is wise the to run the ``ANALYZE`` command after bulk data loads and deletes in your tables. This force the statistics system to gather data for all your indexed columns.
+By default, PostgreSQL will gather statistics on a regular basis. However, if you significantly alter the content of your table within a short period of time, the statistics may not be up-to-date. To ensure your statistics match your table contents, run the ``ANALYZE`` command after bulk data load and delete operations on your table. This will force an update of the statistics for all your indexed columns.
 
-The ``ANALYZE`` command asks PostgreSQL to traverse the table and update its internal statistics used for query plan estimation (query plan analysis will be discussed later). 
+The ``ANALYZE`` command instructs PostgreSQL to traverse the selected table and update its internal statistics for query plan estimation. 
 
 .. code-block:: sql
 
@@ -100,15 +96,14 @@ The ``ANALYZE`` command asks PostgreSQL to traverse the table and update its int
 Vacuuming
 ---------
 
-Just creating an index is not enough to allow PostgreSQL to use it effectively.  VACUUMing must be performed whenever a new index is created or after a large number of UPDATEs, INSERTs or DELETEs are issued against a table.  The ``VACUUM`` command asks PostgreSQL to reclaim any unused space in the table pages left by updates or deletes to records. 
+Simply creating an index is not enough to allow PostgreSQL to use the index effectively. The ``VACUUM`` command instructs PostgreSQL to reclaim any unused space in the table pages after any update or delete operations. VACUUMing must be performed whenever a new index is created or after a large number of UPDATEs, INSERTs or DELETEs are performed on a table. 
 
-Vacuuming is so critical for the efficient running of the database that PostgreSQL provides an "autovacuum" option.
+Vacuuming is so critical for the efficient running of the database that PostgreSQL provides an ``autovacuum`` option, which is enabled by default. ``autovacuum`` both VACUUMs (recovers space) and ANALYZEs (updates statistics) on your tables at intervals determined by the level of activity. While this is essential for highly transactional databases, it is not advisable to wait for an autovacuum run after adding indexes or bulk-loading data. If a large batch update is performed, you should manually run ``VACUUM``.
 
-Enabled by default, autovacuum both VACUUMs (recovers space) and ANALYZEs (updates statistics) on your tables at sensible intervals determined by the level of activity.  While this is essential for highly transactional databases, it is not advisable to wait for an autovacuum run after adding indexes or bulk-loading data.  If a large batch update is performed, you should manually run ``VACUUM``.
-
-Vacuuming and analyzing the database can be performed separately as needed.  Issuing ``VACUUM`` command will not update the database statistics; likewise issuing an ``ANALYZE`` command will not recover unused table rows.  Both commands can be run against the entire database, a single table, or a single column.
+Vacuuming and analyzing the database can be performed separately as required. Issuing the ``VACUUM`` command will not update the database statistics. Similarly, issuing an ``ANALYZE`` command will not recover unused space. Both commands can be run against the entire database, a single table, or a single column.
 
 .. code-block:: sql
 
    VACUUM ANALYZE nyc_census_blocks;
 
+.. todo:: add section on 3-d and 4-d indexing

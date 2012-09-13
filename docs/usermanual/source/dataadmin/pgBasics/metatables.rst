@@ -1,4 +1,4 @@
-.. _dataadmin.postgis.metatables:
+.. _dataadmin.pgBasics.metatables:
 
 OpenGIS Metadata 
 ================
@@ -14,7 +14,7 @@ The metadata are managed by the *postgres* user account and stored in the follow
 
    *Spatial metadata schema relationships*
 
-As PostGIS 2.0+ (OpenGeo Suite 3.0+) now uses a view based on the system catalogs rather than a table to record geometry column metadata, the view is always current, updated automatically when a new spatial table is created. 
+As PostGIS 2.0+ (OpenGeo Suite 3.0+) uses a view based on the system catalogs rather than a table to record geometry column metadata, the view is always current, updated automatically when a new spatial table is created. 
 Consequently, a number of the system utility functions, such as ``populate_geometry_columns()``, are no longer required.
 
 To query the ``geometry_columns`` view, execute the following SQL command:
@@ -29,7 +29,7 @@ To query the ``geometry_columns`` view, execute the following SQL command:
 
 The attributes of the ``geometry_columns`` view are:
 
-* ``f_table_catalog``, ``f_table_schema`` and ``f_table_name``—Fully qualified name of the spatial table  
+* ``f_table_catalog``, ``f_table_schema``, ``f_table_name``—Fully qualified name of the spatial table  
 * ``f_geometry_column``—Name of the geometry column (for spatial tables with multiple geometry columns, there will be one record for each column)  
 * ``coord_dimension``—Dimension of the geometry (2-, 3- or 4-dimensions) 
 * ``srid``—Spatial reference identifier in the ``spatial_ref_sys`` table  
@@ -92,11 +92,11 @@ Querying the ``geometry_columns`` view will confirm the incorrect registration o
 
 ::
 
-   +-------------+-------------------+------+----------+
    |f_table_name | f_geometry_column | srid | type     |
-   +===================================================+
-   | vw_mytable  | geom              | 0    | GEOMETRY |   
    +-------------+-------------------+------+----------+
+   | vw_mytable  | geom              | 0    | GEOMETRY |  
+   +-------------+-------------------+------+----------+ 
+
 
 To register the geometry column with PostGIS 2.0+, you must convert, or cast, the geometry to be typmod-based:
 
@@ -116,7 +116,7 @@ If the geometry type is known to be a 2D polygon, the view could be redefined as
      SELECT gid, ST_Transform(geom,3395)::geometry(Polygon, 3395) AS geom, f_name
      FROM public.mytable;
 
-Querying the ``geometry_columns`` view again will report the update:
+Querying the ``geometry_columns`` view again will report the update.
 
 .. code-block:: sql
 
@@ -126,9 +126,9 @@ Querying the ``geometry_columns`` view again will report the update:
 
 ::
 
-   +-------------+-------------------+-------+----------+
+
    |f_table_name | f_geometry_column | srid  | type     |
-   +====================================================+
+   +-------------+-------------------+-------+----------+
    | vw_mytable  | geom              | 3395  | GEOMETRY |   
    +-------------+-------------------+-------+----------+
 
@@ -144,7 +144,7 @@ If you wish to add a geometry column to an existing table, the function ``AddGeo
 
    SELECT AddGeometryColumn('my_table', 'geom', 4326, 'POINT', 2);
 
-To add a point using constraint-based behavior, set the ``use_typemod`` value to be ``false``:
+To add a point using constraint-based behavior, set the ``use_typemod`` value to be ``false``.
 
 .. code-block:: sql
 
