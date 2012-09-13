@@ -137,7 +137,7 @@ The procedure for upgrading is as follows:
 
 #. Install the OpenGeo Suite 3.x.  (See :ref:`installation.osx.new` above.)
 
-#. After installation is complete.  Restore the GeoServer data directory to its original location.
+#. After installation is complete, restore the GeoServer data directory to its original location.
 
    .. code-block:: console
 
@@ -146,7 +146,7 @@ The procedure for upgrading is as follows:
       
    .. warning:: If instead of moving you copied the data directory in order to back it up you must restore group write permission to it after moving it back into place. This can be achieved with the command ``sudo chmod -R g+w /opt/opengeo/suite/data_dir``.
 
-#. After installation is complete, start the newly-upgraded OpenGeo Suite.
+#. Start the newly-upgraded OpenGeo Suite.
 
 #. As before, you will need to add the new PostGIS commands to your path once again.  From a terminal, type the following to temporarily add the new directory to your path:
 
