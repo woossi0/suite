@@ -1,4 +1,6 @@
-.. _dataadmin.postgis.spatialrelationships:
+.. _dataadmin.pgBasics.spatialrelationships:
+
+.. warning:: Document Status: **Draft**
 
 Spatial Relationships
 =====================
@@ -49,7 +51,7 @@ Then, plug the geometry representation back into an ``ST_Equals`` test:
 
 .. note::
 
-  The representation of the point was not very human readable (``0101000020266900000EEBD4CF27CF2141BC17D69516315141``) but it was an exact representation of the coordinate values. For a test like equality, using the exact coordinates in necessary.  For more on this, please see the section on :ref:`dataadmin.postgis.equality`.
+  The representation of the point was not very human readable (``0101000020266900000EEBD4CF27CF2141BC17D69516315141``) but it was an exact representation of the coordinate values. For a test like equality, using the exact coordinates in necessary.  For further information, please see the section on :ref:`dataadmin.pgBasics.equality`.
 
 
 Intersections
@@ -58,14 +60,12 @@ Intersections
 ``ST_Intersects``, ``ST_Crosses``, and ``ST_Overlaps`` test whether the interiors of the geometries intersect. 
 
 .. figure:: img/st_intersects.png
-   :align: center
 
    *ST_Intersects*
 
 ``ST_Intersects(geometry A, geometry B)`` returns t (TRUE) if the intersection does not result in an empty set.
 
 .. figure:: img/st_disjoint.png
-   :align: center
 
    *ST_Disjoint*
 
@@ -74,14 +74,12 @@ The opposite of ST_Intersects is ``ST_Disjoint(geometry A , geometry B)``. If tw
 .. note:: It is often more efficient to test "not intersects" than to test "disjoint" because the intersects tests can be spatially indexed, while the disjoint test cannot.
 
 .. figure:: img/st_crosses.png  
-   :align: center
 
    *ST_Crosses*
 
 For multipoint/polygon, multipoint/linestring, linestring/linestring, linestring/polygon, and linestring/multipolygon comparisons, ``ST_Crosses(geometry A, geometry B)`` returns t (TRUE) if the intersection results in a geometry whose dimension is one less than the maximum dimension of the two source geometries and the intersection set is interior to both source geometries.
 
 .. figure:: img/st_overlaps.png
-   :align: center
 
    *ST_Overlaps*
 
@@ -119,7 +117,6 @@ Touching
 ``ST_Touches`` tests whether two geometries touch at their boundaries, but do not intersect in their interiors 
 
 .. figure:: img/st_touches.png
-   :align: center
 
    *ST_Touches*
 
@@ -131,7 +128,6 @@ Containing
 ``ST_Within`` and ``ST_Contains`` test whether one geometry is fully within the other. 
 
 .. figure:: img/st_within.png
-   :align: center
 
    *ST_Within*
     
@@ -160,7 +156,6 @@ The ``ST_Distance(geometry A, geometry B)`` calculates the (shortest) distance b
 For testing whether two objects are within a distance of one another, the ``ST_DWithin`` function provides an index-accelerated true/false test. This is useful for questions like "how many trees are within a 500 meter buffer of the road?". You don't have to calculate an actual buffer, you just have to test the distance relationship.
 
   .. figure:: img/st_dwithin.png
-     :align: center
 
      *ST_DWithin*
     

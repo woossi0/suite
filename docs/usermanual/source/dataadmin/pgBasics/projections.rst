@@ -1,46 +1,45 @@
-.. _dataadmin.postgis.projection:
+.. _dataadmin.pgBasics.projection:
+
+.. warning:: Document Status: **Draft**
 
 Projections
 ===========
 
-The earth is not flat, and there is no simple way of putting it down on a flat paper map (or computer screen), so people have come up with all sorts of ingenious solutions, each with pros and cons. Some projections preserve area, so all objects have a relative size to each other; other projections preserve angles (conformal) like the Mercator projection; some projections try to find a good intermediate mix with only little distortion on several parameters. Common to all projections is that they transform the (spherical) world onto a flat Cartesian coordinate system, and which projection to choose depends on how you will be using the data.
 
-Sometimes, however, you need to transform and re-project between spatial reference systems. PostGIS includes built-in support for changing the projection of data, using the ``ST_Transform(geometry, srid)`` function. For managing the spatial reference identifiers on geometries, PostGIS provides the ``ST_SRID(geometry)`` and ``ST_SetSRID(geometry, srid)`` functions.
+Every map projection involves the distortion of areas, distances, directions and so on, to some extent. Some projections preserve area, so all objects have a relative size to each other, other projections preserve angles (conformal) like the Mercator projection. Some projections try to find a good intermediate balance with minimal distortion on several parameters. 
 
-We can confirm the SRID of data with the ``ST_SRID`` command:
+Common to all projections is the transformation of the (spherical) world onto a flat Cartesian coordinate system. Choosing the right projection for your data largely depends on how you will use the data.
+
+Occasionally a single projection may not meet all your requirements and you need to transform and reproject between spatial reference systems. PostGIS includes built-in support for changing the projection of data, using the ``ST_Transform(geometry, srid)`` function. For managing the spatial reference identifiers on geometries, PostGIS provides the ``ST_SRID(geometry)`` and ``ST_SetSRID(geometry, srid)`` functions.
+
+To confirm the SRID (spatial reference identifier) of a geometry table, use the ``ST_SRID`` function.
 
 .. code-block:: sql
 
-   SELECT ST_SRID(the_geom) FROM some_table LIMIT 1;
+   SELECT ST_SRID(the_geom) FROM myTable LIMIT 1;
   
 ::
 
   26918
   
-The definition of "26918" (or indeed of any valid SRID value) is contained in the ``spatial_ref_sys`` table. In fact, **two** definitions are there. The "well-known text" (``WKT``) definition is in the ``srtext`` column, and there is a second definition in "proj.4" format in the ``proj4text`` column.
+There are two definitions of "26918" (or indeed of any valid SRID value) maintained in the PostGIS ``spatial_ref_sys`` table. The "well-known text" (``WKT``) definition is maintained in the ``srtext`` column, and the "proj.4" format in the ``proj4text`` column.
 
 .. code-block:: sql
 
    SELECT * FROM spatial_ref_sys WHERE srid = 26918;
+
    
-In fact, for the internal PostGIS re-projection calculations, it is the contents of the ``proj4text`` column that are used. For our 26918 projection, here is the proj.4 text:
+   srid  | auth_name | auth_srid | srtext                         | proj4text           |
+  --------------------+-----------+--------------------------------+---------------------+
+   26928 | EPSG      | 26918     | PROJCS["NAD83 / UTM zone 18N"] | +proj=utm +zone=18  |
 
-.. code-block:: sql
-
-  SELECT proj4text FROM spatial_ref_sys WHERE srid = 26918;
   
-::
-
-  +proj=utm +zone=18 +ellps=GRS80 +datum=NAD83 +units=m +no_defs 
-  
-In practice, both the ``srtext`` and the ``proj4text`` columns are important: the ``srtext`` column is used by external programs like `GeoServer <../../../geoserver>`_, `uDig <http://udig.refractions.net>`_, `FME <http://www.safe.com/>`_  and others; the ``proj4text`` column is used internally.
+Both the ``srtext`` and the ``proj4text`` columns are important. The ``srtext`` column is used by external programs such as `GeoServer <../../../geoserver>`_, `uDig <http://udig.refractions.net>`_,  and `FME <http://www.safe.com/>`_, and the ``proj4text`` column is used internally by PostGIS.
 
 Comparing Data
 --------------
 
-Taken together, a coordinate and an SRID define a location on the globe. Without an SRID, a coordinate is just an abstract notion. A "Cartesian" coordinate plane is defined as a "flat" coordinate system placed on the surface of Earth. Because PostGIS functions work on such a plane, comparison operations require that both geometries be represented in the same SRID.
-
-If you feed in geometries with differing SRIDs you will just get an error:
+The combination of a coordinate and a spatial reference define a location on the earth's surface. Without a spatial reference, a coordinate has no context. A "Cartesian" coordinate plane is defined as a "flat" coordinate system placed on the surface of Earth. Because PostGIS functions work on such a plane, comparison operations require that both geometries have the same spatial reference. Comparing geometries with differing SRIDs will return an error:
 
 .. code-block:: sql
 
@@ -55,25 +54,39 @@ If you feed in geometries with differing SRIDs you will just get an error:
   CONTEXT:  SQL function "st_equals" statement 1
   
 
-There is a function for transforming data, ``ST_Transform``.  But be careful of using it for on-the-fly conversion, as spatial indexes are built using SRID of the stored geometries.  If a comparison is done in a different SRID, spatial indexes are often not used. **It is best practice to choose one SRID for all the tables in your database.** Only use the transformation function when you are reading or writing data to external applications.
-
 
 Transforming Data
 -----------------
 
-If we return to our proj4 definition for SRID 26918, we can see that our working projection is UTM (Universal Transverse Mercator) of zone 18, with meters as the unit of measurement.
+To transform data from one SRID to another, you must first verify that your geometry has a valid SRID. To confirm this, query the ``geometry_columns`` view.
 
+.. code-block:: sql
+
+  SELECT f_table_name AS name, srid 
+  FROM geometry_columns where f_table_name = 'myGeomTable';
+  
 ::
 
-   +proj=utm +zone=18 +ellps=GRS80 +datum=NAD83 +units=m +no_defs 
+          name         | srid  
+  ---------------------+-------
+   myGeomTable         | 26918
 
-Let's convert some data from our working projection to geographic coordinates -- also known as "longitude/latitude". 
 
-To convert data from one SRID to another, you must first verify that your geometry has a valid SRID. Since we have already confirmed a valid SRID, we next need the SRID of the projection to transform into. In other words, what is the SRID of geographic coordinates?
+To identify which spatial reference system SRID 26918 represents, query the ``spatial_ref_sys`` table as follows:
 
-The most common SRID for geographic coordinates is 4326, which corresponds to "longitude/latitude on the WGS84 spheroid". You can see the definition at `spatialreference.org <http://spatialreference.org/ref/epsg/4326/>`_.
+.. code-block:: sql
 
-You can also pull the definitions from the ``spatial_ref_sys`` table:
+  SELECT srtext FROM spatial_ref_sys WHERE srid = 26918;
+  
+::
+
+ PROJCS["NAD83 / UTM zone 18N",GEOGCS["NAD83",DATUM["North_American_Datum_1983",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],TOWGS84[0,0,0,0,0,0,0],AUTHORITY["EPSG","6269"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4269"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",-75],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],AUTHORITY["EPSG","26918"],AXIS["Easting",EAST],AXIS["Northing",NORTH]]
+
+
+The SRID 26918 corresponds to the spatial reference UTM (Universal Transverse Mercator) for zone 18. 
+
+To reproject the table ``myGeomTable`` into geographic coordinates, the most commonly used SRID is 4326—longitude/latitude on the WGS84 spheroid. 
+
 
 .. code-block:: sql
 
@@ -89,7 +102,12 @@ You can also pull the definitions from the ``spatial_ref_sys`` table:
     UNIT["degree",0.01745329251994328,AUTHORITY["EPSG","9122"]],
     AUTHORITY["EPSG","4326"]]
 
-If we would convert the coordinates of the 'Broad St' subway station into geographics, we would get this:
+
+.. note:: For further information on the 4326 spatial reference, see `spatialreference.org <http://spatialreference.org/ref/epsg/4326/>`_.
+
+
+To convert the UTM coordinates of a particular feature in a geometry table to geographic coordinates, use ``ST_Transform()``. For example:
+
 
 .. code-block:: sql
 
@@ -101,7 +119,13 @@ If we would convert the coordinates of the 'Broad St' subway station into geogra
 
   POINT(-74.0106714688735 40.7071048155841)
 
-To view a table's SRID assignment, query the database's ``geometry_columns`` table.
+.. warning:: The ``ST_Transform`` function may be used to transform data but be careful using it for on-the-fly conversion, as spatial indexes are built using the SRID of the stored geometries. If a comparison is done in a different SRID, spatial indexes are often not used. **The recommended best practice is to choose one SRID for all the tables in your database.** Only use the transformation function when you are reading or writing data to external applications.
+
+  
+Updating the SRID
+-----------------
+
+Occasionally when loading data into PostGIS, the data are loaded correctly but the SRID hasn't been registered. This can be confirmed by querying the ``geometry_columns`` view as follows:
 
 .. code-block:: sql
 
@@ -116,18 +140,12 @@ To view a table's SRID assignment, query the database's ``geometry_columns`` tab
    nyc_neighborhoods   | 26918
    nyc_streets         | 26918
    nyc_subway_stations | 26918
-   geometries          |    -1
+   myGeomTable         |    -1
 
-If you load data or create a new geometry without specifying an SRID, the SRID value will be -1.
-
-  
-Updating the SRID
------------------
-
-Sometimes, when loading data into PostGIS, the data was loaded properly, but the SRID wasn't set.  In order to change this, run the following command:
+If you load data or create a new geometry without specifying an SRID, the SRID value will be -1. To manually register the correct SRID for a geometry table, execute the following:
 
 .. code-block:: sql
 
-  SELECT UpdateGeometrySRID('some_table', 'the_geom', <srid>);
+  SELECT UpdateGeometrySRID('myGeomTable', 'the_geom', <srid>);
 
-This will update the SRID in the ``geometry_columns``, to the value of ``<srid>``, but leave the data itself unchanged.
+This will update the SRID registration for the table's geometry column and automatically update the PostGIS system catalogs with the correct value of ``<srid>``, but leave the data unchanged.

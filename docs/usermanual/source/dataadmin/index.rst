@@ -4,7 +4,7 @@
 Working with PostGIS
 ====================
 
-This section describes how to work your OpenGeo Suite PostGIS database—from connecting to the database, loading and managing your data, and working with data. 
+This section describes how to work your OpenGeo Suite PostGIS database—from connecting to the PostgreSQL database, loading and managing your data, to working with your data in PostGIS. 
 
 
 .. toctree::

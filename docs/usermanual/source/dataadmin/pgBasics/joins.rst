@@ -1,13 +1,13 @@
-.. _dataadmin.postgis.joins:
+.. _dataadmin.pgBasics.joins:
+
+.. warning:: Document Status: **Draft**
 
 Spatial Joins
 =============
 
-Spatial joins are the bread-and-butter of spatial databases.  They allow you to combine information from different tables by using :ref:`dataadmin.postgis.spatialrelationships` as the join key.  Much of what we think of as "standard GIS analysis" can be expressed as spatial joins.
+Spatial joins combine information from different tables by using :ref:`dataadmin.pgBasics.spatialrelationships` as the join key. A great deal of GIS analysis can be accomplished using spatial joins.
 
-The example in the section on :ref:`dataadmin.postgis.spatialrelationships` used a two-step process to find out information.  Using a spatial join, it is possible to answer the question in a single query.  
-
-Given a subway station location, neighborhood data, and borough names, we can find the neighborhood that contains the subway station:
+For example, given a subway station location, neighborhood data, and borough names, it is possible to locate a neighborhood that contains a particular subway station with the following SQL code:
 
 .. code-block:: sql
 
@@ -25,18 +25,12 @@ Given a subway station location, neighborhood data, and borough names, we can fi
   -------------+--------------------
    Broad St    | Financial District 
 
-Any function that provides a true/false relationship between two tables can be used to drive a spatial join, but the most commonly used ones are: ``ST_Intersects``, ``ST_Contains``, and ``ST_DWithin``.
+Any function that provides a true/false relationship between two tables can form the basis of a spatial join, but the most commonly used ones are :command:`ST_Intersects`, :command:`ST_Contains`, and :command:`ST_DWithin`.
 
 Join and Summarize
 ------------------
 
-The combination of a ``JOIN`` with a ``GROUP BY`` provides the kind of analysis that is usually done in a GIS system.
-
-For example, consider the question: 
-
-  "What is the population and racial make-up of the neighborhoods of Manhattan?"
-
-Here we have a question that combines information from about population from the census with the boundaries of neighborhoods, with a restriction to just one borough of Manhattan.
+The combination of a ``JOIN`` with a ``GROUP BY`` operation supports the type of analysis that is usually undertaken with a GIS system. For example, to answer the question "What is the population and demographic profile of the neighborhoods of Manhattan?", requires analyzing population information, available from the census, with the boundaries of neighborhoods. The results should be further restricted to report on just one borough of Manhattan. 
 
 .. code-block:: sql
 
@@ -89,17 +83,14 @@ Here we have a question that combines information from about population from the
 In this example:
 
 #. The ``JOIN`` clause creates a virtual table that includes columns from both the neighborhoods and census tables. 
-#. The ``WHERE`` clause filters our virtual table to just rows in Manhattan. 
-#. The remaining rows are grouped by the neighborhood name and fed through the aggregation function to ``Sum()`` the population values.
-#. After a little arithmetic and formatting (e.g., ``GROUP BY``, ``ORDER BY``) on the final numbers, our query spits out the percentages.
+#. The ``WHERE`` clause filters the virtual table to just rows in Manhattan. 
+#. The remaining rows are grouped by the neighborhood name and processed by the aggregation function, :command:`SUM`, to summarize the population values.
 
 .. note:: 
 
-   The ``JOIN`` clause combines two ``FROM`` items.  By default, we are using an ``INNER JOIN``, but there are four other types of joins. For further information see the `join_type <http://www.postgresql.org/docs/9.1/interactive/sql-select.html>`_ definition in the PostgreSQL documentation.
+   The ``JOIN`` clause combines two ``FROM`` items. By default, this uses an ``INNER JOIN``, but there are four other types of joins. For further information, see the `join_type <http://www.postgresql.org/docs/9.1/interactive/sql-select.html>`_ definition in the PostgreSQL documentation.
 
-We can also use distance tests as a join key, to create summarized "all items within a given radius" queries. Let's explore the racial geography of New York using distance queries.
-
-First, let's get the baseline racial make-up of the city.
+A distance test can also be used as a join key, to answer a summarized "all items within a given radius" query.Continuing with the example of the demographic profile of New York, the following code identifies a baseline profile of the city.
 
 .. code-block:: sql
 
@@ -116,13 +107,9 @@ First, let's get the baseline racial make-up of the city.
    44.6586020115685295 | 26.5945063345703034 |    8008278
 
 
-So, of the 8M people in New York, about 44% are "white" and 26% are "black". 
+Of the 8M people in New York, approximately 44% are "white" and 26% are "black". 
 
-Duke Ellington once sang that "You / must take the A-train / To / go to Sugar Hill way up in Harlem." As we saw above, Harlem has far and away the highest African-American population in Manhattan (80.5%). Is the same true of Duke's A-train?
-
-First, note that the contents of the ``nyc_subway_stations`` table ``routes`` field is what we are interested in to find the A-train. The values in there are a little complex.
-
-Given a nyc_subway_stations table"
+To determine the demographic profile along a particular transportation route, for example, the A-Train, the first step is to identify the routes that match the search criteria. The following example uses the ``DISTINCT`` clause to eliminate duplicate rows from the result, returning only those records that identify unique routes.
 
 .. code-block:: sql
 
@@ -141,9 +128,9 @@ Given a nyc_subway_stations table"
 
 .. note::
 
-   The ``DISTINCT`` keyword eliminates duplicate rows from the result.  Without the ``DISTINCT`` keyword, the query above identifies 491 results instead of 73.
+   Without the ``DISTINCT`` keyword, the query above would identify 491 results instead of 73.
    
-So to find the A train, we will want any row in ``routes`` that has an 'A' in it. While there is more than one way to do this, we can use the fact that ``strpos(routes,'A')`` will return a non-zero number if 'A' is in the routes field.
+To find the A-train, identify any entries in the ``routes`` field that contain an *A*. The function :command:`strpos` will return a non-zero number if *A* is found in the routes field.
 
 .. code-block:: sql
 
@@ -163,7 +150,7 @@ So to find the A train, we will want any row in ``routes`` that has an 'A' in it
   A,B,C,D
   A,C,E
   
-So to summarize the racial make-up of within 200 meters of the A-train line.
+Finally, use the :command:`ST_DWithin` function to identify the demographic profile within 200 meters of the A-train route, by executing the following:
 
 .. code-block:: sql
 
@@ -180,7 +167,7 @@ So to summarize the racial make-up of within 200 meters of the A-train line.
 
         white_pct      |      black_pct      | popn_total 
   ---------------------+---------------------+------------
-   42.0805466940877366 | 23.0936148851067964 |     185259
+   42.0805466940877366 | 23.0936148851067964 | 185259
 
-So the racial make-up along the A-train isn't radically different from the make-up of New York City as a whole. 
+The results indicate the population profile along the route of the A-train isn't significantly different from the profile of New York City as a whole. 
 
