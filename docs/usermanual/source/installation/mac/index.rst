@@ -110,7 +110,7 @@ The procedure for upgrading is as follows:
       mkdir -p ~/suite_backup/pg_backup
       cd ~/suite_backup/pg_backup
       curl -O http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip
-      unzip postgis_upgrade.zip
+      unzip postgis_upgrade-3.0.zip
 
 #. Run the backup command:
 
