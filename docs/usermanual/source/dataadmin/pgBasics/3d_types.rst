@@ -1,27 +1,28 @@
 .. _dataadmin.pgBasics.3d_types:
 
-.. sidebar:: Document Status: 
+.. warning:: **Draft - under development**
 
-   **Draft - under development**
 
 Working with 3-d and 4-d Geometries
 ===================================
 
-The collection of 3D enabled functions has grown 
-a great deal. Distance, length, nearest points, 
-even intersects and within.
+   The collection of 3D enabled functions has grown 
+   a great deal. Distance, length, nearest points, 
+   even intersects and within.
 
-3d distance calculations on geometries
+   3d distance calculations on geometries
 
-ST_Distance(
-  'POINT Z (0 0 0)', 
-  'POINT Z (0 3 4)'
-)
+.. code-block:: sql
+   
+    ST_Distance(
+    'POINT Z (0 0 0)', 
+    'POINT Z (0 3 4)'
+     )
 
-ST_3dDistance(
-  'POINT Z (0 0 0)', 
-  'POINT Z (0 3 4)'
-)
+    ST_3dDistance(
+    'POINT Z (0 0 0)', 
+    'POINT Z (0 3 4)'
+    )
 
 Support for higher dimensional indexes.
 
@@ -37,11 +38,13 @@ covers.
 
 an index-enabled query:
 
-SELECT *
-FROM tbl
-WHERE
-  geom &&&
-  ST_3DMakeBox(
+.. code-block:: sql
+
+   SELECT *
+   FROM tbl
+   WHERE
+   geom &&&
+   ST_3DMakeBox(
     ‘POINT Z (0 0 0)’,
     ‘POINT Z (1 1 1))
 

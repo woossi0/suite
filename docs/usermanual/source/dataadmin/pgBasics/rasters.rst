@@ -1,8 +1,8 @@
 .. _dataadmin.pgBasics.rasters:
 
-.. sidebar:: Document Status: 
+.. warning::  **Draft - under development** 
 
-   **Draft - under development**
+  
 
 Raster Data
 ===========
