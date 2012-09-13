@@ -34,8 +34,7 @@ Integrated raster and vector analysis is provides a powerful additional tool for
       btm.plu_label = 'Recently Logged';
 
 
-.. ToDo:: 
-Add Raster Summary Statistics http://postgis.refractions.net/documentation/manual-2.0/RT_ST_SummaryStats.html example
+.. ToDo:: Add Raster Summary Statistics http://postgis.refractions.net/documentation/manual-2.0/RT_ST_SummaryStats.html example
 
 
 
@@ -79,7 +78,7 @@ Since there are fewer records to process in an overview, and each overview pixel
 
 If the  ``-l`` option is included with the raster data loader tool ``raster2pgsql``, an overview will be computed and created for each image loaded. To create more than one overview table per base raster table, separate each overview level with a comma (,). For example:
 
-.. code:: console
+.. code-block:: console
   
    raster2pgsql -s 4236 -I -C -l 2,3  -M *.tif -F -t 100x100 public.demelevation | psql -d gisdb -h localhost -p 54321
  
@@ -88,7 +87,7 @@ If the  ``-l`` option is included with the raster data loader tool ``raster2pgsq
 
 Overview table names follow the convention ``o_<overview_level>_<raster_table_name>``. For example:
 
-.. code:: console
+.. code-block:: console
 
   o_2_myRastTable
 
@@ -117,14 +116,14 @@ The ``raster_overviews`` database view catalogs the raster columns used to creat
 
 The information in ``raster_overviews`` does not duplicate the information in ``raster_columns``. If you require information about an overview table recorded in ``raster_columns``, join the ``raster_overviews`` and ``raster_columns`` views. For example:
 
-.. code:: sql
+.. code-block:: sql
 
    SELECT o.o_table_name, c.r_table_name, c.r_raster_column, c.srid, c.blocksize_x, 
      c.blocksize_y, c.num_bands, c.pixel_types 
    FROM raster_overviews o, raster_columns c
    WHERE o.o_table_name = 'o_3_myrasttable' AND o.o_table_name = c.r_table_name;
 
-.. code:: sql
+.. code-block:: sql
 
    | o_table_name    | r_table_name    | srid  | blocksize_x | blocksize_y | num_bands | pixel_types     |
    +------------------+------------------+-----+-------------+-------------+-----------+- ---------------+
