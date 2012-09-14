@@ -45,7 +45,7 @@ exports.process = new Process({
         for (var feature in inputs.features) {
 
           var p = feature.geometry.centroid;
-          var d = origin.distance(point);
+          var d = origin.distance(p);
           var b = (90 - Math.atan2(p.y - origin.y, p.x - origin.x) * 180 / Math.PI) % 360;
 
           yield new Feature({
