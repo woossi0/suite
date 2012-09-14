@@ -218,7 +218,7 @@ When Not To Use Geography
 
 Although geographic coordinates (latitude/longitude) are universally accepted, it may not always be appropriate to use them for a number of reasons, including:
 
-* There are far fewer functions available that directly support the geography type.
+* There are fewer functions available that directly support the geography type.
 * The calculations on a sphere are computationally far more expensive than Cartesian calculations. For example, the Cartesian formula for distance (Pythagoras) involves one call to sqrt(). The spherical formula for distance (Haversine) involves two sqrt() calls, an arctan() call, four sin() calls and two cos() calls. Trigonometric functions are very costly, and spherical calculations involve a lot of them.
  
 If your data are geographically compact (contained within a state, county or city), use the ``geometry`` type with a Cartesian projection that makes sense with your data.  

@@ -62,7 +62,10 @@ The attributes of the ``raster_columns`` view are:
 * ``num_bands``—Number of bands per tile in your raster data
 * ``pixel_types``—Array defining pixel type for each band
 * ``nodata_values``—Array denoting the ``nodata_value`` for each band
-* ``out_db``— ?????? 
+* ``out_db``—The "out db" concept wherin the
+        raster objects themselves live outside the database (in, say, geotiff
+        files), but can be operated on by internal database functions. So the
+        flag indicates whether the column is in fact of that sort.
 * ``extent``—Extent of all rows in your raster data
 
 

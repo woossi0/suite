@@ -7,7 +7,7 @@ Nearest Neighbor Searches
 
 Nearest neighbor index searching
 
-* KNN = K Nearest Neighbour
+* KNN = K Nearest Neighbor
 * Index-based tree search
 * Restricted to index keys 
 (a.k.a. bounding boxes)

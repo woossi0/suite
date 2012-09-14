@@ -6,7 +6,7 @@ ISO WKT and WKB
 
 Re-written for PostGIS 2.0 - now with support for ISO SQL/MM versions of WKT and WKB
 
- :term:`WKT`
+   :term:`WKT`
 
 ISO forms support 3d and 4d geometry - St_AsText() now emits those dimensions.
 

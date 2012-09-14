@@ -5,7 +5,7 @@
 Spatial Joins
 =============
 
-Spatial joins combine information from different tables by using :ref:`dataadmin.pgBasics.spatialrelationships` as the join key. A great deal of GIS analysis can be accomplished using spatial joins.
+Spatial joins combine information from different tables by using :ref:`Spatial Relationships <dataadmin.pgBasics.spatialrelationships>` as the join key. A great deal of GIS analysis can be accomplished using spatial joins.
 
 For example, given a subway station location, neighborhood data, and borough names, it is possible to locate a neighborhood that contains a particular subway station with the following SQL code:
 

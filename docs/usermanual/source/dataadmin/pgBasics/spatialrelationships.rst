@@ -5,7 +5,7 @@
 Spatial Relationships
 =====================
 
-Functions like ``ST_Area``, ``ST_Length`` or , ``ST_GeomFromText`` only work on one geometry at a time.  But spatial databases are powerful because they not only store geometry, they also have the ability to compare *relationships between geometries*. 
+Functions like ``ST_Area``, ``ST_Length`` or , ``ST_GeomFromText`` only work on one geometry at a time.  However spatial databases can not only store geometry, they can also compare *relationships between geometries*. 
 
 Questions like "Which are the closet bike racks to a park?" or "Where are the intersections of subway lines and streets?" can only be answered by comparing geometries representing the bike racks, streets, and subway lines.
 
@@ -51,7 +51,7 @@ Then, plug the geometry representation back into an ``ST_Equals`` test:
 
 .. note::
 
-  The representation of the point was not very human readable (``0101000020266900000EEBD4CF27CF2141BC17D69516315141``) but it was an exact representation of the coordinate values. For a test like equality, using the exact coordinates in necessary.  For further information, please see the section on :ref:`dataadmin.pgBasics.equality`.
+  The representation of the point was not very human readable (``0101000020266900000EEBD4CF27CF2141BC17D69516315141``) but it was an exact representation of the coordinate values. For a test like equality, using the exact coordinates in necessary.  For further information, please refer to :ref:`Equality <dataadmin.pgBasics.equality>`.
 
 
 Intersections
