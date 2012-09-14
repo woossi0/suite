@@ -43,7 +43,7 @@ The script requires a number of header libraries, including geometry types and W
 Process inputs and metadata
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Next define the process inputs and metadata. Enclosed all of these definitions in a process block:
+Next define the process inputs and metadata. Enclose all of these definitions in a process block:
 
 **Python**
 
@@ -117,7 +117,7 @@ Now that the inputs and outputs are defined, next create the computation through
    :language: javascript
    :lines: 33-39
 
-Save this file as :file:`bufferSplit.py` or :file:`bufferSplit.js`, depending on the language used. You can see the full scripts below:
+Save this file as :file:`bufferSplit.py` or :file:`bufferSplit.js`, depending on the language used. The complete scripts are below:
 
 **Python** (:download:`download <bufferSplit.py>`):
 
