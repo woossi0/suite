@@ -1,9 +1,7 @@
 .. _dataadmin.pgBasics.geometry_man:
 
 
-.. sidebar:: Document Status: 
-
-   **Draft - under development**
+.. warning:: Document Status: **Draft**
 
 Geometry Manipulation
 =====================
