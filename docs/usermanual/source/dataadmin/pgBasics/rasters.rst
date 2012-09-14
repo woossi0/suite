@@ -59,13 +59,10 @@ The attributes of the ``raster_columns`` view are:
 * ``blocksize_y``—Width (number of pixels down) of each raster tile
 * ``same_alignment``—Boolean value indicating if all tiles have the same alignment
 * ``regular_blocking``—True/False constraint indicating if tiles overlap, are of the same alignment, pixel size and so on
-* ``num_bands``—Number of bands per tile in your raster data
+* ``num_bands``—Number of bands per tile in the raster data
 * ``pixel_types``—Array defining pixel type for each band
 * ``nodata_values``—Array denoting the ``nodata_value`` for each band
-* ``out_db``—The "out db" concept wherin the
-        raster objects themselves live outside the database (in, say, geotiff
-        files), but can be operated on by internal database functions. So the
-        flag indicates whether the column is in fact of that sort.
+* ``out_db``—Indicates if the raster data is maintained outside the database (for example in GeoTIFF files)
 * ``extent``—Extent of all rows in your raster data
 
 
@@ -75,7 +72,7 @@ The attributes of the ``raster_columns`` view are:
 Raster Overviews
 ----------------
 
-A raster overview is a lower resolution version of a base raster table, used primarily to improve display performance for operations that do not require pixel level information. At each higher level of overview, the data is re-sampled by a factor of four to provide a representation of the data at a lower spatial resolution. 
+A raster overview is a lower resolution version of a base raster table, used primarily to improve display performance for operations that do not require pixel level information. At each higher level of overview, the data is re-sampled to provide a representation of the data at a lower spatial resolution. 
 
 Since there are fewer records to process in an overview, and each overview pixel covers a geographically larger extent, overview processing operations are generally faster. However, the results are not as accurate as the results derived from the higher resolution base raster table.
 
