@@ -42,7 +42,7 @@ set GDAL_DATA=jre\data
 REM Java flags
 set CLASSPATH=og-jetty.jar;jetty-start.jar;lib/ini4j-0.5.1.jar;lib/log4j-1.2.14.jar;lib/commons-logging-1.0.jar;lib/slf4j-jcl-1.0.1.jar
 set VMOPTS=-Xms128m -Xmx512m -XX:MaxPermSize=256m
-set OPTS=-Dslf4j=false -cp %CLASSPATH%
+set OPTS=-Dslf4j=false -Dorg.geotools.referencing.forceXY=true -cp %CLASSPATH%
 
 REM Start
 if "%1" == "start" (
