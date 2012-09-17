@@ -5,7 +5,7 @@ OpenGIS Metadata
 
 In compliance with the OpenGIS Simple Features for SQL (SFSQL) specification, PostGIS stores and manages metadata for all geometry columns present in a database. As a result, client applications are not required to inspect individual spatial tables and their geometries to perform display, projection, or analytical queries.
 
-The metadata are managed by the *postgres* user account and stored in the following PostgreSQL schema objects:
+The metadata is managed by the *postgres* user account and stored in the following PostgreSQL schema objects:
 
 * ``spatial_ref_sys``—Table recording spatial reference systems 
 * ``geometry_columns``—Read-only view listing spatial (or feature) tables, geometry columns and geometry types present in the database

@@ -125,7 +125,7 @@ To convert the UTM coordinates of a particular feature in a geometry table to ge
 Updating the SRID
 -----------------
 
-Occasionally when loading data into PostGIS, the data are loaded correctly but the SRID hasn't been registered. This can be confirmed by querying the ``geometry_columns`` view as follows:
+Occasionally when loading data into PostGIS, the data is loaded correctly but the SRID hasn't been registered. This can be confirmed by querying the ``geometry_columns`` view as follows:
 
 .. code-block:: sql
 

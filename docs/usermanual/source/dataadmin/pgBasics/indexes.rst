@@ -44,7 +44,7 @@ Both PostGIS and Oracle Spatial share the same *R-Tree* spatial index structure.
 Index-Only Queries
 ------------------
 
-Most of the commonly used functions in PostGIS, for example ``ST_Contains``, ``ST_Intersects``, and ``ST_DWithin``, include an index filter automatically. However some functions, such as ``ST_Relate``, do not include an index filter.
+Most of the commonly used functions in PostGIS, for example :command:`ST_Contains`, :command:`ST_Intersects`, and :command:`ST_DWithin`, include an index filter automatically. However some functions, such as :command:`ST_Relate`, do not include an index filter.
 To execute a bounding-box search using the index and no filtering, use the ``&&`` operator. This operator is interpreted as "bounding boxes overlap or touch" in much the same way that the ``=`` operator is interpreted as "values are the same".
 
 For example: 
@@ -75,7 +75,7 @@ To execute the same query using the more precise ``ST_Intersects`` function, use
 
   27141
 
-The first query, using ``&&``, identified every block that intersected the neighborhood's bounding box. The second query, using ``St_Intersects``, only identified those blocks that intersected the neighborhood itself.
+The first query, using ``&&``, identified every block that intersected the neighborhood's bounding box. The second query, using :command:`St_Intersects`, only identified those blocks that intersected the neighborhood itself.
 
 
 Analyzing
@@ -85,9 +85,9 @@ It is not always faster to do an index search. If the search is going to return 
 
 The PostgreSQL query planner chooses when to use, or not to use, indexes to evaluate a query. To assess the most appropriate option (reading a small part of the table versus reading a large portion of the table), PostgreSQL maintains statistics about the distribution of data in each indexed table column. 
 
-By default, PostgreSQL will gather statistics on a regular basis. However, if you significantly alter the content of your table within a short period of time, the statistics may not be up-to-date. To ensure your statistics match your table contents, run the ``ANALYZE`` command after bulk data load and delete operations on your table. This will force an update of the statistics for all your indexed columns.
+By default, PostgreSQL will gather statistics on a regular basis. However, if you significantly alter the content of your table within a short period of time, the statistics may not be up-to-date. To ensure your statistics match your table contents, run the :command:`ANALYZE` command after bulk data load and delete operations on your table. This will force an update of the statistics for all your indexed columns.
 
-The ``ANALYZE`` command instructs PostgreSQL to traverse the selected table and update its internal statistics for query plan estimation. 
+The :command:`ANALYZE` command instructs PostgreSQL to traverse the selected table and update its internal statistics for query plan estimation. 
 
 .. code-block:: sql
 
@@ -96,11 +96,11 @@ The ``ANALYZE`` command instructs PostgreSQL to traverse the selected table and 
 Vacuuming
 ---------
 
-Simply creating an index is not enough to allow PostgreSQL to use the index effectively. The ``VACUUM`` command instructs PostgreSQL to reclaim any unused space in the table pages after any update or delete operations. VACUUMing must be performed whenever a new index is created or after a large number of UPDATEs, INSERTs or DELETEs are performed on a table. 
+Simply creating an index is not enough to allow PostgreSQL to use the index effectively. The :command:`VACUUM` command instructs PostgreSQL to reclaim any unused space in the table pages after any update or delete operations. VACUUMing must be performed whenever a new index is created or after a large number of UPDATEs, INSERTs or DELETEs are performed on a table. 
 
-Vacuuming is so critical for the efficient running of the database that PostgreSQL provides an ``autovacuum`` option, which is enabled by default. ``autovacuum`` both VACUUMs (recovers space) and ANALYZEs (updates statistics) on your tables at intervals determined by the level of activity. While this is essential for highly transactional databases, it is not advisable to wait for an autovacuum run after adding indexes or bulk-loading data. If a large batch update is performed, you should manually run ``VACUUM``.
+Vacuuming is so critical for the efficient running of the database that PostgreSQL provides an ``autovacuum`` option, which is enabled by default. ``autovacuum`` both VACUUMs (recovers space) and ANALYZEs (updates statistics) on your tables at intervals determined by the level of activity. While this is essential for highly transactional databases, it is not advisable to wait for an autovacuum run after adding indexes or bulk-loading data. If a large batch update is performed, you should manually run :command:`VACUUM`.
 
-Vacuuming and analyzing the database can be performed separately as required. Issuing the ``VACUUM`` command will not update the database statistics. Similarly, issuing an ``ANALYZE`` command will not recover unused space. Both commands can be run against the entire database, a single table, or a single column.
+Vacuuming and analyzing the database can be performed separately as required. Issuing the :command:`VACUUM` command will not update the database statistics. Similarly, issuing an :command:`ANALYZE` command will not recover unused space. Both commands can be run against the entire database, a single table, or a single column. 
 
 .. code-block:: sql
 

@@ -7,7 +7,7 @@
 Raster Data
 ===========
 
-In PostGIS raster data are modelled as large collections of small chunks of data. This means raster data can be manipulated and analyzed in much the same way as vector data. 
+In PostGIS raster data is modelled as large collections of small chunks of data. This means raster data can be manipulated and analyzed in much the same way as vector data. 
 
 .. note:: At PostGIS 2.0, raster support in PostGIS is provided primarily to support analysis, not visualization.
 

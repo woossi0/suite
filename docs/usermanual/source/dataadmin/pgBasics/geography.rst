@@ -236,7 +236,7 @@ Although geographic coordinates (latitude/longitude) are universally accepted, i
 * There are fewer functions available that directly support the geography type.
 * The calculations on a sphere are computationally more expensive than Cartesian calculations. For example, the Cartesian formula for distance (Pythagoras) involves one call to sqrt(). The spherical formula for distance (Haversine) involves two sqrt() calls, an arctan() call, four sin() calls and two cos() calls. Spherical calculations involve many trigonometric functions, which are costly to process. 
  
-If your data are geographically compact (contained within a state, county or city), use the ``geometry`` type with a Cartesian projection that is appropriate for your data. 
+If your data is geographically compact (contained within a state, county or city), use the ``geometry`` type with a Cartesian projection that is appropriate for your data. 
 
 If you need to measure distance with a dataset that is geographically dispersed (for example, with a global extent), use the ``geography`` data type. The advantages of the ``geography`` type will offset some of the performance issues. On the other hand, casting to ``geometry`` can offset most functionality limitations.
 
