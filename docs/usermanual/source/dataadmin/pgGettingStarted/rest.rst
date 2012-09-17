@@ -2,8 +2,8 @@
 
 .. warning:: Document Status: **Draft**
 
-Loading your data with the REST API
-===================================
+Loading data with the REST API
+==============================
 
 The GeoServer data importer REST :term:`API` provides a CRUD interface (create, read, update, delete) for importing data. The following sections describe the data importer REST API model, the supported data formats, and a sample shapefile data load operation. 
 
@@ -162,7 +162,7 @@ Specific import sources have additional attributes. A ``file`` import source has
 
 A ``directory`` source has the following attributes:
 
-* location—Path of the directory.
+* location—Path of the directory
 * files—Array of file objects - see :ref:`source files <source_file>`
 
 .. _task_target:
@@ -393,7 +393,7 @@ Tasks
 .. _file_upload:
 
 To create a new task within an import, a client may upload file(s) to the ``tasks`` collection
-via a multi part form. The ``Content-Type`` header should have a value of "multipart/form-data"
+via a multipart form. The ``Content-Type`` header should have a value of "multipart/form-data"
 (optionally with a subtype). 
 
 /imports/<importId>/task/<taskId>
@@ -475,9 +475,9 @@ Supported data formats
 
 The GeoServer data importer REST API supports the following data formats:
 
-* Vector—Shapefiles, Java Properties, h2, SpatiaLite
+* Vector—Shapefiles, Java Property files, H2 Database, SpatiaLite
 
-* Raster—Any single file format such as GeoTIFF, 
+* Raster—Any single file raster format such as GeoTIFF, DTED (Digital Terrain Elevation Data), or JPEG 
 
 
 

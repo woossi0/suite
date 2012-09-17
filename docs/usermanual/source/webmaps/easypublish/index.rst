@@ -14,7 +14,6 @@ We will use GeoExplorer as the framework for creating and publishing the web map
    :maxdepth: 2
 
    load
-   rest
    style
    edit
    publish
