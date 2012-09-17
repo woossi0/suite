@@ -45,30 +45,29 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  */
 @SuppressWarnings("serial")
 public class OpenGeoMapPreviewPage extends GeoServerBasePage {
-    private final static LinkTemplate geoexplorer;
-    private final static LinkTemplate googleEarth;
-    private final static LinkTemplate openLayers;
+    private final static LinkTemplate GOOGLE_EARTH_TEMPLATE =
+        new StringFormattingLinkTemplate(true, "Google Earth", "../wms/kml?layers=%s");
+    private final static LinkTemplate OPENLAYERS_TEMPLATE =
+        new WMSLinkTemplate("OpenLayers", false, "&format=application/openlayers");
 
-    private static final List<LinkTemplate> applicationLinkTemplates;
-    static {
+    private static final List<LinkTemplate> applicationLinkTemplates() {
         CoordinateReferenceSystem EPSG_3857 = null;
         try {
+            // NOTE: We need to avoid peforming CRS lookups in static
+            // initializer blocks, so we can't just stick this in a static variable
             EPSG_3857 = CRS.decode("EPSG:3857");
         } catch (Exception e) {
             LOGGER.log(Level.FINER, e.getMessage(), e);
         }
 
-        String base = System.getProperty("opengeo.geoexplorer.url", "/geoexplorer").replaceFirst(
-            "/$", "");
-        geoexplorer = new GeoExplorerLinkTemplate(base, EPSG_3857);
-        googleEarth = new StringFormattingLinkTemplate(true, "Google Earth", "../wms/kml?layers=%s");
-        openLayers = new WMSLinkTemplate("OpenLayers", false, "&format=application/openlayers");
+        String base = System.getProperty("opengeo.geoexplorer.url", "/geoexplorer")
+            .replaceFirst("/$", "");
 
         List<LinkTemplate> builder = new ArrayList<LinkTemplate>();
-        builder.add(openLayers);
-        builder.add(googleEarth);
-        builder.add(geoexplorer);
-        applicationLinkTemplates = Collections.unmodifiableList(builder);
+        builder.add(OPENLAYERS_TEMPLATE);
+        builder.add(GOOGLE_EARTH_TEMPLATE);
+        builder.add(new GeoExplorerLinkTemplate(base, EPSG_3857));
+        return Collections.unmodifiableList(builder);
     }
 
     OpenGeoPreviewProvider provider = new OpenGeoPreviewProvider();
@@ -76,10 +75,6 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
     GeoServerTablePanel<OpenGeoPreviewLayer> table;
 
     public OpenGeoMapPreviewPage() {
-        final List<LinkTemplate> templates = new ArrayList<LinkTemplate>();
-        templates.addAll(applicationLinkTemplates);
-        templates.addAll(wfsLinkTemplates());
-        templates.addAll(wmsLinkTemplates());
         // build the table
         table = new GeoServerTablePanel<OpenGeoPreviewLayer>("table", provider) {
 
@@ -100,7 +95,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                 } else if (property == LINKS) {
                     Fragment f = new Fragment(id, "exlink", OpenGeoMapPreviewPage.this);
                     
-                    final ExternalLink link = new ExternalLink("goButton", openLayers.linkForLayer(layer));
+                    final ExternalLink link = new ExternalLink("goButton", OPENLAYERS_TEMPLATE.linkForLayer(layer));
                     link.setOutputMarkupId(true);
                     link.getMarkupId();
                     
@@ -109,7 +104,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                     WebMarkupContainer groupContainer = new WebMarkupContainer(group.newChildId());
                     groupContainer.add(new SimpleAttributeModifier("label", "Applications"));
                     RepeatingView view = new RepeatingView("link");
-                    addLinkOptions(applicationLinkTemplates, layer, view, true);
+                    addLinkOptions(applicationLinkTemplates(), layer, view, true);
                     groupContainer.add(view);
                     group.add(groupContainer);
 
