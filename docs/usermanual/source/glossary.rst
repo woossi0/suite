@@ -6,6 +6,9 @@ Glossary
 .. glossary::
    :sorted:
 
+   API
+     Application Programming Interface. A set of routines, procedures, protocols, and tools for building software applications.
+
    CRS
      Coordinate reference system. The combination of a geographic coordinate system and a projected coordinate system.
 

@@ -1,7 +1,7 @@
 .. _webmaps.basic.load:
 
-Load your data
-==============
+Load your data with GeoExplorer
+===============================
 
 The first step is to load data into the OpenGeo Suite. These are many tools and methods to accomplish this (see the :ref:`dataadmin` section), but the simplest way is to use **GeoExplorer**. GeoExplorer allows you to create web maps based on layers served through GeoServer and a variety of other sources. When deployed alongside GeoServer and PostGIS, GeoExplorer will convert spatial files into PostGIS tables, and then serve that data through GeoServer. This process is seamless; all you need to do is supply the data!
 
