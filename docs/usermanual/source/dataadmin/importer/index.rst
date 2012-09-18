@@ -1,19 +1,19 @@
 .. _dataadmin.importer:
 
-Layer Importer
-==============
+GeoServer Layer Importer
+========================
 
-The OpenGeo Suite bundles a powerful Layer Importer with GeoServer. The importer is an alternative to the standard loading options in GeoServer, which makes it easier to load and publish whole directories of shapefiles and GeoTIFFs, PostGIS tables, and even Oracle and SQL Server tables.
+The OpenGeo Suite includes a Layer Importer for GeoServer, providing another option for loading and publishing a variety of vector and raster format data. You can either access the Layer Importer through the GeoServer Web Interface, or programmatically through the Layer Importer REST API. 
 
-You can access the Layer Importer through the GeoServer Web Interface, or programmatically through the importer REST interface. This section will show you how to work with the Importer.
+This section describes how to use the Layer Importer.
 
 .. toctree::
    :maxdepth: 2
 
-   formats
-   guireference
    guiexample
+   guireference
    apireference
    apiexample
+   formats
    
    

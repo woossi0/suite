@@ -34,7 +34,7 @@ Glossary
      JavaServer Page Template Library. A tag library for :term:`JSP` that encapsulates many of the standard functions handled in JSP (database queries, iteration, conditionals) into a terse syntax.
 
    KML
-     Keyhole Markup Language. This is the spatial XML format used by Google Earth. Google Earth was originally written by a company named "Keyhole", hence the (now obscure) reference in the name.
+     Keyhole Markup Language. This is the spatial :term:`XML` format used by Google Earth. Google Earth was originally written by a company named "Keyhole", hence the (now obscure) reference in the name.
 
    OGC
      See :term:`Open Geospatial Consortium`.
@@ -66,6 +66,9 @@ Glossary
    SVG
      See :term:`Scalable Vector Graphics`.
 
+   REST
+     REpresentational State Transfer. An open, resource-oriented model for implementing Web services.
+
    Web Feature Service
      The `Web Feature Service <http://www.opengeospatial.org/standards/wfs>`_ (WFS) specification from the :term:`Open Geospatial Consortium` defines an interface for reading and writing geographic features across the web.
 
@@ -96,4 +99,6 @@ Glossary
    WPS
      See :term:`Web Processing Service`.
 
+   XML
+     Extensible Markup Language. A document encoding markup language, designed for data transport and storage.
   
