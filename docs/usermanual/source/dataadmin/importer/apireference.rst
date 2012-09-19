@@ -1,6 +1,6 @@
 .. _dataadmin.importer.apireference:
 
-.. warning:: Document status: **Draft**
+.. warning:: Document status: **Requires Technical Review (JD)**
 
 Layer Importer REST API reference
 =================================

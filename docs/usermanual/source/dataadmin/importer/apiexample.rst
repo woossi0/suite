@@ -1,6 +1,6 @@
 .. _dataadmin.importer.apiexample:
 
-.. warning:: Document status: **Draft**
+.. warning:: Document status: **Requires Technical Review (JD)**
 
 Importing data using the Layer Importer REST API
 ==================================================
