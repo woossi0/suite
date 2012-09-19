@@ -72,7 +72,7 @@ Installing OpenGeo Suite Enterprise Edition
 
    .. code-block:: console
 
-      echo "deb http://<username>:<password>@apt-ee.opengeo.org/ubuntu lucid main" >> /etc/apt/sources.list
+      echo "deb http://<username>:<password>@apt-ee.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
 
 #. Update APT:
 
