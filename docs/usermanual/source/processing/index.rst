@@ -1,10 +1,10 @@
 .. _processing:
 
 
-Spatial Processing and Analysis
+Spatial processing and analysis
 ===============================
 
-This section will discuss spatial processing and analysis tools using the OpenGeo Suite.  Discussion will include basic spatial processing concepts, GeoScript, Web Processing Service processes, and building an analytic application.
+This section will discuss spatial processing and analysis tools using the OpenGeo Suite. Discussion will include basic spatial processing concepts, scripting, Web Processing Service processes, building an analytic application, and more.
 
 .. toctree::
    :maxdepth: 2
@@ -12,5 +12,6 @@ This section will discuss spatial processing and analysis tools using the OpenGe
    intro
    wpsjava/index
    wpsclient/index
-   common/index
    scripting/index
+   common/index
+   contour/index
