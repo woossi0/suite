@@ -49,7 +49,6 @@ Each object in the ``imports`` array has the following attributes:
 * id—Globally unique identifier for the import
 * href—URI pointing to the import
 
-
 .. _import:
 
 An individual import is represented with the following structure:
