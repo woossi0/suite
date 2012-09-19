@@ -172,13 +172,13 @@ The procedure for upgrading is as follows:
       exit
       sudo su -
 
-#. *Optional:* Back up your GeoServer data directory. This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`. To back up this directory, you can create an archive of it, or simply copy it to another location.
+#. *Optional:* Back up your GeoServer data directory. This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`. To back up this directory, you can create an archive of it, or simply copy it to another location. For example:
 
    .. code-block:: console
 
       cp -r /usr/share/opengeo-suite-data/geoserver_data  /tmp/suite_backup/data_dir_backup
       
-   .. note:: This step is optional but highly recommended. During the upgrade the GeoServer data directory will be automatically upgraded resulting in a data directory that is incompatible with Suite 2.x. Having a backup makes downgrading much easier.
+   .. note:: This step is optional but highly recommended. During the upgrade process the GeoServer data directory will be automatically upgraded resulting in a data directory that is incompatible with previous versions of the OpenGeo Suite. Having a backup makes downgrading to a previous version much easier should it become necessary.
 
 #. Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary to add an additional repository. This repository contains the version 3 packages. Run the following command (as root or with ``sudo``):
 
