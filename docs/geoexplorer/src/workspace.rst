@@ -50,7 +50,7 @@ The Toolbar contains buttons that accomplish certain tasks:
        - :ref:`geoexplorer.using.save`
        - Saves the current state of the Map Window and generates a URL to use in order to revisit the current configuration.
      * - .. image:: images/button_publishmap.png
-       - :ref:`geoexplorer.using.export`
+       - :ref:`geoexplorer.using.publish`
        - Composes a map application based on the current Map Window and generates HTML code to embed the application into a web page.
      * - .. image:: images/button_print.png
        - :ref:`geoexplorer.using.print`
