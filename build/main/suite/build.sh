@@ -9,7 +9,6 @@
 #
 function profile_rebuild {
   local profile=$1
-  BUILD_ID=$2
 
   pushd geoserver/web/app
   $MVN -s $MVN_SETTINGS -o clean install -P $profile -Dbuild.revision=$revision -Dbuild.date=$BUILD_ID
@@ -86,7 +85,7 @@ $MVN -s $MVN_SETTINGS -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS deploy -Dskip
 checkrv $? "maven deploy"
 
 # build with the enterprise profile
-profile_rebuild ee $BUILD_ID
+profile_rebuild ee
 
 # copy the new artifacts into place
 cp target/*.zip target/ee/*.zip $dist
