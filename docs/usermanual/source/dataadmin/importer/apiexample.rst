@@ -26,7 +26,7 @@ To confirm the successful upload of the shapefile, execute the following:
 
    curl -u admin:geoserver -XGET http://localhost:8080/geoserver/rest/workspaces/opengeo/datastores/roads.xml
 
-This will return the a description of the new layer as :term:`XML`:
+This will return a description of the new layer as :term:`XML`:
 
 .. code-block:: xml
 
@@ -45,14 +45,14 @@ This will return the a description of the new layer as :term:`XML`:
    </featureTypes>
   </dataStore>
 
-By default when a shapefile is uploaded a feature type is automatically created. The following retrieves the feature type that has been created as XML:
+By default, when a shapefile is uploaded a feature type is automatically created. The following command retrieves the feature type that has been created as XML:
 
 .. code-block:: console
 
    curl -u admin:geoserver -XGET http://localhost:8080/geoserver/rest/workspaces/opengeo/datastores/shapefiles/featuretypes/roads.xml
 
 
-This will return a description of the feature type as XML:
+This will return:
 
 .. code-block:: xml
 
