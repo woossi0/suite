@@ -106,8 +106,8 @@ This will return a description of the raster file as XML:
     <url>file:data/opengeo/landuse/Pk50095.tif</url>
     <coverages>
      <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://localhost:8080/geoserver/rest/workspaces/opengeo/coveragestores/landuse/file/coverages.xml" type="application/xml"/>
-   </coverages>
-   ......
-  </coverageStore> 
+    </coverages>
+    ......
+   </coverageStore> 
 
 
