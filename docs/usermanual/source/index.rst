@@ -17,38 +17,38 @@ Welcome to the OpenGeo Suite. The OpenGeo Suite is a full geospatial software st
    glossary
 
 
-User Manual
------------
+OpenGeo Suite User Manual
+-------------------------
 
 The OpenGeo User Manual will help you get the most out of the OpenGeo Suite.
 
 :ref:`introduction`
-  Learn about the OpenGeo Suite and its components.
+  Getting started with the OpenGeo Suite.
 
 :ref:`installation`
-  Learn how to install the OpenGeo Suite for your platform.
+  Install the OpenGeo Suite for your platform.
 
 :ref:`webmaps`
-  Learn how to publish your maps and data on the web.
+  Publish your maps and data on the web.
 
 :ref:`cartography`
-  Learn how to effectively visualize data on the web. 
+  Visualize your data on the web. 
 
 :ref:`apps`
-  Learn how to build complete interactive web-based applications using the Client SDK.
+  Building complete web-based applications using the Client SDK.
 
 :ref:`processing`
-  Learn how to perform server-based spatial analysis.
+  Performing server-based spatial analysis.
 
 :ref:`dataadmin`
-  Learn how to manage and optimize data.
+  Loading and managing your data.
 
 :ref:`sysadmin`
-  Learn how to manage and optimize systems.
+  Manage and optimize your OpenGeo Suite installation.
 
 
-Component References
---------------------
+Component User Manuals 
+----------------------
 
 * `PostGIS <postgis>`_
 * `GeoServer <geoserver>`_

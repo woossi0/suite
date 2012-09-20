@@ -1,6 +1,6 @@
 .. _dataadmin.importer.apireference:
 
-.. warning:: Document status: **Draft**
+.. warning:: Document status: **Requires Technical Review (JD)**
 
 Layer Importer REST API reference
 =================================
@@ -48,7 +48,6 @@ Each object in the ``imports`` array has the following attributes:
 
 * id—Globally unique identifier for the import
 * href—URI pointing to the import
-
 
 .. _import:
 
