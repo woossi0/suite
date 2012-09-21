@@ -12,7 +12,9 @@ This tutorial will create a process called **"Buffer and Split"**. As its name s
 
 The Buffer and Split operation combines these two processes in the following way:  it takes as input a geometry, a linestring, and a distance value. The input geometry is buffered by the distance value, and the resulting polygon is split by the linestring. The result, in all but the most trivial cases, will be a polygon or a geometry collection.
 
-.. todo:: A visual representation/schematic of the Buffer and Split process.
+.. figure:: img/processcomposite_theory.png
+
+   *Buffer and Split process*
 
 Distance is measured in the same units as the source geometry. It will be assumed that all input geometries are represented in the same units and coordinate reference system.
 
@@ -215,6 +217,10 @@ Once the script is in place and activated, the next step is to test it. Use the 
        1.3826834323650894, 0.9807852804032305 1.1950903220161275, 1 1, 1 0, -1 0, -1
        1)))
 
-   .. todo:: Diagram of resulting points
+   Or, graphically:
+
+   .. figure:: img/processcomposite_example.png
+
+      *Buffer and Split example*
 
    .. note:: The curved nature of the output geometry stems from the default values of the ``JTS:Buffer`` inputs ``capStyle`` and ``quadrantSegments``, which are set to ``Round`` and ``8``, respectively. These values can be explicitly set in the script, either by hard coding the values in the process call, or by adding new inputs to the process.
