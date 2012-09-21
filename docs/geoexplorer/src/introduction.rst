@@ -13,47 +13,49 @@ This section provides a brief introduction to GeoExplorer.
    
       *Launching GeoExplorer*
 
-   The GeoExplorer web application is typically available at ``http://localhost:8080/geoexplorer/composer``, although your setup may differ.
+   The GeoExplorer web application is usually available at ``http://localhost:8080/geoexplorer/composer``, although your local setup may differ.
 
    .. figure:: images/geoexplorer.png
    
       *GeoExplorer*
 
 .. |addlayer| image:: images/Button_Addlayer.png
+              :align: bottom
 
-#. To add a new layer to the :guilabel:`Map Window`, click :guilabel:`Add Layers` |addlayer| on the :ref:`geoexplorer.workspace.layerspanel` toolbar and click :guilabel:`Add layers` to open the :guilabel:`Available Layers` dialog box.
+#. To add a new layer to the :guilabel:`Map Window`, click :guilabel:`Add Layers` |addlayer| on the :ref:`geoexplorer.workspace.layerspanel` toolbar and click :guilabel:`Add layers` to open the :guilabel:`Available Layers` panel.
     
-   .. figure:: using/images/add_button.png
+   .. figure:: using/images/panel_availablelayers.png
        
-      *Add layers option*
+      *Available layers*
     
-#. In the :guilabel:`Available Layers` dialog box, click the layer you want to add to your map and click the :guilabel:`Add layers` button at the bottom of the :guilabel:`Available Layers` dialog box. 
+#. In the :guilabel:`Available Layers` panel, click the layer you want to add to your map and click :guilabel:`Add layers` at the bottom of the :guilabel:`Available Layers` panel. 
 
    .. note:: To add multiple layers, hold down Ctrl while you click all the layers you want to add.
 
-   .. figure:: using/images/add_dialog.png
+   .. figure:: using/images/panel_availablelayers.png
        
       *Adding layers to GeoExplorer*
 
 #. To add a new :term:`WMS` server, in the :guilabel:`View available data from` list, click :guilabel:`Add A New Server`.
-
-   .. note:: An example of a WMS URL is: ``http://terraservice.net/ogccapabilities.ashx?version=1.1.1&request=GetCapabilities``
     
    .. figure:: using/images/add_newserver.png
    
       *Adding a new WMS server*
+
+   .. note:: An example of a WMS URL is: ``http://terraservice.net/ogccapabilities.ashx?version=1.1.1&request=GetCapabilities``
    
    .. figure:: using/images/add_newserver_addr.png
    
       *Adding the URL for a new WMS server*
 
 .. |addserver| image:: using/images/button_add_newserver.png 
+               :align: bottom
 
-#. Once you've added the URL for the new WMS server, click the :guilabel:`Add Server` |addserver| button.
+#. Once you've added the URL for the new WMS server, click :guilabel:`Add Server` |addserver|.
 
-#. Click the :guilabel:`Done` button to return to the :ref:`geoexplorer.workspace.layerspanel`.
+#. Click :guilabel:`Done` to return to the :ref:`geoexplorer.workspace.layerspanel`.
        
-#. To rearrange the layers in your map, drag a layer up or down the list of layers in the :ref:`geoexplorer.workspace.layerspanel`.
+#. To rearrange the layers in your map, click and drag a layer up or down the list of layers in the :ref:`geoexplorer.workspace.layerspanel`.
     
    .. figure:: images/workspace_draglayers.png
    
