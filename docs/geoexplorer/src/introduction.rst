@@ -1,62 +1,89 @@
 .. _geoexplorer.introduction:
 
+.. warning:: Document status: **Draft** 
+
 Introduction
 ============
 
-.. note:: This section is a brief introduction to GeoExplorer.  For more detail, please see the section on :ref:`geoexplorer.using`.
+This section provides a brief introduction to GeoExplorer. 
 
-#. Launch GeoExplorer.  This is typically available in your browser at ``http://localhost:8080/geoexplorer/``, although your setup may differ.
+#. To launch GeoExplorer, locate the GeoExplorer component on the OpenGeo Suite Dashboard, and click the :guilabel:`Launch` link. 
+
+   .. figure:: images/launch_geoexplorer.png
+   
+      *Launching GeoExplorer*
+
+   The GeoExplorer web application is usually available at ``http://localhost:8080/geoexplorer/composer``, although your local setup may differ.
 
    .. figure:: images/geoexplorer.png
-      :align: center
    
       *GeoExplorer*
 
-#. Click the :guilabel:`Add Layers` button in the :ref:`geoexplorer.workspace.layerspanel` to bring up the :guilabel:`Available Layers` dialog.
-    
-   .. figure:: using/images/add_button.png
-      :align: center
-       
-      *Add Layers button*
-    
-#. In the :guilabel:`Available Layers` dialog, select the layers to be added to your map.
+.. |addlayer| image:: images/Button_Addlayer.png
+              :align: bottom
 
-   .. figure:: using/images/add_dialog.png
-      :align: center
+#. To add a new layer to the :guilabel:`Map Window`, click :guilabel:`Add Layers` |addlayer| on the :ref:`geoexplorer.workspace.layerspanel` toolbar and click :guilabel:`Add layers` to open the :guilabel:`Available Layers` panel.
+    
+   .. figure:: using/images/panel_availablelayers.png
+       
+      *Available layers*
+    
+#. In the :guilabel:`Available Layers` panel, click the layer you want to add to your map and click :guilabel:`Add layers` at the bottom of the :guilabel:`Available Layers` panel. 
+
+   .. note:: To add multiple layers, hold down Ctrl while you click all the layers you want to add.
+
+   .. figure:: using/images/panel_availablelayers.png
        
       *Adding layers to GeoExplorer*
 
-#. If desired, add a new :term:`WMS` server by clicking the :guilabel:`Add A New Server` button and entering a WMS URL.
-
-   .. note:: An example of a WMS URL is: ``http://terraservice.net/ogccapabilities.ashx?version=1.1.1&request=GetCapabilities``
+#. To add a new :term:`WMS` server, in the :guilabel:`View available data from` list, click :guilabel:`Add A New Server`.
     
    .. figure:: using/images/add_newserver.png
-      :align: center
    
       *Adding a new WMS server*
+
+   .. note:: An example of a WMS URL is: ``http://terraservice.net/ogccapabilities.ashx?version=1.1.1&request=GetCapabilities``
+   
+   .. figure:: using/images/add_newserver_addr.png
+   
+      *Adding the URL for a new WMS server*
+
+.. |addserver| image:: using/images/button_add_newserver.png 
+               :align: bottom
+
+#. Once you've added the URL for the new WMS server, click :guilabel:`Add Server` |addserver|.
+
+#. Click :guilabel:`Done` to return to the :ref:`geoexplorer.workspace.layerspanel`.
        
-#. Compose your map by ordering layers in the :ref:`geoexplorer.workspace.layerspanel`.
+#. To rearrange the layers in your map, click and drag a layer up or down the list of layers in the :ref:`geoexplorer.workspace.layerspanel`.
     
    .. figure:: images/workspace_draglayers.png
-      :align: center
    
       *Ordering layers*
        
-#. Launch the :ref:`geoexplorer.using.export` tool to generate a map application and the HTML code that you can embed into a web page.
+#. You can also generate a map application, and the HTML code to embed into a web page, based on the layers in your :guilabel:`Map Window`. On the :guilabel:`GeoExplorer` toolbar, click :guilabel:`Map` and then click :guilabel:`Publish map` to open the :ref:`geoexplorer.using.publish` dialog box.
 
-   .. figure:: using/images/export_tools.png
-      :align: center
+   .. figure:: using/images/map_publish.png
+      
+      *Publishing a map*
+
+
+#. In the the :guilabel:`Publish map` dialog box, select the map tools you'd like to include in your map application, and click :guilabel:`Next` to generate the HTML code.
+
+   .. figure:: using/images/publish_tools.png
 
       *Selecting the map tools*
 
-   .. figure:: using/images/export_html.png
-      :align: center
+   .. figure:: using/images/publish_html.png
 
-      *Exporting a map*
+      *Generating HTML code*
 
-#. Paste the HTML code into your web page.
+#. Click :guilabel:`Preview` to create a preview of your map application.
 
-   .. figure:: using/images/export_embed.png
-      :align: center
+   .. figure:: using/images/map_preview.png
 
-      *Embedded map inside a web page*
+      *Publishing a map*
+
+#. Copy and paste the HTML code into your own web page to view your map application.
+
+For more information on working with GeoExplorer, please refer to :ref:`geoexplorer.using`.

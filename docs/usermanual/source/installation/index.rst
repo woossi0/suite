@@ -3,14 +3,15 @@
 Installation
 ============
 
-This section will describe how to install the OpenGeo Suite.
+This section will describe how to install the OpenGeo Suite in various configurations, as well as some optional components.
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    windows/index
    mac/index
    linux/index
-   skygone/index
    aws/index
+   gdal/index
+   mrsid/index

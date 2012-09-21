@@ -8,7 +8,7 @@
  <parent>
    <groupId>org.opengeo</groupId>
    <artifactId>suite</artifactId>
-   <version>2.5</version>
+   <version>3.0-SNAPSHOT</version>
  </parent>
 
  <groupId>org.opengeo</groupId>
@@ -95,8 +95,23 @@
      <version>${gs.version}</version>
    </dependency>
    <dependency>
+     <groupId>org.geoserver.script</groupId>
+     <artifactId>script-py</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.geoserver.script</groupId>
+     <artifactId>script-js</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
      <groupId>org.geotools</groupId>
      <artifactId>gt-imageio-ext-gdal</artifactId>
+     <version>${gt.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.geotools</groupId>
+     <artifactId>gt-ogr-jni</artifactId>
      <version>${gt.version}</version>
    </dependency>
   <dependency>
@@ -129,8 +144,29 @@
     <artifactId>xercesImpl</artifactId>
     <version>2.7.1</version>
   </dependency>
-
+  
+  <dependency>
+     <groupId>org.springframework</groupId>
+     <artifactId>spring-expression</artifactId>
+     <version>${spring.version}</version>
+    </dependency>
+  <dependency>
+     <groupId>org.springframework</groupId>
+     <artifactId>spring-aop</artifactId>
+     <version>${spring.version}</version>
+   </dependency>
    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+   </dependency>
+   <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+   </dependency>
+   
+  <dependency>
     <groupId>com.mockrunner</groupId>
     <artifactId>mockrunner</artifactId>
     <version>0.3.1</version>
@@ -264,7 +300,7 @@
       <exclude>${test.exclude.pattern}</exclude>
      </excludes>
      <forkMode>once</forkMode>
-     <argLine>-Xmx${test.maxHeapSize} -enableassertions -Djava.awt.headless=${java.awt.headless}</argLine>
+     <argLine>-Xmx${test.maxHeapSize} -XX:MaxPermSize=${test.maxPermSize} -enableassertions -Djava.awt.headless=${java.awt.headless}</argLine>
      <printSummary>true</printSummary>
      <testFailureIgnore>${allow.test.failure.ignore}</testFailureIgnore>
     </configuration>
@@ -326,9 +362,6 @@
  <modules>
   <module>externals</module>
   <module>extension</module>
-  <module>ftpclient</module>
-  <module>importer</module>
-  <module>analytics</module>
   <module>web</module>
   <module>test</module>
  </modules>
@@ -418,8 +451,10 @@
  <properties>
   <java.awt.headless>true</java.awt.headless>
   <test.maxHeapSize>512M</test.maxHeapSize>
+  <test.maxPermSize>128M</test.maxPermSize>
   <sde.version>9.2</sde.version>
-  <spring.version>2.5.5</spring.version>
+  <spring.version>3.1.1.RELEASE</spring.version>
+  <spring.security.version>3.1.0.RELEASE</spring.security.version>
   <test.exclude.pattern>none</test.exclude.pattern>
  </properties>
 

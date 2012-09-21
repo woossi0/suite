@@ -1,7 +1,7 @@
 .. _geoexplorer.using.createfeature:
 
-Create a New Feature
-====================
+Create 
+======
 
 GeoExplorer includes the ability to create new features in layers served through a local instance of GeoServer.  You can draw the location of the feature, as well as edit the attribute data for that feature.
 

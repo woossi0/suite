@@ -258,10 +258,11 @@ Debug server stopped.
 DEBUG_FAILURE="
 The '$NAME debug' command failed.
 
-A common cause of this is a conflict with the provided local port (-l): $LOCAL_PORT
+Two commmon causes of this are:
+* The <app-path> provided did not contain a valid SDK application: $APP_PATH
+* There was a conflict with the provided local port (-l): $LOCAL_PORT
 
-Please ensure that there is not another service running on this port.  Run
-'$NAME debug --help' for help on the usage.
+Please run '$NAME debug --help' for help on the usage.
 "
 
 DEPLOY_START="
