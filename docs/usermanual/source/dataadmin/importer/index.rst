@@ -10,10 +10,7 @@ This section describes how to use the Layer Importer.
 .. toctree::
    :maxdepth: 2
 
-   guiexample
    guireference
    apireference
    apiexample
    formats
-   
-   
