@@ -70,9 +70,12 @@ Installing OpenGeo Suite Enterprise Edition
 
    .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
 
+   .. note:: The single command below is wrapped over multiple lines.
+
    .. code-block:: console
 
-      echo "deb http://<username>:<password>@apt-ee.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
+      echo "deb http://<username>:<password>@apt-ee.opengeo.org/suite/v3/ubuntu lucid main"
+        >> /etc/apt/sources.list
 
 #. Update APT:
 
@@ -190,9 +193,12 @@ The procedure for upgrading is as follows:
 
    .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
 
+   .. note:: The single command below is wrapped over multiple lines.
+
    .. code-block:: console
 
-      echo "deb http://<username>:<password>apt-ee.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
+      echo "deb http://<username>:<password>apt-ee.opengeo.org/suite/v3/ubuntu lucid main"
+        >> /etc/apt/sources.list
 
 #. Now update your repository sources:
 
