@@ -1,7 +1,7 @@
 .. _sysadmin:
 
 
-System Administration
+System administration
 =====================
 
 This section will discuss how to manage  OpenGeo Suite deployments, including server optimization, caching, tuning, and upgrading.

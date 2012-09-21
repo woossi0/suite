@@ -1,7 +1,7 @@
 .. _apps:
 
 
-Building Complete Applications
+Building complete applications
 ==============================
 
 

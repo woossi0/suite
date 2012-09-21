@@ -1,7 +1,7 @@
 .. _webmaps:
 
 
-Building Web Maps
+Building web maps
 =================
 
 This section will discuss web maps and how to build them using the OpenGeo Suite.
