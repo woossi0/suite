@@ -1,5 +1,7 @@
 .. _dataadmin.pgGettingStarted.createdb:
 
+.. warning:: Document status: **Requires Technical Review (PR)**
+
 Creating a Spatial Database
 ===========================
 
@@ -44,7 +46,7 @@ The OpenGeo Suite installation process automatically creates five databases:
 
    .. todo:: what should they do in this case? ref to troubleshooting
  
-#. Click on the :guilabel:`Execute SQL queries` button (or click :menuselection:`Tools --> Query tool`).
+#. Click :guilabel:`Execute SQL queries` (or click :menuselection:`Tools --> Query tool`).
 
    .. figure:: img/createdb_querybutton.png
 

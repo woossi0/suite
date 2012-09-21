@@ -15,11 +15,10 @@ This section describes how to get started your OpenGeo Suite PostGIS database—
    shp2pgsql
    pgshapeloader
    raster2pgsql
-   rest
    restload
    basicsql
 
 
 
 
-For detailed reference information, please see the `PostGIS Documentation <../../../postgis/>`_.
+For detailed reference information, please refer to the `PostGIS Documentation <../../../postgis/>`_.

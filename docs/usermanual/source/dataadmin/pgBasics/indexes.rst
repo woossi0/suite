@@ -1,6 +1,8 @@
 .. _dataadmin.pgBasics.indexes:
 
-Spatial Indexes
+.. warning:: Document status: **Requires Technical Review (PR)**
+
+Spatial indexes
 ===============
 
 A spatial index is one of the three key components of a spatial database. Without indexing, any search for a feature would require a *sequential scan* of every record in the database. Similarly, comparing whole tables with each other can be computationally expensive. Joining two tables of 10,000 records each without indexes would require 100,000,000 comparisons—with indexes on both tables the processing cost could be as low as 20,000 comparisons. 
@@ -17,7 +19,7 @@ When data is loaded into a PostGIS database a spatial index, called  ``<TABLENAM
 .. note:: The ``USING GIST`` clause tells PostgreSQL to use the generic index structure (GiST) when building the index.
 
 
-How Spatial Indexes Work
+How spatial indexes work
 ------------------------
 
 Non-spatial database indexes create a hierarchical tree based on the values of the column being indexed. As spatial indexes are unable to index the geometric features themselves, the bounding boxes of the features are indexed instead.
@@ -41,7 +43,7 @@ Both PostGIS and Oracle Spatial share the same *R-Tree* spatial index structure.
 
    *R-tree Hierarchy for geometries*
 
-Index-Only Queries
+Index-only queries
 ------------------
 
 Most of the commonly used functions in PostGIS, for example :command:`ST_Contains`, :command:`ST_Intersects`, and :command:`ST_DWithin`, include an index filter automatically. However some functions, such as :command:`ST_Relate`, do not include an index filter.

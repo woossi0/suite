@@ -3,7 +3,7 @@
 
 .. warning:: Document Status: **Draft**
 
-Geometry Manipulation
+Geometry manipulation
 =====================
 
 In addition to the geometry construction functions, PostGIS also provides a number of *geometry manipulation functions*. 

@@ -1,5 +1,6 @@
 .. _dataadmin.pgBasics.ISO_WKT_WKB:
 
+.. warning:: Document status: **Draft**
 
 ISO WKT and WKB
 ===============

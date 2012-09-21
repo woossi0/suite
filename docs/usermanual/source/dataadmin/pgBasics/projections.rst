@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.projection:
 
-.. warning:: Document Status: **Draft**
+.. warning:: Document status: **Requires Technical Review (PR)**
 
 Projections
 ===========
@@ -36,7 +36,7 @@ There are two definitions of "26918" (or indeed of any valid SRID value) maintai
   
 Both the ``srtext`` and the ``proj4text`` columns are important. The ``srtext`` column is used by external programs such as `GeoServer <../../../geoserver>`_, `uDig <http://udig.refractions.net>`_,  and `FME <http://www.safe.com/>`_, and the ``proj4text`` column is used internally by PostGIS.
 
-Comparing Data
+Comparing data
 --------------
 
 The combination of a coordinate and a spatial reference define a location on the earth's surface. Without a spatial reference, a coordinate has no context. A "Cartesian" coordinate plane is defined as a "flat" coordinate system placed on the surface of Earth. Because PostGIS functions work on such a plane, comparison operations require that both geometries have the same spatial reference. Comparing geometries with differing SRIDs will return an error:
@@ -55,7 +55,7 @@ The combination of a coordinate and a spatial reference define a location on the
   
 
 
-Transforming Data
+Transforming data
 -----------------
 
 To transform data from one SRID to another, you must first verify that your geometry has a valid SRID. To confirm this, query the ``geometry_columns`` view.

@@ -1,8 +1,8 @@
 .. _dataadmin.pgBasics.joins:
 
-.. warning:: Document Status: **Draft**
+.. warning:: Document status: **Requires Technical Review (PR)**
 
-Spatial Joins
+Spatial joins
 =============
 
 Spatial joins combine information from different tables by using :ref:`Spatial Relationships <dataadmin.pgBasics.spatialrelationships>` as the join key. A great deal of GIS analysis can be accomplished using spatial joins.
@@ -27,7 +27,7 @@ For example, given a subway station location, neighborhood data, and borough nam
 
 Any function that provides a true/false relationship between two tables can form the basis of a spatial join, but the most commonly used ones are :command:`ST_Intersects`, :command:`ST_Contains`, and :command:`ST_DWithin`.
 
-Join and Summarize
+Join and summarize
 ------------------
 
 The combination of a ``JOIN`` with a ``GROUP BY`` operation supports the type of analysis that is usually undertaken with a GIS system. For example, to answer the question "What is the population and demographic profile of the neighborhoods of Manhattan?", requires analyzing population information, available from the census, with the boundaries of neighborhoods. The results should be further restricted to report on just one borough of Manhattan. 

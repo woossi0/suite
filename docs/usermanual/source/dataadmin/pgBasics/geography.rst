@@ -1,8 +1,8 @@
 .. _dataadmin.pgBasics.geography:
 
-.. warning:: Document Status: **Draft**
+.. warning:: Document status: **Requires Technical Review (PR)**
 
-Geography Data Type
+Geography data type
 ===================
 
 Many spatial datasets are available in a geographic, or "latitude/longitude", coordinate system. However, unlike coordinates in Mercator, UTM, or State Plane, **geographic coordinates are not Cartesian** and they do not represent a linear distance from an origin as plotted on a 2-D plane. These **spherical coordinates** describe the angular distance between the equator and the poles. In spherical coordinates a point is specified by the distance from the origin (the radius), the angle of rotation from the initial meridian plane, and the angle from the polar axis (analogous to a vector from the origin through the North Pole).
@@ -108,7 +108,7 @@ The Cartesian approach to handling geographic coordinates is inappropriate for d
     258.146005837336 |   8833954.76996256
 
 
-Working with the Geography data type
+Working with the geography data type
 ------------------------------------
 
 To load geometry data into a geography table, the geometry must be projected into EPSG:4326 (longitude/latitude), and then converted, or cast, into geography. The :command:`ST_Transform(geometry,srid)` function converts coordinates to geographics and the :command:`Geography(geometry)` function casts them from geometry to geography.

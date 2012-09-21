@@ -1,6 +1,7 @@
 .. _dataadmin.pgBasics.metatables:
 
-OpenGIS Metadata 
+
+OpenGIS metadata 
 ================
 
 In compliance with the OpenGIS Simple Features for SQL (SFSQL) specification, PostGIS stores and manages metadata for all geometry columns present in a database. As a result, client applications are not required to inspect individual spatial tables and their geometries to perform display, projection, or analytical queries.

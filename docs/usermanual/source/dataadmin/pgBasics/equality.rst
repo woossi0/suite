@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.equality:
 
-.. warning:: Document Status: **Draft**
+.. warning:: Document status: **Requires Technical Review (PR)**
 
 Equality
 ========

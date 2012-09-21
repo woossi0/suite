@@ -1,5 +1,6 @@
 .. _dataadmin.pgGettingStarted.pgshapeloader:
 
+.. warning:: Document status: **Requires Technical Review (PR)**
 
 Loading data into PostGIS with pgShapeloader
 ============================================
@@ -74,7 +75,7 @@ Loading data
 
       *A successful PostGIS connection*
 
-#. To select your source files, click :guilabel:`Add File` to open the :guilabel:`Select a Shape File` dialog box. Navigate to the location of your shapefile, select it and click :guilabel:`Open`. Multiple files can also be added in the same way.
+#. To select your source files, click :guilabel:`Add File` to open the :guilabel:`Select a Shape File` dialog box. Navigate to the location of your shapefile, click the shapefile you wish to load, and click :guilabel:`Open`. Multiple files can also be added in the same way.
 
    .. figure:: img/pgshp_select.png
 

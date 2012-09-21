@@ -1,5 +1,6 @@
 .. _dataadmin.pgGettingStarted.raster2pgsql:
 
+.. warning:: Document status: **Requires Technical Review (PR)**
 
 Loading raster data into PostGIS from the Command Line
 ======================================================

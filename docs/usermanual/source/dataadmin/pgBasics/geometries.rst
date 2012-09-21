@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.geometries:
 
-.. warning:: Document Status: **Draft**
+.. warning:: Document status: **Requires Technical Review (PR)**
 
 Geometries 
 ==========
@@ -8,10 +8,10 @@ Geometries
 This section describes geometry objects in a PostGIS database, and some of the functions and operators that are available to work with them.
 
 
-Representing Real World Objects
+Representing real world objects
 -------------------------------
 
-The Simple Features for SQL (``SFSQL``) specification, the original guiding standard for PostGIS development, defines how a real world object is represented. By taking a continuous shape and digitizing it at a fixed resolution, a passable representation of the object is produced. However, as SFSQL only handled 2-dimensional representations, PostGIS extended that to include 3- and 4-dimensional representations. More recently the SQL-Multimedia Part 3 (``SQL/MM``) specification has officially defined their own representation. 
+The Simple Features for SQL (``SFSQL``) specification, the original guiding standard for PostGIS development, defines how a real world object is represented. By taking a continuous shape and digitizing it at a fixed resolution, a passable representation of the object is produced. However, as SFSQL only handled 2-dimensional representations, PostGIS extended that to include 3-dimensional and 4-dimensional representations. More recently the SQL-Multimedia Part 3 (``SQL/MM``) specification has officially defined their own representation. 
 
 
 Sample table
@@ -262,7 +262,7 @@ Some of the specific spatial functions for working with collections include:
 
 
 
-Geometry Input and Output
+Geometry input and output
 -------------------------
 
 Within the database, geometries are stored in a format only used by PostGIS. To allow 

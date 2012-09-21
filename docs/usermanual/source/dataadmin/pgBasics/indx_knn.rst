@@ -2,7 +2,7 @@
 
 .. warning:: Document Status: **Draft**
 
-Nearest Neighbor Searches
+Nearest neighbor searches
 =========================
 
 Nearest neighbor index searching

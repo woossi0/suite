@@ -1,9 +1,8 @@
 .. _dataadmin.pgBasics.generation:
 
-.. warning:: Document Status: **Draft**
-   
+.. warning:: Document status: **Requires Technical Review (PR)**   
 
-Geometry Construction
+Geometry construction
 =====================
 
 Many PostGIS functions work with geometries *as they are* to perform some interrogation or analysis. For example:

@@ -1,5 +1,7 @@
 .. _dataadmin.pgGettingStarted.basicsql:
 
+.. warning:: Document status: **Requires Technical Review (PR)**
+
 Basic SQL
 =========
 

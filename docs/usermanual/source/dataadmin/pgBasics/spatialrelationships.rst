@@ -1,8 +1,8 @@
 .. _dataadmin.pgBasics.spatialrelationships:
 
-.. warning:: Document Status: **Draft**
+.. warning:: Document status: **Requires Technical Review (PR)**
 
-Spatial Relationships
+Spatial relationships
 =====================
 
 Spatial databases can not only store geometry, they also provide the capabilities to compare *relationships between geometries*. Answering questions such as "Which are the closet bike racks to a park?" or "Where are the intersections of subway lines and streets?" is only possible by comparing geometries representing the bike racks, streets, and subway lines.

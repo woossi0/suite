@@ -1,5 +1,6 @@
 .. _dataadmin.pgGettingStarted.shp2pgsql:
 
+.. warning:: Document status: **Requires Technical Review (PR)**
 
 Loading data into PostGIS from the Command Line
 ===============================================

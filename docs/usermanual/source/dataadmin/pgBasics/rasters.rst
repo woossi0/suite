@@ -1,10 +1,9 @@
 .. _dataadmin.pgBasics.rasters:
 
-.. warning::  **Draft - under development** 
+.. warning::  **Draft** 
 
-  
 
-Raster Data
+Raster data
 ===========
 
 In PostGIS raster data is modelled as large collections of small chunks of data. This means raster data can be manipulated and analyzed in much the same way as vector data. 
@@ -12,7 +11,7 @@ In PostGIS raster data is modelled as large collections of small chunks of data.
 .. note:: At PostGIS 2.0, raster support in PostGIS is provided primarily to support analysis, not visualization.
 
 
-Joining Raster and Vector Data
+Joining raster and vector data
 ------------------------------
 
 .. todo:: get a better sample from Paul for this section.
@@ -41,10 +40,10 @@ Integrated raster and vector analysis is provides a powerful additional tool for
 There are many functions in PostGIS for handling raster data, for example ``ST_AsRaster()``, ``ST_MakeEmptyRaster()``, ``ST_AsTIFF``. For a full list of functions, refer to `Raster Reference <http://postgis.refractions.net/docs/RT_reference.html>`_. 
 
 
-Raster_Columns Catalog
-----------------------
+Raster_columns view
+-------------------
 
-The ``Raster_columns`` database view catalogs all the table columns in your PostGIS database that are of type *raster*. As the view takes advantage the constraints on the base tables, the information in the catalog is always current and consistent with the state of the database.
+The ``raster_columns`` database view catalogs all the table columns in your PostGIS database that are of type *raster*. As the view takes advantage the constraints on the base tables, the information in the catalog is always current and consistent with the state of the database.
 
 .. note:: If you didn't create your raster table using ``raster2pgsql``, or forgot to specify the -C flag (apply raster constraints) during the load operation, you can still apply those constraints with ``AddRasterConstraints()`` to ensure the relevant information about your raster data is registered correctly.
 
@@ -69,7 +68,7 @@ The attributes of the ``raster_columns`` view are:
 .. todo:: add sample output
 
 
-Raster Overviews
+Raster overviews
 ----------------
 
 A raster overview is a lower resolution version of a base raster table, used primarily to improve display performance for operations that do not require pixel level information. At each higher level of overview, the data is re-sampled to provide a representation of the data at a lower spatial resolution. 
@@ -99,7 +98,7 @@ Level one overviews always represent the original raster data. Level two overvie
 
    *Reduced resolution raster overviews*
 
-Raster_Overviews Catalog
+Raster_overviews catalog
 ------------------------
 
 The ``raster_overviews`` database view catalogs the raster columns used to create raster overviews. The attributes of the ``raster_overviews`` view are:
