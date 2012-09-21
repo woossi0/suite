@@ -10,7 +10,9 @@ Process definition
 
 This tutorial will create a process called **"Distance and Bearing"** with the following functionality: Given a feature collection and a single point, process will return a feature collection with the same number of elements as the source feature collection and with the same geometries, but with attributes containing the distance and bearing (angle of orientation) to the source point.
 
-.. todo:: Image needed describing process
+.. figure:: img/processcreate_theory.png
+
+   *Distance and Bearing process*
 
 Distance is measured in the source units. Bearing will be an `absolute bearing <http://en.wikipedia.org/wiki/Bearing_%28navigation%29>`_, in degrees measured from true north and increasing in the clockwise direction (so true east would be 90 degrees and true west would be -90 or 270 degrees).
 
@@ -356,11 +358,15 @@ Once the script is in place and activated, the next step is to test it. Use the 
         - 0
       * - -1
         - 1
-        - 1.4142135623730951
+        - 1.41
         - -45.0
       * - 6
         - 3
-        - 6.708203932499369
-        - 63.43494882292201
+        - 6.71
+        - 63.43
 
-   .. todo:: Diagram of resulting points
+   Graphically:
+
+   .. figure:: img/processcreate_example.png
+
+      *Distance and Bearing example*
