@@ -185,7 +185,7 @@ The Layers panel toolbar provides access to the following tools:
        - :ref:`geoexplorer.using.style`
        - Displays the :ref:`geoexplorer.workspace.stylespanel` for editing layer styling rules. Requires :ref:`geoexplorer.using.login` to local GeoServer.
 
-.. _geoexplorer.workspace.layercontextmenu:
+.. _geoexplorer.workspace.layershortcutmenu:
 
 Layers panel shortcut menu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -239,11 +239,12 @@ Layer Styles panel
 
 .. figure:: images/workspace_stylespanel.png
 
-   *:Layer Style panel*
+   *Layer Style panel*
 
 The Layer Styles panel displays style information for the currently selected layer. The style rules are read directly from the layer :term:`SLD`. You can also edit the :ref:`geoexplorer.using.style.styles` for WMS layers as required.
 
 
+      
 
 
 

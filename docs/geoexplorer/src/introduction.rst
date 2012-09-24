@@ -48,12 +48,10 @@ This section provides a brief introduction to GeoExplorer.
    
       *Adding the URL for a new WMS server*
 
-.. |addserver| image:: using/images/button_add_newserver.png 
-               :align: bottom
 
-#. Once you've added the URL for the new WMS server, click :guilabel:`Add Server` |addserver|.
+#. Once you've added the URL for the new WMS server, click the :guilabel:`Add Server` button.
 
-#. Click :guilabel:`Done` to return to the :ref:`geoexplorer.workspace.layerspanel`.
+#. Click the :guilabel:`Done` button to return to the :ref:`geoexplorer.workspace.layerspanel`.
        
 #. To rearrange the layers in your map, click and drag a layer up or down the list of layers in the :ref:`geoexplorer.workspace.layerspanel`.
     

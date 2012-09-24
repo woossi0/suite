@@ -5,6 +5,9 @@ Glossary
 
 .. glossary::
 
+   CQL
+     Contextual Query language. A language for representing queries.
+
    GetCapabilities
      WMS request that returns a capabilities document, a list of all layers and functions supported by the WMS server.  GeoExplorer reads the capabilities document of a server in order to determine the available layers.
 
