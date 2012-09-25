@@ -20,7 +20,7 @@ Select one of the following data sources to use for the import:
 * :guilabel:`Oracle` database
 * :guilabel:`SQL Server` database
 
-.. figure:: img/sources_choosesource.png
+.. figure:: img/sources_choosesourcefiles.png
 
    *Choose a data source*
 
