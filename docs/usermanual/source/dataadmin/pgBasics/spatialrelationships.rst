@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.spatialrelationships:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Reviewed (PR)** : got rid of overly complex equals example : 
 
 Spatial relationships
 =====================
@@ -19,36 +19,34 @@ ST_Equals
 
    *ST_Equals*
 
-
-The following example returns the representation of a point.
+Objects are equal to themselves.
 
 .. code-block:: sql
 
-  SELECT name, the_geom, ST_AsText(the_geom)
-  FROM nyc_subway_stations 
-  WHERE name = 'Broad St';             
+  SELECT ST_Equals( 'POINT(0 0)', 'POINT(0 0)' );
 
 ::
 
-     name   |                      the_geom                      |      st_astext
-  ----------+----------------------------------------------------+-----------------------
-   Broad St | 0101000020266900000EEBD4CF27CF2141BC17D69516315141 | POINT(583571 4506714)
+   st_equals 
+  -----------
+   t
  
-This representation of the geometry may in turn be used to perform a test of equality. In the next example, the name of the subway station whose geometry matches this representation is identified.
+Objects are equal to other objects that cover the same space (but might have different representations):
 
 .. code-block:: sql
 
-  SELECT name 
-  FROM nyc_subway_stations 
-  WHERE ST_Equals(the_geom, '0101000020266900000EEBD4CF27CF2141BC17D69516315141');
+  SELECT ST_Equals( 
+               'LINESTRING(0 0,1 1)', 
+               'LINESTRING(1 1,0.5 0.5,0 0)' 
+               );
 
 ::
 
-   Broad St
+   st_equals 
+  -----------
+   t
 
-.. note::
-
-  Although the representation of the point (``0101000020266900000EEBD4CF27CF2141BC17D69516315141``) is not  easy to read, it is an exact representation of the coordinate values. For a test like equality, the exact coordinates are required  For further information, please refer to :ref:`Equality <dataadmin.pgBasics.equality>`.
+There are other equality tests in PostGIS as well, that test for identical representations or bounds equality, refer to :ref:`Equality <dataadmin.pgBasics.equality>` for more information.
 
 
 Intersections

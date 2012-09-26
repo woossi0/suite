@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.generation:
 
-.. warning:: Document status: **Requires Technical Review (PR)**   
+.. warning:: Document status: **Reviewed (PR)** : note there is a 'todo' item still in the text
 
 Geometry construction
 =====================
@@ -19,9 +19,9 @@ Centroid and PointOnSurface
 
 A common requirement when composing a spatial query is to replace a polygon feature with a point representation of the feature. This is useful for spatial joins because using ``ST_Intersects`` on two polygon layers often results in double-counting—a polygon on a boundary will intersect an object on both sides. Replacing the polygon with a point forces it to be on one side or the other, not both. PostGIS provides the following two functions to return a point at the center of an input geometry:
 
-* ``ST_Centroid(geometry)``—Returns a point that is approximately on the center of the input geometry 
+* ``ST_Centroid(geometry)``—Returns a point that is at the center of mass of the input geometry 
 
-  .. note:: Although this simple calculation is very fast, be aware the returned point is not necessarily in the feature itself. If the input feature has a convexity (imagine the letter 'C') the returned centroid might not be in the interior of the feature.
+  .. note:: Although this simple calculation is very fast, be aware the returned point is not necessarily inside the feature itself. If the input feature has a convexity (imagine the letter 'C') the returned centroid might not be in the interior of the feature.
 
 * ``ST_PointOnSurface(geometry)``—Returns a point that is guaranteed to be inside the input geometry
 

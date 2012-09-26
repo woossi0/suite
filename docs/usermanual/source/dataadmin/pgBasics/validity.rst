@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.validity:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Reviewed (PR)** : dropped caveats about being able to clean and added section on ST_MakeValid
 
 Validity
 ========
@@ -98,24 +98,61 @@ The :command:`ST_IsValid` function can also be used to test entire tables.
 Repairing invalidity
 --------------------
 
-There is no guaranteed way to fix invalid geometries. One solution is to identify them using the :command:`ST_IsValid(geometry)` function, move invalid geometries out of the main table into a temporary table, export the invalid geometries from the temporary table to another format, and apply an external cleaning process.
+Most common invalidities can be repaired using the :command:`ST_MakeValid(geometry) function.
 
-To move invalid geometries out of the main table into a temporary table, execute the following command:
+For example, running :command:`ST_MakeValid(geometry) on our figure-eight polygon:
 
 .. code-block:: sql
 
-  CREATE TABLE nyc_neighborhoods_invalid AS
-  SELECT * FROM nyc_neighborhoods
-  WHERE NOT ST_IsValid(the_geom);
-  
-  DELETE FROM nyc_neighborhoods
-  WHERE NOT ST_IsValid(the_geom);
-  
-A good tool for visually repairing invalid geometry is OpenJump (http://openjump.org), which includes a validation routine :command:`Validate Selected Layers`.
+  SELECT ST_AsText(
+           ST_MakeValid(
+             ST_GeometryFromText(
+               'POLYGON((0 0, 0 1, 1 1, 2 1, 2 2, 1 2, 1 1, 1 0, 0 0))'
+             )
+           )
+         );
 
-Fortunately a large proportion of invalid geometries can be fixed inside a PostGIS database using the :command:`ST_Buffer` function. A buffered geometry is a new geometry, constructed by offsetting lines from the original geometry. If the original lines are offset by **nothing** (zero) then the new geometry will be structurally identical to the original one with one exception—because it is built using the ``OGC`` topology rules, it will be valid.
+::
 
-For example, the "banana polygon" (or "inverted shell") is a single ring that encloses an area but bends around to touch itself, leaving a "hole" which is not actually a hole.
+  MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)),((1 1,1 2,2 2,2 1,1 1)))
+  
+The repair routine correctly re-formats the figure-eight as a multi-polygon with a polygon for each lobe of the figure-eight.
+
+The :command:`ST_MakeValid(geometry) is not a cleaning routine, it is a very strict validity repairer. For example, the following polygon is an ordinary square, but with one unit "hair" (a zero width corridor) sticking up from it. 
+
+:: 
+
+  POLYGON((0 0, 0 1, 1 1, 1 2, 1 1, 1 0, 0 0))
+
+Probably we would like a cleaning routine to simply drop the "hair", it adds nothing to our understanding of the bounded area of the polygon.
+
+However, the repair routine returns **all** the components of the input, it doesn't drop geometry, just rearranges it into valid representations:
+
+.. code-block:: sql
+
+  SELECT ST_AsText(ST_MakeValid('POLYGON((0 0, 0 1, 1 1, 1 2, 1 1, 1 0, 0 0))'));
+  
+::
+                                 st_astext                                
+  ------------------------------------------------------------------------
+   GEOMETRYCOLLECTION(POLYGON((0 0,0 1,1 1,1 0,0 0)),LINESTRING(1 1,1 2))
+
+
+It's possible to get a little bit of cleaning behavior from PostGIS, but using the :command:`ST_Buffer(geometry,radius)` function with a zero radius for cleaning.
+
+.. code-block:: sql
+
+  SELECT ST_AsText(ST_Buffer('POLYGON((0 0, 0 1, 1 1, 1 2, 1 1, 1 0, 0 0))'::geometry, 0));
+  
+::
+             st_astext            
+  --------------------------------
+   POLYGON((0 0,0 1,1 1,1 0,0 0))
+
+
+The buffer function is not guaranteed to repair all geometries, and does not work on as many input cases as the make valid function.
+
+The "banana polygon" (or "inverted shell") is a single ring that encloses an area but bends around to touch itself, leaving a "hole" which is not actually a hole.
 
 .. code-block:: console
 
@@ -123,20 +160,19 @@ For example, the "banana polygon" (or "inverted shell") is a single ring that en
   
 .. figure:: img/validity_banana.png
 
-Running a zero-offset buffer on the polygon returns a valid ``OGC`` polygon, consisting of an outer and inner ring that touch at one point.
+Running a make valid on the polygon returns a valid ``OGC`` polygon, consisting of an outer and inner ring that touch at one point.
 
 .. code-block:: sql
 
   SELECT ST_AsText(
-           ST_Buffer(
-             ST_GeometryFromText('POLYGON((0 0, 2 0, 1 1, 2 2, 3 1, 2 0, 4 0, 4 4, 0 4, 0 0))'),
-             0.0
+           ST_MakeValid(
+             ST_GeometryFromText('POLYGON((0 0, 2 0, 1 1, 2 2, 3 1, 2 0, 4 0, 4 4, 0 4, 0 0))')
            )
          );
 
 ::
 
-  POLYGON((0 0,0 4,4 4,4 0,2 0,0 0),(2 0,3 1,2 2,1 1,2 0))
+  POLYGON((2 0,0 0,0 4,4 4,4 0,2 0),(2 0,3 1,2 2,1 1,2 0))
 
 .. note::
 

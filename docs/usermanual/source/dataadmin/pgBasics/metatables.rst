@@ -10,13 +10,15 @@ The metadata is managed by the *postgres* user account and stored in the followi
 
 * ``spatial_ref_sys``—Table recording spatial reference systems 
 * ``geometry_columns``—Read-only view listing spatial (or feature) tables, geometry columns and geometry types present in the database
+* ``geography_columns``—Read-only view listing spatial (or feature) tables, geography columns and geography types present in the database
 
 .. figure:: img/metatables_relationships.png
 
    *Spatial metadata schema relationships*
 
 As PostGIS 2.0+ (OpenGeo Suite 3.0+) uses a view based on the system catalogs rather than a table to record geometry column metadata, the view is always current, updated automatically when a new spatial table is created. 
-Consequently, a number of the system utility functions, such as ``populate_geometry_columns()``, are no longer required.
+
+.. note:: PostGIS 1.X managed metadata in tables, not views, and used a number of the system utility functions, such as ``populate_geometry_columns()``. In PostGIS 2.X running these utility functions is no longer required.
 
 To query the ``geometry_columns`` view, execute the following SQL command:
 
@@ -58,7 +60,7 @@ The typmod in this case is the number *255*, indicating the maximum length of va
 Updating spatial tables
 -----------------------
  
-Updating spatial tables in previous versions of PostGIS, such as changing the spatial reference or geometry type, was a multi-step process—dropping constraints, updating the table, updating the geometry_columns table and re-applying the constraints. With version 2.0+, this can be accomplished with a single ``ALTER TABLE`` command. The following example will alter the projection of the data: 
+Updating spatial tables in previous versions of PostGIS, such as changing the spatial reference or geometry type, was a multi-step process—dropping constraints, updating the table, updating the geometry_columns table and re-applying the constraints. With version 2.0+, this can be accomplished with a single ``ALTER TABLE`` command. The following example will simultaneously alter the dimensionality and projection of the data as well as the associated table constraints: 
 
 .. code-block:: sql
 

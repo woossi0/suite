@@ -1,22 +1,21 @@
 .. _dataadmin.pgBasics.indexes:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Reviewed (PR)** : index TODO section still at bottom 
 
 Spatial indexes
 ===============
 
-A spatial index is one of the three key components of a spatial database. Without indexing, any search for a feature would require a *sequential scan* of every record in the database. Similarly, comparing whole tables with each other can be computationally expensive. Joining two tables of 10,000 records each without indexes would require 100,000,000 comparisons—with indexes on both tables the processing cost could be as low as 20,000 comparisons. 
+A spatial index is one of the three key components of a spatial database. Without indexing, any search for a feature would require a *sequential scan* of every record in the database. Similarly, comparing whole tables with each other can be computationally expensive. Joining two tables of 10,000 records each without indexes would require 100,000,000 comparisons—-with indexes on both tables the processing cost could be as low as 20,000 comparisons. 
 
 Indexing speeds up searching by organizing the data into a search tree that is quickly traversed to find a particular record. This can save a great deal of processing time for complex queries.
 
-
-When data is loaded into a PostGIS database a spatial index, called  ``<TABLENAME>_the_geom_gist``, is automatically created. If required, indexes can also be created manually:
+When data is loaded into a PostGIS database using the shape loader a spatial index, called  ``<TABLENAME>_the_geom_gist``, is automatically created. Spatial indexes can also be created manually using SQL:
 
 .. code-block:: sql
 
-  CREATE INDEX <TABLENAME>_the_geom_gist ON <TABLENAME> USING GIST (the_geom);
+  CREATE INDEX <INDEXNAME> ON <TABLENAME> USING GIST (<GEOMETRYCOLUMN>);
 
-.. note:: The ``USING GIST`` clause tells PostgreSQL to use the generic index structure (GiST) when building the index.
+.. note:: The ``USING GIST`` clause tells PostgreSQL to use the generic index structure (GiST) when building the index. If you omit it, you will get a non-spatial index, which is not what you want.
 
 
 How spatial indexes work
@@ -47,6 +46,7 @@ Index-only queries
 ------------------
 
 Most of the commonly used functions in PostGIS, for example :command:`ST_Contains`, :command:`ST_Intersects`, and :command:`ST_DWithin`, include an index filter automatically. However some functions, such as :command:`ST_Relate`, do not include an index filter.
+
 To execute a bounding-box search using the index and no filtering, use the ``&&`` operator. This operator is interpreted as "bounding boxes overlap or touch" in much the same way that the ``=`` operator is interpreted as "values are the same".
 
 For example: 
@@ -87,7 +87,7 @@ It is not always faster to do an index search. If the search is going to return 
 
 The PostgreSQL query planner chooses when to use, or not to use, indexes to evaluate a query. To assess the most appropriate option (reading a small part of the table versus reading a large portion of the table), PostgreSQL maintains statistics about the distribution of data in each indexed table column. 
 
-By default, PostgreSQL will gather statistics on a regular basis. However, if you significantly alter the content of your table within a short period of time, the statistics may not be up-to-date. To ensure your statistics match your table contents, run the :command:`ANALYZE` command after bulk data load and delete operations on your table. This will force an update of the statistics for all your indexed columns.
+By default, PostgreSQL will automatically gather statistics on a regular basis. However, if you significantly alter the content of your table within a short period of time, the statistics may not be up-to-date. To ensure your statistics match your table contents, run the :command:`ANALYZE` command after bulk data load and delete operations on your table. This will force an update of the statistics for all your indexed columns.
 
 The :command:`ANALYZE` command instructs PostgreSQL to traverse the selected table and update its internal statistics for query plan estimation. 
 

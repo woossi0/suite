@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.joins:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Reviewed (PR)** : replaced A-train example, it has too many moving parts to be an simple example
 
 Spatial joins
 =============
@@ -88,86 +88,17 @@ In this example:
 
 .. note:: 
 
-   The ``JOIN`` clause combines two ``FROM`` items. By default, this uses an ``INNER JOIN``, but there are four other types of joins. For further information, see the `join_type <http://www.postgresql.org/docs/9.1/interactive/sql-select.html>`_ definition in the PostgreSQL documentation.
+   The ``JOIN`` clause combines two ``FROM`` items. By default, this uses an ``INNER JOIN``, but there are four other types of joins. For further information, see the `join_type <http://www.postgresql.org/docs/9.2/interactive/sql-select.html>`_ definition in the PostgreSQL documentation.
 
-A distance test can also be used as a join key, to answer a summarized "all items within a given radius" query.Continuing with the example of the demographic profile of New York, the following code identifies a baseline profile of the city.
-
+A distance test can also be used as a join key, to answer a summarized "all items within a given radius" query. For example, to calculate the population within a 500 meter radius of the "Broad St" subway station:
 .. code-block:: sql
 
   SELECT 
-    100.0 * Sum(popn_white) / Sum(popn_total) AS white_pct, 
-    100.0 * Sum(popn_black) / Sum(popn_total) AS black_pct, 
-    Sum(popn_total) AS popn_total
-  FROM nyc_census_blocks;
+    Sum(census.popn_total) AS population
+  FROM nyc_census_blocks census
+  JOIN nyc_subway_stations subway
+  ON ST_DWithin(census.the_geom, subway.the_geom, 500)
+  WHERE subway.name = 'Broad St';
 
-:: 
-
-        white_pct      |      black_pct      | popn_total 
-  ---------------------+---------------------+------------
-   44.6586020115685295 | 26.5945063345703034 |    8008278
-
-
-Of the 8M people in New York, approximately 44% are "white" and 26% are "black". 
-
-To determine the demographic profile along a particular transportation route, for example, the A-Train, the first step is to identify the routes that match the search criteria. The following example uses the ``DISTINCT`` clause to eliminate duplicate rows from the result, returning only those records that identify unique routes.
-
-.. code-block:: sql
-
-  SELECT DISTINCT routes FROM nyc_subway_stations;
-  
-:: 
-
- A,C,G
- 4,5
- D,F,N,Q
- 5
- E,F
- E,J,Z
- R,W
- ...
-
-.. note::
-
-   Without the ``DISTINCT`` keyword, the query above would identify 491 results instead of 73.
-   
-To find the A-train, identify any entries in the ``routes`` field that contain an *A*. The function :command:`strpos` will return a non-zero number if *A* is found in the routes field.
-
-.. code-block:: sql
-
-   SELECT DISTINCT routes 
-   FROM nyc_subway_stations AS subways 
-   WHERE strpos(subways.routes,'A') > 0;
-   
-::
-
-  A,B,C
-  A,C
-  A
-  A,C,G
-  A,C,E,L
-  A,S
-  A,C,F
-  A,B,C,D
-  A,C,E
-  
-Finally, use the :command:`ST_DWithin` function to identify the demographic profile within 200 meters of the A-train route, by executing the following:
-
-.. code-block:: sql
-
-  SELECT 
-    100.0 * Sum(popn_white) / Sum(popn_total) AS white_pct, 
-    100.0 * Sum(popn_black) / Sum(popn_total) AS black_pct, 
-    Sum(popn_total) AS popn_total
-  FROM nyc_census_blocks AS census
-  JOIN nyc_subway_stations AS subways
-  ON ST_DWithin(census.the_geom, subways.the_geom, 200)
-  WHERE strpos(subways.routes,'A') > 0;
-
-::
-
-        white_pct      |      black_pct      | popn_total 
-  ---------------------+---------------------+------------
-   42.0805466940877366 | 23.0936148851067964 | 185259
-
-The results indicate the population profile along the route of the A-train isn't significantly different from the profile of New York City as a whole. 
+You can alter the search radius or the subway name to get different population profiles for different stations.
 

@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.geography:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Reviewed by (PR)**
 
 Geography data type
 ===================
@@ -12,7 +12,7 @@ Many spatial datasets are available in a geographic, or "latitude/longitude", co
    *Cartesian versus Spherical coordinates*
 
 
-Geographic coordinates may be treated as approximate Cartesian coordinates for the purpose of performing spatial calculations. However, measurements of distance, length and area are invalid. Since spherical coordinates measure **angular** distance, the units are in "degrees." In addition, the approximate results of index searches and TRUE/FALSE tests like intersects and contains may be incorrect. The distance between points increases near the north and south poles or the international dateline.
+Geographic coordinates may be treated as approximate Cartesian coordinates for the purpose of performing spatial calculations. However, measurements of distance, length and area are invalid. Since spherical coordinates measure **angular** distance, the units are in "degrees." In addition, the approximate results of index searches and TRUE/FALSE tests like intersects and contains may be incorrect. The "distance" between points increases near the north and south poles or the international dateline.
 
 For example, below are the coordinates of Los Angeles and Paris.
 
@@ -161,7 +161,7 @@ There are only a small number of native functions for the geography type:
 Creating a Geography Table
 --------------------------
  
-The :term:`SQL` for creating a new table with a geography column is similar to creating a table with a geometry column. However, geography allows you to specify the data type when the table is created. The following example will create a new geography table for point data:
+The :term:`SQL` for creating a new table with a geography column is similar to creating a table with a geometry column. The following example will create a new geography table for point data:
 
 .. code-block:: sql
 
