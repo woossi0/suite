@@ -61,26 +61,29 @@ This section provides a brief introduction to GeoExplorer.
        
 #. You can also generate a map application, and the HTML code to embed into a web page, based on the layers in your :guilabel:`Map Window`. On the :guilabel:`GeoExplorer` toolbar, click :guilabel:`Map` and then click :guilabel:`Publish map` to open the :ref:`geoexplorer.using.publish` dialog box.
 
-   .. figure:: using/images/map_publish.png
+   .. figure:: using/images/button_publish.png
       
-      *Publishing a map*
+      *Publish map tool*
 
 
-#. In the the :guilabel:`Publish map` dialog box, select the map tools you'd like to include in your map application, and click :guilabel:`Next` to generate the HTML code.
+#. In the :guilabel:`Publish map` dialog box, select the map tools you want to include in your map application.
 
-   .. figure:: using/images/publish_tools.png
+   .. figure:: using/images/dialog_publish_tools.png
 
       *Selecting the map tools*
-
-   .. figure:: using/images/publish_html.png
-
-      *Generating HTML code*
 
 #. Click :guilabel:`Preview` to create a preview of your map application.
 
    .. figure:: using/images/map_preview.png
 
-      *Publishing a map*
+      *Previewing a map*
+
+#. Click :guilabel:`Next` to generate the HTML code.
+
+   .. figure:: using/images/dialog_publish_html.png
+
+      *Generating HTML code*
+
 
 #. Copy and paste the HTML code into your own web page to view your map application.
 

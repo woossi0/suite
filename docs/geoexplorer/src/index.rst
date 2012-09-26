@@ -1,6 +1,8 @@
 GeoExplorer
 ===========
 
+.. warning:: Document status: **Whole section for technical review (BVDE)** 
+
 .. figure:: images/geoexplorer_logo.png
 
 GeoExplorer is a web application, based on the :term:`GeoExt` framework, for composing and publishing maps. With GeoExplorer you can quickly assemble maps from GeoServer or any :term:`OGC` Web Mapping Server (:term:`WMS`) and integrate with hosted maps such as Google Maps and OpenStreetMap. You can also edit map styling information and embed the maps you compose in any web page, or output the maps in PDF format.
