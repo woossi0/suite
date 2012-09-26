@@ -3,7 +3,7 @@
 Creating a static contour map
 =============================
 
-Using the GeoServer WPS process **gs:Contour** it is possible to generate a vector contour layer of a given raster layer. You can access this process through the **WPS Request Builder** by going to :guilabel:`Demos` and selecting :guilabel:`WPS Request Builder`. Once there, select :guilabel:`gs:Contour` in the box marked :guilabel:`Choose process`. Enter the following information for your specific data:
+Using the GeoServer WPS process **gs:Contour** it is possible to generate a vector contour layer of a given raster layer. This process can be accessed through the **WPS Request Builder** by going to :guilabel:`Demos` and selecting :guilabel:`WPS Request Builder`. Once there, select :guilabel:`gs:Contour` in the box marked :guilabel:`Choose process`. Enter the following information for your specific data:
 
 .. list-table::
    :header-rows: 1
@@ -60,7 +60,7 @@ First, the default display can be improved by setting up a rule with a thinner l
 
    *Map with a single style*
 
-Too many lines of equal width can make them hard to distinguish, so the next step is to add a rule that will display every fifth band (500 meters) as thicker (1px instead of 0.4px). You can determine if the value of the band is a multiple of 500 by using the ``IEEERemainder`` filter function.
+Too many lines of equal width can make them hard to distinguish, so the next step is to add a rule that will display every fifth band (500 meters) as thicker (1px instead of 0.4px). Determining if the value of the band is a multiple of 500 is accomplished with the ``IEEERemainder`` filter function.
 
 .. note:: Read more about `filtering in GeoServer <../../geoserver/filter/>`_.
 
@@ -82,7 +82,7 @@ This is an improvement, but when zoomed out there still will be too many thin li
 
    *Map style hiding thin bands when zoomed out*
 
-A good topographic map should have labels for the bands. Since there are two rules for bands, two similar rules for labels will be created as well: one for the thin lines and one for the thick lines. The primary difference between the two rules will be the font weight: bold to match the thicker lines, normal weight to match the thinner lines. The bold labels will also be prioritized higher.
+A good topographic map should have labels for the bands. Since there are two rules for bands, two similar rules for labels will be created as well, one for the thin lines and one for the thick lines. The primary difference between the two rules will be the font weight: bold to match the thicker lines, normal weight to match the thinner lines. The bold labels will also be prioritized higher.
 
 Label rule for the thinner lines:
 
@@ -111,13 +111,13 @@ Here is the full SLD for this example:
 Viewing
 -------
 
-Load this SLD into GeoServer via the :guilabel:`Styles` menu and select :guilabel:`Add new style`. 
+Load this SLD into GeoServer via the :guilabel:`Styles` menu and selecting :guilabel:`Add new style`. 
 
 .. figure:: img/geoserver_addstyle.png
 
    *Creating a new style*
 
-Once that is done, associate this style with the original layer. You can do this by going to the :guilabel:`Layers` menu, clicking on the layer name, clicking on the :guilabel:`Publishing` tab, and selecting the style from the drop-down menu called :guilabel:`Default style`. Click :guilabel:`Save` when done.
+Once that is done, associate this style with the original layer. This is done by going to the :guilabel:`Layers` menu, clicking on the layer name, clicking on the :guilabel:`Publishing` tab, and selecting the style from the drop-down menu called :guilabel:`Default style`. Click :guilabel:`Save` when done.
 
 .. figure:: img/geoserver_layer_style.png
 
