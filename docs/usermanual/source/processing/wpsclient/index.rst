@@ -216,7 +216,7 @@ To create our custom application, we must first create a minimal :file:`app.js` 
 app.js
 ~~~~~~
 
-The :file:`app.js` file is below (:download:`Download <script/WPSDemo.js>`). Replace the existing :file:`app.js` file (found at :file:`<sdk_app>/src/app/app.js`) with this one:
+The :file:`app.js` file is below (:download:`Download <script/app.js>`). Replace the existing :file:`app.js` file (found at :file:`<sdk_app>/src/app/app.js`) with this one:
 
 .. literalinclude:: script/app.js
    :language: javascript
@@ -232,7 +232,7 @@ Both renderers are used here for better compatibility. The Canvas renderer works
 WPSDemo.js
 ~~~~~~~~~~
 
-The :file:`WPSDemo.js` file is below (:download:`Download <script/WPSDemo.js>`). This file should be saved in the same directory as :file:`app.js` (found at :file:`<sdk_app>/src/app/WPSDemo.js`):
+The :file:`WPSDemo.js` file is below (:download:`Download <script/WPSDemo.js>`). This file should be saved in the same directory as :file:`app.js` (:file:`<sdk_app>/src/app/WPSDemo.js`):
 
 .. literalinclude:: script/WPSDemo.js
    :language: javascript
