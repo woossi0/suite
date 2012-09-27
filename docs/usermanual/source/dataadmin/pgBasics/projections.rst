@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.projection:
 
-.. warning:: Document status: **Reviewed (PR)** : the PostGIS 2.o "unknown srid" is 0, altered that.
+.. warning:: Document status: **Requires copyedit review** 
 
 Projections
 ===========
@@ -9,7 +9,7 @@ Every map projection involves the distortion of areas, distances, directions and
 
 Common to all projections is the transformation of the (spherical) world onto a flat Cartesian coordinate system. Choosing the right projection for your data largely depends on how you will use the data.
 
-Occasionally a single projection may not meet all your requirements and you need to transform and reproject between spatial reference systems. PostGIS includes built-in support for changing the projection of data, using the ``ST_Transform(geometry, srid)`` function. For managing the spatial reference identifiers on geometries, PostGIS provides the ``ST_SRID(geometry)`` and ``ST_SetSRID(geometry, srid)`` functions.
+Occasionally a single projection may not meet all your requirements and you need to transform and reproject between spatial reference systems. PostGIS includes built-in support for changing the projection of data, using the :command:`ST_Transform(geometry, srid)` function. For managing the spatial reference identifiers on geometries, PostGIS provides the :command:`ST_SRID(geometry)` and :command:`ST_SetSRID(geometry, srid)` functions.
 
 To confirm the SRID (spatial reference identifier) of a geometry table, use the ``ST_SRID`` function.
 
@@ -123,7 +123,7 @@ To reproject the table ``myGeomTable`` into geographic coordinates, the most com
 .. note:: For further information on the 4326 spatial reference, see `spatialreference.org <http://spatialreference.org/ref/epsg/4326/>`_.
 
 
-To convert the UTM coordinates of a particular feature in a geometry table to geographic coordinates, use ``ST_Transform()``. For example:
+To convert the UTM coordinates of a particular feature in a geometry table to geographic coordinates, use :command:`ST_Transform()`. For example:
 
 
 .. code-block:: sql
@@ -168,4 +168,4 @@ If you load data or create a new geometry without specifying an SRID, the SRID v
     SET DATA TYPE geometry(Geometry,26910)
     USING ST_SetSRID(geom, 26910);
   
-This will update the SRID registration for the table's geometry column and set the SRID number of the geometries on the table, but leave the data un-transformed. 
+This will update the SRID registration for the table's geometry column and set the SRID number of the geometries on the table, but not transform the data. 

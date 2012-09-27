@@ -1,6 +1,6 @@
 .. _dataadmin.pgGettingStarted.shp2pgsql:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Requires copyedit review**
 
 Loading data into PostGIS from the Command Line
 ===============================================
@@ -11,7 +11,7 @@ PostGIS includes the ``shp2pgsql`` tool for converting shapefiles into database 
 How It Works
 ------------
 
-``shp2pgsql`` converts a shapefile into a series of SQL commands that can be loaded into a database–it does **not** perform the actual loading. The output of this command may be captured into a SQL file, or piped directly to the ``psql`` command, which will execute the commands against a target database.
+``shp2pgsql`` converts a shapefile into a series of SQL commands that can be loaded into a database–it does **not** perform the actual loading. The output of this command may be captured in a SQL file, or piped directly to the ``psql`` command, which will execute the commands against a target database.
 
 Preparation
 -----------
@@ -112,7 +112,7 @@ Windows Command (Batch)
 
 .. note:: This script assumes all the files have the same projection.
 
-Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as the shapefiles to be loaded. Add the following commands:
+Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as the shapefiles to be loaded. Add the following commands and provide the missing parameters:
 
 .. code-block:: console
 
@@ -126,7 +126,7 @@ Bash
 
 .. note:: This script also assumes all the files have the same projection.
 
-Create a shell script file, for example :file:`loadfiles.sh`, in the same directory as the shapefiles to be loaded. Add the following commands:
+Create a shell script file, for example :file:`loadfiles.sh`, in the same directory as the shapefiles to be loaded. Add the following commands and provide the missing parameters:
 
 .. code-block:: console
 

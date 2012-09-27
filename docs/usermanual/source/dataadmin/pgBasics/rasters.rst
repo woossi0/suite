@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.rasters:
 
-.. warning::  **Draft** 
+.. warning::  **Document status - Requires copyedit review** 
 
 
 Raster data
@@ -35,7 +35,7 @@ Integrated raster and vector analysis is provides a powerful additional tool for
 
 
 
-There are many functions in PostGIS for handling raster data, for example ``ST_AsRaster()``, ``ST_MakeEmptyRaster()``, ``ST_AsTIFF``. For a full list of functions, refer to `Raster Reference <http://postgis.refractions.net/docs/RT_reference.html>`_. 
+There are many functions in PostGIS for handling raster data, for example :command:`ST_AsRaster()`, :command:`ST_MakeEmptyRaster()`, :command:`ST_AsTIFF()`. For a full list of functions, refer to `Raster Reference <http://postgis.refractions.net/docs/RT_reference.html>`_. 
 
 
 Raster_columns view

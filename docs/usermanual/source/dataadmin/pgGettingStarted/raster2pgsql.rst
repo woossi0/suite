@@ -1,6 +1,6 @@
 .. _dataadmin.pgGettingStarted.raster2pgsql:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Requires copyedit review**
 
 Loading raster data into PostGIS from the Command Line
 ======================================================
@@ -20,7 +20,7 @@ Preparation
 
 #. Select the raster file(s) you wish to load.
 
-#. Identify the SRID ("projection") of your data. If available, this information is easily accessed via the layer metadata in GeoServer.
+#. Identify the SRID ("projection") of your data. If available, this information is accessed via the layer metadata in GeoServer.
 
 #. Either identify the target database where you would like to load the data, or create a new database. The OpenGeo Suite comes with a default database that you may use. This database is usually named after the user who installed the OpenGeo Suite.
 
@@ -124,7 +124,7 @@ Windows Command (Batch)
     
    This script assumes all the files have the same projection.
 
-Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as the raster files to be loaded. Add the following commands:
+Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as the raster files to be loaded. Add the following commands and provide the missing parameters:
 
 .. code-block:: console
 
@@ -140,7 +140,7 @@ Bash
 
    This script also assumes all the files have the same projection.
 
-Create a shell script file, for example :file:`loadfiles.sh`, in the same directory as the raster files to be loaded. Add the following commands:
+Create a shell script file, for example :file:`loadfiles.sh`, in the same directory as the raster files to be loaded. Add the following commands and provide the missing parameters:
 
 .. code-block:: console
 
@@ -169,7 +169,7 @@ You can also add rasters and raster tables directly to the database. A typical w
       CREATE TABLE myRaster(rid serial primary key, rast raster);
 
 
-#. Populate the table with some raster data by either creating empty rasters or creating rasters from other geometries. To create an empty raster, use ``ST_MakeEmptyRaster()``.
+#. Populate the table with some raster data by either creating empty rasters or creating rasters from other geometries. To create an empty raster, use :command:`ST_MakeEmptyRaster()`.
 
    .. code-block:: sql
  
@@ -184,7 +184,7 @@ You can also add rasters and raster tables directly to the database. A typical w
       SELECT 4, ST_MakeEmptyRaster(rast)
         FROM myRasterTable WHERE rid = 3;
 
-   Confirm the successful insertion of the two rasters and display the raster metadata with ``ST_MetaData()``:
+   Confirm the successful insertion of the two rasters and display the raster metadata with :command:`ST_MetaData()`:
 
    .. code-block:: sql
       
@@ -201,7 +201,7 @@ You can also add rasters and raster tables directly to the database. A typical w
       4  | 0.0005   | 0.0005   | 100 | 100  | 1    | 1    | 0   | 0   |4326| 0
 
 
-   To create a raster from an existing geometry, use ``ST_AsRaster()``.
+   To create a raster from an existing geometry, use :command:`ST_AsRaster()`.
 
    .. code-block:: sql
    
@@ -214,7 +214,7 @@ You can also add rasters and raster tables directly to the database. A typical w
         AS rast;
 
    
-   To create a new raster table based on an existing raster table but with a different projection, use ``ST_Transform()``. If no projection algorithm is specified, *NearestNeighbor* is used by default. The following example will use the Bilinear algorithm.
+   To create a new raster table based on an existing raster table but with a different projection, use :command:`ST_Transform()`. If no projection algorithm is specified, *NearestNeighbor* is used by default. The following example will use the Bilinear algorithm.
 
    .. note::
 

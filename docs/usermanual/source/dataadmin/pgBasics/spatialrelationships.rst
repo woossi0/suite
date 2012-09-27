@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.spatialrelationships:
 
-.. warning:: Document status: **Reviewed (PR)** : got rid of overly complex equals example : 
+.. warning:: Document status: **Requires copyedit review** 
 
 Spatial relationships
 =====================

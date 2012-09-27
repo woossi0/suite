@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.validity:
 
-.. warning:: Document status: **Reviewed (PR)** : dropped caveats about being able to clean and added section on ST_MakeValid
+.. warning:: Document status: **Requires copyedit review**
 
 Validity
 ========
@@ -98,9 +98,8 @@ The :command:`ST_IsValid` function can also be used to test entire tables.
 Repairing invalidity
 --------------------
 
-Most common invalidities can be repaired using the :command:`ST_MakeValid(geometry) function.
-
-For example, running :command:`ST_MakeValid(geometry) on our figure-eight polygon:
+Most common invalidities can be repaired using the :command:`ST_MakeValid(geometry)` function.
+For example, running :command:`ST_MakeValid(geometry)` on the figure-eight polygon:
 
 .. code-block:: sql
 
@@ -116,41 +115,43 @@ For example, running :command:`ST_MakeValid(geometry) on our figure-eight polygo
 
   MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)),((1 1,1 2,2 2,2 1,1 1)))
   
-The repair routine correctly re-formats the figure-eight as a multi-polygon with a polygon for each lobe of the figure-eight.
+The repair routine correctly reformats the figure-eight as a multi-polygon with a polygon for each lobe of the figure-eight.
 
-The :command:`ST_MakeValid(geometry) is not a cleaning routine, it is a very strict validity repairer. For example, the following polygon is an ordinary square, but with one unit "hair" (a zero width corridor) sticking up from it. 
+The function :command:`ST_MakeValid(geometry)` is not a cleaning routine as such, but it is a very strict validity repairer. The following polygon is an ordinary square, but with one unit "hair" (a zero width corridor) extruding from it. 
 
 :: 
 
   POLYGON((0 0, 0 1, 1 1, 1 2, 1 1, 1 0, 0 0))
 
-Probably we would like a cleaning routine to simply drop the "hair", it adds nothing to our understanding of the bounded area of the polygon.
-
-However, the repair routine returns **all** the components of the input, it doesn't drop geometry, just rearranges it into valid representations:
+However, the repair routine returns **all** the components of the input. It doesn't delete geometry, just rearranges it into valid representations:
 
 .. code-block:: sql
 
   SELECT ST_AsText(ST_MakeValid('POLYGON((0 0, 0 1, 1 1, 1 2, 1 1, 1 0, 0 0))'));
   
-::
-                                 st_astext                                
-  ------------------------------------------------------------------------
-   GEOMETRYCOLLECTION(POLYGON((0 0,0 1,1 1,1 0,0 0)),LINESTRING(1 1,1 2))
+
+.. code-block:: console
+
+                                 st_astext                                 
+  ----------------------------------------------------------------------
+  GEOMETRYCOLLECTION(POLYGON((0 0,0 1,1 1,1 0,0 0)),LINESTRING(1 1,1 2))
 
 
-It's possible to get a little bit of cleaning behavior from PostGIS, but using the :command:`ST_Buffer(geometry,radius)` function with a zero radius for cleaning.
+The function :command:`ST_Buffer(geometry,radius)` can also be used to clean invalid geometries by using a zero radius. For example:
 
 .. code-block:: sql
 
   SELECT ST_AsText(ST_Buffer('POLYGON((0 0, 0 1, 1 1, 1 2, 1 1, 1 0, 0 0))'::geometry, 0));
   
-::
+
+.. code-block:: console
+
              st_astext            
-  --------------------------------
-   POLYGON((0 0,0 1,1 1,1 0,0 0))
+  ------------------------------
+  POLYGON((0 0,0 1,1 1,1 0,0 0))
 
 
-The buffer function is not guaranteed to repair all geometries, and does not work on as many input cases as the make valid function.
+.. note:: The buffer function is not guaranteed to repair all geometries and it does not work on as many input cases as the :command:`ST_MakeValid` function.
 
 The "banana polygon" (or "inverted shell") is a single ring that encloses an area but bends around to touch itself, leaving a "hole" which is not actually a hole.
 
@@ -160,7 +161,7 @@ The "banana polygon" (or "inverted shell") is a single ring that encloses an are
   
 .. figure:: img/validity_banana.png
 
-Running a make valid on the polygon returns a valid ``OGC`` polygon, consisting of an outer and inner ring that touch at one point.
+Running :command:`ST_MakeValid(geometry)` on the polygon returns a valid ``OGC`` polygon, consisting of an outer and inner ring that touch at one point.
 
 .. code-block:: sql
 

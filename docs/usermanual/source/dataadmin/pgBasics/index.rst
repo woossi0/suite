@@ -10,7 +10,6 @@ This section describes how data is stored and managed in your PostGIS database a
    :maxdepth: 1
 
    geometries
-   geometry_man
    generation
    rasters
    geography 
@@ -21,6 +20,5 @@ This section describes how data is stored and managed in your PostGIS database a
    joins
    indexes
    projections 
-   ISO_WKT_WKB
    3d_types
    indx_knn

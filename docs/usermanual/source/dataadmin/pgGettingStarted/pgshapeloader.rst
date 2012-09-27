@@ -1,6 +1,6 @@
 .. _dataadmin.pgGettingStarted.pgshapeloader:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Requires copyedit review**
 
 Loading data into PostGIS with pgShapeloader
 ============================================
@@ -81,7 +81,7 @@ Loading data
 
       *Selecting a shapefile to import*
 
-#. Edit the configuration information for each item in the :guilabel:`Import List` to provide ** the correct SRID** for each shapefile. 
+#. Edit the configuration information for each item in the :guilabel:`Import List` to provide **the correct SRID** for each shapefile. 
 
    .. warning:: Do not omit this step, otherwise your data will not load properly.
 
@@ -90,6 +90,12 @@ Loading data
       *Changing the SRID*
 
 #. Other import options are available to configure. Click :guilabel:`Options` to open the :guilabel:`Import Options` dialog box. 
+
+   .. figure:: img/pgshp_options.png
+
+      *Additional options*
+
+   The import options are:
 
    .. list-table::
       :header-rows: 1
@@ -111,11 +117,8 @@ Loading data
       * - Load into GEOGRAPHY column
         - Will load the geospatial data as type GEOGRAPHY instead of the default of GEOMETRY.  Requires lat/lon data (often known as SRID 4326).
  
-   .. figure:: img/pgshp_options.png
 
-      *Additional options*
-
-   .. note:: If you are not sure about the implications of making further changes, leave the default values as they are and click :guilabel:`OK` to return to the main dialog box.
+   .. note:: If you are unsure about the implications of making further changes, leave the default values as they are and click :guilabel:`OK` to return to the main dialog box.
 
 #. Once all import options have been configured, click :guilabel:`OK` and click :guilabel:`Import` to start the conversion.
 

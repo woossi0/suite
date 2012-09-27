@@ -1,6 +1,6 @@
 ﻿.. _dataadmin.pgGettingStarted.pgadmin:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Requires copyedit review**
 
 Connecting to the PostgreSQL Database
 =====================================
@@ -40,7 +40,7 @@ To connect to the PostGIS server, double-click the PostGIS server item and provi
 
    *Navigating the database*
 
-When executing SQL queries, make sure you have the intended target database selected.  The SQL Query dialog box will confirm the current database selection.
+When executing SQL queries, make sure you have the intended target database selected.  The SQL :guilabel:`Query` dialog box will confirm the current database selection.
 
 .. figure:: img/pgadmin_querydb.png
 

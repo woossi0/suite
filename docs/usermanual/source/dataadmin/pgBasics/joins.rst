@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.joins:
 
-.. warning:: Document status: **Reviewed (PR)** : replaced A-train example, it has too many moving parts to be an simple example
+.. warning:: Document status: **Requires copyedit review** 
 
 Spatial joins
 =============
@@ -25,12 +25,12 @@ For example, given a subway station location, neighborhood data, and borough nam
   -------------+--------------------
    Broad St    | Financial District 
 
-Any function that provides a true/false relationship between two tables can form the basis of a spatial join, but the most commonly used ones are :command:`ST_Intersects`, :command:`ST_Contains`, and :command:`ST_DWithin`.
+Any function that provides a true/false relationship between two tables can form the basis of a spatial join, but the most commonly used are :command:`ST_Intersects`, :command:`ST_Contains`, and :command:`ST_DWithin`.
 
 Join and summarize
 ------------------
 
-The combination of a ``JOIN`` with a ``GROUP BY`` operation supports the type of analysis that is usually undertaken with a GIS system. For example, to answer the question "What is the population and demographic profile of the neighborhoods of Manhattan?", requires analyzing population information, available from the census, with the boundaries of neighborhoods. The results should be further restricted to report on just one borough of Manhattan. 
+The combination of a ``JOIN`` with a ``GROUP BY`` operation supports the type of analysis that is usually undertaken with a GIS system. For example, to answer the question "What is the population and demographic profile of the neighborhoods of Manhattan?", requires analyzing census population information, with the boundaries of neighborhoods. The results should be further limited to report on just one borough of Manhattan. 
 
 .. code-block:: sql
 
@@ -88,9 +88,10 @@ In this example:
 
 .. note:: 
 
-   The ``JOIN`` clause combines two ``FROM`` items. By default, this uses an ``INNER JOIN``, but there are four other types of joins. For further information, see the `join_type <http://www.postgresql.org/docs/9.2/interactive/sql-select.html>`_ definition in the PostgreSQL documentation.
+   The ``JOIN`` clause combines two ``FROM`` items. By default, this uses an ``INNER JOIN``, however there are four other types of joins. For further information, please refer to the `join_type <http://www.postgresql.org/docs/9.2/interactive/sql-select.html>`_ definition in the PostgreSQL documentation.
 
 A distance test can also be used as a join key, to answer a summarized "all items within a given radius" query. For example, to calculate the population within a 500 meter radius of the "Broad St" subway station:
+
 .. code-block:: sql
 
   SELECT 
@@ -100,5 +101,5 @@ A distance test can also be used as a join key, to answer a summarized "all item
   ON ST_DWithin(census.the_geom, subway.the_geom, 500)
   WHERE subway.name = 'Broad St';
 
-You can alter the search radius or the subway name to get different population profiles for different stations.
+You can alter the search radius or the subway name to return different population profiles for different stations.
 

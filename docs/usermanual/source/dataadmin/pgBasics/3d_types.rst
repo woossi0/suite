@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.3d_types:
 
-.. warning:: **Document status - Draft**
+.. warning:: **Document status - Requires copyedit review**
 
 Working with 3-D Geometries
 ===========================
@@ -140,7 +140,7 @@ To search the ``nyc_streets`` table using the N-D index, replace the  ``&&`` 2-D
 The results should be the same. 
 
 
-.. note:: Using a N-D index has a slightly higher performance cost than using a 2-D index, so only use N-D indexes where you are certain that N-D queries will improve the result of your queries.
+.. note:: Using a N-D index has a slightly higher performance cost compared to using a 2-D index, so only use N-D indexes when you are certain that N-D queries will improve the result of your queries.
 
 
 

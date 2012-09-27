@@ -1,6 +1,6 @@
 .. _dataadmin.pgGettingStarted.basicsql:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Requires copyedit review**
 
 Basic SQL
 =========
@@ -36,7 +36,7 @@ For example, to query a table containing information about Brooklyn in New York 
     FROM nyc_neighborhoods 
     WHERE boroname = 'Brooklyn';
 
-The results may be further refined by applying a function, or one-word command, to the query. For example, to identify *What is the number of letters in the names of all the neighborhoods in Brooklyn?* would require adding the PostgreSQL string length function, ``char_length(string)``. 
+The results may be further refined by applying a function, or one-word command, to the query. For example, to identify *What is the number of letters in the names of all the neighborhoods in Brooklyn?* would require adding the PostgreSQL string length function, :command:`char_length(string)`. 
 
 .. code-block:: sql
 

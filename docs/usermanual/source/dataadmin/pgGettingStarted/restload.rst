@@ -1,6 +1,6 @@
 .. _dataadmin.pgGettingStarted.restload:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Requires copyedit review**
 
 Publishing a PostGIS table in GeoServer
 ---------------------------------------
@@ -81,7 +81,7 @@ Now that the connection has been made, you can now publish a table from the Post
 
       curl -v -u admin:geoserver -X GET http://localhost:8080/geoserver/rest/workspaces/opengeo/datastores/pgstore/featuretypes.xml
 
-   You should see the layer listed in the output.  You can also view the layer in the GeoServer Layer Preview.
+   You should see the layer listed in the output. You can also view the layer in the GeoServer Layer Preview.
 
 
 

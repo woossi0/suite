@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.geography:
 
-.. warning:: Document status: **Reviewed by (PR)**
+.. warning:: Document status: **Requires copyedit review**
 
 Geography data type
 ===================
@@ -10,7 +10,6 @@ Many spatial datasets are available in a geographic, or "latitude/longitude", co
 .. figure:: img/geography_cartesian_spherical.png
 
    *Cartesian versus Spherical coordinates*
-
 
 Geographic coordinates may be treated as approximate Cartesian coordinates for the purpose of performing spatial calculations. However, measurements of distance, length and area are invalid. Since spherical coordinates measure **angular** distance, the units are in "degrees." In addition, the approximate results of index searches and TRUE/FALSE tests like intersects and contains may be incorrect. The "distance" between points increases near the north and south poles or the international dateline.
 

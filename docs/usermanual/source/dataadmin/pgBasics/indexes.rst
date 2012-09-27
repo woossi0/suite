@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.indexes:
 
-.. warning:: Document status: **Reviewed (PR)** : index TODO section still at bottom 
+.. warning:: Document status: **Requires copyedit review** 
 
 Spatial indexes
 ===============
@@ -108,4 +108,3 @@ Vacuuming and analyzing the database can be performed separately as required. Is
 
    VACUUM ANALYZE nyc_census_blocks;
 
-.. todo:: add section on 3-d and 4-d indexing

@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.indx_knn:
 
-.. warning:: Document Status: **Draft**
+.. warning:: Document Status: **Requires copyedit review**
 
 Nearest neighbor searches
 =========================

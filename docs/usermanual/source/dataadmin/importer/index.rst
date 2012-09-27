@@ -14,6 +14,4 @@ This section describes how to use the Layer Importer.
 
    guireference
    guiexample
-   apireference
-   apiexample
    formats

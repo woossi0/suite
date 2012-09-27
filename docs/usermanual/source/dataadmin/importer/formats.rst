@@ -30,11 +30,3 @@ The following databases are supported:
     * `Install instructions for SQL Server <../../geoserver/data/database/sqlserver/>`_
 
 
-REST API supported formats
---------------------------
-
-The GeoServer Layer Importer REST API supports the following formats:
-
-* Vector—Shapefiles, Java Property files, H2 Database, SpatiaLite
-
-* Raster—Any single file raster format such as GeoTIFF, DTED (Digital Terrain Elevation Data), or JPEG 
