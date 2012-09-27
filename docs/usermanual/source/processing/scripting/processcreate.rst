@@ -14,9 +14,9 @@ This tutorial will create a process called **"Distance and Bearing"** with the f
 
    *Distance and Bearing process*
 
-Distance is measured in the source units. Bearing will be an `absolute bearing <http://en.wikipedia.org/wiki/Bearing_%28navigation%29>`_, in degrees measured from true north and increasing in the clockwise direction (so true east would be 90 degrees and true west would be -90 or 270 degrees).
+Distance is measured in the source units. Bearing will be an `absolute bearing <http://en.wikipedia.org/wiki/Bearing_%28navigation%29>`_, in degrees measured from true north and increasing in the clockwise direction (so due east would be 90 degrees and due west would be -90 or 270 degrees).
 
-While there is a distance function in both Python and JavaScript, the bearing will need to be calculated manually, measured from origin to point, according to the following:
+While there is a distance function in both Python and JavaScript, the bearing will be calculated, measured from origin to point, according to the following:
 
 .. figure:: img/processcreate_bearingequation.png
 
@@ -28,7 +28,12 @@ While there is a distance function in both Python and JavaScript, the bearing wi
 Creating the script
 -------------------
 
-The script will consist of headers, input/output definitions, metadata, and computation.
+.. note:: Download the full script:
+
+   * :download:`Python <distbear.py>`
+   * :download:`JavaScript <distbear.js>`
+
+The script will consist of headers, input/output definitions, metadata, and computation. 
 
 Process headers
 ~~~~~~~~~~~~~~~
