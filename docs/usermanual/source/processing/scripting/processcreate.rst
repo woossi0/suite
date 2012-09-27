@@ -165,7 +165,7 @@ Save this file as :file:`distbear.py` or :file:`distbear.js`, depending on the l
 Activating the script
 ---------------------
 
-Now that the script is written, it must be added to GeoServer. Scripts are placed in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`. The script will be activated automatically when copied to that location, with *no server restart necessary*.
+Now that the script is written, it must be added to GeoServer. Place the script in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`. (Create this path if it doesn't already exist.) The script will be activated automatically when copied to that location, with *no server restart necessary*.
 
 .. todo:: You can also upload scripts through the REST API. Please see the section on processing.scripting.rest for more details.
 
@@ -273,7 +273,7 @@ Once the script is in place and activated, the next step is to test it. Use the 
 
    .. note:: If you are curious about what the actual process request looks like, click on :guilabel:`Generate XML from process inputs/outputs`.
 
-#. The output will look something like this:
+#. The process will execute. The output will look something like this:
 
    .. code-block:: json
 

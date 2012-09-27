@@ -18,10 +18,15 @@ The Buffer and Split operation combines these two processes in the following way
 
 Distance is measured in the same units as the source geometry. It will be assumed that all input geometries are represented in the same units and coordinate reference system.
 
-.. note:: There are optional inputs to these two source processes than will be provided in our script. In cases where optional process inputs are not supplied, the processes will use defaults. To see more details about the ``JTS:buffer`` and ``JTS:splitPolygon`` processes, as well as a list of every process published in GeoServer, please go to the GeoServer web admin page and click on :guilabel:`WPS Processes`.
+.. note:: There are optional inputs to these two source processes that won't be provided in our script. In cases where optional process inputs are omitted, the processes will use defaults. To see more details about the ``JTS:buffer`` and ``JTS:splitPolygon`` processes, as well as a list of every process published in GeoServer, please go to the GeoServer web admin page and click on :guilabel:`WPS Processes`.
 
 Creating the script
 -------------------
+
+.. note:: Download the full script:
+
+   * :download:`Python <bufferSplit.py>`
+   * :download:`JavaScript <bufferSplit.js>`
 
 The script will consist of headers, input/output definitions, metadata, and computation.
 
@@ -135,7 +140,7 @@ Save this file as :file:`bufferSplit.py` or :file:`bufferSplit.js`, depending on
 Activating the script
 ---------------------
 
-Now that the script is written, it must be added to GeoServer. Scripts are placed in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`. The script will be activated automatically when copied to that location, with *no server restart necessary*.
+Now that the script is written, it must be added to GeoServer. Place the script in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`. (Create this path if it doesn't already exist.) The script will be activated automatically when copied to that location, with *no server restart necessary*.
 
 .. todo:: You can also upload scripts through the REST API. Please see the section on processing.scripting.rest for more details.
 
