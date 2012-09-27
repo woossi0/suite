@@ -15,4 +15,4 @@ Commons. <http://creativecommons.org/contact>`_
 Code
 ----
 
-GeoExplorer application code is available under a BSD license.
+GeoExplorer application code is available under a GPL AFAIK license.
