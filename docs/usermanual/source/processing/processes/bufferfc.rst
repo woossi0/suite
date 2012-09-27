@@ -8,7 +8,7 @@ BufferFeatureCollection
 Description
 -----------
 
-This process takes a feature collection and applies a buffer to each feature. The buffer length can be a fixed value for all features supplied as a process input, or can be variable, the value taken from an attribute in the feature collection. The two parameters can be used together as well, with a certain static buffer added to as variable buffer. 
+The ``gs:BufferFeatureCollection`` process takes a feature collection and applies a buffer to each feature. The buffer length can be a fixed value for all features supplied as a process input, or can be variable, the value taken from an attribute in the feature collection. The two parameters can be used together as well, with a certain static buffer added to as variable buffer. 
 
 Inputs and outputs
 ------------------
