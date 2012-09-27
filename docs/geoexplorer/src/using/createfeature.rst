@@ -19,7 +19,6 @@ With GeoExplorer you can create new features in layers published through a local
 
 #. Click a location of the Map Window where a feature should be placed.
 
-
    .. figure:: images/create_firstpoint.png
 
       *Initial point for new feature*

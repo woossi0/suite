@@ -43,7 +43,7 @@ The :guilabel:`Map Window` toolbar provides access to the following tools:
        - Switch to 3D Viewer
        - Changes map view to 3D. Requires the `Google Earth browser plugin <http://earth.google.com/plugin/>`_.
      * - .. image:: images/button_panmap.png
-       - Pan Map
+       - Pan map
        - Pan the Map Window by click and drag (enabled by default). Shift+click+drag 
          together zooms in to a user-defined extent.
      * - .. image:: images/button_zoombox.png
@@ -63,7 +63,7 @@ The :guilabel:`Map Window` toolbar provides access to the following tools:
        - Returns to the next map extent (activated only after using :guilabel:`Zoom to previous extent`)
      * - .. image:: images/button_zoomvisible.png
        - Zoom to max extent
-       - Zooms to the maximum extent of all active layers
+       - Zooms to the maximum extent of all layers
 
 
 
@@ -93,28 +93,28 @@ The :guilabel:`GeoExplorer` toolbar provides access to the following tools:
        - Composes a map application based on the current Map Window and generates HTML code to embed the application into a web page.
      * - .. image:: images/button_savemap.png
        - :ref:`geoexplorer.using.save`
-       - Saves the current state of the Map Window and generates a URL to revisit the current configuration.
+       - Saves the current Map Window composition and generates a URL to revisit the current configuration. Requires :ref:`geoexplorer.using.login` to local GeoServer.
      * - .. image:: images/button_print.png
        - :ref:`geoexplorer.using.print`
-       - Opens the :guilabel:`Print Preview` dialog box for creating a PDF of the current Map Window display.
+       - Creates a PDF of the current Map Window composition
      * - .. image:: images/button_getfeatureinfo.png
        - :ref:`geoexplorer.using.getfeatureinfo`
-       - Displays feature information (attributes) for the feature at a user-defined location in the Map Window. Dragging has no effect when this tool is activated.
+       - Displays feature information (attributes) for the feature at a user-defined location in the Map Window 
      * - .. image:: images/button_measure.png
        - :ref:`geoexplorer.using.measure`
-       - Measure distance or area in the Map Window. Double-click to end measurement.
+       - Measure distance or area in the Map Window
      * - .. image:: images/button_query.png
        - :ref:`geoexplorer.using.query`
-       - Query the selected layer. Options are :guilabel:`Query by current map extent` and :guilabel:`Query by attrbutes`.
+       - Query the selected layer. Options are :guilabel:`Query by current map extent` and :guilabel:`Query by attributes`.
      * - .. image:: images/button_createfeature.png
        - :ref:`geoexplorer.using.createfeature`
-       - Creates a new feature in the selected layer that can then be edited. Works with overlays only. Requires :ref:`geoexplorer.using.login` to local GeoServer.
+       - Creates a new feature in the selected layer. Works with vector overlay layers only and requires :ref:`geoexplorer.using.login` to local GeoServer.
      * - .. image:: images/button_editfeature.png
        - :ref:`geoexplorer.using.editfeature`
-       - Edits an existing feature in the selected layer. Works with overlays only and requires authentication by the server. Requires :ref:`geoexplorer.using.login` to local GeoServer.
+       - Edits an existing feature in the selected layer. Works with vector overlay layers only and requires :ref:`geoexplorer.using.login` to local GeoServer.
      * - .. image:: images/button_login.png
        -  :ref:`geoexplorer.using.login`
-       - Login to local GeoServer (if available) for editing of map features and style settings.
+       - Login to local GeoServer (if available) for creating and editing features and style settings
 
 .. _geoexplorer.workspace.layerspanel:
 
@@ -125,7 +125,9 @@ Layers panel
 
    *Layers panel*
 
-The Layers panel displays a list of all active layers active in the Map Window. Individual layer visibility settings may be configured as required by clicking the check box next to each layer in the list. The Layers panel provides two folders for managing GeoExplorer layers, :guilabel:`Overlays` and :guilabel:`Base Layers`, and a :guilabel:`Layers panel` toolbar.
+The Layers panel contains a list of layers, managed under two folders—:guilabel:`Overlays` and :guilabel:`Base Maps`—and a :guilabel:`Layers panel` toolbar. 
+
+Individual :guilabel:`Overlays` layer visibility settings may be configured as required. To make a layer invisible, clear the check box next to layer. To make the layer visible again, select the check box.
 
 Overlays
 ~~~~~~~~
@@ -133,7 +135,9 @@ Overlays
 .. |addlayer| image:: images/button_addlayer.png 
               :align: bottom
 
-The :guilabel:`Overlays` folder contains any layers that you add to GeoExplorer, so when GeoExplorer is first started, the :guilabel:`Overlays` list is initially empty. You can :ref:`geoexplorer.using.add` to the list by clicking :guilabel:`Add layers` |addlayer| on the :ref:`geoexplorer.workspace.layerstoolbar`.
+The :guilabel:`Overlays` folder is initially empty when GeoExplorer is first started. You can :ref:`geoexplorer.using.add` to the list by clicking :guilabel:`Add layers` |addlayer| on the :ref:`geoexplorer.workspace.layerstoolbar`. 
+
+.. note:: Depending on the source of the layer, the new layer will either be added to the :guilabel:`Overlays` folder or the :guilabel:`Base Maps` folder. Background mapping, such as that provided by Google and OpenStreetMap, will be added to the :guilabel:`Base Maps` folder.
 
 Overlay layers are set to be transparent, so multiple layers may be viewed in the Map Window at the same time. The legend for each layer is generated directly from the WMS :term:`GetLegendGraphic` request.
 
@@ -143,9 +147,9 @@ Base Maps
 .. |addlayer2| image:: images/button_addlayer.png 
               :align: bottom
 
-The :guilabel:`Base Maps` folder contains a list of layers that can be used as a base map. A base map will always be drawn beneath all other active :guilabel:`Overlay` layers. Although only one base map can be active at any time, it is possible to have multiple base maps in the list. It is also possible to drag layers between the :guilabel:`Base Maps` folder and the :guilabel:`Overlays` folder.
+The :guilabel:`Base Maps` folder contains base, or background, layers. A base layer will always be drawn beneath all other :guilabel:`Overlay` layers. Although only one base layer can be active at any time, it is possible to have multiple base layers in the list. It is also possible to drag layers between the :guilabel:`Base Maps` folder and the :guilabel:`Overlays` folder.
 
-The default base layer is Mapquest OpenStreetMap. Having no base layer displayed in the :guilabel:`Map Window` (:guilabel:`None`) is also an option. As with the :guilabel:`Overlays` list, you can :ref:`geoexplorer.using.add` to the :guilabel:`Base Maps` list by clicking :guilabel:`Add layers` |addlayer2| on the :ref:`geoexplorer.workspace.layerstoolbar`.
+The default base layer is Mapquest OpenStreetMap. Having no base layer (:guilabel:`None`) for the :guilabel:`Map Window` is also an option. As with the :guilabel:`Overlays` list, you can :ref:`geoexplorer.using.add` to the :guilabel:`Base Maps` folder by clicking :guilabel:`Add layers` |addlayer2| on the :ref:`geoexplorer.workspace.layerstoolbar`.
 
 .. _geoexplorer.workspace.layerspanel.layerorder:
 
@@ -190,11 +194,11 @@ The Layers panel toolbar provides access to the following tools:
 Layers panel shortcut menu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also right-click an entry in the layer list to display a shortcut menu. 
+You can also right-click an entry in the layers list to display a shortcut menu. 
 
 .. figure:: images/workspace_layermenu.png
 
-   *Layer context menu*
+   *Layer shortcut menu*
 
 This shortcut menu provides access to four tools:
 
@@ -216,8 +220,7 @@ This shortcut menu provides access to four tools:
        - Displays the :ref:`geoexplorer.workspace.propertiespanel` for viewing and editing the properties of the selected layer (layer name and description, display settings, and layer styles). For attribute information, use the :ref:`geoexplorer.using.getfeatureinfo` tool.
      * - .. image:: /images/button_style.png
        - :ref:`geoexplorer.using.style`
-       - Displays the :ref:`geoexplorer.workspace.stylespanel` for editing layer styling rules. Requires :ref:`geoexplorer.using.login` to local GeoServer.
-
+       - Displays the :ref:`geoexplorer.workspace.stylespanel` for editing layer styles. Requires :ref:`geoexplorer.using.login` to local GeoServer.
 
 
 .. _geoexplorer.workspace.propertiespanel:
@@ -239,7 +242,7 @@ Layer Styles panel
 
 .. figure:: images/workspace_stylespanel.png
 
-   *Layer Style panel*
+   *Layer Styles panel*
 
 The Layer Styles panel displays style information for the currently selected layer. The style rules are read directly from the layer :term:`SLD`. You can also edit the :ref:`geoexplorer.using.style.styles` for WMS layers as required.
 

@@ -14,8 +14,6 @@ In PostGIS raster data is modelled as large collections of small chunks of data.
 Joining raster and vector data
 ------------------------------
 
-.. todo:: get a better sample from Paul for this section.
-
 Integrated raster and vector analysis is provides a powerful additional tool for data analysts. In the following example, a raster elevation dataset is joined to vector land use dataset to highlight areas unsuitable for certain types of agriculture.
 
 .. code-block:: sql
@@ -64,8 +62,6 @@ The attributes of the ``raster_columns`` view are:
 * ``out_db``—Indicates if the raster data is maintained outside the database (for example in GeoTIFF files)
 * ``extent``—Extent of all rows in your raster data
 
-
-.. todo:: add sample output
 
 
 Raster overviews

@@ -83,15 +83,16 @@ The :guilabel:`Display` tab provides options for customizing the display of laye
      - Determines the format of the displayed images. The following formats are available: 
          * :guilabel:`image/png` (24-bit PNG) (*Default*)
          * :guilabel:`image/gif` (GIF)
-         * :guilabel:`image/gif;subtype=animated` (animated GIF)
+         * :guilabel:`image/gif;subtype=animated` (animated GIF - this option is only suitable if your layer's data has a temporal dimension)
          * :guilabel:`image/jpeg` (JPEG)
          * :guilabel:`image/png8` (8-bit PNG)
+         * :guilabel:`image/png; mode=8bit` (8-bit PNG)
    * - **Transparent**
-     - Sets transparency for a given layer. Default is selected. If this check box is cleared, the layer displays like a Base Map, obscuring any layers drawn beneath it. See the :ref:`geoexplorer.workspace.layerspanel.layerorder` section for more information on how layers are drawn.
+     - Sets transparency for a given layer (boolean value). Default is selected. If this check box is cleared, the layer displays like a Base Map, obscuring any layers drawn beneath it. See the :ref:`geoexplorer.workspace.layerspanel.layerorder` section for more information on how layers are drawn.
    * - **Cache**
-     - Use cached version of layer. Default is selected. Clear check box if you don't want to use the cached version.
+     - Use cached version of layer (via the integrated GeoWebCache in GeoServer). Default is selected. Clear check box if you don't want to use the cached version.
    * - **Info format**
-     - Determines the format for reporting feature information with the :guilabel:`Identify` tool. The following formats are available:
+     - Determines the format for reporting feature information with the :guilabel:`Identify` tool. The following options are available:
          * :guilabel:`text/plain` (text)
          * :guilabel:`application/vnd.ogc.gml` (GML v. 2.1.2)
          * :guilabel:`application/vnd.ogc.gml/3.1.1` (GML v. 3.1.1)
@@ -116,14 +117,16 @@ The :guilabel:`Display` tab provides options for customizing the display of laye
 Styles tab
 ----------
 
-The :guilabel:`Styles` tab provides access to the :guilabel:`Styles` editor, which allows you to view, add, edit, and delete styles and individual style rules for layers published by a :term:`WMS` server adopting the :term:`SLD` standard. Editing styles is only available for layers in the :guilabel:`Overlays` folder.
-
-.. note:: To edit and delete styles, you must be logged into GeoServer. If you are not connected to GeoServer, the **Styles** editor will be read-only.
+The :guilabel:`Styles` tab provides access to the :guilabel:`Styles` editor. This editor allows you to view, add, edit, and delete styles and individual style rules for layers published by a :term:`WMS` server adopting the :term:`SLD` standard. Editing styles is only available for layers in the :guilabel:`Overlays` folder.
 
 .. figure:: images/panel_properties_style.png
 
    *Layer style properties*
 
-.. note:: Refer to :ref:`geoexplorer.using.style` for more information on styling.
+Please refer to :ref:`geoexplorer.using.style` for more information on styling.
+
+.. note:: Since editing and deleting styles requires authentication, you must be logged into GeoServer. If you are not connected to GeoServer, the **Styles** editor will be read-only.
+
+
 
 

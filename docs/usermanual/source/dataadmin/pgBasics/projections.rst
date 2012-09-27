@@ -1,10 +1,9 @@
 .. _dataadmin.pgBasics.projection:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Reviewed (PR)** : the PostGIS 2.o "unknown srid" is 0, altered that.
 
 Projections
 ===========
-
 
 Every map projection involves the distortion of areas, distances, directions and so on, to some extent. Some projections preserve area, so all objects have a relative size to each other, other projections preserve angles (conformal) like the Mercator projection. Some projections try to find a good intermediate balance with minimal distortion on several parameters. 
 
@@ -80,7 +79,25 @@ To identify which spatial reference system SRID 26918 represents, query the ``sp
   
 ::
 
- PROJCS["NAD83 / UTM zone 18N",GEOGCS["NAD83",DATUM["North_American_Datum_1983",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],TOWGS84[0,0,0,0,0,0,0],AUTHORITY["EPSG","6269"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4269"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",-75],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],AUTHORITY["EPSG","26918"],AXIS["Easting",EAST],AXIS["Northing",NORTH]]
+  PROJCS["NAD83 / UTM zone 18N",
+    GEOGCS["NAD83",
+      DATUM["North_American_Datum_1983",
+        SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],
+        TOWGS84[0,0,0,0,0,0,0],
+        AUTHORITY["EPSG","6269"]],
+      PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],
+      UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],
+      AUTHORITY["EPSG","4269"]],
+    UNIT["metre",1,AUTHORITY["EPSG","9001"]],
+    PROJECTION["Transverse_Mercator"],
+    PARAMETER["latitude_of_origin",0],
+    PARAMETER["central_meridian",-75],
+    PARAMETER["scale_factor",0.9996],
+    PARAMETER["false_easting",500000],
+    PARAMETER["false_northing",0],
+    AUTHORITY["EPSG","26918"],
+    AXIS["Easting",EAST],
+    AXIS["Northing",NORTH]]
 
 
 The SRID 26918 corresponds to the spatial reference UTM (Universal Transverse Mercator) for zone 18. 
@@ -140,12 +157,15 @@ Occasionally when loading data into PostGIS, the data is loaded correctly but th
    nyc_neighborhoods   | 26918
    nyc_streets         | 26918
    nyc_subway_stations | 26918
-   myGeomTable         |    -1
+   myGeomTable         |     0
 
-If you load data or create a new geometry without specifying an SRID, the SRID value will be -1. To manually register the correct SRID for a geometry table, execute the following:
+If you load data or create a new geometry without specifying an SRID, the SRID value will be 0. To manually register the correct SRID for a geometry table, execute the following:
 
 .. code-block:: sql
 
-  SELECT UpdateGeometrySRID('myGeomTable', 'the_geom', <srid>);
-
-This will update the SRID registration for the table's geometry column and automatically update the PostGIS system catalogs with the correct value of ``<srid>``, but leave the data unchanged.
+  ALTER TABLE myGeomTable
+    ALTER COLUMN geom
+    SET DATA TYPE geometry(Geometry,26910)
+    USING ST_SetSRID(geom, 26910);
+  
+This will update the SRID registration for the table's geometry column and set the SRID number of the geometries on the table, but leave the data un-transformed. 

@@ -36,13 +36,16 @@ This section provides a brief introduction to GeoExplorer.
        
       *Adding layers to GeoExplorer*
 
+   .. note:: You can also add a new layer by double-clicking a layer in the :guilabel:`Available Layers` panel.
+
 #. To add a new :term:`WMS` server, in the :guilabel:`View available data from` list, click :guilabel:`Add A New Server`.
     
    .. figure:: using/images/add_newserver.png
    
       *Adding a new WMS server*
 
-   .. note:: An example of a WMS URL is: ``http://terraservice.net/ogccapabilities.ashx?version=1.1.1&request=GetCapabilities``
+   An example of a WMS URL is: ``http://sampleserver1.arcgisonline.com/arcgis/services/Specialty/ESRI_StateCityHighway_USA/
+   MapServer/WMSServer``
    
    .. figure:: using/images/add_newserver_addr.png
    

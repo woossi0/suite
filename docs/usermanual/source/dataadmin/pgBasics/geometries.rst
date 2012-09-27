@@ -1,6 +1,6 @@
 .. _dataadmin.pgBasics.geometries:
 
-.. warning:: Document status: **Requires Technical Review (PR)**
+.. warning:: Document status: **Reviewed (PR)** note 'todo' section still in the text
 
 Geometries 
 ==========
@@ -323,20 +323,6 @@ This will generate the following output:
    01020000000300000000000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f000000000000f03f
 
 While WKT is useful for human readability, WKB should be used for most operations, such as viewing data in a GIS application, transferring data to a web service, or processing data remotely. 
-
-Since WKT and WKB were defined in the ``SFSQL`` specification, they do not handle 3- or 4-dimensional geometries. To work with such geometries PostGIS has defined the Extended Well Known Text (EWKT) and Extended Well Known Binary (EWKB) formats. These provide the same formatting capabilities of WKT and WKB with the added dimensionality.
-
-The following example illustrates a 3D linestring in WKT:
-
-.. code-block:: sql
-
-   SELECT ST_AsEWKT(ST_GeometryFromText('LINESTRING(0 0 0,1 0 0,1 1 2)'));
-
-
-.. code-block:: sql
-
-   LINESTRING(0 0 0,1 0 0,1 1 2)
-
 
 In addition to emitters for the various forms—WKT, WKB, GML, KML, JSON, SVG—PostGIS also has consumers for four—WKT, WKB, GML, KML. Most applications use the WKT or WKB geometry creation functions, but the others work too. The following example consumes GML format geometry and outputs JSON format:
 
