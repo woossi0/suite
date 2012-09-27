@@ -15,6 +15,9 @@ Glossary
    GDAL
      `Geospatial Data Abstraction Library <http://gdal.org>`_, pronounced "GOO-duhl", an open source raster access library with support for a large number of formats, used widely in both open source and proprietary software.
 
+   Geographic Markup Language
+     `Geography Markup Language <http://www.opengeospatial.org/standards/gml>`_ (GML) is the :term:`Open Geospatial Consortium` standard XML format for representing spatial feature information.
+
    GeoJSON
      Javascript Object Notation. A text format that is very fast to parse in Javascript virtual machines. In spatial, the extended specification for `GeoJSON <http://geojson.org>`_ is commonly used.
     
@@ -22,7 +25,7 @@ Glossary
      `Geographic information system <http://en.wikipedia.org/wiki/Geographic_information_system>`_ or geographical information system captures, stores, analyzes, manages, and presents data that is linked to location.
     
    GML
-     `Geography Markup Language <http://www.opengeospatial.org/standards/gml>`_. GML is the :term:`Open Geospatial Consortium` standard XML format for representing spatial feature information.
+     See :term:`Geographic Markup Language`.
 
    JSON
      Javascript Object Notation. A text format that is very fast to parse in Javascript virtual machines. In spatial, the extended specification for `GeoJSON <http://geojson.org>`_ is commonly used.
@@ -69,6 +72,12 @@ Glossary
    REST
      REpresentational State Transfer. An open, resource-oriented model for implementing Web services.
 
+   WCS
+     See :term:`Web Coverage Service`.
+
+   Web Coverage Service
+     The `Web Coverage Service <http://www.opengeospatial.org/standards/wcs>`_ (WCS) specification from the :term:`Open Geospatial Consortium` defines an interface for reading and writing geospatial data as "coverages" across the web.
+
    Web Feature Service
      The `Web Feature Service <http://www.opengeospatial.org/standards/wfs>`_ (WFS) specification from the :term:`Open Geospatial Consortium` defines an interface for reading and writing geographic features across the web.
 
@@ -100,5 +109,5 @@ Glossary
      See :term:`Web Processing Service`.
 
    XML
-     Extensible Markup Language. A document encoding markup language, designed for data transport and storage.
+     eXtensible Markup Language. A document encoding markup language, designed for data transport and storage.
   

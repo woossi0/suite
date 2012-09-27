@@ -10,8 +10,8 @@ This section will discuss spatial processing and analysis tools using the OpenGe
    :maxdepth: 2
 
    intro
+   processes/index
    wpsjava/index
    wpsclient/index
    scripting/index
-   common/index
    contour/index
