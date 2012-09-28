@@ -19,7 +19,7 @@ This section provides a brief introduction to GeoExplorer.
    
       *GeoExplorer*
 
-.. |addlayer| image:: images/Button_Addlayer.png
+.. |addlayer| image:: images/button_addlayer.png
               :align: bottom
 
 #. To add a new layer to the :guilabel:`Map Window`, click :guilabel:`Add Layers` |addlayer| on the :ref:`geoexplorer.workspace.layerspanel` toolbar and click :guilabel:`Add layers` to open the :guilabel:`Available Layers` panel.
