@@ -33,9 +33,9 @@ Loading data
 
 #. Open the PostGIS Shapefile Import/Export Manager tool using one of the following options: 
 
-   #. Click :guilabel:`Import shapefiles` on the :ref:`dashboard` (not available on the web-based Dashboard).
-   #. In pgAdmin click :menuselection:`Plugins --> PostGIS Shapefile and DBF loader` (if the plugin is installed).
-   #. Run the command line :file:`shp2pgsql-gui` tool.
+   * Click :guilabel:`Import shapefiles` on the :ref:`dashboard` (not available on the web-based Dashboard).
+   * In pgAdmin click :menuselection:`Plugins --> PostGIS Shapefile and DBF loader` (if the plugin is installed).
+   * Run the command line :file:`shp2pgsql-gui` tool.
 
    .. figure:: img/pgshapeloader.png
 

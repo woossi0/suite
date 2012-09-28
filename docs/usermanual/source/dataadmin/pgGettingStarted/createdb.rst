@@ -18,7 +18,7 @@ The OpenGeo Suite installation process automatically creates five databases:
 
 .. note:: A spatially enabled database has been optimized to store and manipulate spatial data. Any new databases created from the ``template_postgis`` database are automatically spatially enabled.
 
-.. note:: The GeoServer database is connected to the default PostGIS data store. Whenever data is imported in GeoServer, with the opengeo workspace selected as the target workspace, a table for the new layer's data will be created in the GeoServer database.
+.. note:: The GeoServer database is connected to the default PostGIS data store. Whenever data is imported in GeoServer, with the *opengeo* workspace selected as the target workspace, a table for the new layer's data will be created in the GeoServer database.
 
 #. Expand the :guilabel:`Databases` item in the :guilabel:`Object browser` to reveal the available databases. 
 
@@ -30,7 +30,12 @@ The OpenGeo Suite installation process automatically creates five databases:
 
    .. note:: If you receive an error indicating that the source database (``template_postgis``) is being accessed by other users, you probably have it selected. Right-click the :guilabel:`PostGIS (localhost: 54321)` item and select :guilabel:`Disconnect`. Double-click the same item to reconnect and try again.
 
-#. Complete the :guilabel:`New database` form with the following information—**Name** = '<DatabaseName>', **Encoding** = 'UTF8', **Owner** = postgres, **Template** = template_postgis.
+#. Complete the :guilabel:`New database` form with the following information:
+
+   * **Name**—<DatabaseName>
+   * **Encoding**—UTF8
+   * **Owner**—postgres 
+   * **Template**—template_postgis
    
    .. figure:: img/createdb_newdbtemplate.png
 
@@ -55,7 +60,7 @@ The OpenGeo Suite installation process automatically creates five databases:
 
       SELECT postgis_full_version();
 
-Click the :guilabel:`Execute query` button (or press **F5**) to run the query. `postgis_full_version() <../../../postgis/postgis/html/PostGIS_Full_Version.html>`_ is a management function that returns version and build configuration information.  If this command executes successfully, the database is spatially enabled and you will see output similar to the following:
+Click the :guilabel:`Execute query` button (or press **F5**) to run the query. The management function `postgis_full_version() <../../postgis/postgis/html/PostGIS_Full_Version.html>`_ returns version and build configuration information. If this command executes successfully, the database is spatially enabled and you will see output similar to the following:
 
 ::
 
