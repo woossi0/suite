@@ -20,20 +20,29 @@ Distance is measured in the same units as the source geometry. It will be assume
 
 .. note:: There are optional inputs to these two source processes that won't be provided in our script. In cases where optional process inputs are omitted, the processes will use defaults. To see more details about the ``JTS:buffer`` and ``JTS:splitPolygon`` processes, as well as a list of every process published in GeoServer, please go to the GeoServer web admin page and click on :guilabel:`WPS Processes`.
 
-Creating the script
--------------------
+Authoring the script
+--------------------
 
-.. note:: Download the full script:
+The complete scripts are below:
 
-   * :download:`Python <bufferSplit.py>`
-   * :download:`JavaScript <bufferSplit.js>`
+**Python** (:download:`download <bufferSplit.py>`):
 
-The script will consist of headers, input/output definitions, metadata, and computation.
+.. literalinclude:: bufferSplit.py
+   :language: python
+
+**JavaScript** (:download:`download <bufferSplit.js>`):
+
+.. literalinclude:: bufferSplit.js
+   :language: javascript
+
+Save as :file:`bufferSplit.py` or :file:`bufferSplit.js`, depending on the language used. 
+
+A description of the script functionality follows.
 
 Process headers
 ~~~~~~~~~~~~~~~
 
-The script requires a number of header libraries, including geometry types and WPS process hooks. In particular, the Buffer and SplitPolygon processes are pulled in here for use later on.
+The script requires a number of import statements, including geometry types and WPS process hooks. In particular, the Buffer and SplitPolygon processes are pulled in here for use later on.
 
 **Python**
 
@@ -124,23 +133,12 @@ Now that the inputs and outputs are defined, next create the computation through
    :language: javascript
    :lines: 33-39
 
-Save this file as :file:`bufferSplit.py` or :file:`bufferSplit.js`, depending on the language used. The complete scripts are below:
-
-**Python** (:download:`download <bufferSplit.py>`):
-
-.. literalinclude:: bufferSplit.py
-   :language: python
-
-**JavaScript** (:download:`download <bufferSplit.js>`):
-
-.. literalinclude:: bufferSplit.js
-   :language: javascript
 
 
 Activating the script
 ---------------------
 
-Now that the script is written, it must be added to GeoServer. Place the script in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`. (Create this path if it doesn't already exist.) The script will be activated automatically when copied to that location, with *no server restart necessary*.
+After the script is written, it must be added to GeoServer. Place the script in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`. (Create this path if it doesn't already exist.) The script will be activated automatically when copied to that location, with *no server restart necessary*.
 
 .. todo:: You can also upload scripts through the REST API. Please see the section on processing.scripting.rest for more details.
 
