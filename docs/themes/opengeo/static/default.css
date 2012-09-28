@@ -132,7 +132,7 @@ text-align: center;
 }
 
 .figure {
-margin-top: 10px;
+margin-top: 15px;
 margin-bottom: 15px;
 text-align: center;
 }
@@ -302,7 +302,7 @@ Content
 font-size: 0.85em;
 color: #7391cc;
 border-bottom: 1px solid #7391cc;
-margin: -1200px 0 1em;
+margin: -1190px 0 1em;
 padding: 0 0 0.5em;
 }
 
@@ -415,8 +415,6 @@ font-weight: bold;
 }
 
 
-
-
 .docwarning {
 background-color: #ffe4e4;
 padding: 10px;
@@ -445,11 +443,16 @@ padding: 0;
 }
 
 .field-list ul {
+margin: 0;
 padding-left: 1em;
 }
 
 .first {
 margin-top: 0 !important;
+}
+
+.last {
+padding-left: 14px;
 }
 
 /* "Footnotes" heading */
@@ -489,6 +492,8 @@ border: 1px solid #ff6;
 div.warning {
 background-color: #ffe4e4;
 border: 1px solid #f66;
+margin-top: 4px;
+margin-bottom: 4x;
 }
 
 div.note {
@@ -508,9 +513,9 @@ p.admonition-title:after {
 content: ":";
 }
 
-
 table.docutils {
 border: 0;
+margin-top: 12px;
 }
 
 
@@ -522,6 +527,7 @@ border-right: 0;
 border-bottom: 1px solid #aaa;
 }
 
+
 table.field-list td, table.field-list th {
 border: 0 !important;
 }
@@ -530,14 +536,10 @@ table.footnote td, table.footnote th {
 border: 0 !important;
 }
 
-.field-list ul {
-margin: 0;
-padding-left: 1em;
-}
-
 .field-list p {
 margin: 0;
 }
+
 
 dl {
 margin-bottom: 15px;
@@ -794,7 +796,6 @@ font-family: "Century Gothic",Optima,Verdana,Arial,Helvetica,sans-serif;
 	font-family: Arial;
 	font-weight: normal;
 }
-
 
 #sidebar #toc li:before {
 content: "";
