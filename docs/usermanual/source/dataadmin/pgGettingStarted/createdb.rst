@@ -55,7 +55,7 @@ The OpenGeo Suite installation process automatically creates five databases:
 
       SELECT postgis_full_version();
 
-Click the :guilabel:`Execute query` button (or press **F5**) to run the query. `postgis_full_version() <../../../postgis/postgis/html/PostGIS_Full_Version.html>`_ is a management function that returns version and build configuration information.  If this command executes successfully, the database is spatially enabled and you will see output similar to the following:
+Click the :guilabel:`Execute query` button (or press **F5**) to run the query. `postgis_full_version() <../../postgis/postgis/html/PostGIS_Full_Version.html>`_ is a management function that returns version and build configuration information.  If this command executes successfully, the database is spatially enabled and you will see output similar to the following:
 
 ::
 

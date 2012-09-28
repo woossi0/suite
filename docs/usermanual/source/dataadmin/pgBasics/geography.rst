@@ -240,4 +240,4 @@ If your data is geographically compact (contained within a state, county or city
 If you need to measure distance with a dataset that is geographically dispersed (for example, with a global extent), use the ``geography`` data type. The advantages of the ``geography`` type will offset some of the performance issues. On the other hand, casting to ``geometry`` can offset most functionality limitations.
 
 
-For more information about geometry functions in PostGIS, please see the `PostGIS Reference <../../../postgis/postgis/html/reference.html>`_
+For more information about geometry functions in PostGIS, please see the `PostGIS Reference <../../postgis/postgis/html/reference.html>`_

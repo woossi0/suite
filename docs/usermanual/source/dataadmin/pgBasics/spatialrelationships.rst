@@ -173,4 +173,4 @@ The following example will identify the streets within 10 meters of a given subw
      Nassau St
 
 
-For more information about geometry functions in PostGIS, please refer to the `PostGIS Reference <../../../postgis/postgis/html/reference.html>`_
+For more information about geometry functions in PostGIS, please refer to the `PostGIS Reference <../../postgis/postgis/html/reference.html>`_

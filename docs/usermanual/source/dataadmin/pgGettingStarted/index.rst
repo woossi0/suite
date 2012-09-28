@@ -21,4 +21,4 @@ This section describes how to get started your OpenGeo Suite PostGIS database—
 
 
 
-For detailed reference information, please refer to the `PostGIS Documentation <../../../postgis/>`_.
+For detailed reference information, please refer to the `PostGIS Documentation <../../postgis/>`_.

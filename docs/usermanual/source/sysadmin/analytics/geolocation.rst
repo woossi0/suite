@@ -3,7 +3,7 @@
 Geolocation of requests
 =======================
 
-Be default, Analytics maintains a list of source IPs of requests, but does not contain the ability to geolocate them and thus display the requests on a map.  To configure this, third-party software will need to be installed on the server where GeoServer is installed.  This section will detail the installation of the `MaxMind GeoIP database <http://www.maxmind.com/app/ip-location>`_.
+Be default, Analytics maintains a list of source IPs of requests, but does not contain the ability to geolocate them and thus display the requests on a map.  To configure this, third-party software will need to be installed on the server where GeoServer is installed.  This section will detail the installation of the `MaxMind GeoIP database <http://www.maxmind.com/en/geolocation_landing>`_.
 
 Installing MaxMind GeoIP database
 ---------------------------------
@@ -35,7 +35,7 @@ Windows
 
 #. Download the GeoIP Cities database from http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz .
 
-#. Using a program such as `7-zip <http:7-zip.org>`_, uncompress the downloaded file to your Desktop or temporary folder.
+#. Using a program such as `7-zip <http://7-zip.org/>`_, uncompress the downloaded file to your Desktop or temporary folder.
 
 #. Copy the resulting :file`GeoLiteCity.dat` file to the :file:`monitoring` subfolder of your GeoServer Data Directory (such as  :file:``C:\\Users\\Administrator\\.opengeo\\data_dir\\monitoring\\``)
 

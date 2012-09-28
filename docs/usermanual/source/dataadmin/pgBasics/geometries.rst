@@ -334,4 +334,4 @@ This generates the following output::
   "{"type":"Point","coordinates":[1,1]}"
 
 
-For more information about geometry functions in PostGIS, please refer to the `PostGIS Reference <../../../postgis/postgis/html/reference.html>`_
+For more information about geometry functions in PostGIS, please refer to the `PostGIS Reference <../../postgis/postgis/html/reference.html>`_
