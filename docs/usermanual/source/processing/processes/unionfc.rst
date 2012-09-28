@@ -18,6 +18,37 @@ Inputs and outputs
 This process accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
 
 While this process takes only two inputs, it is possible to chain this process together with itself in order to combine more than two feature collections.
+Inputs
+^^^^^^
+
+.. list-table::
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Type
+     - Required
+   * - first feature collection
+     - First feature collection 
+     - SimpleFeatureCollection
+     - Yes
+   * - second feature collection
+     - Second feature collection
+     - SimpleFeatureCollection
+     - Yes
+
+Outputs
+^^^^^^^
+
+.. list-table::
+   :header-rows: 1
+
+   * - Name
+     - Description
+     - Type
+   * - ``result``
+     - Output feature collection
+     - SimpleFeatureCollection
 
 Notes on usage
 --------------
