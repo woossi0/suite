@@ -23,47 +23,45 @@ New Installation
 
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.osx.upgrade`.
 
-#. Double click to mount the :file:`OpenGeoSuite.dmg` file.  Inside the mounted image, double click on :file:`OpenGeo Suite.mpkg`
+#. Double click to mount the :file:`OpenGeoSuite.dmg` file. Inside the mounted image, double click on :file:`OpenGeo Suite.mpkg`
+
+    .. figure:: img/diskimage.png
+
+       *Double click on this icon to start the installation process*
 
 #. At the **Welcome** screen, click :guilabel:`Continue`.
 
     .. figure:: img/welcome.png
-       :align: center
 
        *Welcome screen*
 
 #. Read the **License Agreement**. To agree to the license, click :guilabel:`Continue` and then :guilabel:`Agree`.
 
-      .. figure:: img/license.png
-         :align: center
+    .. figure:: img/license.png
 
-         *License Agreement*
+       *License Agreement*
 
-#. To install the OpenGeo Suite on your hard drive click :guilabel:`Next`.  You will be prompted for your administrator password.  
+#. To install the OpenGeo Suite on your hard drive click :guilabel:`Next`. You will be prompted for your administrator password. 
 
     .. figure:: img/directory.png
-       :align: center
 
        *Destination selection*
 
 #. When ready to install, click :guilabel:`Install`.
 
     .. figure:: img/ready.png
-       :align: center
 
        *Ready to Install*
 
 #. Please wait while the installation proceeds.
 
     .. figure:: img/install.png
-       :align: center
 
        *Installation*
       
-#. You will receive confirmation that the installation was successful.  
+#. You will receive confirmation that the installation was successful. 
 
     .. figure:: img/success.png
-       :align: center
 
        *The OpenGeo Suite successfully installed*
 
@@ -71,11 +69,16 @@ After installation, the OpenGeo Dashboard will automatically start, allowing you
 
 For more information, please see the **User Manual**, which is available from the Dashboard.
 
-.. note:: The OpenGeo Suite must be online in order to view documentation from the Dashboard.  If you would like to view the documentation when the Suite is offline, please paste the following link into your browser:
+.. note:: The OpenGeo Suite must be online in order to view documentation from the Dashboard. If you would like to view the documentation when the Suite is offline, please paste the following link into your browser:
 
    .. code-block:: console
 
       file:///opt/opengeo/suite/webapps/opengeo-docs/usermanual/index.html
+
+Extensions
+~~~~~~~~~~
+
+If you would like to install optional data store extensions such as MrSID, there is a separate installer package called :file:`extensions.pkg` included with the OpenGeo Suite bundle. Double click on this file to install these extensions.
 
 .. _installation.osx.upgrade:
 
@@ -89,7 +92,7 @@ Minor version upgrades of the OpenGeo Suite can be installed on top of previous 
 Upgrading from version 2.x to 3.x
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The OpenGeo Suite version 3 contains numerous major version updates to its components.  This upgrade is **not-backward compatible** and all previously installed versions must be uninstalled before continuing.
+The OpenGeo Suite version 3 contains numerous major version updates to its components. This upgrade is **not-backward compatible** and all previously installed versions must be uninstalled before continuing.
 
 .. warning:: Uninstalling OpenGeo Suite 2.x will remove all your data and configuration therefore you will need to backup your data according to the specific procedures listed below.
 
@@ -97,13 +100,13 @@ The procedure for upgrading is as follows:
 
 #. Ensure the old (2.x) version of the OpenGeo Suite is running.
  
-#. Make sure that your PostgreSQL ``bin`` directory is on your path.  By default, this is :file:`/opt/opengeo/pgsql/8.4/bin`, though your installation may vary.  To test that this is set up correctly, open a Command Prompt and type ``pg_dump --version``.  If you receive an error, type the following to temporarily add the above directory to your path:
+#. Make sure that your PostgreSQL ``bin`` directory is on your path. By default, this is :file:`/opt/opengeo/pgsql/8.4/bin`, though your installation may vary. To test that this is set up correctly, open a Command Prompt and type ``pg_dump --version``. If you receive an error, type the following to temporarily add the above directory to your path:
 
    .. code-block:: console
 
       export PATH=$PATH:/opt/opengeo/pgsql/8.4/bin
 
-#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory.  To avoid permissions issues, it is best to put this directory on your desktop or in your home directory.  By default, the backup files created from using this script will be saved into this directory.
+#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory. To avoid permissions issues, it is best to put this directory on your desktop or in your home directory. By default, the backup files created from using this script will be saved into this directory.
 
    .. code-block:: console
    
@@ -118,7 +121,7 @@ The procedure for upgrading is as follows:
 
       perl postgis_upgrade.pl backup --port 54321
 
-   .. note:: You can use standard PostGIS command line flags such as ``--host``, ``--port`` and ``--username`` if you have customized your installation.  You can also select only certain databases to backup by using the ``--dblist`` flag followed by a list of databases:  ``--dblist db1 db2 db3``.  Full syntax is available by running with ``--help``.
+   .. note:: You can use standard PostGIS command line flags such as ``--host``, ``--port`` and ``--username`` if you have customized your installation. You can also select only certain databases to backup by using the ``--dblist`` flag followed by a list of databases:  ``--dblist db1 db2 db3``. Full syntax is available by running with ``--help``.
 
 #. The script will run and create a number of files:
 
@@ -127,15 +130,15 @@ The procedure for upgrading is as follows:
 
 #. The PostGIS data backup process is complete. You may now shut down the OpenGeo Suite 2.x.
 
-#. Back up your GeoServer data directory. This directory is located by default in :file:`/opt/opengeo/suite/data_dir`.  To back up this directory, you can create an archive of it, or simply move/copy it to another location.
+#. Back up your GeoServer data directory. This directory is located by default in :file:`/opt/opengeo/suite/data_dir`. To back up this directory, you can create an archive of it, or simply move/copy it to another location.
 
    .. code-block:: console
 
       sudo mv /opt/opengeo/suite/data_dir ~/suite_backup/data_dir/
 
-#. Uninstall the OpenGeo Suite 2.x.  (See :ref:`installation.osx.uninstall` below.)
+#. Uninstall the OpenGeo Suite 2.x. (See :ref:`installation.osx.uninstall` below.)
 
-#. Install the OpenGeo Suite 3.x.  (See :ref:`installation.osx.new` above.)
+#. Install the OpenGeo Suite 3.x. (See :ref:`installation.osx.new` above.)
 
 #. After installation is complete, restore the GeoServer data directory to its original location.
 
@@ -148,7 +151,7 @@ The procedure for upgrading is as follows:
 
 #. Start the newly-upgraded OpenGeo Suite.
 
-#. As before, you will need to add the new PostGIS commands to your path once again.  From a terminal, type the following to temporarily add the new directory to your path:
+#. As before, you will need to add the new PostGIS commands to your path once again. From a terminal, type the following to temporarily add the new directory to your path:
 
    .. code-block:: console
 
@@ -161,9 +164,9 @@ The procedure for upgrading is as follows:
       cd ~/suite_backup/pg_backup
       perl postgis_upgrade.pl restore --port 54321
 
-   .. note:: As with the backup, standard PostGIS connection parameters may be used.  You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.
+   .. note:: As with the backup, standard PostGIS connection parameters may be used. You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.
 
-#. Your databases and roles will be restored.  You can verify that the databases were created and data restored by running ``psql --list --port 54321`` on the command line.
+#. Your databases and roles will be restored. You can verify that the databases were created and data restored by running ``psql --list --port 54321`` on the command line.
 
 #. Restart the OpenGeo Suite.
 
@@ -173,11 +176,11 @@ The procedure for upgrading is as follows:
 Uninstallation
 --------------
 
-.. warning:: All data and settings will be deleted during the uninstallation process.  If you wish to retain your data and settings, please make a backup of the directory :file:`~/.opengeo` before proceeding.
+.. warning:: All data and settings will be deleted during the uninstallation process. If you wish to retain your data and settings, please make a backup of the directory :file:`~/.opengeo` before proceeding.
 
 .. note:: Please make sure that the Dashboard is closed and the OpenGeo Suite is offline before starting the uninstallation.
   
-To run the uninstaller, navigate to :menuselection:`Applications --> OpenGeo --> OpenGeo Suite Uninstaller`.  You can also uninstall the OpenGeo Suite from the Terminal by typing the following.
+To run the uninstaller, navigate to :menuselection:`Applications --> OpenGeo --> OpenGeo Suite Uninstaller`. You can also uninstall the OpenGeo Suite from the Terminal by typing the following.
 
   .. code-block:: console
        

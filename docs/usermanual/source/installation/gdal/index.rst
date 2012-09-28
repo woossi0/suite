@@ -53,7 +53,7 @@ Windows
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/ .
 
-#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_win_25.zip` for version 2.5).
+#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_win_30.zip` for version 3.0).
 
    .. note:: This file requires 32-bit Java/Tomcat.
 
@@ -84,7 +84,7 @@ Mac OS X
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/
 
-#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_osx_25.zip` for version 2.5).
+#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_osx_30.zip` for version 3.0).
 
 #. Extract the contents of the archive into :file:`/usr/local/lib/`.  The path may not exist, so it may need to be created first.
 
