@@ -30,7 +30,7 @@ Save the map view
 
 You can save your map composition for later, to be accessed by a URL bookmark.
 
-#. Click the :guilabel:`Map` menu and select to display a URL.
+#. Click the :guilabel:`Map` menu and click :guilabel:`Save Map` to display a URL.
 
    .. figure:: img/publish_savemapbutton.png
       :align: center
@@ -50,7 +50,7 @@ Publish via embedded map
 
 GeoExplorer allows you to publish your map view by generating a small block of HTML code that can be embedded in any web page.
 
-#. Click on the :guilabel:`Publish Map` icon.
+#. Click the :guilabel:`Publish Map` icon.
 
    .. figure:: img/publish_publishmapbutton.png
       :align: center
@@ -64,7 +64,7 @@ GeoExplorer allows you to publish your map view by generating a small block of H
 
       *Selecting the tools for the published map*
 
-#. A dialog will show some HTML code that can be copied and included in a web page in order to embed the map. You can change the values for the map size in the :guilabel:`Map Size` drop down boxes, or by changing the :guilabel:`Height` and :guilabel:`Width` values. The changes will automatically be reflected in the HTML.
+#. A dialog box will show some HTML code that can be copied and included in a web page in order to embed the map. You can change the values for the map size in the :guilabel:`Map Size` drop down boxes, or by changing the :guilabel:`Height` and :guilabel:`Width` values. The changes will automatically be reflected in the HTML.
 
    .. figure:: img/publish_html.png
       :align: center
