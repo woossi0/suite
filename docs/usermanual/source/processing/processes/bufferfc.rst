@@ -26,15 +26,15 @@ Inputs
      - Description
      - Type
      - Required
-   * - features
+   * - ``features``
      - Input feature collection
      - SimpleFeatureCollection
      - Yes
-   * - distance
+   * - ``distance``
      - Fixed value to use for the buffer distance
      - Double
      - Yes
-   * - attributeName
+   * - ``attributeName``
      - Attribute containing the buffer distance value
      - String
      - No
@@ -48,11 +48,9 @@ Outputs
    * - Name
      - Description
      - Type
-     - Required
-   * - result
+   * - ``result``
      - Buffered feature collection
      - SimpleFeatureCollection
-     - Yes
 
 Notes on usage
 --------------
