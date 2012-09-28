@@ -78,7 +78,7 @@ For more information, please see the **User Manual**, which is available from th
 Extensions
 ~~~~~~~~~~
 
-If you would like to install optional data store extensions such as MrSID, there is a separate installer package called :file:`extensions.pkg` included with the OpenGeo Suite bundle. Double click on this file to install these extensions.
+If you would like to install optional extensions such as :ref:`MrSID support <installation.mrsid>`, there is a separate installer package called :file:`OpenGeo Suite Extensions.mpkg`. Double click this file to install the OpenGeo Suite Extensions.
 
 .. _installation.osx.upgrade:
 

@@ -1,4 +1,4 @@
-.. _dataadmin.mrsid:
+.. _installation.mrsid:
 
 Enabling MrSID image support
 ============================
@@ -9,11 +9,12 @@ The OpenGeo Suite comes with support for publishing data from many formats suppo
 
 Find the method of installation below and continue there.
 
+.. _installation.mrsid.ubuntu:
 
 Ubuntu
 ------
 
-.. note:: By default, the Production WARs install will not show **any** of the GDAL image formats at all. To enable GDAL image formats in the Production WAR file, please see the section on :ref:`dataadmin.gdal`. This section assumes that the GDAL image formats are already enabled.
+.. note:: By default, the Production WARs install will not show **any** of the GDAL image formats at all. To enable GDAL image formats in the Production WAR file, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
@@ -25,13 +26,14 @@ MrSID support is provided by a separate package called **gdal-mrsid**.
 
 #. Restart Tomcat.
 
-Continue at the :ref:`dataadmin.mrsid.verify` section.
+Continue at the :ref:`installation.mrsid.verify` section.
 
+.. _installation.mrsid.centos:
 
 CentOS / Red Hat
 ----------------
 
-.. note:: By default, the Production WARs install will not show **any** of the GDAL image formats at all. To enable GDAL image formats in the Production WAR file, please see the section on :ref:`dataadmin.gdal`. This section assumes that the GDAL image formats are already enabled.
+.. note:: By default, the Production WARs install will not show **any** of the GDAL image formats at all. To enable GDAL image formats in the Production WAR file, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
@@ -47,8 +49,9 @@ MrSID support is provided by a separate package called **gdal-mrsid**.
 
 #. Restart Tomcat.
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
+.. _installation.mrsid.windows:
 
 Windows
 -------
@@ -75,7 +78,7 @@ MrSID support must be enabled during the installation process.
 
 #. Click :guilabel:`Next` and continue the installation process. 
 
-Continue reading at the :ref:`dataadmin.mrsid.verify` section.
+Continue reading at the :ref:`installation.mrsid.verify` section.
 
 
 Windows Production WARs
@@ -87,12 +90,14 @@ Windows Production WARs
 
    .. note:: This file requires 32-bit Java/Tomcat.
 
-#. Extract the contents of this archive to the location where the GDAL libraries were extracted (see :ref:`dataadmin.gdal`).
+#. Extract the contents of this archive to the location where the GDAL libraries were extracted (see :ref:`installation.gdal`).
 
 #. Restart Tomcat.
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
+
+.. _installation.mrsid.mac:
 
 Mac OS X
 --------
@@ -133,7 +138,7 @@ MrSID support is enabled via a separate installation package, available in the O
 
        *MrSID support successfully installed*
 
-Continue reading at the :ref:`dataadmin.mrsid.verify` section.
+Continue reading at the :ref:`installation.mrsid.verify` section.
 
 
 
@@ -148,10 +153,10 @@ Mac OS X Production WARs
 
 #. Restart Tomcat.
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
 
-.. _dataadmin.mrsid.verify:
+.. _installation.mrsid.verify:
 
 Verifying installation
 ----------------------

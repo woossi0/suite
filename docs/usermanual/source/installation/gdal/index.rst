@@ -1,4 +1,4 @@
-﻿.. _dataadmin.gdal:
+﻿.. _installation.gdal:
 
 Enabling GDAL image formats support
 ===================================
@@ -25,7 +25,7 @@ Ubuntu
 
      # service tomcat6 restart
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
 
 CentOS / Red Hat
@@ -45,7 +45,7 @@ CentOS / Red Hat
 
    # service tomcat6 restart
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
 
 Windows
@@ -77,7 +77,7 @@ Windows
 
    #. Restart Tomcat.
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
 Mac OS X
 --------
@@ -94,10 +94,10 @@ Mac OS X
 
 #. Restart Tomcat
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
 
-.. _dataadmin.gdal.verify:
+.. _installation.gdal.verify:
 
 Verifying installation
 ----------------------
