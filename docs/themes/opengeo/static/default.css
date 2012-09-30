@@ -27,6 +27,11 @@ i {
 	font-family: "Helvetica", "Arial", Lucida Sans Unicode, Lucida Grande, Verdana, sans-serif;
 }
 
+em.guilabel {
+font-weight: bold;
+font-style: normal;
+}
+
 a {
 color: #0A2742;
 outline: none !important; /* avoid ugly dotted border for Firefox */
@@ -136,6 +141,7 @@ margin-top: 15px;
 margin-bottom: 15px;
 text-align: center;
 }
+
 
 /*-----------------------
 Structural Elements
@@ -454,6 +460,7 @@ margin-top: 0 !important;
 .last {
 padding-left: 14px;
 }
+
 
 /* "Footnotes" heading */
 p.rubric {
