@@ -103,9 +103,11 @@ The :guilabel:`GeoExplorer` toolbar provides access to the following tools:
      * - .. image:: images/button_measure.png
        - :ref:`geoexplorer.using.measure`
        - Measure distance or area in the Map Window
+.. Measures distance or area in the Map Window (for consistency)
      * - .. image:: images/button_query.png
        - :ref:`geoexplorer.using.query`
        - Query the selected layer. Options are :guilabel:`Query by current map extent` and :guilabel:`Query by attributes`.
+.. Queries the selected layer. Options are :guilabel:`Query by current map extent` and :guilabel:`Query by attributes`. (for consistency)
      * - .. image:: images/button_createfeature.png
        - :ref:`geoexplorer.using.createfeature`
        - Creates a new feature in the selected layer. Works with vector overlay layers only and requires :ref:`geoexplorer.using.login` to local GeoServer.
@@ -128,7 +130,7 @@ Layers panel
 The Layers panel contains a list of layers, managed under two folders—:guilabel:`Overlays` and :guilabel:`Base Maps`—and a :guilabel:`Layers panel` toolbar. 
 
 Individual :guilabel:`Overlays` layer visibility settings may be configured as required. To make a layer invisible, clear the check box next to layer. To make the layer visible again, select the check box.
-
+.. To make a layer invisible, clear the checkbox next to the layer. (other two sentences look fine)
 Overlays
 ~~~~~~~~
 

@@ -43,7 +43,7 @@ Glossary
      See :term:`Open Geospatial Consortium`.
 
    Open Geospatial Consortium
-     The Open Geospatial Consortium (OGC) <http://opengeospatial.org/> is a standards organization that develops specifications for geospatial services.
+     The Open Geospatial Consortium (OGC) <http://www.opengeospatial.org/> is a standards organization that develops specifications for geospatial services.
 
    OSGeo
      The Open Source Geospatial Foundation (OSGeo) <http://osgeo.org> is a non-profit foundation dedicated to the promotion and support of open source geospatial software.
@@ -61,7 +61,7 @@ Glossary
      Structured query language. This is the standard programming language for querying relational databases. See http://en.wikipedia.org/wiki/SQL.
 
    SQL/MM
-     `SQL Multimedia <http://www.fer.hr/_download/repository/SQLMM_Spatial-_The_Standard_to_Manage_Spatial_Data_in_Relational_Database_Systems.pdf>`_; includes several sections on extended types, including a substantial section on spatial types.
+     `SQL Multimedia <http://www.fer.unizg.hr/_download/repository/SQLMM_Spatial-_The_Standard_to_Manage_Spatial_Data_in_Relational_Database_Systems.pdf>`_; includes several sections on extended types, including a substantial section on spatial types.
 
    SRID
      Spatial reference ID. This a unique number assigned to a particular "coordinate reference system". The PostGIS table **spatial_ref_sys** contains a large collection of well-known srid values and text representations of the coordinate reference systems.

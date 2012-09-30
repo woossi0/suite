@@ -19,7 +19,7 @@ This section provides a brief introduction to GeoExplorer.
    
       *GeoExplorer*
 
-.. |addlayer| image:: images/Button_Addlayer.png
+.. |addlayer| image:: images/button_addlayer.png
               :align: bottom
 
 #. To add a new layer to the :guilabel:`Map Window`, click :guilabel:`Add Layers` |addlayer| on the :ref:`geoexplorer.workspace.layerspanel` toolbar and click :guilabel:`Add layers` to open the :guilabel:`Available Layers` panel.
@@ -31,7 +31,7 @@ This section provides a brief introduction to GeoExplorer.
 #. In the :guilabel:`Available Layers` panel, click the layer you want to add to your map and click :guilabel:`Add layers` at the bottom of the :guilabel:`Available Layers` panel. 
 
    .. note:: To add multiple layers, hold down Ctrl while you click all the layers you want to add.
-
+.. I suggest 'Ctrl' rather than Ctrl to indicate a keyboard key. I think we say you should under "Hyphenation" in the Style Guide.
    .. figure:: using/images/panel_availablelayers.png
        
       *Adding layers to GeoExplorer*
@@ -63,7 +63,7 @@ This section provides a brief introduction to GeoExplorer.
       *Ordering layers*
        
 #. You can also generate a map application, and the HTML code to embed into a web page, based on the layers in your :guilabel:`Map Window`. On the :guilabel:`GeoExplorer` toolbar, click :guilabel:`Map` and then click :guilabel:`Publish map` to open the :ref:`geoexplorer.using.publish` dialog box.
-
+.. You can also use GeoExplorer to generate a map application and the HTML code to embed into a new web page using the layers in your :guilabel:`Map Window`. On the :guilabel:`GeoExplorer` toolbar, click :guilabel:`Map` and then click :guilabel:`Publish map` to open the :ref:`geoexplorer.using.publish` dialog box.
    .. figure:: using/images/button_publish.png
       
       *Publish map tool*

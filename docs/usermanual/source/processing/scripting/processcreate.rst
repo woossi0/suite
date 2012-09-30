@@ -25,20 +25,29 @@ While there is a distance function in both Python and JavaScript, the bearing wi
    \text{Bearing} = 90^{\circ} - \arctan(\frac{y_{point} - y_{origin}}{x_{point} - x_{origin}})\times\frac{180^{\circ}}{\pi}
 
 
-Creating the script
--------------------
+Authoring the script
+--------------------
 
-.. note:: Download the full script:
+The complete scripts are below:
 
-   * :download:`Python <distbear.py>`
-   * :download:`JavaScript <distbear.js>`
+**Python** (:download:`download <distbear.py>`):
 
-The script will consist of headers, input/output definitions, metadata, and computation. 
+.. literalinclude:: distbear.py
+   :language: python
+
+**JavaScript** (:download:`download <distbear.js>`):
+
+.. literalinclude:: distbear.js
+   :language: javascript
+
+Save as :file:`distbear.py` or :file:`distbear.js`, depending on the language used.
+
+A description of the script functionality follows.
 
 Process headers
 ~~~~~~~~~~~~~~~
 
-The script requires a number of header libraries, including access to the GeoServer catalog, geometry and feature types, and WPS process hooks:
+The script requires a number of import statements, including access to the GeoServer catalog, geometry and feature types, and WPS process hooks:
 
 **Python**
 
@@ -149,23 +158,10 @@ where:
 These three variables as a list are then returned.
 
 
-Save this file as :file:`distbear.py` or :file:`distbear.js`, depending on the language used. The complete scripts are below:
-
-**Python** (:download:`download <distbear.py>`):
-
-.. literalinclude:: distbear.py
-   :language: python
-
-**JavaScript** (:download:`download <distbear.js>`):
-
-.. literalinclude:: distbear.js
-   :language: javascript
-
-
 Activating the script
 ---------------------
 
-Now that the script is written, it must be added to GeoServer. Place the script in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`. (Create this path if it doesn't already exist.) The script will be activated automatically when copied to that location, with *no server restart necessary*.
+After the script is created, it must be added to GeoServer. Place the script in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`. (Create this path if it doesn't already exist.) The script will be activated automatically when copied to that location, with *no server restart necessary*.
 
 .. todo:: You can also upload scripts through the REST API. Please see the section on processing.scripting.rest for more details.
 

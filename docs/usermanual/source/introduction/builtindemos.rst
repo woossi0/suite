@@ -10,7 +10,7 @@ Medford
 
 The city of Medford, Oregon has generously shared some of their municipal data, including zoning, buildings, and parks.
 
-You can use GeoExplorer to view the included layers.  Select :guilabel:`GeoExplorer` from the Dashboard to load GeoExplorer.  For more information on adding layers to GeoExplorer, see the :ref:`webmaps.basic` tutorial or the full GeoExplorer `reference documentation <../../geoexplorer/>`_.
+You can use GeoExplorer to view the included layers.  Select :guilabel:`GeoExplorer` from the Dashboard to load GeoExplorer.  For more information on adding layers to GeoExplorer, see the :ref:`webmaps.basic` tutorial or the full GeoExplorer `reference documentation <../geoexplorer/>`_.
 
 .. figure:: img/medford.png
    :align: center

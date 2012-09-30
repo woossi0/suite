@@ -8,9 +8,7 @@ The OpenGeo Suite is a complete web-based geospatial software stack.  In this pa
 * **PostGIS** - A spatially enabled object-relational database.
 * **GeoServer** - A software server for loading and sharing geospatial data.
 * **GeoWebCache** - A tile cache server that accelerates the serving of maps (built into GeoServer).
-* **Styler** - A graphical interface for designing maps.
-* **GeoExplorer** - A layer browser and map creator.
-* **GeoEditor** - A graphic interface for editing spatial data.
+* **GeoExplorer** - A web application for composing, styling, and publishing maps.
 
-GeoExplorer, Styler, GeoEditor are applcations built with **GeoExt** and contain code from **OpenLayers**.
+GeoExplorer is based on the **GeoExt** framework and contains code from **OpenLayers**.
 

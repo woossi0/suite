@@ -161,4 +161,4 @@ Finally, calculating the area of each of the new county polygons from the county
   36085    | 149806077.958252
 
 
-For more information about geometry functions in PostGIS, please refer to `PostGIS Reference <../../../postgis/postgis/html/reference.html>`_.       
+For more information about geometry functions in PostGIS, please refer to `PostGIS Reference <../../postgis/postgis/html/reference.html>`_.       
