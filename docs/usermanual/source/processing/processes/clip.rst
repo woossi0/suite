@@ -52,7 +52,7 @@ Outputs
 Notes on usage
 --------------
 
-* The clipping geometry will be in the same units as the feature collection.
+* The clipping geometry must be in the same :term:`CRS` as the feature collection.
 * The clipping geometry can be a point or line, but this is uncommon.
 
 

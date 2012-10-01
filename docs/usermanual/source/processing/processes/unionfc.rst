@@ -55,7 +55,7 @@ Notes on usage
 --------------
 
 * Both input feature collections must have the same default geometry.
-* Make sure to match the CRS of each input geometry.
+* Make sure that the :term:`CRS` of each input feature collection matches.
 * Identical features in both input collections will both be preserved as individual features, not combined.
 
 .. todo:: What happens with mixed CRSs?

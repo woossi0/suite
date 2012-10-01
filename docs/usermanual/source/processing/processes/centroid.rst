@@ -8,7 +8,7 @@ Centroid
 Description
 -----------
 
-The ``gs:Centroid`` process takes a feature collection and returns a point feature collection. For lines, points are generated at the line midpoint, and for polygons, points are generated at the polygon centroid. Attributes names and values are not affected by this process.
+The ``gs:Centroid`` process takes a feature collection and returns a point feature collection of centroids. For lines, points are generated at the line midpoint, and for polygons, points are generated at the polygon centroid. Attributes names and values are not affected by this process.
 
 Inputs and outputs
 ------------------

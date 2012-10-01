@@ -53,7 +53,7 @@ Inputs
      - First feature collection attribute to include
      - String
      - No
-   * - second feature collection attribute to include
+   * - second attributes to retain
      - Second feature collection attribute to include
      - String
      - No
