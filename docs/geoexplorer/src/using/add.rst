@@ -4,7 +4,6 @@
 Add layers
 ==========
 
-.. warning:: Document status: **Draft** 
 
 When the GeoExplorer application is started, the :guilabel:`Overlays` folder is initially empty, so the first step is to add layers.
 
@@ -34,7 +33,6 @@ When the GeoExplorer application is started, the :guilabel:`Overlays` folder is 
    .. note:: You can upload your own data directly through this panel. See the :ref:`geoexplorer.using.upload` section to learn more.
 
 #. To select a layer, click the required list entry. To add multiple layers, hold down Ctrl while you click all the layers you want to add.
-.. I suggest 'Ctrl' rather than Ctrl.
 
 #. Click the :guilabel:`Add Layers` button at the bottom of the :guilabel:`Available Layers` panel to add the selected layers to the Map Window.
 
@@ -94,7 +92,7 @@ GeoExplorer provides access to a number of servers, each with their own list of 
 
 
 To add layers from one of these servers, click the new server in the :guilabel:`View available data from` list and select the required layer from the updated :guilabel:`Available Layers` panel.
-.. Should this say something like "the New Server button"? 
+
 .. figure:: images/add_availableserverlayers.png
 
    *Other server layers*
@@ -105,7 +103,7 @@ Connect to another WMS
 
 To load layers from a server not currently listed, you must add the server to the list of available servers. You can add any valid :term:`WMS`.
 
-To add a new server, click :guilabel:`Add a new server` in the :guilabel:`View available data from` list in the :guilabel:`Available Layers` panel to display the :guilabel:`Add New Server` panel. 
+To add a new server, click :guilabel:`Add a New Server` in the :guilabel:`View available data from` list in the :guilabel:`Available Layers` panel to display the :guilabel:`Add New Server` panel. 
 
 .. figure:: images/add_newserver.png
 

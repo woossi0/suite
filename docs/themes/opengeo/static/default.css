@@ -710,6 +710,11 @@ img.math {
 vertical-align: middle;
 }
 
+img.last {
+padding-left: 0;
+}
+
+
 div.math p {
 text-align: center;
 }

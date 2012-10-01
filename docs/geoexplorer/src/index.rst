@@ -1,7 +1,6 @@
 GeoExplorer
 ===========
 
-.. warning:: Document status: **Whole section ready for copyedit review** 
 
 .. figure:: images/geoexplorer_logo.png
 

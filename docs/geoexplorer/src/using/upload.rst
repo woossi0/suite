@@ -3,10 +3,9 @@
 Upload Data
 ===========
 
-.. warning:: Document status: **Draft** 
 
-With GeoExplorer you can upload data (shapefiles (compressed into a zip/tar/gzip/bzip archive) or GeoTIFF files) directly into a local instance of GeoServer. The data will be configured and styled automatically to work in GeoExplorer.
-.. We said we didn't want to use slash in place of "or", so I suggest "compressed into a zip, tar, gzip, or bzip archive".  Also, do we have a rule about parentheses within parentheses? It just looks so wrong, but if it is not, we should make it explicit in the Style Guide.
+With GeoExplorer you can upload data, shapefiles (compressed into an archive file) or GeoTIFF files directly into a local instance of GeoServer. The data will be configured and styled automatically to work in GeoExplorer.
+
 .. warning:: Shapefiles must be in an archive file. Simply selecting the ``.shp`` file will not work. Refer to the section on :ref:`geoexplorer.using.upload.formats` for more information.
 
 To upload data, you must login to the local GeoServer instance for authentication. For more information, please refer to the :ref:`geoexplorer.using.login` section.
@@ -84,13 +83,11 @@ The data is processed in the following order:
 
 After the upload process is complete, you will see your new layer in the :guilabel:`Available Layers` panel. You can now :ref:`geoexplorer.using.add` to your map.
 
-
 .. _geoexplorer.using.upload.formats:
 
 Data formats
 ------------
 
-The :guilabel:`Upload layers` panel will accept data in either shapefile or GeoTIFF format. If you are uploading shapefile data, the shapefile must be converted to archive file (zip/tar/gzip/bzip). This is required because the upload data process requires a single file, and shapefiles include a number of files (including, but not limited to, ``.shp``, ``.shx``, and ``.dbf`` files).
-.. If you are uploading shapefile data, the shapefile must be compressed into a zip, tar, gzip, or bzip archive.
-A GeoTIFF file (``.tif``) does not need to be in an archive format, but may be if required.
-.. Required by what? This sentence is rather unclear.
+The :guilabel:`Upload layers` panel will accept data in either shapefile or GeoTIFF format. If you are uploading shapefiles, the shapefile must be added to an archive file (zip, tar, gzip, or bzip).  (The upload data process requires a single file, and shapefiles include a number of files including, but not limited to, ``.shp``, ``.shx``, and ``.dbf`` files.)
+
+A GeoTIFF file (``.tif``) does not need to be in an archive format, but may be added to an archive file if reducing file size is a requirement.

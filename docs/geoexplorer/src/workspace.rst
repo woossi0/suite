@@ -1,6 +1,5 @@
 .. _geoexplorer.workspace:
 
-.. warning:: Document status: **Draft** 
 
 GeoExplorer workspace
 =====================
@@ -14,7 +13,6 @@ The GeoExplorer workspace is divided into three main areas:
 .. figure:: images/workspace.png
 
    *GeoExplorer workspace*
-
 
 .. _geoexplorer.workspace.mapwindow:
 
@@ -40,31 +38,30 @@ The :guilabel:`Map Window` toolbar provides access to the following tools:
        - Name
        - Description
      * - .. image:: images/button_3dviewer.png
-       - Switch to 3D Viewer
+       - :guilabel:`Switch to 3D Viewer`
        - Changes map view to 3D. Requires the `Google Earth browser plugin <http://earth.google.com/plugin/>`_.
      * - .. image:: images/button_panmap.png
-       - Pan map
-       - Pan the Map Window by click and drag (enabled by default). Shift+click+drag 
+       - :guilabel:`Pan map`
+       - Pan the Map Window by click and drag (enabled by default). Shift, click, and drag 
          together zooms in to a user-defined extent.
      * - .. image:: images/button_zoombox.png
-       - Zoom by dragging a box
+       - :guilabel:`Zoom by dragging a box`
        - Zoom to user-defined extent   
      * - .. image:: images/button_zoomin.png
-       - Zoom in
+       - :guilabel:`Zoom in`
        - Increases the zoom level by one
      * - .. image:: images/button_zoomout.png
-       - Zoom out
+       - :guilabel:`Zoom out`
        - Decreases the zoom level by one  
      * - .. image:: images/button_zoomprevious.png
-       - Zoom to previous extent
+       - :guilabel:`Zoom to previous extent`
        - Returns to the previous map extent
      * - .. image:: images/button_zoomnext.png
-       - Zoom to next extent
+       - :guilabel:`Zoom to next extent`
        - Returns to the next map extent (activated only after using :guilabel:`Zoom to previous extent`)
      * - .. image:: images/button_zoomvisible.png
-       - Zoom to max extent
+       - :guilabel:`Zoom to max extent`
        - Zooms to the maximum extent of all layers
-
 
 
 .. _geoexplorer.workspace.toolbar:
@@ -86,7 +83,7 @@ The :guilabel:`GeoExplorer` toolbar provides access to the following tools:
        - Name
        - Description
      * - .. image:: images/button_geoexplorer.png
-       - GeoExplorer
+       - :guilabel:`GeoExplorer`
        - Displays information about the GeoExplorer application
      * - .. image:: images/button_publishmap.png
        - :ref:`geoexplorer.using.publish`
@@ -102,12 +99,10 @@ The :guilabel:`GeoExplorer` toolbar provides access to the following tools:
        - Displays feature information (attributes) for the feature at a user-defined location in the Map Window 
      * - .. image:: images/button_measure.png
        - :ref:`geoexplorer.using.measure`
-       - Measure distance or area in the Map Window
-.. Measures distance or area in the Map Window (for consistency)
+       - Measures distance or area in the Map Window
      * - .. image:: images/button_query.png
        - :ref:`geoexplorer.using.query`
-       - Query the selected layer. Options are :guilabel:`Query by current map extent` and :guilabel:`Query by attributes`.
-.. Queries the selected layer. Options are :guilabel:`Query by current map extent` and :guilabel:`Query by attributes`. (for consistency)
+       - Queries the selected layer. Options are :guilabel:`Query by current map extent` and :guilabel:`Query by attributes`.
      * - .. image:: images/button_createfeature.png
        - :ref:`geoexplorer.using.createfeature`
        - Creates a new feature in the selected layer. Works with vector overlay layers only and requires :ref:`geoexplorer.using.login` to local GeoServer.
@@ -130,7 +125,7 @@ Layers panel
 The Layers panel contains a list of layers, managed under two folders—:guilabel:`Overlays` and :guilabel:`Base Maps`—and a :guilabel:`Layers panel` toolbar. 
 
 Individual :guilabel:`Overlays` layer visibility settings may be configured as required. To make a layer invisible, clear the check box next to layer. To make the layer visible again, select the check box.
-.. To make a layer invisible, clear the checkbox next to the layer. (other two sentences look fine)
+
 Overlays
 ~~~~~~~~
 
@@ -141,7 +136,7 @@ The :guilabel:`Overlays` folder is initially empty when GeoExplorer is first sta
 
 .. note:: Depending on the source of the layer, the new layer will either be added to the :guilabel:`Overlays` folder or the :guilabel:`Base Maps` folder. Background mapping, such as that provided by Google and OpenStreetMap, will be added to the :guilabel:`Base Maps` folder.
 
-Overlay layers are set to be transparent, so multiple layers may be viewed in the Map Window at the same time. The legend for each layer is generated directly from the WMS :term:`GetLegendGraphic` request.
+:guilabel:`Overlays` layers are set to be transparent, so multiple layers may be viewed in the Map Window at the same time. The legend for each layer is generated directly from the WMS :term:`GetLegendGraphic` request.
 
 Base Maps
 ~~~~~~~~~
@@ -149,7 +144,7 @@ Base Maps
 .. |addlayer2| image:: images/button_addlayer.png 
               :align: bottom
 
-The :guilabel:`Base Maps` folder contains base, or background, layers. A base layer will always be drawn beneath all other :guilabel:`Overlay` layers. Although only one base layer can be active at any time, it is possible to have multiple base layers in the list. It is also possible to drag layers between the :guilabel:`Base Maps` folder and the :guilabel:`Overlays` folder.
+The :guilabel:`Base Maps` folder contains base, or background, layers. A base layer will always be drawn beneath all other :guilabel:`Overlays` layers. Although only one base layer can be active at any time, it is possible to have multiple base layers in the list. It is also possible to drag layers between the :guilabel:`Base Maps` folder and the :guilabel:`Overlays` folder.
 
 The default base layer is Mapquest OpenStreetMap. Having no base layer (:guilabel:`None`) for the :guilabel:`Map Window` is also an option. As with the :guilabel:`Overlays` list, you can :ref:`geoexplorer.using.add` to the :guilabel:`Base Maps` folder by clicking :guilabel:`Add layers` |addlayer2| on the :ref:`geoexplorer.workspace.layerstoolbar`.
 
@@ -158,7 +153,7 @@ The default base layer is Mapquest OpenStreetMap. Having no base layer (:guilabe
 Layer order
 ~~~~~~~~~~~
 
-Layers in the Layers panel may be reordered to affect the rendering, or draw, order. To change the layer order, click and drag the layers in the :guilabel:`Overlays` list in the :ref:`geoexplorer.workspace.layerspanel`. The layers will be rendered in the order in which they are listed—the layer at the top of the list will display on the top of all of the other layers, the next layer will be drawn below that, and so on. The selected base layer will **always** be drawn beneath all :guilabel:`Overlays` layers.
+Layers in the Layers panel may be reordered to affect the rendering, or draw, order. To change the layer order, click and drag the layers in the :guilabel:`Overlays` list in the :ref:`geoexplorer.workspace.layerspanel`. The layers will be rendered in the order in which they are listed—the layer at the top of the list will display on the top of all of the other layers, the next layer will be drawn below that, and so on. The selected base layer will *always* be drawn beneath all :guilabel:`Overlays` layers.
 
 .. figure:: images/workspace_draglayers.png
 
@@ -212,7 +207,7 @@ This shortcut menu provides access to four tools:
        - Name
        - Description
      * - .. image:: /images/button_zoomlayer.png
-       - Zoom to Layer Extent
+       - Zoom to layer extent
        - Zooms to the extent of the selected layer
      * - .. image:: /images/button_removelayer.png
        - :ref:`geoexplorer.using.remove`

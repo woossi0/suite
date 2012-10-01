@@ -3,8 +3,6 @@
 Layer Properties
 ================
 
-.. warning:: Document status: **Draft** 
-
 You can view and edit layer properties in GeoExplorer.
 
 .. note:: The properties of layers based on third party data, such as Google, cannot be viewed or edited.
@@ -32,7 +30,6 @@ There are three tabs in the Layer Properties panel:
          - Options for customizing layer display
        * - :guilabel:`Styles`
          - Options for customizing layer style and style rules 
-
 
 
 .. _geoexplorer.using.layerproperties.about:
