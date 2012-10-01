@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.projection:
 
-.. warning:: Document status: **Requires copyedit review** 
 
 Projections
 ===========

@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.generation:
 
-.. warning:: Document status: **Requires copyedit review** 
 
 Geometry construction
 =====================

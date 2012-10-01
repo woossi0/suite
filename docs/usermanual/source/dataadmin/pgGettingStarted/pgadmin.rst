@@ -1,6 +1,5 @@
 ﻿.. _dataadmin.pgGettingStarted.pgadmin:
 
-.. warning:: Document status: **Requires copyedit review**
 
 Connecting to the PostgreSQL Database
 =====================================

@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.geometries:
 
-.. warning:: Document status: **Regires copyedit review**
 
 Geometries 
 ==========
@@ -194,10 +193,10 @@ The first polygon has only one ring. The second one has an interior "hole". Alth
 Some of the specific spatial functions for working with polygons include:
 
 * :command:`ST_Area(geometry)`—Returns the area of the polygons
-* :command:`ST_NRings(geometry)`—returns the number of rings (usually 1, more of there are holes)
+* :command:`ST_NRings(geometry)`—returns the number of rings (usually 1, more if there are holes)
 * :command:`ST_ExteriorRing(geometry)`—Returns the outer ring as a linestring
 * :command:`ST_InteriorRingN(geometry,n)`—Returns a specified interior ring as a linestring
-* :command:`ST_Perimeter(geometry)`—Returns the length of all the rings
+* :command:`ST_Perimeter(geometry)`—Returns the length of all rings
 
 To calculate the area of a polygon, use the :command:`ST_Area()` function:
 
@@ -219,9 +218,6 @@ Collections
 ~~~~~~~~~~~
 
 Collections group multiple simple geometries into sets and provide a framework for  modeling real world objects as spatial objects. 
-
-.. note:: 
- Collections are another feature more often associated with GIS software than generic graphics software. 
 
 There are four collection types: 
 
@@ -264,8 +260,7 @@ Some of the specific spatial functions for working with collections include:
 Geometry input and output
 -------------------------
 
-Within the database, geometries are stored in a format only used by PostGIS. To allow 
-external programs to insert and retrieve "correct" geometries, they must be converted into a format these other programs can understand. Fortunately, PostGIS supports a large number of *emitters* and *consumers* for processing different geometry formats:
+Within the database, geometries are stored in a format only used only by PostGIS. To allow external programs to insert and retrieve "correct" geometries, they must be converted into a format these other programs can understand. Fortunately, PostGIS supports a large number of *emitters* and *consumers* for processing different geometry formats:
 
 * Well-known text (``WKT``)
  
@@ -317,7 +312,7 @@ The following SQL query provides an example of ``WKB`` representation. The funct
 
 This will generate the following output:
 
-.. code-block:: sql
+.. code-block:: console
 
    01020000000300000000000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f000000000000f03f
 

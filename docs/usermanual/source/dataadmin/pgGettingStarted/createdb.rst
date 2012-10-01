@@ -1,6 +1,5 @@
 .. _dataadmin.pgGettingStarted.createdb:
 
-.. warning:: Document status: **Requires copyedit review**
 
 Creating a Spatial Database
 ===========================
@@ -32,7 +31,7 @@ The OpenGeo Suite installation process automatically creates five databases:
 
 #. Complete the :guilabel:`New database` form with the following information:
 
-   * **Name**—<DatabaseName>
+   * **Name**—<user-defined database name>
    * **Encoding**—UTF8
    * **Owner**—postgres 
    * **Template**—template_postgis
@@ -56,12 +55,11 @@ The OpenGeo Suite installation process automatically creates five databases:
 
 #. Enter the following query into the :guilabel:`SQL editor` input box.  
 
-.. code-block:: sql
+   .. code-block:: sql
 
       SELECT postgis_full_version();
 
-<<<<<<< HEAD
-Click the :guilabel:`Execute query` button (or press **F5**) to run the query. The management function `postgis_full_version() <../../postgis/postgis/html/PostGIS_Full_Version.html>`_ returns version and build configuration information. If this command executes successfully, the database is spatially enabled and you will see output similar to the following:
+#. Click the :guilabel:`Execute query` button, or press **F5**, to run the query. The management function `postgis_full_version() <../../postgis/postgis/html/PostGIS_Full_Version.html>`_ returns version and build configuration information. If this command executes successfully, the database is spatially enabled and you will see output similar to the following:
 
 ::
 
@@ -75,7 +73,7 @@ Click the :guilabel:`Execute query` button (or press **F5**) to run the query. T
 Creating a spatial database from the command line
 -------------------------------------------------
 
-You can also create a PostGIS database from the command line using the ``createdb`` command.
+You can also create a PostGIS database from the command line with the ``createdb`` command.
 
 .. code-block::  console
 

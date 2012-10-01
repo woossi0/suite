@@ -1,6 +1,5 @@
 .. _dataadmin.pgGettingStarted.restload:
 
-.. warning:: Document status: **Requires copyedit review**
 
 Publishing a PostGIS table in GeoServer
 ---------------------------------------
@@ -56,7 +55,7 @@ The next section describes how to link a PostGIS database to GeoSever and publis
 
    .. note:: The password to this database, unencrypted in our example, is displayed encrypted.
 
-Now that the connection has been made, you can now publish a table from the PostGIS database as a layer in GeoServer.
+Now that the connection has been made, you can publish a table from the PostGIS database as a layer in GeoServer.
 
 #. To publish a dataset, execute the following command:
 
@@ -73,7 +72,7 @@ Now that the connection has been made, you can now publish a table from the Post
 
       < HTTP/1.1 201 Created
 
-   If not, examine the output for errors.
+   If you don't see this entry, examine the output for errors.
 
 #. To verify that the layer was published, execute the following command:
 

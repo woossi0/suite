@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.geography:
 
-.. warning:: Document status: **Requires copyedit review**
 
 Geography data type
 ===================
@@ -15,8 +14,8 @@ Geographic coordinates may be treated as approximate Cartesian coordinates for t
 
 For example, below are the coordinates of Los Angeles and Paris.
 
- * Los Angeles: ``POINT(-118.4079 33.9434)``
- * Paris: ``POINT(2.3490 48.8533)``
+* Los Angeles: ``POINT(-118.4079 33.9434)``
+* Paris: ``POINT(2.3490 48.8533)``
  
 The following example calculates the distance between Los Angeles and Paris using the PostGIS Cartesian :command:`ST_Distance(geometry, geometry)`. The SRID of 4326 identifies a geographic spatial reference system, with units of measurement expressed in degrees.
 
@@ -59,7 +58,7 @@ Repeating the measurement of the distance from Los Angeles and Paris using the `
 
   9124665.26917268
 
-As **all** return values from ``geography`` based calculations are in meters, the result is 9124 km. 
+As *all* return values from ``geography`` based calculations are in meters, the result is 9124 km. 
 
 The requirement to support non-point geometries becomes very clear when answering question such as "How close will a flight from Los Angeles to Paris come to Iceland?" 
 
@@ -237,7 +236,7 @@ Although geographic coordinates (latitude/longitude) are universally accepted, i
  
 If your data is geographically compact (contained within a state, county or city), use the ``geometry`` type with a Cartesian projection that is appropriate for your data. 
 
-If you need to measure distance with a dataset that is geographically dispersed (for example, with a global extent), use the ``geography`` data type. The advantages of the ``geography`` type will offset some of the performance issues. On the other hand, casting to ``geometry`` can offset most functionality limitations.
+If you need to measure distance with a dataset that is geographically dispersed (for example, with a global extent), use the ``geography`` data type. The advantages of the ``geography`` type will offset some of the performance issues. On the other hand, casting to ``geometry`` can offset most functional limitations.
 
 
 For more information about geometry functions in PostGIS, please see the `PostGIS Reference <../../postgis/postgis/html/reference.html>`_

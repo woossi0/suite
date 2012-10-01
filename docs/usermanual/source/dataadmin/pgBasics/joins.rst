@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.joins:
 
-.. warning:: Document status: **Requires copyedit review** 
 
 Spatial joins
 =============

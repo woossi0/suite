@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.equality:
 
-.. warning:: Document status: **Requires copyedit review**
 
 Equality
 ========

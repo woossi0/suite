@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.3d_types:
 
-.. warning:: **Document status - Requires copyedit review**
 
 Working with 3-D Geometries
 ===========================

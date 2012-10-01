@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.validity:
 
-.. warning:: Document status: **Requires copyedit review**
 
 Validity
 ========

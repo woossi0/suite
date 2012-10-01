@@ -1,7 +1,5 @@
 .. _dataadmin.pgBasics.rasters:
 
-.. warning::  **Document status - Requires copyedit review** 
-
 
 Raster data
 ===========

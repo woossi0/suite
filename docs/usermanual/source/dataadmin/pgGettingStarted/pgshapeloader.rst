@@ -1,6 +1,5 @@
 .. _dataadmin.pgGettingStarted.pgshapeloader:
 
-.. warning:: Document status: **Requires copyedit review**
 
 Loading data into PostGIS with pgShapeloader
 ============================================
@@ -134,21 +133,20 @@ Loading data
 
 #.  You can verify this in ``pgAdmin`` by viewing the list of tables in the :guilabel:`Object browser`—your new table should be listed.
 
-   .. figure:: img/pgshp_pgadminconfirm.png
+    .. figure:: img/pgshp_pgadminconfirm.png
 
       *Confirming import in pgAdmin*
 
-#. You can also verify a successful import operation at the command line by typing:
+    You can also verify a successful import operation at the command line by typing:
 
-   .. code-block:: console
+    .. code-block:: console
 
       psql -p <PORT> -U <USERNAME> -d <DATABASE> -c "\d" -h localhost
 
-   .. note::
+    .. note:: The specific command parameters will depend on your local configuration.
 
-    The specific command parameters will depend on your local configuration.
-  
-  .. code-block:: console
+
+    .. code-block:: console
 
       Schema |         Name         |   Type   |  Owner
      --------+----------------------+----------+----------
@@ -160,4 +158,3 @@ Loading data
       public | raster_overviews     | view     | postgres
       public | spatial_ref_sys      | table    | postgres
 
-.. todo:: add section on export

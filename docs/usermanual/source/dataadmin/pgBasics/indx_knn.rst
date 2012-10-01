@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.indx_knn:
 
-.. warning:: Document Status: **Requires copyedit review**
 
 Nearest neighbor searches
 =========================
@@ -49,13 +48,10 @@ KNN is an index-based nearest neighbor search. By traversing the index, the sear
 
 .. note:: The KNN feature is only available on PostGIS 2.0 with PostgreSQL 9.1 or greater.
 
-The KNN search works by evaluating distances between bounding boxes inside the PostGIS R-Tree index.
-As the index is built using the bounding boxes of geometries, the distances between any geometries that are not points will be inexact—the distance returned for line and polygon geometry searches is actually the distance between the bounding boxes of geometries, not the geometries themselves.
+The KNN search works by evaluating distances between bounding boxes inside the PostGIS R-Tree index. As the index is built using the bounding boxes of geometries, the distances between any geometries that are not points will be inexact—the distance returned for line and polygon geometry searches is actually the distance between the bounding boxes of geometries, not the geometries themselves.
 
-The syntax of the index-based KNN query places a special index-based distance operator in the ORDER BY clause of the query. There are two index-based distance operators:
+The syntax of the index-based KNN query places a special index-based distance operator in the ORDER BY clause of the query. There are two index-based distance operators: **<->** for the distance between box centers and **<#>** for the distance between box edges.
 
-* **<->**—Distance between box centers
-* **<#>**—Distance between box edges
 
 One side of the index-based distance operator must be a literal geometry value. You could either  use a subquery that returns as single geometry or include a :term:`WKT` geometry instead.
 

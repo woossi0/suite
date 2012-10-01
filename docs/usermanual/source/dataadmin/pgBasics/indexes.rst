@@ -1,11 +1,10 @@
 .. _dataadmin.pgBasics.indexes:
 
-.. warning:: Document status: **Requires copyedit review** 
 
 Spatial indexes
 ===============
 
-A spatial index is one of the three key components of a spatial database. Without indexing, any search for a feature would require a *sequential scan* of every record in the database. Similarly, comparing whole tables with each other can be computationally expensive. Joining two tables of 10,000 records each without indexes would require 100,000,000 comparisons—-with indexes on both tables the processing cost could be as low as 20,000 comparisons. 
+A spatial index is one of the three key components of a spatial database. Without indexing, any search for a feature would require a *sequential scan* of every record in the database. Similarly, comparing whole tables with each other can be computationally expensive. Joining two tables of 10,000 records but each table without indexes would require 100,000,000 comparisons. With indexes on both, the processing cost could be as low as 20,000 comparisons. 
 
 Indexing speeds up searching by organizing the data into a search tree that is quickly traversed to find a particular record. This can save a great deal of processing time for complex queries.
 

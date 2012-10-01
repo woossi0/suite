@@ -1,6 +1,5 @@
 .. _dataadmin.pgGettingStarted.shp2pgsql:
 
-.. warning:: Document status: **Requires copyedit review**
 
 Loading data into PostGIS from the Command Line
 ===============================================
@@ -45,7 +44,7 @@ Loading data
 
    .. note::
 
-     These examples will use port 54321, but substitute your own PostGIS port if different. If your connection is denied, you may need to add your user name with the ``-U`` option or set the hostname with the ``-h`` option.
+     These examples use port 54321, but substitute your own PostGIS port if different. The port number on Linux is 5432. If your connection is denied, you may need to add your user name with the ``-U`` option or set the hostname with the ``-h`` option.
 
 #. Run the ``shp2pgsql`` command and pipe the output into the ``psql`` command to load the shapefile into the database in one step. The recommended syntax is:
 

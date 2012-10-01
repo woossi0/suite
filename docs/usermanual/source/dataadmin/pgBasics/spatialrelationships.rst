@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.spatialrelationships:
 
-.. warning:: Document status: **Requires copyedit review** 
 
 Spatial relationships
 =====================
