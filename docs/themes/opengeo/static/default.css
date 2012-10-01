@@ -32,6 +32,11 @@ font-weight: bold;
 font-style: normal;
 }
 
+em.menuselection {
+font-weight: bold;
+font-style: normal;
+}
+
 a {
 color: #0A2742;
 outline: none !important; /* avoid ugly dotted border for Firefox */
