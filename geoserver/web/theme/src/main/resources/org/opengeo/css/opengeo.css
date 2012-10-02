@@ -155,3 +155,12 @@ padding-left: 16px;
 height: 18px;
 font-weight: bold;
 }
+
+.button-group.inactive a, .button-group.inactive button, input.btnTxt {
+  border-color: #aaa; 
+  color: #aaa;
+  background: none; 
+  font-weight: normal; 
+  font-style: italic;
+  cursor: default;
+}

@@ -38,7 +38,7 @@ source_suffix = '.rst'
 #source_encoding = 'utf-8'
 
 # The master toctree document.
-master_doc = 'README-linux'
+master_doc = 'index'
 
 # General information about the project.
 project = u'OpenGeo Suite Linux Installation'
@@ -158,8 +158,11 @@ html_theme_path = ['../../../themes']
 # If true, the index is split into individual pages for each letter.
 #html_split_index = False
 
+# If true, the reST sources are included in the HTML build as _sources/<name>.
+html_copy_source = False
+
 # If true, links to the reST sources are added to the pages.
-#html_show_sourcelink = True
+html_show_sourcelink = False
 
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the
@@ -184,7 +187,9 @@ htmlhelp_basename = 'OpenGeoSuiteInstallationdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('README-linux', 'README-linux.tex', u'OpenGeo Suite for Linux',
+  ('ubuntu/suite', 'README-ubuntu.tex', u'OpenGeo Suite for Linux',
+   u'OpenGeo', 'howto'),
+   ('centos/suite', 'README-centos.tex', u'OpenGeo Suite for Linux',
    u'OpenGeo', 'howto'),
 ]
 

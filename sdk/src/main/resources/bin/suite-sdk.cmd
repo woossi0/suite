@@ -312,10 +312,11 @@ IF %ERRORLEVEL% NEQ 0 (
     echo.
     echo The '%NAME% debug' command failed.
     echo.
-    echo A common cause of this is a conflict with the provided local port ^(-l^): %LOCAL_PORT%
+    echo Two commmon causes of this are:
+    echo * The directory provided did not contain a valid SDK application: %APP_PATH%
+    echo * There was a conflict with the provided local port ^(-l^): %LOCAL_PORT%
     echo.
-    echo Please ensure that there is not another service running on this port.  Run
-    echo '%NAME% debug --help' for help on the usage.
+    echo Please run '%NAME% debug --help' for help on the usage.
     echo.
   )
   if %COMMAND%=="deploy" (

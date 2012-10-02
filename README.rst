@@ -13,7 +13,7 @@ The following software packages are required to build the suite.
 * `Apache Maven <http://maven.apache.org/download.html>`_ - 2.2.1+ (not 3.x)
 * `JSTools <https://github.com/whitmo/jstools>`_ - Latest
 * `Sphinx <http://sphinx.pocoo.org/>`_ - 1.0+ (the full build requires LaTeX support)
-* `Git <http://git-scm.com/>`_ - Recent
+* `Git <http://git-scm.com/>`_ - 1.7.10+
 
 Quickstart
 ----------
@@ -166,6 +166,7 @@ flags such as -o (offline) are not propagated. To propagate custom flags to the
 respective build commands specific properties must be set.
 
 * ``gs.flags`` - GeoServer build flags
+* ``gs-exts.flags`` - GeoServer Extensions build flags
 * ``gt.flags`` - GeoTools build flags
 * ``gwc.flags`` - GeoWebCache build flags
 

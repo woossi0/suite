@@ -1,12 +1,62 @@
-OpenGeo Suite User Manual
-=========================
+OpenGeo Suite Library
+=====================
 
-Welcome to the OpenGeo Suite!  The OpenGeo Suite is a full geospatial software stack that allows you to allows you to compose, style, and publish maps with ease.
+Welcome to the OpenGeo Suite. The OpenGeo Suite is a full geospatial software stack that helps you compose, style, and publish maps and data with ease.
 
 .. toctree::
-   :maxdepth: 2
+   :hidden: 
 
+   introduction/index
    installation/index
-   gettingstarted/index
-   analytics/index
-   tutorials/index
+   webmaps/index
+   cartography/index
+   apps/index
+   processing/index
+   dataadmin/index
+   sysadmin/index
+   glossary
+
+
+OpenGeo Suite User Manual
+-------------------------
+
+The OpenGeo User Manual will help you get the most out of the OpenGeo Suite.
+
+:ref:`introduction`
+  Getting started with the OpenGeo Suite
+
+:ref:`installation`
+  Install the OpenGeo Suite for your platform
+
+:ref:`webmaps`
+  Publish your maps and data on the web
+
+:ref:`cartography`
+  Visualize your data on the web
+
+:ref:`apps`
+  Building complete web-based applications using the Client SDK
+
+:ref:`processing`
+  Performing server-based spatial analysis
+
+:ref:`dataadmin`
+  Loading and managing your data
+
+:ref:`sysadmin`
+  Manage and optimize your OpenGeo Suite installation
+
+
+Component User Manuals 
+----------------------
+
+* `PostGIS <postgis>`_
+* `GeoServer <geoserver>`_
+* `GeoWebCache <geowebcache>`_
+* `GeoExplorer <geoexplorer>`_
+* `Client SDK <sdk-api>`_
+
+Additional Documentation
+------------------------
+
+:ref:`glossary`
