@@ -112,16 +112,16 @@ The information in ``raster_overviews`` does not duplicate the information in ``
 .. code-block:: sql
 
    SELECT o.o_table_name, c.r_table_name, c.r_raster_column, c.srid, c.blocksize_x, 
-     c.blocksize_y, c.num_bands, c.pixel_types 
+     c.blocksize_y, c.num_bands
    FROM raster_overviews o, raster_columns c
-   WHERE o.o_table_name = 'o_3_myrasttable' AND o.o_table_name = c.r_table_name;
+   WHERE o.o_table_name = 'o_3_mytable' AND o.o_table_name = c.r_table_name;
 
-.. code-block:: sql
+.. code-block:: console
 
-   | o_table_name    | r_table_name    | srid  | blocksize_x | blocksize_y | num_bands | pixel_types     |
-   +------------------+------------------+-----+-------------+-------------+-----------+- ---------------+
-   | o_3_myrasttable | o_3_myrasttable | 4326  | 1155        |  1106       | 3         | {8BUI,8BUI,8BUI}| 
-   +-----------------+-----------------+-------+-------------+-------------+-----------+-- --------------+  
+   | o_table_name  | r_table_name    | srid | blocksize_x | blocksize_y | num_bands | 
+   +---------------+-----------------+------+-------------+-------------+-----------+
+   | o_3_mytable   | o_3_mytable     | 4326 | 1155        |  1106       | 3         | 
+   +---------------+-----------------+------+-------------+-------------+-----------+  
 
 
 .. note:: The performance of raster data analysis is sensitive to tile sizes, so you may need to experiment with the optimum tile size settings for your data. 

@@ -252,5 +252,5 @@ You can also add rasters and raster tables directly to the database. A typical w
      CREATE INDEX myRasterTable_rast_st_convexhull_idx ON myRasterTable USING gist(ST_ConvexHull(rast));
 
 
-   .. note:: Pre-2.0 versions of PostGIS raster were based on the envelop rather than the convex hull. To ensure spatial indexes work correctly in PostGIS 2.0, drop any existing envelop indexes and replace them with convex hull based indexes.
+   .. note:: Pre-2.0 versions of PostGIS raster were based on the envelope rather than the convex hull. To ensure spatial indexes work correctly in PostGIS 2.0, drop any existing envelope indexes and replace them with convex hull based indexes.
 

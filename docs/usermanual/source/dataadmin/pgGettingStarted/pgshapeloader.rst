@@ -112,9 +112,9 @@ Loading data
       * - Load only attribute (dbf) data
         - Strips the geometry column from the loading process, leaving just the attribute columns. Default is unselected.
       * - Load data using COPY rather than INSERT
-        - This can sometimes make the load process a little faster.
+        - This can sometimes improve the performance of the load process.
       * - Load into GEOGRAPHY column
-        - Will load the geospatial data as type GEOGRAPHY instead of the default of GEOMETRY.  Requires lat/lon data (often known as SRID 4326).
+        - Will load the geospatial data as type GEOGRAPHY instead of the default of GEOMETRY.  Requires lat/lon data (SRID 4326).
  
 
    .. note:: If you are unsure about the implications of making further changes, leave the default values as they are and click :guilabel:`OK` to return to the main dialog box.
@@ -150,11 +150,11 @@ Loading data
 
       Schema |         Name         |   Type   |  Owner
      --------+----------------------+----------+----------
-      public | bc_2m_border         | table    | postgres
-      public | bc_2m_border_gid_seq | sequence | postgres
       public | geography_columns    | view     | postgres
       public | geometry_columns     | view     | postgres
       public | raster_columns       | view     | postgres
       public | raster_overviews     | view     | postgres
       public | spatial_ref_sys      | table    | postgres
+      public | us_cities            | table    | postgres
+      public | us_cities_gid_seq    | sequence | postgres
 
