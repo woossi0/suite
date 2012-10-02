@@ -55,8 +55,8 @@ Loading data
    The command parameters are:
 
    * ``<SRID>``—Spatial reference identifier
-   * ``<PATH/TO/SHAPEFILE.SHP>``—Full path to the shapefile (such as :file:`C:\\MyData\\roads\\roads.shp`)
-   * ``SCHEMA``—Target schema where the new table will be created
+   * ``<PATH/TO/SHAPEFILE>``—Full path to the shapefile (such as :file:`C:\\MyData\\roads\\roads.shp`)
+   * ``<SCHEMA>``—Target schema where the new table will be created
    * ``<DBTABLE>``—New database table to be created (usually the same name as the source shapefile)
    * ``<DATABASE>``—Target database where the table will be created
 

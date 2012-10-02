@@ -4,7 +4,7 @@
 Publishing a PostGIS table in GeoServer
 ---------------------------------------
 
-The next section describes how to link a PostGIS database to GeoSever and publish the data.
+The next section describes how to link a PostGIS database to GeoSever and publish some data.
 
 
 #. To begin with, a new GeoServer store for the PostGIS database must be created. To avoid typing one lengthy command, it is easier to save the connection parameters to an XML file. Create an XML file with the following content, substituting the correct connection parameters for your particular configuration.

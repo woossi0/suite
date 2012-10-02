@@ -76,7 +76,7 @@ A spatial **point** corresponds to a single location, defined by a single coordi
     FROM geometries
     WHERE name = 'Point';
 
-.. code-block:: sql 
+.. code-block:: sql
 
   POINT(0 0)
 

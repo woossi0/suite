@@ -87,7 +87,7 @@ The :command:`ST_IsValid` function can also be used to test entire tables.
 ::
 
            name           |   boroname    |                     st_isvalidreason                      
- -------------------------+---------------+-----------------------------------------------------------
+ -------------------------+---------------+------------------------------------------------------
   Howard Beach            | Queens        | Self-intersection[597264.083368305 4499924.54228856]
   Corona                  | Queens        | Self-intersection[595483.058764138 4513817.95350787]
   Steinway                | Queens        | Self-intersection[593545.572199759 4514735.20870587]
