@@ -258,5 +258,7 @@ The procedure for upgrading is as follows:
 
       service tomcat6 start
 
+.. note:: Memory settings to improve server reliability were introduced in OpenGeo Suite 3. These changes will not be applied during this upgrade. To make the change, edit the file :file:`/etc/default/tomcat6` and append ``-XX:MaxPermSize=256m`` to the ``JAVA_OPTS`` command. Restart the OpenGeo Suite for the change to take effect.
+
 
 Continue reading at the :ref:`installation.linux.suite.details` section.
