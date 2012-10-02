@@ -321,8 +321,6 @@ Restore PostGIS data
 Restore GeoServer configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: If you are running CentOS/RHEL 6 or above and did not uninstall Suite version 2 you may skip this step.
-
 #. Stop tomcat and restore the GeoServer data directory to its original location.
 
    .. code-block:: console
@@ -337,6 +335,9 @@ Restore GeoServer configuration
   .. code-block:: console
 
      service tomcat5 start
+
+.. note:: Memory settings to improve server reliability were introduced in OpenGeo Suite 3. These changes will not be applied during this upgrade. To make the change, edit the file :file:`/etc/sysconfig/tomcat6` (or :file:`/etc/sysconfig/tomcat5` if it exists) and append ``-XX:MaxPermSize=256m`` to the ``JAVA_OPTS`` command. Restart the OpenGeo Suite for the change to take effect.
+
 
 Continue reading at the :ref:`installation.linux.suite.details` section.
 
