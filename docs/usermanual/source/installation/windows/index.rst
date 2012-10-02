@@ -142,7 +142,7 @@ The procedure for upgrading is as follows:
 
 #. The PostGIS data backup process is complete. You may now shut down the OpenGeo Suite 2.x.
 
-#. *Optional but recommended:*  Back up your GeoServer data directory. This directory is located by default in :file:`<user_home_directory>\\.opengeo\\data_dir`. To back up this directory, you can create an archive of it, or simply copy it to another location.
+#. Back up your GeoServer data directory. This directory is located by default in :file:`<user_home_directory>\\.opengeo\\data_dir`. To back up this directory, copy it to :file:`<user_home_directory>\\.opengeo\\data_dir_old`.
 
 #. Uninstall the OpenGeo Suite 2.x. (See :ref:`installation.windows.uninstall` below.)
 
@@ -166,7 +166,13 @@ The procedure for upgrading is as follows:
 
    .. note:: As with the backup, standard PostGIS connection parameters may be used. You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.
 
-#. Your databases and roles will be restored. You can verify that the databases were created and data restored by running ``psql -l`` on the command line.
+#. Your databases and roles will be restored. You can verify that the databases were created and data restored by running ``psql -l --port 54321`` on the command line.
+
+#. Stop the OpenGeo Suite.
+
+#. Restore the GeoServer data directory. Rename the existing :file:`<user_home_directory>\\.opengeo\\data_dir` to :file:`<user_home_directory>\\.opengeo\\data_dir_30` and rename the backed-up data directory :file:`<user_home_directory>\\.opengeo\\data_dir_old` to :file:`<user_home_directory>\\.opengeo\\data_dir`.
+
+#. Start the OpenGeo Suite.
 
 
 .. _installation.windows.uninstall:
