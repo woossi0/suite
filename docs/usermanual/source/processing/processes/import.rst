@@ -29,7 +29,7 @@ Inputs
      - Required
    * - ``features``
      - Input feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
    * - ``workspace``
      - Target workspace (default is the system default)

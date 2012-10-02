@@ -31,7 +31,7 @@ Inputs
      - Required
    * - ``features``
      - Input feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
    * - ``transform``
      - The transform specification, as a list of specifiers of the form ``name=expression``, delimited by newlines or semicolons.
@@ -49,4 +49,4 @@ Outputs
      - Type
    * - ``result``
      - Transformed feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection

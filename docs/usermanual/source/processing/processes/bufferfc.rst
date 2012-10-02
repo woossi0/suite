@@ -28,7 +28,7 @@ Inputs
      - Required
    * - ``features``
      - Input feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
    * - ``distance``
      - Fixed value to use for the buffer distance
@@ -50,7 +50,7 @@ Outputs
      - Type
    * - ``result``
      - Buffered feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
 
 Notes on usage
 --------------

@@ -33,7 +33,7 @@ Inputs
      - Required
    * - ``features``
      - Input feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
    * - ``distance``
      - Simplification distance tolerance
@@ -55,7 +55,7 @@ Outputs
      - Type
    * - ``result``
      - The simplified feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
 
 Notes on usage
 --------------

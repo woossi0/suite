@@ -43,11 +43,11 @@ Inputs
      - Required
    * - first feature collection
      - First feature collection 
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
    * - second feature collection
      - Second feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
    * - first attributes to retain
      - First feature collection attribute to include
@@ -81,7 +81,7 @@ Outputs
      - Type
    * - ``result``
      - Output feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
 
 Notes on usage
 --------------

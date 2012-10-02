@@ -29,7 +29,7 @@ Inputs
      - Required
    * - ``features``
      - Input feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
    * - ``clip``
      - Geometry to use for clipping (in same CRS as input features)  
@@ -47,7 +47,7 @@ Outputs
      - Type
    * - ``result``
      - Clipped feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
 
 Notes on usage
 --------------

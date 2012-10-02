@@ -27,7 +27,7 @@ Inputs
      - Required
    * - ``features``
      - Input feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
 
 Outputs
@@ -41,7 +41,7 @@ Outputs
      - Type
    * - ``result``
      - Centroids of input features
-     - SimpleFeatureCollection
+     - FeatureCollection
 
 Notes on usage
 --------------

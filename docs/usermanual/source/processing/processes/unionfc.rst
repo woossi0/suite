@@ -31,11 +31,11 @@ Inputs
      - Required
    * - first feature collection
      - First feature collection 
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
    * - second feature collection
      - Second feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
      - Yes
 
 Outputs
@@ -49,7 +49,7 @@ Outputs
      - Type
    * - ``result``
      - Output feature collection
-     - SimpleFeatureCollection
+     - FeatureCollection
 
 Notes on usage
 --------------
