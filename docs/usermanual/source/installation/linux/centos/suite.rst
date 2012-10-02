@@ -321,8 +321,6 @@ Restore PostGIS data
 Restore GeoServer configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: If you are running CentOS/RHEL 6 or above and did not uninstall Suite version 2 you may skip this step.
-
 #. Stop tomcat and restore the GeoServer data directory to its original location.
 
    .. code-block:: console
