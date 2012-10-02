@@ -175,14 +175,12 @@ The procedure for upgrading is as follows:
       exit
       sudo su -
 
-#. *Optional:* Back up your GeoServer data directory. This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`. To back up this directory, you can create an archive of it, or simply copy it to another location. For example:
+#. Back up your GeoServer data directory. This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`. To back up this directory, copy it to another location. For example:
 
    .. code-block:: console
 
       cp -r /usr/share/opengeo-suite-data/geoserver_data  /tmp/suite_backup/data_dir_backup
       
-   .. note:: This step is optional but highly recommended. During the upgrade process the GeoServer data directory will be automatically upgraded resulting in a data directory that is incompatible with previous versions of the OpenGeo Suite. Having a backup makes downgrading to a previous version much easier should it become necessary.
-
 #. Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary to add an additional repository. This repository contains the version 3 packages. Run the following command (as root or with ``sudo``):
 
    .. code-block:: console
@@ -232,5 +230,27 @@ The procedure for upgrading is as follows:
    .. note:: As with the backup, standard PostGIS connection parameters may be used. You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.
 
 #. Your databases and roles will be restored. You can verify that the databases were created and data restored by running ``psql -l`` on the command line.
+
+#. Exit out of the postgres user and change to root.
+
+#. Stop the Tomcat service:
+
+   .. code-block:: console
+
+      service tomcat6 stop
+
+#. Restore your GeoServer data directory, renaming the existing one first. For example:
+
+   .. code-block:: console
+
+      mv /usr/share/opengeo-suite-data/geoserver_data  /tmp/suite_backup/data_dir_backup_30
+      cp -r /tmp/suite_backup/data_dir_backup /usr/share/opengeo-suite-data/geoserver_data
+
+#. Start the Tomcat service:
+
+   .. code-block:: console
+
+      service tomcat6 start
+
 
 Continue reading at the :ref:`installation.linux.suite.details` section.
