@@ -246,6 +246,12 @@ The procedure for upgrading is as follows:
       mv /usr/share/opengeo-suite-data/geoserver_data  /tmp/suite_backup/data_dir_backup_30
       cp -r /tmp/suite_backup/data_dir_backup /usr/share/opengeo-suite-data/geoserver_data
 
+#. Change the owner of the restored data directory:
+
+   .. code-block:: console
+
+      chown -R tomcat6 /usr/share/opengeo-suite-data/geoserver_data
+
 #. Start the Tomcat service:
 
    .. code-block:: console
