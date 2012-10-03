@@ -49,25 +49,28 @@ New Installation
 
       *Start Menu folder to be created*
 
-#. Select the extensions you wish to install, and click :guilabel:`Next`. All extensions will be installed by default except for MrSID support, ArcSDE, Oracle Spatial, and Microsoft SQL Server. If enabling these extensions, certain additional files will need to be manually copied after the OpenGeo Suite is installed. This copying of files is required **in addition to checking the boxes** in this menu.
+#. Select the extensions you wish to install, and click :guilabel:`Next`. All extensions will be installed by default except for ArcSDE, Oracle Spatial, and Microsoft SQL Server, and MrSID support. If enabling these extensions, certain additional files will need to be manually copied after the OpenGeo Suite is installed. This copying of files is required **in addition to checking the boxes** in this menu.
 
-   .. list-table::
-      :header-rows: 1
-      :widths: 10 20 70
+   * ArcSDE:
 
-      * - Extension
-        - Files needed
-        - Copy files to...
-      * - ArcSDE
-        - :file:`jsde*.jar`, :file:`jpe*.jar` 
-        - :file:`<installation_folder>\\webapps\\geoserver\\WEB-INF\\lib`
-      * - Oracle Spatial
-        - :file:`ojdbc*.jar`
-        - :file:`<installation_folder>\\webapps\\geoserver\\WEB-INF\\lib`
-      * - Microsoft SQL Server
-        - :file:`sqljdbc4.jar`, :file:`sqljdbc_xa.dll`, :file:`sqljdbc_auth.dll`
-        - * JAR file: :file:`<installation_folder>\\webapps\\geoserver\\WEB-INF\\lib`
-          * DLL files: :file:`C:\\Windows\\System32`
+     * Files required: :file:`jsde*.jar`, :file:`jpe*.jar`
+     * Copy files to :file:`<installation_folder>\\webapps\\geoserver\\WEB-INF\\lib`
+
+   * Oracle Spatial:
+
+     * Files required: :file:`ojdbc*.jar`
+     * Copy file to :file:`<installation_folder>\\webapps\\geoserver\\WEB-INF\\lib`
+
+   * Microsoft SQL Server:
+
+     * Files required: :file:`sqljdbc4.jar`, :file:`sqljdbc_xa.dll`, :file:`sqljdbc_auth.dll`
+     * Copy JAR file to :file:`<installation_folder>\\webapps\\geoserver\\WEB-INF\\lib`
+     * Copy DLL files to :file:`C:\\Windows\\System32`
+
+   * MrSID:
+
+     * No extra files required
+
 
    .. figure:: img/components.png
 
