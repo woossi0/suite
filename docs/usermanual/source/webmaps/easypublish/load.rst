@@ -15,11 +15,11 @@ The first step is to load data into the OpenGeo Suite. These are many tools and 
 
       *GeoExplorer*
 
-#. Click the :guilabel:`Add Layers` button (green circle with the white plus) on the top left of the screen, and then click :guilabel:`Upload Layers`.
+#. Click :guilabel:`Add layers` on the :guilabel:`Layers` panel toolbar, and then click :guilabel:`Upload layers`.
 
    .. figure:: img/load_uploadmenu.png
 
-      *Click this menu item to access the Upload Layers dialog box*
+      *Uploading layers*
 
 #. For security reasons, you will be asked to log in. Enter the administrative user name and password for GeoServer. The default is ``admin`` / ``geoserver``.
 
@@ -83,19 +83,19 @@ Optional: Adding hosted base layers
 
 GeoExplorer displays a default base layer (`MapQuest OpenStreetMap <http://open.mapquest.com/>`_) but many others are available. To select another base layer:
 
-#. Click the :guilabel:`Add Layers` button (green circle with the white plus) on the top left of the screen, and then click :guilabel:`Add Layers`.
+#. Click the :guilabel:`Add layers` on the :guilabel:`Layers` panel toolbar, and then click :guilabel:`Add layers`.
 
    .. figure:: img/load_addlayers.png
 
       *Adding layers*
 
-#. In the :guilabel:`View available data from` dialog box, select an alternate data source, such as :guilabel:`Google Layers` or :guilabel:`MapBox Layers`.
+#. In the :guilabel:`View available data from` list, select an alternate data source, such as :guilabel:`Google Layers` or :guilabel:`MapBox Layers`.
 
    .. figure:: img/load_hostedlayersource.png
 
       *Hosted layer sources*
 
-#. A list of hosted layers will be shown. Click the layer you would like to add as a base layer, and click :guilabel:`Add Layers`.
+#. A list of hosted layers will be shown. Click the layer you would like to add as a base layer, and click :guilabel:`Add layers`.
 
    .. figure:: img/load_hostedlayer.png
 

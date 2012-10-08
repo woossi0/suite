@@ -20,7 +20,6 @@ Map composition
 #. Use the zoom and pan tools to set the default map view.
 
    .. figure:: img/publish_compose.png
-      :align: center
 
       *A finished map*
 
@@ -30,17 +29,15 @@ Save the map view
 
 You can save your map composition for later, to be accessed by a URL bookmark.
 
-#. Click the :guilabel:`Map` menu and click :guilabel:`Save Map` to display a URL.
+#. Click :guilabel:`Map` on the GeoExplorer toolbar and click :guilabel:`Save map` to generate a URL.
 
    .. figure:: img/publish_savemapbutton.png
-      :align: center
 
-      *The Save Map button will generate a URL*
+      *The Save map tool will generate a URL*
 
 #. When navigating to this URL at a later time, the map will return to this exact placement.
 
    .. figure:: img/publish_savemap.png
-      :align: center
 
       *Copy this URL to save your map*
 
@@ -50,24 +47,21 @@ Publish via embedded map
 
 GeoExplorer allows you to publish your map view by generating a small block of HTML code that can be embedded in any web page.
 
-#. Click the :guilabel:`Publish Map` icon.
+#. Click :guilabel:`Map` on the GeoExplorer toolbar and click :guilabel:`Publish map`.
 
    .. figure:: img/publish_publishmapbutton.png
-      :align: center
 
-      *The Publish Map button will generate HTML*
+      *The Publish map tool will generate HTML*
 
 #. Choose the tools you would like to have available in your embedded map:
 
    .. figure:: img/publish_tools.png
-      :align: center
 
       *Selecting the tools for the published map*
 
-#. A dialog box will show some HTML code that can be copied and included in a web page in order to embed the map. You can change the values for the map size in the :guilabel:`Map Size` drop down boxes, or by changing the :guilabel:`Height` and :guilabel:`Width` values. The changes will automatically be reflected in the HTML.
+#. A dialog box will show some HTML code that can be copied and included in a web page in order to embed the map. You can change the values for the map size in the :guilabel:`Map Size` list, or by changing the :guilabel:`Height` and :guilabel:`Width` values. The changes will automatically be reflected in the HTML.
 
    .. figure:: img/publish_html.png
-      :align: center
 
       *HTML for embedding a map*
 
