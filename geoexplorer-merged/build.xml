@@ -20,6 +20,43 @@
         <os family="windows"/>
     </condition>
 
+    <!-- setup maven command, use mvn.exec if passed in, if not fall back 
+         to either mvn.bat or mvn based on platform -->
+    <condition property="mvn_exec" value="${mvn.exec}">
+        <isset property="mvn.exec"/>
+    </condition>
+    <condition property="mvn_exec" value="mvn.bat" else="mvn">
+        <and>
+            <not>
+                <isset property="mvn_exec"/>
+            </not>
+            <os family="windows"></os>
+        </and>
+    </condition>
+    <condition property="mvn_settings" value="-s ${mvn.settings}" else="">
+        <isset property="mvn.settings"/>
+    </condition>
+
+    <target name="compile">
+        <exec executable="${mvn_exec}" dir="${ringo}" failonerror="true">
+           <arg line="-Dmaven.test.skip ${mvn_settings} clean install"/>
+        </exec>
+        <jar jarfile="${ringo}/run.jar"
+            basedir="${ringo}/target/classes"
+            includes="**/tools/launcher/**"
+            manifest="${ringo}/src/org/ringojs/tools/launcher/manifest.txt"/>
+        <jar jarfile="${ringo}/lib/ringo.jar">
+            <fileset dir="${ringo}/target/classes"/>
+            <fileset dir="${ringo}" includes="modules/**"/>
+            <fileset dir="${ringo}/src" excludes="**/*.java,**/package.html"/>
+        </jar>
+        <copy todir="${ringo}/lib" flatten="true" includeEmptyDirs="false">
+            <fileset dir="${repo}/lib"/>
+        </copy>
+        <antcall target="postcompile"/>
+    </target>
+
+
     <target name="init">
 
         <echo message="pulling in submodules"/>
