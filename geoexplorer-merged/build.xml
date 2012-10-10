@@ -131,8 +131,8 @@
             <fileset dir="app/static/externals/openlayers/theme"/>
         </copy>
         <!-- copy GeoExt resources -->
-        <copy todir="${build}/${ant.project.name}/WEB-INF/app/static/externals/GeoExt/resources">
-            <fileset dir="app/static/externals/GeoExt/resources">
+        <copy todir="${build}/${ant.project.name}/WEB-INF/app/static/externals/geoext/resources">
+            <fileset dir="app/static/externals/geoext/resources">
                 <exclude name="**/geoext-all-debug.css"/>
                 <exclude name="**/gxtheme-slate.css"/>
                 <exclude name="**/slate/**"/>
@@ -143,8 +143,8 @@
             <fileset dir="app/static/externals/gxp/src/theme"/>
         </copy>
         <!-- copy PrintPreview resources -->
-        <copy todir="${build}/${ant.project.name}/WEB-INF/app/static/externals/PrintPreview/resources">
-            <fileset dir="app/static/externals/PrintPreview/resources"/>
+        <copy todir="${build}/${ant.project.name}/WEB-INF/app/static/externals/printpreview/resources">
+            <fileset dir="app/static/externals/printpreview/resources"/>
         </copy>
         
     </target>
