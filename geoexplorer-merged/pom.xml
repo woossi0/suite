@@ -10,32 +10,35 @@
     <artifactId>geoexplorer</artifactId>
     <packaging>jar</packaging>
     <name>OpenGeo Suite GeoExplorer</name>
+    <properties>
+        <war-src>${project.build.directory}/${artifactId}-src</war-src>
+        <jetty-version>7.1.6.v20100715</jetty-version>
+    </properties>
     <dependencies>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty-naming</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mortbay.jetty</groupId>
-            <artifactId>jetty-plus</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.ringojs</groupId>
             <artifactId>ringojs</artifactId>
             <version>0.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-continuation</artifactId>
+            <version>${jetty-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${jetty-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-xml</artifactId>
+            <version>${jetty-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>${jetty-version}</version>
         </dependency>
         <dependency>
             <groupId>org.xerial</groupId>
@@ -48,24 +51,15 @@
         <testSourceDirectory>test</testSourceDirectory>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-dependency-plugin</artifactId>
                 <configuration>
-                    <warName>geoexplorer</warName>
-                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                    <webappDirectory>target/${artifactId}</webappDirectory>
-                    <webResources>
-                        <resource>
-                            <directory>build/geoexplorer/WEB-INF</directory>
-                            <targetPath>WEB-INF</targetPath>
-                        </resource>
-                    </webResources>
+                    <outputDirectory>${war-src}/WEB-INF/lib</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>install</phase>
+                        <phase>initialize</phase>
                         <goals>
-                            <goal>war</goal>
+                            <goal>copy-dependencies</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -74,10 +68,64 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
+                        <phase>generate-resources</phase>
                         <configuration>
                             <tasks>
+                                <copy todir="${war-src}/WEB-INF/app">
+                                    <fileset dir="app">
+                                        <exclude name="**/externals/**"/>
+                                        <exclude name="**/script/**"/>
+                                    </fileset>
+                                </copy>
+                                <!-- copy stick -->
+                                <copy todir="${war-src}/WEB-INF/app/stick">
+                                    <fileset dir="externals/stick">
+                                        <include name="**/lib/**"/>
+                                        <include name="package.json"/>
+                                    </fileset>
+                                </copy>
+                                <!-- copy Ext resources -->
+                                <copy todir="${war-src}/WEB-INF/app/static/externals/ext">
+                                    <fileset dir="app/static/externals/ext">
+                                        <exclude name="**/*debug*.js"/>
+                                        <exclude name="**/ext-all-notheme.css"/>
+                                        <exclude name="**/xtheme-blue.css"/>
+                                    </fileset>
+                                </copy>
+                                <!-- copy OpenLayers resources -->
+                                <copy todir="${war-src}/WEB-INF/app/static/externals/openlayers/theme">
+                                    <fileset dir="app/static/externals/openlayers/theme"/>
+                                </copy>
+                                <!-- copy GeoExt resources -->
+                                <copy todir="${war-src}/WEB-INF/app/static/externals/geoext/resources">
+                                    <fileset dir="app/static/externals/geoext/resources">
+                                        <exclude name="**/geoext-all-debug.css"/>
+                                        <exclude name="**/gxtheme-slate.css"/>
+                                        <exclude name="**/slate/**"/>
+                                    </fileset>
+                                </copy>
+                                <!-- copy gxp resources -->
+                                <copy todir="${war-src}/WEB-INF/app/static/externals/gxp/src/theme">
+                                    <fileset dir="app/static/externals/gxp/src/theme"/>
+                                </copy>
+                                <!-- copy PrintPreview resources -->
+                                <copy todir="${war-src}/WEB-INF/app/static/externals/printpreview/resources">
+                                    <fileset dir="app/static/externals/printpreview/resources"/>
+                                </copy>
+                                <!-- build JavaScript -->
+                                <mkdir dir="${war-src}/WEB-INF/app/static/script"/>
+                                <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
+                                    <classpath>
+                                        <fileset dir="${war-src}/WEB-INF/lib">
+                                            <include name="**/*.jar"/>
+                                        </fileset>
+                                    </classpath>
+                                    <sysproperty key="ringo.home" path="${war-src}/WEB-INF"/>
+                                    <arg path="externals/buildkit/lib/buildkit/build.js"/>
+                                    <arg value="-o"/>
+                                    <arg path="${war-src}/WEB-INF/app/static/script"/>
+                                    <arg path="buildjs.cfg"/>
+                                </java>
                             </tasks>
                         </configuration>
                         <goals>
@@ -87,15 +135,24 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                    <outputDirectory>target/lib</outputDirectory>
+                    <warName>${artifactId}</warName>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <webappDirectory>${project.build.directory}/${artifactId}</webappDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>${war-src}/WEB-INF</directory>
+                            <targetPath>WEB-INF</targetPath>
+                        </resource>
+                    </webResources>
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>initialize</phase>
+                        <phase>install</phase>
                         <goals>
-                            <goal>copy-dependencies</goal>
+                            <goal>war</goal>
                         </goals>
                     </execution>
                 </executions>
