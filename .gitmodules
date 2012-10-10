@@ -25,21 +25,21 @@
 [submodule "geoserver/externals/geoscript/js"]
 	path = geoserver/externals/geoscript/js
 	url = git://github.com/tschaub/geoscript-js.git
-[submodule "geoexplorer-merged/externals/buildkit"]
-	path = geoexplorer-merged/externals/buildkit
+[submodule "geoexplorer/externals/buildkit"]
+	path = geoexplorer/externals/buildkit
 	url = git://github.com/opengeo/buildkit.git
-[submodule "geoexplorer-merged/app/static/externals/gxp"]
-	path = geoexplorer-merged/app/static/externals/gxp
+[submodule "geoexplorer/app/static/externals/gxp"]
+	path = geoexplorer/app/static/externals/gxp
 	url = git://github.com/opengeo/gxp.git
-[submodule "geoexplorer-merged/app/static/externals/geoext"]
-	path = geoexplorer-merged/app/static/externals/geoext
+[submodule "geoexplorer/app/static/externals/geoext"]
+	path = geoexplorer/app/static/externals/geoext
 	url = git://github.com/geoext/geoext.git
-[submodule "geoexplorer-merged/app/static/externals/openlayers"]
-	path = geoexplorer-merged/app/static/externals/openlayers
+[submodule "geoexplorer/app/static/externals/openlayers"]
+	path = geoexplorer/app/static/externals/openlayers
 	url = git://github.com/openlayers/openlayers.git
-[submodule "geoexplorer-merged/app/static/externals/printpreview"]
-	path = geoexplorer-merged/app/static/externals/printpreview
+[submodule "geoexplorer/app/static/externals/printpreview"]
+	path = geoexplorer/app/static/externals/printpreview
 	url = git://github.com/GeoNode/PrintPreview.git
-[submodule "geoexplorer-merged/externals/stick"]
-	path = geoexplorer-merged/externals/stick
+[submodule "geoexplorer/externals/stick"]
+	path = geoexplorer/externals/stick
 	url = https://github.com/hns/stick.git
