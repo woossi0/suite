@@ -25,9 +25,6 @@
 [submodule "geoserver/externals/geoscript/js"]
 	path = geoserver/externals/geoscript/js
 	url = git://github.com/tschaub/geoscript-js.git
-[submodule "geoexplorer/externals/geoexplorer"]
-	path = geoexplorer/externals/geoexplorer
-	url = git://github.com/opengeo/geoexplorer.git
 [submodule "geoexplorer-merged/externals/buildkit"]
 	path = geoexplorer-merged/externals/buildkit
 	url = git://github.com/opengeo/buildkit.git
