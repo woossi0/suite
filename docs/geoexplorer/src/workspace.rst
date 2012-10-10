@@ -94,7 +94,7 @@ The :guilabel:`GeoExplorer` toolbar provides access to the following tools:
      * - .. image:: images/button_print.png
        - :ref:`geoexplorer.using.print`
        - Creates a PDF of the current Map Window composition
-     * - .. image:: images/button_getfeatureinfo.png
+     * - .. image:: images/button_identify.png
        - :ref:`geoexplorer.using.getfeatureinfo`
        - Displays feature information (attributes) for the feature at a user-defined location in the Map Window 
      * - .. image:: images/button_measure.png
@@ -122,7 +122,7 @@ Layers panel
 
    *Layers panel*
 
-The Layers panel contains a list of layers, managed under two folders—:guilabel:`Overlays` and :guilabel:`Base Maps`—and a :guilabel:`Layers panel` toolbar. 
+The :guilabel:`Layers` panel contains a list of layers, managed under two folders—:guilabel:`Overlays` and :guilabel:`Base Maps`—and a :guilabel:`Layers` panel toolbar. 
 
 Individual :guilabel:`Overlays` layer visibility settings may be configured as required. To make a layer invisible, clear the check box next to layer. To make the layer visible again, select the check box.
 
@@ -153,7 +153,7 @@ The default base layer is Mapquest OpenStreetMap. Having no base layer (:guilabe
 Layer order
 ~~~~~~~~~~~
 
-Layers in the Layers panel may be reordered to affect the rendering, or draw, order. To change the layer order, click and drag the layers in the :guilabel:`Overlays` list in the :ref:`geoexplorer.workspace.layerspanel`. The layers will be rendered in the order in which they are listed—the layer at the top of the list will display on the top of all of the other layers, the next layer will be drawn below that, and so on. The selected base layer will *always* be drawn beneath all :guilabel:`Overlays` layers.
+Layers in the :guilabel:`Layers` panel may be reordered to affect the rendering, or draw, order. To change the layer order, click and drag the layers in the :guilabel:`Overlays` list in the :ref:`geoexplorer.workspace.layerspanel`. The layers will be rendered in the order in which they are listed—the layer at the top of the list will display on the top of all of the other layers, the next layer will be drawn below that, and so on. The selected base layer will *always* be drawn beneath all :guilabel:`Overlays` layers.
 
 .. figure:: images/workspace_draglayers.png
 
@@ -164,7 +164,7 @@ Layers in the Layers panel may be reordered to affect the rendering, or draw, or
 Layers panel toolbar
 ~~~~~~~~~~~~~~~~~~~~
 
-The Layers panel toolbar provides access to the following tools:
+The :guilabel:`Layers` panel toolbar provides access to the following tools:
 
 .. list-table::
      :header-rows: 1
@@ -173,7 +173,7 @@ The Layers panel toolbar provides access to the following tools:
      * - Button
        - Name
        - Description
-     * - .. image:: /images/button_addlayers.png
+     * - .. image:: /images/button_addlayer.png
        - :ref:`geoexplorer.using.add`
        - Displays the Available Layers panel for adding new layers to GeoExplorer
      * - .. image:: /images/button_removelayer.png
@@ -241,7 +241,7 @@ Layer Styles panel
 
    *Layer Styles panel*
 
-The Layer Styles panel displays style information for the currently selected layer. The style rules are read directly from the layer :term:`SLD`. You can also edit the :ref:`geoexplorer.using.style.styles` for WMS layers as required.
+The Layer :guilabel:`Styles` panel displays style information for the currently selected layer. The style rules are read directly from the layer :term:`SLD`. You can also edit the :ref:`geoexplorer.using.style.styles` for WMS layers as required.
 
 
       
