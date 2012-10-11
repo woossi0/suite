@@ -38,27 +38,8 @@ Creating basic plugin
 
 #. Add the following content to :file:`DrawBox.js`:
 
-   .. code-block:: javascript
-
-      /**
-      * @requires plugins/Tool.js
-      */
-
-      Ext.ns("myapp.plugins");
-
-      myapp.plugins.DrawBox = Ext.extend(gxp.plugins.Tool, {
-
-        ptype: "myapp_drawbox",
-
-        addActions: function() {
-          return myapp.plugins.DrawBox.superclass.addActions.apply(this, [{
-            text: "Draw box"
-          }]);
-        }
-
-      });
-
-      Ext.preg(myapp.plugins.DrawBox.prototype.ptype, myapp.plugins.DrawBox);
+   .. literalinclude:: script/action_DrawBox_initial.js
+      :language: javascript
 
    This code wraps an `OpenLayers.Control.DrawFeature <http://dev.openlayers.org/docs/files/OpenLayers/Control/DrawFeature-js.html>`_ that will allow the user to draw rectangular geometries on the map.
 
@@ -78,18 +59,18 @@ Connect plugin to application
 
 #. Now the the plugin is created, it must be connected to the application. Open :file:`src/app/app.js` and add a dependency at the top:
 
-   .. code-block:: javascript
+   .. literalinclude:: script/action_app.js
+      :language: javascript
+      :lines: 15
 
-      * @require plugins/DrawBox.js
+#. In the ``tools`` configuration section of the file add the following item to the bottom of the list:
 
-#. In the ``tools`` configuration section of the file add the following item to the list:
+   .. literalinclude:: script/action_app.js
+      :language: javascript
+      :lines: 72-75
+      :emphasize-lines: 73-74
 
-   .. code-block:: javascript
-
-      {
-        ptype: "myapp_drawbox",
-        actionTarget: "map.tbar"
-      }
+   .. todo:: :emphasize-lines: doesn't seem to work
 
 #. Save this file.
 
@@ -108,59 +89,25 @@ Adding functionality
 
    Open up :file:`DrawBox.js` for editing again. Find the ``addActions`` function and alter it to look like the following:
 
-   .. code-block:: javascript
-
-      addActions: function() {
-        var map = this.target.mapPanel.map;
-        this.boxLayer = new OpenLayers.Layer.Vector(null, {displayInLayerSwitcher: false});
-        map.addLayers([this.boxLayer]);
-        // keep our vector layer on top so that it's visible
-        map.events.on({
-          addlayer: this.raiseLayer,
-          scope: this
-        });
-        var action = new GeoExt.Action({
-          text: "Draw box",
-          toggleGroup: "draw",
-          enableToggle: true,
-          map: map,
-          control: new OpenLayers.Control.DrawFeature(this.boxLayer,
-            OpenLayers.Handler.RegularPolygon, {
-              handlerOptions: {
-                sides: 4,
-                irregular: true
-              }
-            }
-          )
-        });
-        return myapp.plugins.DrawBox.superclass.addActions.apply(this, [action]);
-      },
+   .. literalinclude:: script/action_DrawBox.js
+      :language: javascript
+      :lines: 11-35
 
    This code creates a vector layer which will keep hold of the boxes that are being drawn by the ``OpenLayers.DrawFeature`` control. The ``handlerOptions`` specified ensure that only rectangular geometries can be drawn.
 
 #. The drawn layer should remain visible, even when new layers get added to the map. To accomplish this, the ``raiseLayer`` function is called as a listener for the ``addlayer`` event on the map. This function responds by raising the layer. Add the following code to the :file:`DrawBox.js`:
 
-   .. code-block:: javascript
-
-      raiseLayer: function() {
-        var map = this.boxLayer && this.boxLayer.map;
-        if (map) {
-          map.setLayerIndex(this.boxLayer, map.layers.length);
-        }
-      }
+   .. literalinclude:: script/action_DrawBox.js
+      :language: javascript
+      :lines: 37-42
 
    .. todo:: Is "raising" the correct word here? How/where exactly is this code doing the raising?
 
 #. Since these functions depend on more classes from OpenLayers and GeoExt, more dependencies are needed. Add the following to the :file:`src/app/app.js`:
 
-   .. code-block:: javascript
-
-      * @requires GeoExt/widgets/Action.js
-      * @requires OpenLayers/Control/DrawFeature.js
-      * @requires OpenLayers/Handler/RegularPolygon.js
-      * @requires OpenLayers/Layer/Vector.js
-      * @requires OpenLayers/Renderer/SVG.js
-      * @requires OpenLayers/Renderer/VML.js
+   .. literalinclude:: script/action_app.js
+      :language: javascript
+      :lines: 16-21
 
    .. todo:: Why exactly are these dependencies needed? How would one know that they are needed?
 
@@ -169,4 +116,6 @@ Adding functionality
    .. figure:: img/action_drawingboxes.png
 
       *Drawing boxes*
+
+Download the :download:`DrawBox.js <script/action_DrawBox.js>` and :download:`app.js <script/action_app.js>` files created in this section.
 

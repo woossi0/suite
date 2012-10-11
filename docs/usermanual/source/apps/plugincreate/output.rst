@@ -14,24 +14,8 @@ Creating a basic panel
 
 #. Open this file in a text editor and add the following:
 
-   .. code-block:: javascript
-
-      Ext.ns("myapp.plugins");
-
-      myapp.plugins.BoxInfo = Ext.extend(gxp.plugins.Tool, {
-
-        ptype: "myapp_boxinfo",
-
-        addOutput: function(config) {
-          return myapp.plugins.BoxInfo.superclass.addOutput.call(this, Ext.apply({
-            title: "Box info",
-            html: "This is where the box info will be shown"
-          }, config));
-        }
-
-      });
-
-      Ext.preg(myapp.plugins.BoxInfo.prototype.ptype, myapp.plugins.BoxInfo);
+   .. literalinclude:: script/output_BoxInfo_initial.js
+      :language: javascript
 
   This plugin will only implement the ``addOutput`` function to create a panel with a title and some content.
 
@@ -40,30 +24,21 @@ Connecting to the application
 
 #. Connect this new plugin to the application. Open up :file:`src/app/app.js` and add the dependency in the top of the file:
 
-   .. code-block:: javascript
-
-      * @require plugins/BoxInfo.js
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 22
 
 #. Also, add a container that can hold the output, this is done in the ``items`` section of the ``portalConfig``:
 
-   .. code-block:: javascript
-
-      {
-        id: "southpanel",
-        xtype: "container",
-        layout: "fit",
-        region: "south",
-        height: 100
-      }
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 45-51
 
 #. In the ``tools`` section, add an entry for the "boxinfo" tool and direct its output to the south panel:
 
-   .. code-block:: javascript
-
-      {
-        ptype: "myapp_boxinfo",
-        outputTarget: "southpanel"
-      }
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 83-84,86-87
 
 #. Restart the SDK and reload the application in the browser to see the results:
 
@@ -77,47 +52,23 @@ Adding dynamic content
 
 #. To connect this panel to dynamic content, it needs a reference to the vector ``boxLayer`` that is created by the ``DrawBox`` tool. This is done by attaching an ``id`` to the DrawBox tool in :file:`app.js`. The BoxInfo tool will then reference this ``id`` value. Add the ``id`` to :file:`app.js` after ``ptype: "myapp_drawbox"`` and before ``actiontarget: "map.tbar"``. 
 
-   .. code-block:: javascript
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 79-83
+      :emphasize-lines: 81
 
-      id: "drawbox",
+#. Add the reference to the boxinfo config, between ``ptype: "myapp_boxinfo"`` and ``outputTarget: "southpanel"``:
 
-#. Add the reference to the boxinfo config, after ``ptype: "myapp_boxinfo"`` and before ``outputTarget: "southpanel"``:
-
-   .. code-block:: javascript
-
-      boxTool: "drawbox",
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 83-87
+      :emphasize-lines: 85
 
 #. Now replace the ``addOutput`` function of the BoxInfo tool with the following code. With this change, the application will depict information about the box that has been drawn.
 
-   .. code-block:: javascript
-
-      boxTool: null,
-
-      tplText: 'Area: {area}, length: {length}',
-
-      title: "Box info",
-
-      addOutput: function(config) {
-        if (this.boxTool !== null) {
-          var layer = this.target.tools[this.boxTool].boxLayer;
-          layer.events.on({
-            featureadded: this.addFeature,
-            scope: this
-          });
-          this.tpl = new Ext.Template(this.tplText);
-        }
-        return myapp.plugins.BoxInfo.superclass.addOutput.call(this, Ext.apply({
-          title: this.title,
-          autoScroll: true
-        }, config));
-      },
-
-      addFeature: function(evt) {
-        var geom = evt.feature.geometry,
-          output = this.output[0];
-        output.add({html: this.tpl.applyTemplate({area: geom.getArea(), length: geom.getLength()})});        
-        output.doLayout();
-      }
+   .. literalinclude:: script/output_BoxInfo.js
+      :language: javascript
+      :lines: 7-33
 
    In the above code, the ``boxTool`` string identifier finds the boxInfo tool so that it can get a reference to its ``boxLayer`` property. When a feature gets added to the ``boxLayer``, the code adds a panel to the output container. The content is generated using an ``Ext.Template``.
 
@@ -131,12 +82,15 @@ Adding dynamic content
 
 Image showing boxes and the panel at bottom.
 
-   .. todo:: Just length? Not length and width? Which dimension is "length"?  Seems to shift.
+   .. todo:: Just length? Not length and width? Which dimension is "length"? Seems like it's just whichever side is longest.
 
-Bonus: Improving output
+Download the :download:`BoxInfo.js <script/output_BoxInfo.js>` and :download:`app.js <script/output_app.js>` files created in this section.
+
+
+Bonus: Adjusting output
 -----------------------
 
-#. To adjust the output, use the ``tplText`` parameter and the ``outputConfig`` section of the tool in :file:`src/app/app.js`. For example, the following code will display only the area and turn off autoscrolling,
+#. To adjust the output, use the ``tplText`` parameter and the ``outputConfig`` section of the tool in :file:`src/app/app.js`. For example, the following code will display only the area and turn off autoscrolling:
 
    .. code-block:: javascript
 
@@ -155,6 +109,6 @@ Bonus: Improving output
 
       *Box info showing alternate output*
 
-   .. todo:: autoScroll: false? No length? "My title"? This almost seems less improved. Shouldn't we switch these examples?
+   .. todo:: autoScroll: false? No length? "My title"? This seems less improved than the previous tplText output. Tempted to remove/alter this example, or at least the screenshot.
 
 
