@@ -60,9 +60,11 @@ Creating basic plugin
 
       Ext.preg(myapp.plugins.DrawBox.prototype.ptype, myapp.plugins.DrawBox);
 
-   This code wraps an ``OpenLayers.Control.DrawFeature`` that will allow the user to draw rectangular geometries on the map.
+   This code wraps an `OpenLayers.Control.DrawFeature <http://dev.openlayers.org/docs/files/OpenLayers/Control/DrawFeature-js.html>`_ that will allow the user to draw rectangular geometries on the map.
 
-   .. todo:: How would someone know that? How would someone extrapolate this information to making their own plugin?
+   .. todo:: What specific part of the code is the part that wraps the DrawFeature action?
+
+   .. note:: Read more about the `Tool.js plugin <../../sdk-api/lib/plugins/Tool.html>`_ in the SDK API.
 
    As for user interaction, this code will only add a button to the toolbar with the text "Draw box". This button will not have any any functionality.
 
@@ -102,9 +104,7 @@ Connect plugin to application
 Adding functionality
 --------------------
 
-#. This button as currently designed has no effect, so the next step is to add some functionality to it.
-
-   .. todo:: Does adding functionality not count as output? Why not?
+#. This button as currently designed does nothing, so the next step is to add some functionality to it.
 
    Open up :file:`DrawBox.js` for editing again. Find the ``addActions`` function and alter it to look like the following:
 
@@ -149,9 +149,7 @@ Adding functionality
         }
       }
 
-   .. todo:: Is "raising" the correct word here? How exactly is this code doing the raising?
-
-   .. todo:: It doesn't seem very likely that a new layer would be added at the same time as drawing a box. Why go into detail on this specific edge case?
+   .. todo:: Is "raising" the correct word here? How/where exactly is this code doing the raising?
 
 #. Since these functions depend on more classes from OpenLayers and GeoExt, more dependencies are needed. Add the following to the :file:`src/app/app.js`:
 

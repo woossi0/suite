@@ -77,8 +77,6 @@ Adding dynamic content
 
 #. To connect this panel to dynamic content, it needs a reference to the vector ``boxLayer`` that is created by the ``DrawBox`` tool. This is done by attaching an ``id`` to the DrawBox tool in :file:`app.js`. The BoxInfo tool will then reference this ``id`` value. Add the ``id`` to :file:`app.js` after ``ptype: "myapp_drawbox"`` and before ``actiontarget: "map.tbar"``. 
 
-   .. todo:: Unhappy with calling things "BoxInfo tool" etc. Camel case, monospace, tool versus plugin, what is this really referring to?
-
    .. code-block:: javascript
 
       id: "drawbox",
@@ -121,9 +119,9 @@ Adding dynamic content
         output.doLayout();
       }
 
-   In the above code, the ``boxTool`` string identifier finds the box tool (UGH) so that it can get a reference to its ``boxLayer`` property. When a feature gets added to the ``boxLayer``, the code adds a panel to the output container. The content is generated using an ``Ext.Template``.
+   In the above code, the ``boxTool`` string identifier finds the boxInfo tool so that it can get a reference to its ``boxLayer`` property. When a feature gets added to the ``boxLayer``, the code adds a panel to the output container. The content is generated using an ``Ext.Template``.
 
-   .. todo:: Way too much happening all at the same time here. Can this be broken up into discrete steps?
+   .. todo:: I wish this could be broken down into more discrete steps.
 
 #. Reload the application as before. Draw a few boxes on the map and verify that container at the bottom will display information about the boxes:
 
@@ -133,7 +131,7 @@ Adding dynamic content
 
 Image showing boxes and the panel at bottom.
 
-   .. todo:: Just length? Not length and width? Which dimension is "length"?
+   .. todo:: Just length? Not length and width? Which dimension is "length"?  Seems to shift.
 
 Bonus: Improving output
 -----------------------
@@ -157,6 +155,6 @@ Bonus: Improving output
 
       *Box info showing alternate output*
 
-   .. todo:: autoScroll: false? No length? "My title"? This isn't much improved.
+   .. todo:: autoScroll: false? No length? "My title"? This almost seems less improved. Shouldn't we switch these examples?
 
 

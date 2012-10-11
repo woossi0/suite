@@ -58,6 +58,6 @@ This final example will modify the DrawBox control created previously to also di
 
 .. todo:: image showing this
 
-.. todo:: in what units and why?
+.. todo:: What units is this info in? How would we know this?
 
-.. todo:: include complete scripts? and pull code from it?
+.. todo:: Once code is verified, include complete scripts as separate files and pull code in from them.
