@@ -46,7 +46,7 @@ copyright = u'2011 OpenGeo'
 # other places throughout the built documents.
 #
 # Find gwc version from pom.xml
-pom = minidom.parse("../../pom.xml")
+pom = minidom.parse("%s/../../pom.xml" % os.path.split(os.path.realpath(__file__))[0])
 gwc_ver = pom.getElementsByTagName('gwc.version')[0].firstChild.nodeValue
 # The short X.Y version.
 version = gwc_ver.split("-")[0]
