@@ -1,0 +1,14 @@
+# Maven artifacts
+target/
+
+# We should consider building all of the items below in a different way
+# so they don't need to be explicitly ignored here.
+/docs/install/linux/source/centos/
+/docs/install/linux/source/details.rst
+/docs/install/linux/source/index.rst
+/docs/install/linux/source/ubuntu/
+/docs/install/mac/source/README-mac.rst
+/docs/install/mac/source/img/
+/docs/install/windows/source/README-windows.rst
+/docs/install/windows/source/img/
+/geoserver/web/app/src/main/

@@ -73,7 +73,7 @@ For more information, please see the **User Manual**, which is available from th
 
    .. code-block:: console
 
-      file:///opt/opengeo/suite/webapps/opengeo-docs/usermanual/index.html
+      file:///opt/opengeo/suite/webapps/opengeo-docs/index.html
 
 Extensions
 ~~~~~~~~~~

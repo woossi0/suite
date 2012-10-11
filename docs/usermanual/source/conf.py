@@ -101,6 +101,7 @@ pygments_style = 'sphinx'
 # Sphinx are currently 'default' and 'sphinxdoc'.
 html_theme = 'opengeo'
 
+
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
@@ -261,3 +262,8 @@ latex_preamble = """
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'http://docs.python.org/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/geoexplorer/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/geoserver/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/geowebcache/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/postgis/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/sdk-api/': None}

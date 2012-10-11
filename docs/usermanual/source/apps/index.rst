@@ -13,4 +13,4 @@ This section discuss how to build complete web mapping applications from scratch
    clientsdk
    clientsdkintro/index
    remotedeploy
-
+   plugincreate/index
