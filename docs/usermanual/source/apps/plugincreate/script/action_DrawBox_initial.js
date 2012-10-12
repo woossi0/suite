@@ -1,6 +1,6 @@
 /**
-* @requires plugins/Tool.js
-*/
+ * @require plugins/Tool.js
+ */
 
 Ext.ns("myapp.plugins");
 

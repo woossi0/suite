@@ -14,6 +14,10 @@ Three examples will be shown:
 
 These examples will be based around the case of a user drawing boxes on the map and getting information about those boxes.
 
+.. figure:: img/action_drawingboxes.png
+
+   *Drawing boxes with a custom SDK plugin*
+
 .. toctree::
    :maxdepth: 2
 

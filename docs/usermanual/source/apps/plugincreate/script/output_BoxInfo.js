@@ -6,7 +6,7 @@ myapp.plugins.BoxInfo = Ext.extend(gxp.plugins.Tool, {
 
   boxTool: null,
 
-  tplText: 'Area: {area}, length: {length}',
+  tplText: 'Area: {area}, Perimeter: {length}',
 
   title: "Box info",
 

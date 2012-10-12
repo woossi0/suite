@@ -5,8 +5,6 @@ Plugin with output only
 
 This example will create a new plugin that will display the length and area of all the boxes that are drawn on the map. 
 
-.. todo:: Technically, doesn't this plugin have an output?
-
 Creating a basic panel
 ----------------------
 
@@ -68,47 +66,35 @@ Adding dynamic content
 
    .. literalinclude:: script/output_BoxInfo.js
       :language: javascript
-      :lines: 7-33
+      :lines: 7-26
 
-   In the above code, the ``boxTool`` string identifier finds the boxInfo tool so that it can get a reference to its ``boxLayer`` property. When a feature gets added to the ``boxLayer``, the code adds a panel to the output container. The content is generated using an ``Ext.Template``.
+   In the above code, the ``boxTool`` string identifier finds the DrawBox tool so that it can get a reference to its ``boxLayer`` property. 
 
-   .. todo:: I wish this could be broken down into more discrete steps.
+#. Add the following code right beneath what was added in the previous step:
+
+   .. literalinclude:: script/output_BoxInfo.js
+      :language: javascript
+      :lines: 28-33
+
+   When a feature gets added to the ``boxLayer``, the code adds a panel to the output container. The content is generated using an ``Ext.Template``.
 
 #. Reload the application as before. Draw a few boxes on the map and verify that container at the bottom will display information about the boxes:
 
    .. figure:: img/output_boxinfo_arealength.png
 
-      *Box info showing area and length*
+      *Box info showing area and perimeter*
 
-Image showing boxes and the panel at bottom.
+   .. note:: To adjust the output, use the ``tplText`` parameter and the ``outputConfig`` section of the tool in :file:`src/app/app.js`. For example, the following code would display only the area and turn off autoscrolling:
 
-   .. todo:: Just length? Not length and width? Which dimension is "length"? Seems like it's just whichever side is longest.
+      .. code-block:: javascript
+
+         ptype: "myapp_boxinfo",
+         boxTool: "drawbox",
+         tplText: "AREA: {area}",
+         outputTarget: "southpanel",
+         outputConfig: {
+           title: "Box info",
+           autoScroll: false
+         }
 
 Download the :download:`BoxInfo.js <script/output_BoxInfo.js>` and :download:`app.js <script/output_app.js>` files created in this section.
-
-
-Bonus: Adjusting output
------------------------
-
-#. To adjust the output, use the ``tplText`` parameter and the ``outputConfig`` section of the tool in :file:`src/app/app.js`. For example, the following code will display only the area and turn off autoscrolling:
-
-   .. code-block:: javascript
-
-      {
-        ptype: "myapp_boxinfo",
-        boxTool: "drawbox",
-        tplText: "AREA: {area}",
-        outputTarget: "southpanel",
-        outputConfig: {
-          title: "My title",
-          autoScroll: false
-        }
-      }
-
-   .. todo:: img/output_boxinfo_alt.png
-
-      *Box info showing alternate output*
-
-   .. todo:: autoScroll: false? No length? "My title"? This seems less improved than the previous tplText output. Tempted to remove/alter this example, or at least the screenshot.
-
-
