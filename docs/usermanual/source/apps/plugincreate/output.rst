@@ -1,0 +1,114 @@
+.. _apps.plugincreate.output:
+
+Plugin with output only
+=======================
+
+This example will create a new plugin that will display the length and area of all the boxes that are drawn on the map. 
+
+.. todo:: Technically, doesn't this plugin have an output?
+
+Creating a basic panel
+----------------------
+
+#. The first step is to create a plugin that outputs some simple text (unrelated to the box length). Create a file called :file:`BoxInfo.js` in the :file:`plugins` directory.
+
+#. Open this file in a text editor and add the following:
+
+   .. literalinclude:: script/output_BoxInfo_initial.js
+      :language: javascript
+
+  This plugin will only implement the ``addOutput`` function to create a panel with a title and some content.
+
+Connecting to the application
+-----------------------------
+
+#. Connect this new plugin to the application. Open up :file:`src/app/app.js` and add the dependency in the top of the file:
+
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 22
+
+#. Also, add a container that can hold the output, this is done in the ``items`` section of the ``portalConfig``:
+
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 45-51
+
+#. In the ``tools`` section, add an entry for the "boxinfo" tool and direct its output to the south panel:
+
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 83-84,86-87
+
+#. Restart the SDK and reload the application in the browser to see the results:
+
+   .. figure:: img/output_boxinfo.png
+
+      *Box info*
+
+
+Adding dynamic content
+----------------------
+
+#. To connect this panel to dynamic content, it needs a reference to the vector ``boxLayer`` that is created by the ``DrawBox`` tool. This is done by attaching an ``id`` to the DrawBox tool in :file:`app.js`. The BoxInfo tool will then reference this ``id`` value. Add the ``id`` to :file:`app.js` after ``ptype: "myapp_drawbox"`` and before ``actiontarget: "map.tbar"``. 
+
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 79-83
+      :emphasize-lines: 81
+
+#. Add the reference to the boxinfo config, between ``ptype: "myapp_boxinfo"`` and ``outputTarget: "southpanel"``:
+
+   .. literalinclude:: script/output_app.js
+      :language: javascript
+      :lines: 83-87
+      :emphasize-lines: 85
+
+#. Now replace the ``addOutput`` function of the BoxInfo tool with the following code. With this change, the application will depict information about the box that has been drawn.
+
+   .. literalinclude:: script/output_BoxInfo.js
+      :language: javascript
+      :lines: 7-33
+
+   In the above code, the ``boxTool`` string identifier finds the boxInfo tool so that it can get a reference to its ``boxLayer`` property. When a feature gets added to the ``boxLayer``, the code adds a panel to the output container. The content is generated using an ``Ext.Template``.
+
+   .. todo:: I wish this could be broken down into more discrete steps.
+
+#. Reload the application as before. Draw a few boxes on the map and verify that container at the bottom will display information about the boxes:
+
+   .. figure:: img/output_boxinfo_arealength.png
+
+      *Box info showing area and length*
+
+Image showing boxes and the panel at bottom.
+
+   .. todo:: Just length? Not length and width? Which dimension is "length"? Seems like it's just whichever side is longest.
+
+Download the :download:`BoxInfo.js <script/output_BoxInfo.js>` and :download:`app.js <script/output_app.js>` files created in this section.
+
+
+Bonus: Adjusting output
+-----------------------
+
+#. To adjust the output, use the ``tplText`` parameter and the ``outputConfig`` section of the tool in :file:`src/app/app.js`. For example, the following code will display only the area and turn off autoscrolling:
+
+   .. code-block:: javascript
+
+      {
+        ptype: "myapp_boxinfo",
+        boxTool: "drawbox",
+        tplText: "AREA: {area}",
+        outputTarget: "southpanel",
+        outputConfig: {
+          title: "My title",
+          autoScroll: false
+        }
+      }
+
+   .. todo:: img/output_boxinfo_alt.png
+
+      *Box info showing alternate output*
+
+   .. todo:: autoScroll: false? No length? "My title"? This seems less improved than the previous tplText output. Tempted to remove/alter this example, or at least the screenshot.
+
+

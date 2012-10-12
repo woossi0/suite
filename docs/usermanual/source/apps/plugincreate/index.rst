@@ -4,18 +4,15 @@ Creating application plugins for the Client SDK
 ===============================================
 
 
-This tutorial will show how to add additional functionality to applications built through the OpenGeo Suite SDK, in the form of **plugins**.  Plugins (also known as tools) can have actions and/or output. Three examples will be shown:
+This tutorial will show how to add additional functionality to applications built through the :ref:`OpenGeo Suite SDK <apps.sdk.client.dev>`, in the form of **plugins**.  Plugins (also known as tools) can have actions and/or output.  An action refers to a button or a menu item, while an output refers to something visible on the screen like a popup or a panel.
 
-* Plugin with only an action, no output
-* Plugin with only an output, no action
+Three examples will be shown:
+
+* Plugin with an action
+* Plugin with an output
 * Plugin with a combination of action and output
- 
-These examples will be based around the case of a user drawing a box on the map and getting information about that box.
 
-For more information on the OpenGeo Suite SDK, please see the section on :ref:`apps.sdk.client.dev`.
-
-.. todo:: What are the different types of actions or outputs?
-
+These examples will be based around the case of a user drawing boxes on the map and getting information about those boxes.
 
 .. toctree::
    :maxdepth: 2

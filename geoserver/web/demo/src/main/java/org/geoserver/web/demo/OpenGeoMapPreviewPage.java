@@ -100,6 +100,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                     link.getMarkupId();
                     
                     WebMarkupContainer selectControl = new WebMarkupContainer("selectControl");
+                    selectControl.setOutputMarkupId(true);
                     RepeatingView group = new RepeatingView("group");
                     WebMarkupContainer groupContainer = new WebMarkupContainer(group.newChildId());
                     groupContainer.add(new SimpleAttributeModifier("label", "Applications"));
@@ -125,7 +126,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
                     }
                     
                     IBehavior linkUpdater = new SimpleAttributeModifier("onchange",
-                        "void (arguments[0].target.value && (document.getElementById('" + link.getMarkupId() + "').href = arguments[0].target.value))");
+                        "void (document.getElementById('" + selectControl.getMarkupId() + "').value && (document.getElementById('" + link.getMarkupId() + "').href = arguments[0].target.value))");
 
                     selectControl.add(linkUpdater);
                     selectControl.add(group);
