@@ -3,12 +3,12 @@
 Plugin with output only
 =======================
 
-This example will create a new plugin that will display the length and area of all the boxes that are drawn on the map. 
+This example will create a new plugin that will display the perimeter and area of all the boxes that are drawn on the map. 
 
 Creating a basic panel
 ----------------------
 
-#. The first step is to create a plugin that outputs some simple text (unrelated to the box length). Create a file called :file:`BoxInfo.js` in the :file:`plugins` directory.
+#. The first step is to create a plugin that outputs some static text. Create a file called :file:`BoxInfo.js` in the :file:`plugins` directory.
 
 #. Open this file in a text editor and add the following:
 
@@ -80,7 +80,7 @@ Adding dynamic content
 
 #. Reload the application as before. Draw a few boxes on the map and verify that container at the bottom will display information about the boxes:
 
-   .. figure:: img/output_boxinfo_arealength.png
+   .. figure:: img/output_boxinfo_area.png
 
       *Box info showing area and perimeter*
 

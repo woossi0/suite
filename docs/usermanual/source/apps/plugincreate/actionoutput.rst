@@ -39,5 +39,5 @@ This final example will modify the DrawBox control created previously to also di
 
       *Popup showing area of drawn box*
 
-Download the :download:`DrawBox.js <script/actionoutput_DrawBox.js>` and :download:`app.js <script/actionoutput_app.js>` files created in this section.  Also, download :download:`BoxInfo.js <script/output_BoxInfo.js>` from the previous section to have all the files needed to recreate this application.
+Download the :download:`DrawBox.js <script/actionoutput_DrawBox.js>` and :download:`app.js <script/actionoutput_app.js>` files created in this section. Also, download :download:`BoxInfo.js <script/output_BoxInfo.js>` from the previous section to have all the files needed to recreate this application.
 
