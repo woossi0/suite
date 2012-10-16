@@ -1,7 +1,7 @@
 /**
-* @requires plugins/Tool.js
-* @requires GeoExt/widgets/Popup.js
-*/
+ * @require plugins/Tool.js
+ * @require GeoExt/widgets/Popup.js
+ */
 
 Ext.ns("myapp.plugins");
 

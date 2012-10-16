@@ -13,12 +13,12 @@
  * @require plugins/RemoveLayer.js
  * @require RowExpander.js
  * @require plugins/DrawBox.js
- * @requires GeoExt/widgets/Action.js
- * @requires OpenLayers/Control/DrawFeature.js
- * @requires OpenLayers/Handler/RegularPolygon.js
- * @requires OpenLayers/Layer/Vector.js
- * @requires OpenLayers/Renderer/SVG.js
- * @requires OpenLayers/Renderer/VML.js
+ * @require GeoExt/widgets/Action.js
+ * @require OpenLayers/Control/DrawFeature.js
+ * @require OpenLayers/Handler/RegularPolygon.js
+ * @require OpenLayers/Layer/Vector.js
+ * @require OpenLayers/Renderer/SVG.js
+ * @require OpenLayers/Renderer/VML.js
  */
 
 var app = new gxp.Viewer({

@@ -41,17 +41,11 @@ Creating basic plugin
    .. literalinclude:: script/action_DrawBox_initial.js
       :language: javascript
 
-   This code wraps an `OpenLayers.Control.DrawFeature <http://dev.openlayers.org/docs/files/OpenLayers/Control/DrawFeature-js.html>`_ that will allow the user to draw rectangular geometries on the map.
-
-   .. todo:: What specific part of the code is the part that wraps the DrawFeature action?
-
    .. note:: Read more about the `Tool.js plugin <../../sdk-api/lib/plugins/Tool.html>`_ in the SDK API.
 
    As for user interaction, this code will only add a button to the toolbar with the text "Draw box". This button will not have any any functionality.
 
-   .. note:: This example sets a namespace for the plugin called "myapp", but this can be changed, so long as it is consistent throughout.
-
-   .. todo:: What about the ptype? If you change the namespace, does the ptype need to change to namespace_drawbox?
+   .. note:: This example sets a namespace for the plugin called "myapp", but this can be changed, so long as it is consistent throughout. In addition, it is recommended to include a prefix on the name of the ptype that matches the namespace, but this is not required.
 
 
 Connect plugin to application
@@ -93,25 +87,23 @@ Adding functionality
       :language: javascript
       :lines: 11-35
 
-   This code creates a vector layer which will keep hold of the boxes that are being drawn by the ``OpenLayers.DrawFeature`` control. The ``handlerOptions`` specified ensure that only rectangular geometries can be drawn.
+   This code wraps an `OpenLayers.Control.DrawFeature <http://dev.openlayers.org/docs/files/OpenLayers/Control/DrawFeature-js.html>`_ that will allow the user to draw rectangular geometries on the map. It also creates a vector layer which will keep hold of the boxes that are being drawn by the ``OpenLayers.Control.DrawFeature`` control. The ``handlerOptions`` specified ensure that only rectangular geometries can be drawn.
 
-#. The drawn layer should remain visible, even when new layers get added to the map. To accomplish this, the ``raiseLayer`` function is called as a listener for the ``addlayer`` event on the map. This function responds by raising the layer. Add the following code to the :file:`DrawBox.js`:
+#. The drawn layer should remain visible, even when new layers get added to the map. To accomplish this, the ``raiseLayer`` function is called as a listener for the ``addlayer`` event on the map. This function raises the layer by calling setLayerIndex and setting the layer index to the highest number (the number of layers in the map). In this way, it will ensure that this layer is on top (drawn last).
+
+Add the following code to the :file:`DrawBox.js`:
 
    .. literalinclude:: script/action_DrawBox.js
       :language: javascript
       :lines: 37-42
 
-   .. todo:: Is "raising" the correct word here? How/where exactly is this code doing the raising?
-
-#. Since these functions depend on more classes from OpenLayers and GeoExt, more dependencies are needed. Add the following to the :file:`src/app/app.js`:
+#. Since these functions depend on more classes from OpenLayers and GeoExt, more dependencies are needed. Add the following to the top of :file:`src/app/app.js`:
 
    .. literalinclude:: script/action_app.js
       :language: javascript
       :lines: 16-21
 
-   .. todo:: Why exactly are these dependencies needed? How would one know that they are needed?
-
-#. Restart the SDK to and reload the application in the browser to see the code in effect.
+#. Restart the SDK and reload the application in the browser to see the code in effect.
 
    .. figure:: img/action_drawingboxes.png
 

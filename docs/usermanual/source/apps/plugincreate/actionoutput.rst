@@ -33,13 +33,11 @@ This final example will modify the DrawBox control created previously to also di
       :lines: 79-84
       :emphasize-lines: 82
 
-#. Restart the SDK and reload the application in the browser. Test the functionality by drawing boxes. After drawing a box there will now be a popup at the feature's location containing the area of the box drawn:
+#. Restart the SDK and reload the application in the browser. Test the functionality by drawing boxes. After drawing a box there will now be a popup at the feature's location containing the area of the box drawn. The units are in meters, as the geometry is using Google Web Mercator projection.
 
-.. todo:: image showing this
+   .. figure:: img/actionoutput_popup.png
 
-.. todo:: What units is this info in? How would we know this?
+      *Popup showing area of drawn box*
 
-.. todo:: Once code is verified, include complete scripts as separate files and pull code in from them.
-
-Download the :download:`DrawBox.js <script/actionoutput_DrawBox.js>` and :download:`app.js <script/actionoutput_app.js>` files created in this section.  Also, download :download:`BoxInfo.js <script/output_BoxInfo.js>` from the previous section to have all the files needed to recreate this application.
+Download the :download:`DrawBox.js <script/actionoutput_DrawBox.js>` and :download:`app.js <script/actionoutput_app.js>` files created in this section. Also, download :download:`BoxInfo.js <script/output_BoxInfo.js>` from the previous section to have all the files needed to recreate this application.
 

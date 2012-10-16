@@ -285,6 +285,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
             items: [{
                 fieldLabel: this.userFieldText,
                 name: "username",
+                width: 137,
                 allowBlank: false,
                 listeners: {
                     render: function() {
@@ -294,6 +295,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
             }, {
                 fieldLabel: this.passwordFieldText,
                 name: "password",
+                width: 137,
                 inputType: "password",
                 allowBlank: false
             }],
