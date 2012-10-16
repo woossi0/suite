@@ -6,6 +6,12 @@ call ant -version >nul 2>nul || (
   exit /b 1
 )
 
+:: Determine if there are "extra" flags
+call :lastarg %*
+:: If the second to last argument starts with a -, dump to usage
+if "%PREV_ARG:~0,1%"=="-" goto Usage
+
+
 set COMMAND=
 set APP_PATH=
 set ANT_ARGS=
@@ -26,6 +32,14 @@ if "%~1"=="create" goto Create
 if "%~1"=="debug" goto Debug
 if "%~1"=="deploy" goto Deploy
 goto Usage
+
+:lastarg
+:: Figures out what the last and second to last arguments are
+set "PREV_ARG=%LAST_ARG%"
+set "LAST_ARG=%~1"
+shift
+if not "%~1"=="" goto lastarg
+
 
 :Version
 set COMMAND="version"
