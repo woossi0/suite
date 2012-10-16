@@ -6,12 +6,6 @@ call ant -version >nul 2>nul || (
   exit /b 1
 )
 
-:: Determine if there are "extra" flags
-call :lastarg %*
-:: If the second to last argument starts with a -, dump to usage
-if "%PREV_ARG:~0,1%"=="-" goto Usage
-
-
 set COMMAND=
 set APP_PATH=
 set ANT_ARGS=
@@ -39,7 +33,7 @@ set "PREV_ARG=%LAST_ARG%"
 set "LAST_ARG=%~1"
 shift
 if not "%~1"=="" goto lastarg
-
+goto :eof
 
 :Version
 set COMMAND="version"
@@ -60,6 +54,18 @@ goto Run
 if "x%~2"=="x" goto Usage
 if "%~2"=="-h" goto UsageDebug
 if "%~2"=="--help" goto UsageDebug
+
+:: Determine if there are "extra" flags
+call :lastarg %*
+:: If the second to last or last argument starts with a -, dump to usage
+if "%PREV_ARG:~0,1%"=="-" (
+  echo Invalid argument: %PREV_ARG%
+  goto UsageDebug
+)
+if "%LAST_ARG:~0,1%"=="-" (
+  echo Invalid argument: %LAST_ARG%
+  goto UsageDebug
+)
 set COMMAND="%~1"
 shift
 
@@ -75,6 +81,8 @@ goto DebugFlagLoop
 :: Sets all of the command flags (ant arguments)
 :: And whatever remains should be the app-path
 
+set ARG=%~1
+
 :: Checking for a valid flag
 rem TODO What about bad flags?
 set flag=0
@@ -83,11 +91,12 @@ if "%~1"=="--local-port" set flag=l
 if "%~1"=="-g" set flag=g
 if "%~1"=="--geoserver" set flag=g
 if "%flag%"=="0" (
+  :: Make sure we don't have an invalid flag
+  if "%ARG:~0,1%"=="-" (
+    echo Invalid Argument: %ARG%
+    goto UsageDebug
+  )
   :: Must be one arg remaining, otherwise fail
-  rem TODO Edge case - Any valid flags after app-path are ignored
-  rem but don't cause an error:
-  rem Ex:  -p 9090 myapp -g http://geoserver 
-  rem TODO The logic below seems exactly backwards, but works.
   if not "x%~1"=="%~1" (
     if not "x%~2"=="%~2" (
       goto DebugPath
@@ -126,12 +135,25 @@ goto Run
 if "x%~2"=="x" goto Usage
 if "%~2"=="-h" goto UsageDeploy
 if "%~2"=="--help" goto UsageDeploy
+
+:: Determine if there are "extra" flags
+call :lastarg %*
+:: If the second to last or last argument starts with a -, dump to usage
+if "%PREV_ARG:~0,1%"=="-" (
+  echo Invalid argument: %PREV_ARG%
+  goto UsageDeploy
+)
+if "%LAST_ARG:~0,1%"=="-" (
+  echo Invalid argument: %LAST_ARG%
+  goto UsageDeploy
+)
+
 set COMMAND="%~1"
 shift
 
 
 :DeployFlagLoop
-rem TODO: Same issues as in DebugFlagLoop
+set ARG=%~1
 
 :: Checking for a valid flag
 set flag=0
@@ -146,6 +168,11 @@ if "%~1"=="--password" set flag=p
 if "%~1"=="-c" set flag=c
 if "%~1"=="--container" set flag=c
 if "%flag%"=="0" (
+  :: Make sure we don't have an invalid flag
+  if "%ARG:~0,1%"=="-" (
+    echo Invalid Argument: %ARG%
+    goto UsageDeploy
+  )
   :: Must be one arg remaining, otherwise fail
   if not "x%~1"=="%~1" (
     if not "x%~2"=="%~2" (
