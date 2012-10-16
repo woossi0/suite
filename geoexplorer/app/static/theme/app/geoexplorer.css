@@ -212,6 +212,17 @@ body {
     margin: 1em;
 }
 
+/* Color Picker tweaks */
+div.x-cp-coloro-container {
+    margin: 4px 0 5px 0;
+}
+.x-cp-rgb-container div.x-panel-mc {
+    padding-top: 0;
+}
+.x-cp-rgb-container .x-form-item label.x-form-item-label {
+    padding-top: 1px;
+}
+
 .gx-info-panel h2 {
     margin-top: 1em;
 }
