@@ -9,5 +9,10 @@ var auth = require("../auth");
 
 app.get("/", function(request) {
     var status = auth.getStatus(request);
-    return app.render("composer.html", {status: status || 404});
+    var response = app.render("composer.html", {
+        status: status || 404
+    });
+    // Reset GeoServer session, because we set JSESSIONID on '/' rather than '/geoserver'
+    response.headers['Set-Cookie'] = "JSESSIONID=; expires=Thu, 01 Jan 1970 00:00:00 GMT; Path=/geoserver";
+    return response;
 });
