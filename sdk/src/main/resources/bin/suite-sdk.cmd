@@ -97,12 +97,10 @@ if "%flag%"=="0" (
     goto UsageDebug
   )
   :: Must be one arg remaining, otherwise fail
-  if not "x%~1"=="%~1" (
-    if not "x%~2"=="%~2" (
-      goto DebugPath
-    ) else (
-      goto Usage
-    )
+  if "%~1"=="%LAST_ARG%" (
+    goto DebugPath
+  ) else (
+    goto UsageDebug
   )
 )
 
@@ -174,12 +172,10 @@ if "%flag%"=="0" (
     goto UsageDeploy
   )
   :: Must be one arg remaining, otherwise fail
-  if not "x%~1"=="%~1" (
-    if not "x%~2"=="%~2" (
-      goto DeployPath
-    ) else (
-      goto Usage
-    )
+  if "%~1"=="%LAST_ARG%" (
+    goto DebugPath
+  ) else (
+    goto UsageDeploy
   )
 )
 
