@@ -247,12 +247,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
         this.clearCookieValue("JSESSIONID");
         this.clearCookieValue(this.cookieParamName);
         this.setAuthorizedRoles([]);
-        Ext.getCmp('paneltbar').items.each(function(tool) {
-            if (tool.needsAuthorization === true) {
-                tool.disable();
-            }
-        });
-        this.showLogin();
+        window.location.reload();
     },
 
     /** private: method[authenticate]
