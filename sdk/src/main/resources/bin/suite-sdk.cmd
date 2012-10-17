@@ -173,7 +173,7 @@ if "%flag%"=="0" (
   )
   :: Must be one arg remaining, otherwise fail
   if "%~1"=="%LAST_ARG%" (
-    goto DebugPath
+    goto DeployPath
   ) else (
     goto UsageDeploy
   )
