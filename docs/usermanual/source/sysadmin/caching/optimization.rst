@@ -3,7 +3,7 @@
 Optimizing tile caches
 ======================
 
-.. warning:: Document status: **Needs Technical Review (MP)**
+.. warning:: Document status: **Draft**
 
 .. todo:: Are there other optimizations to add? Split these into individual sections?
 
@@ -28,9 +28,10 @@ For example, here is WMS output for the ``usa:states`` layer with ``format=image
 
      *Actual output in PNG8 format: 14 kB*
 
-:: http://localhost:8080/geoserver/wms/reflect?layers=usa:states&format=image/png
+:: 
 
-:: http://localhost:8080/geoserver/wms/reflect?layers=usa:states&format=image/png8
+   http://localhost:8080/geoserver/wms/reflect?layers=usa:states&format=image/png
+   http://localhost:8080/geoserver/wms/reflect?layers=usa:states&format=image/png8
 
 The sizes are 31,098 bytes and 13,653 bytes, respectively. The PNG8 graphic is 44%, or just over two-fifths the size of the PNG graphic.
 
