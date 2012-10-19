@@ -11,11 +11,12 @@ This section will discuss the many considerations to using tile caching in a ser
 .. toctree::
    :maxdepth: 2
 
+   optimization
    seeding/index
 
 ::
    georssexpire
-   optimization
+
 
 
 ::
