@@ -186,11 +186,11 @@ Uninstall OpenGeo Suite 2.x
 
 .. note:: If you are running CentOS/RHEL 6 or above you may skip this step.
 
-#. Due to conflicts with the way that CentOS 5 manages postgresql packages, it is necessary to active remove the entire OpenGeo Suite installation before continuing with the upgrade. The easiest way to remove the entire set of packages for a Suite 2.x installation is to remove the ``postgresql84-libs`` package.
+#. Due to a conflict with CentOS 5 postgreSQL package management, the entire OpenGeo Suite installation must be removed before continuing with the upgrade. The easiest way to remove the postgreSQL packages for a Suite 2.x installation is to remove the ``postgresql84`` package.
 
    .. code-block:: console
 
-      yum remove postgresql84-libs
+      yum remove postgresql84
 
 Install OpenGeo Suite 3.x
 ^^^^^^^^^^^^^^^^^^^^^^^^^

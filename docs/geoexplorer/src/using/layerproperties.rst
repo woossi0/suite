@@ -28,8 +28,8 @@ There are three tabs in the Layer Properties panel:
          - Displays layer metadata
        * - :guilabel:`Display`
          - Options for customizing layer display
-       * - :guilabel:`Styles`
-         - Options for customizing layer style and style rules 
+       * - :guilabel:`Available Styles`
+         - Option for choosing a layer style 
 
 
 .. _geoexplorer.using.layerproperties.about:

@@ -192,7 +192,7 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
         var match = mapUrl.match(/^maps\/(\d+)$/);
         if (match) {
             this.id = Number(match[1]);
-            OpenLayers.Request.GET({
+            Ext.Ajax.request({
                 url: "../" + mapUrl,
                 success: function(request) {
                     var addConfig = Ext.util.JSON.decode(request.responseText);
