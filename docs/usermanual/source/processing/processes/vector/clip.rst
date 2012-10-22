@@ -1,4 +1,4 @@
-.. _processing.processes.clip:
+.. _processing.processes.vector.clip:
 
 Clip
 ====

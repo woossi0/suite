@@ -1,4 +1,4 @@
-.. _processing.processes.simplify:
+.. _processing.processes.vector.simplify:
 
 Simplify
 ========

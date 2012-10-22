@@ -1,4 +1,4 @@
-.. _processing.processes.bufferfc:
+.. _processing.processes.vector.bufferfc:
 
 BufferFeatureCollection
 =======================

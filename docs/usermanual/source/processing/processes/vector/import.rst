@@ -1,4 +1,4 @@
-.. _processing.processes.import:
+.. _processing.processes.vector.import:
 
 Import
 ======

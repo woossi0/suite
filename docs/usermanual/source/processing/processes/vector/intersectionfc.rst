@@ -1,4 +1,4 @@
-.. _processing.processes.intersectionfc:
+.. _processing.processes.vector.intersectionfc:
 
 IntersectionFeatureCollection
 =============================

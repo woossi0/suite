@@ -1,4 +1,4 @@
-.. _processing.processes.centroid:
+.. _processing.processes.vector.centroid:
 
 Centroid
 ========

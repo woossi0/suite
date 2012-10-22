@@ -1,4 +1,4 @@
-.. _processing.processes.unionfc:
+.. _processing.processes.vector.unionfc:
 
 UnionFeatureCollection
 ======================
