@@ -70,21 +70,21 @@ Installing OpenGeo Suite Enterprise Edition
       * - System
         - Command
       * - CentOS 5, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/centos/5/i386/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/5/i386/OpenGeoEE.repo``
       * - CentOS 5, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/centos/5/x86_64/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/5/x86_64/OpenGeoEE.repo``
       * - CentOS 6, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/centos/6/i686/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/6/i386/OpenGeoEE.repo``
       * - CentOS 6, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/centos/6/x86_64/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/6/x86_64/OpenGeoEE.repo``
       * - RHEL 5, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/rhel/5/i386/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/5/i386/OpenGeoEE.repo``
       * - RHEL 5, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/rhel/5/x86_64/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/5/x86_64/OpenGeoEE.repo``
       * - RHEL 6, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/rhel/6/i686/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/6/i386/OpenGeoEE.repo``
       * - RHEL 6, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/rhel/6/x86_64/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeoEE.repo``
 
 #. Edit the downloaded :file:`OpenGeoEE.repo` file, filling in your user name and password in place of ``<yourUserName>`` and ``<yourPassword>``.
 
