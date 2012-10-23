@@ -40,9 +40,9 @@ The OpenGeo Suite installation process automatically creates five databases:
 
       *Creating a new database in pgAdmin from template_postgis*
 
-#. Double-click the new database item in the :guilabel:`Object browser` to display the contents. Inside the :guilabel:`public` schema, you will see one PostGIS-specific metadata table: :guilabel:`spatial_ref_sys` (for further information, see the section on :ref:`dataadmin.pgBasics.metatables`).
+#. Double-click the new database item in the :guilabel:`Object browser` to display the contents. Inside the :guilabel:`public` schema, you will see one PostGIS-specific metadata table, :guilabel:`spatial_ref_sys` (for further information, see the section on :ref:`dataadmin.pgBasics.metatables`).
 
-   .. figure:: img/createdb_metatables.png
+   .. figure:: img/postgis_metatables.png
    
       *Spatial metadata tables*
 

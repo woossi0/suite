@@ -196,7 +196,7 @@ You can also add rasters and raster tables directly to the database. A typical w
 	              FROM myRasterTable
 	              WHERE rid IN(3,4)) As foo;
 
-     .. code-block:: sql
+     .. code-block:: console
 
         rid|upperleftx|upperlefty|width|height|scalex|scaley|skewx|skewy|srid|numbands
         ---+----------+-----------+----+-------+-----+------+-----+-----+----+----------
@@ -238,7 +238,7 @@ You can also add rasters and raster tables directly to the database. A typical w
 		           LIMIT 1) As foo;
 
 
-     .. code-block:: sql
+     .. code-block:: console
 
         w_before | w_after | h_before | h_after
         ------ --+-------- +----------+---------

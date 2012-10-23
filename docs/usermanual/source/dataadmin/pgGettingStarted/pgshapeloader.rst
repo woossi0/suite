@@ -101,20 +101,22 @@ Loading data
 
       * - Option
         - Description
-      * - DBF file character encoding
+      * - :guilabel:`DBF file character encoding`
         - Specifies the character encoding of the shapefile's attribute columns. Default is **UTF-8**.
-      * - Preserve case of column names
+      * - :guilabel:`Preserve case of column names`
         - If this option is not selected, all column names will be lower case. Select this option to preserve mixed case.
-      * - Do not create 'bigint' columns
+      * - :guilabel:`Do not create 'bigint' columns`
         - Columns with type 'bigint' will not be created.
-      * - Create spatial index automatically after load
+      * - :guilabel:`Create spatial index automatically after load`
         - Creates a spatial index automatically. Indexing is recommended for improved performance reasons, but if you wish to create the index manually or if you're sure you don't want one, clear the check box.
-      * - Load only attribute (dbf) data
+      * - :guilabel:`Load only attribute (dbf) data`
         - Strips the geometry column from the loading process, leaving just the attribute columns. Default is unselected.
-      * - Load data using COPY rather than INSERT
+      * - :guilabel:`Load data using COPY rather than INSERT`
         - This can sometimes improve the performance of the load process.
-      * - Load into GEOGRAPHY column
+      * - :guilabel:`Load into GEOGRAPHY column`
         - Will load the geospatial data as type GEOGRAPHY instead of the default of GEOMETRY.  Requires lat/lon data (SRID 4326).
+      * - :guilabel:`Generate simple geometries instead of MULTI geometries`
+        - Override the default behavior of importing multipolygons
  
 
    .. note:: If you are unsure about the implications of making further changes, leave the default values as they are and click :guilabel:`OK` to return to the main dialog box.

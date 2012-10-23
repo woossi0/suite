@@ -21,7 +21,7 @@ height: auto; /* override blueprint's screen.css */
 
 strong, 
 em,
-dt, 
+dt, dt 
 b, 
 i {
 	font-family: "Helvetica", "Arial", Lucida Sans Unicode, Lucida Grande, Verdana, sans-serif;
@@ -554,8 +554,13 @@ margin: 0;
 
 
 dl {
+padding-top: 2px;
 margin-bottom: 15px;
 clear: both;
+}
+
+dt {
+margin-left: -12px;
 }
 
 dl dt {

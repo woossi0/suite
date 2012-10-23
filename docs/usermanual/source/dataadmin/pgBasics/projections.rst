@@ -26,10 +26,11 @@ There are two definitions of "26918" (or indeed of any valid SRID value) maintai
 
    SELECT * FROM spatial_ref_sys WHERE srid = 26918;
 
+::
    
-   srid  | auth_name | auth_srid | srtext                         | proj4text           |
-  --------------------+-----------+--------------------------------+---------------------+
-   26928 | EPSG      | 26918     | PROJCS["NAD83 / UTM zone 18N"] | +proj=utm +zone=18  |
+  | srid  | auth_name | auth_srid | srtext                         | proj4text           |
+  --------+-----------+-----------+--------------------------------+---------------------+
+  | 26928 | EPSG      | 26918     | PROJCS["NAD83 / UTM zone 18N"] | +proj=utm +zone=18  |
 
   
 Both the ``srtext`` and the ``proj4text`` columns are important. The ``srtext`` column is used by external programs such as `GeoServer <../../../geoserver>`_, `uDig <http://udig.refractions.net>`_,  and `FME <http://www.safe.com/>`_, and the ``proj4text`` column is used internally by PostGIS.

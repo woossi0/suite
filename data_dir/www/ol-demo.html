@@ -52,7 +52,7 @@
                 units: "m",
                 // this resolution displays the globe in one 256x256 pixel tile
                 maxResolution: 156543.0339,
-                // these are the bounds of the globe in sperical mercator
+                // these are the bounds of the globe in spherical mercator
                 maxExtent: new OpenLayers.Bounds(-20037508, -20037508,
                                                  20037508, 20037508)
             };
@@ -61,7 +61,7 @@
 
             // create Google layer
             var gsat = new OpenLayers.Layer.Google(
-                "Google Sattelite",
+                "Google Satellite",
                 {type: G_SATELLITE_MAP, 'sphericalMercator': true}
             );
 
@@ -73,7 +73,7 @@
 
             // create Yahoo layer
             var yahoosat = new OpenLayers.Layer.Yahoo(
-                "Yahoo Sattelite",
+                "Yahoo Satellite",
                 {'type': YAHOO_MAP_SAT, 'sphericalMercator': true}
             );
 
@@ -128,7 +128,7 @@
     </script>
   </head>
   <body onload="init()">
-    <h3>Geoserver OpenLayers Demo</h3>
+    <h3>GeoServer OpenLayers Demo</h3>
     <div id="map"></div>
     <p>In creating your own OpenLayers application, you can use the bounds shown
     above as your initial extent.  For example, the following code would zoom
