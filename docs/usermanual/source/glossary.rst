@@ -69,6 +69,9 @@ Glossary
    SRID
      Spatial reference ID. This a unique number assigned to a particular "coordinate reference system". The PostGIS table **spatial_ref_sys** contains a large collection of well-known SRID values and text representations of the coordinate reference systems.
 
+   SRS
+     Spatial reference system. See :term:`SRID`.
+
    SVG
      See :term:`Scalable Vector Graphics`.
 
