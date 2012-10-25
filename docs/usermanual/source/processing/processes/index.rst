@@ -12,6 +12,9 @@ Processes are divided up into three categories, based on the type of geospaital 
 
    formats
    vector/index
+
+::
+
    raster/index
    geometry/index
 
