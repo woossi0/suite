@@ -3,7 +3,6 @@
 Supported data formats
 ======================
 
-.. warning:: Document status: **Draft**
 
 Basic support
 -------------
