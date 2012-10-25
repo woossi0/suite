@@ -2,10 +2,10 @@
 
 .. warning:: Document Status: **Ready for copyedit review**
 
-Built-In Demos
-==============
+Sample layers
+=============
 
-The OpenGeo Suite comes with some preloaded sample map layers that may be viewed and restyled as required.
+The OpenGeo Suite comes with some preloaded sample layers that may be viewed and restyled as required.
  
 Medford
 -------
@@ -20,84 +20,125 @@ The city of Medford, in the US state of Oregon, has generously shared some of th
      - Abstract
      - Last Update
      - Type
-   * - :guilabel:`bikelanes`
+   * - :guilabel:`medford:bikelanes`
      - Bike lanes in Jackson County
      - Dec 2008
      - MultiLineString
-   * - :guilabel:`buildings`
+   * - :guilabel:`medford:buildings`
      - Building outlines for Medford
      - Mar 2009
      - MultiPolygon
-   * - :guilabel:`citylimits`
+   * - :guilabel:`medford:citylimits`
      - Local jurisdiction of Medford
      - Jul 2009
      - MultiPolygon
-   * - :guilabel:`firestations`       
+   * - :guilabel:`medford:firestations`       
      - Location of fire stations in Jackson County
      - Apr 2009 
      - Point
-   * - :guilabel:`hospitals`     
+   * - :guilabel:`medford:hospitals`     
      - Location of hospitals in Jackson County
      - Oct 2006 
      - Point
-   * - :guilabel:`hydro`   
+   * - :guilabel:`medford:hydro`   
      - US Fish & Wildlife National Wetlands Inventory of wetland linear features
      - Oct 2000
      - MultiLineString
-   * - :guilabel:`libraries`     
+   * - :guilabel:`medford:libraries`     
      - Location of libraries in Jackson County
      - Aug 2006  
      - Point
-   * - :guilabel:`parks`         
+   * - :guilabel:`medford:parks`         
      - Open parks within Medford
      - Unknown
      - MultiPolygon
-   * - :guilabel:`police`       
+   * - :guilabel:`medford:police`       
      - Location of police stations in Jackson County
      - Apr 2009
      - Point
-   * - :guilabel:`schools`       
+   * - :guilabel:`medford:schools`       
      - Location of Jackson County schools
      - Mar 2009
      - Point
-   * - :guilabel:`stormdrains`        
+   * - :guilabel:`medford:stormdrains`        
      - Storm drains within Medford
      - Unknown
      - MultiLineString 
-   * - :guilabel:`streets`  
+   * - :guilabel:`medford:streets`  
      - All public streets within Jackson County  
      - Sept 2009 
      - MultiLineString 
-   * - :guilabel:`wetlands`             
+   * - :guilabel:`medford:wetlands`             
      - US Fish & Wildlife National Wetlands Inventory of Jackson County
      - Oct 2009 
      - MultiPolygon
-   * - :guilabel:`zoning`             
+   * - :guilabel:`medford:zoning`             
      - City Zones from the Jackson County City Planning    
      - Apr 2008
      - MultiPolygon 
-   * - :guilabel:`taxlots`             
+   * - :guilabel:`medford:taxlots`             
      -    
      - 
      - MultiPolygon
-   * - :guilabel:`elevation`             
+   * - :guilabel:`medford:elevation`             
      - 50 Meters USGS 30 Meter Digital Elevation Model color shaded relief of Medford                
      - Jan 2001 
      - GeoTIFF
 
    
-.. note:: All datasets have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-122.904, 42.231, -123.042, 42.438``. The data is available in the public domain.
+The Medford layers have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-122.904, 42.231, -123.042, 42.438``. The Medford data is available in the public domain.
 
-You can use GeoExplorer to view the sample layers. To open GeoExplorer, click :guilabel:`Launch` next to  :guilabel:`GeoExplorer` on the OpenGeo Suite Dashboard. For more information on adding layers to GeoExplorer, see the :ref:`webmaps.basic` tutorial or the GeoExplorer `reference documentation <../geoexplorer/>`_.
 
 .. figure:: img/medford.png
 
-   *Zoning data for Medford as seen through GeoExplorer*
+   *Medford zoning data viewed in GeoExplorer*
+
+World
+-----
+
+The OpenGeo Suite also includes a number of world layers including: 
+
+.. list-table::
+   :widths: 10 10 7
+   :header-rows: 1
+
+   * - Layer Name
+     - Abstract
+     - Type  
+   * - :guilabel:`world:volcanoes`             
+     - Major volcaones              
+     - Point
+   * - :guilabel:`world:globaldata_temp`             
+     - World temperatures              
+     - Point   
+   * - :guilabel:`world:urbanareas1_1`             
+     - Urban population              
+     - Point
+   * - :guilabel:`world:cities`             
+     - Major cities               
+     - Point
+   * - :guilabel:`world:borders`             
+     - Continental outlines             
+     - MultiPolygon
+
+The world layers have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-179.97, -77.53, 179.58, 71.08``.
 
 
-Base Map
---------
+Base Maps
+---------
 
-Also included is the MapQuest OpenStreetMap base map, a general map of the world. This layer is available by default when GeoExplorer is started. Select :guilabel:`GeoExplorer` from the Dashboard to view this base map.
+When the GeoExplorer application is opened, it will automatically link to the MapQuest OpenStreetMap web service, providing a general map of the world as a base map. 
+
+.. figure:: ../../_images/load_geoexplorer.png
+
+   *OSM world map in GeoExplorer*
+
+
+Layer preview
+-------------
+
+You can use GeoExplorer to view any of the sample layers. To open GeoExplorer, click :guilabel:`Launch` next to :guilabel:`GeoExplorer` on the OpenGeo Suite :ref:`Dashboard`. For more information on viewing and adding layers to GeoExplorer, see the :ref:`webmaps.basic` tutorial or the GeoExplorer `reference documentation <../geoexplorer/>`_.
+
+
 
 
