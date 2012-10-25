@@ -4,6 +4,8 @@
 Plugin with action and output
 =============================
 
+.. warning:: Document status: **Needs testing, copyedit review**
+
 This final example will modify the DrawBox plugin created previously to also display a popup after the box has been drawn on the map.
 
 #. Open up the :file:`DrawBox.js` file in a text editor.

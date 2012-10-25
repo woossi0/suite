@@ -3,6 +3,8 @@
 Plugin with output only
 =======================
 
+.. warning:: Document status: **Needs testing, copyedit review**
+
 This example will create a new plugin that will display the perimeter and area of all the boxes that are drawn on the map. 
 
 Creating a basic panel

@@ -4,6 +4,8 @@
 Plugin with action only
 =======================
 
+.. warning:: Document status: **Needs testing, copyedit review**
+
 The first example plugin will contain only an action, with no output. Specifically, the plugin will add a button to the toolbar called "Draw Box" which when clicked will allow the user to draw a rectangle on the map.
 
 New application setup
