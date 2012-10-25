@@ -129,7 +129,7 @@ Base Maps
 
 When the GeoExplorer application is opened, it will automatically link to the MapQuest OpenStreetMap web service, providing a general map of the world as a base map. 
 
-.. figure:: ../../_images/load_geoexplorer.png
+.. figure:: ../webmaps/easypublish/img/load_geoexplorer.png
 
    *OSM world map in GeoExplorer*
 
