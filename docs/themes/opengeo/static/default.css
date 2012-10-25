@@ -61,6 +61,10 @@ blockquote {
 font-style: normal;
 }
 
+blockquote li {
+color: #262523;
+}
+
 li p {
 margin-bottom: 0;
 }
