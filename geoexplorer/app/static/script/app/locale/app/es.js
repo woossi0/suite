@@ -35,6 +35,6 @@ GeoExt.Lang.add("es", {
         userFieldText: "User",
         passwordFieldText: "Password",
         logoutConfirmTitle: "Warning",
-        logoutConfirmMessage: "Logging off will undo any unsaved changes, remove any layers you may have added, and reset the map composition. Do you want to save your composition first?"
+        logoutConfirmMessage: "Logging out will undo any unsaved changes, remove any layers you may have added, and reset the map composition. Do you want to save your composition first?"
     }
 });

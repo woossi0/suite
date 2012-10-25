@@ -40,7 +40,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
     tableText: "Table",
     queryText: "Query",
     logoutConfirmTitle: "Warning",
-    logoutConfirmMessage: "Logging off will undo any unsaved changes, remove any layers you may have added, and reset the map composition. Do you want to save your composition first?",
+    logoutConfirmMessage: "Logging out will undo any unsaved changes, remove any layers you may have added, and reset the map composition. Do you want to save your composition first?",
     // End i18n.
 
     constructor: function(config) {
