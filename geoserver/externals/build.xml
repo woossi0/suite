@@ -46,7 +46,7 @@
    <target name="build-gt" unless="skip.gt"> 
      <antcall target="mvn">
         <param name="dir" value="${gt.dir}"/>
-        <param name="flags" value="-DskipTests -Dall -P !geogit-versioned,ogr ${gt.flags}"/>
+        <param name="flags" value="-DskipTests -Dall -P !geogit-versioned,ogr -Dpostgresql.jdbc.version=9.1-901.jdbc4 ${gt.flags}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
