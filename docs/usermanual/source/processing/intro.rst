@@ -37,7 +37,7 @@ Web Processing Service
 
 One powerful method of performing spatial processing is through the :term:`Web Processing Service`, or **WPS**.  This OGC-based protocol, analogous to other protocols such as Web Map Service (WMS) and Web Feature Service (WFS), allows for client-server interaction with server-hosted "processes".  A server can provide WPS processes, which can then be executed by clients on data they supply or applied to existing server-side datasets.
 
-Processes fall into three categories:  :ref:`processing.proccesses.vector`, :ref:`processing.proccesses.raster`, and :ref:`processing.proccesses.geometry`, referring to the type of geospatial content used as as the process's input. These categories are broad, as processes can take multiple types of input.
+Processes fall into three categories:  vector, raster, and geometry, referring to the type of geospatial content used as the process's input. These categories are broad, as processes can take multiple types of input.
 
 WPS is a `service published by GeoServer <../geoserver/extensions/wps/>`_ and so is an integral part of the OpenGeo Suite.  It provides a collection of many standard processes along with the ability to add additional ones.  These processes can be employed inside custom applications, built with the :ref:`OpenGeo Client SDK <apps.sdk.client.dev>`, for a full web-based spatial processing solution.
 
