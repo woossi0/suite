@@ -3,7 +3,10 @@
 Installing OpenGeo Suite on CentOS and Red Hat
 ==============================================
 
-The commands contained in the following installation instructions assume root privileges. 
+The commands contained in the following installation instructions assume root privileges.
+
+Installing OpenGeo Suite Community Edition
+------------------------------------------
 
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.centos.suite.upgrade`.
 
