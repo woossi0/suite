@@ -19,7 +19,8 @@
  <modules>
    <module>windows</module>
    <module>mac</module>
-   <module>linux</module>
+   <module>ubuntu</module>
+   <module>centos</module>
  </modules>
 
 </project>
