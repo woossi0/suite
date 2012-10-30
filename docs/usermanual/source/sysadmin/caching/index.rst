@@ -13,21 +13,3 @@ This section will discuss the many considerations to using tile caching in a ser
 
    optimization
    seeding/index
-
-::
-   georssexpire
-
-
-
-::
-
-    * Principles
-    * best practices, preseeding
-    * Metatile discussion, tradeoffs, labeling
-    * Optimization (png8's, check GS Paletted images tutorial, etc)
-    * Quotas and disk management
-    * Automation
-      * GWC Job Manager REST API
-      * Expiration based on GeoRSS
-    * Custom gridsets
-
