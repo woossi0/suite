@@ -1,6 +1,6 @@
 .. _builtindemos:
 
-.. warning:: Document Status: **Ready for copyedit review**
+.. warning:: Document Status: **Waiting for more info on data**
 
 Sample layers
 =============
@@ -106,10 +106,10 @@ The OpenGeo Suite also includes a number of world layers including:
      - Abstract
      - Type  
    * - :guilabel:`world:volcanoes`             
-     - Major volcaones              
+     - Major volcanoes             
      - Point
    * - :guilabel:`world:globaldata_temp`             
-     - World temperatures              
+     - Maximum daily temperatures             
      - Point   
    * - :guilabel:`world:urbanareas1_1`             
      - Urban population              
@@ -122,6 +122,16 @@ The OpenGeo Suite also includes a number of world layers including:
      - MultiPolygon
 
 The world layers have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-179.97, -77.53, 179.58, 71.08``.
+
+The :guilabel:`world:volcanoes` layer is derived from the freely available volcano data compiled by the Smithsonian Institute, Global Volcanism Program. The :guilabel:`world:globaldata_temp` layer is derived from NASA's GLOBE Program and is freely available. (GLOBE data is only available for locations in countries that have joined the GLOBE Program.) 
+
+The :guilabel:`world:urbanareas1_1` layer was obtained from the Nordpril world database of large urban areas, 1950-2050, derived from the World Urbanization Prospects: The 2007 Revision Population Database (UN Population Division). The urban areas data is made available under a Creative Commons public domain license.
+
+The :guilabel:`world:cities` 
+
+.. todo:: add summary re. data sources for next two
+
+The :guilabel:`world:borders`
 
 
 Base Maps
