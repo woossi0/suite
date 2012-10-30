@@ -13,7 +13,7 @@ Processes are divided up into three categories, based on the type of geospaital 
    formats
    vector/index
 
-::
+.. todo::
 
    raster/index
    geometry/index
