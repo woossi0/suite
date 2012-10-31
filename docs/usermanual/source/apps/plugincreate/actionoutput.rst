@@ -1,12 +1,9 @@
 .. _apps.plugincreate.actionoutput:
 
-
 Plugin with action and output
 =============================
 
-.. warning:: Document status: **Needs testing, copyedit review**
-
-This final example will modify the DrawBox plugin created previously to also display a popup after the box has been drawn on the map.
+This final example will modify the DrawBox plugin created previously to also display a pop-up window after the box has been drawn on the map.
 
 #. Open up the :file:`DrawBox.js` file in a text editor.
 
@@ -16,13 +13,13 @@ This final example will modify the DrawBox plugin created previously to also dis
       :language: javascript
       :lines: 33-44
 
-#. Add the ``displayPopup`` function, which will create the output in the form of a ``GeoExt.Popup``. Place it right before the ``raiseLayer`` function:
+#. Add the ``displayPopup`` function to the :file:`DrawBox.js` file, which will create the output in the form of a ``GeoExt.Popup``. Insert it before the ``raiseLayer`` function:
 
    .. literalinclude:: script/actionoutput_DrawBox.js
       :language: javascript
       :lines: 49-60
 
-#. Add the dependency for the ``GeoExt.Popup`` in the top of the file:
+#. Add the dependency for the ``GeoExt.Popup`` in the top of the :file:`DrawBox.js` file:
 
    .. literalinclude:: script/actionoutput_DrawBox.js
       :language: javascript
@@ -34,7 +31,7 @@ This final example will modify the DrawBox plugin created previously to also dis
       :language: javascript
       :lines: 73-78
 
-#. Restart the SDK and reload the application in the browser. Test the functionality by drawing boxes. After drawing a box there will now be a popup at the feature's location containing the area of the box drawn. The units are in square meters, as the geometry is using Google Web Mercator projection.
+#. Restart the SDK and reload the application in the browser. Test the functionality by drawing boxes. After drawing a box there will now be a pop-up window at the feature's location containing the area of the box drawn. The units are in square meters, as the geometry is using Google Web Mercator projection.
 
    .. figure:: img/actionoutput_popup.png
 

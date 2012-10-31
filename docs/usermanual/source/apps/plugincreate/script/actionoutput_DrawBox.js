@@ -1,6 +1,6 @@
 /**
  * @require plugins/Tool.js
-+6 * @require GeoExt/widgets/Action.js
+ * @require GeoExt/widgets/Action.js
  * @require OpenLayers/Control/DrawFeature.js
  * @require OpenLayers/Handler/RegularPolygon.js
  * @require OpenLayers/Layer/Vector.js

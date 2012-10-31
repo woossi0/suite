@@ -13,7 +13,7 @@
  * @require plugins/RemoveLayer.js
  * @require RowExpander.js
  * @require plugins/DrawBox.js
--6 * @require plugins/BoxInfo.js
+ * @require plugins/BoxInfo.js
  */
 
 var app = new gxp.Viewer({
