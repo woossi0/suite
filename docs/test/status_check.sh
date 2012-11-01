@@ -12,7 +12,7 @@ result=0
 # Look for warning string in file
 check_file ()
 {
-  if grep -HoE "Document status:\s[*][*].*[*][*]" ${1}
+  if grep -HoE "Document status:[[:space:]][*][*].*[*][*]" ${1}
   then
     result=1
   fi

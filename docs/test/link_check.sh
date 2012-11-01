@@ -20,7 +20,7 @@ check_link ()
 
   if ! wget --spider --no-check-certificate --secure-protocol=SSLv3 --timeout=20 --waitretry=5 --tries=3 --user-agent="Mozilla/5.0 (X11; Linux) Gecko Firefox/5.0" --quiet ${url} > /dev/null
   then
-    echo "[ERROR] link ${url} in file ${1} returned an error"
+    echo "[ERROR] ${url} in file ${1} returned an error"
     result=1
   fi
 }
