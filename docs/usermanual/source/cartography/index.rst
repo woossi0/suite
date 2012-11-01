@@ -1,7 +1,7 @@
 .. _cartography:
 
 
-Web Cartography
+Web cartography
 ===============
 
 This section will discuss cartography as applied to web-based maps.

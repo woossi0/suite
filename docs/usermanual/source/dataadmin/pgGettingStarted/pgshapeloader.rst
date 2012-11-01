@@ -32,9 +32,9 @@ Loading data
 
 #. Open the PostGIS Shapefile Import/Export Manager tool using one of the following options: 
 
-   #. Click :guilabel:`Import shapefiles` on the :ref:`dashboard` (not available on the web-based Dashboard).
-   #. In pgAdmin click :menuselection:`Plugins --> PostGIS Shapefile and DBF loader` (if the plugin is installed).
-   #. Run the command line :file:`shp2pgsql-gui` tool.
+   * Click :guilabel:`Import shapefiles` on the :ref:`dashboard` (not available on the web-based Dashboard).
+   * In pgAdmin click :menuselection:`Plugins --> PostGIS Shapefile and DBF loader` (if the plugin is installed).
+   * Run the command line :file:`shp2pgsql-gui` tool.
 
    .. figure:: img/pgshapeloader.png
 
@@ -74,13 +74,13 @@ Loading data
 
       *A successful PostGIS connection*
 
-#. To select your source files, click :guilabel:`Add File` to open the :guilabel:`Select a Shape File` dialog box. Navigate to the location of your shapefile, select it and click :guilabel:`Open`. Multiple files can also be added in the same way.
+#. To select your source files, click :guilabel:`Add File` to open the :guilabel:`Select a Shape File` dialog box. Navigate to the location of your shapefile, click the shapefile you wish to load, and click :guilabel:`Open`. Multiple files can also be added in the same way.
 
    .. figure:: img/pgshp_select.png
 
       *Selecting a shapefile to import*
 
-#. Edit the configuration information for each item in the :guilabel:`Import List` to provide ** the correct SRID** for each shapefile. 
+#. Edit the configuration information for each item in the :guilabel:`Import List` to provide **the correct SRID** for each shapefile. 
 
    .. warning:: Do not omit this step, otherwise your data will not load properly.
 
@@ -90,31 +90,36 @@ Loading data
 
 #. Other import options are available to configure. Click :guilabel:`Options` to open the :guilabel:`Import Options` dialog box. 
 
+   .. figure:: img/pgshp_options.png
+
+      *Additional options*
+
+   The import options are:
+
    .. list-table::
       :header-rows: 1
 
       * - Option
         - Description
-      * - DBF file character encoding
+      * - :guilabel:`DBF file character encoding`
         - Specifies the character encoding of the shapefile's attribute columns. Default is **UTF-8**.
-      * - Preserve case of column names
+      * - :guilabel:`Preserve case of column names`
         - If this option is not selected, all column names will be lower case. Select this option to preserve mixed case.
-      * - Do not create 'bigint' columns
+      * - :guilabel:`Do not create 'bigint' columns`
         - Columns with type 'bigint' will not be created.
-      * - Create spatial index automatically after load
+      * - :guilabel:`Create spatial index automatically after load`
         - Creates a spatial index automatically. Indexing is recommended for improved performance reasons, but if you wish to create the index manually or if you're sure you don't want one, clear the check box.
-      * - Load only attribute (dbf) data
+      * - :guilabel:`Load only attribute (dbf) data`
         - Strips the geometry column from the loading process, leaving just the attribute columns. Default is unselected.
-      * - Load data using COPY rather than INSERT
-        - This can sometimes make the load process a little faster.
-      * - Load into GEOGRAPHY column
-        - Will load the geospatial data as type GEOGRAPHY instead of the default of GEOMETRY.  Requires lat/lon data (often known as SRID 4326).
+      * - :guilabel:`Load data using COPY rather than INSERT`
+        - This can sometimes improve the performance of the load process.
+      * - :guilabel:`Load into GEOGRAPHY column`
+        - Will load the geospatial data as type GEOGRAPHY instead of the default of GEOMETRY.  Requires lat/lon data (SRID 4326).
+      * - :guilabel:`Generate simple geometries instead of MULTI geometries`
+        - Override the default behavior of importing multipolygons
  
-   .. figure:: img/pgshp_options.png
 
-      *Additional options*
-
-   .. note:: If you are not sure about the implications of making further changes, leave the default values as they are and click :guilabel:`OK` to return to the main dialog box.
+   .. note:: If you are unsure about the implications of making further changes, leave the default values as they are and click :guilabel:`OK` to return to the main dialog box.
 
 #. Once all import options have been configured, click :guilabel:`OK` and click :guilabel:`Import` to start the conversion.
 
@@ -130,30 +135,28 @@ Loading data
 
 #.  You can verify this in ``pgAdmin`` by viewing the list of tables in the :guilabel:`Object browser`—your new table should be listed.
 
-   .. figure:: img/pgshp_pgadminconfirm.png
+    .. figure:: img/pgshp_pgadminconfirm.png
 
       *Confirming import in pgAdmin*
 
-#. You can also verify a successful import operation at the command line by typing:
+    You can also verify a successful import operation at the command line by typing:
 
-   .. code-block:: console
+    .. code-block:: console
 
       psql -p <PORT> -U <USERNAME> -d <DATABASE> -c "\d" -h localhost
 
-   .. note::
+    .. note:: The specific command parameters will depend on your local configuration.
 
-    The specific command parameters will depend on your local configuration.
-  
-  .. code-block:: console
+
+    .. code-block:: console
 
       Schema |         Name         |   Type   |  Owner
      --------+----------------------+----------+----------
-      public | bc_2m_border         | table    | postgres
-      public | bc_2m_border_gid_seq | sequence | postgres
       public | geography_columns    | view     | postgres
       public | geometry_columns     | view     | postgres
       public | raster_columns       | view     | postgres
       public | raster_overviews     | view     | postgres
       public | spatial_ref_sys      | table    | postgres
+      public | us_cities            | table    | postgres
+      public | us_cities_gid_seq    | sequence | postgres
 
-.. todo:: add section on export

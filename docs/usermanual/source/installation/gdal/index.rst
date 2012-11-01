@@ -1,4 +1,4 @@
-﻿.. _dataadmin.gdal:
+﻿.. _installation.gdal:
 
 Enabling GDAL image formats support
 ===================================
@@ -25,7 +25,7 @@ Ubuntu
 
      # service tomcat6 restart
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
 
 CentOS / Red Hat
@@ -45,7 +45,7 @@ CentOS / Red Hat
 
    # service tomcat6 restart
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
 
 Windows
@@ -53,7 +53,7 @@ Windows
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/ .
 
-#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_win_25.zip` for version 2.5).
+#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_win_30.zip` for version 3.0).
 
    .. note:: This file requires 32-bit Java/Tomcat.
 
@@ -77,14 +77,14 @@ Windows
 
    #. Restart Tomcat.
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
 Mac OS X
 --------
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/
 
-#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_osx_25.zip` for version 2.5).
+#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_osx_30.zip` for version 3.0).
 
 #. Extract the contents of the archive into :file:`/usr/local/lib/`.  The path may not exist, so it may need to be created first.
 
@@ -94,10 +94,10 @@ Mac OS X
 
 #. Restart Tomcat
 
-Continue reading at the :ref:`dataadmin.gdal.verify` section.
+Continue reading at the :ref:`installation.gdal.verify` section.
 
 
-.. _dataadmin.gdal.verify:
+.. _installation.gdal.verify:
 
 Verifying installation
 ----------------------

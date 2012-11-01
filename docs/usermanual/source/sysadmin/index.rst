@@ -1,15 +1,15 @@
 .. _sysadmin:
 
-
-System Administration
+System administration
 =====================
 
-This section will discuss how to manage  OpenGeo Suite deployments, including server optimization, caching, tuning, and upgrading.
+This section will discuss how to manage OpenGeo Suite deployments, including server optimization, security, caching, tuning, and upgrading.
 
 .. toctree::
    :maxdepth: 2
 
    analytics/index
    production/index
+   security/index
    backup
-
+   caching/index

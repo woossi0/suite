@@ -4,11 +4,10 @@
 Publishing a PostGIS table in GeoServer
 ---------------------------------------
 
-The next section describes how to link a PostGIS database to GeoSever and publish the data.
+The next section describes how to link a PostGIS database to GeoSever and publish some data.
 
 
-#. A new GeoServer store for the PostGIS database has to be created. To avoid typing one lengthy command, it is easier to save the connection parameters to an XML file. Create an XML file with the following content, substituting the correct connection parameters for your particular configuration:
-
+#. To begin with, a new GeoServer store for the PostGIS database must be created. To avoid typing one lengthy command, it is easier to save the connection parameters to an XML file. Create an XML file with the following content, substituting the correct connection parameters for your particular configuration.
 
    .. code-block:: xml
 
@@ -32,7 +31,7 @@ The next section describes how to link a PostGIS database to GeoSever and publis
         <__default>false</__default>
       </dataStore>
 
-#. Save this file as :file:`pgrest.xml`.  The filename itself is not important and need not match the store name.
+#. Save this file as :file:`pgrest.xml`.  The name of the file is not important and does not need to match the store name.
 
 #. Load this content into GeoServer using the following command:
 
@@ -40,13 +39,13 @@ The next section describes how to link a PostGIS database to GeoSever and publis
 
       curl -v -u admin:geoserver -X POST -H "Content-type: text/xml" -T pgrest.xml http://localhost:8080/geoserver/rest/workspaces/opengeo/datastores.xml
 
-   If the command was run successfully, you should see the following in the output:
+   If the command was successful, you should see the following in the output:
 
    .. code-block:: console
 
       < HTTP/1.1 201 Created
 
-   .. Warning:: If you see a ``500 Internal Server Error`` or ``405 Method Not Allowed``, or any other error, the command was executed incorrectly. Verify the syntax and content of the XML file. Examine the output and logs for any error messages.
+   .. Warning:: If you see a ``500 Internal Server Error`` or ``405 Method Not Allowed``, or any other error, the command failed to execute correctly. Verify the syntax and content of the XML file. Examine the output and logs for any error messages.
 
 #. The store created in the above example was called ``pgstore``. The name of the store is defined in the ``<name>`` tag. To confirm the store was created successfully, execute the following command:
 
@@ -56,7 +55,7 @@ The next section describes how to link a PostGIS database to GeoSever and publis
 
    .. note:: The password to this database, unencrypted in our example, is displayed encrypted.
 
-Now that the connection has been made, you can now publish a table from the PostGIS database as a layer in GeoServer.
+Now that the connection has been made, you can publish a table from the PostGIS database as a layer in GeoServer.
 
 #. To publish a dataset, execute the following command:
 
@@ -73,7 +72,7 @@ Now that the connection has been made, you can now publish a table from the Post
 
       < HTTP/1.1 201 Created
 
-   If not, examine the output for errors.
+   If you don't see this entry, examine the output for errors.
 
 #. To verify that the layer was published, execute the following command:
 
@@ -81,7 +80,7 @@ Now that the connection has been made, you can now publish a table from the Post
 
       curl -v -u admin:geoserver -X GET http://localhost:8080/geoserver/rest/workspaces/opengeo/datastores/pgstore/featuretypes.xml
 
-   You should see the layer listed in the output.  You can also view the layer in the GeoServer Layer Preview.
+   You should see the layer listed in the output. You can also view the layer in the GeoServer Layer Preview.
 
 
 

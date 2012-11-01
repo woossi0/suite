@@ -18,7 +18,7 @@ from geoscript.layer import Layer
 def run(origin, features):
 
   for f in features.features():
-    p = f.geom
+    p = f.geom.centroid
     d = p.distance(origin)
     b = 90 - math.degrees(math.atan2(p.y - origin.y, p.x - origin.x))
       

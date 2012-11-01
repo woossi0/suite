@@ -35,16 +35,18 @@ Spatial processing is available through a variety of tools in the OpenGeo Suite.
 Web Processing Service
 ~~~~~~~~~~~~~~~~~~~~~~
 
-One powerful method of performing spatial processing is through the **Web Processing Service**, or WPS.  This OGC-based protocol, analogous to other protocols such as Web Map Service (WMS) and Web Feature Service (WFS), allows for client-server interaction with server-hosted "processes".  A server can provide WPS processes, which can then be executed by clients on data they supply or applied to existing server-side datasets.
+One powerful method of performing spatial processing is through the :term:`Web Processing Service`, or **WPS**.  This OGC-based protocol, analogous to other protocols such as Web Map Service (WMS) and Web Feature Service (WFS), allows for client-server interaction with server-hosted "processes".  A server can provide WPS processes, which can then be executed by clients on data they supply or applied to existing server-side datasets.
 
-WPS is a service published by GeoServer and so is an integral part of the OpenGeo Suite.  It provides a collection of many standard processes along with the ability to add additional ones.  These processes can be employed inside custom applications, built with the :ref:`OpenGeo Client SDK <apps.sdk.client.dev>`, for a full web-based spatial processing solution.
+Processes fall into three categories:  vector, raster, and geometry, referring to the type of geospatial content used as the process's input. These categories are broad, as processes can take multiple types of input.
 
-For example, to take a collection of features, one can run the ``JTS:union`` process to output a single feature that is the union of them.  As a more complex example, one can run the ``gs:Reproject`` process to reproject a raster image to a different SRS, then take the output of that and run ``gs:CropCoverage`` to crop the raster down to a certain bounds.  The result can be fed into the ``gs:Import`` process to save the resulting coverage as a new layer in GeoServer, for use by other clients.
+WPS is a `service published by GeoServer <../geoserver/extensions/wps/>`_ and so is an integral part of the OpenGeo Suite.  It provides a collection of many standard processes along with the ability to add additional ones.  These processes can be employed inside custom applications, built with the :ref:`OpenGeo Client SDK <apps.sdk.client.dev>`, for a full web-based spatial processing solution.
+
+For example, one can run the ``JTS:union`` process on a collection of geometries to output a single geometry that is the union of them.  Processes can be chained, so one can run the ``gs:Reproject`` process to reproject a raster image to a different SRS, then take the output of that and run ``gs:CropCoverage`` to crop the raster down to a certain bounds.  The result can be fed into the ``gs:Import`` process to save the resulting coverage as a new layer in GeoServer, for use by other clients.
 
 SQL Views
 ~~~~~~~~~
 
-Another way to perform spatial processing is by using the SQL Views functionality in GeoServer.  When backed by the powerful capabilities of a database such as PostGIS, SQL Views provide an effective way to transform and analyze spatial datasets.  Using a SQL View, a layer can be defined as the result of a spatial query on a PostGIS dataset.  This layer can then be visualized by WMS, queried via WFS, and even used in further processing operations.  Spatial queries in PostGIS support a wide variety of spatial processing, including data transformation, spatial analysis, and even raster processing (OpenGeo Suite 3.0 / PostGIS 2 and newer).
+Another way to perform spatial processing is by using the `SQL Views <../geoserver/data/database/sqlview.html>`_ functionality in GeoServer.  When backed by the powerful capabilities of a database such as PostGIS, SQL Views provide an effective way to transform and analyze spatial datasets.  Using a SQL View, a layer can be defined as the result of a spatial query on a PostGIS dataset.  This layer can then be visualized by WMS, queried via WFS, and even used in further processing operations.  Spatial queries in PostGIS support a wide variety of spatial processing, including data transformation, spatial analysis, and even raster processing (OpenGeo Suite 3.0 / PostGIS 2 and newer).
 
 
 .. Commented out until GeoScript is included.

@@ -10,11 +10,11 @@ Project details
 
 For more information on individual components, please see OpenGeo's project pages:
 
-* `PostGIS <http://opengeo.org/community/postgis/>`_
-* `GeoServer <http://opengeo.org/community/geoserver/>`_
-* `GeoWebCache <http://opengeo.org/community/geowebcache/>`_
-* `OpenLayers <http://opengeo.org/community/openlayers/>`_
-* `GeoExt <http://opengeo.org/community/geoext/>`_
+* `PostGIS <http://opengeo.org/technology/postgis/>`_
+* `GeoServer <http://opengeo.org/technology/geoserver/>`_
+* `GeoWebCache <http://opengeo.org/technology/geowebcache/>`_
+* `OpenLayers <http://opengeo.org/technology/openlayers/>`_
+* `GeoExt <http://opengeo.org/technology/geoext/>`_
 
 About OpenGeo
 -------------

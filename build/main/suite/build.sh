@@ -11,16 +11,16 @@ function profile_rebuild {
   local profile=$1
 
   pushd geoserver/web/app
-  $MVN -s $MVN_SETTINGS -o clean install -P $profile -Dbuild.revision=$revision -Dbuild.date=$BUILD_ID
+  $MVN -s $MVN_SETTINGS -o clean install -P $profile $build_info
   checkrv $? "maven clean install geoserver/web/app ($profile profile)"
   popd
 
   pushd dashboard
-  $MVN -s $MVN_SETTINGS -o clean install -P $profile -Dbuild.revision=$revision -Dbuild.date=$BUILD_ID
+  $MVN -s $MVN_SETTINGS -o clean install -P $profile $build_info
   checkrv $? "maven clean install dashboard ($profile profile)"
   popd
 
-  $MVN -s $MVN_SETTINGS -P $profile -o assembly:attached -Dbuild.revision=$revision
+  $MVN -s $MVN_SETTINGS -P $profile -o assembly:attached $build_info
   checkrv $? "maven assembly ($profile profile)"
 }
 
@@ -53,6 +53,7 @@ fi
 
 # extract the revision number
 export revision=`get_rev .`
+build_info="-Dbuild.date=$BUILD_ID -Dbuild.revision=$revision"
 
 gs_externals="geoserver/externals"
 gs_rev=`get_submodule_rev $gs_externals/geoserver`
@@ -75,13 +76,13 @@ fi
 echo "exporting artifacts to: $dist"
 
 # perform a full build
-$MVN -s $MVN_SETTINGS -Dfull -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS -Dbuild.revision=$revision -Dbuild.date=$BUILD_ID -Dgs.flags="-Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev" $BUILD_FLAGS clean install
+$MVN -s $MVN_SETTINGS -Dfull -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info -Dgs.flags="-Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev" $BUILD_FLAGS clean install
 checkrv $? "maven install"
 
-$MVN -o -s $MVN_SETTINGS assembly:attached -Dbuild.revision=$revision
+$MVN -o -s $MVN_SETTINGS assembly:attached $build_info
 checkrv $? "maven assembly"
 
-$MVN -s $MVN_SETTINGS -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS deploy -DskipTests
+$MVN -s $MVN_SETTINGS -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info deploy -DskipTests
 checkrv $? "maven deploy"
 
 # build with the enterprise profile
@@ -96,6 +97,12 @@ if [ "$ARCHIVE_BUILD" == "true" ]; then
 else
   ARCHIVE_BUILD="false"
 fi
+
+# clean up old artifacts
+pushd $dist/..
+# keep around last two builds
+ls -lt | grep -v "^l" | cut -d ' ' -f 8 | tail -n +3 | xargs rm -rf 
+popd
 
 # start_remote_job <url> <name> <profile>
 function start_remote_job() {

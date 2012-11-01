@@ -1,11 +1,10 @@
 .. _dataadmin.pgBasics.joins:
 
-.. warning:: Document Status: **Draft**
 
-Spatial Joins
+Spatial joins
 =============
 
-Spatial joins combine information from different tables by using :ref:`dataadmin.pgBasics.spatialrelationships` as the join key. A great deal of GIS analysis can be accomplished using spatial joins.
+Spatial joins combine information from different tables by using :ref:`Spatial Relationships <dataadmin.pgBasics.spatialrelationships>` as the join key. A great deal of GIS analysis can be accomplished using spatial joins.
 
 For example, given a subway station location, neighborhood data, and borough names, it is possible to locate a neighborhood that contains a particular subway station with the following SQL code:
 
@@ -25,12 +24,12 @@ For example, given a subway station location, neighborhood data, and borough nam
   -------------+--------------------
    Broad St    | Financial District 
 
-Any function that provides a true/false relationship between two tables can form the basis of a spatial join, but the most commonly used ones are :command:`ST_Intersects`, :command:`ST_Contains`, and :command:`ST_DWithin`.
+Any function that provides a true/false relationship between two tables can form the basis of a spatial join, but the most commonly used are :command:`ST_Intersects`, :command:`ST_Contains`, and :command:`ST_DWithin`.
 
-Join and Summarize
+Join and summarize
 ------------------
 
-The combination of a ``JOIN`` with a ``GROUP BY`` operation supports the type of analysis that is usually undertaken with a GIS system. For example, to answer the question "What is the population and demographic profile of the neighborhoods of Manhattan?", requires analyzing population information, available from the census, with the boundaries of neighborhoods. The results should be further restricted to report on just one borough of Manhattan. 
+The combination of a ``JOIN`` with a ``GROUP BY`` operation supports the type of analysis that is usually undertaken with a GIS system. For example, to answer the question "What is the population and demographic profile of the neighborhoods of Manhattan?", requires analyzing census population information, with the boundaries of neighborhoods. The results should be further limited to report on just one borough of Manhattan. 
 
 .. code-block:: sql
 
@@ -88,86 +87,18 @@ In this example:
 
 .. note:: 
 
-   The ``JOIN`` clause combines two ``FROM`` items. By default, this uses an ``INNER JOIN``, but there are four other types of joins. For further information, see the `join_type <http://www.postgresql.org/docs/9.1/interactive/sql-select.html>`_ definition in the PostgreSQL documentation.
+   The ``JOIN`` clause combines two ``FROM`` items. By default, this uses an ``INNER JOIN``, however there are four other types of joins. For further information, please refer to the `join_type <http://www.postgresql.org/docs/9.2/interactive/sql-select.html>`_ definition in the PostgreSQL documentation.
 
-A distance test can also be used as a join key, to answer a summarized "all items within a given radius" query.Continuing with the example of the demographic profile of New York, the following code identifies a baseline profile of the city.
-
-.. code-block:: sql
-
-  SELECT 
-    100.0 * Sum(popn_white) / Sum(popn_total) AS white_pct, 
-    100.0 * Sum(popn_black) / Sum(popn_total) AS black_pct, 
-    Sum(popn_total) AS popn_total
-  FROM nyc_census_blocks;
-
-:: 
-
-        white_pct      |      black_pct      | popn_total 
-  ---------------------+---------------------+------------
-   44.6586020115685295 | 26.5945063345703034 |    8008278
-
-
-Of the 8M people in New York, approximately 44% are "white" and 26% are "black". 
-
-To determine the demographic profile along a particular transportation route, for example, the A-Train, the first step is to identify the routes that match the search criteria. The following example uses the ``DISTINCT`` clause to eliminate duplicate rows from the result, returning only those records that identify unique routes.
-
-.. code-block:: sql
-
-  SELECT DISTINCT routes FROM nyc_subway_stations;
-  
-:: 
-
- A,C,G
- 4,5
- D,F,N,Q
- 5
- E,F
- E,J,Z
- R,W
- ...
-
-.. note::
-
-   Without the ``DISTINCT`` keyword, the query above would identify 491 results instead of 73.
-   
-To find the A-train, identify any entries in the ``routes`` field that contain an *A*. The function :command:`strpos` will return a non-zero number if *A* is found in the routes field.
-
-.. code-block:: sql
-
-   SELECT DISTINCT routes 
-   FROM nyc_subway_stations AS subways 
-   WHERE strpos(subways.routes,'A') > 0;
-   
-::
-
-  A,B,C
-  A,C
-  A
-  A,C,G
-  A,C,E,L
-  A,S
-  A,C,F
-  A,B,C,D
-  A,C,E
-  
-Finally, use the :command:`ST_DWithin` function to identify the demographic profile within 200 meters of the A-train route, by executing the following:
+A distance test can also be used as a join key, to answer a summarized "all items within a given radius" query. For example, to calculate the population within a 500 meter radius of the "Broad St" subway station:
 
 .. code-block:: sql
 
   SELECT 
-    100.0 * Sum(popn_white) / Sum(popn_total) AS white_pct, 
-    100.0 * Sum(popn_black) / Sum(popn_total) AS black_pct, 
-    Sum(popn_total) AS popn_total
-  FROM nyc_census_blocks AS census
-  JOIN nyc_subway_stations AS subways
-  ON ST_DWithin(census.the_geom, subways.the_geom, 200)
-  WHERE strpos(subways.routes,'A') > 0;
+    Sum(census.popn_total) AS population
+  FROM nyc_census_blocks census
+  JOIN nyc_subway_stations subway
+  ON ST_DWithin(census.the_geom, subway.the_geom, 500)
+  WHERE subway.name = 'Broad St';
 
-::
-
-        white_pct      |      black_pct      | popn_total 
-  ---------------------+---------------------+------------
-   42.0805466940877366 | 23.0936148851067964 | 185259
-
-The results indicate the population profile along the route of the A-train isn't significantly different from the profile of New York City as a whole. 
+You can alter the search radius or the subway name to return different population profiles for different stations.
 

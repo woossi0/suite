@@ -1,21 +1,16 @@
 .. _dataadmin.pgBasics.rasters:
 
-.. sidebar:: Document Status: 
 
-   **Draft - under development**
-
-Raster Data
+Raster data
 ===========
 
-In PostGIS raster data are modelled as large collections of small chunks of data. This means raster data can be manipulated and analyzed in much the same way as vector data. 
+In PostGIS raster data is modelled as large collections of small chunks of data. This means raster data can be manipulated and analyzed in much the same way as vector data. 
 
 .. note:: At PostGIS 2.0, raster support in PostGIS is provided primarily to support analysis, not visualization.
 
 
-Joining Raster and Vector Data
+Joining raster and vector data
 ------------------------------
-
-.. todo:: get a better sample from Paul for this section.
 
 Integrated raster and vector analysis is provides a powerful additional tool for data analysts. In the following example, a raster elevation dataset is joined to vector land use dataset to highlight areas unsuitable for certain types of agriculture.
 
@@ -38,13 +33,13 @@ Integrated raster and vector analysis is provides a powerful additional tool for
 
 
 
-There are many functions in PostGIS for handling raster data, for example ``ST_AsRaster()``, ``ST_MakeEmptyRaster()``, ``ST_AsTIFF``. For a full list of functions, refer to `Raster Reference <http://postgis.refractions.net/docs/RT_reference.html>`_. 
+There are many functions in PostGIS for handling raster data, for example :command:`ST_AsRaster()`, :command:`ST_MakeEmptyRaster()`, :command:`ST_AsTIFF()`. For a full list of functions, refer to `Raster Reference <http://postgis.refractions.net/docs/RT_reference.html>`_. 
 
 
-Raster_Columns Catalog
-----------------------
+Raster_columns view
+-------------------
 
-The ``Raster_columns`` database view catalogs all the table columns in your PostGIS database that are of type *raster*. As the view takes advantage the constraints on the base tables, the information in the catalog is always current and consistent with the state of the database.
+The ``raster_columns`` database view catalogs all the table columns in your PostGIS database that are of type *raster*. As the view takes advantage the constraints on the base tables, the information in the catalog is always current and consistent with the state of the database.
 
 .. note:: If you didn't create your raster table using ``raster2pgsql``, or forgot to specify the -C flag (apply raster constraints) during the load operation, you can still apply those constraints with ``AddRasterConstraints()`` to ensure the relevant information about your raster data is registered correctly.
 
@@ -59,20 +54,18 @@ The attributes of the ``raster_columns`` view are:
 * ``blocksize_y``—Width (number of pixels down) of each raster tile
 * ``same_alignment``—Boolean value indicating if all tiles have the same alignment
 * ``regular_blocking``—True/False constraint indicating if tiles overlap, are of the same alignment, pixel size and so on
-* ``num_bands``—Number of bands per tile in your raster data
+* ``num_bands``—Number of bands per tile in the raster data
 * ``pixel_types``—Array defining pixel type for each band
 * ``nodata_values``—Array denoting the ``nodata_value`` for each band
-* ``out_db``— ?????? 
+* ``out_db``—Indicates if the raster data is maintained outside the database (for example in GeoTIFF files)
 * ``extent``—Extent of all rows in your raster data
 
 
-.. todo:: add sample output
 
-
-Raster Overviews
+Raster overviews
 ----------------
 
-A raster overview is a lower resolution version of a base raster table, used primarily to improve display performance for operations that do not require pixel level information. At each higher level of overview, the data is re-sampled by a factor of four to provide a representation of the data at a lower spatial resolution. 
+A raster overview is a lower resolution version of a base raster table, used primarily to improve display performance for operations that do not require pixel level information. At each higher level of overview, the data is re-sampled to provide a representation of the data at a lower spatial resolution. 
 
 Since there are fewer records to process in an overview, and each overview pixel covers a geographically larger extent, overview processing operations are generally faster. However, the results are not as accurate as the results derived from the higher resolution base raster table.
 
@@ -99,7 +92,7 @@ Level one overviews always represent the original raster data. Level two overvie
 
    *Reduced resolution raster overviews*
 
-Raster_Overviews Catalog
+Raster_overviews catalog
 ------------------------
 
 The ``raster_overviews`` database view catalogs the raster columns used to create raster overviews. The attributes of the ``raster_overviews`` view are:
@@ -119,16 +112,16 @@ The information in ``raster_overviews`` does not duplicate the information in ``
 .. code-block:: sql
 
    SELECT o.o_table_name, c.r_table_name, c.r_raster_column, c.srid, c.blocksize_x, 
-     c.blocksize_y, c.num_bands, c.pixel_types 
+     c.blocksize_y, c.num_bands
    FROM raster_overviews o, raster_columns c
-   WHERE o.o_table_name = 'o_3_myrasttable' AND o.o_table_name = c.r_table_name;
+   WHERE o.o_table_name = 'o_3_mytable' AND o.o_table_name = c.r_table_name;
 
-.. code-block:: sql
+.. code-block:: console
 
-   | o_table_name    | r_table_name    | srid  | blocksize_x | blocksize_y | num_bands | pixel_types     |
-   +------------------+------------------+-----+-------------+-------------+-----------+- ---------------+
-   | o_3_myrasttable | o_3_myrasttable | 4326  | 1155        |  1106       | 3         | {8BUI,8BUI,8BUI}| 
-   +-----------------+-----------------+-------+-------------+-------------+-----------+-- --------------+  
+   | o_table_name  | r_table_name    | srid | blocksize_x | blocksize_y | num_bands | 
+   +---------------+-----------------+------+-------------+-------------+-----------+
+   | o_3_mytable   | o_3_mytable     | 4326 | 1155        |  1106       | 3         | 
+   +---------------+-----------------+------+-------------+-------------+-----------+  
 
 
 .. note:: The performance of raster data analysis is sensitive to tile sizes, so you may need to experiment with the optimum tile size settings for your data. 

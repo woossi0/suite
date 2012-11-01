@@ -5,6 +5,9 @@ Installing OpenGeo Suite on Ubuntu
 
 The commands contained in the following installation instructions assume root privileges. 
 
+Installing OpenGeo Suite Community Edition
+------------------------------------------
+
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.ubuntu.suite.upgrade`.
 
 .. warning:: Packages are only available for Ubuntu 10.04 and above.
@@ -70,9 +73,12 @@ Installing OpenGeo Suite Enterprise Edition
 
    .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
 
+   .. note:: The single command below is wrapped over multiple lines.
+
    .. code-block:: console
 
-      echo "deb http://<username>:<password>@apt-ee.opengeo.org/ubuntu lucid main" >> /etc/apt/sources.list
+      echo "deb http://<username>:<password>@apt-ee.opengeo.org/suite/v3/ubuntu lucid main"
+        >> /etc/apt/sources.list
 
 #. Update APT:
 
@@ -172,14 +178,12 @@ The procedure for upgrading is as follows:
       exit
       sudo su -
 
-#. *Optional:* Back up your GeoServer data directory. This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`. To back up this directory, you can create an archive of it, or simply copy it to another location.
+#. Back up your GeoServer data directory. This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`. To back up this directory, copy it to another location. For example:
 
    .. code-block:: console
 
       cp -r /usr/share/opengeo-suite-data/geoserver_data  /tmp/suite_backup/data_dir_backup
       
-   .. note:: This step is optional but highly recommended. During the upgrade the GeoServer data directory will be automatically upgraded resulting in a data directory that is incompatible with Suite 2.x. Having a backup makes downgrading much easier.
-
 #. Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary to add an additional repository. This repository contains the version 3 packages. Run the following command (as root or with ``sudo``):
 
    .. code-block:: console
@@ -190,9 +194,12 @@ The procedure for upgrading is as follows:
 
    .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
 
+   .. note:: The single command below is wrapped over multiple lines.
+
    .. code-block:: console
 
-      echo "deb http://<username>:<password>apt-ee.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
+      echo "deb http://<username>:<password>apt-ee.opengeo.org/suite/v3/ubuntu lucid main"
+        >> /etc/apt/sources.list
 
 #. Now update your repository sources:
 
@@ -226,5 +233,39 @@ The procedure for upgrading is as follows:
    .. note:: As with the backup, standard PostGIS connection parameters may be used. You can also select only certain databases to restore with the ``--dblist`` flag as detailed above.
 
 #. Your databases and roles will be restored. You can verify that the databases were created and data restored by running ``psql -l`` on the command line.
+
+#. Exit out of the postgres user and change to root.
+
+#. Stop the Tomcat service:
+
+   .. code-block:: console
+
+      service tomcat6 stop
+
+#. Restore your GeoServer data directory, renaming the existing one first. For example:
+
+   .. code-block:: console
+
+      mv /usr/share/opengeo-suite-data/geoserver_data  /tmp/suite_backup/data_dir_backup_30
+      cp -r /tmp/suite_backup/data_dir_backup /usr/share/opengeo-suite-data/geoserver_data
+
+#. Change the owner of the restored data directory:
+
+   .. code-block:: console
+
+      chown -R tomcat6 /usr/share/opengeo-suite-data/geoserver_data
+
+#. Start the Tomcat service:
+
+   .. code-block:: console
+
+      service tomcat6 start
+
+.. note::
+
+   Memory requirements for OpenGeo Suite 3 have increased, which requires modification to the Tomcat Java configuration. These settings are not automatically updated on upgrade and must be set manually. 
+
+   To make the change, edit the file :file:`/etc/default/tomcat6` and append ``-XX:MaxPermSize=256m`` to the ``JAVA_OPTS`` command. Restart the OpenGeo Suite for the change to take effect.
+
 
 Continue reading at the :ref:`installation.linux.suite.details` section.

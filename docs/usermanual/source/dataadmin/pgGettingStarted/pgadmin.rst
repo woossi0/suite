@@ -1,20 +1,21 @@
 ﻿.. _dataadmin.pgGettingStarted.pgadmin:
 
+
 Connecting to the PostgreSQL Database
 =====================================
 
-There are a number of front-end tools available for connecting to and working with the PostgreSQL database. Among the most popular are `psql <http://www.postgresql.org/docs/9.1/static/app-psql.html>`_, a command-line tool for querying the database, and the free and open source graphical tool `pgAdmin <http://www.pgadmin.org/>`_. 
+There are a number of front-end tools available for connecting to, and working with, the PostgreSQL database. Among the most popular are `psql <http://www.postgresql.org/docs/9.1/static/app-psql.html>`_, a command-line tool for querying the database, and the free and open source graphical tool `pgAdmin <http://www.pgadmin.org/>`_. 
 
 .. note:: Any data querying and manipulation you can do with ``pgAdmin`` can also be done at the command line with ``psql``.
 
-pgAdmin is available from the OpenGeo Suite :ref:`Dashboard`—in the list of :guilabel:`Components`, locate :guilabel:`PostGIS` and click :guilabel:`Manage` to launch the tool.
+pgAdmin is available from the OpenGeo Suite :ref:`Dashboard`—from the list of :guilabel:`Components`, locate :guilabel:`PostGIS` and click :guilabel:`Manage` to launch the tool.
 
 
 .. figure:: img/dashboard_pgadmin.png
 
    *Accessing pgAdmin from the OpenGeo Suite Dashboard*
 
-As part of the installation of the OpenGeo Suite, you should have one pre-configured **PostGIS (localhost:54321)** (port 5432 on Linux) server listed in the pgAdmin :guilabel:`Object browser`. 
+As part of the installation of the OpenGeo Suite, you should have one pre-configured PostGIS server, localhost:54321 (port 5432 on Linux), listed in the pgAdmin :guilabel:`Object browser`. 
 
 .. figure:: img/pgadmin_postgissrv.png
 
@@ -38,7 +39,7 @@ To connect to the PostGIS server, double-click the PostGIS server item and provi
 
    *Navigating the database*
 
-When executing SQL queries, make sure you have the intended target database selected.  The SQL Query dialog box will confirm the current database selection.
+When executing SQL queries, make sure you have the intended target database selected.  The SQL :guilabel:`Query` dialog box will confirm the current database selection.
 
 .. figure:: img/pgadmin_querydb.png
 

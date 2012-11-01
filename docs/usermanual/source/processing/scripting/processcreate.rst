@@ -10,11 +10,13 @@ Process definition
 
 This tutorial will create a process called **"Distance and Bearing"** with the following functionality: Given a feature collection and a single point, process will return a feature collection with the same number of elements as the source feature collection and with the same geometries, but with attributes containing the distance and bearing (angle of orientation) to the source point.
 
-.. todo:: Image needed describing process
+.. figure:: img/processcreate_theory.png
 
-Distance is measured in the source units. Bearing will be an `absolute bearing <http://en.wikipedia.org/wiki/Bearing_%28navigation%29>`_, in degrees measured from true north and increasing in the clockwise direction (so true east would be 90 degrees and true west would be -90 or 270 degrees).
+   *Distance and Bearing process*
 
-While there is a distance function in both Python and JavaScript, the bearing will need to be calculated manually, measured from origin to point, according to the following:
+Distance is measured in the source units. Bearing will be an `absolute bearing <http://en.wikipedia.org/wiki/Bearing_%28navigation%29>`_, in degrees measured from true north and increasing in the clockwise direction (so due east would be 90 degrees and due west would be -90 or 270 degrees).
+
+While there is a distance function in both Python and JavaScript, the bearing will be calculated, measured from origin to point, according to the following:
 
 .. figure:: img/processcreate_bearingequation.png
 
@@ -23,15 +25,29 @@ While there is a distance function in both Python and JavaScript, the bearing wi
    \text{Bearing} = 90^{\circ} - \arctan(\frac{y_{point} - y_{origin}}{x_{point} - x_{origin}})\times\frac{180^{\circ}}{\pi}
 
 
-Creating the script
--------------------
+Authoring the script
+--------------------
 
-The script will consist of headers, input/output definitions, metadata, and computation.
+The complete scripts are below:
+
+**Python** (:download:`download <distbear.py>`):
+
+.. literalinclude:: distbear.py
+   :language: python
+
+**JavaScript** (:download:`download <distbear.js>`):
+
+.. literalinclude:: distbear.js
+   :language: javascript
+
+Save as :file:`distbear.py` or :file:`distbear.js`, depending on the language used.
+
+A description of the script functionality follows.
 
 Process headers
 ~~~~~~~~~~~~~~~
 
-The script requires a number of header libraries, including access to the GeoServer catalog, geometry and feature types, and WPS process hooks:
+The script requires a number of import statements, including access to the GeoServer catalog, geometry and feature types, and WPS process hooks:
 
 **Python**
 
@@ -48,7 +64,21 @@ The script requires a number of header libraries, including access to the GeoSer
 Process inputs and metadata
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Next we define the process inputs and metadata. We first add a title and description for better readability:
+Next define the process inputs and metadata. Enclose all of these definitions in a process block:
+
+**Python**
+
+.. literalinclude:: distbear.py
+   :language: python
+   :lines: 7,6,17
+
+**JavaScript**
+
+.. literalinclude:: distbear.js
+   :language: javascript
+   :lines: 4,5,66
+
+Add a title and description for better readability:
 
 **Python**
 
@@ -63,7 +93,7 @@ Next we define the process inputs and metadata. We first add a title and descrip
    :lines: 6-7
 
 
-The process has two inputs, as described above: a feature collection (``features``), and a point from which to compute distance and bearing (``origin``). We will create the inputs list with these two definitions, along with a description:
+The process has two inputs, as described above: a feature collection (``features``), and a point from which to compute distance and bearing (``origin``). Create the inputs list with these two definitions, along with a description:
 
 **Python**
 
@@ -95,7 +125,7 @@ The single output will return a feature collection, and is defined similarly:
 Process computation
 ~~~~~~~~~~~~~~~~~~~
 
-Now that our inputs and outputs are defined, we can create the computation, through a function called ``run``.  We first create a layer container to hold the results of our computation (only necessary in the JavaScript example):
+Now that our inputs and outputs are defined, create the computation through a function called ``run``. Define a layer container to hold the results of the computation (only necessary in the JavaScript example):
 
 **JavaScript**
 
@@ -105,7 +135,7 @@ Now that our inputs and outputs are defined, we can create the computation, thro
 
 Note that the schema for the layer will contain the identical point geometry as the source features, along with two attributes called ``distance`` and ``bearing``.
 
-The computation iterates over each of the features in our feature collection.  We define the calculation as follows:
+The computation iterates over each of the features in our feature collection. Define the calculation as follows:
 
 **Python**
 
@@ -128,50 +158,39 @@ where:
 These three variables as a list are then returned.
 
 
-Save this file as :file:`distbear.py` or :file:`distbear.js`, depending on the language used.  You can see the full scripts below:
-
-**Python** (:download:`download <distbear.py>`):
-
-.. literalinclude:: distbear.py
-   :language: python
-
-**JavaScript** (:download:`download <distbear.js>`):
-
-.. literalinclude:: distbear.js
-   :language: javascript
-
-
 Activating the script
 ---------------------
 
-Now that the script is written, it must be added to GeoServer.  Scripts are placed in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`.  The script will be activated automatically when copied to that location, with *no server restart necessary*.
+After the script is created, it must be added to GeoServer. Place the script in the GeoServer data directory in the location: :file:`<data_dir>/scripts/wps/`. (Create this path if it doesn't already exist.) The script will be activated automatically when copied to that location, with *no server restart necessary*.
 
-.. todo:: You can also upload scripts through the REST API.  Please see the section on processing.scripting.rest for more details.
+.. todo:: You can also upload scripts through the REST API. Please see the section on processing.scripting.rest for more details.
 
 Testing the script
 ------------------
 
-Now that the script is in place and activated, the next step is to test it.  We'll use the WPS Request Builder in the GeoServer UI to test this script's functionality.
+Once the script is in place and activated, the next step is to test it. Use the WPS Request Builder in the GeoServer UI to verify this script's functionality.
 
 #. Access the WPS Request Builder in the GeoServer UI by clicking on :guilabel:`Demos` then :guilabel:`WPS Request Builder`.
 
    .. figure:: img/demos.png
 
-   .. figure:: img/processcreate_requestbuilder.png
+   .. figure:: img/requestbuilder.png
 
       *Accessing the WPS Request Builder*
 
-#. Select your process in the menu.  It will be named :file:`py:distbear` or :file:`js:distbear`, depending on the language used.
+#. Select the process in the menu. It will be named :file:`py:distbear` or :file:`js:distbear`, depending on the language used.
 
    .. figure:: img/processcreate_list.png
 
       *Scripts listed as WPS processes*
 
-#. You will see a list of options.  To get a feel for this process, we'll create a very simple data set.  We'll use the origin as our source point::
+#. The following values will work for testing:
+
+   Use the origin as our source point::
 
      POINT(0 0)
 
-   Our source features will consist of four points in the Cartesian plane::
+   Source features will consist of four points in the Cartesian plane::
 
      POINT(1 0)
      POINT(0 2)
@@ -228,7 +247,7 @@ Now that the script is in place and activated, the next step is to test it.  We'
           ]
         }
 
-#. Now we are ready to fill out the form.  Enter the above JSON in the box named :guilabel:`features`, making sure to select :guilabel:`TEXT` and :guilabel:`application/json` as the source format.
+#. Fill out the form. Enter the above JSON in the box named :guilabel:`features`, making sure to select :guilabel:`TEXT` and :guilabel:`application/json` as the source format.
 
    .. figure:: img/processcreate_features.png
 
@@ -246,11 +265,11 @@ Now that the script is in place and activated, the next step is to test it.  We'
 
       *Result format*
 
-#. Now we are ready to go.  Click on :guilabel:`Execute process`.
+#. Click on :guilabel:`Execute process`.
 
    .. note:: If you are curious about what the actual process request looks like, click on :guilabel:`Generate XML from process inputs/outputs`.
 
-#. The output will look something like this:
+#. The process will execute. The output will look something like this:
 
    .. code-block:: json
 
@@ -340,11 +359,15 @@ Now that the script is in place and activated, the next step is to test it.  We'
         - 0
       * - -1
         - 1
-        - 1.4142135623730951
+        - 1.41
         - -45.0
       * - 6
         - 3
-        - 6.708203932499369
-        - 63.43494882292201
+        - 6.71
+        - 63.43
 
-   .. todo:: Diagram of resulting points
+   Graphically:
+
+   .. figure:: img/processcreate_example.png
+
+      *Distance and Bearing example*

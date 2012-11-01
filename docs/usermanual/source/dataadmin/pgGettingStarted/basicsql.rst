@@ -1,5 +1,6 @@
 .. _dataadmin.pgGettingStarted.basicsql:
 
+
 Basic SQL
 =========
 
@@ -24,9 +25,9 @@ The basic syntax for a select query is:
   
 .. note:: For a synopsis of all ``SELECT`` parameters, see the PostgresSQL `documentation  <http://www.postgresql.org/docs/9.1/interactive/sql-select.html>`_.
    
-The parameter ``some_columns`` are either column names or functions of column values. The ``some_data_source`` is either a single table, or a composite table created by joining two tables on a key or condition. The ``some_condition`` parameter is a filter restricting the number of rows to be returned.
+The parameter ``some_columns`` represents either column names or functions of column values. The ``some_data_source`` is either a single table, or a composite table created by joining two tables on a key or condition. The ``some_condition`` parameter is a filter restricting the number of rows to be returned.
 
-For example, to query a table containing information about Brooklyn in New York and ask "What are the names of all the neighborhoods in Brooklyn?", the following SQL command would be required:
+For example, to query a table containing information about Brooklyn in New York City and ask "What are the names of all the neighborhoods in Brooklyn?", the following SQL command would be required:
 
 .. code-block:: sql
 
@@ -34,7 +35,7 @@ For example, to query a table containing information about Brooklyn in New York 
     FROM nyc_neighborhoods 
     WHERE boroname = 'Brooklyn';
 
-The results may be further refined by applying a function, or one-word command, to the query. For example, to identify *What is the number of letters in the names of all the neighborhoods in Brooklyn?* would require adding the PostgreSQL string length function, ``char_length(string)``. 
+The results may be further refined by applying a function, or one-word command, to the query. For example, to identify *How many letters are in the names of all the neighborhoods in Brooklyn?* would require adding the PostgreSQL string length function, :command:`char_length(string)`. 
 
 .. code-block:: sql
 
@@ -42,9 +43,9 @@ The results may be further refined by applying a function, or one-word command, 
     FROM nyc_neighborhoods 
     WHERE boroname = 'Brooklyn';
 
-In many cases, the individual rows are of less interest than a statistic that applies to all of them. In this case, knowing the lengths of the neighborhood names might be less useful than knowing the average length of the names. Functions that operate on multiple rows and return a single result are known as **aggregate** functions.  
+In many cases, the individual rows are of less interest than a statistic that applies to all of them. In this case, knowing the lengths of the neighborhood names might be less useful than knowing the average length of the names. Functions that operate on multiple rows and return a single result are known as *aggregate* functions.  
 
-PostgreSQL has a number of built-in aggregate functions, including the general purpose ``avg()`` for calculating average values and ``stddev()`` for calculating standard deviations. For example, to answer *What is the average number of letters and standard deviation of number of letters in the names of all the neighborhoods in Brooklyn?* would require modifying the query to report the average and standard deviation values.  
+PostgreSQL has a number of built-in aggregate functions, including the general purpose ``avg()`` for calculating average values and ``stddev()`` for calculating standard deviations. To answer *What is the average number of letters and standard deviation of number of letters in the names of all the neighborhoods in Brooklyn?* would require modifying the query to report the average and standard deviation values as follows:
   
 .. code-block:: sql
 

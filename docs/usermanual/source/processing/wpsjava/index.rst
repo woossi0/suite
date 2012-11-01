@@ -53,7 +53,7 @@ Enter the following in a console:
 
 .. code-block:: console
 
-   mvn archetype:generate -DarchetypeArtifactId='maven-archetype-quickstart' -DarchetypeVersion=1.1 -DgroupId=org.example.wps -DartifactId=wps-demo -Dversion=1.0 -DinteractiveMode=false
+   mvn archetype:generate -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.1 -DgroupId=org.example.wps -DartifactId=wps-demo -Dversion=1.0 -DinteractiveMode=false
 
 This command instructs Maven to generate a project using the following information:
 

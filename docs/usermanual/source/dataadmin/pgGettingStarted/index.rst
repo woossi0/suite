@@ -4,7 +4,7 @@
 Getting started with PostGIS
 ============================
 
-This section describes how to get started your OpenGeo Suite PostGIS database—connecting to the database, loading data, and some basic SQL commands.
+This section describes how to get started with the PostGIS database included in the  OpenGeo Suite—connecting to the database, loading data, and some basic SQL commands.
 
 
 .. toctree::
@@ -21,4 +21,4 @@ This section describes how to get started your OpenGeo Suite PostGIS database—
 
 
 
-For detailed reference information, please see the `PostGIS Documentation <../../../postgis/>`_.
+For detailed reference information, please refer to the `PostGIS Documentation <../../postgis/>`_.

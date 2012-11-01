@@ -1,6 +1,7 @@
 .. _dataadmin.pgGettingStarted.raster2pgsql:
 
 
+
 Loading raster data into PostGIS from the Command Line
 ======================================================
 
@@ -10,7 +11,7 @@ PostGIS provides a ``raster2pgsql`` tool for converting raster data sources into
 How It Works
 ------------
 
-``raste2pgsql`` converts a raster file into a series of SQL commands that can be loaded into a database–it does **not** perform the actual loading. The output of this command may be captured into a SQL file, or piped to the ``psql`` command, which will execute the commands against a target database.
+``raster2pgsql`` converts a raster file into a series of SQL commands that can be loaded into a database–it does **not** perform the actual loading. The output of this command may be captured into a SQL file, or piped to the ``psql`` command, which will execute the commands against a target database.
 
 .. note:: Since ``raster2pgsql`` is compiled as part of PostGIS, the tool will support the same raster types as those compiled in the :term:`GDAL` dependency library. 
 
@@ -19,7 +20,7 @@ Preparation
 
 #. Select the raster file(s) you wish to load.
 
-#. Identify the SRID ("projection") of your data. If available, this information is easily accessed via the layer metadata in GeoServer.
+#. Identify the SRID ("projection") of your data. If available, this information is accessed via the layer metadata in GeoServer.
 
 #. Either identify the target database where you would like to load the data, or create a new database. The OpenGeo Suite comes with a default database that you may use. This database is usually named after the user who installed the OpenGeo Suite.
 
@@ -42,7 +43,7 @@ Loading data
       ---------------------------------------
        2.0 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
 
-   .. note:: These examples will use port 54321, but substitute your own PostGIS port if different. If your connection is denied, you may need to add your user name with the ``-U`` option or set the hostname with the ``-h`` option.
+   .. note:: These examples use port 54321, but substitute your own PostGIS port if different. The port number on Linux is 5432. If your connection is denied, you may need to add your user name with the ``-U`` option or set the hostname with the ``-h`` option.
 
 
 #. To see a list of the supported raster formats, use ``raster2pgsql`` with the -G option.
@@ -123,7 +124,7 @@ Windows Command (Batch)
     
    This script assumes all the files have the same projection.
 
-Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as the raster files to be loaded. Add the following commands:
+Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as the raster files to be loaded. Add the following commands and provide the missing parameters:
 
 .. code-block:: console
 
@@ -139,7 +140,7 @@ Bash
 
    This script also assumes all the files have the same projection.
 
-Create a shell script file, for example :file:`loadfiles.sh`, in the same directory as the raster files to be loaded. Add the following commands:
+Create a shell script file, for example :file:`loadfiles.sh`, in the same directory as the raster files to be loaded. Add the following commands and provide the missing parameters:
 
 .. code-block:: console
 
@@ -168,80 +169,81 @@ You can also add rasters and raster tables directly to the database. A typical w
       CREATE TABLE myRaster(rid serial primary key, rast raster);
 
 
-#. Populate the table with some raster data by either creating empty rasters or creating rasters from other geometries. To create an empty raster, use ``ST_MakeEmptyRaster()``.
+#. Populate the table with some raster data by either creating empty rasters or creating rasters from other geometries. 
 
-   .. code-block:: sql
+   
+   * To create an empty raster, use :command:`ST_MakeEmptyRaster()`.
+
+     .. code-block:: sql
  
-      INSERT INTO myRasterTable(rid,rast)
-      VALUES(3, ST_MakeEmptyRaster( 100, 100, 0.0005, 0.0005, 1, 1, 0, 0, 4326) );
+        INSERT INTO myRasterTable(rid,rast)
+        VALUES(3, ST_MakeEmptyRaster( 100, 100, 0.0005, 0.0005, 1, 1, 0, 0, 4326) );
   
-   To use an existing raster as a template for a new raster, execute the following:
+   * To use an existing raster as a template for a new raster, execute the following:
 
-   .. code-block:: sql
+     .. code-block:: sql
 
-      INSERT INTO myRasterTable(rid,rast)
-      SELECT 4, ST_MakeEmptyRaster(rast)
-        FROM myRasterTable WHERE rid = 3;
+        INSERT INTO myRasterTable(rid,rast)
+        SELECT 4, ST_MakeEmptyRaster(rast)
+          FROM myRasterTable WHERE rid = 3;
 
-   Confirm the successful insertion of the two rasters and display the raster metadata with ``ST_MetaData()``:
+     Confirm the successful insertion of the two rasters and display the raster metadata with :command:`ST_MetaData()`:
 
-   .. code-block:: sql
+     .. code-block:: sql
       
-      SELECT rid, (md).*
-        FROM (SELECT rid, ST_MetaData(rast) As md 
-	            FROM myRasterTable
-	            WHERE rid IN(3,4)) As foo;
+        SELECT rid, (md).*
+          FROM (SELECT rid, ST_MetaData(rast) As md 
+	              FROM myRasterTable
+	              WHERE rid IN(3,4)) As foo;
 
-   .. code-block:: sql
+     .. code-block:: console
 
-      rid|upperleftx|upperlefty|width|height|scalex|scaley|skewx|skewy|srid|numbands
-      ---+----------+-----------+----+-------+-----+------+-----+-----+----+----------
-      3  | 0.0005   | 0.0005   | 100 | 100  | 1    | 1    | 0   | 0   |4326| 0
-      4  | 0.0005   | 0.0005   | 100 | 100  | 1    | 1    | 0   | 0   |4326| 0
+        rid|upperleftx|upperlefty|width|height|scalex|scaley|skewx|skewy|srid|numbands
+        ---+----------+-----------+----+-------+-----+------+-----+-----+----+----------
+        3  | 0.0005   | 0.0005   | 100 | 100  | 1    | 1    | 0   | 0   |4326| 0
+        4  | 0.0005   | 0.0005   | 100 | 100  | 1    | 1    | 0   | 0   |4326| 0
 
 
-   To create a raster from an existing geometry, use ``ST_AsRaster()``.
+   * To create a raster from an existing geometry, use :command:`ST_AsRaster()`.
 
-   .. code-block:: sql
+     .. code-block:: sql
    
-      CREATE TABLE myNewRaster AS
-        SELECT 1 AS rid, ST_AsRaster((
-             SELECT
-                ST_Collect(geom)
-             FROM myGeomTable
-             ), 1000.0, 1000.0 )
-        AS rast;
+        CREATE TABLE myNewRaster AS
+          SELECT 1 AS rid, ST_AsRaster((
+               SELECT
+                  ST_Collect(geom)
+               FROM myGeomTable
+               ), 1000.0, 1000.0 )
+          AS rast;
 
    
-   To create a new raster table based on an existing raster table but with a different projection, use ``ST_Transform()``. If no projection algorithm is specified, *NearestNeighbor* is used by default. The following example will use the Bilinear algorithm.
+   * To create a new raster table based on an existing raster table but with a different projection, use :command:`ST_Transform()`. If no projection algorithm is specified, *NearestNeighbor* is used by default. The following example will use the Bilinear algorithm.
 
-   .. note::
+     .. note::
 
-      Algorithm options are: NearestNeighbor, Bilinear, Cubic, CubicSpline, and Lanczos.
+       Algorithm options are: NearestNeighbor, Bilinear, Cubic, CubicSpline, and Lanczos.
     
-   .. code-block:: sql
+     .. code-block:: sql
 
 
-      SELECT ST_Width(myNewRaster) As w_before, ST_Width(wgs_84) As w_after,
-        ST_Height(myNewRaster) As h_before, ST_Height(wgs_84) As h_after
-           FROM 
-	         ( SELECT rast As myNewRaster, ST_Transform(rast,4326) As wgs_84,
+        SELECT ST_Width(myNewRaster) As w_before, ST_Width(wgs_84) As w_after,
+          ST_Height(myNewRaster) As h_before, ST_Height(wgs_84) As h_after
+             FROM 
+	           ( SELECT rast As myNewRaster, ST_Transform(rast,4326) As wgs_84,
                  ST_Transform(rast,4326, 'Bilinear') AS wgs_84_bilin
 	               FROM aerials.o_2_boston 
-			        WHERE ST_Intersects(rast,
+			         WHERE ST_Intersects(rast,
 				        ST_Transform(ST_MakeEnvelope(-71.128, 42.2392,-71.1277, 
                                              42.2397, 4326),26986) )
-		         LIMIT 1) As foo;
+		           LIMIT 1) As foo;
 
 
-   .. code-block:: sql
+     .. code-block:: console
 
-      w_before | w_after | h_before | h_after
-      ------ --+-------- +----------+---------
-      200      |  228    | 200      | 170
+        w_before | w_after | h_before | h_after
+        ------ --+-------- +----------+---------
+        200      |  228    | 200      | 170
 
-
-   .. todo:: get a simpler example for ST_transforms()
 
 #. To optimize query performance for the raster table, create a spatial index on the raster column.
 
@@ -250,5 +252,5 @@ You can also add rasters and raster tables directly to the database. A typical w
      CREATE INDEX myRasterTable_rast_st_convexhull_idx ON myRasterTable USING gist(ST_ConvexHull(rast));
 
 
-   .. note:: Pre-2.0 versions of PostGIS raster were based on the envelop rather than the convex hull. To ensure spatial indexes work correctly in PostGIS 2.0, drop any existing envelop indexes and replace them with convex hull based indexes.
+   .. note:: Pre-2.0 versions of PostGIS raster were based on the envelope rather than the convex hull. To ensure spatial indexes work correctly in PostGIS 2.0, drop any existing envelope indexes and replace them with convex hull based indexes.
 

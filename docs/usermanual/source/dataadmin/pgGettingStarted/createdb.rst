@@ -1,5 +1,6 @@
 .. _dataadmin.pgGettingStarted.createdb:
 
+
 Creating a Spatial Database
 ===========================
 
@@ -16,7 +17,7 @@ The OpenGeo Suite installation process automatically creates five databases:
 
 .. note:: A spatially enabled database has been optimized to store and manipulate spatial data. Any new databases created from the ``template_postgis`` database are automatically spatially enabled.
 
-.. note:: The GeoServer database is connected to the default PostGIS data store. Whenever data is imported in GeoServer, with the opengeo workspace selected as the target workspace, a table for the new layer's data will be created in the GeoServer database.
+.. note:: The GeoServer database is connected to the default PostGIS data store. Whenever data is imported in GeoServer, with the *opengeo* workspace selected as the target workspace, a table for the new layer's data will be created in the GeoServer database.
 
 #. Expand the :guilabel:`Databases` item in the :guilabel:`Object browser` to reveal the available databases. 
 
@@ -28,15 +29,20 @@ The OpenGeo Suite installation process automatically creates five databases:
 
    .. note:: If you receive an error indicating that the source database (``template_postgis``) is being accessed by other users, you probably have it selected. Right-click the :guilabel:`PostGIS (localhost: 54321)` item and select :guilabel:`Disconnect`. Double-click the same item to reconnect and try again.
 
-#. Complete the :guilabel:`New database` form with the following information—**Name** = '<DatabaseName>', **Encoding** = 'UTF8', **Owner** = postgres, **Template** = template_postgis.
+#. Complete the :guilabel:`New database` form with the following information:
+
+   * **Name**—<user-defined database name>
+   * **Encoding**—UTF8
+   * **Owner**—postgres 
+   * **Template**—template_postgis
    
    .. figure:: img/createdb_newdbtemplate.png
 
       *Creating a new database in pgAdmin from template_postgis*
 
-#. Double-click the new database item in the :guilabel:`Object browser` to display the contents. Inside the :guilabel:`public` schema, you will see one PostGIS-specific metadata table: :guilabel:`spatial_ref_sys` (for further information, see the section on :ref:`dataadmin.pgBasics.metatables`).
+#. Double-click the new database item in the :guilabel:`Object browser` to display the contents. Inside the :guilabel:`public` schema, you will see one PostGIS-specific metadata table, :guilabel:`spatial_ref_sys` (for further information, see the section on :ref:`dataadmin.pgBasics.metatables`).
 
-   .. figure:: img/createdb_metatables.png
+   .. figure:: img/postgis_metatables.png
    
       *Spatial metadata tables*
 
@@ -44,19 +50,16 @@ The OpenGeo Suite installation process automatically creates five databases:
 
    .. todo:: what should they do in this case? ref to troubleshooting
  
-#. Click on the :guilabel:`Execute SQL queries` button (or click :menuselection:`Tools --> Query tool`).
+#. Either click :guilabel:`Execute arbitrary SQL queries` on the pgAdmin toolbar or click :menuselection:`Tools --> Query tool` to open the :guilabel:`Query` dialog box.
 
-   .. figure:: img/createdb_querybutton.png
 
-      *Query Tool*
+#. Enter the following query into the :guilabel:`SQL editor` input box.  
 
-#. Enter the following query into the :guilabel:`SQL editor` input field.  
-
-.. code-block:: sql
+   .. code-block:: sql
 
       SELECT postgis_full_version();
 
-Click the :guilabel:`Execute query` button (or press **F5**) to run the query. `postgis_full_version() <../../../postgis/postgis/html/PostGIS_Full_Version.html>`_ is a management function that returns version and build configuration information.  If this command executes successfully, the database is spatially enabled and you will see output similar to the following:
+#. Click the :guilabel:`Execute query` button, or press **F5**, to run the query. The management function `postgis_full_version() <../../postgis/postgis/html/PostGIS_Full_Version.html>`_ returns version and build configuration information. If this command executes successfully, the database is spatially enabled and you will see output similar to the following:
 
 ::
 
@@ -70,7 +73,7 @@ Click the :guilabel:`Execute query` button (or press **F5**) to run the query. `
 Creating a spatial database from the command line
 -------------------------------------------------
 
-You can also create a PostGIS database from the command line using the ``createdb`` command.
+You can also create a PostGIS database from the command line with the ``createdb`` command.
 
 .. code-block::  console
 

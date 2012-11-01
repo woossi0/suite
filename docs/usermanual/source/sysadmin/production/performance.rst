@@ -10,7 +10,7 @@ Note that while performance is often the main focus of system tuning, it is advi
 Java Virtual Machine
 --------------------
 
-For best performance, use the **Oracle (Sun) Java HotSpot Virtual Machine (JVM)**. Testing has shown that the Oracle JVM is significantly faster than other JVM implementations.  For best results use the latest release of the JVM, since each new version has offered significant performance improvements. Oracle's `Java SE 6 Performance White Paper <http://java.sun.com/performance/reference/whitepapers/6_performance.html>`_ describes the JVM improvements that were introduced in Java SE 6 (specifically see `Section 2.3 - Ergonomics in the 6.0 Virtual Machine <http://java.sun.com/performance/reference/whitepapers/6_performance.html#2.3>`_).
+For best performance, use the **Oracle (Sun) Java HotSpot Virtual Machine (JVM)**. Testing has shown that the Oracle JVM is significantly faster than other JVM implementations.  For best results use the latest release of the JVM, since each new version has offered significant performance improvements. Oracle's `Java SE 6 Performance White Paper <http://www.oracle.com/technetwork/java/6-performance-137236.html>`_ describes the JVM improvements that were introduced in Java SE 6 (specifically see `Section 2.3 - Ergonomics in the 6.0 Virtual Machine <http://www.oracle.com/technetwork/java/6-performance-137236.html#2.3>`_).
 
 For production use, the OpenGeo Suite should be run using the **Server mode** of the JVM.  This mode is used by default on some platforms (such as Linux and Solaris), but not on others (such as Windows or OS X).   The ``-server`` JVM option forces the use of the Server VM.  To determine the default JVM mode, run ``java -version``, and the output should be as follows::
 

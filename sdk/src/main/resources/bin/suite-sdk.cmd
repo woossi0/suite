@@ -27,6 +27,14 @@ if "%~1"=="debug" goto Debug
 if "%~1"=="deploy" goto Deploy
 goto Usage
 
+:lastarg
+:: Figures out what the last and second to last arguments are
+set "PREV_ARG=%LAST_ARG%"
+set "LAST_ARG=%~1"
+shift
+if not "%~1"=="" goto lastarg
+goto :eof
+
 :Version
 set COMMAND="version"
 goto Run
@@ -46,6 +54,18 @@ goto Run
 if "x%~2"=="x" goto Usage
 if "%~2"=="-h" goto UsageDebug
 if "%~2"=="--help" goto UsageDebug
+
+:: Determine if there are "extra" flags
+call :lastarg %*
+:: If the second to last or last argument starts with a -, dump to usage
+if "%PREV_ARG:~0,1%"=="-" (
+  echo Invalid argument: %PREV_ARG%
+  goto UsageDebug
+)
+if "%LAST_ARG:~0,1%"=="-" (
+  echo Invalid argument: %LAST_ARG%
+  goto UsageDebug
+)
 set COMMAND="%~1"
 shift
 
@@ -61,6 +81,8 @@ goto DebugFlagLoop
 :: Sets all of the command flags (ant arguments)
 :: And whatever remains should be the app-path
 
+set ARG=%~1
+
 :: Checking for a valid flag
 rem TODO What about bad flags?
 set flag=0
@@ -69,17 +91,16 @@ if "%~1"=="--local-port" set flag=l
 if "%~1"=="-g" set flag=g
 if "%~1"=="--geoserver" set flag=g
 if "%flag%"=="0" (
+  :: Make sure we don't have an invalid flag
+  if "%ARG:~0,1%"=="-" (
+    echo Invalid Argument: %ARG%
+    goto UsageDebug
+  )
   :: Must be one arg remaining, otherwise fail
-  rem TODO Edge case - Any valid flags after app-path are ignored
-  rem but don't cause an error:
-  rem Ex:  -p 9090 myapp -g http://geoserver 
-  rem TODO The logic below seems exactly backwards, but works.
-  if not "x%~1"=="%~1" (
-    if not "x%~2"=="%~2" (
-      goto DebugPath
-    ) else (
-      goto Usage
-    )
+  if "%~1"=="%LAST_ARG%" (
+    goto DebugPath
+  ) else (
+    goto UsageDebug
   )
 )
 
@@ -112,12 +133,25 @@ goto Run
 if "x%~2"=="x" goto Usage
 if "%~2"=="-h" goto UsageDeploy
 if "%~2"=="--help" goto UsageDeploy
+
+:: Determine if there are "extra" flags
+call :lastarg %*
+:: If the second to last or last argument starts with a -, dump to usage
+if "%PREV_ARG:~0,1%"=="-" (
+  echo Invalid argument: %PREV_ARG%
+  goto UsageDeploy
+)
+if "%LAST_ARG:~0,1%"=="-" (
+  echo Invalid argument: %LAST_ARG%
+  goto UsageDeploy
+)
+
 set COMMAND="%~1"
 shift
 
 
 :DeployFlagLoop
-rem TODO: Same issues as in DebugFlagLoop
+set ARG=%~1
 
 :: Checking for a valid flag
 set flag=0
@@ -132,13 +166,16 @@ if "%~1"=="--password" set flag=p
 if "%~1"=="-c" set flag=c
 if "%~1"=="--container" set flag=c
 if "%flag%"=="0" (
+  :: Make sure we don't have an invalid flag
+  if "%ARG:~0,1%"=="-" (
+    echo Invalid Argument: %ARG%
+    goto UsageDeploy
+  )
   :: Must be one arg remaining, otherwise fail
-  if not "x%~1"=="%~1" (
-    if not "x%~2"=="%~2" (
-      goto DeployPath
-    ) else (
-      goto Usage
-    )
+  if "%~1"=="%LAST_ARG%" (
+    goto DeployPath
+  ) else (
+    goto UsageDeploy
   )
 )
 
@@ -312,10 +349,11 @@ IF %ERRORLEVEL% NEQ 0 (
     echo.
     echo The '%NAME% debug' command failed.
     echo.
-    echo A common cause of this is a conflict with the provided local port ^(-l^): %LOCAL_PORT%
+    echo Two commmon causes of this are:
+    echo * The directory provided did not contain a valid SDK application: %APP_PATH%
+    echo * There was a conflict with the provided local port ^(-l^): %LOCAL_PORT%
     echo.
-    echo Please ensure that there is not another service running on this port.  Run
-    echo '%NAME% debug --help' for help on the usage.
+    echo Please run '%NAME% debug --help' for help on the usage.
     echo.
   )
   if %COMMAND%=="deploy" (

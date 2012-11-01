@@ -1,6 +1,5 @@
 .. _dataadmin.pgBasics.equality:
 
-.. warning:: Document Status: **Draft**
 
 Equality
 ========

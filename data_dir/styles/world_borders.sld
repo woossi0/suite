@@ -6,33 +6,34 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <NamedLayer>
-    <Name>Simple point</Name>
+    <Name>World Borders</Name>
     <UserStyle>
-      <Title>GeoServer SLD Cook Book: Simple point</Title>
+      <Title>World Borders</Title>
       <FeatureTypeStyle>
         <Rule>
-	  <PolygonSymbolizer>
+	      <PolygonSymbolizer>
             <Fill>
               <CssParameter name="fill">#eaeab5</CssParameter>
             </Fill>
-	  </PolygonSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#888866</CssParameter>
+            </Stroke>
+	      </PolygonSymbolizer>
+          <TextSymbolizer>
+            <Label>
+              <ogc:PropertyName>NAME</ogc:PropertyName>
+            </Label>
+            <Font>
+              <CssParameter name="font-family">Arial</CssParameter>
+              <CssParameter name="font-size">12</CssParameter>
+              <CssParameter name="font-style">normal</CssParameter>
+              <CssParameter name="font-weight">bold</CssParameter>
+            </Font>
+            <Fill>
+              <CssParameter name="fill">#0000aa</CssParameter>
+            </Fill>
+          </TextSymbolizer>
         </Rule>
-       <TextSymbolizer>
-         <Label>
-           <ogc:PropertyName>NAME</ogc:PropertyName>
-         </Label>
-         <Font>
-           <CssParameter name="font-family">SansSerif</CssParameter>
-           <CssParameter name="font-family">Arial</CssParameter>
-           <CssParameter name="font-size">12</CssParameter>
-           <CssParameter name="font-style">normal</CssParameter>
-           <CssParameter name="font-weight">bold</CssParameter>
-         </Font>
-         <LabelPlacement/>
-         <Fill>
-           <CssParameter name="fill">#000000</CssParameter>
-         </Fill>
-       </TextSymbolizer>
       </FeatureTypeStyle>
     </UserStyle>
   </NamedLayer>

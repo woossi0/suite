@@ -20,15 +20,15 @@ To edit features for a given layer:
 
       *Zooming in on the features to edit*
 
-#. If it is not already, select the layer you wish to edit by clicking on it in the Layers Panel on the left side of the screen.
+#. If it is not already, select the layer you wish to edit by clicking it in the Layers Panel on the left side of the screen.
 
-#. The :guilabel:`Edit` menu on the toolbar will become enabled. Click this menu and select :guilabel:`Modify`. 
+#. The :guilabel:`Edit` menu on the toolbar will become enabled. Click this menu and click :guilabel:`Modify`. 
 
    .. figure:: img/edit_modifymenu.png
 
       *Select this menu entry to modify existing features*
 
-#. Click on an existing feature. A pop-up will appear showing its current attributes. Click the :guilabel:`Edit` button to change the values for any of these attributes. In addition, clicking the :guilabel:`Edit` button will also enable the feature (if a point) or its vertices to be moved. Click on a feature or its vertices in order to move them.
+#. Click an existing feature. A pop-up will appear showing its current attributes. Click the :guilabel:`Edit` button to change the values for any of these attributes. In addition, clicking the :guilabel:`Edit` button will also enable the feature (if a point) or its vertices to be moved. Click a feature or its vertices in order to move them.
 
    .. figure:: img/edit_attribute.png
 
@@ -46,15 +46,15 @@ Creating a new feature
 
 To create a new feature in a layer:
 
-#. First make sure, as before, that the layer is selected, then click the :guilabel:`Edit` menu and select :guilabel:`Create`.
+#. First make sure, as before, that the layer is selected, then click the :guilabel:`Edit` menu and click :guilabel:`Create`.
 
    .. figure:: img/edit_createmenu.png
 
       *Select this menu entry to create new features*
 
-#. Click anywhere in the map window to start drawing the feature. The behavior will vary depending on the type of geometry in the layer (points, lines, or polygons). Clicking on the map will add new features (for a point layer) or vertices. Clicking and dragging existing vertices will move them. Holding the shift button while dragging will draw smooth curves instead of discrete vertices.
+#. Click anywhere in the map window to start drawing the feature. The behavior will vary depending on the type of geometry in the layer (points, lines, or polygons). Clicking the map will add new features (for a point layer) or vertices. Clicking and dragging existing vertices will move them. Holding the shift button while dragging will draw smooth curves instead of discrete vertices.
 
-#. Double-click on the feature when done. A pop-up will display, where attribute data can then be entered. If creating a new point, the pop-up will display immediately.
+#. Double-click the feature when done. A pop-up will display, where attribute data can then be entered. If creating a new point, the pop-up will display immediately.
 
    .. figure:: img/edit_create.png
 
@@ -76,15 +76,15 @@ Deleting an existing feature
 
 .. warning:: Deleting a feature is not undoable.
 
-#. To delete a feature, click on the :guilabel:`Edit` menu as above and select :guilabel:`Modify`.
+#. To delete a feature, click the :guilabel:`Edit` menu as above and click :guilabel:`Modify`.
 
-#. Click on a feature. A pop-up will display, showing the attributes of this feature. Click the :guilabel:`Delete` button.
+#. Click a feature. A pop-up will display, showing the attributes of this feature. Click the :guilabel:`Delete` button.
 
    .. figure:: img/edit_delete.png
 
       *Deleting a feature*
 
-#. A confirmation dialog will display. Click :guilabel:`Yes` to confirm deletion.
+#. A confirmation dialog box will display. Click :guilabel:`Yes` to confirm deletion.
 
    .. figure:: img/edit_deleteconfirm.png
 

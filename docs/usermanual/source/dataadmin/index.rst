@@ -1,10 +1,10 @@
 .. _dataadmin:
 
 
-Working with PostGIS
-====================
+Working with your data 
+======================
 
-This section describes how to work your OpenGeo Suite PostGIS database—from connecting to the PostgreSQL database, loading and managing your data, to working with your data in PostGIS. 
+This section describes how to work with your data using the OpenGeo Suite, from connecting to a PostGIS database, loading and managing your data in PostGIS, and using the GeoServer Layer Importer.
 
 
 .. toctree::
@@ -12,4 +12,5 @@ This section describes how to work your OpenGeo Suite PostGIS database—from co
 
    pgGettingStarted/index
    pgBasics/index
+   importer/index
 

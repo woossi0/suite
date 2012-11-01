@@ -41,7 +41,7 @@ function init_mvn_repo {
 
 # get_rev <path>
 function get_rev {
-  local rev=`git log --format=format:%H $1 | head -n 1`
+  local rev=`git log --format=format:%h $1 | head -n 1`
   if [ "x$rev" == "x" ]; then
     echo "failed to get revision number from git info"
     exit 1

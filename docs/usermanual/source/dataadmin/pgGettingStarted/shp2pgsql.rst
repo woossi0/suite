@@ -10,7 +10,7 @@ PostGIS includes the ``shp2pgsql`` tool for converting shapefiles into database 
 How It Works
 ------------
 
-``shp2pgsql`` converts a shapefile into a series of SQL commands that can be loaded into a database–it does **not** perform the actual loading. The output of this command may be captured into a SQL file, or piped directly to the ``psql`` command, which will execute the commands against a target database.
+``shp2pgsql`` converts a shapefile into a series of SQL commands that can be loaded into a database–it does **not** perform the actual loading. The output of this command may be captured in a SQL file, or piped directly to the ``psql`` command, which will execute the commands against a target database.
 
 Preparation
 -----------
@@ -44,7 +44,7 @@ Loading data
 
    .. note::
 
-     These examples will use port 54321, but substitute your own PostGIS port if different. If your connection is denied, you may need to add your user name with the ``-U`` option or set the hostname with the ``-h`` option.
+     These examples use port 54321, but substitute your own PostGIS port if different. The port number on Linux is 5432. If your connection is denied, you may need to add your user name with the ``-U`` option or set the hostname with the ``-h`` option.
 
 #. Run the ``shp2pgsql`` command and pipe the output into the ``psql`` command to load the shapefile into the database in one step. The recommended syntax is:
 
@@ -55,8 +55,8 @@ Loading data
    The command parameters are:
 
    * ``<SRID>``—Spatial reference identifier
-   * ``<PATH/TO/SHAPEFILE.SHP>``—Full path to the shapefile (such as :file:`C:\\MyData\\roads\\roads.shp`)
-   * ``SCHEMA``—Target schema where the new table will be created
+   * ``<PATH/TO/SHAPEFILE>``—Full path to the shapefile (such as :file:`C:\\MyData\\roads\\roads.shp`)
+   * ``<SCHEMA>``—Target schema where the new table will be created
    * ``<DBTABLE>``—New database table to be created (usually the same name as the source shapefile)
    * ``<DATABASE>``—Target database where the table will be created
 
@@ -111,7 +111,7 @@ Windows Command (Batch)
 
 .. note:: This script assumes all the files have the same projection.
 
-Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as the shapefiles to be loaded. Add the following commands:
+Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as the shapefiles to be loaded. Add the following commands and provide the missing parameters:
 
 .. code-block:: console
 
@@ -125,7 +125,7 @@ Bash
 
 .. note:: This script also assumes all the files have the same projection.
 
-Create a shell script file, for example :file:`loadfiles.sh`, in the same directory as the shapefiles to be loaded. Add the following commands:
+Create a shell script file, for example :file:`loadfiles.sh`, in the same directory as the shapefiles to be loaded. Add the following commands and provide the missing parameters:
 
 .. code-block:: console
 
