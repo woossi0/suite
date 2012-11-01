@@ -1,11 +1,13 @@
 .. _builtindemos:
 
-.. warning:: Document Status: **Waiting for more info on data**
+.. warning:: Document Status: **Requires copyedit review**
 
 Sample layers
 =============
 
 The OpenGeo Suite comes with some preloaded sample layers that may be viewed and restyled as required.
+
+.. note:: The sample layers are provided for demonstration purposes only. No assurances are provided with respect to the currency or accuracy of the data.
  
 Medford
 -------
@@ -123,15 +125,11 @@ The OpenGeo Suite also includes a number of world layers including:
 
 The world layers have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-179.97, -77.53, 179.58, 71.08``.
 
-The :guilabel:`world:volcanoes` layer is derived from the freely available volcano data compiled by the Smithsonian Institute, Global Volcanism Program. The :guilabel:`world:globaldata_temp` layer is derived from NASA's GLOBE Program and is freely available. (GLOBE data is only available for locations in countries that have joined the GLOBE Program.) 
+The :guilabel:`world:volcanoes` layer is derived from the freely available volcano data compiled by the Smithsonian Institute, Global Volcanism Program. The :guilabel:`world:globaldata_temp` layer is derived from NASA's GLOBE Program and again is freely available. (GLOBE data is only available for locations in countries that have joined the GLOBE Program.) 
 
 The :guilabel:`world:urbanareas1_1` layer was obtained from the Nordpril world database of large urban areas, 1950-2050, derived from the World Urbanization Prospects: The 2007 Revision Population Database (UN Population Division). The urban areas data is made available under a Creative Commons public domain license.
 
-The :guilabel:`world:cities` 
-
-.. todo:: add summary re. data sources for next two
-
-The :guilabel:`world:borders`
+The :guilabel:`world:cities` and the :guilabel:`world:borders` layers were derived from public domain data obtained from the Natural Earth website (http://www.naturalearthdata.com/). 
 
 
 Base Maps
