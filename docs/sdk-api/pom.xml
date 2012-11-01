@@ -10,6 +10,20 @@
     <artifactId>sdk-api</artifactId>
     <packaging>jar</packaging>
     <name>OpenGeo Suite Client SDK Doc Module</name>
+
+    <properties>
+      <sphinx-flag></sphinx-flag>
+    </properties>
+   
+    <profiles>
+      <profile>
+        <id>test</id>
+        <properties>
+          <sphinx-flag>-W -q</sphinx-flag>
+        </properties>
+      </profile>
+    </profiles>
+    
     <build>
         <plugins>
             <plugin>
@@ -37,7 +51,7 @@
                             <tasks>
                                 <ant dir="src" target="parsedocs"/>
                                 <exec executable="sphinx-build" failonerror="true" dir="${basedir}">
-                                    <arg line="-c ${basedir} -b html -d ${build.directory}/doctrees src/src/doc ${build.directory}/html"/>
+                                    <arg line="${sphinx-flag} -c ${basedir} -b html -d ${build.directory}/doctrees src/src/doc ${build.directory}/html"/>
                                 </exec>
                             </tasks>
                         </configuration>

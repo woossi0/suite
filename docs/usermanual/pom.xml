@@ -17,6 +17,19 @@
  <packaging>jar</packaging>
  <name>OpenGeo Suite User Manual Doc Module</name>
 
+ <properties>
+   <sphinx-flag></sphinx-flag>
+ </properties>
+
+ <profiles>
+   <profile>
+     <id>test</id>
+     <properties>
+       <sphinx-flag>-W -q</sphinx-flag>
+     </properties>
+   </profile>
+ </profiles>
+
  <build>
    <plugins>
      <plugin>
@@ -28,7 +41,7 @@
             <configuration>
               <tasks>
                 <exec executable="sphinx-build" failonerror="true" dir="${basedir}/source">> 
-                  <arg line="-W -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
+                  <arg line="${sphinx-flag} -W -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
                 </exec>
               </tasks>
             </configuration>

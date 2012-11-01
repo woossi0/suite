@@ -17,20 +17,20 @@
 
   <target name="html">
      <exec executable="sphinx-build" failonerror="true" dir="${basedir}/source">
-        <arg line="-D html_theme='opengeo' -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
+       <arg line="${sphinx-flag} -D html_theme='opengeo' -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
      </exec>
   </target>
   
   <target name="text">
      <exec executable="sphinx-build" failonerror="true" dir="${basedir}/source">
-        <arg line="-b text -d ${build.directory}/doctrees . ${build.directory}/text"/>
+       <arg line="${sphinx-flag} -b text -d ${build.directory}/doctrees . ${build.directory}/text "/>
      </exec>
   </target>
 
   <target name="pdf" depends="pdf-if,pdf-else"/>
   <target name="pdf-if" if="pdflatex">
      <exec executable="sphinx-build" failonerror="true" dir="${basedir}/source">
-        <arg line="-b latex -d ${build.directory}/doctrees . ${build.directory}/latex"/>
+       <arg line="${sphinx-flag} -b latex -d ${build.directory}/doctrees . ${build.directory}/latex"/>
      </exec>
      <exec executable="make" failonerror="true" dir="${build.directory}/latex">
         <arg line="all-pdf"/>
