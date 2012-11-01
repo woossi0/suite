@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Checks each .rst file in the path for "Document Status"
 
 if [[ -z ${1} ]]

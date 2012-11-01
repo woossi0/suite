@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Checks each .rst file in the path for http/https links and tests each with wget --spider to see if they exist.
 
 result=0
