@@ -17,14 +17,13 @@
  <name>OpenGeo Doc Module</name>
 
  <modules>
+  <module>usermanual</module>
   <module>install</module>
   <module>geoexplorer</module>
-  <module>geoserver</module>
-  <module>postgis</module>
   <module>geowebcache</module>
-  <module>production</module>
-  <module>usermanual</module>
+  <module>geoserver</module>
   <module>sdk-api</module>
+  <module>postgis</module>
  </modules>
 
 </project>
