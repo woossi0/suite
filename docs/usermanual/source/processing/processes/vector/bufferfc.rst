@@ -1,5 +1,7 @@
 .. _processing.processes.vector.bufferfc:
 
+.. warning:: Document status: Draft
+
 BufferFeatureCollection
 =======================
 
