@@ -12,6 +12,7 @@
  * @require plugins/AddLayers.js
  * @require plugins/RemoveLayer.js
  * @require RowExpander.js
+ * @require plugins/DrawBox.js
  * @require plugins/BoxInfo.js
  */
 

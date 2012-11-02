@@ -79,7 +79,7 @@ Adding functionality
 
 #. The Draw Box button currently does nothing, so the next step is to add some functionality to it.
 
-   Open up :file:`DrawBox.js` for editing again. Replace the existing ``addActions`` function with the following:
+   Open :file:`DrawBox.js` for editing again. Replace the existing ``addActions`` function with the following:
 
    .. literalinclude:: script/action_DrawBox.js
       :language: javascript
@@ -89,7 +89,7 @@ Adding functionality
 
 #. The layer that contains the drawn boxes should always remain visible even when new layers get added to the map. To accomplish this, the ``raiseLayer`` function is called as a listener for the ``addlayer`` event on the map. This function calls ``setLayerIndex`` to set the index for the new layer to the highest number (based on the total number of layers in the map). This ensures the new layer will be drawn last, superimposed over any other layers.
 
-#. Add the following code to the :file:`DrawBox.js`:
+   Add the following code to the :file:`DrawBox.js`:
 
    .. literalinclude:: script/action_DrawBox.js
       :language: javascript

@@ -5,7 +5,7 @@ Plugin with action and output
 
 This final example will modify the DrawBox plugin created previously to also display a pop-up window after the box has been drawn on the map.
 
-#. Open up the :file:`DrawBox.js` file in a text editor.
+#. Open the :file:`DrawBox.js` file in a text editor.
 
 #. Add an event listener to the ``DrawFeature`` control to display a popup containing the area of the box. Replace the existing control with the following code.
 
@@ -25,11 +25,12 @@ This final example will modify the DrawBox plugin created previously to also dis
       :language: javascript
       :lines: 10
 
-#. Open up the :file:`app.js` and add an ``outputTarget`` for the ``DrawBox`` tool, in between ``id: "drawbox",`` and ``actionTarget: "map.tbar"``:
+#. Open :file:`app.js` and add an ``outputTarget`` for the ``DrawBox`` tool, in between ``id: "drawbox",`` and ``actionTarget: "map.tbar"``:
 
    .. literalinclude:: script/actionoutput_app.js
       :language: javascript
       :lines: 73-78
+      :emphasize-lines: 4
 
 #. Restart the SDK and reload the application in the browser. Test the functionality by drawing boxes. After drawing a box there will now be a pop-up window at the feature's location containing the area of the box drawn. The units are in square meters, as the geometry is using Google Web Mercator projection.
 
