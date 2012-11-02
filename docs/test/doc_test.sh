@@ -2,9 +2,15 @@
 
 set -e 
 
+if [[ -z ${1} ]]
+then
+  echo "usage: doc_test.sh DIRECTORY"
+  exit 1
+fi
+
 doc_dirs="geoexplorer geoserver geowebcache install sdk-api usermanual"
 bad_modules=""
-cd docs
+cd ${1}
 
 for doc_dir in ${doc_dirs}
 do
@@ -16,21 +22,24 @@ do
   then
     result=1
   fi
+  echo
 
   echo "+++ link check"
   if ! test/link_check.sh ${doc_dir}
   then
     result=1
   fi
+  echo
 
   # better reporting results when individually compiling modules
   # capture mvn error code then grep for ERROR and WARNING to report
   echo "+++ sphinx warnings"
   tmp=$(mktemp)
-  if ! mvn clean compile -Ptest -projects ${doc_dir} --quiet > ${tmp}
+  if mvn clean compile -Ptest -projects ${doc_dir} --quiet | grep -E "(WARNING|ERROR)" > ${tmp}
   then
     result=1
-    grep -E "(WARNING|ERROR)" ${tmp} | grep -v "BUILD ERROR"
+    # remove unnecesssary parts of the error string: maven adds [exec] and the full path of the file
+    grep -v "BUILD ERROR" ${tmp} | sed s/[[:space:]]*\\[exec\\][[:space:]]*// | sed "s/$(echo $(pwd) | sed -e 's/\([[\/.*]\|\]\)/\\&/g')//g"
   fi
   rm ${tmp}
 

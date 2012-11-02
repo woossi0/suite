@@ -18,14 +18,14 @@
  <name>OpenGeo Suite User Manual Doc Module</name>
 
  <properties>
-   <sphinx-flag></sphinx-flag>
+   <sphinx-flag>-W</sphinx-flag>
  </properties>
 
  <profiles>
    <profile>
      <id>test</id>
      <properties>
-       <sphinx-flag>-W -q</sphinx-flag>
+       <sphinx-flag>-q</sphinx-flag>
      </properties>
    </profile>
  </profiles>
@@ -40,8 +40,8 @@
             <phase>compile</phase>
             <configuration>
               <tasks>
-                <exec executable="sphinx-build" failonerror="true" dir="${basedir}/source">> 
-                  <arg line="${sphinx-flag} -W -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
+                <exec executable="sphinx-build" failonerror="true" dir="${basedir}/source"> 
+                  <arg line="${sphinx-flag} -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
                 </exec>
               </tasks>
             </configuration>

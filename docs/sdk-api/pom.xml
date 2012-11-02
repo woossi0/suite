@@ -19,7 +19,7 @@
       <profile>
         <id>test</id>
         <properties>
-          <sphinx-flag>-W -q</sphinx-flag>
+          <sphinx-flag>-q</sphinx-flag>
         </properties>
       </profile>
     </profiles>
