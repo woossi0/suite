@@ -1,6 +1,6 @@
 .. _builtindemos:
 
-.. warning:: Document Status: **Requires copyedit review**
+.. warning:: Document Status: *Waiting info on taxlots and states*
 
 Sample layers
 =============
@@ -12,7 +12,7 @@ The OpenGeo Suite comes with some preloaded sample layers that may be viewed and
 Medford
 -------
 
-The city of Medford, in the US state of Oregon, has generously shared some of their municipal data. The following layers are available with the OpenGeo Suite.
+The city of Medford, in the USA state of Oregon, has generously shared some of their public domain municipal data. The following layers are available with the OpenGeo Suite:
 
 .. list-table::
    :widths: 10 20 10 10
@@ -88,7 +88,7 @@ The city of Medford, in the US state of Oregon, has generously shared some of th
      - GeoTIFF
 
    
-The Medford layers have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-122.904, 42.231, -123.042, 42.438``. The Medford data is available in the public domain.
+The Medford layers have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-122.904, 42.231, -123.042, 42.438``. 
 
 
 .. figure:: img/medford.png
@@ -98,7 +98,7 @@ The Medford layers have a declared :term:`SRS` (the projection GeoServer publish
 World
 -----
 
-The OpenGeo Suite also includes a number of world layers including: 
+The OpenGeo Suite provides a number of world layers including: 
 
 .. list-table::
    :widths: 10 10 7
@@ -125,17 +125,34 @@ The OpenGeo Suite also includes a number of world layers including:
 
 The world layers have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-179.97, -77.53, 179.58, 71.08``.
 
-The :guilabel:`world:volcanoes` layer is derived from the freely available volcano data compiled by the Smithsonian Institute, Global Volcanism Program. The :guilabel:`world:globaldata_temp` layer is derived from NASA's GLOBE Program and again is freely available. (GLOBE data is only available for locations in countries that have joined the GLOBE Program.) 
+The :guilabel:`world:volcanoes` layer is derived from the freely available volcano data compiled by the Smithsonian Institute, Global Volcanism Program. The :guilabel:`world:globaldata_temp` layer is derived from the `NASA GLOBE Program <http://www.globe.gov/>`_ and again is freely available. (GLOBE data is only available for locations in countries that have joined the GLOBE Program.) 
 
-The :guilabel:`world:urbanareas1_1` layer was obtained from the Nordpril world database of large urban areas, 1950-2050, derived from the World Urbanization Prospects: The 2007 Revision Population Database (UN Population Division). The urban areas data is made available under a Creative Commons public domain license.
+The :guilabel:`world:urbanareas1_1` layer was obtained from the `Nordpil world database of large urban areas <http://nordpil.com/go/resources/world-database-of-large-cities/>`_, derived from the World Urbanization Prospects: The 2007 Revision Population Database (UN Population Division). The urban areas data is made available under a Creative Commons public domain license.
 
-The :guilabel:`world:cities` and the :guilabel:`world:borders` layers were derived from public domain data obtained from the Natural Earth website (http://www.naturalearthdata.com/). 
+The :guilabel:`world:cities` and the :guilabel:`world:borders` layers were derived from public domain data obtained from the `Natural Earth <http://www.naturalearthdata.com/>`_ website. 
+
+
+USA
+---
+
+A population distribution layer for the USA is also provided.
+
+.. list-table::
+   :widths: 10 10 7
+   :header-rows: 1
+
+   * - Layer Name
+     - Abstract
+     - Type  
+   * - :guilabel:`usa:states`             
+     - Population distribution in USA by state            
+     - MultiPolygon
 
 
 Base Maps
 ---------
 
-When the GeoExplorer application is opened, it will automatically link to the MapQuest OpenStreetMap web service, providing a general map of the world as a base map. 
+GeoExplorer provides a link to the MapQuest OpenStreetMap (OSM) web service, providing a general map of the world as a base map. 
 
 .. figure:: ../webmaps/easypublish/img/load_geoexplorer.png
 
@@ -146,7 +163,4 @@ Layer preview
 -------------
 
 You can use GeoExplorer to view any of the sample layers. To open GeoExplorer, click :guilabel:`Launch` next to :guilabel:`GeoExplorer` on the OpenGeo Suite :ref:`Dashboard`. For more information on viewing and adding layers to GeoExplorer, see the :ref:`webmaps.basic` tutorial or the GeoExplorer `reference documentation <../geoexplorer/>`_.
-
-
-
 
