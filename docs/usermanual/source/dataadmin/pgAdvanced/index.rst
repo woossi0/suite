@@ -1,16 +1,17 @@
 .. _dataadmin.pgAdvanced:
 
+.. warning:: Document status **Draft**
 
-Working with your data 
-======================
 
-This section describes how to work with your data using the OpenGeo Suite, from connecting to a PostGIS database, loading and managing your data in PostGIS, and using the GeoServer Layer Importer.
+Analyzing data with PostGIS
+===========================
+
+This section describes techniques for analyzing your data with PostGIS. 
 
 
 .. toctree::
-   :hidden:
+   :hidden: 
 
    de9im
-   history_tracking
    linear_referencing
-
+   history_tracking
