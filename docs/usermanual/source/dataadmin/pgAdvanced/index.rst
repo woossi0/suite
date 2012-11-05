@@ -1,4 +1,4 @@
-.. _dataadmin:
+.. _dataadmin.pgAdvanced:
 
 
 Working with your data 
@@ -8,10 +8,9 @@ This section describes how to work with your data using the OpenGeo Suite, from 
 
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
-   pgGettingStarted/index
-   pgBasics/index
-   pgAdvanced/index
-   importer/index
+   de9im
+   history_tracking
+   linear_referencing
 
