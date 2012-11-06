@@ -39,7 +39,7 @@
 	url = git://github.com/openlayers/openlayers.git
 [submodule "geoexplorer/app/static/externals/printpreview"]
 	path = geoexplorer/app/static/externals/printpreview
-	url = git://github.com/GeoNode/PrintPreview.git
+	url = git://github.com/opengeo/PrintPreview.git
 [submodule "geoexplorer/externals/stick"]
 	path = geoexplorer/externals/stick
 	url = https://github.com/hns/stick.git
