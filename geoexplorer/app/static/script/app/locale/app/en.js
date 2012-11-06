@@ -34,6 +34,8 @@ GeoExt.Lang.add("en", {
         loginText: "Login",
         loginErrorText: "Invalid username or password.",
         userFieldText: "User",
-        passwordFieldText: "Password"
+        passwordFieldText: "Password",
+        logoutConfirmTitle: "Warning",
+        logoutConfirmMessage: "Logging out will undo any unsaved changes, remove any layers you may have added, and reset the map composition. Do you want to save your composition first?"
     }
 });

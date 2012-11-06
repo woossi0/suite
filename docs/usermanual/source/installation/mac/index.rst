@@ -170,6 +170,11 @@ The procedure for upgrading is as follows:
 
 #. Restart the OpenGeo Suite.
 
+.. note::
+
+   Memory requirements for OpenGeo Suite 3 have increased, which requires modification to the Tomcat Java configuration. These settings are not automatically updated on upgrade and must be set manually. 
+
+   To make the change, open the file :file:`/opt/opengeo/suite/opengeo-suite` in a text editor and append ``-XX:MaxPermSize=256m`` to the end of the line that starts with ``VMOPTS=...``. Restart the OpenGeo Suite for the change to take effect.
 
 .. _installation.osx.uninstall:
 

@@ -39,6 +39,8 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
     saveErrorText: "Trouble saving: ",
     tableText: "Table",
     queryText: "Query",
+    logoutConfirmTitle: "Warning",
+    logoutConfirmMessage: "Logging out will undo any unsaved changes, remove any layers you may have added, and reset the map composition. Do you want to save your composition first?",
     // End i18n.
 
     constructor: function(config) {
@@ -244,10 +246,26 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
      *  Log out the current user from the application.
      */
     logout: function() {
-        this.clearCookieValue("JSESSIONID");
-        this.clearCookieValue(this.cookieParamName);
-        this.setAuthorizedRoles([]);
-        window.location.reload();
+        var callback = function() {
+            this.clearCookieValue("JSESSIONID");
+            this.clearCookieValue(this.cookieParamName);
+            this.setAuthorizedRoles([]);
+            window.location.reload();
+        };
+        Ext.Msg.show({
+            title: this.logoutConfirmTitle, 
+            msg: this.logoutConfirmMessage, 
+            buttons: Ext.Msg.YESNOCANCEL,
+            icon: Ext.MessageBox.WARNING,
+            fn: function(btn) {
+                if (btn === 'yes') {
+                    this.save(callback, this);
+                } else if (btn === 'no') {
+                    callback.call(this);
+                }
+            },
+            scope: this
+        });
     },
 
     /** private: method[authenticate]

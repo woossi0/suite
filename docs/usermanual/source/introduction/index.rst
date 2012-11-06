@@ -11,5 +11,5 @@ This section will guide you through the basic functionality of the OpenGeo Suite
    whatis
    dashboard
    recipes
-   builtindemos
+   samplelayers
    moreinfo

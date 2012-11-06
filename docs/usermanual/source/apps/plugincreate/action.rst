@@ -1,10 +1,9 @@
 .. _apps.plugincreate.action:
 
-
 Plugin with action only
 =======================
 
-The first example plugin will contain only an action, with no output. Specifically, the plugin will add a button to the toolbar called "Draw Box" which when clicked will allow the user to draw a rectangle on the map.
+The first example plugin will contain only an action, with no output. Specifically, the plugin will add a button called "Draw Box" to the toolbar which when clicked will allow the user to draw a rectangle on the map.
 
 New application setup
 ---------------------
@@ -27,10 +26,10 @@ New application setup
       suite-sdk create %USERPROFILE%\myapp
       suite-sdk debug %USERPROFILE%\myapp
 
-#. Verify in the browser that the application is running successfully by navigating to ``http://localhost:9080/``, replacing ``localhost`` with the URL where the SDK is hosted.
+#. Verify in the browser that the application is running successfully by navigating to ``http://localhost:9080/``, replacing ``localhost`` with the name of the host where the SDK is being served.
 
-Creating basic plugin
----------------------
+Creating a basic plugin
+-----------------------
 
 #. In the :file:`src/app` directory inside the application, create a :file:`plugins` directory.
 
@@ -41,17 +40,17 @@ Creating basic plugin
    .. literalinclude:: script/action_DrawBox_initial.js
       :language: javascript
 
-   .. note:: Read more about the `Tool.js plugin <../../sdk-api/lib/plugins/Tool.html>`_ in the SDK API.
+   As for user interaction, this code will only add a button to the toolbar with the text "Draw box". This button will not have any functionality. Also, the final line registers the ``ptype`` name as a shortcut for creating the plugin.
 
-   As for user interaction, this code will only add a button to the toolbar with the text "Draw box". This button will not have any any functionality.
+   .. note:: This example sets a namespace for the plugin called "myapp", but this can be changed, so long as any new namespace is used consistently throughout. In addition, we recommend you include a prefix on the name of the ptype that matches the namespace, but this is not required.
 
-   .. note:: This example sets a namespace for the plugin called "myapp", but this can be changed, so long as it is consistent throughout. In addition, it is recommended to include a prefix on the name of the ptype that matches the namespace, but this is not required.
+   .. note:: Find out more about the `Tool.js plugin <../../sdk-api/lib/plugins/Tool.html>`_ in the SDK API.
 
 
 Connect plugin to application
 -----------------------------
 
-#. Now the the plugin is created, it must be connected to the application. Open :file:`src/app/app.js` and add a dependency at the top:
+#. Now that the plugin has been created, it must be connected to the application. Open :file:`src/app/app.js` and add a dependency at the top:
 
    .. literalinclude:: script/action_app.js
       :language: javascript
@@ -61,11 +60,10 @@ Connect plugin to application
 
    .. literalinclude:: script/action_app.js
       :language: javascript
-      :lines: 72-75
-      :emphasize-lines: 73-74
+      :lines: 66-69
 
-   .. todo:: :emphasize-lines: doesn't seem to work
-
+   This tool will place the draw box button in the Map Window toolbar of the map.
+   
 #. Save this file.
 
 #. Since a new dependency was added, the application will need to be restarted to see the changes. In the terminal, type CTRL+C to stop the SDK and then run the debug command again.
@@ -79,29 +77,31 @@ Connect plugin to application
 Adding functionality
 --------------------
 
-#. This button as currently designed does nothing, so the next step is to add some functionality to it.
+#. The Draw Box button currently does nothing, so the next step is to add some functionality to it.
 
-   Open up :file:`DrawBox.js` for editing again. Find the ``addActions`` function and alter it to look like the following:
-
-   .. literalinclude:: script/action_DrawBox.js
-      :language: javascript
-      :lines: 11-35
-
-   This code wraps an `OpenLayers.Control.DrawFeature <http://dev.openlayers.org/docs/files/OpenLayers/Control/DrawFeature-js.html>`_ that will allow the user to draw rectangular geometries on the map. It also creates a vector layer which will keep hold of the boxes that are being drawn by the ``OpenLayers.Control.DrawFeature`` control. The ``handlerOptions`` specified ensure that only rectangular geometries can be drawn.
-
-#. The drawn layer should remain visible, even when new layers get added to the map. To accomplish this, the ``raiseLayer`` function is called as a listener for the ``addlayer`` event on the map. This function raises the layer by calling setLayerIndex and setting the layer index to the highest number (the number of layers in the map). In this way, it will ensure that this layer is on top (drawn last).
-
-Add the following code to the :file:`DrawBox.js`:
+   Open :file:`DrawBox.js` for editing again. Replace the existing ``addActions`` function with the following:
 
    .. literalinclude:: script/action_DrawBox.js
       :language: javascript
-      :lines: 37-42
+      :lines: 17-41
 
-#. Since these functions depend on more classes from OpenLayers and GeoExt, more dependencies are needed. Add the following to the top of :file:`src/app/app.js`:
+   This code pulls in an `OpenLayers.Control.DrawFeature <http://dev.openlayers.org/docs/files/OpenLayers/Control/DrawFeature-js.html>`_ control that will allow you to draw rectangular geometries on the map. It also creates a vector layer that holds the boxes that are being drawn by the ``OpenLayers.Control.DrawFeature`` control. The ``handlerOptions`` specified ensure that only rectangular geometries can be drawn.
 
-   .. literalinclude:: script/action_app.js
+#. The layer that contains the drawn boxes should always remain visible even when new layers get added to the map. To accomplish this, the ``raiseLayer`` function is called as a listener for the ``addlayer`` event on the map. This function calls ``setLayerIndex`` to set the index for the new layer to the highest number (based on the total number of layers in the map). This ensures the new layer will be drawn last, superimposed over any other layers.
+
+   Add the following code to the :file:`DrawBox.js`:
+
+   .. literalinclude:: script/action_DrawBox.js
       :language: javascript
-      :lines: 16-21
+      :lines: 43-48
+
+#. Since these functions depend on additional classes from OpenLayers and GeoExt, these dependencies must be added to the top of :file:`DrawBox.js`:
+
+   .. literalinclude:: script/action_DrawBox.js
+      :language: javascript
+      :lines: 3-8
+
+   .. note:: While it is possible to add these dependencies to :file:`src/app/app.js` instead of :file:`DrawBox.js`, it is preferable to keep the plugin dependencies with the plugin file to clarify where the dependencies are used.
 
 #. Restart the SDK and reload the application in the browser to see the code in effect.
 

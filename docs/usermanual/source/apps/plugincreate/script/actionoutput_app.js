@@ -13,12 +13,6 @@
  * @require plugins/RemoveLayer.js
  * @require RowExpander.js
  * @require plugins/DrawBox.js
- * @require GeoExt/widgets/Action.js
- * @require OpenLayers/Control/DrawFeature.js
- * @require OpenLayers/Handler/RegularPolygon.js
- * @require OpenLayers/Layer/Vector.js
- * @require OpenLayers/Renderer/SVG.js
- * @require OpenLayers/Renderer/VML.js
  * @require plugins/BoxInfo.js
  */
 

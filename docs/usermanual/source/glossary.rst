@@ -19,7 +19,10 @@ Glossary
      `Geography Markup Language <http://www.opengeospatial.org/standards/gml>`_ (GML) is the :term:`Open Geospatial Consortium` standard XML format for representing spatial feature information.
 
    GeoJSON
-     Javascript Object Notation. A text format that is very fast to parse in Javascript virtual machines. In spatial, the extended specification for `GeoJSON <http://geojson.org>`_ is commonly used.
+     Javascript Object Notation. A text format that is very fast to parse in JavaScript virtual machines. In spatial, the extended specification for `GeoJSON <http://geojson.org>`_ is commonly used.
+
+   GeoRSS
+     RSS feed containing geographic information in :term:`GML <Geographic Markup Language>` (Geographic Markup Language) format.
     
    GIS
      `Geographic information system <http://en.wikipedia.org/wiki/Geographic_information_system>`_ or geographical information system captures, stores, analyzes, manages, and presents data that is linked to location.
@@ -28,7 +31,7 @@ Glossary
      See :term:`Geographic Markup Language`.
 
    JSON
-     Javascript Object Notation. A text format that is very fast to parse in Javascript virtual machines. In spatial, the extended specification for `GeoJSON <http://geojson.org>`_ is commonly used.
+     JavaScript Object Notation. A text format that is very fast to parse in JavaScript virtual machines. In spatial, the extended specification for `GeoJSON <http://geojson.org>`_ is commonly used.
 
    JSP
      JavaServer Pages. A scripting system for Java server applications that allows the interleaving of markup and Java procedural code.
@@ -43,13 +46,13 @@ Glossary
      See :term:`Open Geospatial Consortium`.
 
    Open Geospatial Consortium
-     The Open Geospatial Consortium (OGC) <http://www.opengeospatial.org/> is a standards organization that develops specifications for geospatial services.
+     The `Open Geospatial Consortium <http://www.opengeospatial.org/>`_ (OGC)  is a standards organization that develops specifications for geospatial services.
 
    OSGeo
-     The Open Source Geospatial Foundation (OSGeo) <http://osgeo.org> is a non-profit foundation dedicated to the promotion and support of open source geospatial software.
+     The `Open Source Geospatial Foundation <http://osgeo.org>`_ (OSGeo) is a non-profit foundation dedicated to the promotion and support of open source geospatial software.
 
    Scalable Vector Graphics
-     This is a family of specifications of an XML-based file format for describing two-dimensional vector graphics, both static and dynamic (i.e. interactive or animated). See http://en.wikipedia.org/wiki/Scalable_Vector_Graphics.
+     This is a family of specifications of an :term:`XML`-based file format for describing two-dimensional vector graphics, both static and dynamic (i.e. interactive or animated). See http://en.wikipedia.org/wiki/Scalable_Vector_Graphics.
 
    SFSQL
      The `Simple Features for SQL <http://www.opengeospatial.org/standards/sfs>`_ (SFSQL) specification from the :term:`Open Geospatial Consortium` defines the types and functions that make up a standard spatial database.
@@ -64,7 +67,10 @@ Glossary
      `SQL Multimedia <http://www.fer.unizg.hr/_download/repository/SQLMM_Spatial-_The_Standard_to_Manage_Spatial_Data_in_Relational_Database_Systems.pdf>`_; includes several sections on extended types, including a substantial section on spatial types.
 
    SRID
-     Spatial reference ID. This a unique number assigned to a particular "coordinate reference system". The PostGIS table **spatial_ref_sys** contains a large collection of well-known srid values and text representations of the coordinate reference systems.
+     Spatial reference ID. This a unique number assigned to a particular "coordinate reference system". The PostGIS table **spatial_ref_sys** contains a large collection of well-known SRID values and text representations of the coordinate reference systems.
+
+   SRS
+     Spatial reference system. See :term:`SRID`.
 
    SVG
      See :term:`Scalable Vector Graphics`.
@@ -91,7 +97,7 @@ Glossary
      This refers to the binary representation of geometries described in the Simple Features for SQL specification (:term:`SFSQL`).
 
    Well-Known Text
-     This refers either to the text representation of geometries, with strings starting "POINT", "LINESTRING", "POLYGON", and so on, or the text representation of a :term:`CRS`, with strings starting "PROJCS", "GEOGCS", and so on. Well-known text representations are :term:`OGC` standards, but do not have their own specification documents. The first descriptions of WKT (for geometries and for CRS) appeared in the :term:`SFSQL` 1.0 specification.
+     This refers either to the text representation of geometries, with strings starting "POINT", "LINESTRING", "POLYGON", and so on, or the text representation of a :term:`CRS`, with strings starting "PROJCS", "GEOGCS", and so on. Well-known text representations are :term:`OGC <Open Geospatial Consortium>` standards, but do not have their own specification documents. The first descriptions of Well-Known Text (for geometries and for CRS) appeared in the :term:`SFSQL` 1.0 specification. Often abbreviated as WKT.
 
    WFS
      See :term:`Web Feature Service`.

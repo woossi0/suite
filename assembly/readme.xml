@@ -19,14 +19,14 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>docs/install/linux/target/latex</directory>
+      <directory>docs/install/ubuntu/target/latex</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>README-ubuntu.pdf</include>
       </includes>
     </fileSet>
     <fileSet>
-      <directory>docs/install/linux/target/latex</directory>
+      <directory>docs/install/centos/target/latex</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>README-centos.pdf</include>

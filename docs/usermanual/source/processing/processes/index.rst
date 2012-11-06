@@ -1,21 +1,21 @@
-.. _processing.proccesses: 
+.. _processing.processes: 
 
 Process reference
 =================
 
 This section will highlight some common and useful WPS processes stored in the OpenGeo Suite. It is not a comprehensive listing of all processes; rather, it is designed to get a feel for how some particular processes operate.
 
+Processes are divided up into three categories, based on the type of geospaital content that they operate on:  **vector**, **raster**, and **geometry**.
+
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    formats
-   bufferfc
-   centroid
-   clip
-   import
-   intersectionfc
-   simplify
-   transform
-   unionfc
+   vector/index
+
+.. todo::
+
+   raster/index
+   geometry/index
 
 .. todo:: For more information, go where?

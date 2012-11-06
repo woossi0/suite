@@ -3,7 +3,10 @@
 Installing OpenGeo Suite on CentOS and Red Hat
 ==============================================
 
-The commands contained in the following installation instructions assume root privileges. 
+The commands contained in the following installation instructions assume root privileges.
+
+Installing OpenGeo Suite Community Edition
+------------------------------------------
 
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.centos.suite.upgrade`.
 
@@ -70,21 +73,21 @@ Installing OpenGeo Suite Enterprise Edition
       * - System
         - Command
       * - CentOS 5, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/centos/5/i386/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/5/i386/OpenGeoEE.repo``
       * - CentOS 5, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/centos/5/x86_64/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/5/x86_64/OpenGeoEE.repo``
       * - CentOS 6, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/centos/6/i686/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/6/i686/OpenGeoEE.repo``
       * - CentOS 6, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/centos/6/x86_64/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/6/x86_64/OpenGeoEE.repo``
       * - RHEL 5, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/rhel/5/i386/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/5/i386/OpenGeoEE.repo``
       * - RHEL 5, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/rhel/5/x86_64/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/5/x86_64/OpenGeoEE.repo``
       * - RHEL 6, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/rhel/6/i686/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/6/i686/OpenGeoEE.repo``
       * - RHEL 6, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/rhel/6/x86_64/OpenGeoEE.repo``
+        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeoEE.repo``
 
 #. Edit the downloaded :file:`OpenGeoEE.repo` file, filling in your user name and password in place of ``<yourUserName>`` and ``<yourPassword>``.
 
@@ -186,11 +189,11 @@ Uninstall OpenGeo Suite 2.x
 
 .. note:: If you are running CentOS/RHEL 6 or above you may skip this step.
 
-#. Due to conflicts with the way that CentOS 5 manages postgresql packages, it is necessary to active remove the entire OpenGeo Suite installation before continuing with the upgrade. The easiest way to remove the entire set of packages for a Suite 2.x installation is to remove the ``postgresql84-libs`` package.
+#. Due to a conflict with CentOS 5 postgreSQL package management, the entire OpenGeo Suite installation must be removed before continuing with the upgrade. The easiest way to remove the postgreSQL packages for a Suite 2.x installation is to remove the ``postgresql84`` package.
 
    .. code-block:: console
 
-      yum remove postgresql84-libs
+      yum remove postgresql84
 
 Install OpenGeo Suite 3.x
 ^^^^^^^^^^^^^^^^^^^^^^^^^

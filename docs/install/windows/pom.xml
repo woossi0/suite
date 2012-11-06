@@ -8,7 +8,8 @@
  <parent>
   <groupId>org.opengeo.docs</groupId>
   <artifactId>install</artifactId>
-  <version>3.0-SNAPSHOT</version>
+  <version>3.0</version>
+
  </parent>
 
  <groupId>org.opengeo.docs</groupId>
@@ -57,6 +58,7 @@
               <tasks>
                 <ant antfile="../build.xml" dir="${basedir}">
                   <property name="build.directory" value="${build.directory}"/>
+                  <property name="sphinx-flag" value="${sphinx-flag}"/>
                 </ant>
               </tasks>
             </configuration>

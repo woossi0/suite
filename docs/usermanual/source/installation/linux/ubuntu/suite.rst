@@ -5,6 +5,9 @@ Installing OpenGeo Suite on Ubuntu
 
 The commands contained in the following installation instructions assume root privileges. 
 
+Installing OpenGeo Suite Community Edition
+------------------------------------------
+
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.ubuntu.suite.upgrade`.
 
 .. warning:: Packages are only available for Ubuntu 10.04 and above.

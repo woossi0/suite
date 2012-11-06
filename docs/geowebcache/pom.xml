@@ -8,13 +8,23 @@
  <parent>
   <groupId>org.opengeo</groupId>
   <artifactId>docs</artifactId>
-  <version>3.0-SNAPSHOT</version>
+  <version>3.0</version>
+
  </parent>
 
  <groupId>org.opengeo.docs</groupId>
  <artifactId>geowebcache</artifactId>
  <packaging>jar</packaging>
  <name>OpenGeo GeoWebCache Doc Module</name>
+
+ <profiles>
+   <profile>
+     <id>test</id>
+     <properties>
+       <sphinx-flag>-q</sphinx-flag>
+     </properties>
+   </profile>
+ </profiles>
 
  <build>
    <plugins>
@@ -60,7 +70,7 @@
               <tasks>
 
                 <exec executable="sphinx-build" failonerror="true" dir="${basedir}/src">
-                  <arg line="-D html_theme='gwc' -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
+                  <arg line="${sphinx-flag} -D html_theme='gwc' -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
                 </exec>
               </tasks>
             </configuration>
@@ -76,6 +86,7 @@
  <properties>
    <gwc.branch>master</gwc.branch>
    <gwc.rev>1.2.5</gwc.rev>
+   <sphinx-flag></sphinx-flag>
  </properties>
 
 </project>

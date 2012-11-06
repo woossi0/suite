@@ -1,5 +1,11 @@
 /**
  * @require plugins/Tool.js
+ * @require GeoExt/widgets/Action.js
+ * @require OpenLayers/Control/DrawFeature.js
+ * @require OpenLayers/Handler/RegularPolygon.js
+ * @require OpenLayers/Layer/Vector.js
+ * @require OpenLayers/Renderer/SVG.js
+ * @require OpenLayers/Renderer/VML.js
  */
 
 Ext.ns("myapp.plugins");
