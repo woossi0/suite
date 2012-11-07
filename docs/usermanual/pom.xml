@@ -8,7 +8,7 @@
  <parent>
   <groupId>org.opengeo</groupId>
   <artifactId>docs</artifactId>
-  <version>3.0</version>
+  <version>3.0.1-RC1</version>
 
  </parent>
 
