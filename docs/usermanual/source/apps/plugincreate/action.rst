@@ -23,8 +23,8 @@ New application setup
 
    .. code-block:: console
 
-      suite-sdk create %USERPROFILE%\myapp
-      suite-sdk debug %USERPROFILE%\myapp
+      suite-sdk create "%USERPROFILE%\myapp"
+      suite-sdk debug "%USERPROFILE%\myapp"
 
 #. Verify in the browser that the application is running successfully by navigating to ``http://localhost:9080/``, replacing ``localhost`` with the name of the host where the SDK is being served.
 
