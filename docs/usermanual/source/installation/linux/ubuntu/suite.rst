@@ -200,7 +200,7 @@ The procedure for upgrading is as follows:
 
    .. code-block:: console
 
-      echo "deb http://<username>:<password>apt-ee.opengeo.org/suite/v3/ubuntu lucid main"
+      echo "deb http://<username>:<password>@apt-ee.opengeo.org/suite/v3/ubuntu lucid main"
         >> /etc/apt/sources.list
 
 #. Now update your repository sources:
