@@ -81,7 +81,7 @@ Outputs
      - :ref:`SimpleFeatureCollection <processing.processes.formats.fcout>`
 
 Usage notes
-===========
+-----------
 
 * The first input feature collection must not consist of point geometries.
 * Both input feature collections are assumed to be in the same :term:`CRS`. The output feature collection will have the same CRS as the input.

@@ -73,17 +73,15 @@ Input parameters:
 * ``features``: ``world:borders``
 * ``clip``: ``POLYGON((-125 25, -67 25, -67 50, -125 50, -125 25))``
 
-:download:`Download complete XML request <xml/clipexample2.xml>`
-
-.. todo:: Swap file names of XML examples to match example number
+:download:`Download complete XML request <xml/clipexample.xml>`
 
 .. figure:: img/clipexampleUI3.png
 
-   *gs:Clip example #1 parameters*
+   *gs:Clip example 1 parameters*
 
 .. figure:: img/clipexample2.png
 
-   *gs:Clip example #1 output*
+   *gs:Clip example 1 output*
 
 Clipping by feature
 ~~~~~~~~~~~~~~~~~~~
@@ -105,15 +103,15 @@ Input parameters for ``gs:Clip``:
 * ``features``: ``medford:streets``
 * ``clip``: output from ``gs:CollectGeometries`` process
 
-:download:`Download complete chained XML request <xml/clipexample.xml>`
+:download:`Download complete chained XML request <xml/clipexample2.xml>`
 
 .. figure:: img/clipexampleUI.png
 
-   *gs:Clip example #2 parameters (part 1)*
+   *gs:Clip example 2 parameters (part 1)*
 
 .. figure:: img/clipexampleUI2.png
 
-   *gs:Clip example #2 parameters (part 2)*
+   *gs:Clip example 2 parameters (part 2)*
 
 .. figure:: img/clipexample.png
 

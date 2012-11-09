@@ -3,13 +3,10 @@
 Centroid
 ========
 
-.. todo:: Graphic needed.
-
 Description
 -----------
 
-The ``gs:Centroid`` process takes a feature collection and returns a point feature collection 
-containing the centroids of the geometries of the input features. Feature attributes names and values remain unchanged.
+The ``gs:Centroid`` process takes a feature collection and returns a point feature collection containing the centroids of the geometries of the input features. Feature attributes names and values remain unchanged.
 
 The `centroid <http://en.wikipedia.org/wiki/Centroid>`_ of a geometry is defined for all geometry types (Point, Line and Polygon). It is equal to the geometric center of all points contained in the geometry.
 
@@ -17,9 +14,9 @@ The `centroid <http://en.wikipedia.org/wiki/Centroid>`_ of a geometry is defined
 
 .. figure:: img/centroid.png 
 
-   *Centroids of a MultiPoint, LineString, and two Polygons*
+   *gs:Centroid*
 
-Centroids can provide a representative point for features, with typical use cases including distance analysis and label placement.
+Centroids can provide a representative point for features. Typical use cases include distance analysis and label placement.
 
 
 Inputs and outputs
@@ -28,7 +25,7 @@ Inputs and outputs
 ``gs:Centroid`` accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
 
 Inputs
-^^^^^^
+~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -44,7 +41,7 @@ Inputs
      - Required
 
 Outputs
-^^^^^^^
+~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -64,20 +61,18 @@ Usage notes
 Examples
 --------
  
-The following example illustrates how to use the ``gs:Centroid`` process.
 
-* Find the centroids of the polygons in the ``medford:zoning`` layer.
+Finding the centroids of the polygons in the ``medford:zoning`` layer:
 
-  - ``features``: *medford:zoning*
+  - ``features``: ``medford:zoning``
 
   .. figure:: img/centroid-med.png
   
-   *Centroids of zoning polygons*
+     *Centroids of medford:zoning polygons*
 
 
 Related processes
 -----------------
 
-* Centroid calculation is also available with the ``gt:Transform`` process, using the ``centroid(geom)`` function. 
-* If a point guaranteed to lie within the input geometry is required, use the 
-``interiorPoint(geom)`` function with the ``gt:Transform`` process.
+* Centroid calculation is also available with the `gs:Transform <processing.processes.vector.transform>`_ process, using the ``centroid(geom)`` function. 
+* If a point guaranteed to lie within the input geometry is required, use the ``interiorPoint(geom)`` function with the ``gs:Transform`` process.

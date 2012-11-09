@@ -67,15 +67,15 @@ The following examples illustrate how to use the ``gs:Transform`` process. All o
 
    * ``transform``: ``the_geom=the_geom; streetname=streetname``
 
-#. Same as 1 only renaming the attribute name to ``street_name``:
+#. Same as example 1 only renaming the attribute name to ``street_name``:
 
    * ``transform``: ``the_geom=the_geom; street_name=streetname``
 
-#. Same as 1 only adding in the length of the feature:
+#. Same as example 1 only adding in the length of the feature:
 
    * ``transform``: ``the_geom=the_geom; street_name=streetname; length = length(the_geom)``
 
-#. Same as 1 only adding an attribute called ``dif`` containing the difference between the computed length and the value in the ``len`` attribute of the original input layer:
+#. Same as example 1 only adding an attribute called ``dif`` containing the difference between the computed length and the value in the ``len`` attribute of the original input layer:
 
    * ``transform``: ``the_geom=the_geom; street_name=streetname; length = length(the_geom); dif=length(the_geom)-len``
 
