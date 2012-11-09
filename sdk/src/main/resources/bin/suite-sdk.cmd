@@ -44,6 +44,19 @@ goto Run
 if "x%~2"=="x" goto Usage
 if "%~2"=="-h" goto UsageCreate
 if "%~2"=="--help" goto UsageCreate
+
+:: Determine if there are "extra" flags
+call :lastarg %*
+:: If the second to last or last argument starts with a -, dump to usage
+if "%PREV_ARG:~0,1%"=="-" (
+  echo Invalid argument: %PREV_ARG%
+  goto UsageCreate
+)
+if "%LAST_ARG:~0,1%"=="-" (
+  echo Invalid argument: %LAST_ARG%
+  goto UsageCreate
+)
+
 set COMMAND="%~1"
 set APP_PATH="%~2"
 set ANT_ARGS=%ANT_ARGS% -Dapp.path=%APP_PATH%
