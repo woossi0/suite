@@ -3,18 +3,19 @@
 IntersectionFeatureCollection
 =============================
 
-.. warning:: Document status: **Requires copyedit review (MP)**
 
 Description
 -----------
 
-The ``gs:IntersectionFeatureCollection`` process allows two feature collections to be intersected via spatial intersection and by attribute combination.
+The ``gs:IntersectionFeatureCollection`` process intersects two feature collections using spatial intersection and attribute combination.
 
-The geometries in the feature collections can be intersected by a straight spatial intersection, or the output can use the original geometries from either input without any spatial processing. The attributes of the output feature collection are determined by a list of attributes from both of the input geometries, specified as two lists, one from each input. If these parameters are left blank, all attributes will be used.
+The geometries in the feature collections can be intersected (``intersectionMode``) by a spatial intersection (``INTERSECTION``) or the output can use the original geometries from either inputs (``FIRST`` or ``SECOND``) without any spatial processing.
+
+The attributes of the output feature collection are determined by a list of attributes from both of the input geometries, specified as two lists, one from each input. If these parameters are left blank, all attributes will be used.
 
 In addition to the above parameters, the areas of each feature collection can be included as attributes, as well as the percentage of intersection.
 
-The names of the output attributes will be altered. The new attribute names will have the originating feature collection, an underscore, and then be followed with the name of the original attribute (``feature_attr``).
+The names of the output attributes will be altered. The new attribute names will consist of the  originating feature collection, an underscore, and the name of the original attribute (``feature_attr``).
 
 .. figure:: img/intersectionfc.png
 
@@ -25,7 +26,7 @@ The names of the output attributes will be altered. The new attribute names will
 Inputs and outputs
 ------------------
 
-This process accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
+``gs:IntersectionFeatureCollection`` accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
 
 Inputs
 ~~~~~~
@@ -46,15 +47,15 @@ Inputs
      - :ref:`SimpleFeatureCollection <processing.processes.formats.fcin>`
      - Required
    * - ``first attributes to retain``
-     - Attribute to include from first feature collection
+     - Attribute from first feature collection
      - String
      - Optional (any number)
    * - ``second attributes to retain``
-     - Attribute to include from second feature collection
+     - Attribute from second feature collection
      - String
      - Optional (any number)
    * - ``intersectionMode``
-     - Specifies geometry computed for intersecting features. ``INTERSECTION`` (default) computes the spatial intersection of the inputs. ``FIRST`` copies geometries directly from the first input feature collection. ``SECOND`` copies geometries directly from the second feature collection.
+     - Specifies geometry computed for intersecting features. Options ``INTERSECTION`` (default)—Computes the spatial intersection of the inputs, ``FIRST``—Copies geometries directly from the first input feature collection, ``SECOND``—Copies geometries directly from the second feature collection
      - IntersectionMode
      - Optional
    * - ``percentagesEnabled``
@@ -79,19 +80,18 @@ Outputs
      - Output feature collection
      - :ref:`SimpleFeatureCollection <processing.processes.formats.fcout>`
 
-
 Usage notes
------------
+===========
 
 * The first input feature collection must not consist of point geometries.
 * Both input feature collections are assumed to be in the same :term:`CRS`. The output feature collection will have the same CRS as the input.
-* We recommended using the smallest feature collection in the ``second feature collection`` input, as this will reduce the time needed to run the process.
-* An ``INTERSECTION_ID`` field is automatically added which will contain a unique integer value for each output feature.
-* If setting either of the parameters ``areasEnabled`` or ``percentageEnabled`` to True, both of the feature collections must contain polygon features.
-* Areas of resulting intersection polygons, stored in the ``areaA`` and ``areaB`` attributes, are expressed in the areal units corresponding to the the input feature collections. For example, if coordinates are expressed in meters, areas will be expressed in square meters.
-* Attributes values are copied from the input layers but are not modified, so attributes that may depend on the specific properties of the inputs geometries are likely to be invalid for the resulting layer.
-* If the input layers contain an attribute consisting of area measurement, and it is desired o have a similar area measurement for the output feature collection, it can be recalculated by setting the ``areasEnabled`` parameter to *True*.
-* For applicable attributes, a new value can be calculated from the original values and the percentage value added when the ``percentageEnabled`` flag is set to *True*. This, however, assumes that a regular distribution over the feature areaa. For instance, in the case of an attribute representing a population count for a polygon geometry, this calculation will assume that the population is regularly distributed and the population density is constant.
+* We recommend using the smallest feature collection in the ``second feature collection`` input, as this will reduce the time required to run the process.
+* An ``INTERSECTION_ID`` field is automatically added that will contain a unique integer value for each output feature.
+* If either of the parameters ``areasEnabled`` or ``percentageEnabled`` are set to True, both of the feature collections must contain polygon features.
+* Areas of resulting intersection polygons, stored in the ``areaA`` and ``areaB`` attributes, are expressed in the areal units corresponding to the input feature collections. For example, if coordinates are expressed in meters, areas will be expressed in square meters.
+* Attributes values are copied from the input layers but are not modified, so be aware that attributes depending on the specific properties of the inputs geometries are likely to be invalid for the resulting layer.
+* If the input layers contain an attribute recording an area measurement, and you would like to have a similar area measurement for the output feature collection, the area measurement can be recalculated by setting the ``areasEnabled`` parameter to *True*.
+* For appropriate attributes, a new value can be calculated from the original values and the percentage value added when the ``percentageEnabled`` flag is set to *True*. However, this assumes a regular distribution over the feature area. For instance, in the case of an attribute representing a population count for a polygon geometry, this calculation will assume that the population is regularly distributed and the population density is constant.
 
 Examples
 --------
@@ -99,7 +99,7 @@ Examples
 Streets that cross parks
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Intersecting ``medford:streets`` and ``medford:parks`` to get a feature collection of those street sections that cross a park.
+Intersecting ``medford:streets`` and ``medford:parks`` to produce a feature collection of those street sections that cross a park.
 
 Input parameters:
 
@@ -117,18 +117,18 @@ Input parameters:
 
    *gs:IntersectionFeatureCollection example #1 parameters*
 
-The resulting schema contains all the attributes originally in the ``medford:streets`` feature collection, plus an attribute taken from the ``medford:parks`` one, containing the name of the park crossed by the street section that the feature represents.
+The resulting schema contains all the attributes from the ``medford:streets`` feature collection, plus an attribute from the ``medford:parks`` collection, containing the name of the park crossed by the street section represented by that feature.
 
 .. figure:: img/intersectionfcexample.png
 
    *gs:IntersectionFeatureCollection example #1 output*
 
-This example illustrates the problem mentioned above where attributes representing some properties of the default geometry are not updated when the geometry is modified. In particular, the ``length`` attribute from the ``medford:streets`` feature collection is preserved with its original values, even though this value is no longer correct for the resulting feature collection.
+.. note:: This example illustrates the problem mentioned above where attributes representing some properties of the default geometry are not updated when the geometry is modified. In particular, the ``length`` attribute from the ``medford:streets`` feature collection is preserved with its original values, even though this value is no longer correct in the resulting feature collection.
 
-Finding inland volcanoes
-~~~~~~~~~~~~~~~~~~~~~~~~
+Identifying inland volcanoes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Intersecting ``world:volcanoes`` and ``world:borders`` to get a feature collection of just inland volcanoes, adding the name of the country the volcanoes belong to.
+Intersecting ``world:volcanoes`` and ``world:borders`` to produce a feature collection of inland volcanoes only, adding the name of the country the volcanoes belong to.
 
 Input parameters:
 
@@ -142,7 +142,7 @@ Input parameters:
 
 :download:`Download complete XML request <xml/intersectionfcexample2.xml>`
 
-The resulting schema contains all the attributes originally in the ``world:volcanoes`` feature collection plus an attribute taken from ``world:borders`` containing the name of the country the corresponding volcano belongs to.
+The resulting schema contains all the attributes from the ``world:volcanoes`` feature collection plus an attribute from ``world:borders`` containing the name of the country the corresponding volcano belongs to.
 
 .. figure:: img/intersectionfcexampleUI2.png
 
@@ -155,7 +155,8 @@ The resulting schema contains all the attributes originally in the ``world:volca
 Related processes
 -----------------
 
-* Area calculation is a time consuming operation, so it may make sense to calculate the intersection in one process and the areas in another. The :ref:`gs:Transform <processing.processes.vector.transform>` process can perform area calculations using the ``area()`` function. The ``gs:Transform`` process has other similar function such as ``length()`` that can be used recompute other values that may have become be invalid following the the intersection process.
-* The :ref:`gs:Clip <processing.processes.vector.clip>` process performs a similar operation in the geometries of the clipped area, and it can be used to produce similar results. The difference is that ``gs:Clip`` takes as input only a single feature collection along with a geometry. This means that there are only one set of attributes; they are passed to the output without modifications.
+* Area calculation is a time consuming operation, so it may help to calculate the intersection in one process and the areas in another. The :ref:`gs:Transform <processing.processes.vector.transform>` process can perform area calculations using the ``area()`` function. The ``gs:Transform`` process has similar functions such as ``length()`` that can be used recompute  values that may be invalid following the intersection process.
+* The :ref:`gs:Clip <processing.processes.vector.clip>` process performs a similar operation with the geometries of the clipped area, and it can be used to produce similar results. However, ``gs:Clip`` only accepts as input a single feature collection along with a geometry. This means  there is only one set of attributes passed to the output without modification.
 * The :ref:`gs:UnionFeatureCollection <processing.processes.vector.unionfc>` process performs a union operation on two feature collections instead of an intersection.
+
 
