@@ -3,26 +3,26 @@
 Simplify
 ========
 
-.. todo:: Graphic needed.
-
 Description
 -----------
 
-The ``gs:Simplify`` process takes a feature collection and reduces the number of vertices in each feature, thus simplifying the geometries.
+The ``gs:Simplify`` process takes a feature collection and reduces the number of vertices in each feature, simplifying the geometries.
 
-The method used to do the simplification is known as the `Douglas-Peucker algorithm <http://en.wikipedia.org/wiki/Douglas-Peucker_algorithm>`_. It uses as input a ``distance`` value, which determines how the geometries are to be simplified. Higher values denote more intense simplification.
+The adopted simplification method is the `Douglas-Peucker algorithm <http://en.wikipedia.org/wiki/Douglas-Peucker_algorithm>`_. This algorithm uses a distance value as input to determine how the geometries are to be simplified. For a given distance, all vertices in the output simplified geometry will be within this distance of the original geometry. The higher the distance value, the greater the simplification.
 
-.. todo:: Will need a better definition of the distance, and verification that the above is correct.
+The output feature collection may optionally be set to preserve the topology of the features.
 
-A flag can be set (``preserveTopology``) on whether the simplification should preserve the topology of the features.
+.. figure:: img/simplify.png
+
+   *gs:Simplify*
 
 Inputs and outputs
 ------------------
 
-This process accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
+``gs:Simplify`` accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
 
 Inputs
-^^^^^^
+~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -30,22 +30,22 @@ Inputs
    * - Name
      - Description
      - Type
-     - Required
+     - Usage
    * - ``features``
      - Input feature collection
-     - FeatureCollection
-     - Yes
+     - :ref:`SimpleFeatureCollection <processing.processes.formats.fcin>`
+     - Required
    * - ``distance``
-     - Simplification distance tolerance
+     - Simplification distance tolerance—Must be non-negative
      - double
-     - Yes
+     - Required
    * - ``preserveTopology``
      - If True, ensures that simplified features are topologically valid
      - Boolean
-     - No
+     - Optional
 
 Outputs
-^^^^^^^
+~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -54,11 +54,55 @@ Outputs
      - Description
      - Type
    * - ``result``
-     - The simplified feature collection
-     - FeatureCollection
+     - Simplified feature collection
+     - :ref:`SimpleFeatureCollection <processing.processes.formats.fcout>`
 
-Notes on usage
---------------
+Usage notes
+-----------
 
-* The distance value will be in the same units as the feature collection.
+* The distance value is assumed to be in the same units as the feature collection.
+* This process can be applied to feature collections with linear and areal geometries. If the input feature collection contains points, the output feature collection will be identical to the input.
+* If the ``preserveTopology`` parameter is set to True, the process ensures that each simplified geometry has the same dimension and number of components as the input geometry. In particular, if the input is an areal geometry, the result will have the same number of shells and holes (rings) as the input and in the same order. The resulting rings will touch at *no more* than the number of touching points in the input (they may touch at fewer points).
+* When simplifying a layer of contiguous polygons, there is no guarantee the polygons will remain contiguous after being simplified. Empty spaces between polygon edges may appear, or the polygons may overlap in places. The following illustration demonstrates this potential side-effect, showing the ``usa:states`` layer before and after being simplified.
+
+.. figure:: img/simplifybefore.png
+
+   *Detail of usa:states layer prior to simplification*
+
+.. figure:: img/simplifyafter.png
+
+   *Detail of usa:states layer following simplification*
+
+
+Examples
+--------
+
+Simplifying street geometries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following example demonstrates the results of simplifying the ``medford:streets`` feature collection, using different distance values.
+
+Input parameters:
+
+* ``features``: ``medford:streets``
+* ``distance``: ``0.002``
+
+:download:`Download complete XML request <xml/simplifyexample.xml>`
+
+.. figure:: img/simplifyexampleUI.png
+
+   *gs:Simplify example parameters*
+
+The process is then repeated using a ``distance`` value of 0.005. 
+
+The following illustration shows the different outputs. The original features are represented by the black lines, the first process output with a ``distance`` value of 0.002 is represented by the red lines, and the second process output with a ``distance`` value of 0.005 is represented by the blue lines.
+
+.. figure:: img/simplifyexample.png
+
+   *gs:Simplify example output*
+
+
+.. The following example show the differences between using the default simplifying algorithm, with no topology preserving, and the alternative one that ensures that topology is preserved.
+
+.. any ideas for this??
 
