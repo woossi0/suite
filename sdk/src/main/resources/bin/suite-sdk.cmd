@@ -35,6 +35,12 @@ shift
 if not "%~1"=="" goto lastarg
 goto :eof
 
+:argcount
+:: Figures out how many args there are
+set argC=0
+for %%x in (%*) do Set /A argC+=1
+goto :eof
+
 :Version
 set COMMAND="version"
 goto Run
@@ -57,10 +63,16 @@ if "%LAST_ARG:~0,1%"=="-" (
   goto UsageCreate
 )
 
+:: Make sure there are no trailing args
+call :argcount %*
 set COMMAND="%~1"
 set APP_PATH="%~2"
-set ANT_ARGS=%ANT_ARGS% -Dapp.path=%APP_PATH%
-goto Run
+if "%argC%"=="2" (
+  set ANT_ARGS=%ANT_ARGS% -Dapp.path=%APP_PATH%
+  goto Run
+) else (
+    goto UsageCreate
+)
 
 
 :Debug
