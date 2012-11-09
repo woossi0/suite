@@ -1,6 +1,6 @@
 .. _installation.war:
 
-.. warning:: Document status: **Draft**
+.. warning:: Document status: **Requires Technical Review (MP)**
 
 Installing the OpenGeo Suite Production WAR bundle
 ==================================================
