@@ -246,38 +246,38 @@ var Search = {
       this._queued_query = query;
   },
 
-  stopPulse : function() {
-      this._pulse_status = 0;
-  },
+  // stopPulse : function() {
+  //     this._pulse_status = 0;
+  // },
 
-  startPulse : function() {
-    if (this._pulse_status >= 0)
-        return;
-    function pulse() {
-      Search._pulse_status = (Search._pulse_status + 1) % 4;
-      var dotString = '';
-      for (var i = 0; i < Search._pulse_status; i++)
-        dotString += '.';
-      Search.dots.text(dotString);
-      if (Search._pulse_status > -1)
-        window.setTimeout(pulse, 500);
-    };
-    pulse();
-  },
+  // startPulse : function() {
+  //   if (this._pulse_status >= 0)
+  //       return;
+  //   function pulse() {
+  //     Search._pulse_status = (Search._pulse_status + 1) % 4;
+  //     var dotString = '';
+  //     for (var i = 0; i < Search._pulse_status; i++)
+  //       dotString += '.';
+  //     Search.dots.text(dotString);
+  //     if (Search._pulse_status > -1)
+  //       window.setTimeout(pulse, 500);
+  //   };
+  //   pulse();
+  // },
 
   /**
    * perform a search for something
    */
   performSearch : function(query) {
     // create the required interface elements
-    this.out = $('#search-results');
-    this.title = $('<h2>' + _('Searching') + '</h2>').appendTo(this.out);
-    this.dots = $('<span></span>').appendTo(this.title);
+    this.out = $('#search_results');
+    this.title = $('<h2>' + _('Searching').value() + '</h2>').appendTo(this.out);
+   // this.dots = $('<span></span>').appendTo(this.title);
     this.status = $('<p style="display: none"></p>').appendTo(this.out);
     this.output = $('<ul class="search"/>').appendTo(this.out);
 
-    $('#search-progress').text(_('Preparing search...'));
-    this.startPulse();
+   // $('#search-progress').text(_('Preparing search...'));
+    //this.startPulse();
 
     // index already loaded, the browser was quick!
     if (this.hasIndex())
@@ -350,6 +350,7 @@ var Search = {
         }
       }
     }
+
 
     // sort results descending
     objectResults.sort(function(a, b) {
@@ -449,12 +450,12 @@ var Search = {
       }
       // search finished, update title and status message
       else {
-        Search.stopPulse();
+        //Search.stopPulse();
         Search.title.text(_('Search Results'));
         if (!resultCount)
           Search.status.text(_('Your search did not match any documents. Please make sure that all words are spelled correctly and that you\'ve selected enough categories.'));
         else
-            Search.status.text(_('Search finished, found %s page(s) matching the search query.').replace('%s', resultCount));
+          Search.status.text(_('Search finished, found %s page(s) matching the search query.').value().replace('%s', resultCount));
         Search.status.fadeIn(500);
       }
     }
