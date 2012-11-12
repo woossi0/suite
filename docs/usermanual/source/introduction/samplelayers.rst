@@ -87,7 +87,7 @@ The city of Medford, in the USA state of Oregon, has generously shared some of t
      - GeoTIFF
 
    
-The Medford layers have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-122.904, 42.231, -123.042, 42.438``. For further information, please refer to the acknowledgements.txt file in the OpenGeo Suite :code:`<installation_folder>/data_dir/data/medford` directory.
+The Medford layers have a declared :term:`SRS` (the projection GeoServer publishes the layer with) of EPSG:4326 and bounding boxes within the range ``-122.904, 42.231, -123.042, 42.438``. For further information, please refer to the acknowledgements.txt file in the OpenGeo Suite :file:`<installation_folder>/data_dir/data/medford` directory.
 
 
 .. figure:: img/medford.png
@@ -128,7 +128,7 @@ The :guilabel:`world:volcanoes` layer is derived from the freely available volca
 
 The :guilabel:`world:urbanareas1_1` layer was obtained from the `Nordpil world database of large urban areas <http://nordpil.com/go/resources/world-database-of-large-cities/>`_, derived from the World Urbanization Prospects: The 2007 Revision Population Database (UN Population Division). The urban areas data is made available under a Creative Commons public domain license.
 
-The :guilabel:`world:cities` layer was derived from public domain data obtained from the `Natural Earth <http://www.naturalearthdata.com/>`_ website. The :guilabel:`world:borders` layer was downloaded from the `Mapping Hacks <http://www.mappinghacks.com/data>`_ website. The original data was derived from public domain sources. For further information, please refer to the Readme.txt file in the OpenGeo Suite :code:`<installation_folder>/data_dir/data/world` directory.
+The :guilabel:`world:cities` layer was derived from public domain data obtained from the `Natural Earth <http://www.naturalearthdata.com/>`_ website. The :guilabel:`world:borders` layer was downloaded from the `Mapping Hacks <http://www.mappinghacks.com/data>`_ website. The original data was derived from public domain sources. For further information, please refer to the Readme.txt file in the OpenGeo Suite :file:`<installation_folder>/data_dir/data/world` directory.
 
 
 USA

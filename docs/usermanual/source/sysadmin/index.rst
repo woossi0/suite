@@ -12,4 +12,3 @@ This section will discuss how to manage OpenGeo Suite deployments, including ser
    production/index
    security/index
    backup
-   caching/index

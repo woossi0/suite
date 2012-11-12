@@ -3,6 +3,8 @@
 Installing OpenGeo Suite on CentOS and Red Hat
 ==============================================
 
+.. |pgupgrade_url| replace:: http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
+
 The commands contained in the following installation instructions assume root privileges.
 
 Installing OpenGeo Suite Community Edition
@@ -144,7 +146,7 @@ Backup PostGIS data
       
       sudo su postgres
 
-#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory. To avoid permissions issues, the :file:`/tmp/suite_backup/pg_backup` path will be created and used.
+#. Download the archive available at |pgupgrade_url| and extract it to a temporary directory. To avoid permissions issues, the :file:`/tmp/suite_backup/pg_backup` path will be created and used.
 
     .. warning:: The :file:`/tmp` directory is not recommended for long-term storage of backups, as the directory can often be purged as a part of normal system activity. If using a different directory, make sure that both the ``postgres`` and ``root`` users have read/write permissions to it.
 
