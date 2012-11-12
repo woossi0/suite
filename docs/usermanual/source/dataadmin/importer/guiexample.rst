@@ -3,8 +3,6 @@
 Importing data through Layer Importer user interface
 ====================================================
 
-.. warning:: Document status: **Requires Technical Review (MP)**
-
 .. _dataadmin.importer.guiexample.shp:
 
 Importing a single shapefile
