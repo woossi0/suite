@@ -62,7 +62,16 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
              *  Listener arguments:
              *  * id - ``Integer`` The identifier of the saved map
              */
-            "save"
+            "save",
+            /** api: event[beforehashchange]
+             *  Fires before the hash is updated after saving a map. Return
+             *  false in the listener not to update the hash.
+             *
+             *  Listeners arguments:
+             *  * hash - ``String`` The hash which will be set as 
+             *    window.location.hash
+             */
+            "beforehashchange"
         );
         // Starting with this.authorizedRoles being undefined, which means no
         // authentication service is available
@@ -675,7 +684,10 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
             var mapId = config.id;
             if (mapId) {
                 this.id = mapId;
-                window.location.hash = "#maps/" + mapId;
+                var hash = "#maps/" + mapId;
+                if (this.fireEvent("beforehashchange", hash) !== false) {
+                    window.location.hash = hash;
+                }
                 this.fireEvent("save", this.id);
             }
         } else {
