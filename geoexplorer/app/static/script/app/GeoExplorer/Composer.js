@@ -55,7 +55,14 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
              *  * requestConfig - ``Object`` configuration object for the request,
              *    which has the following properties: method, url and data.
              */
-            "beforesave"
+            "beforesave",
+            /** api: event[save]
+             *  Fires when the map has been saved.
+             *
+             *  Listener arguments:
+             *  * id - ``Integer`` The identifier of the saved map
+             */
+            "save"
         );
         // Starting with this.authorizedRoles being undefined, which means no
         // authentication service is available
@@ -669,6 +676,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
             if (mapId) {
                 this.id = mapId;
                 window.location.hash = "#maps/" + mapId;
+                this.fireEvent("save", this.id);
             }
         } else {
             throw this.saveErrorText + request.responseText;
