@@ -23,17 +23,6 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
      */
     cookieParamName: 'geoexplorer-user',
 
-    /** api: config[saveUrl]
-     *  ``String`` The url endpoint for saving new maps.
-     */
-    saveUrl: "../maps/",
-
-    /** api: config[updateUrl]
-     *  ``String`` The url endpoint for updating an existing map.
-     *  The url can contain a variable named {mapid}.
-     */
-    updateUrl: "../maps/{mapid}",
-
     // Begin i18n.
     mapText: "Map",
     saveMapText: "Save map",
@@ -63,8 +52,8 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
              *
              *  Listeners arguments:
              *
-             *  * json - ``String`` the JSON that will be posted in the save
-             *    action.
+             *  * requestConfig - ``Object`` configuration object for the request,
+             *    which has the following properties: method, url and data.
              */
             "beforesave"
         );
@@ -644,19 +633,21 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
      */ 
     save: function(callback, scope) {
         var configStr = Ext.util.JSON.encode(this.getState());
-        if (this.fireEvent("beforesave", configStr) !== false) {
-            var method, url;
-            if (this.id) {
-                method = "PUT";
-                url = new Ext.Template(this.updateUrl).applyTemplate({mapid: this.id});
-            } else {
-                method = "POST";
-                url = this.saveUrl;
-            }
-            OpenLayers.Request.issue({
-                method: method,
-                url: url,
-                data: configStr,
+        var method, url;
+        if (this.id) {
+            method = "PUT";
+            url = "../maps/" + this.id;
+        } else {
+            method = "POST";
+            url = "../maps/";
+        }
+        var requestConfig = {
+            method: method,
+            url: url,
+            data: configStr
+        };
+        if (this.fireEvent("beforesave", requestConfig) !== false) {
+            OpenLayers.Request.issue(Ext.apply(requestConfig, {
                 callback: function(request) {
                     this.handleSave(request);
                     if (callback) {
@@ -664,7 +655,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                     }
                 },
                 scope: this
-            });
+            }));
         }
     },
         
