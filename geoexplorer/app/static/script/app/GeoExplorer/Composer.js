@@ -691,7 +691,9 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 this.fireEvent("save", this.id);
             }
         } else {
-            throw this.saveErrorText + request.responseText;
+            if (window.console) {
+                console.warn(this.saveErrorText + request.responseText);
+            }
         }
     },
 
