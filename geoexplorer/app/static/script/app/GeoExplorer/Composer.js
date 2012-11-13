@@ -54,6 +54,8 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
              *
              *  * requestConfig - ``Object`` configuration object for the request,
              *    which has the following properties: method, url and data.
+             *  * callback - ``Function`` Optional callback function which was
+             *    passed on to the save function.
              */
             "beforesave",
             /** api: event[save]
@@ -662,7 +664,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
             url: url,
             data: configStr
         };
-        if (this.fireEvent("beforesave", requestConfig) !== false) {
+        if (this.fireEvent("beforesave", requestConfig, callback) !== false) {
             OpenLayers.Request.issue(Ext.apply(requestConfig, {
                 callback: function(request) {
                     this.handleSave(request);
