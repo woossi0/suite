@@ -4,11 +4,9 @@
 Point Stacker
 =============
 
-The Point Stacker rendering transformation is a **Vector-to-Vector** transformation which displays a data set of points with nearby points aggregated together.  This produces a more readable map in situations when there are many close points displayed at once.  
-The stacking is performed dynamically, so it can be used to visualize changing data.  
-It provides good performance even when applied to very large datasets.
+The Point Stacker rendering transformation is a **Vector-to-Vector** transformation which displays a dataset of points with those points that occur close together aggregated into a single point. This produces a more readable map in situations when there are many close points to display. As the stacking is performed dynamically, it can be used to visualize changing data, and does not incur a performance overhead even when applied to very large datasets.
 
-The stacked view is created by configuring a layer with an SLD style which invokes the PointStacker rendering transformation.  
+The stacked view is created by configuring a layer with an SLD style which invokes the PointStacker rendering transformation. 
 
 .. figure:: img/pointstacker-volcanoes.png
 
@@ -19,12 +17,12 @@ Usage
 
 As with all rendering transformations, the transformation is invoked by adding a ``<Transformation>`` element to a ``<FeatureTypeStyle>`` in an SLD style. The SLD can then be applied to any layer which is backed by a suitable dataset (featuretype).
 
-The transformation is specified with a ``<ogc:Function name="gs:PointStacker">`` element, with arguments which supply the transformation parameters.  The arguments are specified using the special function ``<ogc:Function name='parameter'>``.  Each function has as arguments:
+The transformation is specified with a ``<ogc:Function name="gs:PointStacker">`` element, with arguments which supply the transformation parameters. The arguments are specified using the special function ``<ogc:Function name='parameter'>``. Each function accepts the following arguments:
 
 * an ``<ogc:Literal>`` giving the name of the parameter
-* one or more literals containing the value(s) of the parameter. 
+* one or more literals containing the value(s) of the parameter
 
-The transformation parameters are as follows.  The order of parameters is not significant.
+The transformation parameters are as follows. The order of parameters is not significant.
 
 .. list-table::
    :widths: 25 10 65 
@@ -49,29 +47,22 @@ The transformation parameters are as follows.  The order of parameters is not si
      - Yes   
      - Output image height
 
-The transformation has required parameters which specify the input data extent and the output image dimensions.  The values of these parameters are obtained from environment variables accessed via the function ``<ogc:Function name="env">``.  The environment variable values are determined from the WMS request which initiated the rendering process.  The parameters and corresponding environment variables are:
+The transformation has required parameters which specify the input data extent and the output image dimensions. The values of these parameters are obtained from environment variables accessed via the function ``<ogc:Function name="env">``. The environment variable values are determined from the WMS request which initiated the rendering process. The parameters and corresponding environment variables are:
 
-* ``outputBBOX`` uses variable ``wms_bbox`` to obtain the surface extent
-* ``outputWidth`` uses variable ``wms_width`` to obtain the output raster width
-* ``outputHeight`` uses variable ``wms_height`` to obtain the output raster height
+* ``outputBBOX``—Uses variable ``wms_bbox`` to obtain the surface extent
+* ``outputWidth``—Uses variable ``wms_width`` to obtain the output raster width
+* ``outputHeight``—Uses variable ``wms_height`` to obtain the output raster height
 
 Input
 -----
 
-The PointStacker rendering transformation can be applied to datasets containing features with **vector** geometry.  The geometry may be of any type.  Point geometries are used directly, while non-point geometry types are converted to points using the centroid of the geometry.  The dataset is supplied in the ``data`` parameter.
-
-.. note::
-
-   Due to a bug in the current release of the RenderingTransformation functionality, the input dataset must contains attributes with the names ``count`` and ``countUnique``.  The contents of the fields is not significant.
-   
-    * If the input is a file store, the file must be altered to contain columns with these names.
-    * If the input is a database store, one way to provide the required columns is to define a SQL View with a query which includes extra columns with dummy values.   
+The PointStacker rendering transformation can be applied to datasets containing features with **vector** geometry. The geometry may be of any type. Point geometries are used directly, while non-point geometry types are converted to points using the centroid of the geometry. The dataset is supplied in the ``data`` parameter.
 
 
 Output 
 ------
 
-The output of the transformation is a **vector** featuretype containing point features.  Each feature has the following attributes:
+The output of the transformation is a **vector** featuretype containing point features. Each feature has the following attributes:
 
 .. list-table::
    :widths: 20 15 65 
@@ -91,15 +82,12 @@ The output of the transformation is a **vector** featuretype containing point fe
      - Count of all different input points represented by this point  
 
 
-The output can be styled as desired using a standard ``<PointSymbolizer>``.  
+The output can be styled as required using a ``<PointSymbolizer>``. 
 
 Example
 -------
 
-The map image above shows point stacking applied to a dataset of world volcanoes.    
-(The map image also shows a base map layer showing continental topography.)  
-The stacked points are symbolized by appropriate icons and labels.  It is produced by the following SLD.  You can adapt this SLD to your data with minimal effort by adjusting the parameters.
-
+The map image above shows point stacking applied to a dataset of world volcanoes, displayed with a base map layer of continental topography. The stacked points are symbolized using appropriate icons and labels, configured with the following SLD. You can modify the parameters in this SLD to adapt it for your data.
 
 .. code-block:: xml
    :linenos:
@@ -210,9 +198,6 @@ The stacked points are symbolized by appropriate icons and labels.  It is produc
                    </AnchorPoint>
                    </PointPlacement>
                  </LabelPlacement>
-                 <Stroke>
-                   <CssParameter name="stroke">#FFFFFF</CssParameter>
-                 </Stroke>
                  <Halo>
                    <Radius>2</Radius>
                    <Fill> 
@@ -263,9 +248,6 @@ The stacked points are symbolized by appropriate icons and labels.  It is produc
                      </AnchorPoint>
                    </PointPlacement>
                  </LabelPlacement>
-                 <Stroke>
-                   <CssParameter name="stroke">#ffffff</CssParameter>
-                 </Stroke>
                  <Halo>
                     <Radius>2</Radius>
                     <Fill> 
@@ -284,21 +266,9 @@ The stacked points are symbolized by appropriate icons and labels.  It is produc
        </NamedLayer>
      </StyledLayerDescriptor>
      
-In the SLD **lines 15-43** define the PointStacker rendering transformation,
-giving values for the transformation parameters which are appropriate for the input dataset.
-**Line 18** specifies the input dataset parameter name.
-**Line 22** specifies a cell size of 20 to aggregate the points by.
-**Lines 24-42** define the output parameters, which are
-obtained from internal environment variables set during rendering, as described above.
+In this SLD **lines 15-43** define the Point Stacker rendering transformation,
+providing values for the transformation parameters which are appropriate for the input dataset. **Line 18** specifies the input dataset parameter name. **Line 22** specifies a cell size of 30 to aggregate the points by. **Lines 24-42** define the output parameters, which are obtained from internal environment variables set during rendering, as described above.
 
-**Lines 44-175** define styling rules which are applied to the transformation 
-output to produce the rendered layer.
-**Lines 44-64** define a rule for depicting a single (unstacked) point
-using a red triangle symbol.
-**Lines 65-123** define a rule for depicting a stacked point which has a count in the range 2 to 9.  
-The points are styled as dark red circles of size 14 pixels, 
-with a label showing the count inside them.
-**Lines 123-175**  define a rule for depicting a stacked point which has a count of 10 or greater.  
-The points are styled as dark red circles of size 22 pixels, 
-with a label showing the count inside them.
+**Lines 44-169** define styling rules which are applied to the transformation 
+output to produce the rendered layer. **Lines 44-64** define a rule for depicting a single (unstacked) point using a red triangle symbol. **Lines 65-119** define a rule for depicting a stacked point which has a count in the range 2 to 9. The points are styled as dark red circles of size 14 pixels, with a label showing the count inside them. **Lines 120-169**  define a rule for depicting a stacked point which has a count of 10 or greater. The points are styled as dark red circles of size 22 pixels, with a label that includes the point count.
 
