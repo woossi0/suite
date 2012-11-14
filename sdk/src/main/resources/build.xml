@@ -42,7 +42,21 @@
         </condition>
         <basename property="temp.app.name" file="${app.fullpath}"/>
         <condition property="app.name.blacklisted">
-            <matches string="${temp.app.name}" pattern="^(.*[\/\\])?(manager|geoserver|geoexplorer|dashboard|apps|recipes|opengeo[ -]docs|cargo[ -]jetty[ -]deployer)[\/\\]?$"/>
+            <or>
+                <equals arg1="${temp.app.name}" arg2="manager"/>
+                <equals arg1="${temp.app.name}" arg2="geoserver"/>
+                <equals arg1="${temp.app.name}" arg2="geoexplorer"/>
+                <equals arg1="${temp.app.name}" arg2="dashboard"/>
+                <equals arg1="${temp.app.name}" arg2="apps"/>
+                <equals arg1="${temp.app.name}" arg2="recipes"/>
+                <equals arg1="${temp.app.name}" arg2="opengeo-docs"/>
+                <equals arg1="${temp.app.name}" arg2="opengeo docs"/>
+                <!-- not using regular expressions because ant 1.6 doesn't support them -->
+                <equals arg1="${temp.app.name}" arg2="cargo-jetty-deployer"/>
+                <equals arg1="${temp.app.name}" arg2="cargo jetty deployer"/>
+                <equals arg1="${temp.app.name}" arg2="cargo-jetty deployer"/>
+                <equals arg1="${temp.app.name}" arg2="cargo jetty-deployer"/>
+            </or>
         </condition>
         <fail message="The application name '${temp.app.name}' is reserved. Please choose a different one." if="app.name.blacklisted"/>
         <tempfile property="temp.file" destDir="${java.io.tmpdir}" suffix=".properties"/>
