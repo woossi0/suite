@@ -65,8 +65,7 @@ Changing the master password
 
 .. todo::  re-instate this section once SUITE-1508 is resolved
 
-   Changing the master password policy
-   -----------------------------------
+   Changing the master password policy.
 
    By default, the master password policy states that the master password must be at least eight characters. It may be desired to change this policy to provide a different level of security.
 
