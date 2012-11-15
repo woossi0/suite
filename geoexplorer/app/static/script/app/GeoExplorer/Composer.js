@@ -87,7 +87,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
         // should not be persisted or accessed again
         delete config.authStatus;
 
-        var tools = [
+        config.tools = [
             {
                 ptype: "gxp_layermanager",
                 outputConfig: {
@@ -213,11 +213,6 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 actionTarget: "paneltbar"
             }
         ];
-        if (config.tools) {
-            config.tools = tools.concat(config.tools);
-        } else {
-            config.tools = tools;
-        }
         
         GeoExplorer.Composer.superclass.constructor.apply(this, arguments);
     },
