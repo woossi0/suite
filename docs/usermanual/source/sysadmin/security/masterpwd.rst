@@ -9,8 +9,8 @@ The master password also provides access to the keystore, the collection of reve
 
 Read more about the `master password <../../geoserver/security/passwd.html>`_ in the GeoServer reference.
 
-Why to change the master password
----------------------------------
+Why change the master password
+------------------------------
 
 The master password is initially set in one of two ways depending on how the software was installed.
 
@@ -62,30 +62,33 @@ Changing the master password
 
 #. Guard the new master password the same as any root or administrator account credentials.
 
-Changing the master password policy
------------------------------------
 
-By default, the master password policy states that the master password must be at least eight characters. It may be desired to change this policy to provide a different level of security.
+.. todo::  re-instate this section once SUITE-1508 is resolved
 
-#. Log in to the GeoServer web admin interface with an administrator account (a user that possesses the ``ROLE_ADMINISTRATOR`` role).
+   Changing the master password policy
+   -----------------------------------
 
-#. Once logged in, click :guilabel:`Passwords` in the :guilabel:`Security` section.
+   By default, the master password policy states that the master password must be at least eight characters. It may be desired to change this policy to provide a different level of security.
+
+   #. Log in to the GeoServer web admin interface with an administrator account (a user that possesses the ``ROLE_ADMINISTRATOR`` role).
+
+   #. Once logged in, click :guilabel:`Passwords` in the :guilabel:`Security` section.
 
    .. figure:: img/masterpwd_menu_passwords.png
 
       *Passwords link in the Security menu*
 
-#. In the section titled :guilabel:`Password Policies`, click the :guilabel:`master` password policy.
+   #. In the section titled :guilabel:`Password Policies`, click the :guilabel:`master` password policy.
 
    .. figure:: img/masterpwd_policy.png
 
       *Master password policy in the list of policies*
 
-#. In the form that follows, adjust the settings. There are settings for the type of characters allowed in the password, and the length of the password. Click :guilabel:`Save` when done.
+   #. In the form that follows, adjust the settings. There are settings for the type of characters allowed in the password, and the length of the password. Click :guilabel:`Save` when done.
 
    .. figure:: img/masterpwd_policychange.png
 
       *Changing the master password policy*
 
-The policy does not check to see if the current master password adheres to this new policy. After changing the policy, it is a good idea to go back and change the password to ensure that it adheres to this new policy.
+   The policy does not check to see if the current master password adheres to this new policy. After changing the policy, it is a good idea to go back and change the password to ensure that it adheres to this new policy.
 
