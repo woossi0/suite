@@ -699,7 +699,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
         }
     },
 
-    /** api: method[showEmbedWindow]
+    /** private: method[showEmbedWindow]
      */
     showEmbedWindow: function() {
        var toolsArea = new Ext.tree.TreePanel({title: this.toolsTitle, 
