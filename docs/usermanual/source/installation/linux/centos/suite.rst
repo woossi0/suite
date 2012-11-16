@@ -68,6 +68,8 @@ Installing OpenGeo Suite Enterprise Edition
 
 #. Now add the OpenGeo Enterprise YUM repository. This repository is password protected. You will have received a user name and password when you `registered for the Enterprise Edition <http://opengeo.org/products/suite/register/>`_. Add the following YUM repository using the commands below, making sure to substitute in your user name for ``<username>`` and password for ``<password>``. Again, the exact command will differ depending on your system.
 
+   .. tabularcolumns:: |p{1.5cm}|p{13.5cm}|
+
    .. list-table::
       :widths: 20 80
       :header-rows: 1
@@ -246,6 +248,8 @@ Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary 
         - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
 
 #. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your user name for ``<username>`` and password for ``<password>``:
+
+   .. tabularcolumns:: |p{1.5cm}|p{13.5cm}|
 
    .. list-table::
       :widths: 20 80
