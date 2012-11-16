@@ -3,22 +3,21 @@
 Import
 ======
 
-.. todo:: Graphic needed.
-
 Description
 -----------
 
-The ``gs:Import`` process takes a feature collection and adds it to the GeoServer catalog as a layer. It acts as a simple data loader; the contents of the feature collection are unchanged.
+.. todo:: Graphic needed.
 
-A few catalog parameters are specified in addition to the feature collection. The desired workspace name, store name, :term:`CRS`, and CRS handling policy can all be input, but if omitted the server defaults will be used. The name of the layer can be specified, but if omitted it will be set to the name contained in the feature collection. The name of an existing style can be specified, but if omitted a default style will be chosen based on the geometry in the feature collection.
+The ``gs:Import`` process takes a feature collection and adds it to the GeoServer catalog as a layer, in effect acting as a simple data loader. The contents of the feature collection are unchanged.
+
 
 Inputs and outputs
 ------------------
 
-This process accepts :ref:`processing.processes.formats.fcin` and returns a string containing the fully qualified layer name (with workspace prefix) only.
+``gs:Import`` accepts :ref:`processing.processes.formats.fcin` and returns a string containing the fully qualified layer name (with workspace prefix) only.
 
 Inputs
-^^^^^^
+~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -26,38 +25,38 @@ Inputs
    * - Name
      - Description
      - Type
-     - Required
+     - Usage
    * - ``features``
      - Input feature collection
-     - FeatureCollection
-     - Yes
+     - :ref:`SimpleFeatureCollection <processing.processes.formats.fcin>`
+     - Required
    * - ``workspace``
-     - Target workspace (default is the system default)
+     - Target workspace—Default is the system default
      - String
-     - No
+     - Optional
    * - ``store``
-     - Target store (default is the workspace default)
+     - Target store—Default is the workspace default
      - String
-     - No
+     - Optional
    * - ``name``
-     - Name of the new featuretype (default is the name of the features in the collection)
+     - Name of the new featuretype—Default is the name of the features in the collection
      - String
-     - No
+     - Optional
    * - ``srs``
-     - Target coordinate reference system (default is based on source when possible)
+     - Target coordinate reference system—Default is based on the source when possible
      - CoordinateReferenceSystem
-     - No
+     - Optional
    * - ``srsHandling``
-     - Desired SRS handling (default is FORCE_DECLARED, others are REPROJECT_TO_DECLARED or NONE)
+     - Desired SRS handling—Options are FORCE_DECLARED (default), REPROJECT_TO_DECLARED or NONE
      - ProjectionPolicy
-     - No
+     - Optional
    * - ``styleName``
-     - Name of the style to be associated with the layer (default is a standard geometry-specific style)
+     - Name of the style to be associated with the layer—Default is standard geometry-specific style
      - String
-     - No
+     - Optional
 
 Outputs
-^^^^^^^
+~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -66,5 +65,55 @@ Outputs
      - Description
      - Type
    * - ``layerName``
-     - Name of the new featuretype, with workspace
+     - Qualified name of the new layer (``workspace:layer``)
      - String
+
+Usage notes
+-----------
+
+* Some of the GeoServer catalog parameters may be specified in addition to the feature collection. For example, the required workspace name, store name, :term:`CRS`, and CRS handling policy can be included as input. If these parameters are omitted, the server defaults will be used. 
+
+* The name of the layer can also be specified with the input, but if the name is omitted the layer name will be set to the name contained in the feature collection. 
+
+* The name of an existing style can be specified, but if the style is omitted a default style will be chosen based on the geometry in the feature collection.
+
+Examples
+--------
+
+Importing result of process output
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``gs:Import`` process is useful for automatically incorporating results from other processes into the GeoServer catalog. The following example shows how the result of a transform operation (using the :ref:`gs:Transform <processing.processes.vector.transform>` process), is imported into GeoServer.
+
+.. note:: This is an example of a "chained" process, where the output of a process is used as the input of another.
+
+Input parameters for ``gs:Transform``:
+
+* ``features``: ``medford:bikelanes``   
+* ``transform``: ``the_geom=the_geom; street_name=streetname; length = length(the_geom)`` 
+
+Input parameters for ``gs:Import``:
+  
+* ``features``: output from ``gs:Transform``
+* ``workspace``: ``medford``
+* ``store``: [blank]
+* ``name``: ``bikelanes_length``
+* ``srs``: [blank]
+* ``srsHandling``: ``FORCE_DECLARED``
+* ``styleName``: [blank]
+
+:download:`Download complete chained XML request <xml/importexample.xml>`
+
+.. figure:: img/importexampleUI.png
+
+   *gs:Import example parameters*
+
+The resulting feature collection is added to the corresponding datastore and published:
+
+.. figure:: img/importexample.png
+
+   *gs:Import example result*
+
+
+
+

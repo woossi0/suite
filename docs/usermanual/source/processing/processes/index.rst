@@ -3,9 +3,13 @@
 Process reference
 =================
 
-This section will highlight some common and useful WPS processes stored in the OpenGeo Suite. It is not a comprehensive listing of all processes; rather, it is designed to get a feel for how some particular processes operate.
+This section will highlight some of the common WPS processes available with the OpenGeo Suite, and describe how those processes operate.   
 
-Processes are divided up into three categories, based on the type of geospaital content that they operate on:  **vector**, **raster**, and **geometry**.
+.. todo:: "It is not a comprehensive listing of all processes." If we include this statement, we have to say where the comprehensive list is. 
+
+.. todo:: Three categories are introduced but only only one is fully documented. Either we have to acknowledge this or re-word to remove confusion.
+
+Processes can operate on different input formats—**vector**, **raster**, and **geometry**.
 
 .. toctree::
    :maxdepth: 2

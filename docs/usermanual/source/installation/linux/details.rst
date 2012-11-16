@@ -66,8 +66,10 @@ List of packages
 
 Once installed, you will have the following packages installed on your system:
 
+.. tabularcolumns:: |l|p{2.5cm}|p{9cm}|
+
 .. list-table::
-   :widths: 20 20 60 
+   :widths: 20 20 60
    :header-rows: 1
 
    * - Package
@@ -94,7 +96,7 @@ Once installed, you will have the following packages installed on your system:
    * - ``pgadmin3``
      - pgAdmin III
      - Graphical client for interacting with PostgreSQL/PostGIS.
-   * - ``opengeo-suite-ee`` (Enterprise Edition only)
+   * - ``opengeo-suite-ee`` 
      - OpenGeo Suite Enterprise Edition package
      - Enterprise Edition functions and libraries.  
 

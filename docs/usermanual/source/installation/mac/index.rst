@@ -3,7 +3,9 @@
 Installing the OpenGeo Suite for Mac OS X
 =========================================
 
-This document will discuss how to install the OpenGeo Suite for Mac OS X.
+.. |pgupgrade_url| replace:: http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
+
+This document describes how to install the OpenGeo Suite for Mac OS X.
 
 Prerequisites
 -------------
@@ -106,7 +108,7 @@ The procedure for upgrading is as follows:
 
       export PATH=$PATH:/opt/opengeo/pgsql/8.4/bin
 
-#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory. To avoid permissions issues, it is best to put this directory on your desktop or in your home directory. By default, the backup files created from using this script will be saved into this directory.
+#. Download the archive available at |pgupgrade_url| and extract it to a temporary directory. To avoid permissions issues, it is best to put this directory on your desktop or in your home directory. By default, the backup files created from using this script will be saved into this directory.
 
    .. code-block:: console
    
@@ -195,3 +197,4 @@ For More Information
 --------------------
 
 Please visit http://opengeo.org or see the documentation included with this software.
+

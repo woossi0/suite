@@ -37,7 +37,9 @@
                <phase>compile</phase>
                <configuration>
                  <tasks>
-                   <ant antfile="${basedir}/build.xml"/>
+                   <ant antfile="${basedir}/build.xml">
+                     <property name="postgresql.jdbc.version" value="${postgresql.jdbc.version}"/>
+                   </ant>
                  </tasks>
                </configuration>
                <goals>
