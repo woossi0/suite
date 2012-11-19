@@ -8,7 +8,7 @@
   <parent>
     <groupId>org.opengeo</groupId>
     <artifactId>geoserver</artifactId>
-    <version>3.0.1-RC4</version>
+    <version>3.0.1</version>
   </parent>
 
   <groupId>org.opengeo.geoserver</groupId>
