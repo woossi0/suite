@@ -26,7 +26,7 @@ Restart the application and reload the browser:
 .. figure:: ../img/styler_popup.png
    :align: center
 
-There will now be a new button which will show a powerful and feature-rich :guilabel:`Styles` dialog.
+There will now be a new button which will show a powerful and feature-rich :guilabel:`Styles` dialog.  When selecting a layer, the button will get enabled. You may also get prompted for username and password to authenticate against the GeoServer that serves the selected layer.
 
 Improving Color Selection
 -------------------------
