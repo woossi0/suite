@@ -102,8 +102,7 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 outputTarget: "tree",
                 uploadSource: "local",
                 postUploadAction: {
-                    plugin: "layerproperties",
-                    outputConfig: {activeTab: 2}
+                    plugin: "styler"
                 }
             }, {
                 ptype: "gxp_removelayer",
