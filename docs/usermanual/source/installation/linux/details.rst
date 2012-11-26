@@ -30,7 +30,7 @@ Both services are started and set to run automatically when the OpenGeo Suite is
 Accessing web applications
 --------------------------
 
-The easiest way to launch the web-based applications contained in the OpenGeo Suite is via the Dashboard.  All web applications are linked from this application.  The Dashboard is accessible via the following URL::
+The easiest way to launch the web-based applications contained in the OpenGeo Suite is via the Dashboard.  All web applications are linked from this application. The Dashboard is accessible via the following URL::
 
   http://localhost:8080/dashboard/
 
