@@ -197,6 +197,25 @@ padding-top: 6px;
 color: #332722;
 }
 
+.disclaimer {
+position: relative;
+font-weight: bold;
+font-size: 12px;
+margin-top: 16px;
+height: 0;
+color: #BF381A;
+width: 500px;
+}
+
+
+#txt {
+color: #332722;
+font-size: 11px;
+margin: 18px 0 -30px 500px;
+height: 76px;
+}
+
+
 #main {
 
 /*background: #fff url(./chrome/main-bg.png) repeat-x; */
