@@ -74,6 +74,7 @@ var PorterStemmer = function() {
   var mgr1 = "^(" + C + ")?" + V + C + V + C;              // [C]VCVC... is m>1
   var s_v   = "^(" + C + ")?" + v;                         // vowel in stem
 
+
   this.stemWord = function (w) {
     var stem;
     var suffix;
@@ -272,12 +273,12 @@ var Search = {
     // create the required interface elements
     this.out = $('#search_results');
     this.title = $('<h2>' + _('Searching').value() + '</h2>').appendTo(this.out);
-   // this.dots = $('<span></span>').appendTo(this.title);
+    this.dots = $('<span></span>').appendTo(this.title);
     this.status = $('<p style="display: none"></p>').appendTo(this.out);
     this.output = $('<ul class="search"/>').appendTo(this.out);
 
    // $('#search-progress').text(_('Preparing search...'));
-    //this.startPulse();
+    // this.startPulse();
 
     // index already loaded, the browser was quick!
     if (this.hasIndex())
@@ -450,10 +451,10 @@ var Search = {
       }
       // search finished, update title and status message
       else {
-        //Search.stopPulse();
-        Search.title.text(_('Search Results'));
+       // Search.stopPulse();
+        Search.title.text(_('Search Results').value());
         if (!resultCount)
-          Search.status.text(_('Your search did not match any documents. Please make sure that all words are spelled correctly and that you\'ve selected enough categories.'));
+          Search.status.text(_('Your search did not match any documents. Please ensure all search words are spelled correctly.').value());
         else
           Search.status.text(_('Search finished, found %s page(s) matching the search query.').value().replace('%s', resultCount));
         Search.status.fadeIn(500);
