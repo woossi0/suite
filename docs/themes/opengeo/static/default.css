@@ -198,21 +198,20 @@ color: #332722;
 }
 
 .disclaimer {
-position: relative;
 font-weight: bold;
 font-size: 12px;
-margin-top: 16px;
 height: 0;
 color: #BF381A;
-width: 500px;
+margin: 20px 0 0 14px;
 }
 
-
-#txt {
+#distxt {
+text-align: justify;
 color: #332722;
 font-size: 11px;
-margin: 18px 0 -30px 500px;
+margin: 18px 0 -30px 14px;
 height: 76px;
+width: 405px;
 }
 
 
@@ -908,6 +907,7 @@ margin: 0 0 0 -1em;
 
 #sidebar .comman {
 /*background: #f3f3f3;*/
+margin-top: 140px;
 background: #ECE5E2;
 padding: 4px 4px 4px 4px;
 }

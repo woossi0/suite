@@ -67,21 +67,26 @@
              <li class="minitoc">Next: <br><a href="{{ next.link|e }}" title="next chapter">{{ next.title }}</a></li>
             {%- endif %}
             </ul>
-           <br> 
+
+            <div class="disclaimer">Disclaimer</div>
+              <div id="distxt"> While every reasonable effort is made to ensure this community documentation is correct, the information is provided "as is" for reference purposes only, with no guarantees that it is complete, accurate, or current. Not all features, extensions, and plug-ins described within this documentation are supported by OpenGeo. 
+              </div>
+           
            <div class="comman">
-            <h3 class="pngfix">OpenGeo Suite</h3>
+            <h3>OpenGeo Suite</h3>
             <ul>
              <li> <a href="../../usermanual/index.html">User Manual</a> </li>
             </ul>
             <br> 
-           <h3 class="pngfix">Component User Manuals</h3>  
             <ul>
+            <h3>Component User Manuals</h3>  
             <li> <a href="../../PostGIS/index.html">PostGIS</a> </li>
             <li> <a href="../../GeoServer/index.hmtl">GeoServer</a> </li>
             <li> <a href="../../GeoWebCache/index.hmtl">GeoWebCache</a> </li>
             <li> <a href="../../GeoExplorer/index.hmtl">Client SDK</a> </li>
             </ul>
            </div>
+
            </div> <!-- TOC -->
           </div> <!-- end sidebar -->
   {%- endif %}
@@ -205,9 +210,6 @@
   <div id="header" class="selfclear">
     <div class="wrap selfclear">
       <div id="logo"><a href="{{ pathto('index') }}">{{ shorttitle }}</a></div>  
-          <div class="disclaimer">Disclaimer</div>
-          <div id="txt"> While every reasonable effort is made to ensure this community documentation is correct, the information is provided "as is" for reference purposes only, with no guarantees that it is complete, accurate, or current. Not all features, extensions, and plug-ins described within this documentation are supported by OpenGeo. 
-         </div>
     </div><!-- /.wrap -->
   </div><!-- /#header -->
 
