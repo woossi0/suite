@@ -114,6 +114,24 @@
                                 </copy>
                                 <!-- build JavaScript -->
                                 <mkdir dir="${war-src}/WEB-INF/app/static/script"/>
+                                <!-- uncompressed -->
+                                <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
+                                    <classpath>
+                                        <fileset dir="${war-src}/WEB-INF/lib">
+                                            <include name="**/*.jar"/>
+                                        </fileset>
+                                    </classpath>
+                                    <sysproperty key="ringo.home" path="${war-src}/WEB-INF"/>
+                                    <arg path="externals/buildkit/lib/buildkit/build.js"/>
+                                    <arg value="-u"/>
+                                    <arg value="-o"/>
+                                    <arg path="${war-src}/WEB-INF/app/static/script"/>
+                                    <arg path="buildjs.cfg"/>
+                                </java>
+                                <move
+                                    file="${war-src}/WEB-INF/app/static/script/GeoExplorer.js"
+                                    tofile="${war-src}/WEB-INF/app/static/script/GeoExplorer-debug.js"/>
+                                <!-- compressed -->
                                 <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
                                     <classpath>
                                         <fileset dir="${war-src}/WEB-INF/lib">
