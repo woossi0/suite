@@ -6,11 +6,11 @@
 Analyzing data with PostGIS
 ===========================
 
-This section describes techniques for analyzing your data with PostGIS. 
+This section describes techniques for analyzing your data with PostGIS, and includes linear referencing, tracking history in the database, and modelling spatial interactions between objects.
 
 
 .. toctree::
-   :hidden: 
+   :maxdepth: 2
 
    de9im
    linear_referencing

@@ -13,5 +13,6 @@ This section describes how to work with your data using the OpenGeo Suite, from 
    pgGettingStarted/index
    pgBasics/index
    pgAdvanced/index
+   pgDBAdmin/index
    importer/index
 
