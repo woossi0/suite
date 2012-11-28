@@ -55,32 +55,33 @@
              <h3 class="pngfix">OpenGeo Suite <br> User Manual Contents</h3>  
              <ul class="mktree" id="toctree">
               {{ toctree() }} 
-             </ul>      
+             </ul>   
+            <br> 
+            <div class="comman_main">
+            <h3>Component User Manuals</h3>  
+             <ul>
+              <li> <a href="./postgis/index.html">PostGIS</a> </li>
+              <li> <a href="./geoserver/index.hmtl">GeoServer</a> </li>
+              <li> <a href="./geowebcache/index.hmtl">GeoWebCache</a> </li>
+              <li> <a href="./geoexplorer/index.hmtl">GeoExplorer</a> </li>
+              <li> <a href="./sdk-api/index.hmtl">Client SDK</a> </li>
+             </ul>
+           </div>
+           </div> <!-- TOC -->
+          </div> <!-- end sidebar -->
+
             {%- endblock %}
            {%- endif %}
-            <br />
-            <ul>
+  <!--           <ul>
             {%- if prev %}
              <li class="minitoc">Previous: <br><a href="{{ prev.link|e }}" title="previous chapter">{{ prev.title }}</a></li>
             {%- endif %}
             {%- if next %}
              <li class="minitoc">Next: <br><a href="{{ next.link|e }}" title="next chapter">{{ next.title }}</a></li>
             {%- endif %}
-            </ul>
+            </ul> -->
             
-           <br> 
-           <div class="comman">
-           <h3>Component User Manuals</h3>  
-            <ul>
-            <li> <a href="../../PostGIS/index.html">PostGIS</a> </li>
-            <li> <a href="../../GeoServer/index.hmtl">GeoServer</a> </li>
-            <li> <a href="../../GeoWebCache/index.hmtl">GeoWebCache</a> </li>
-            <li> <a href="../../GeoExplorer/index.hmtl">GeoExplorer</a> </li>
-            <li> <a href="../../GeoExplorer/index.hmtl">Client SDK</a> </li>
-            </ul>
-           </div>
-           </div> <!-- TOC -->
-          </div> <!-- end sidebar -->
+
   {%- endif %}
 {%- endmacro -%}
 

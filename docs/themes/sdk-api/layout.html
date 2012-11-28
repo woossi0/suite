@@ -1,12 +1,9 @@
-{% extends "opengeo/layout.html" %}
-
 {%- macro sidebar() %}
  {%- if builder != 'htmlhelp' %}
-
         {%- block sidebartoc %} 
              <div id="sidebar">
              <div id="toc" class="section">
-              <h3>GeoExplorer <br> User Manual Contents</h3>  
+              <h3>Client SDK<br> API Reference</h3>  
               <ul class="mktree" id="toctree">
                {{ toctree() }} 
               </ul>   
@@ -24,15 +21,14 @@
             <h3>Component User Manuals</h3>  
             <ul>
              <li> <a href="./postgis/index.html">PostGIS</a> </li>
+             <li> <a href="./sdk-api/index.hmtl">GeoExplorer</a> </li>
              <li> <a href="./geoserver/index.hmtl">GeoServer</a> </li>
              <li> <a href="./geowebcache/index.hmtl">GeoWebCache</a> </li>
-             <li> <a href="./sdk-api/index.hmtl">Client SDK</a> </li>
             </ul>
           </div>
          </div> <!-- TOC -->
         </div> <!-- end sidebar -->
       {%- endblock %}
-
   {%- endif %}
 {%- endmacro -%}
 
@@ -46,6 +42,3 @@
           </fieldset>
         </form>
   {%- endblock %}
-
-
-
