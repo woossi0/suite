@@ -1,64 +1,63 @@
 .. _dataadmin.pgDBAdmin.security:
 
-Section 30: PostgreSQL Security
-===============================
 
-PostgreSQL has a rich and flexible permissions system, with the ability to parcel out particular privileges to particular roles_, and provide users with the powers of one or more of those roles_.
+PostgreSQL security
+===================
 
-In addition, the PostgreSQL server can use multiple different systems to authenticate users. This means that the database can use the same authentication infrastructure as other architecture components, simplifying password management.
+.. warning:: Document status: **Draft**
+
+PostgreSQL has a flexible permissions system, with the ability to assign specific privileges to specific roles_, and assign users to one or more of those roles_. In addition, the PostgreSQL server supports a number of methods for authenticating users. This means the database can use the same authentication infrastructure as other system components, simplifying password management.
 
 
-Users and Roles
+Users and roles
 ---------------
 
-In this chapter we will create two useful production users:
+Instead of creating users and individually granting the necessary access rights to each user, a simpler solution is to define a number of database roles with the requisite permissions and then assign users to those roles. When new users are created, they can be assigned to existing roles. When users are deleted from the database, the roles will remain.
+
 
  * A read-only user for use in a publishing application.
  * A read/write user for use by a developer in building a software or analyzing data.
 
-Rather than creating users and granting them the necessary powers, we will create two roles with the right powers and then create two users and add them to the appropriate roles. That way we can easily reuse the roles when we create further users.
 
-
-Creating Roles
+Creating roles
 ~~~~~~~~~~~~~~
 
-A role is a user and a user is a role. The only difference is that a "user" can be said to be a role with the "login" privilege. 
-
-So functionally, the two SQL statements below are the same, they both create a "role with the login privilege", which is to say, a "user".
+Conceptually, a role is a user and a user is a role. The only difference is that a *user* is a role with the *login* privilege. Functionally, the two SQL statements below are the same—they both create a *role with the login privilege* or in other words, a *user*.
 
 .. code-block:: sql
 
-  CREATE ROLE mrbean LOGIN;
-  CREATE USER mrbean;
+  CREATE ROLE user1 LOGIN;
+
+  CREATE USER user1;
 
 
-Read-only Users
+Read-only users
 ~~~~~~~~~~~~~~~
 
-Our read-only user will be for a web application to use to query the ``nyc_streets`` table.
+For users who only need to query but not update or delete data, read-only access can be granted. For example, a web publishing application may require access to a particular database table. The application will be granted specific access to the table, but will also inherit the necessary system access for PostGIS operations from the ``postgis_reader`` role. 
 
-The application will have specific access to the ``nyc_streets`` table, but will inherit the necessary system access for PostGIS operations from the ``postgis_reader`` role.
+The following example will create a new user ``app1`` with SELECT privileges on a specific table and assign the user to the new ``postgis_reader`` role.  
 
 .. code-block:: sql
 
-  -- A user account for the web app
   CREATE USER app1;
-  -- Web app needs access to specific data tables
+
   GRANT SELECT ON nyc_streets TO app1;
   
-  -- A generic role for access to PostGIS functionality
   CREATE ROLE postgis_reader INHERIT;
-  -- Give that role to the web app
+
   GRANT postgis_reader TO app1;
 
-Now, when we login as app1, we can select rows from the ``nyc_streets`` table. However, we cannot run an :command:`ST_Transform` call! Why not?
+When the user ``app1`` logs in to the database, they can select rows from the ``nyc_streets`` table. 
 
 .. code-block:: sql
 
-  -- This works!
   SELECT * FROM nyc_streets LIMIT 1; 
 
-  -- This doesn't work!
+However, the ``app1`` user cannot run an :command:`ST_Transform` command. 
+
+.. code-block:: sql
+
   SELECT ST_AsText(ST_Transform(geom, 4326)) 
     FROM nyc_streets LIMIT 1; 
 
@@ -67,9 +66,9 @@ Now, when we login as app1, we can select rows from the ``nyc_streets`` table. H
   ERROR:  permission denied for relation spatial_ref_sys
   CONTEXT:  SQL statement "SELECT proj4text FROM spatial_ref_sys WHERE srid = 4326 LIMIT 1"
 
-The answer is contained in the error statement. Though our ``app1`` user can view the contents of the ``nyc_streets`` table fine, it cannot view the contents of ``spatial_ref_sys``, so the call to :command:`ST_Transform` fails. 
+Although the ``app1`` user can view the contents of the ``nyc_streets`` table, they do not have permission to  view the contents of ``spatial_ref_sys``, so executing the :command:`ST_Transform` command fails. 
 
-So, we need to also grant the ``postgis_reader`` role read access to all the PostGIS metadata tables:
+To resolve this, grant SELECT privilege on all the PostGIS :ref:`dataadmin.pgBasics.metatables` tables to the ``postgis_reader`` role as follows:
 
 .. code-block:: sql
 
@@ -77,96 +76,59 @@ So, we need to also grant the ``postgis_reader`` role read access to all the Pos
   GRANT SELECT ON geography_columns TO postgis_reader;
   GRANT SELECT ON spatial_ref_sys TO postgis_reader;
 
-Now we have a nice generic ``postgis_reader`` role we can apply to any user that need to read from PostGIS tables.
+The ``postgis_reader`` role can be assigned to any user who needs read access to the PostGIS tables.
 
 
-.. code-block:: sql
-
-  -- This works now!
-  SELECT ST_AsText(ST_Transform(geom, 4326)) 
-    FROM nyc_streets LIMIT 1; 
-
-
-Read/write Users
+Read-write users
 ~~~~~~~~~~~~~~~~
 
-There are two kinds of read/write scenarios we need to consider:
+There are two kinds of read/write scenarios to consider:
 
- * Web applications and others that need to write to existing data tables.
- * Developers or analysts that need to create new tables and geometry columns as part of their work.
+ * Web-based and other applications that need to modify existing data or create new data.
+ * Developers or analysts who need to create new tables and geometry columns.
 
-For web applications that require write access to data tables, we just need to grant extra permissions to the tables themselves, and we can continue to use the ``postgis_reader`` role.
+For web applications that require write access to data tables, simply grant the extra permissions (INSERT, UPDATE, and DELETE) to the specific tables themselves, and continue to use the ``postgis_reader`` role.
 
 .. code-block:: sql
 
-  -- Add insert/update/delete abilities to our web application
   GRANT INSERT,UPDATE,DELETE ON nyc_streets TO app1;
 
-These kinds of permissions would be required for a read/write WFS service, for example.
+.. note:: These database access privileges would be required for a read/write WFS service.
 
-For developers and analysts, a little more access is needed to the main PostGIS metadata tables. To see why, as the app1 user create a new table and add a geometry column to it:
-
-.. code-block:: sql
-
-  -- Create the table without a geometry column
-  CREATE TABLE test (
-    id INTEGER
-  );
-  
-  -- Add a geometry column
-   SELECT AddGeometryColumn('test', 'geom', 4326, 'POINT', 2);
-
-The geometry column metadata information cannot be added to the ``geometry_columns`` table by :command:`AddGeometryColumn` because the app1 user doesn't have write permissions to that table.
-
-:: 
-
-  ERROR:  permission denied for relation geometry_columns
-  CONTEXT:  SQL statement "DELETE FROM geometry_columns WHERE
-            f_table_catalog = '' AND f_table_schema = 'public' AND f_table_name = 'test' AND f_geometry_column = 'geom'"
-  PL/pgSQL function "addgeometrycolumn" line 132 at EXECUTE statement
-  SQL statement "SELECT AddGeometryColumn('','', $1 , $2 , $3 , $4 , $5 )"
-  PL/pgSQL function "addgeometrycolumn" line 4 at SQL statement
-
-We need a ``postgis_writer`` role that can edit the PostGIS metadata tables!
+For developers and analysts, a ``postgis_writer`` role, with read/write access to the PostGIS metadata tables, is required. This new role should inherit the access rights already assigned to the ``postgis_reader`` role and have additional INSERT, UPDATE, and DELETE privileges on the metadata tables. 
 
 .. code-block:: sql
 
-  -- Make a postgis writer role
   CREATE ROLE postgis_writer;
 
-  -- Start by giving it the postgis_reader powers
   GRANT postgis_reader TO postgis_writer;
 
-  -- Add insert/update/delete powers for the PostGIS tables
-  GRANT INSERT,UPDATE,DELETE ON geometry_columns TO postgis_writer;
   GRANT INSERT,UPDATE,DELETE ON spatial_ref_sys TO postgis_writer;
  
-  -- Make app1 a PostGIS writer to see if it works!
   GRANT postgis_writer TO app1;
 
-Now try the table creation SQL above as the app1 user and see how it goes!
-
+.. todo:: check this section - metatables have changed at 3.0
 
 Encryption
 ----------
 
-PostgreSQL provides a lot of `encryption facilities <http://www.postgresql.org/docs/current/static/encryption-options.html>`_, many of them optional, some of them on by default.
+PostgreSQL provides a number of `encryption facilities <http://www.postgresql.org/docs/current/static/encryption-options.html>`_. Some of these facilities are enabled by default, while others are optional.
 
- * By default, all passwords are MD5 encrypted. The client/server handshake double encrypts the MD5 password to prevent re-use of the hash by anyone who intercepts the password.
- * `SSL connections <http://www.postgresql.org/docs/current/static/libpq-ssl.html>`_ are optionally available between the client and server, to encrypt all data and login information. SSL certificate authentication is also available when SSL connections are used.
- * Columns inside the database can be encrypted using the pgcrypto_ module, which includes hashing algorithms, direct ciphers (blowfish, aes) and both public key and symmetric PGP encryption.
+By default, all passwords are MD5 encrypted. The client/server handshake double encrypts the MD5 password to prevent re-use of the hash by anyone who intercepts the password. `SSL connections <http://www.postgresql.org/docs/current/static/libpq-ssl.html>`_ (Secure Sockets Layer) are optionally available between the client and server, to encrypt all data and login information. SSL certificate authentication is also available when SSL connections are used.
 
-SSL Connections
+Database columns can be encrypted using the pgcrypto_ module, which includes hashing algorithms, direct ciphers (blowfish, aes) and both public key and symmetric PGP encryption.
+
+SSL connections
 ~~~~~~~~~~~~~~~
 
-In order to use SSL connections, both your client and server must support SSL. The OpenGeo Suite ships PostgreSQL with SSL support built, but not enabled, so we have to carry out a few steps to turn it on first.
+To use SSL connections, both your client and server must support SSL. The OpenGeo Suite provides PostgreSQL with SSL support, but SSL is not enabled by default.  To enable SLL support:
 
- * First, turn off the Suite, since activating SSL will require a restart.
- * Next, we acquire or generate an SSL certificate and key. The certificate will need to have no passphrase on it, or the database server won't be able to start up. You can generate a self-signed key as follows:
+ 1. Shutdown the OpenGeo Suite server. On the OpenGeo Dashboard click :guilabel:`Shutdown`.
+ 2. Acquire or generate an SSL certificate and key. The certificate must not include a passphrase otherwise the database server won't be able to start up. To generate a self-signed key, enter the following:
 
-   :: 
+  .. code-block:: console 
      
-     # Create a new certificate, filling out the certification info as prompted
+     # Create a new certificate, completing the certification info as prompted
      openssl req -new -text -out server.req
      
      # Strip the passphrase from the certificate
@@ -178,23 +140,33 @@ In order to use SSL connections, both your client and server must support SSL. T
      # Set the permission of the key to private read/write
      chmod og-rwx server.key
      
-  * Copy the ``server.crt`` and ``server.key`` into the OpenGeo Suite PostgreSQL data directory.
+ 3. Copy the ``server.crt`` and ``server.key`` into the OpenGeo Suite PostgreSQL installation folder's data directory (``pgdata``).
 
-  * Enable SSL support in the ``postgresql.conf`` file by turning the "ssl" parameter to "on".
+ 4. Enable SSL support in the ``postgresql.conf`` file and set the ssl :guilabel:`Value` to *on*.
 
-    .. image:: ./screenshots/ssl_conf.jpg
+    .. figure:: ./screenshots/ssl_conf.png
 
-  * Now re-start the OpenGeo Suite, the server is ready for SSL operation.
+      *Enabling SSL support*
 
-With the server enabled for SSL, creating an encrypted connection is easy. In PgAdmin, create a new database connection, and set the SSL parameter to "require".
+ 5.  Restart OpenGeo Suite service to activate support for SSL. On the OpenGeo Dashboard, click :guilabel:`Start`.
 
-.. image:: ./screenshots/ssl_create.jpg
+ 6.  To add an encrypted server connection, on the pgAdmin main menu click :guilabel:`File` and click :guilabel:`Add Server` to open the :guilabel:`New Server Registration` dialog box. 
 
-Once you connect with the new connection, you can see in its properties that it is using an SSL connection.
+ 7. Enter the server properties and click the :guilabel:`SSL` tab. 
 
-.. image:: ./screenshots/ssl_props.jpg
+ 8. Set the :guilabel:`SSL` parameter to :guilabel:`require` and click :guilabel:`OK` to create the connection.
 
-Since the default SSL connection mode is "prefer", you don't even need to specify an SSL preference when connecting. A connection with the command line ``psql`` terminal will pick up the SSL option and use it by default:
+  .. figure:: ./screenshots/ssl_create.png
+
+     *Setting the SSL parameter in pgAdmin*
+
+Once you connect to the database using the new connection, check the connection properties to confirm SSL encryption is used.
+
+.. figure:: ./screenshots/ssl_props.png
+   
+   *SSL-encrypted connection*
+
+Since the default SSL connection mode is *prefer*, you don't have to specify an SSL preference when connecting. A connection made using the command line ``psql`` tool will read the SSL option and use it by default:
 
 :: 
 
@@ -204,29 +176,30 @@ Since the default SSL connection mode is "prefer", you don't even need to specif
 
   postgres=# 
 
-Note how the terminal reports the SSL status of the connection.
 
-
-Data Encryption
+Data encryption
 ~~~~~~~~~~~~~~~
 
-The pgcrypto_ module has a huge range of encryption options, so we will only demonstrate the simplest use case: encrypting a column of data using a symmetric cipher.
+.. ToDo:: couldn't find this file
 
- * First, enable pgcrypto by loading the contrib SQL file, either in PgAdmin or psql.
+There are many encryption options available with the pgcrypto_ module. One of the simplest examples is encrypting a column of data using a symmetric cipher. To set this up, complete the following steps:
+
+
+ 1. Enable pgcrypto by loading the :file:`pgcrypto.sql` file, either using pgAdmin or psql.
 
    :: 
      
-      pgsql/8.4/share/postgresql/contrib/pgcrypto.sql
+      pgsql/9.1/share/postgresql/contrib/pgcrypto.sql
 
 
- * Then, test the encryption function.
+ 2. Test the encryption function.
 
    .. code-block:: sql
       
       -- encrypt a string using blowfish (bf)
       SELECT encrypt('this is a test phrase', 'mykey', 'bf');
 
- * And make sure it's reversible too!
+ 3. Ensure the encryption is reversible.
 
    .. code-block:: sql
       
@@ -237,42 +210,42 @@ The pgcrypto_ module has a huge range of encryption options, so we will only dem
 Authentication
 --------------
 
-PostgreSQL supports many different `authentication methods <http://www.postgresql.org/docs/current/static/auth-methods.html>`_, to allow easy integration into existing enterprise architectures. For production purposes, the following methods are commonly used:
+PostgreSQL supports a number of `authentication methods <http://www.postgresql.org/docs/current/static/auth-methods.html>`_, to allow easy integration into existing enterprise architectures. In production systems, the following methods are commonly used:
 
- * **Password** is the basic system where the passwords are stored by the database, with MD5 encryption.
- * Kerberos_ is a standard enterprise authentication method, which is used by both the GSSAPI_ and SSPI_ schemes in PostgreSQL. Using SSPI_, PostgreSQL can authenticate against Windows servers.
- * LDAP_ is another common enterprise authentication method. The `OpenLDAP <http://www.openldap.org/>`_ server bundled with most Linux distributions provides an open source implementation of LDAP_.
- * **Certificate** authentication is an option if you expect all client connections to be via SSL and are able to manage the distribution of keys.
- * PAM_ authentication is an option if you are on Linux or Solaris and use the PAM_ scheme for transparent authentication provision.
+ * **Password**—Passwords are stored by the database with MD5 encryption
+ * Kerberos_—Enterprise authentication method used by both the GSSAPI_ and SSPI_ schemes in PostgreSQL. With SSPI_, PostgreSQL can authenticate against Windows servers.
+ * LDAP_—Common enterprise authentication method. The `OpenLDAP <http://www.openldap.org/>`_ server bundled with most Linux distributions provides an open source implementation of LDAP_.
+ * **Certificate**—Works with client connections made via SSL (assumes clients can manage the distribution of keys)
+ * PAM_—Supports Linux or Solaris PAM_ scheme for transparent authentication provision
 
-Authentication methods are controlled by the ``pg_hba.conf`` file. The "HBA" in the file name stands for "host based access", because in addition to allowing you to specify the authentication method to use for each database, it allows you to limit host access using network addresses.
+Authentication methods are controlled by the :file:`pg_hba.conf` file. The *hba* in the file name stands for "host based access", as in addition to allowing you to specify the authentication method to use for each database, it allows you to limit host access using network addresses. 
 
-Here is an example ``pg_hba.conf`` file:
+To edit the settings in the :file:`pg_hba.conf` file, on the pgAdmin main menu click :guilabel:`File` and click :guilabel:`Open pg_hba.conf` to open the file in the :guilabel:`Backend Access Configuration Editor`.
 
-:: 
+.. figure:: ./screenshots/pg_hba.png
 
-  # TYPE  DATABASE    USER        CIDR-ADDRESS          METHOD
+  *Accessing the pg_hba.conf file*
 
-  # "local" is for Unix domain socket connections only
-  local   all         all                               trust
-  # IPv4 local connections:
-  host    all         all         127.0.0.1/32          trust
-  # IPv6 local connections:
-  host    all         all         ::1/128               trust
-  # remote connections for nyc database only
-  host    nyc         all         192.168.1.0/2         ldap
+The  :file:`pg_hba.conf` file includes the following:
 
-The file consists of five columns
+ * **Type**—Determines the type of access, either "local" for connections from the same server or "host" for remote connections
+ * **Database**—What database the access rule refers to or "all" for all databases
+ * **User**—What users the access rule refers to or "all" for all users
+ * **IP-Address**—Network limitations for remote connections using network/netmask syntax
+ * **Method**—Authentication protocol to use. *Trust* skips authentication entirely and simply accepts any valid user name without challenge.
+ * **Option**—XXXXX - not sure
 
- * **TYPE** determines the kind of access, either "local" for connections from the same server or "host" for remote connections.
- * **DATABASE** specifies what database the configuration line refers to or "all" for all databases
- * **USER** specifies what users the line refers to or "all" for all users
- * **CIDR-ADDRESS** specifies the network limitations for remote connections, using network/netmask syntax
- * **METHOD** specifies the authentication protocol to use. "trust" skips authentication entirely and simply accepts any valid username without challenge.
+Generally local connections are trusted, since access to the server itself is usually privileged. Remote connections are disabled by default when PostgreSQL is installed. If you want to connect from remote machines, you must add the appropriate entry to the file.
 
-It's common for local connections to be trusted, since access to the server itself is usually privileged. Remote connections are disabled by default when PostgreSQL is installed: if you want to connect from remote machines, you'll have to add an entry.
+To add a new entry, double-click the last empty row in the list of entries to open the :guilabel:`Client Access Configuration` dialog box.
 
-The line for ``nyc`` in the example above is an example of a remote access entry. The ``nyc`` example allows LDAP authenticated access only to machines on the local network (in this case the 192.168.1. network) and only to the nyc database. Depending on the security of your network, you will use more or less strict versions of these rules in your production set-up.
+.. figure:: ./screenshots/pg_hba_new.png
+
+  *Adding a new remote access entry*
+
+The new entry for *nyc* is an example of a remote access entry, allowing LDAP authenticated access only to machines on the local network (in this case the 192.168.1. network) and only to the *nyc* database. 
+
+How you implement the various authentication rules in your production system will depend largely on the security requirements of your network.
 
 
 Links
@@ -281,8 +254,6 @@ Links
  * `PostgreSQL Authentication <http://www.postgresql.org/docs/current/static/auth-methods.html>`_
  * `PostgreSQL Encrpyption <http://www.postgresql.org/docs/current/static/encryption-options.html>`_
  * `PostgreSQL SSL Support <http://www.postgresql.org/docs/current/static/libpq-ssl.html>`_
-
-
 
 .. _GSSAPI: <http://en.wikipedia.org/wiki/Generic_Security_Services_Application_Program_Interface>
 .. _SSPI: http://msdn.microsoft.com/en-us/library/windows/desktop/aa380493(v=vs.85).aspx

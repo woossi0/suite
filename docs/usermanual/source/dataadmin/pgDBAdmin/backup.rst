@@ -1,40 +1,40 @@
 .. _dataadmin.pgDBAdmin.backup:
 
-.. warning:: Document status **Draft**
-
+.. warning:: Document status: **Draft**
 
 PostgreSQL backup and restore
 =============================
 
-There are lots of ways to backup a PostgreSQL database, and the one you choose will depend a great deal on how you are using the database.
+There are a number of options for backing up a PostgreSQL database, the choice of which depends on how you are using the database. For relatively static databases, the :command:`pg_dump` and :command:`pg_restore` tools will allow you to take periodic snapshots of the data. If your data changes frequently, using an online backup facility will allow you continuously archive updates to a secure location.
 
- * For relatively static databases, the basic pg_dump/pg_restore tools can be used to take periodic snapshots of the data.
- * For frequently changing data, using an "online backup" scheme allows continuous archiving of updates to a secure location.
-
-Online backup is the basis for replication and stand-by systems for `high availability <http://www.postgresql.org/docs/current/static/high-availability.html>`_, particularly for versions of PostgreSQL >= 9.0.
+Online backup is the basis for replication and stand-by systems for `high availability <http://www.postgresql.org/docs/current/static/high-availability.html>`_, particularly PostgreSQL version 9.0 or greater.
 
 
-Laying Out your Data
+Laying out your data
 --------------------
 
-As discussed in :ref:`dataadmin.pgDBAdmin.schemas`, ensuring that production data is always stored in separate schemas is a very important **best practice** in managing data. There are two reasons:
+It is good practice to always store your production data in separate schemas and we recommend you adopt this approach to managing your data. This is important for two reasons:
 
- * Backing up and restoring data in schemas is much simpler than managing lists of tables to be backed up individually.
- * Keeping data tables out of the "public" schema allows far easier upgrades.
+ * Backing up and restoring data structured in separate schemas is much simpler than managing lists of tables to be backed up individually.
+ * Keeping data tables out of the *public* schema makes it easier to upgrade your system.
 
 
-Basic Backup and Restore
--------------------------
+Basic backup and restore
+------------------------
 
-Backing up a full database is easy using the pg_dump_ utility. The utility is a command-line tool, which makes it easy to automate with scripting, and it can also be invoke via a GUI in the PgAdmin utility.
+Backing up a full database is a straightforward operation using the pg_dump_ tool, a command-line tool which makes it easy to automate with scripting. It is also available with a graphical user interface (GUI) from the pgAdmin database management application.
 
-To backup our ``nyc`` database, we can use the GUI, just right-click the database you want to backup:
+To start a back up, right-click the database in pgAdmin and click :guilabel:`Backup`.
 
-.. image:: ./screenshots/backup1.jpg
+.. figure:: ./screenshots/backup1.jpg
 
-Enter the name of the backup file you want to create.
+  *Backing up a database in pgAdmin*
 
-.. image:: ./screenshots/backup2.jpg
+Provide the name of the backup file you want to create.
+
+.. figure:: ./screenshots/backup2.jpg
+
+.. todo:: this has all changed now and need to be re-done
 
 Note that there are three backup format options: compress, tar and plain.
 
@@ -44,13 +44,17 @@ Note that there are three backup format options: compress, tar and plain.
 
 We'll check the Compress option and go, saving out a backup file.
 
-The same operation can be done with the command line like this:
+.. todo:: section above to be redone
 
-::
+The same operation can also be run from the command line as follows:
 
-  pg_dump --file=nyc.backup --format=c --port=54321 --username=postgres nyc
+.. code-block:: console
 
-Because the backup file is in Compress format, we can view the contents using the pg_restore_ command to list the manifest. In the PgAdmin GUI, "View" is an option in the panel.
+   pg_dump --file=medford.backup --format=c --port=54321 --username=postgres medford
+
+As the backup file is in Compress (?) format, you can view the contents using the pg_restore_ command to list the manifest. Click :command:`Diaplay objects` in the pgAdmin GUI.
+
+.. todo:: redo this image
 
 .. image:: ./screenshots/backup3.jpg
 

@@ -5,13 +5,12 @@ Tuning PostgreSQL for spatial
 
 PostgreSQL is a versatile database system, capable of operating efficiently in low-resource and multi-application environments. To ensure that efficient operation in different environments, the default configuration settings are conservative and generally unsuitable for a high-performance production database. This is further compounded by the typical usage profile of a geospatial database, with fewer, larger records being accessed compared to a non-geospatial database.
  
-The database configuration parameters are available to edit (using a text editor) in the :file:`postgresql.conf` file. This file is located in the following OpenGeo Suite installation folders:
+The database configuration parameters are available to edit (using a text editor) in the :file:`postgresql.conf` file. This file is stored in the OpenGeo Suite PostgreSQL installation folder's data directory (``pgdata``).
 
  * Windows—:file:`<installation_folder>\\pgdata\\%USER\\`
- * MAX OS X—:file:`<installation_folder>/pgdata/<username>/`
- * Linux—:file:`<installation_folder>XXXX`
+ * MAX OS X and Linux—:file:`<installation_folder>/pgdata/<username>/`
 
-An easy way to edit this configuration file is to use the built-in :guilabel:`Backend Configuration Editor`. From the pgAdmin application, click :guilabel:`File` and click :guilabel:`Open postgresql.conf`. In the :guilabel:`Open configuration file` dialog box navigate to the appropriate folder and select the configuration file to open it in the :guilabel:`Backend Configuration Editor`.
+An easy way to edit this configuration file is to use the pgAdmin :guilabel:`Backend Configuration Editor`. On the pgAdmin main menu, click :guilabel:`File` and click :guilabel:`Open postgresql.conf`. In the :guilabel:`Open configuration file` dialog box navigate to the data directory folder and select the configuration file to open it in the :guilabel:`Backend Configuration Editor`.
 
 .. figure:: ./tuning/conf03.png
  
