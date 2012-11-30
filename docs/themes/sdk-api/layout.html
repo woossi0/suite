@@ -1,3 +1,5 @@
+{% extends "opengeo/layout.html" %}
+
 {%- macro sidebar() %}
  {%- if builder != 'htmlhelp' %}
         {%- block sidebartoc %} 
@@ -19,11 +21,17 @@
             <br> 
             <br>
             <h3>Component User Manuals</h3>  
-            <ul>
+<!--             <ul>
              <li> <a href="./postgis/index.html">PostGIS</a> </li>
              <li> <a href="./sdk-api/index.html">GeoExplorer</a> </li>
              <li> <a href="./geoserver/index.html">GeoServer</a> </li>
              <li> <a href="./geowebcache/index.html">GeoWebCache</a> </li>
+            </ul> -->
+             <ul class="simple">
+              <li><a class="reference external" href="postgis">PostGIS</a></li>
+              <li><a class="reference external" href="geoserver">GeoServer</a></li>
+              <li><a class="reference external" href="geowebcache">GeoWebCache</a></li>
+              <li><a class="reference external" href="geoexplorer">GeoExplorer</a></li>
             </ul>
           </div>
          </div> <!-- TOC -->
