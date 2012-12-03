@@ -46,17 +46,9 @@ The OpenGeo User Manual will help you get the most out of the OpenGeo Suite.
 :ref:`sysadmin`
   Manage and optimize your OpenGeo Suite installation
 
-
-Component User Manuals 
-----------------------
-
-* `PostGIS <postgis>`_
-* `GeoServer <geoserver>`_
-* `GeoWebCache <geowebcache>`_
-* `GeoExplorer <geoexplorer>`_
-* `Client SDK <sdk-api>`_
-
 Additional Documentation
 ------------------------
 
 :ref:`glossary`
+
+
