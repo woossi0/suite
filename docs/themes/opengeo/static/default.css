@@ -1036,7 +1036,7 @@ a.headerlink {
 color: #c60f0f;
 margin-left: 6px;
 padding: 0 4px;
-text-decoration: none
+text-decoration: none;
 visibility: hidden;
 }
 
@@ -1047,7 +1047,7 @@ h4:hover a.headerlink,
 h5:hover a.headerlink,
 h6:hover a.headerlink,
 dt:hover a.headerlink {
-visibility: visible;
+visibility: hidden;
 }
 
 a.headerlink:hover {
