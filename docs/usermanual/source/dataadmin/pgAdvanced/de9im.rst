@@ -1,6 +1,6 @@
 .. _dataadmin.pgAdvanced.de9im:
 
-.. warning:: Document status **Draft**
+.. warning:: Document status **Reqiires tech review**
 
 Dimensionally Extended 9-Intersection model
 ===========================================
@@ -21,7 +21,7 @@ For polygons, these attributes are obvious:
 
 The interior is bounded by the rings, the boundary is the rings themselves, and the exterior is everything else beyond the boundary.
 
-For linear features, the interior, boundary and exterior attributes are less obvious. 
+For linear features, the interior, boundary, and exterior attributes are less obvious. 
 
 .. figure:: ./img/de9im2.png
 
@@ -39,7 +39,7 @@ Using these definitions of interior, boundary, and exterior attributes, the rela
 
 For the polygons in the example above, the intersection of the interiors is a two-dimensional area, so that portion of the matrix is completed with a **2**. The boundaries only intersect at points, which are zero-dimensional, so that portion of the matrix is completed with a **0**. When there is no intersection between components, the matrix is filled out with an **F**.
 
-In this next example a linestring intersects a polygon:
+In this next example, a linestring intersects a polygon:
 
 .. figure:: ./img/de9im4.png
 
@@ -105,10 +105,10 @@ The data model comprises two objects—**Lakes** and **Docks**. Docks must be in
 
 Legal docks (docks that obey the data model rules) have the following characteristics:
 
- * Their interiors have a linear (one-dimensional) intersection with the lake interior
- * Their boundaries have a point (zero-dimensional) intersection with the lake interior
- * Their boundaries **also** have a point (zero-dimensional) intersection with the lake boundary
- * Their interiors have no intersection (F) with the lake exterior
+ * Interiors have a linear (one-dimensional) intersection with the lake interior
+ * Boundaries have a point (zero-dimensional) intersection with the lake interior
+ * Boundaries **also** have a point (zero-dimensional) intersection with the lake boundary
+ * Interiors have no intersection (F) with the lake exterior
 
 The resulting DE9IM matrix looks like this:
 
@@ -156,13 +156,13 @@ The resulting SQL is as follows:
   FROM docks JOIN lakes ON ST_Intersects(docks.geom, lakes.geom)
   WHERE ST_Relate(docks.geom, lakes.geom, '1*F00F212');
 
-This identifies three valid docks. Confirm that the stricter SQL in the previous example does *not* return the new dock.
+This identifies three valid docks. 
 
 
 Data quality testing
 ~~~~~~~~~~~~~~~~~~~~
 
-TIGER (Topologically Integrated Geographic Encoding and Referencing) census data is carefully quality controlled according to strict data model rules. For example, no census block should overlap any other census block. 
+TIGER (Topologically Integrated Geographic Encoding and Referencing) census data is quality controlled according to strict data model rules. For example, no census block should overlap any other census block. 
 
 .. figure:: ./img/de9im11.png
 

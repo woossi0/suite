@@ -6,17 +6,13 @@ PostgreSQL security
 
 .. warning:: Document status: **Draft**
 
-PostgreSQL has a flexible permissions system, with the ability to assign specific privileges to specific roles_, and assign users to one or more of those roles_. In addition, the PostgreSQL server supports a number of methods for authenticating users. This means the database can use the same authentication infrastructure as other system components, simplifying password management.
+PostgreSQL has a flexible permissions system, with the ability to assign specific privileges to specific roles_, and assign users to one or more of those roles_. In addition, as the PostgreSQL server supports a number of methods for authenticating users, the database can use the same authentication infrastructure as other system components. This helps reduces the maintenance overhead by simplifying password management.
 
 
 Users and roles
 ---------------
 
 Instead of creating users and individually granting the necessary access rights to each user, a simpler solution is to define a number of database roles with the requisite permissions and then assign users to those roles. When new users are created, they can be assigned to existing roles. When users are deleted from the database, the roles will remain.
-
-
- * A read-only user for use in a publishing application.
- * A read/write user for use by a developer in building a software or analyzing data.
 
 
 Creating roles
@@ -34,9 +30,9 @@ Conceptually, a role is a user and a user is a role. The only difference is that
 Read-only users
 ~~~~~~~~~~~~~~~
 
-For users who only need to query but not update or delete data, read-only access can be granted. For example, a web publishing application may require access to a particular database table. The application will be granted specific access to the table, but will also inherit the necessary system access for PostGIS operations from the ``postgis_reader`` role. 
+For users who only need to query but not update or delete data, read-only access to the database can be granted. For example, if a web publishing application requires access to the ``nyc_streets`` table, read-only access to that specific table can be granted. The applications could also inherit the necessary system access for PostGIS operations from a ``postgis_reader`` role. 
 
-The following example will create a new user ``app1`` with SELECT privileges on a specific table and assign the user to the new ``postgis_reader`` role.  
+The following example will create a new user ``app1`` with SELECT privileges on the ``nyc_streets`` table and assign the user to the ``postgis_reader`` role.  
 
 .. code-block:: sql
 
@@ -48,7 +44,7 @@ The following example will create a new user ``app1`` with SELECT privileges on 
 
   GRANT postgis_reader TO app1;
 
-When the user ``app1`` logs in to the database, they can select rows from the ``nyc_streets`` table. 
+When the user ``app1`` logs in to the database, they can now select rows from the ``nyc_streets`` table. 
 
 .. code-block:: sql
 
@@ -66,9 +62,9 @@ However, the ``app1`` user cannot run an :command:`ST_Transform` command.
   ERROR:  permission denied for relation spatial_ref_sys
   CONTEXT:  SQL statement "SELECT proj4text FROM spatial_ref_sys WHERE srid = 4326 LIMIT 1"
 
-Although the ``app1`` user can view the contents of the ``nyc_streets`` table, they do not have permission to  view the contents of ``spatial_ref_sys``, so executing the :command:`ST_Transform` command fails. 
+Although the ``app1`` user can view the contents of the ``nyc_streets`` table, they do not have permission to view the contents of ``spatial_ref_sys``, so executing the :command:`ST_Transform` command fails. 
 
-To resolve this, grant SELECT privilege on all the PostGIS :ref:`dataadmin.pgBasics.metatables` tables to the ``postgis_reader`` role as follows:
+To resolve this, grant SELECT privilege on all the PostGIS :ref:`dataadmin.pgBasics.metatables` objects to the ``postgis_reader`` role as follows:
 
 .. code-block:: sql
 
@@ -76,7 +72,7 @@ To resolve this, grant SELECT privilege on all the PostGIS :ref:`dataadmin.pgBas
   GRANT SELECT ON geography_columns TO postgis_reader;
   GRANT SELECT ON spatial_ref_sys TO postgis_reader;
 
-The ``postgis_reader`` role can be assigned to any user who needs read access to the PostGIS tables.
+The ``postgis_reader`` role can be assigned to any user who needs read access to the PostGIS metadata tables.
 
 
 Read-write users
@@ -95,7 +91,7 @@ For web applications that require write access to data tables, simply grant the 
 
 .. note:: These database access privileges would be required for a read/write WFS service.
 
-For developers and analysts, a ``postgis_writer`` role, with read/write access to the PostGIS metadata tables, is required. This new role should inherit the access rights already assigned to the ``postgis_reader`` role and have additional INSERT, UPDATE, and DELETE privileges on the metadata tables. 
+For developers and analysts, a ``postgis_writer`` role with read/write access to the PostGIS metadata objects, is required. This new role should inherit the access rights already assigned to the ``postgis_reader`` role and have additional INSERT, UPDATE, and DELETE privileges granted on the metadata objects. 
 
 .. code-block:: sql
 
@@ -114,7 +110,7 @@ Encryption
 
 PostgreSQL provides a number of `encryption facilities <http://www.postgresql.org/docs/current/static/encryption-options.html>`_. Some of these facilities are enabled by default, while others are optional.
 
-By default, all passwords are MD5 encrypted. The client/server handshake double encrypts the MD5 password to prevent re-use of the hash by anyone who intercepts the password. `SSL connections <http://www.postgresql.org/docs/current/static/libpq-ssl.html>`_ (Secure Sockets Layer) are optionally available between the client and server, to encrypt all data and login information. SSL certificate authentication is also available when SSL connections are used.
+All passwords are MD5 encrypted by default. The client/server handshake double encrypts the MD5 password to prevent re-use of the hash by anyone who intercepts the password. `SSL connections <http://www.postgresql.org/docs/current/static/libpq-ssl.html>`_ (Secure Sockets Layer) are optionally available between the client and server, to encrypt all data and login information. SSL certificate authentication is also available when SSL connections are used.
 
 Database columns can be encrypted using the pgcrypto_ module, which includes hashing algorithms, direct ciphers (blowfish, aes) and both public key and symmetric PGP encryption.
 
@@ -180,7 +176,7 @@ Since the default SSL connection mode is *prefer*, you don't have to specify an 
 Data encryption
 ~~~~~~~~~~~~~~~
 
-.. ToDo:: couldn't find this file
+.. ToDo:: couldn't find this file - consider removing topic - too brief to be of much use
 
 There are many encryption options available with the pgcrypto_ module. One of the simplest examples is encrypting a column of data using a symmetric cipher. To set this up, complete the following steps:
 
@@ -218,7 +214,7 @@ PostgreSQL supports a number of `authentication methods <http://www.postgresql.o
  * **Certificate**—Works with client connections made via SSL (assumes clients can manage the distribution of keys)
  * PAM_—Supports Linux or Solaris PAM_ scheme for transparent authentication provision
 
-Authentication methods are controlled by the :file:`pg_hba.conf` file. The *hba* in the file name stands for "host based access", as in addition to allowing you to specify the authentication method to use for each database, it allows you to limit host access using network addresses. 
+Authentication methods are controlled by the :file:`pg_hba.conf` file. The *hba* in the file name stands for host based access, as in addition to allowing you to specify the authentication method to use for each database, it allows you to limit host access using network addresses. 
 
 To edit the settings in the :file:`pg_hba.conf` file, on the pgAdmin main menu click :guilabel:`File` and click :guilabel:`Open pg_hba.conf` to open the file in the :guilabel:`Backend Access Configuration Editor`.
 
@@ -228,12 +224,12 @@ To edit the settings in the :file:`pg_hba.conf` file, on the pgAdmin main menu c
 
 The  :file:`pg_hba.conf` file includes the following:
 
- * **Type**—Determines the type of access, either "local" for connections from the same server or "host" for remote connections
- * **Database**—What database the access rule refers to or "all" for all databases
- * **User**—What users the access rule refers to or "all" for all users
+ * **Type**—Determines the type of access, either *local* for connections from the same server or *host* for remote connections
+ * **Database**—Which database the access rule refers to or "all" for all databases
+ * **User**—Which users the access rule refers to or "all" for all users
  * **IP-Address**—Network limitations for remote connections using network/netmask syntax
  * **Method**—Authentication protocol to use. *Trust* skips authentication entirely and simply accepts any valid user name without challenge.
- * **Option**—XXXXX - not sure
+ * **Option**—Specifies options for the selected authentication method
 
 Generally local connections are trusted, since access to the server itself is usually privileged. Remote connections are disabled by default when PostgreSQL is installed. If you want to connect from remote machines, you must add the appropriate entry to the file.
 
@@ -243,9 +239,9 @@ To add a new entry, double-click the last empty row in the list of entries to op
 
   *Adding a new remote access entry*
 
-The new entry for *nyc* is an example of a remote access entry, allowing LDAP authenticated access only to machines on the local network (in this case the 192.168.1. network) and only to the *nyc* database. 
+This new entry is an example of a remote access connection, allowing LDAP authenticated access only to machines on the local network (in this case the 192.168.1. network) and only to the *nyc* database. 
 
-How you implement the various authentication rules in your production system will depend largely on the security requirements of your network.
+Implementing the various authentication rules in a production system will largely depend on the security requirements of your network.
 
 
 Links

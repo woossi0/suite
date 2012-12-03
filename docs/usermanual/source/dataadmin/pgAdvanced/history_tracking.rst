@@ -1,6 +1,6 @@
 .. _dataadmin.pgAdvanced.history_tracking:
 
-.. warning:: Document status **Draft**
+.. warning:: Document status **Requires tech review**
 
 Tracking edit history using triggers
 ====================================
@@ -16,21 +16,21 @@ To enable database edit history, a history table is created to record the follow
 Building the history table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Using this history information it is possible to reconstruct the state of the edited table at any point in time. To illustrate this feature, history tracking will be added to a **nyc_streets** table.
+Using this history information it is possible to reconstruct the state of the edited table at any point in time. To illustrate this feature, history tracking will be added to a table containing information on streets in New York city (**nyc_streets**).
 
-  1. Create a new **nyc_streets_history** table as a copy of the **nyc_streets** table. This copy will store all the historical edit information. In addition to all the fields from **nyc_streets**, five extra fields will be added.
+  #. Create a new **nyc_streets_history** table as a copy of the **nyc_streets** table. This copy will store all the historical edit information. In addition to all the fields from **nyc_streets**, five extra fields will be added.
 
-    * **hid**—Primary key for the history table
-    * **created**—Date/time the history record was created
-    * **created_by**—Database user who created the record
-    * **deleted**—Date and time the history record was marked as deleted
-    * **deleted_by**—Database user who marked the record as deleted
+     * **hid**—Primary key for the history table
+     * **created**—Date/time the history record was created
+     * **created_by**—Database user who created the record
+     * **deleted**—Date and time the history record was marked as deleted
+     * **deleted_by**—Database user who marked the record as deleted
 
      Note records aren't deleted from the history table, they are simply flagged to mark the time they ceased to be part of the current state of the main table.
 
-     .. code-block:: sql
+      .. code-block:: sql
 
-      CREATE TABLE nyc_streets_history (
+       CREATE TABLE nyc_streets_history (
         hid SERIAL PRIMARY KEY,
         gid INTEGER,
         id FLOAT8,
@@ -44,7 +44,7 @@ Using this history information it is possible to reconstruct the state of the ed
         deleted_by VARCHAR(32)
     	 );
 
-  2. Import the current state of the main table **nyc_streets** into the history table, to create a starting point to trace history from. The creation time and creation user will be added, but the deletion records left as NULL.
+  #. Import the current state of the main table **nyc_streets** into the history table, to create a starting point to trace history from. The creation time and creation user will be added, but the deletion records left as NULL.
   
      .. code-block:: sql
 
@@ -53,7 +53,7 @@ Using this history information it is possible to reconstruct the state of the ed
   	    SELECT gid, id, name, oneway, type, the_geom, now(), current_user
   	      FROM nyc_streets;
 	
-  3. Create three triggers on the active table for INSERT, DELETE and UPDATE actions and then bind the triggers to the table. For an insert, add a new record into the history table with the creation time and user.
+  #. Create three triggers on the active table for INSERT, DELETE and UPDATE actions and then bind the triggers to the table. For an insert, add a new record into the history table with the creation time and user.
 
      .. code-block:: plpgsql
 
@@ -123,7 +123,7 @@ Using this history information it is possible to reconstruct the state of the ed
       AFTER UPDATE ON nyc_streets
           FOR EACH ROW EXECUTE PROCEDURE nyc_streets_update();
 
-  4. Test the history tracking by making some changes to the **nyc_streets** table. Each edit should result in new time-stamped and user-stamped records in the **nyc_streets_history** table, regardless of the edit tool or application used to make those changes.
+  #. Test the history tracking by making some changes to the **nyc_streets** table. Each edit should result in new time-stamped and user-stamped records in the **nyc_streets_history** table, regardless of the edit tool or application used to make those changes.
 
 
 Querying the history table

@@ -1,6 +1,6 @@
 .. _dataadmin.pgAdvanced.linear_referencing:
 
-.. warning:: Document status **Draft**
+.. warning:: Document status **Requires tech review**
 
 Linear referencing
 ==================
@@ -14,9 +14,9 @@ Linear referencing is a means of identifying the locations of features using a r
   
 .. todo:: diagram here would be good
 
-ne of the main benefits of linear referencing is that the dependent spatial observations don't need to be recorded separately from the base observations, and updates to features in the base observation layer can be carried out knowing that the dependent observations will automatically track the new geometry.
+One of the main benefits of linear referencing is the dependent spatial observations don't need to be recorded separately from the base observations, and updates to features in the base observation layer can be carried out knowing that the dependent observations will automatically track the new geometry.
 
-.. note:: The Esri convention for linear referencing is to have a base table of linear spatial features, and a non-spatial table of "events" which includes a foreign key reference to the spatial feature and a measure along the referenced feature. The term "event table" is used here to refer to the non-spatial tables that will be created.
+.. note:: The term *event table* is used here to refer to the non-spatial tables that will be created.
 
 Creating linear references
 --------------------------
@@ -53,7 +53,7 @@ To convert a **nyc_subway_stations** table into an *event table* relative to the
   ORDER BY subways_gid, distance ASC
   );
 
-Use the PostgreSQL :command:`DISTINCT ON` feature to identify the nearest street for each unique street id. Pass that street to :command:`ST_Line_Locate_Point` along with its candidate subway station to calculate the measure.
+Use the PostgreSQL :command:`DISTINCT ON` feature to identify the nearest street for each unique street id. Pass the nearest street to :command:`ST_Line_Locate_Point` along with its candidate subway station to calculate the measure.
 
 .. code-block:: sql
 
@@ -65,7 +65,7 @@ Use the PostgreSQL :command:`DISTINCT ON` feature to identify the nearest street
     distance
   FROM ordered_nearest;
 
-To support visualization application software, add a primary key.
+If you have to support visualization application software requiring access to the results, add a primary key.
 
 .. code-block:: sql
 
@@ -91,13 +91,6 @@ You can also join the **nyc_subway_station_events** table back to the **nyc_stre
   FROM nyc_subway_station_events events
   JOIN nyc_streets streets 
   ON (streets.gid = events.streets_gid);
-
-Add a reference to the PostGIS `metadata tables <../pgBasics/metatables.html>`_ to enable client software to see this view.
-
-.. code-block:: sql
-
-  INSERT INTO geometry_columns 
-  VALUES ('','public','nyc_subway_stations_lrs','geom',2, 26918, 'POINT');
 
 Viewing the original (red star) and event (blue circle) points with the streets, you can see how the events are snapped directly to the closest street lines.
 

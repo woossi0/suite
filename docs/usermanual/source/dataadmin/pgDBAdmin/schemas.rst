@@ -1,9 +1,10 @@
 .. _dataadmin.pgDBAdmin.schemas:
 
-.. warning:: Document status: **Draft**
 
 PostgreSQL schemas
 ==================
+
+.. warning:: Document status: **Draft**
 
 Production databases will inevitably have a large number of tables and views. Managing numerous database objects in one schema can quickly become unwieldy. Fortunately, PostgreSQL_ supports the concept of a "_Schema".
 
@@ -19,7 +20,7 @@ Inside that schema, the default installation of PostGIS creates the ``geometry_c
 Why use schemas?
 ----------------
 
-The main reasons for using schemas include:
+The main advantages in using schemas include:
 
  * Data managed in a schema is easier to apply bulk actions to. 
 
