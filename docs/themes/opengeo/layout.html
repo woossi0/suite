@@ -50,6 +50,7 @@
           {%- else %}
             {#- old style sidebars: using blocks -- should be deprecated #}
           {%- block sidebartoc %} 
+          <div id="sb_main">
             <div id="sidebar">
             <div id="toc" class="section">
              <h3>OpenGeo Suite <br> User Manual Contents</h3>  
@@ -74,7 +75,8 @@
            </div>
            </div> <!-- TOC -->
           </div> <!-- end sidebar -->
-
+         </div> <!-- sb_main -->
+         
             {%- endblock %}
            {%- endif %}
   <!--           <ul>

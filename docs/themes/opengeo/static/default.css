@@ -200,19 +200,18 @@ color: #332722;
 .disclaimer {
 font-weight: bold;
 font-size: 12px;
-height: 0;
 color: #BF381A;
-margin: 10px 0 0 6px;
+/*margin: -35px 0 0 6px;*/
 }
 
 #distxt {
 /*text-align: justify;*/
 color: #332722;
-font-size: 11px;
-margin: 18px 0 -30px 6px;
+font-size: 12px;
+margin: 4px 0 125px 6px;
 height: 76px;
+width: 200px;
 }
-
 
 #main {
 
@@ -233,7 +232,7 @@ font-size: 1.2em;
 #sidebar {
 width: 230px;
 margin: 0 40px 0 -15px; 
-padding: 107px 0 0 ;
+padding: 58px 0 0 ;
 /*color: #0A2742;*/
 /*background: url(./chrome/sidebar-content-bg.png) no-repeat; */
 }
@@ -817,6 +816,9 @@ background: url(./chrome/download-link.png) no-repeat;
 /*-----------------------
 Sidebar
 -----------------------*/
+#sb_main {
+	margin-top: -15px;
+}
 
 #sidebar a {
 text-decoration: none;
@@ -833,7 +835,7 @@ color: #BF381A; /*#739811;#ffffff; */
 
 #sidebar .section {
 width: 200px; 
-padding-top: 2px;
+padding-top: 3px;
 }
 
 #sidebar .section h3 {
@@ -865,7 +867,7 @@ margin: 0 0 0 -1em;
 } 
 
 #sidebar #toc {
-margin: -92px 0 20px 13px; 
+margin: -30px 0 20px 13px;
 }
 
 #sidebar #toc ul {
@@ -905,7 +907,7 @@ margin: 0 0 0 -1em;
 
 
 #sidebar .comman {
-margin-top: 140px;
+margin-top: 10px;
 }
 
 #sidebar .comman_main {
