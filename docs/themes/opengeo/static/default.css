@@ -727,6 +727,11 @@ background-color: transparent;
 font-weight: bold;
 }
 
+tt.pre {
+font-size: 0.9em;
+word-wrap: break-word;
+}
+
 .footnote:target  {
 background-color: #F3F3F3
 }
