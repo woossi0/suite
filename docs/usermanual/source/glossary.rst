@@ -10,13 +10,13 @@ Glossary
      Application Programming Interface. A set of routines, procedures, protocols, and tools for building software applications.
 
    Coverage
-     A type of geographic representation conveying different values at different locations. Satellite imagery, aerial photography, and digital elevation models (DEMs) are examples of coverage data.
+     A type of spatial data that represents different values at different locations. Satellite imagery, aerial photography, and digital elevation models (DEMs) are examples of coverage data.
 
    CRS
      Coordinate reference system. The combination of a geographic and projected coordinate systems that define how two-dimensional maps relate to locations on the earth's surface. Geographic coordinate systems use a three-dimensional spherical surface to define those locations, referencing points on that surface through angles (latitude and longitude values) measured from the earth's center. Projected coordinate systems are based on flat two-dimensional surfaces, with locations referenced by x, y coordinates measured as constant lengths and distances across that surface. See also :term:`SRID` and :term:`SRS`.
 
    Data Store
-     A GeoServer data store represents a connection to a source of raster and vector data, such as a file or group of files, a database table, and so on.
+     A GeoServer data store represents a connection to a source of raster or vector data, such as a file or group of files, a database table, and so on.
  
    Feature Type 
      A GeoServer feature type (featureType) represents a data source table.
@@ -55,19 +55,19 @@ Glossary
      Keyhole Markup Language. This is the spatial :term:`XML` format used by Google Earth. Google Earth was originally written by a company named "Keyhole", hence the (now obscure) reference in the name.
 
    Layer
-     A GeoServer representation of any raster or vector data source that contains geographic features. 
+     A published GeoServer resource representing a raster or vector spatial data source. 
 
    Mosaic
      A collection of georeferenced raster data sources merged together to create a seamless raster dataset. See also :term:`ImageMosaic`.
 
    Namespace
-     A GeoServer namespace defines the XML namespace of a feature type. An XML namespace uniquely describes elements and attributes in an XML document. See also :term:`Feature Type`.
+     A GeoServer namespace defines the XML namespace of a feature type. An XML namespace uniquely describes elements and attributes in an XML document. See also :term:`Feature Type`. Can also refer to a GeoServer :term:`Workspace`.
 
    OGC
      See :term:`Open Geospatial Consortium`.
 
    Open Geospatial Consortium
-     The `Open Geospatial Consortium <http://www.opengeospatial.org/>`_ (OGC)  is a standards organization that develops specifications for geospatial services.
+     The `Open Geospatial Consortium <http://www.opengeospatial.org/>`_ (OGC)  is a standards organization responsible for developing specifications for geospatial services.
 
    OSGeo
      The `Open Source Geospatial Foundation <http://osgeo.org>`_ (OSGeo) is a non-profit foundation dedicated to the promotion and support of open source geospatial software.
@@ -100,13 +100,13 @@ Glossary
      See :term:`Scalable Vector Graphics`.
 
    Raster Layer
-     A GeoServer representation of raster format data stored as a cell-based representation of features on the earth surface. Each cell has a distinct value, and all cells with the same value represent a specific feature. Raster layers are analogous to coverages. See also :term:`Layer` and :term:`Coverage`.    
+     A published GeoServer representation of raster format data stored as a cell-based representation of features on the earth surface. Each cell has a distinct value, and all cells with the same value represent a specific feature. Raster layers are analogous to coverages. See also :term:`Layer` and :term:`Coverage`.    
 
    REST
      REpresentational State Transfer. An open, resource-oriented model for implementing Web services.
 
    Vector Layer  
-     A GeoServer representation of a collection of vector feature types (featureType) stored as mathematical paths—a point as a single x, y coordinate, lines as a series of x, y coordinates, and polygons as a series of x, y coordinates that start and end on the same location. See also :term:`Layer`. 
+     A published GeoServer representation of a collection of vector feature types (featureType) stored as mathematical paths—a point as a single x, y coordinate, lines as a series of x, y coordinates, and polygons as a series of x, y coordinates that start and end on the same location. See also :term:`Layer`. 
 
    WCS
      See :term:`Web Coverage Service`.
@@ -142,7 +142,7 @@ Glossary
      See :term:`Web Map Service`.
 
    Workspace 
-     A GeoServer organizational structure for grouping related layers (data sources). See also :term:`Layer`.
+     An organizational structure in GeoServer for grouping related data stores. See also :term:`Data Store`.
    
    WPS
      See :term:`Web Processing Service`.
