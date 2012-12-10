@@ -8,7 +8,7 @@
  <parent>
   <groupId>org.opengeo</groupId>
   <artifactId>docs</artifactId>
-  <version>3.0-SNAPSHOT</version>
+  <version>3.0</version>
  </parent>
 
  <groupId>org.opengeo.docs</groupId>
@@ -16,10 +16,24 @@
  <packaging>pom</packaging>
  <name>OpenGeo Install Doc Module</name>
 
+ <properties>
+   <sphinx-flag></sphinx-flag>
+ </properties>
+
+ <profiles>
+   <profile>
+     <id>test</id>
+     <properties>
+       <sphinx-flag>-q</sphinx-flag>
+     </properties>
+   </profile>
+ </profiles>
+
  <modules>
    <module>windows</module>
    <module>mac</module>
-   <module>linux</module>
+   <module>ubuntu</module>
+   <module>centos</module>
  </modules>
 
 </project>

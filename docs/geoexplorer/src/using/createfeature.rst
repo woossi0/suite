@@ -1,58 +1,45 @@
 .. _geoexplorer.using.createfeature:
 
-Create a New Feature
-====================
+Create 
+======
 
-GeoExplorer includes the ability to create new features in layers served through a local instance of GeoServer.  You can draw the location of the feature, as well as edit the attribute data for that feature.
+With GeoExplorer you can create new features in layers published through a local instance of GeoServer. You can define the spatial information (location) for the feature, as well as the attribute information.
 
-.. note:: Authentication is required to create features through GeoExplorer.  For more information, please see the :ref:`geoexplorer.using.login` section.
+.. note:: GeoServer authentication is required to create features through GeoExplorer. For more information, please refer to the :ref:`geoexplorer.using.login` section.
 
-.. warning:: Creation of features happens directly on the data source served in GeoServer (via :term:`WFS-T`), so the changes that are made go live immediately once the :guilabel:`Save` button is clicked.
+.. warning:: Creating features happens directly on the data source published in GeoServer (via :term:`WFS-T`), so any changes will be available immediately after they have been saved.
 
-To create a new feature, select the layer you wish to add features to, and then click the :guilabel:`Create a new feature` button.
+#. To create a new feature, select the layer you want to add features to, click :guilabel:`Edit` on the :ref:`geoexplorer.workspace.toolbar` and then click :guilabel:`Create`.
 
-.. figure:: images/create_button.png
-   :align: center
+   .. figure:: images/button_create.png
 
-   *Create a New Feature button*
+      *Create new feature tool*
 
-Click on an area of the Map Window where a feature should be placed.
+#. Click a location of the Map Window where a feature should be placed.
+
+   .. figure:: images/create_firstpoint.png
+
+      *Initial point for new feature*
+
+   If you are creating a new point feature, one click will create the new point. If you are creating a line or polygon feature, trace the outline of the line or polygon feature by clicking other locations in the Map Window. You can also hold down Shift and the left mouse button while dragging the mouse to create (approximate) curved lines. 
+
+#. Double-click at the final location to complete the feature input. A dialog box will open to capture attribute information for the new feature.
+
+   .. figure:: images/create_line.png
+
+      *New line feature*
+
+#. Enter the attribute values for the new feature and click :guilabel:`Save`. To delete the newly-created feature, click :guilabel:`Cancel`.
+
+   .. figure:: images/create_edit.png
+
+      *Providing attributes for new feature*
+
+   .. note:: No information will be passed to GeoServer **until** the changes are saved.
 
 
-.. figure:: images/create_firstpoint.png
-   :align: center
+   .. figure:: images/create_success.png
 
-   *Initial point for new feature*
+      *New feature successfully created*
 
-If operating on a point layer, the creation will cease after the first click.  If operating on a line or polygon layer, you can click on the Map Window to add additional vertices to the feature.  You can also hold down the Shift key and the mouse button while dragging in order to create (approximations of) curved lines.  When finished, double-click at the final point.
-
-.. figure:: images/create_line.png
-   :align: center
-
-   *Completely drawn new feature*
-
-To delete the newly-created feature and start over, double-click to finish feature creation, and then click :guilabel:`Cancel` at the following dialog.
-
-Editing a newly created feature
--------------------------------
-
-Once a feature has been created, a dialog will pop up with a listing of the layer's attributes.  Enter in the values of the attributes for the new feature and then click :guilabel:`Save`.  To delete the newly-created feature and start over, click :guilabel:`Cancel` and the feature will be removed from the map.  
-
-.. note:: Until the :guilabel:`Save` button is clicked, no information will be passed to GeoServer.
-
-.. figure:: images/create_edit.png
-   :align: center
-
-   *Editing attributes for new feature*
-
-.. figure:: images/create_populate.png
-   :align: center
-
-   *Attributes populated for new feature*
-
-.. figure:: images/create_success.png
-   :align: center
-
-   *New feature successfully created*
-
-From this point on, the feature has become part of the active layer, and will be displayed given the layer's current styling.  To create more features, click the :guilabel:`Create a new feature` button to begin again.
+As soon as the changes are saved, the feature becomes part of the selected layer and will be displayed according the layer's current style settings. 

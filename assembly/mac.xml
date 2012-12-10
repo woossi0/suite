@@ -26,14 +26,6 @@
       </excludes>
     </fileSet>
     <fileSet>
-      <directory>styler/target/styler</directory>
-      <outputDirectory>webapps/styler</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>geoeditor/target/geoeditor</directory>
-      <outputDirectory>webapps/geoeditor</outputDirectory>
-    </fileSet>
-    <fileSet>
       <directory>geoexplorer/target/geoexplorer</directory>
       <outputDirectory>webapps/geoexplorer</outputDirectory>
       <excludes>
@@ -53,11 +45,7 @@
     </fileSet>
     <fileSet>
       <directory>docs/usermanual/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/usermanual</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>docs/styler/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/styler</outputDirectory>
+      <outputDirectory>webapps/opengeo-docs</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>docs/geoexplorer/target/html</directory>
@@ -76,8 +64,8 @@
       <outputDirectory>webapps/opengeo-docs/geowebcache</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>docs/geoeditor/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/geoeditor</outputDirectory>
+      <directory>docs/sdk-api/target/html</directory>
+      <outputDirectory>webapps/opengeo-docs/sdk-api</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>recipes</directory>
@@ -124,11 +112,6 @@
       <source>jetty/opengeo-suite</source>
       <outputDirectory>/</outputDirectory>
       <fileMode>544</fileMode>
-    </file>
-    <file>
-      <source>docs/index.html</source>
-      <outputDirectory>webapps/opengeo-docs</outputDirectory>
-      <fileMode>644</fileMode>
     </file>
     <file>
       <source>target/version.ini</source>

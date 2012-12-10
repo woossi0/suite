@@ -1,5 +1,0 @@
-# Compulsory line, this is a version 3 file
-version=3
-ftp://ftp.remotesensing.org/proj/proj-([\d\.]+).tar.gz	debian	uupdate
-
-

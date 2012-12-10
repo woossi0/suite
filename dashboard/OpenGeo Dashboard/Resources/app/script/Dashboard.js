@@ -277,7 +277,7 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
                             autoEl: {
                                 tag: "div",
                                 html: og.util.loadSync("app/markup/pref/main.html")
-                            },
+                            }
                         }]
                     }]
                 }, {
@@ -443,7 +443,7 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
                 title: "GeoServer",
                 defaults: { 
                     width: 250,
-                    allowBlank: false,
+                    allowBlank: false
                 },
                 items: [{ 
                     xtype: 'textfield',
@@ -459,46 +459,6 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
                         }
                         return valid;
                     }
-                }, {
-                    xtype: 'textfield',
-                    fieldLabel: "Username",
-                    toolTip: "GeoServer adminstrator username",
-                    name: "geoserver_username",
-                    value: this.config["geoserver_username"],
-                    validator: function(value) {
-                        return !value.match(/[=,:]/) || 'Invalid user name (cannot contain the following characters: "=,:").';
-                    }
-                }, {
-                    xtype: "textfield",
-                    id: "geoserver-admin-password",
-                    inputType: "password",
-                    fieldLabel: "Password",
-                    toolTip: "GeoServer adminstrator password",
-                    name: "geoserver_password",
-                    value: this.config["geoserver_password"],
-                    validator: function(value) {
-                        return !value.match(/[=,:]/) || 'Invalid password (cannot contain the following characters: "=,:").';
-                    },
-                    listeners: {
-                        change: function(f, e) {
-                            //reset the password confirmation form
-                            var confirm = Ext.getCmp("geoserver_password_confirm");
-                            confirm.setValue("");
-                            confirm.focus();
-                        }, 
-                        scope: this
-                    }
-                }, {
-                    xtype: "textfield",
-                    inputType: "password",
-                    fieldLabel: "Confirm",
-                    validator: function(value) {
-                        var pwd = Ext.getCmp("geoserver-admin-password");
-                        return (value === pwd.getValue()) || "Passwords do not match.";
-                    },
-                    id: "geoserver_password_confirm",
-                    name: "geoserver_password_confirm", 
-                    value: this.config["geoserver_password"]
                 }]
             }, {
                 xtype: "fieldset",
@@ -535,15 +495,7 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
                     config["suite_stop_port"] =  form.findField("suite_stop_port").getValue();
                     
                     // update geoserver config
-                    config["geoserver_data_dir"] = form.findField("geoserver_data_dir").getValue();                    
-                    var username = form.findField("geoserver_username").getValue();
-                    var password = form.findField("geoserver_password").getValue();
-                    if (username != config["geoserver_username"] || password != config["geoserver_password"]) {
-                        //username password change
-                        this.updateGeoServerUserPass(username, password);
-                        config["geoserver_username"] = username;
-                        config["geoserver_password"] = password;
-                    }
+                    config["geoserver_data_dir"] = form.findField("geoserver_data_dir").getValue();
                     
                     // update postgres port
                     config["pgsql_port"] = form.findField("pgsql_port").getValue();
@@ -981,54 +933,6 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
         });
     }, 
 
-    /**
-     * private: method[updateGeoServerUserPass]
-     * :arg: username: ``String`` The new username
-     * :arg: password: ``Password`` The new password
-     * 
-     * :return: ``Boolean`` True if the username and password were updated.
-     * 
-     * Updates the GeoServer adminstrator username and password.
-     */    
-    updateGeoServerUserPass: function(username, password) {
-        og.util.tirun(function() {
-            //load the GeoServer users.properties file
-            var config = this.config;
-            var f = Titanium.Filesystem.getFile(config["geoserver_data_dir"], "security", "users.properties");
-            if (f.exists() === true) {
-                var props = Titanium.App.loadProperties(f.nativePath());
-                
-                //has the username changed?
-                if (username != config["geoserver_username"]) {
-                    //kill the old entry
-                    if (props.hasProperty(config["geoserver_username"])) {
-                        props.setString(config["geoserver_username"], "dummy, ROLE_DUMMY");    
-                    }
-                    
-                    //add the new one
-                    props.setString(username, password + ", ROLE_ADMINISTRATOR");
-                }
-                else {
-                    //just update the entry
-                    if (props.hasProperty(config["geoserver_username"])) {
-                        var entry = props.getString(config["geoserver_username"]).split(",");
-                        entry[0] = password;
-                        props.setString(config["geoserver_username"], entry.join(", "));                        
-                    }
-                    else {
-                        //for some reason did not exist, just add a new one
-                        props.setString(username, password+", ROLE_ADMINISTRATOR");
-                    }
-                }
-                
-                props.saveTo(f.nativePath());
-                return true;
-            }
-            
-            return false;
-        }, this);
-    },
-    
     openURL: function(url) {
         url = encodeURI(url);
         if (window.Titanium) {
@@ -1088,6 +992,6 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
         // }
         // this.messageBox.el.addClass("app-msg-"+cls);
         // this.messageBox.el.dom.innerHTML = msg;
-    }, 
+    }
 
 });

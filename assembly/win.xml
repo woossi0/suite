@@ -28,12 +28,11 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>styler/target/styler</directory>
-      <outputDirectory>webapps/styler</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>geoeditor/target/geoeditor</directory>
-      <outputDirectory>webapps/geoeditor</outputDirectory>
+      <directory>geoserver/extension/target/dependency</directory>
+      <outputDirectory>extension/sqlserver</outputDirectory>
+      <includes>
+        <include>gt-jdbc-sqlserver-*</include>
+      </includes>
     </fileSet>
     <fileSet>
       <directory>geoexplorer/target/geoexplorer</directory>
@@ -61,11 +60,7 @@
     </fileSet>
     <fileSet>
       <directory>docs/usermanual/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/usermanual</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>docs/styler/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/styler</outputDirectory>
+      <outputDirectory>webapps/opengeo-docs</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>docs/geoexplorer/target/html</directory>
@@ -84,8 +79,8 @@
       <outputDirectory>webapps/opengeo-docs/geowebcache</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>docs/geoeditor/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/geoeditor</outputDirectory>
+      <directory>docs/sdk-api/target/html</directory>
+      <outputDirectory>webapps/opengeo-docs/sdk-api</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>recipes</directory>
@@ -122,20 +117,28 @@
       <directory>assembly/jre-win/jre</directory>
       <outputDirectory>jre</outputDirectory>
     </fileSet>
-    <fileSet>
+    <!--fileSet>
       <directory>assembly/gdal-win</directory>
       <outputDirectory>gdal</outputDirectory>
-    </fileSet>
+    </fileSet-->
     <fileSet>
       <directory>assembly/postgres-win/pgsql</directory>
-      <outputDirectory>pgsql/8.4</outputDirectory>
+      <outputDirectory>pgsql/9.1</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>assembly/pgdata</directory>
       <outputDirectory>pgdata</outputDirectory>
     </fileSet>
+    <fileSet>
+      <directory>sdk/target/sdk</directory>
+      <outputDirectory>sdk</outputDirectory>
+    </fileSet>
   </fileSets>
   <files>
+  <file>
+      <source>sdk/target/version.ini</source>
+      <outputDirectory>sdk</outputDirectory>
+    </file>
     <file>
       <source>jetty/lib/jetty-start-${jetty.version}.jar</source>
       <outputDirectory>/</outputDirectory>
@@ -150,11 +153,6 @@
       <source>jetty/opengeo-suite.bat</source>
       <outputDirectory>/</outputDirectory>
       <fileMode>544</fileMode>
-    </file>
-    <file>
-      <source>docs/index.html</source>
-      <outputDirectory>webapps/opengeo-docs</outputDirectory>
-      <fileMode>644</fileMode>
     </file>
     <file>
       <source>target/version.ini</source>

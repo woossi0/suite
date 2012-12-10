@@ -8,7 +8,7 @@
  <parent>
   <groupId>org.opengeo</groupId>
   <artifactId>suite</artifactId>
-  <version>3.0-SNAPSHOT</version>
+  <version>3.0</version>
  </parent>
 
  <groupId>org.opengeo</groupId>
@@ -17,16 +17,13 @@
  <name>OpenGeo Doc Module</name>
 
  <modules>
-  <module>install</module>
-  <module>gettingstarted</module>
-  <module>geoexplorer</module>
-  <module>geoeditor</module>
-  <module>geoserver</module>
-  <module>styler</module>
-  <module>postgis</module>
-  <module>geowebcache</module>
-  <module>production</module>
   <module>usermanual</module>
+  <module>install</module>
+  <module>geoexplorer</module>
+  <module>geowebcache</module>
+  <module>geoserver</module>
+  <module>sdk-api</module>
+  <module>postgis</module>
  </modules>
 
 </project>

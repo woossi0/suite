@@ -41,7 +41,7 @@ function init_mvn_repo {
 
 # get_rev <path>
 function get_rev {
-  local rev=`git log --format=format:%H $1 | head -n 1`
+  local rev=`git log --format=format:%h $1 | head -n 1`
   if [ "x$rev" == "x" ]; then
     echo "failed to get revision number from git info"
     exit 1
@@ -71,4 +71,16 @@ function get_last_built_rev {
 # set_last_built_rev <name> <rev>
 function set_last_built_rev {
   echo "$2" > $WORKSPACE/revs/$1
+}
+
+# get_submodule_rev <submodule_path>
+function get_submodule_rev {
+  local rev=`git submodule status $1 | sed 's/^..//' | cut -f 1 -d ' '`
+  echo -n $rev
+}
+
+# get_submodule_branch <submodule_path>
+function get_submodule_branch {
+  local branch=`git submodule status $1 | sed 's/^..//' | cut -f 3 -d ' ' | sed 's/(//g' | sed 's/)//g' | sed 's/.*\/\(.*\)/\1/g'`
+  echo -n $branch
 }

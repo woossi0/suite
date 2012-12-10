@@ -8,13 +8,26 @@
  <parent>
   <groupId>org.opengeo</groupId>
   <artifactId>docs</artifactId>
-  <version>3.0-SNAPSHOT</version>
+  <version>3.0</version>
  </parent>
 
  <groupId>org.opengeo.docs</groupId>
  <artifactId>geoserver</artifactId>
  <packaging>jar</packaging>
  <name>OpenGeo GeoServer Doc Module</name>
+
+ <properties>
+   <sphinx-flag></sphinx-flag>
+ </properties>
+
+ <profiles>
+   <profile>
+     <id>test</id>
+     <properties>
+       <sphinx-flag>-q</sphinx-flag>
+     </properties>
+   </profile>
+ </profiles>
 
  <build>
    <plugins>
@@ -42,7 +55,7 @@
             <configuration>
               <tasks>
                 <exec executable="sphinx-build" failonerror="true" dir="${basedir}/src"> 
-                  <arg line="-D html_theme='gs' -D html_favicon='geoserver.ico' -b html -d ${build.directory}/doctrees . ${build.directory}/html"/> 
+                  <arg line="${sphinx-flag} -D html_theme='gs' -D html_favicon='geoserver.ico' -b html -d ${build.directory}/doctrees . ${build.directory}/html"/> 
                 </exec>
               </tasks>
             </configuration>

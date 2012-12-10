@@ -19,40 +19,36 @@ import org.geoserver.web.wicket.GeoServerDataProvider;
  * @author Andrea Aime - OpenGeo
  */
 @SuppressWarnings("serial")
-public class OpenGeoPreviewProvider extends GeoServerDataProvider<PreviewLayer> {
-    public static final Property<PreviewLayer> TYPE = new BeanProperty<PreviewLayer>("type", "type");
+public class OpenGeoPreviewProvider extends GeoServerDataProvider<OpenGeoPreviewLayer> {
+    public static final Property<OpenGeoPreviewLayer> TYPE = 
+        new BeanProperty<OpenGeoPreviewLayer>("type", "type");
 
-    public static final Property<PreviewLayer> NAME = new BeanProperty<PreviewLayer>("name", "name");
+    public static final Property<OpenGeoPreviewLayer> NAME = 
+        new BeanProperty<OpenGeoPreviewLayer>("name", "name");
 
-    public static final Property<PreviewLayer> TITLE = new BeanProperty<PreviewLayer>("title",
-            "title");
+    public static final Property<OpenGeoPreviewLayer> TITLE = 
+        new BeanProperty<OpenGeoPreviewLayer>("title", "title");
 
-    public static final Property<PreviewLayer> ABSTRACT = new BeanProperty<PreviewLayer>(
-            "abstract", "abstract", false);
+    public static final Property<OpenGeoPreviewLayer> ABSTRACT = 
+        new BeanProperty<OpenGeoPreviewLayer>("abstract", "abstract", false);
 
-    public static final Property<PreviewLayer> KEYWORDS = new BeanProperty<PreviewLayer>(
-            "keywords", "keywords", false);
+    public static final Property<OpenGeoPreviewLayer> KEYWORDS = 
+        new BeanProperty<OpenGeoPreviewLayer>("keywords", "keywords", false);
 
-    public static final Property<PreviewLayer> OL = new PropertyPlaceholder<PreviewLayer>(
-            "");
+    public static final Property<OpenGeoPreviewLayer> LINKS = new PropertyPlaceholder<OpenGeoPreviewLayer>("View");
 
-    public static final Property<PreviewLayer> GE = new PropertyPlaceholder<PreviewLayer>(
-            "");
-
-    public static final Property<PreviewLayer> STYLER = new PropertyPlaceholder<PreviewLayer>(
-            "");
-
-    public static final List<Property<PreviewLayer>> PROPERTIES = Arrays.asList(TYPE, NAME, TITLE,
-            ABSTRACT, KEYWORDS, OL, GE, STYLER);
+    @SuppressWarnings("unchecked")
+	public static final List<Property<OpenGeoPreviewLayer>> PROPERTIES = 
+        Arrays.asList(TYPE, NAME, TITLE, ABSTRACT, KEYWORDS, LINKS); // GEOEXPLORER, OL, GE);
 
     @Override
-    protected List<PreviewLayer> getItems() {
-        List<PreviewLayer> result = new ArrayList<PreviewLayer>();
+    protected List<OpenGeoPreviewLayer> getItems() {
+        List<OpenGeoPreviewLayer> result = new ArrayList<OpenGeoPreviewLayer>();
 
         for (LayerInfo layer : getCatalog().getLayers()) {
             // ask for enabled() instead of isEnabled() to account for disabled resource/store
             if (layer.enabled())
-                result.add(new PreviewLayer(layer));
+                result.add(new OpenGeoPreviewLayer(layer));
         }
 
         for (LayerGroupInfo group : getCatalog().getLayerGroups()) {
@@ -62,18 +58,18 @@ public class OpenGeoPreviewProvider extends GeoServerDataProvider<PreviewLayer> 
                 enabled &= layer.enabled();
             }
             if (enabled)
-                result.add(new PreviewLayer(group));
+                result.add(new OpenGeoPreviewLayer(group));
         }
 
         return result;
     }
 
     @Override
-    protected List<Property<PreviewLayer>> getProperties() {
+    protected List<Property<OpenGeoPreviewLayer>> getProperties() {
         return PROPERTIES;
     }
 
-    protected IModel newModel(Object object) {
+    protected IModel<?> newModel(Object object) {
         return new PreviewLayerModel((PreviewLayer) object);
     }
     

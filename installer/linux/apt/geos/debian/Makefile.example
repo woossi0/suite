@@ -1,8 +1,0 @@
-example:
-	g++ -g -O -lgeos -o example example.cpp
-
-clean:
-	rm example
-
-.PHONY:
-	clean

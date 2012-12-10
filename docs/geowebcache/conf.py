@@ -12,6 +12,7 @@
 # serve to show the default value.
 
 import sys, os
+from xml.dom import minidom
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -44,10 +45,14 @@ copyright = u'2011 OpenGeo'
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
 #
+# Find gwc version from pom.xml
+pom_path = "../../../pom.xml"
+pom = minidom.parse(pom_path)
+gwc_ver = pom.getElementsByTagName('gwc.version')[0].firstChild.nodeValue
 # The short X.Y version.
-version = '1.2.2'
+version = gwc_ver.split("-")[0]
 # The full version, including alpha/beta/rc tags.
-release = '1.2.2'
+release = gwc_ver
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -135,7 +140,10 @@ html_use_index = False
 #html_split_index = False
 
 # If true, the reST sources are included in the HTML build as _sources/<name>.
-#html_copy_source = True
+html_copy_source = False
+
+# If true, links to the reST sources are added to the pages.
+html_show_sourcelink = False
 
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the

@@ -8,7 +8,7 @@
  <groupId>org.opengeo</groupId>
  <artifactId>suite</artifactId>
  <packaging>pom</packaging>
- <version>3.0-SNAPSHOT</version>
+ <version>3.0</version>
  <name>OpenGeo Suite</name>
 
  <organization>
@@ -155,10 +155,10 @@
            <descriptor>assembly/mac.xml</descriptor>
            <descriptor>assembly/doc.xml</descriptor>
            <descriptor>assembly/ext.xml</descriptor>
+           <descriptor>assembly/sdk.xml</descriptor>
            <descriptor>assembly/readme.xml</descriptor>
            <descriptor>assembly/war-geoserver.xml</descriptor>
            <descriptor>assembly/war-geoexplorer.xml</descriptor>
-           <descriptor>assembly/war-geoeditor.xml</descriptor>
            <descriptor>assembly/war-geowebcache.xml</descriptor>
            <descriptor>assembly/war-geoserver-jboss.xml</descriptor>
            <descriptor>assembly/war.xml</descriptor>
@@ -167,6 +167,7 @@
            <descriptor>assembly/dashboard-osx.xml</descriptor>
            <descriptor>assembly/data-dir.xml</descriptor>
            <descriptor>assembly/pgadmin-postgis.xml</descriptor>
+           <descriptor>assembly/geoexplorer-static.xml</descriptor>
          </descriptors>
        </configuration>
      </plugin>
@@ -183,9 +184,7 @@
  <modules>
   <module>geoserver</module>
   <module>geowebcache</module>
-  <module>styler</module>
   <module>geoexplorer</module>
-  <module>geoeditor</module>
   <module>dashboard</module>
   <module>jetty</module>
  </modules>
@@ -200,6 +199,7 @@
       </activation>
      <modules>
        <module>docs</module>
+       <module>sdk</module>
        <module>recipes</module>
      </modules>
    </profile>
@@ -290,5 +290,6 @@
    <ant.version>1.6.5</ant.version>
    <dashboard.version>1.0.0</dashboard.version>
    <build.profile></build.profile>
+   <build.revision>${project.version}</build.revision>
  </properties>
 </project>
