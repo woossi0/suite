@@ -1,5 +1,4 @@
-OpenGeo Suite Library
-=====================
+
 
 Welcome to the OpenGeo Suite. The OpenGeo Suite is a full geospatial software stack that helps you compose, style, and publish maps and data with ease.
 
