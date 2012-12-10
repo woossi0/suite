@@ -1,7 +1,8 @@
-{% extends "opengeo/layout.html" %}
+{% extends "!layout.html" %}
 
 {%- macro sidebar() %}
  {%- if builder != 'htmlhelp' %}
+
         {%- block sidebartoc %}
         
               <div id="sidebar">
@@ -46,3 +47,4 @@
           </fieldset>
         </form>
   {%- endblock %}
+
