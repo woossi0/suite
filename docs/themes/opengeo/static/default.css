@@ -843,12 +843,12 @@ text-decoration: none;
 color: #BF381A; 
 }
 
-#sidebar .section {
+#sidebar .pgClass {
 width: 200px; 
 padding-top: 3px;
 }
 
-#sidebar .section h3 {
+#sidebar .pgClass h3 {
 color: #332722;
 border-bottom: solid #BF381A 1px;
 margin: 0;
@@ -859,18 +859,18 @@ font-weight: bold;
 font-family: "Century Gothic","Optima",Verdana,Arial,Helvetica,sans-serif;
 }
 
-#sidebar .section ul {
+#sidebar .pgClass ul {
 margin: 0;
 padding: 0;
 }
 
-#sidebar .section li {
+#sidebar .pgClass li {
 margin: 0 0 0.2em;
 padding: 0 0.3em 0 1em;
 list-style-type: none; 
 }
 
-#sidebar .section li:before {
+#sidebar .pgClass li:before {
 /*content: "\00BB \0020";*/
 margin: 0 0 0 -1em;
 } 
