@@ -3,8 +3,6 @@
 {% block document %}
 <iframe src="postgis/html/index.html" width="100%" height="600px">
 Your browser does not support iframes.
-</iframe>
-{% endblock %}
 
 {%- macro sidebar() %}
  {%- if builder != 'htmlhelp' %}
@@ -19,7 +17,7 @@ Your browser does not support iframes.
 
               <h3>PostGIS <br> User Manual Contents</h3>  
               <ul class="mktree" id="toctree">
-               {{ toctree() }} 
+               {{ toc }} 
               </ul>   
              <br> 
              <div class="comman">
@@ -54,3 +52,6 @@ Your browser does not support iframes.
           </fieldset>
         </form>
   {%- endblock %}
+
+</iframe>
+{% endblock %} 
