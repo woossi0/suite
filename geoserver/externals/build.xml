@@ -7,7 +7,7 @@
    <property name="gs-exts.flags" value=""/>
 
    <property name="gt.dir" value="geotools"/>
-   <property name="gt.version" value="8-SNAPSHOT"/>
+   <property name="gt.version" value="9-SNAPSHOT"/>
    <property name="gt.flags" value=""/>
 
    <property name="gwc.dir" value="geowebcache"/>
