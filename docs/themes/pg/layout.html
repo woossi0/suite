@@ -3,6 +3,8 @@
 {% block document %}
 <iframe src="postgis/html/index.html" width="100%" height="600px">
 Your browser does not support iframes.
+</iframe>
+{% endblock %} 
 
 {%- macro sidebar() %}
  {%- if builder != 'htmlhelp' %}
@@ -15,12 +17,14 @@ Your browser does not support iframes.
                 <div id="distxt"> While every reasonable effort is made to ensure this community documentation is correct, the information is provided "as is" for reference purposes only, with no guarantees that it is complete, accurate, or current. Not all features, extensions, and plug-ins described within this documentation are supported by OpenGeo. 
                </div>
 
-               <!-- <h3>PostGIS <br> User Manual Contents</h3>      
-                can't build PostGIS doc 
-               <ul class="mktree" id="toctree">
+              <!-- uncomment the following section to add a Sphinx-style TOC -->
+              <!-- <h3>PostGIS <br> User Manual Contents</h3>      
+                <ul class="mktree" id="toctree">
                   {{ toctree() }} 
-                 </ul>   -->            
+                </ul>  -->      
+
              <br> 
+
              <div class="comman">
              <h3>OpenGeo Suite</h3>
               <ul>
@@ -53,6 +57,3 @@ Your browser does not support iframes.
           </fieldset>
         </form>
   {%- endblock %}
-
-</iframe>
-{% endblock %} 

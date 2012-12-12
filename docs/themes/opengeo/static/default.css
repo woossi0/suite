@@ -732,8 +732,8 @@ background-color: transparent;
 font-weight: bold;
 }
 
-tt.pre {
-font-size: 0.9em;
+.toctree-wrapper, .pre {
+font-size: 14px;
 word-wrap: break-word;
 }
 
