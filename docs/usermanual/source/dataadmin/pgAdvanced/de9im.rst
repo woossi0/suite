@@ -7,7 +7,7 @@ Dimensionally Extended 9-Intersection model
 
 The "`Dimensionally Extended 9-Intersection Model <http://en.wikipedia.org/wiki/DE-9IM>`_" (DE9IM) is a framework for modelling the interaction of two spatial objects.
 
-Every spatial object has the following attributes:
+Every spatial object is characterized by the following spatial components:
 
  * An interior
  * A boundary
@@ -17,7 +17,7 @@ For polygons, these attributes are obvious:
 
 .. figure:: ./img/de9im1.png
    
-   *Polygon attributes*
+   *Polygon Interior and Boundary*
 
 The interior is bounded by the rings, the boundary is the rings themselves, and the exterior is everything else beyond the boundary.
 
@@ -25,11 +25,11 @@ For linear features, the interior, boundary, and exterior attributes are less ob
 
 .. figure:: ./img/de9im2.png
 
-   *Line attributes*
+   *Line Interior and Boundary*
 
-The interior is the part of the line bounded by the ends, the boundary is the ends of the linear feature, and again the exterior is everything beyond the boundary.
+The interior is the part of the line bounded by the ends, the boundary is the ends of the linear feature, and the exterior is everything that is neither interior nor boundary.
 
-For points, the interior is the point, the boundary is an empty set, and the exterior is everything beyond the boundary.
+For points, the interior is the point, the boundary is an empty set, and the exterior is everything that is not the point.
 
 Using these definitions of interior, boundary, and exterior attributes, the relationships between any pair of spatial features can be characterized using the dimensionality of the nine possible intersections between the interiors/boundaries/exteriors.
 
@@ -61,7 +61,7 @@ The previous example can be simplified using a simple box and line, with the sam
 
    *Simplified linestring intersecting a polygon*
 
-The DE9IM information in SQL would be as follows:
+With the simplified line and polygon, we can turn the line and polygon into short well-known text versions, and generate the DE9IM information in SQL as follows:
 
 .. code-block:: sql
 
@@ -78,7 +78,7 @@ The answer, 1010F0212, is the same answer calculated above, only this time the r
   0F0
   212
 
-The DE9IM matrices can now be used as a matching key to find geometries with very specific relationships to one another. The following data model will illustrate this capability.
+DE9IM matrices can be used in queries to find geometries with very specific relationships to one another. The following simple example will illustrate this capability.
 
 .. code-block:: sql
 
@@ -97,13 +97,13 @@ The DE9IM matrices can now be used as a matching key to find geometries with ver
 	  ('LINESTRING (370 230, 420 240)',false),
 	  ('LINESTRING (370 180, 390 160)',false);
 
-The data model comprises two objects—**Lakes** and **Docks**. Docks must be inside lakes and must touch the boundary of their containing lake at one end. 
+The example data comprises two objects: **Lakes**, and **Docks**. For this example, we want to enforce a particular data quality rule: that ocks must be inside lakes and must touch the boundary of their containing lake at only one end. 
 
 .. figure:: ./img/de9im7.png
   
    *Lakes and docks*
 
-Legal docks (docks that obey the data model rules) have the following characteristics:
+Legal docks (docks that obey the data quality rules) have the following characteristics:
 
  * Interiors have a linear (one-dimensional) intersection with the lake interior
  * Boundaries have a point (zero-dimensional) intersection with the lake interior
@@ -124,7 +124,7 @@ To find all the legal docks, identify the docks that intersect lakes (a super-se
   FROM docks JOIN lakes ON ST_Intersects(docks.geom, lakes.geom)
   WHERE ST_Relate(docks.geom, lakes.geom, '1FF00F212');
 
-This identifies two valid docks. Note the use of the three-parameter version of :command:`ST_Relate`, which returns true if the pattern matches or false if it does not. For a fully defined pattern like this one, the three-parameter version is not required and a string equality operator could have been used.
+This identifies two valid docks. Note the use of the three-parameter version of :command:`ST_Relate`, which returns **true** if the pattern matches or **false** if it does not. For a fully defined pattern like this one, the three-parameter version is not required and a string equality operator could have been used.
 
 However, for looser pattern searches, the three-parameter allows substitution characters in the pattern string:
 
@@ -156,7 +156,7 @@ The resulting SQL is as follows:
   FROM docks JOIN lakes ON ST_Intersects(docks.geom, lakes.geom)
   WHERE ST_Relate(docks.geom, lakes.geom, '1*F00F212');
 
-This identifies three valid docks. 
+This identifies all three valid docks. 
 
 
 Data quality testing
