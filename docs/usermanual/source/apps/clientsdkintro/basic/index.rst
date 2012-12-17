@@ -56,7 +56,6 @@ This will generate a template application.  Now run the following command::
 The application will now run in debug mode on port 9080 of the local machine.  Now start up a browser, and type in the address of the application (such as ``http://localhost:9080/``:
 
 .. figure:: ../img/basic_viewer.png
-   :align: center
 
 What you get is a basic web mapping application which contains a layer tree, a map panel and some map tools. The map panel contains an OpenStreetMap base layer.
 
@@ -70,7 +69,6 @@ To examine how this project was set up, use your browser's debugging tool, e.g. 
 .. note:: You're looking for the *second* instance of :file:`app.js` in the Scripts list; the first one is the loader file.
 
 .. figure:: ../img/basic_firebug.png
-   :align: center
 
 
 Dependency Management
