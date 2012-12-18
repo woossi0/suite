@@ -1,7 +1,5 @@
 .. _dataadmin.pgAdvanced.de9im:
 
-.. warning:: Document status **Reqiires tech review**
-
 Dimensionally Extended 9-Intersection model
 ===========================================
 
