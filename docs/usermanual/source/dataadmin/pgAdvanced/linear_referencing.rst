@@ -1,7 +1,5 @@
 .. _dataadmin.pgAdvanced.linear_referencing:
 
-.. warning:: Document status **Requires tech review**
-
 Linear referencing
 ==================
 
@@ -9,12 +7,14 @@ Linear referencing is a means of identifying the locations of features using a r
 
   * Highway assets—Referenced by a unit of measurement (miles, kilometers, and and so on) along a highway network
   * Road maintenance operations—Referenced as occurring along a road network between a pair of measurements
-  * Aquatic inventories—Fish presence is recorded as existing between a pair of upstream measurements
-  * Hydrologic characterizations (reaches) of streams—Recorded with a *from* and *to* measurement
+  * Aquatic inventories—Fish presence is recorded as existing between a pair of upstream measurements on a stream network
+  * Hydrologic characterizations (reaches) of streams—Recorded with a *from* and *to* measurement on a stream network
   
-.. todo:: diagram here would be good
+.. figure:: ./img/lrs2.png
 
-One of the main benefits of linear referencing is the dependent spatial observations don't need to be recorded separately from the base observations, and updates to features in the base observation layer can be carried out knowing that the dependent observations will automatically track the new geometry.
+   *Linear referencing of road infrastructure*
+
+One of the main benefits of linear referencing is that dependent spatial observations don't need to be recorded separately from the base observations, and updates to features in the base observation layer can be carried out knowing that the dependent observations will automatically track the new geometry.
 
 .. note:: The term *event table* is used here to refer to the non-spatial tables that will be created.
 
