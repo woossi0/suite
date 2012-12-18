@@ -1,11 +1,9 @@
 .. _dataadmin.pgAdvanced.history_tracking:
 
-.. warning:: Document status **Requires tech review**
-
 Tracking edit history using triggers
 ====================================
 
-A common requirement for production databases is the ability to track history—how has the data changed, who made the changes, and where did those changes occur? Although some GIS systems track changes by including change management in the client interface, it is also possible to implement tracking within a database, using the internal trigger system to track changes made any table. This  means simple *direct edit* access on the main table is retained, while history is tracked in the background.
+A common requirement for production databases is the ability to track history—how has the data changed, who made the changes, and where did those changes occur? Although some GIS systems track changes by including change management in the client interface, it is also possible to implement tracking within a database, using the internal trigger system to track changes made to any table. This means simple *direct edit* access on the main table is retained, while history is tracked in the background.
 
 To enable database edit history, a history table is created to record the following information for every edit:
 
@@ -16,7 +14,7 @@ To enable database edit history, a history table is created to record the follow
 Building the history table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Using this history information it is possible to reconstruct the state of the edited table at any point in time. To illustrate this feature, history tracking will be added to a table containing information on streets in New York city (**nyc_streets**).
+Using information from a history table, it is possible to reconstruct the state of the edited table at any point in time. To illustrate this feature, we will add history tracking to a table containing information on streets in New York city (**nyc_streets**).
 
   #. Create a new **nyc_streets_history** table as a copy of the **nyc_streets** table. This copy will store all the historical edit information. In addition to all the fields from **nyc_streets**, five extra fields will be added.
 
@@ -26,7 +24,7 @@ Using this history information it is possible to reconstruct the state of the ed
      * **deleted**—Date and time the history record was marked as deleted
      * **deleted_by**—Database user who marked the record as deleted
 
-     Note records aren't deleted from the history table, they are simply flagged to mark the time they ceased to be part of the current state of the main table.
+     Note that records are never deleted from the history table, they are simply flagged as deleted to mark the time they ceased to be part of the current state of the main table.
 
       .. code-block:: sql
 
@@ -44,7 +42,7 @@ Using this history information it is possible to reconstruct the state of the ed
         deleted_by VARCHAR(32)
     	 );
 
-  #. Import the current state of the main table **nyc_streets** into the history table, to create a starting point to trace history from. The creation time and creation user will be added, but the deletion records left as NULL.
+  #. Import the current state of the main table **nyc_streets** into the history table, to create a starting point to trace history from. The creation time and creation user will be added, but the deletion records left as NULL, since all of the records are currently active.
   
      .. code-block:: sql
 
@@ -145,7 +143,7 @@ To create a view of the history table that shows the state of the table before t
       AND ( deleted IS NULL OR deleted > (now() - '1min'::interval) );
 
     
-To create a view that tracks the changes made by a particular user, execute the following:
+To create a view that tracks the changes made by a particular user (in this example, the 'postgres' user), execute the following:
 
 .. code-block:: sql
 
