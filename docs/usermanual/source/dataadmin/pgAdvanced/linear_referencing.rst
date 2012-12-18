@@ -1,9 +1,11 @@
 .. _dataadmin.pgAdvanced.linear_referencing:
 
+.. warning:: Document status: **Requires copyedit review**
+
 Linear referencing
 ==================
 
-Linear referencing is a means of identifying the locations of features using a relative measure along a linear feature. Some linear referencing examples include:
+Linear referencing allows you to identify the locations of features using a relative measure along a linear feature. Some linear referencing examples include:
 
   * Highway assets—Referenced by a unit of measurement (miles, kilometers, and and so on) along a highway network
   * Road maintenance operations—Referenced as occurring along a road network between a pair of measurements
@@ -14,7 +16,7 @@ Linear referencing is a means of identifying the locations of features using a r
 
    *Linear referencing of road infrastructure*
 
-One of the main benefits of linear referencing is that dependent spatial observations don't need to be recorded separately from the base observations, and updates to features in the base observation layer can be carried out knowing that the dependent observations will automatically track the new geometry.
+One of the main benefits of linear referencing is dependent spatial observations (the derived relative measurements) don't need to be recorded separately from the base observations (the actual feature measurements). Any updates to features in the base observation layer will result in automatic updates to the dependent observations.
 
 .. note:: The term *event table* is used here to refer to the non-spatial tables that will be created.
 
@@ -65,13 +67,13 @@ Use the PostgreSQL :command:`DISTINCT ON` feature to identify the nearest street
     distance
   FROM ordered_nearest;
 
-If you have to support visualization application software requiring access to the results, add a primary key.
+To support visualization application software that require access the results, add a primary key.
 
 .. code-block:: sql
 
   ALTER TABLE nyc_subway_station_events ADD PRIMARY KEY (subways_gid);
 
-To reverse the process and go from a measurement to a point, use the :command:`ST_Line_Interpolate_Point` function. To locate a point along a line, execute the following:
+To reverse the process and go from a measurement to a point, use the :command:`ST_Line_Interpolate_Point` function. For example, to locate a point along a line, execute the following:
 
 .. code-block:: sql
 
@@ -79,7 +81,7 @@ To reverse the process and go from a measurement to a point, use the :command:`S
 
 The answer returned this time is the location of the point—POINT(1 1).
 
-You can also join the **nyc_subway_station_events** table back to the **nyc_streets** table and use the **measure** attribute to generate the spatial event points, without referencing the original **nyc_subway_stations** table. First create a view that turns events back into spatial objects.
+You can also join the **nyc_subway_station_events** table back to the **nyc_streets** table and use the **measure** attribute to generate the spatial event points, without referencing the original **nyc_subway_stations** table. First, create a view that turns events back into spatial objects.
 
 .. code-block:: sql
 
@@ -98,6 +100,6 @@ Viewing the original (red star) and event (blue circle) points with the streets,
 
    *Spatial objects and events*
 
-.. note:: Using these functions to snap points to linear features provides a useful tool for applications that work with GPS tracks or other inputs that are expected to reference a linear network. For further information on the available functions, please refer to the `PostGIS reference documentation <http://postgis.org/>`_.
+.. note:: Using these PostGIS functions to snap points to linear features provides a useful tool for applications that work with GPS tracks or other inputs that are expected to reference a linear network. For further information on the available functions, please refer to the `PostGIS reference documentation <http://postgis.org/>`_.
 
 

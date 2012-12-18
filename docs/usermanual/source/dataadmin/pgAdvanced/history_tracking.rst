@@ -1,5 +1,7 @@
 .. _dataadmin.pgAdvanced.history_tracking:
 
+.. warning:: Document status: **Requires copyedit review**
+
 Tracking edit history using triggers
 ====================================
 
@@ -14,7 +16,7 @@ To enable database edit history, a history table is created to record the follow
 Building the history table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Using information from a history table, it is possible to reconstruct the state of the edited table at any point in time. To illustrate this feature, we will add history tracking to a table containing information on streets in New York city (**nyc_streets**).
+Using the information in a history table, it is possible to reconstruct the state of the edited table at any point in time. To illustrate this feature, history tracking will be added to a table containing information on streets in New York city (**nyc_streets**).
 
   #. Create a new **nyc_streets_history** table as a copy of the **nyc_streets** table. This copy will store all the historical edit information. In addition to all the fields from **nyc_streets**, five extra fields will be added.
 
@@ -42,7 +44,7 @@ Using information from a history table, it is possible to reconstruct the state 
         deleted_by VARCHAR(32)
     	 );
 
-  #. Import the current state of the main table **nyc_streets** into the history table, to create a starting point to trace history from. The creation time and creation user will be added, but the deletion records left as NULL, since all of the records are currently active.
+  #. Import the current state of the main table **nyc_streets** into the history table, as a starting point to trace history from. The creation time and creation user will be added, but the deletion records left as NULL, since all of the records are currently active.
   
      .. code-block:: sql
 
@@ -127,7 +129,7 @@ Using information from a history table, it is possible to reconstruct the state 
 Querying the history table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Database views can be used to track the changes made to the main table and the users making those changes.
+Database views can be used to track both the changes made to the main table and the users making those changes.
 
 To create a view of the history table that shows the state of the table before the current edit session began, execute the following (in this example the changes were made in the last hour):
 
@@ -143,7 +145,7 @@ To create a view of the history table that shows the state of the table before t
       AND ( deleted IS NULL OR deleted > (now() - '1min'::interval) );
 
     
-To create a view that tracks the changes made by a particular user (in this example, the 'postgres' user), execute the following:
+To create a view that tracks the changes made by a particular user (in this example, the *postgres* user), execute the following:
 
 .. code-block:: sql
 
