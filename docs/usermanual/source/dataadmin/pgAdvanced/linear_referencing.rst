@@ -1,13 +1,12 @@
 .. _dataadmin.pgAdvanced.linear_referencing:
 
-.. warning:: Document status: **Requires copyedit review**
 
 Linear referencing
 ==================
 
 Linear referencing allows you to identify the locations of features using a relative measure along a linear feature. Some linear referencing examples include:
 
-  * Highway assets—Referenced by a unit of measurement (miles, kilometers, and and so on) along a highway network
+  * Highway assets—Referenced by a unit of measurement (miles, kilometers, and so on) along a highway network
   * Road maintenance operations—Referenced as occurring along a road network between a pair of measurements
   * Aquatic inventories—Fish presence is recorded as existing between a pair of upstream measurements on a stream network
   * Hydrologic characterizations (reaches) of streams—Recorded with a *from* and *to* measurement on a stream network
@@ -23,21 +22,29 @@ One of the main benefits of linear referencing is dependent spatial observations
 Creating linear references
 --------------------------
 
-To reference an existing point table to a linear network, use the :command:`ST_Line_Locate_Point` function. This function accepts a line and point, and returns the proportion along the line the point is located. In the following example, a point is located half-way along a line.
+To reference an existing point table to a linear network, use the :command:`ST_Line_Locate_Point` function. This function accepts a line and point, and returns a value representing the proportion along the line the point is located. In the following example, a point is located half-way along a line.
 
 .. code-block:: sql
 
   SELECT ST_Line_Locate_Point('LINESTRING(0 0, 2 2)', 'POINT(1 1)');
+
+.. figure:: ./img/lrs3.png
+
+   *Locating a point along a line feature*  
   
-The answer returned is 0.5—the distance along the line feature the point was located. If the point is not on the line, the result is determined by projecting to the closest point.
+The answer returned is 0.5—the distance along the line feature the point was located. If the point is not on the line, the result is determined by projecting to the closest location on the line.
   
 .. code-block:: sql
 
   SELECT ST_Line_Locate_Point('LINESTRING(0 0, 2 2)', 'POINT(0 2)');
 
 Again, the answer returned is 0.5.
-  
-To convert a **nyc_subway_stations** table into an *event table* relative to the streets, use the function :command:`ST_Line_Locate_Point`. Create a new event table and identify a candidate set of streets that could be the closest to the subway stations. Order the streets by the id and distance attributes.
+
+.. figure:: ./img/lrs4.png
+
+   *Locating a point near a line feature*    
+
+To convert a **nyc_subway_stations** table into an *event table* relative to the streets, use the function :command:`ST_Line_Locate_Point`. Create a new event table and identify a candidate set of streets that could be the closest to the subway stations. Order the streets by the ``id`` and ``distance`` attributes.
 
 .. code-block:: sql
 
@@ -67,7 +74,7 @@ Use the PostgreSQL :command:`DISTINCT ON` feature to identify the nearest street
     distance
   FROM ordered_nearest;
 
-To support visualization application software that require access the results, add a primary key.
+To support visualization application software that require access to the results, add a primary key.
 
 .. code-block:: sql
 
@@ -79,9 +86,13 @@ To reverse the process and go from a measurement to a point, use the :command:`S
 
   SELECT ST_AsText(ST_Line_Interpolate_Point('LINESTRING(0 0, 2 2)', 0.5));
 
-The answer returned this time is the location of the point—POINT(1 1).
+The answer returned this time is the location of the point.
 
-You can also join the **nyc_subway_station_events** table back to the **nyc_streets** table and use the **measure** attribute to generate the spatial event points, without referencing the original **nyc_subway_stations** table. First, create a view that turns events back into spatial objects.
+.. code-block:: console
+
+   POINT(1 1)
+
+You can also join the **nyc_subway_station_events** table back to the **nyc_streets** table and use the **measure** attribute to generate the spatial event points, without referencing the original **nyc_subway_stations** table.  The following example illustrates how to create a view that turns events back into spatial objects.
 
 .. code-block:: sql
 

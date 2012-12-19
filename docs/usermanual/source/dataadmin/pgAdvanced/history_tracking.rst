@@ -1,11 +1,9 @@
 .. _dataadmin.pgAdvanced.history_tracking:
 
-.. warning:: Document status: **Requires copyedit review**
-
 Tracking edit history using triggers
 ====================================
 
-A common requirement for production databases is the ability to track history—how has the data changed, who made the changes, and where did those changes occur? Although some GIS systems track changes by including change management in the client interface, it is also possible to implement tracking within a database, using the internal trigger system to track changes made to any table. This means simple *direct edit* access on the main table is retained, while history is tracked in the background.
+A common requirement for production databases is the ability to track history—how has the data changed, who made the changes, and where did those changes occur? Although some GIS applications track changes by including change management in the client interface, it is also possible to implement tracking within a database, using the internal trigger system to track changes made to any table. This means simple *direct edit* access on the main table is retained, while history is tracked in the background.
 
 To enable database edit history, a history table is created to record the following information for every edit:
 
@@ -125,19 +123,17 @@ Using the information in a history table, it is possible to reconstruct the stat
 
   #. Test the history tracking by making some changes to the **nyc_streets** table. Each edit should result in new time-stamped and user-stamped records in the **nyc_streets_history** table, regardless of the edit tool or application used to make those changes.
 
+     .. todo:: add some 'event' output
+
 
 Querying the history table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Database views can be used to track both the changes made to the main table and the users making those changes.
+Database views can be used to track both the changes made to the main table, and the users making those changes.
 
 To create a view of the history table that shows the state of the table before the current edit session began, execute the following (in this example the changes were made in the last hour):
 
 .. code-block:: sql
-
-  -- State of history one hour ago
-  -- Records must have been created at least an hour ago and
-  -- either be visible now (deleted is null) or deleted in the last hour
 
   CREATE OR REPLACE VIEW nyc_streets_one_hour_ago AS
     SELECT * FROM nyc_streets_history

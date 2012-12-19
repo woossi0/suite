@@ -12,6 +12,6 @@ This section describes techniques for analyzing your data with PostGIS, and incl
 .. toctree::
    :maxdepth: 2
 
-   de9im
    linear_referencing
    history_tracking
+   de9im

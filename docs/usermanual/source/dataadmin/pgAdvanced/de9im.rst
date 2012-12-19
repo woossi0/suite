@@ -1,7 +1,5 @@
 .. _dataadmin.pgAdvanced.de9im:
 
-.. warning:: Document status: **Requires copyedit review**
-
 Dimensionally Extended 9-Intersection model
 ===========================================
 
@@ -13,11 +11,11 @@ Every spatial object is characterized by the following spatial attributes:
  * A boundary
  * An exterior
 
-For polygons, these attributes are obvious:
+For polygons, these attributes are as follows:
 
 .. figure:: ./img/de9im1.png
    
-   *Polygon interior and boundary*
+   *Polygon interior, boundary, and exterior*
 
 The interior is bounded by the rings, the boundary is represented by the rings themselves, and the exterior is everything else beyond the boundary.
 
@@ -31,13 +29,17 @@ The interior is the part of the line bounded by the ends, the boundary is repres
 
 For points, the interior is the point, the boundary is an empty set, and the exterior is everything that is not the point.
 
+.. figure:: ./img/de9im13.png
+
+   *Point interior*
+
 Using these definitions of interior, boundary, and exterior attributes, the relationships between any pair of spatial features can be characterized using the dimensionality of the nine possible intersections between the interiors, boundaries, and exteriors.
 
 .. figure:: ./img/de9im3.png
 
    *Modelling object interactions*
 
-For the polygons in the example above, the intersection of the interiors is a two-dimensional area, so that portion of the matrix is completed with a **2**. The boundaries only intersect at points, which are zero-dimensional, so that portion of the matrix is completed with a **0**. When there is no intersection between components, the matrix is filled out with an **F**.
+For the polygons in the example above, the intersection of the interiors is a two-dimensional area, so that portion of the matrix is completed with a **2**. If the boundaries intersect along a line, that portion of the matrix is completed with a **1**. When the boundaries only intersect at points, which are zero-dimensional, that portion of the matrix is completed with a **0**. When there is no intersection between components, the matrix is filled out with an **F**.
 
 In this next example, a linestring intersects a polygon:
 
@@ -52,6 +54,9 @@ The DE9IM matrix for the interaction is represented as follows:
   *DE9IM model for the intersection*
 
 Note that the boundaries of the two objects don't intersect at all (the end point of the line interacts with the interior of the polygon, not the boundary, and vice versa), so the B/B (boundary/boundary) cell is completed with an **F**. 
+
+DE9IM model in PostGIS
+----------------------
 
 In PostGIS, the :command:`ST_Relate` function will compile a DE9IM matrix and return a string representing the DE9IM relationship between the two input geometries.
 
@@ -124,7 +129,11 @@ To find all the legal docks, identify the docks that intersect lakes (a super-se
   FROM docks JOIN lakes ON ST_Intersects(docks.geom, lakes.geom)
   WHERE ST_Relate(docks.geom, lakes.geom, '1FF00F212');
 
-This identifies two valid docks. Note the use of the three-parameter version of :command:`ST_Relate`, which returns *true* if the pattern matches or *false* if it does not. For a fully defined pattern like this one, the three-parameter version is not required and a string equality operator could have been used.
+This identifies two valid docks. 
+
+.. todo:: add code block here
+
+Note the use of the three-parameter version of :command:`ST_Relate`, which returns *true* if the pattern matches or *false* if it does not. For a fully defined pattern like this one, the three-parameter version is not required and a string equality operator could have been used.
 
 However, for less rigorous pattern searches, the three-parameter allows substitution characters in the pattern string:
 
@@ -158,17 +167,19 @@ The resulting SQL is as follows:
 
 This will identify all three valid docks. 
 
+.. todo:: add code block
+
 
 Data quality testing
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
-TIGER (Topologically Integrated Geographic Encoding and Referencing) census data is quality controlled according to strict data model rules. For example, no census block should overlap any other census block. 
+`TIGER <http://www.census.gov/geo/maps-data/data/tiger.html>`_ (Topologically Integrated Geographic Encoding and Referencing) census data is quality controlled according to strict data model rules. For example, no census block should overlap any other census block. 
 
 .. figure:: ./img/de9im11.png
 
   *Overlapping census blocks*
 
-The following SQL command will test for any overlaps.
+The following SQL command will test for any overlaps. The matrix value ('2********') represents an overlap of two interiors.
 
 .. code-block:: sql
 
@@ -181,13 +192,13 @@ The following SQL command will test for any overlaps.
 
 This returns **0**, confirming the data is clean and no overlaps were detected.
 
-Similarly, all roads data should be end-noded, which means intersections only occur at the ends of each street, not at the mid-points. 
+Similarly, the TIGER data model also requires all roads data to be end-noded, which means intersections only occur at the ends of each street, not at the mid-points. 
 
 .. figure:: ./img/de9im12.png
 
    *Road intersections*
 
-To test for this data model error, search for streets that intersect (a join operation) but where the intersection between the boundaries is not zero-dimensional (the end points don't touch).
+To test for this data model error, search for streets that intersect, using a join operation, but where the intersection between the boundaries is not zero-dimensional (the end points don't touch).
 
 .. code-block:: sql
 
