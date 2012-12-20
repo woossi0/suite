@@ -184,7 +184,7 @@ background: url(./chrome/header-bg.png) 0 100% repeat-x;
 
 #topshelf {
 height: 50px;
-margin-left: -22px;
+margin-left: -35px;
 margin-top: 10px;
 background: url(./chrome/topshelf.png) 0 100% no-repeat;
 }
@@ -208,13 +208,14 @@ color: #BF381A;
 /*text-align: justify;*/
 color: #332722;
 font-size: 12px;
-margin: 4px 0 125px 6px;
+margin: 4px 0 125px 7px;
 height: 76px;
 width: 200px;
 }
 
 #main {
 /*background: #fff url(./chrome/main-bg.png) repeat-x; */
+margin-left: 15px;
 }
 
 #content {
@@ -437,6 +438,11 @@ margin-left: 540px;
 }
 
 #content h1 {
+font-size: 2em;
+margin: 0.2em 0 0.3em;
+}
+
+#content h1 pre {
 font-size: 2em;
 margin: 0.2em 0 0.3em;
 }
@@ -687,7 +693,7 @@ color: #333;
 border: 1px solid #A8BCCF; 
 border-left: none;
 border-right: none;
-font-size: .90em; 
+font-size: .95em; 
 white-space: pre-wrap;       /* css-3 */
 white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
 white-space: -o-pre-wrap;    /* Opera 7 */
@@ -700,7 +706,6 @@ border: 0;
 background-color: transparent;
 color: #aaa;
 }
-
 
 table.highlighttable {
 margin-left: 0.5em;
@@ -732,7 +737,7 @@ background-color: transparent;
 font-weight: bold;
 }
 
-.toctree-wrapper, .pre {
+.toctree-wrapper .pre {
 font-size: 14px;
 word-wrap: break-word;
 }
@@ -827,7 +832,7 @@ background: url(./chrome/download-link.png) no-repeat;
 Sidebar
 -----------------------*/
 #sb_main {
-	margin-top: -15px;
+margin-top: -15px;
 }
 
 #sidebar a {
@@ -844,8 +849,8 @@ color: #BF381A;
 }
 
 #sidebar .pgClass {
-width: 200px; 
-padding-top: 3px;
+width: 215px; 
+/*border-right: solid #BF381A 1px;*/
 }
 
 #sidebar .pgClass h3 {
@@ -853,14 +858,15 @@ color: #332722;
 border-bottom: solid #BF381A 1px;
 margin: 0;
 padding-left: 10px;
-padding-bottom: 7px;
-font-size: 1.2em;
+padding-bottom: 9px;
+font-size: 1.3em;
 font-weight: bold;
 font-family: "Century Gothic","Optima",Verdana,Arial,Helvetica,sans-serif;
 }
 
 #sidebar .pgClass ul {
-margin: 0;
+margin-top: 2px;
+margin-left: -1px;
 padding: 0;
 }
 
@@ -889,11 +895,12 @@ color: #BF381A!important;
 }
 
 #sidebar #toc li {
-font-size: 13px;
+font-size: 14px;
 font-weight: bold;
 font-family: Arial;
-/*font-family: "Century Gothic",Optima,Verdana,Arial,Helvetica,sans-serif; */
+font-family: "Century Gothic",Optima,Verdana,Arial,Helvetica,sans-serif; 
 }
+
 
 #sidebar #toc li ul li {
 font-family: Arial;

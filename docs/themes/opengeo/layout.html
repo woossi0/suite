@@ -54,9 +54,9 @@
             <div id="sidebar">
             <div id="toc" class="pgClass">
              <h3>OpenGeo Suite <br> User Manual Contents</h3>  
-             <ul class="mktree" id="toctree">
-              {{ toctree() }} 
-             </ul>   
+             <div class="toctree-wrapper compound">
+               {{ toctree() }} 
+            </div>
             <br> 
             <div class="comman_main">
             <h3>Component User Manuals</h3>  
@@ -117,14 +117,11 @@
   <script type="text/javascript" src="{{ pathto('_static/doctools.js', 1) }}"></script>
   <script type="text/javascript" src="{{ pathto('_static/underscore.js', 1) }}"></script>
   <script type="text/javascript" src="{{ pathto('_static/searchtools.js', 1) }}"></script>
-  <script type="text/javascript" src="{{ pathto('_static/mktree.js', 1) }}"></script>
   <script type="text/javascript" src="{{ pathto('searchindex.js', 1) }}"></script> 
 
   <link rel="stylesheet" href="{{ pathto('_static/default.css', 1) }}" type="text/css" media="screen, projection" /> 
   <link rel="stylesheet" href="{{ pathto('_static/blueprint/screen.css', 1) }}" type="text/css" media="screen, projection" />
-  <link rel="stylesheet" href="{{ pathto('_static/blueprint/print.css', 1) }}" type="text/css" media="print" /> 
-  <link rel="stylesheet" href="{{ pathto('_static/mktree.css', 1) }}" type="text/css" media="screen, projection" /> 
-
+  <link rel="stylesheet" href="{{ pathto('_static/blueprint/print.css', 1) }}" type="text/css" media="print" />  
 
   <!--[if IE]>
   <link rel="stylesheet" href="{{ pathto('_static/blueprint/ie.css', 1) }}" type="text/css" media="screen, projection" />
