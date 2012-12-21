@@ -171,7 +171,7 @@ var Documentation = {
     var params = $.getQueryParameters();
     var terms = (params.highlight) ? params.highlight[0].split(/\s+/) : [];
     if (terms.length) {
-      var body = $('div.body');
+      var body = $('body');
       window.setTimeout(function() {
         $.each(terms, function() {
           body.highlightText(this.toLowerCase(), 'highlight');
