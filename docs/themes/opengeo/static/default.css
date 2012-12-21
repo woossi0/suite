@@ -378,9 +378,14 @@ Content
 #content #breadcrumbs {
 font-size: 0.85em;
 color: #7391cc;
-border-bottom: 1px solid  #BF381A; /*#7391cc;*/
-margin: -1190px 0 1em;
-padding: 0 0 0.5em;
+margin: -1205px 0 5px 0;
+padding-bottom: 13px;
+height: 20px;
+}
+
+#hr-div {
+border-width: 0;
+height: 1px;	
 }
 
 #content #breadcrumbs li {
@@ -399,8 +404,6 @@ color: #332722;
 }
 
 #content h1 {
-/*background: #f3f3f3; */
-background-color: 
 padding: 4px;
 color: #332722;
 }
@@ -432,14 +435,14 @@ padding: 0 0 0 0.5em;
 
 
 #rellinks {
-position:absolute;
-margin-top: -38px;
-margin-left: 540px;
+/*position:absolute;*/
+margin-top: 40px;
+margin-left: -100px;
 }
 
 #content h1 {
 font-size: 2em;
-margin: 0.2em 0 0.3em;
+margin: 0 0 0.3em;
 }
 
 #content h1 pre {
@@ -449,13 +452,13 @@ margin: 0.2em 0 0.3em;
 
 #content h2 {
 font-size: 1.7em;
-color: #BF381A; /*#486300; */
+color: #BF381A; 
 }
 
 #content h3 {
 font-size: 1.4em;
-color: #BF381A; /*#6C9400; */ 
-/*border-bottom: 1px solid  #BF381A; /*#6C9400; */*/
+color: #BF381A; 
+/*border-bottom: 1px solid  #BF381A; /*#6C9400; */
 line-height: 1.5;
 }
 
@@ -501,10 +504,10 @@ margin: 2px 0 0 30px;
 text-align: left;
 }
 
-ul.search li div.context .highlight {
+ul.search li div.context .highlight, p .highlight, pre .highlight, ul.simple li .highlight, h1 .highlight {
+font-weight: bold;
 background: #ff0;
 }
-
 
 ul.keywordmatches li.goodmatch a {
 font-weight: bold;
@@ -860,7 +863,7 @@ width: 215px;
 
 #sidebar .pgClass h3 {
 color: #332722;
-border-bottom: solid #BF381A 1px;
+border-bottom: solid #BF381A 2px;
 margin: 0;
 padding-left: 10px;
 padding-bottom: 9px;
@@ -900,7 +903,7 @@ color: #BF381A!important;
 }
 
 #sidebar #toc li {
-font-size: 14px;
+font-size: 13px;
 font-weight: bold;
 font-family: Arial;
 font-family: "Century Gothic",Optima,Verdana,Arial,Helvetica,sans-serif; 
