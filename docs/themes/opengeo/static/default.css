@@ -879,7 +879,9 @@ padding: 0;
 }
 
 #sidebar .pgClass li {
-width: 200px;
+/* this next line seems to upset the SDK-API TOC 
+- uncomment if that doc project reviewed */
+/*width: 200px;*/
 margin: 0 0 0.2em;
 padding: 0 0.3em 0 1em;
 list-style-type: none; 
