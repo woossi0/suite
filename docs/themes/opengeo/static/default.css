@@ -745,7 +745,7 @@ background-color: transparent;
 font-weight: bold;
 }
 
-#sidebar .pgClass pre {
+#sidebar .pgClass .pre {
 font-size: 14px;
 word-wrap: break-word;
 }
