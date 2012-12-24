@@ -154,7 +154,7 @@ html_short_title = "OpenGeo SDK"
 #html_split_index = False
 
 # If true, the reST sources are included in the HTML build as _sources/<name>.
-html_copy_source = False
+html_copy_source = True
 
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = False
