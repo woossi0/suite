@@ -5,7 +5,7 @@ Application development with the Client SDK
 
 This tutorial will discuss how to create an application using the OpenGeo Suite Client SDK.
 
-The full API documentation for the OpenGeo Suite Client SDK is available at http://suite.opengeo.org/opengeo-docs/sdk-api/,  and is included with this documentation bundle.
+The full API documentation for the OpenGeo Suite Client SDK is available at http://suite.opengeo.org/opengeo-docs/sdk-api/,  and is `included <../../sdk-api>`_ with this documentation bundle.
 
 For more information on the :file:`suite-sdk` script itself, used throughout this tutorial for creating and testing applications, please see the section on :ref:`apps.sdk.client.script`.
 

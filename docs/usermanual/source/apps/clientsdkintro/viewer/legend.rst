@@ -3,11 +3,11 @@
 Adding a legend tool
 ====================
 
-We will now add a legend to the bottom-left area of the viewer application. Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/sdk-api>`_ and search for a plugin that could provide legend functionality:
+This section describes how to add a legend to the bottom-left area of the viewer application.
 
-http://suite.opengeo.org/opengeo-docs/sdk-api/lib/plugins/Legend.html
+Navigate to the :file:`src/app/app.js` in the :file:`myviewer` directory. Open up this file in a text editor. In the `API documentation <../../../sdk-api/>`_, find the `gxp.plugins.Legend <../../../sdk-api/lib/plugins/Legend.html>`_ tool. This provides the Legend functionality.
 
-The ``ptype`` to use is ``gxp_legend``. Open up :file:`app.js`, and configure this tool:
+The ``ptype`` for ``gxp.plugins.Legend`` is ``gxp_legend``. Open up :file:`app.js`, and configure this tool:
 
 .. code-block:: javascript
 
@@ -25,7 +25,6 @@ Also add this plugin to the list of dependencies at the top of :file:`app.js`.  
 Restart the web application and reload the browser. If no other configuration is done, there will be a button in the map's toolbar that will show a popup window with the legend of all visible layers in the viewer:
 
 .. figure:: ../img/viewer_legendpopup.png
-   :align: center
 
 If we want the legend to be always present in the bottom left part of the application (below the layer tree), we will first create the Ext container in which the legend can be rendered. Open up :file:`app.js` again, and look for ``westpanel``. Replace the block that contains the configuration of ``westpanel``:
 
@@ -76,5 +75,4 @@ Next, change the configuration of the legend plugin to:
 Now after reloading the server and application, the legend will show up in the container with the id ``legendpanel`` :
 
 .. figure:: ../img/viewer_legendpanel.png
-   :align: center
 

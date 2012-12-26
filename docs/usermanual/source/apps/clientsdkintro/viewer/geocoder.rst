@@ -3,13 +3,13 @@
 Adding a Google Geocoder search field
 =====================================
 
-.. warning::  Before adding Google components to your applications, make sure that Google's Terms of Use allow you to do so.
+This section describes how to add the ability to add the Google Geocoder to the viewer application.
 
-Open up the `API documentation <http://suite.opengeo.org/opengeo-docs/sdk-api/>`_ again, and search for a plugin that could provide the geocoder functionality.
+.. warning:: Before adding Google components to your applications, make sure that the `Google Terms of Use <https://developers.google.com/terms/>`_ allow you to do so.
 
-http://suite.opengeo.org/opengeo-docs/sdk-api/lib/plugins/GoogleGeocoder.html
+Navigate to the :file:`src/app/app.js` in the :file:`myviewer` directory. Open up this file in a text editor. In the `API documentation <../../../sdk-api/>`_, find the `gxp.plugins.GoogleGeocoder <../../../sdk-api/lib/plugins/GoogleGeocoder.html>`_ tool. This provides the geocoding functionality.
 
-This requires the Google Maps v3 API to be present in the application. Add the following script tag to :file:`index.html` in your app directory:
+This plugin requires the Google Maps v3 API to be present in the application. Add the following script tag to :file:`index.html` in your app directory:
 
 .. code-block:: html
 
@@ -31,11 +31,9 @@ Add the plugin to the list of dependencies in :file:`app.js`. The file name is :
 
 .. code-block:: javascript
 
-  * @require plugins/GoogleGeocoder.js
+   * @require plugins/GoogleGeocoder.js
 
-
- Restart the application and reload the browser.  The Google geocoder will now be in our viewer:
+ Restart the application and reload the browser.  The Google Geocoder will now be in the viewer:
 
 .. figure:: ../img/viewer_geocoder.png
-   :align: center
 
