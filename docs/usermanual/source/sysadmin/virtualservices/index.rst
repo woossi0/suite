@@ -3,6 +3,8 @@
 Setting up a virtual service environment
 ========================================
 
+.. warning:: Document status: **Draft**
+
 Virtual services provide a custom endpoint for managing a subset of GeoServer content and services. Virtual services provide a way for system administrators to allow administration of specific sub-sections of the GeoServer catalog, and so reduce the need for a single administrator to have access to all resources.
 
 Read more about `Virtual Services <../../geoserver/services/virtual-services.html>`_ in the GeoServer reference.
