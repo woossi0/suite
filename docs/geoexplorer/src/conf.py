@@ -26,7 +26,7 @@ from xml.dom import minidom
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.todo']
 
-todo_include_todos = True
+todo_include_todos = False
 
 # Add any paths that contain templates here, relative to this directory.
 #templates_path = ['theme/_templates']
@@ -39,7 +39,7 @@ master_doc = 'index'
 
 # General substitutions.
 project = u'GeoExplorer'
-copyright = u'2011 OpenGeo'
+copyright = u'OpenGeo'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
