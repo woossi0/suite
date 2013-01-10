@@ -25,7 +25,6 @@ GeoExt.Lang.add("es", {
         queryText: "Query",
         exportMapText: "Exportar Mapa",
         saveMapText: "Guardar Mapa",
-        saveErrorText: "Problemas guardando: ",
         toolsTitle: "Escoja los elementos que desea incluir en la barra de herramientas:",
         previewText: "Vista previa",
         backText: "Anterior",
