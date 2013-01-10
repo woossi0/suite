@@ -3,8 +3,6 @@
 Using virtual services
 ======================
 
-.. warning:: Document status: **Needs technical review**
-
 **Virtual services** provide a way to section off GeoServer layers. Using virtual services, a user can interact with GeoServer through standard OGC protocols while only a subset of the published layers is visible. This is advantageous for when there are multiple project administrators working on the same GeoServer instance, or when a given GeoServer instance is serving a large amount of layers, making the capabilities documents time-consuming to load.
 
 Virtual services operate by providing workspace-specific endpoints for OGC services. Using these endpoints, the user/client will only "see" the layers associated with that particular workspace.
@@ -99,6 +97,37 @@ First, configure the virtual service endpoints.
      http://<GEOSERVER_URL>/lakes/wms?request=GetCapabilities
      http://<GEOSERVER_URL>/traffic/wms?request=GetCapabilities
 
+Setting virtual service metadata
+--------------------------------
+
+It is possible to have separate metadata for each virtual service. To change the metadata for each virtual service:
+
+#. From the main GeoServer menu, click :guilabel:`Workspaces`.
+
+#. Click the :guilabel:`lakes` workspace.
+
+#. Under the :guilabel:`Settings` section, click the :guilabel:`Enabled` checkbox. This will enable workspace-level metadata, and create a copy of the global service metadata.
+
+   .. figure:: img/enablemetadata.png
+
+      *Enabling workspace-specific metadata*
+
+#. Make any changes to the metadata as desired. Click :guilabel:`Save` when finished.
+
+   .. figure:: img/editingmetadata.png
+
+      *Editing workspace-specific metadata*
+
+#. Verify that the changes have been applied by executing a GetCapabilities request to the virtual service endpoint as above::
+
+      http://<GEOSERVER_URL>/lakes/wms?request=GetCapabilities
+
+   .. figure:: img/editedmetadatacapabilities.png
+
+      *Capabilities document with virtual service-specific metadata*
+
+#. Repeat this process for the :guilabel:`traffic` workspace.
+
 
 Loading layers
 --------------
@@ -106,6 +135,24 @@ Loading layers
 The process for loading layers remains unchanged. See the section on :ref:`dataadmin` for more information. Make sure that all layers and stores are in the appropriate workspace.
 
 .. note:: If layers had been already loaded prior to the creation of these workspaces, the layers will need to be migrated to the appropriate workspace. To migrate layers from one workspace to another, move the stores that the layers are contained in, and all the contained layers will switch workspaces.
+
+
+Loading styles
+--------------
+
+.. note:: Because styles are visible in all virtual service endpoints by default, this step is optional.
+
+Styles for layers are not workspace-specific by default. To set a style to be visible only for a given workspace:
+
+#. From the main GeoServer menu, click :guilabel:`Styles`.
+
+#. Click on the name of the style to edit.
+
+#. Under the :guilabel:`Workspace` heading, select the appropriate workspace.
+
+   .. figure:: img/styleworkspace.png
+
+      *Setting a workspace-specific style*
 
 
 Verifying virtual services
