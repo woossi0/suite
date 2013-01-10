@@ -168,6 +168,7 @@
            <descriptor>assembly/data-dir.xml</descriptor>
            <descriptor>assembly/pgadmin-postgis.xml</descriptor>
            <descriptor>assembly/geoexplorer-static.xml</descriptor>
+           <descriptor>assembly/jdbcconfig.xml</descriptor>
          </descriptors>
        </configuration>
      </plugin>

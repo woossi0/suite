@@ -53,7 +53,7 @@
    <target name="build-gs" unless="skip.gs"> 
      <antcall target="mvn">
         <param name="dir" value="${gs.dir}/src"/>
-        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -P proxy,printing,monitoring,dbconfig,ftp,script,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
+        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -P proxy,printing,monitoring,jdbcconfig,ftp,script,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>

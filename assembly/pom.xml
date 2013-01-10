@@ -27,6 +27,11 @@
      <artifactId>control-flow</artifactId>
      <version>${gs.version}</version>
    </dependency>
+   <dependency>
+     <groupId>org.geoserver.community</groupId>
+     <artifactId>jdbcconfig</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
  </dependencies>
  <build>
    <plugins>
