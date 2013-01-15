@@ -62,7 +62,10 @@ Public data as defined above will be stored in a workspace called ``public``, an
 
 .. todo:: Not sure if it's necessary to go into the details of workspace creation here. This tutorial is long enough as it is.
 
-.. todo:: image
+.. figure:: img/workspaces.png
+
+   *Workspaces used in this tutorial*
+
 
 Creating roles
 --------------
@@ -75,30 +78,45 @@ Setting up roles can be done through the GeoServer web admin interface. This wil
 
 #. Open up the GeoServer web interface and log in as the administrator account.
 
-   .. todo:: image
+   .. figure:: img/adminloggedin.png
+
+      *Logged in as the adminstrator*
 
 #. Click :guilabel:`Users, Groups, Roles` under the :guilabel:`Security` column on the left side of the page.
 
-   .. todo:: image
+   .. figure:: img/ugrlink.png
+
+      *Click to open the Users, Groups, Roles area*
 
 #. Under the :guilabel:`Role Services` section, click the :guilabel:`default` role service.
 
-   .. todo:: image
+   .. figure:: img/roleservicedefaultlink.png
+
+      *Click to edit the role service*
 
 #. Click the :guilabel:`Roles` tab at the top.
 
+   .. figure:: img/rolestablink.png
+
+      *Click to view the existing roles*
+
 #. The current list of roles will be shown. Click :guilabel:`Add new role`.
 
-   .. todo:: image
+   .. figure:: img/addnewrolelink.png
+
+      *Click to add a new role*
 
 #. Enter ``ROLE_PRIVATE`` in the :guilabel:`Name` field and click :guilabel:`Save`.
 
-   .. todo:: image
+   .. figure:: img/newrole.png
+
+      *Adding a new role*
 
 #. Repeat the process, adding two more roles, ``ROLE_EDIT`` and ``ROLE_PRIVATEEDIT``.
 
-   .. todo:: image
+   .. figure:: img/roles.png
 
+      *Full list of roles*
 
 Creating users
 --------------
@@ -109,21 +127,31 @@ The next step is to create users and associate them with the newly-created roles
 
 #. Under the :guilabel:`User/group services` section, click the :guilabel:`default` user/group service.
 
-   .. todo:: image
+   .. figure:: img/ugservicedefaultlink.png
+
+      *Click to edit the user/group service*
 
 #. Click the :guilabel:`Users` tab. This will show the current list of users.
 
-   .. todo:: image
+   .. figure:: img/userstablink.png
+
+      *Click to view the existing users*
 
 #. Click :guilabel:`Add new user`.
 
-   .. todo:: image
+   .. figure:: img/addnewuserlink.png
+
+      *Click to add a new user*
 
 #. Fill out the form with the following information, leaving all other fields blank:
 
    * In the :guilabel:`User name` field, enter ``public_editor``.
    * In the :guilabel:`Password` field and :guilabel:`Confirm password` field, enter a password.
    * In the area titled :guilabel:`Roles taken from active role service: default`, click ``ROLE_EDIT`` and slick the right-arrow to move the role to the :guilabel:`Selected` box.
+
+   .. figure:: img/newuser.png
+
+      *Adding a new user*
 
 #. Click :guilabel:`Save`.
 
@@ -149,11 +177,15 @@ The ``private`` workspace is set up to store the private data. The ``private_vie
 
 #. Click :guilabel:`Data` in the :guilabel:`Security` menu on the left side of the page.
 
-   .. todo:: image
+   .. figure:: img/datalink.png
+
+      *Click to open the data rules area*
 
 #. Click :guilabel:`Add new rule`.
 
-   .. todo:: image
+   .. figure:: img/dataaddnewrulelink.png
+
+      *Click to add a new rule*
 
 #. Fill out the form with the following information:
 
@@ -162,7 +194,9 @@ The ``private`` workspace is set up to store the private data. The ``private_vie
    * In the :guilabel:`Access mode` box, select :guilabel:`Read`.
    * in the :guilabel:`Roles` section, click :guilabel:`ROLE_PRIVATE` and :guilabel:`ROLE_PRIVATEEDIT` and then click the right-arrow to move both roles to the :guilabel:`Selected` box.
 
-   .. todo:: image
+   .. figure:: img/newprivateviewrule.png
+
+      *Creating a rule to restrict viewing of private layers*
 
 #. Click :guilabel:`Save`.
 
@@ -180,7 +214,9 @@ The ``public`` workspace is set up to store the public data. While anonymous acc
    * In the :guilabel:`Access mode` box, select :guilabel:`Write`.
    * in the :guilabel:`Roles` section, click :guilabel:`ROLE_EDIT` and then click the right-arrow to move the role to the :guilabel:`Selected` box.
 
-   .. todo:: image
+   .. figure:: img/newpubliceditrule.png
+
+      *Creating a rule to restrict editing of public layers*
 
 #. Click :guilabel:`Save`.
 
@@ -191,11 +227,15 @@ The ``public_editor`` and ``private_editor`` users are the only users that shoul
 
 #. Click :guilabel:`Services` in the :guilabel:`Security` menu on the left side of the page.
 
-   .. todo:: image
+   .. figure:: img/serviceslink.png
+
+      *Click to open the service rules area*
 
 #. Click :guilabel:`Add new rule`.
 
-   .. todo:: image
+   .. figure:: img/serviceaddnewrulelink.png
+
+      *Click to add a new service rule*
 
 #. Fill out the form with the following information:
 
@@ -203,7 +243,15 @@ The ``public_editor`` and ``private_editor`` users are the only users that shoul
    * In the :guilabel:`Method` box, select :guilabel:`* (asterisk)`.
    * in the :guilabel:`Roles` section, click :guilabel:`ROLE_EDIT` and :guilabel:`ROLE_PRIVATEEDIT` and then click the right-arrow to move both roles to the :guilabel:`Selected` box.
 
+   .. figure:: img/newservicerule.png
+
+      *Creating a new service rule*
+
 #. Click :guilabel:`Save`.
+
+   .. figure:: img/wfsrestricted.png
+
+      *Completed rule*
 
 5. Restrict editing of the private layers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -221,11 +269,15 @@ The ``private_editor`` user has been given read access to the ``private`` worksp
    * In the :guilabel:`Access mode` box, select :guilabel:`Write`.
    * in the :guilabel:`Roles` section, click :guilabel:`ROLE_PRIVATEEDIT` and then click the right-arrow to move the role to the :guilabel:`Selected` box.
 
-   .. todo:: image
+   .. figure:: img/newdatarule.png
+
+      *Creating a new data access rule*
 
 #. Click :guilabel:`Save`.
 
-   .. todo:: image
+   .. figure:: img/datarules.png
+
+      *Complete list of data access rules*
 
 6. Restrict WPS
 ~~~~~~~~~~~~~~~
@@ -242,10 +294,15 @@ The Web Processing Service (WPS) LINK is a powerful analytic tool, but it can im
    * In the :guilabel:`Method` box, select :guilabel:`* (asterisk)`.
    * in the :guilabel:`Roles` section, click :guilabel:`ADMIN` and then click the right-arrow to move the role to the :guilabel:`Selected` box.
 
-   .. todo:: image
+   .. figure:: img/newwpsrule.png
+
+      *Creating a rule that restricts WPS*
 
 #. Click :guilabel:`Save`.
 
+   .. figure:: img/servicerules.png
+
+      *Complete list of service access rules*
 
 7. Restrict REST access except for the administrator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -335,6 +392,9 @@ Testing the scenario
 
 There are a few different tests to ensure that the above rules have been implemented properly.
 
+Anonymous access
+~~~~~~~~~~~~~~~~
+
 To test anonymous access, log out of GeoServer and perform the following tests:
 
 .. list-table::
@@ -354,6 +414,9 @@ To test anonymous access, log out of GeoServer and perform the following tests:
      - *Failure*
 
 .. todo:: What's the simplest way to test "editing a layer"?
+
+``public_editor`` access
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 To test access via the ``public_editor`` user, log in as that user and perform the following tests:
 
@@ -375,6 +438,9 @@ To test access via the ``public_editor`` user, log in as that user and perform t
    * - Edit a layer in the ``private`` workspace
      - *Failure*
 
+``private_viewer`` access
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
 To test access via the ``private_viewer`` user, log in as that user and perform the following tests:
 
 .. list-table::
@@ -394,6 +460,9 @@ To test access via the ``private_viewer`` user, log in as that user and perform 
      - *Failure*
    * - Edit a layer in the ``private`` workspace
      - *Failure*
+
+``private_editor`` access
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To test access via the ``private_editor`` user, log in as that user and perform the following tests:
 
