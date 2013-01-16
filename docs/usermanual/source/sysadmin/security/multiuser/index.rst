@@ -3,6 +3,8 @@
 Working with multiple GeoServer users
 =====================================
 
+.. warning:: Document status: **Needs technical review and figure**
+
 This section discusses how to set up GeoServer with multiple users based on a common security scenario.
 
 For more details on the mechanics of how to set up users, please read the `security <../../../geoserver/security>`_ section of the `GeoServer documentation <../../../geoserver/>`_, specifically the section on `users, groups, and roles <../../../geoserver/webadmin/security/ugr.html>`_.
