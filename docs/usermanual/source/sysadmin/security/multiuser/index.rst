@@ -5,7 +5,7 @@ Working with multiple GeoServer users
 
 This section discusses how to set up GeoServer with multiple users based on a common security scenario.
 
-.. todo:: For more details on the mechanics of how to set up users, please read the _GeoServer security_ documentation, specifically the section of _SOMETHING_.
+For more details on the mechanics of how to set up users, please read the `security <../../../geoserver/security>`_ section of the `GeoServer documentation <../../../geoserver/>`_, specifically the section on `users, groups, and roles <../../../geoserver/webadmin/security/ugr.html>`_.
 
 Users in GeoServer
 ------------------
@@ -14,21 +14,21 @@ GeoServer has the ability to create multiple user accounts. These users can have
 
 By default, GeoServer comes with two users:
 
-* An administrative account ("admin")—This account has the ability to read or write anything in the GeoServer catalog.
-* A master, or "root", account—This is an administrator account of "last resort" that is only to be used for disaster recovery purposes. This account can not be disabled or modified. See _SOMETHING_.
+* An administrative account (``admin``)—This account has the ability to read or write anything in the GeoServer catalog.
+* A master, or ``root``, account—This is an administrator account of "last resort" that is only to be used for disaster recovery purposes. This account can not be disabled or modified. See the GeoServer documentation on the `root account <../../../geoserver/security/root.html>`_.
 
 In addition to the named users above, many functions are available through anonymous access, with no user account required. Functions allowed anonymously include viewing capabilities documents, executing GetFeature and GetMap requests, and using the Demo Request Builder.
 
 Reading to set up a multi-user system
 -------------------------------------
 
-There are a few good reasons to set up accounts with more granular access than the defaults. Many of these considerations are not unique to GeoServer, but instead apply to any security situation.
+There are good reasons to set up accounts with granular access. Many of these considerations are not unique to GeoServer, but instead apply to any security situation:
 
 * Need-to-know basis—Not every user should have access to the same information.
 * Minimizing disaster—Accounts with more fine-grained access lack the ability to accidentally (or maliciously) inflict widespread damage to the system.
 * Audit trail—Sequestering access to certain GeoServer resources allows system administrators to keep track of who has made what changes.
 
-.. todo:: Other reasons?
+.. todo:: What other reasons?
 
 .. todo:: Can we even audit who has done what in GeoServer?
 
@@ -51,30 +51,31 @@ Based on this scenario, three accounts will need to be created:
 * ``private_viewer``—This account will be able to view the private data
 * ``private_editor``—This account will be able to edit the private data
 
-Anonymous access would be retained for viewing the public data, and the administrative account would be retained for administering GeoServer. Any account that can edit (write to) data will necessarily have the ability to view (read) that data, but while ``private_editor`` is able to edit the private data, the account will not be able to edit the public data.
+Anonymous access would be retained for viewing the public data, and the administrative account would be retained for administering GeoServer. Any account that can edit (write to) data will have the ability to view (read) that data, but while ``private_editor`` is able to edit the *private* data, the user will not be able to edit the public data.
 
-.. todo:: A figure would be great here.
+.. todo:: A figure showing the users and what they can do (like a Venn Diagram) would be great here.
 
 Configuring catalog
 -------------------
 
-Public data as defined above will be stored in a workspace called ``public``, and private data will be stored in a workspace called ``private``. The specific details of the data setup are beyond the scope of this tutorial.
+Public layers as defined above will be in a workspace called ``public``, and private layers will be in a workspace called ``private``.
 
-.. todo:: Not sure if it's necessary to go into the details of workspace creation here. This tutorial is long enough as it is.
+.. note:: The specific details of the data setup are beyond the scope of this tutorial.
 
 .. figure:: img/workspaces.png
 
    *Workspaces used in this tutorial*
-
 
 Creating roles
 --------------
 
 Having identified the scenario and determined what accounts need to be created, the next step is to create the roles that these users will be attached to when the users are created. Based on the the three accounts identified above, the roles to be created will be called ``ROLE_EDIT``, ``ROLE_PRIVATE``, and ``ROLE_PRIVATEEDIT``.
 
-Setting up roles can be done through the GeoServer web admin interface. This will assume that the default role service will be used. (SEE _SOMETHING_ about role services)
+Setting up roles can be done through the GeoServer web admin interface. This will assume that the default role service will be used. 
 
-.. todo:: Show how to do all this via REST.
+.. note:: For more information, see the GeoServer documentation on `role services <../../../geoserver/security/usergrouprole/roleservices.html>`_.
+
+.. todo:: Is it worhh it to show how to do all this via REST?
 
 #. Open up the GeoServer web interface and log in as the administrator account.
 
@@ -282,7 +283,7 @@ The ``private_editor`` user has been given read access to the ``private`` worksp
 6. Restrict WPS
 ~~~~~~~~~~~~~~~
 
-The Web Processing Service (WPS) LINK is a powerful analytic tool, but it can impose a strong performance penalty. As it is not necessary in this scenario, it will be restricted to the administrator account only.
+The Web Processing Service (WPS) can impose a strong performance penalty if left unsecured. As it is not necessary in this scenario, it will be restricted to the administrator account only.
 
 #. Click :guilabel:`Services` in the :guilabel:`Security` menu on the left side of the page.
 
