@@ -3,7 +3,7 @@
 Seeding considerations
 ======================
 
-.. todo:: Some of these could use images.
+.. todo:: Some of these sections could use images.
 
 Determining what to seed involves a number of considerations. Leaving out the discussion of storage medium and limiting the discussion to just the existence or non-existence of tiles, the following considerations should be taken into account:
 
@@ -11,11 +11,13 @@ Determining what to seed involves a number of considerations. Leaving out the di
 * Image format
 * Coordinate reference system
 * Tile dimensions
+* Metatiling
 * To what level to seed the full extent
 * Areas of interest
 * To what zoom level to seed each area of interest
 
 Each one of these considerations are dependent on context and a system's specific needs.
+
 
 Determining whether or not to seed
 ----------------------------------
@@ -23,6 +25,7 @@ Determining whether or not to seed
 The primary benefit to seeding is that an application will provide faster performance, as the time it takes to transfer an already-generated image is much less than the time to generate the image from the WMS server. However, if one's data is rapidly changing, then the time spent generating tiles will be wasted as the tiles will become invalid and need to be replaced often.
 
 In all but the most dynamic data situations, seeding at least some of the cache will be beneficial.
+
 
 Determining image format
 ------------------------
@@ -40,6 +43,7 @@ The application(s) that will be requesting these tiles may have a specific forma
 
 While in almost all cases, a single image format is sufficient, it is possible to allow for more than one image format per layer. This will require managing more than one tile cache per layer, doubling the management tasks as well as the disk space. Unless there is a significant benefit to providing multiple image formats, it is not recommended to do so.
 
+
 Determining coordinate reference system
 ---------------------------------------
 
@@ -47,17 +51,28 @@ It is possible to set up multiple coordinate reference systems for a given layer
 
 The applications that will be requesting these tiles will usually have a specific CRS that is used. Selecting more than one grid set (which includes CRS) will require entirely separate tile caches and extra administrative work, so unless there is a specific reason to do so, it is recommended to work with a single grid set.
 
+
 Determining tile dimensions
 ---------------------------
 
 The dimensions of each tile is also a consideration, as it affects the block size on disk as well as network throughput. In general, the default size of 256x256 pixels should be sufficient.
 
+
 Determining metatiling
 ----------------------
 
-.. todo:: Need more info here.  
+Metatiling is a method of generating tiles where a larger tile is generated in one pass and then sliced up, as opposed to many passes each with a single individual tile.
 
-.. todo:: From Kevin:  It can slow down individual requests for unseeded tiles, but it will also effectively seed some surrounding tiles in the process. As part of a seeding process it should slightly speed things up. It also makes labeling work better as it reduces the number of tile boundaries faced by GeoServer. Another important consideration that fits in with them is the how long a cached tile is retained before it expires.
+Metatiles mean each request will be bigger, requiring more resources, but there will be fewer requests needed. The biggest performance difference would be when a whole metatile needs to be generated when just a single tile is missing from the cache. This would be much slower than if meta-titling is not used. On the other hand, other tiles in the same metatile will often be  needed around the same time and so will benefit from the newly cached metatile.
+
+Metatiling is especially beneficial when labels are used. The algorithm for placing labels without overlapping works only within a tile, so labels can't span tile boundaries. With metatiles, only the metatile boundaries impact label generation, which means there are much fewer places where labels would be affected.
+
+Quantitatively, the number of tile boundaries that are also metatile boundaries is ``1/f`` (where ``f`` is the metatiling factor). The size of the metatile in tiles is given by ``f^2``. As ``f`` increases (larger metatiles), labeling improves but the amount by which it improves gets smaller, while the rate at which the size of the metatiles increase gets bigger. For example, with a 3x3 metatile, there would be one-third (1/3) the tile boundaries, while requiring a metatile nine times the size of a single tile. For a 4x4 grid, there would be one-quarter (1/4) the tile boundaries, but requiring a metatile *sixteen* times the size of a single tile. The marginal benefit decreases rapidly while the marginal cost increases rapidly. A metatile of 3x3 is usually a sufficient balance here.
+
+Other considerations:
+
+* The size of the window the tiles will be appearing in is a good heuristic for the upper limit on metatile size.
+* If the layer is computationally intensive then smaller metatiles, or no metatiles at all would probably allow for better performance.
 
 
 Determining to what level to seed the full extent
@@ -92,6 +107,7 @@ For example, given a layer in the EPSG:4326 coordinate system, utilizing the ful
 
 Processing time is much more difficult to estimate, as it is dependent on specific network and system configurations.
 
+
 Determining areas of interest
 -----------------------------
 
@@ -119,6 +135,7 @@ So the next step is to determine the "areas of interest" and their extents. Cons
 
 The purpose here is to provide a trade-off between extent and detail.
 
+
 Determining to what zoom level to seed each area of interest
 ------------------------------------------------------------
 
@@ -133,6 +150,7 @@ Note that to avoid duplication in seeding jobs (especially if replacing existing
 .. figure:: img/extent.png
 
    *Diagram showing extents and various zoom levels cached*
+
 
 Preparing the seed tasks
 ------------------------
@@ -153,4 +171,4 @@ Determining tile expiration and reseeding
 
 Not every data source is static, so when the underlying data is updated, tiles will need to be deleted and recreated. This process is known as "reseeding".
 
-Based on how often your data changes, you may either wish to reseed regularly to keep the tiles fresh, or let tiles expire after a certain amount of time. Reseeding requires more processing time but ensures greater accuracy. Letting tiles expire requires less work but means that a user may occassionally request a tile or set of tiles that will need to generated in the moment.
+Based on how often your data changes, you may either wish to reseed regularly to keep the tiles fresh, or let tiles expire after a certain amount of time. Reseeding requires more processing time but ensures greater accuracy. Letting tiles expire requires less work but means that a user may occasionally request a tile or set of tiles that will need to generated in the moment.
