@@ -16,8 +16,8 @@ The first case, generating tiles by the system administrator in a batch operatio
    :maxdepth: 2
 
    considerations
+   gui
 
 .. todo::
 
-   gui
    rest
