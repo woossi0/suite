@@ -50,6 +50,4 @@ When the paletted image is created (in this example it is called :file:`palettef
 
 .. note:: Make sure to omit the file extension in the palette parameter.
 
-.. todo:: Where in the data directory should this palette file go?
-
 .. todo:: Not possible to hook up to the embedded GWC. Add in information when this is resolved (see SUITE-1332)
