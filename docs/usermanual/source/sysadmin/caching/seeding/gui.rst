@@ -41,7 +41,7 @@ To seed a tile cache for a given layer:
       * - :guilabel:`Grid Set`
         - Desired grid set to use when generating tiles.
       * - :guilabel:`Format`
-        - Image format for tiles.
+        - Image format for tiles. Must be a MIME type such as ``image/png``.
       * - :guilabel:`Zoom start`
         - Lowest zoom level to generate tiles. Often but not always 0 (the zoom level that contains the fewest amount of tiles).
       * - :guilabel:`Zoom end`
