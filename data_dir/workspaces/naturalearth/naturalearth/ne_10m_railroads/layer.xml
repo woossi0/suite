@@ -1,0 +1,16 @@
+<layer>
+  <name>ne_10m_railroads</name>
+  <id>LayerInfoImpl--4bb97f3b:13ca69f6935:-7fee</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-b1342ff:13c9727b128:-41c5</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--4bb97f3b:13ca69f6935:-7fef</id>
+  </resource>
+  <enabled>true</enabled>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>
