@@ -33,26 +33,10 @@ The sizes are 31,098 bytes and 13,653 bytes, respectively. The PNG8 graphic is l
 
 The specifics of the disk space savings depend on the disk block size of the storage medium, but in almost all cases, there is a marked decrease in image size, with minor if any visual differences.
 
-
 Reduce colors in symbology
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Designing map symbology with a minimal color palette will ensure that the conversion from PNG to PNG8 does not introduce undesired visual effects. For this reason, using gradients would not be recommended.
-
-If symbology is subject to anti-aliasing, downsampling will likely cause unsightly artifacts. Disabling anti-aliasing when designing the original map can improve appearance.
-
-.. todo:: Need example on how to do this.
-
-
-Disable transparency
---------------------
-
-Having transparency in a PNG can add 25% to the size of the graphic (four channels instead of three), so disabling it gives an immediate and large reduction in disk space requirements.
-
-.. todo:: Need example on how to do this.
-
-If using 8-bit images (PNG8), disabling transparency is still recommended, but the disk space savings is negigble.
-
 
 Use paletted images
 -------------------
@@ -68,3 +52,14 @@ A simple way of generating a paletted image is by taking an appropriate-looking 
 When the paletted image is created (in this example it is called :file:`palettefile.png`), it must be referenced in the WMS requests that generate the tiles. This is done with the ``palette`` parameter: ``palette=pallettefile``. Place the palette file in the GeoServer data directory in the :file:`palettes` directory to eliminate the need for path info. If that is not possible, place the file in an web-accessible location, and add the path to the parameter: ``palette=http://path/to/palettefile``.
 
 .. note:: Make sure to omit the file extension in the palette parameter.
+
+.. todo::
+
+   Commenting this next section out until it is possible to do through the embedded GeoWebCache.
+
+   Disable transparency
+
+   Having transparency in a PNG can add 25% to the size of the graphic (four channels instead of three), so disabling it gives an immediate and large reduction in disk space requirements.
+
+   If using 8-bit images (PNG8), disabling transparency is still recommended, but the disk space savings is negigble.
+
