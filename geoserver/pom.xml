@@ -87,11 +87,6 @@
    </dependency>
    <dependency>
      <groupId>org.geoserver.community</groupId>
-     <artifactId>monitor-console</artifactId>
-     <version>${gs.version}</version>
-   </dependency>
-   <dependency>
-     <groupId>org.geoserver.community</groupId>
      <artifactId>monitoring</artifactId>
      <version>${gs.version}</version>
    </dependency>

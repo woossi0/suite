@@ -170,6 +170,7 @@
            <descriptor>assembly/geoexplorer-static.xml</descriptor>
            <descriptor>assembly/jdbcconfig.xml</descriptor>
            <descriptor>assembly/importer.xml</descriptor>
+           <descriptor>assembly/monitor-console.xml</descriptor>
          </descriptors>
        </configuration>
      </plugin>
