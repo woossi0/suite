@@ -3,6 +3,8 @@
 Installing OpenGeo Suite on CentOS and Red Hat
 ==============================================
 
+.. |pgupgrade_url| replace:: http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
+
 The commands contained in the following installation instructions assume root privileges.
 
 Installing OpenGeo Suite Community Edition
@@ -65,6 +67,8 @@ Installing OpenGeo Suite Enterprise Edition
 #. Follow all of the steps from the previous section.
 
 #. Now add the OpenGeo Enterprise YUM repository. This repository is password protected. You will have received a user name and password when you `registered for the Enterprise Edition <http://opengeo.org/products/suite/register/>`_. Add the following YUM repository using the commands below, making sure to substitute in your user name for ``<username>`` and password for ``<password>``. Again, the exact command will differ depending on your system.
+
+   .. tabularcolumns:: |p{1.5cm}|p{13.5cm}|
 
    .. list-table::
       :widths: 20 80
@@ -144,7 +148,7 @@ Backup PostGIS data
       
       sudo su postgres
 
-#. Download the archive available at http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip and extract it to a temporary directory. To avoid permissions issues, the :file:`/tmp/suite_backup/pg_backup` path will be created and used.
+#. Download the archive available at |pgupgrade_url| and extract it to a temporary directory. To avoid permissions issues, the :file:`/tmp/suite_backup/pg_backup` path will be created and used.
 
     .. warning:: The :file:`/tmp` directory is not recommended for long-term storage of backups, as the directory can often be purged as a part of normal system activity. If using a different directory, make sure that both the ``postgres`` and ``root`` users have read/write permissions to it.
 
@@ -244,6 +248,8 @@ Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary 
         - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
 
 #. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your user name for ``<username>`` and password for ``<password>``:
+
+   .. tabularcolumns:: |p{1.5cm}|p{13.5cm}|
 
    .. list-table::
       :widths: 20 80

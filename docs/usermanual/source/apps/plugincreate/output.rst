@@ -24,19 +24,19 @@ Connecting to the application
 
    .. literalinclude:: script/output_app.js
       :language: javascript
-      :lines: 15
+      :lines: 16
 
 #. Add a container for the output to the ``items`` section of the ``portalConfig`` definition in :file:`src/app/app.js`:
 
    .. literalinclude:: script/output_app.js
       :language: javascript
-      :lines: 38-44
+      :lines: 39-45
 
 #. In the ``tools`` section, add an entry for the "boxinfo" tool and direct its output to the south panel:
 
    .. literalinclude:: script/output_app.js
       :language: javascript
-      :lines: 76-77,79-80
+      :lines: 77-78,80-81
 
 #. Restart the SDK and reload the application in the browser to see the results:
 
@@ -52,13 +52,16 @@ Adding dynamic content
 
    .. literalinclude:: script/output_app.js
       :language: javascript
-      :lines: 72-76
+      :lines: 73-77
+      :emphasize-lines: 3
 
 #. Add the reference to the boxinfo config, between ``ptype: "myapp_boxinfo"`` and ``outputTarget: "southpanel"``:
 
    .. literalinclude:: script/output_app.js
       :language: javascript
-      :lines: 76-80
+      :lines: 77-81
+      :emphasize-lines: 3
+
 
 #. Now, switching back over to :file:`BoxInfo.js`, replace the ``addOutput`` function of the BoxInfo tool with the following code. With this change, the application will depict information about the box that has been drawn.
 

@@ -16,6 +16,19 @@
  <packaging>pom</packaging>
  <name>OpenGeo Install Doc Module</name>
 
+ <properties>
+   <sphinx-flag></sphinx-flag>
+ </properties>
+
+ <profiles>
+   <profile>
+     <id>test</id>
+     <properties>
+       <sphinx-flag>-q</sphinx-flag>
+     </properties>
+   </profile>
+ </profiles>
+
  <modules>
    <module>windows</module>
    <module>mac</module>

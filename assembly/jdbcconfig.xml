@@ -1,0 +1,16 @@
+<assembly>
+  <id>jdbcconfig</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>assembly/target/dependency</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>jdbcconfig-*.jar</include>
+        <include>bonecp-*.jar</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</assembly>

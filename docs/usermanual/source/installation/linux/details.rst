@@ -30,7 +30,7 @@ Both services are started and set to run automatically when the OpenGeo Suite is
 Accessing web applications
 --------------------------
 
-The easiest way to launch the web-based applications contained in the OpenGeo Suite is via the Dashboard.  All web applications are linked from this application.  The Dashboard is accessible via the following URL::
+The easiest way to launch the web-based applications contained in the OpenGeo Suite is via the Dashboard.  All web applications are linked from this application. The Dashboard is accessible via the following URL::
 
   http://localhost:8080/dashboard/
 
@@ -66,8 +66,10 @@ List of packages
 
 Once installed, you will have the following packages installed on your system:
 
+.. tabularcolumns:: |l|p{2.5cm}|p{9cm}|
+
 .. list-table::
-   :widths: 20 20 60 
+   :widths: 20 20 60
    :header-rows: 1
 
    * - Package
@@ -94,7 +96,7 @@ Once installed, you will have the following packages installed on your system:
    * - ``pgadmin3``
      - pgAdmin III
      - Graphical client for interacting with PostgreSQL/PostGIS.
-   * - ``opengeo-suite-ee`` (Enterprise Edition only)
+   * - ``opengeo-suite-ee`` 
      - OpenGeo Suite Enterprise Edition package
      - Enterprise Edition functions and libraries.  
 

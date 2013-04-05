@@ -4,6 +4,13 @@
  * make the code below compatible with browsers without
  * an installed firebug like debugger
  */
+
+/**
+ * select a different prefix for underscore
+ */
+ 
+// $u = _.noConflict();  
+
 if (!window.console || !console.firebug) {
   var names = ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml",
       "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"];
