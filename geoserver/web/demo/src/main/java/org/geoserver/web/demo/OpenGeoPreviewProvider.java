@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.wicket.model.IModel;
 import org.geoserver.catalog.LayerGroupInfo;
 import org.geoserver.catalog.LayerInfo;
+import org.geoserver.catalog.PublishedInfo;
 import org.geoserver.web.wicket.GeoServerDataProvider;
 
 /**
@@ -53,7 +54,9 @@ public class OpenGeoPreviewProvider extends GeoServerDataProvider<OpenGeoPreview
 
         for (LayerGroupInfo group : getCatalog().getLayerGroups()) {
             boolean enabled = true;
-            for (LayerInfo layer : group.getLayers()) {
+            //JD: should probably do this recursively, and check for layer groups within the layer 
+            // group and check those layers for being enabled/disabled
+            for (LayerInfo layer : group.layers()) {
                 // ask for enabled() instead of isEnabled() to account for disabled resource/store
                 enabled &= layer.enabled();
             }
