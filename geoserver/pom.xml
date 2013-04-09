@@ -115,6 +115,11 @@
      <artifactId>gt-ogr-jni</artifactId>
      <version>${gt.version}</version>
    </dependency>
+   <dependency>
+     <groupId>org.geogit</groupId>
+     <artifactId>geogit-geoserver</artifactId>
+     <version>${geogit.version}</version>
+   </dependency>
   <dependency>
    <groupId>org.restlet</groupId>
    <artifactId>org.restlet.ext.fileupload</artifactId>

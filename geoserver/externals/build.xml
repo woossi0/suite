@@ -18,6 +18,9 @@
    <property name="geoscript-js.flags" value=""/>
    <property name="geoscript-py.dir" value="geoscript/py"/>
    <property name="geoscript-py.flags" value=""/>
+   
+   <property name="geogit.dir" value="GeoGit"/>
+   <property name="geogit.flags" value=""/>
 
    <condition property="mvn_exec" value="${mvn.exec}">
      <isset property="mvn.exec"/>
@@ -91,6 +94,14 @@
      <antcall target="mvn">
         <param name="dir" value="${geoscript-py.dir}"/>
         <param name="flags" value="-DskipTests ${geoscript-py.flags}"/>
+        <param name="targets" value="clean install"/>
+     </antcall>
+   </target>
+   
+   <target name="build-geogit" unless="skip.geogit"> 
+     <antcall target="mvn">
+        <param name="dir" value="${geogit.dir}"/>
+        <param name="flags" value="-DskipTests ${geogit.flags}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
