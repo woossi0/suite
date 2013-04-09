@@ -1,6 +1,9 @@
 [submodule "geoserver/externals/geotools"]
 	path = geoserver/externals/geotools
 	url = git://github.com/opengeo/geotools.git
+[submodule "geoserver/externals/GeoGit"]
+	path = geoserver/externals/GeoGit
+	url = git://github.com/opengeo/GeoGit.git
 [submodule "geoserver/externals/geoserver"]
 	path = geoserver/externals/geoserver
 	url = git://github.com/opengeo/geoserver.git
