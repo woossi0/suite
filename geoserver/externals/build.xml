@@ -7,7 +7,7 @@
    <property name="gs-exts.flags" value=""/>
 
    <property name="gt.dir" value="geotools"/>
-   <property name="gt.version" value="8-SNAPSHOT"/>
+   <property name="gt.version" value="9-SNAPSHOT"/>
    <property name="gt.flags" value=""/>
 
    <property name="gwc.dir" value="geowebcache"/>
@@ -16,7 +16,6 @@
 
    <property name="geoscript-js.dir" value="geoscript/js"/>
    <property name="geoscript-js.flags" value=""/>
-
    <property name="geoscript-py.dir" value="geoscript/py"/>
    <property name="geoscript-py.flags" value=""/>
 
@@ -54,7 +53,7 @@
    <target name="build-gs" unless="skip.gs"> 
      <antcall target="mvn">
         <param name="dir" value="${gs.dir}/src"/>
-        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -P proxy,printing,monitoring,dbconfig,ftp,script,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
+        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -P proxy,printing,monitoring,jdbcconfig,ftp,script,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
