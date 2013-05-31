@@ -18,11 +18,6 @@
 
  <dependencies>
    <dependency>
-     <groupId>org.opengeo.geoserver</groupId>
-     <artifactId>analytics</artifactId>
-     <version>${gs.version}</version>
-   </dependency>
-   <dependency>
      <groupId>org.geoserver.extension</groupId>
      <artifactId>control-flow</artifactId>
      <version>${gs.version}</version>

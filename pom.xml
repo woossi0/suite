@@ -219,7 +219,7 @@
    </profile>
    <profile>
    </profile>
-   <profile>
+   <!--<profile>
      <id>ee</id>
      <build>
      <plugins>
@@ -234,7 +234,6 @@
              <descriptor>assembly/war-geoserver.xml</descriptor>
              <descriptor>assembly/war-geoserver-jboss.xml</descriptor>
              <descriptor>assembly/war.xml</descriptor>
-             <descriptor>assembly/analytics.xml</descriptor>
              <descriptor>assembly/dashboard-win32.xml</descriptor>
              <descriptor>assembly/dashboard-osx.xml</descriptor>
            </descriptors>
@@ -246,7 +245,7 @@
      <properties>
        <build.profile>ee</build.profile>
      </properties>
-   </profile>
+   </profile>-->
    <!--profile>
      <id>cloud</id>
      <build>
