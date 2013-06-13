@@ -230,28 +230,7 @@
 
   <profiles>
      <profile>
-       <id>analytics</id>
-       <dependencies> 
-         <dependency>
-           <groupId>org.opengeo.geoserver</groupId>
-           <artifactId>analytics</artifactId>
-           <version>${gs.version}</version>
-         </dependency>
-       </dependencies> 
-     </profile>
-     <profile>
        <id>ee</id>
-       <dependencies> 
-         <dependency>
-           <groupId>org.geoserver.extension</groupId>
-           <artifactId>control-flow</artifactId>
-         </dependency>
-         <dependency>
-           <groupId>org.opengeo.geoserver</groupId>
-           <artifactId>analytics</artifactId>
-           <version>${gs.version}</version>
-         </dependency>
-        </dependencies> 
      </profile>
      <profile>
        <id>cloud</id>
