@@ -6,7 +6,7 @@
  <parent>
   <groupId>org.opengeo</groupId>
   <artifactId>suite</artifactId>
-  <version>3.0.2</version>
+  <version>3.1-SNAPSHOT</version>
  </parent>
 
  <groupId>org.opengeo</groupId>
