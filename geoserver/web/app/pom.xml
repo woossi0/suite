@@ -86,11 +86,11 @@
       <artifactId>monitor-core</artifactId>
       <version>${gs.version}</version>
     </dependency>
-    <dependancy>
+    <dependency>
       <groupId>com.maxmind</groupId>
       <artifactId>geoip</artifactId>
       <version>1.2.3</version>
-    <dependancy>
+    </dependency>
     
     <!-- opengeo specific stuff -->
     <dependency>
