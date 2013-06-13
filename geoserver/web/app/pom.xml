@@ -75,6 +75,23 @@
       <version>1.9.1</version>
     </dependency>
     
+    <!-- Mapmeter -->
+    <dependency>
+      <groupId>org.opengeo.console</groupId>
+      <artifactId>monitor-console</artifactId>
+      <version>${gs.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geoserver.extension</groupId>
+      <artifactId>monitor-core</artifactId>
+      <version>${gs.version}</version>
+    </dependency>
+    <dependancy>
+      <groupId>com.maxmind</groupId>
+      <artifactId>geoip</artifactId>
+      <version>1.2.3</version>
+    <dependancy>
+    
     <!-- opengeo specific stuff -->
     <dependency>
       <groupId>org.opengeo.geoserver</groupId>
