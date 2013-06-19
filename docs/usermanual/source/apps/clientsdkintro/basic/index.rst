@@ -8,7 +8,7 @@ In this section we will create a viewer application using the client SDK.
 Background
 ----------
 
-The central object in the architecture of the client SDK is the **viewer** (``gxp.Viewer``). Primarily, a viewer combines a map panel with tools, but it can do much more. 
+The central object in the architecture of the client SDK is the **viewer** (`gxp.Viewer <../../../sdk-api/lib/widgets/Viewer.html>`_). Primarily, a viewer combines a map panel with tools, but it can do much more. 
 
 The main configuration options for a ``gxp.Viewer`` are:
 
@@ -19,7 +19,7 @@ The main configuration options for a ``gxp.Viewer`` are:
    * - Option
      - Description
    * - ``proxy``
-     - Sets the proxy to use in order to bypass the Same Origin Policy when accessing remote resources through JavaScript. Only needed when external resources (e.g. from outside the OpenGeo Suite instance that your app lives in) are used. Will be set as ``OpenLayers.ProxyHost``.
+     - Sets the proxy to use in order to bypass the Same Origin Policy when accessing remote resources through JavaScript. Only needed when external resources (as in, from outside the OpenGeo Suite instance that your app lives in) are used. Will be set as ``OpenLayers.ProxyHost``.
    * - ``portalItems``
      - The items to add to the portal, in addition to the map panel that the viewer will create automatically.
    * - ``portalConfig``
@@ -56,21 +56,19 @@ This will generate a template application.  Now run the following command::
 The application will now run in debug mode on port 9080 of the local machine.  Now start up a browser, and type in the address of the application (such as ``http://localhost:9080/``:
 
 .. figure:: ../img/basic_viewer.png
-   :align: center
 
 What you get is a basic web mapping application which contains a layer tree, a map panel and some map tools. The map panel contains an OpenStreetMap base layer.
 
-.. note:: If you want to run on a different port, specify it with the ``-l`` flag (e.g. ``suite-sdk debug -l 9090 /path/to/myviewer``).
+.. note:: If you want to run on a different port, specify it with the ``-l`` flag (for example: ``suite-sdk debug -l 9090 /path/to/myviewer``).
 
 Dissecting the Viewer
 ---------------------
 
-To examine how this project was set up, use your browser's debugging tool, e.g. Chrome/Safari Developer Tools or Firebug in Firefox.  Select the :guilabel:`Script` tab and look for the file :file:`app.js`.
+To examine how this project was set up, use your browser's debugging tool (Chrome/Safari Developer Tools, Firebug in Firefox, or equivalent).  Select the :guilabel:`Script` tab and look for the file :file:`app.js`.
 
 .. note:: You're looking for the *second* instance of :file:`app.js` in the Scripts list; the first one is the loader file.
 
 .. figure:: ../img/basic_firebug.png
-   :align: center
 
 
 Dependency Management

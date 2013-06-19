@@ -1,13 +1,11 @@
 .. _processing.wpsclient:
 
-Working with WPS in OpenLayers
-==============================
+Using WPS with OpenLayers and the Client SDK
+============================================
 
-OpenLayers includes a Web Processing Service (WPS) client. With this client you can employ server processes in browser-based mapping applications. For example, you could perform certain geometry manipulations on the server that are not available in a browser environment.
+OpenLayers includes a Web Processing Service (WPS) client. With this client you can employ server processes in browser-based mapping applications. For example, you could perform certain geometry manipulations on the server that are not available in a browser environment. The WPS client also supports process chaining, which allows the server to perform more complex operations without the need to return the result to the client at each intermediate step.
 
-The OpenLayers WPS client also supports process chaining. Process chaining allows the server to perform more complex operations without the need to return the result to the client at each step of the chain.
-
-This section describes how to use a WPS process to manipulate a locally-created geometry in the browser. You'll also learn how to perform more complex geometry operations by chaining processes. Finally, you will use the :ref:`Client SDK <apps.sdk.client.dev>` to create an interactive application showcasing these processes.
+This tutorial will describe how to use a WPS process to manipulate a locally-created geometry in the browser, first using OpenLayers, and then by creating an interactive application using the :ref:`Client SDK <apps.sdk.client.dev>`.
 
 
 Creating an OpenLayers.WPSClient instance

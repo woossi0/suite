@@ -3,9 +3,13 @@
 Adding a Google base layer
 ==========================
 
-.. warning::  Before adding Google components to your applications, make sure that Google's Terms of Use allow you to do so.
+This section describes how to add the ability to add a Google Maps layer to the viewer application.
 
-Open up :file:`app.js`, search for the ``sources`` section, and add a Google source:
+.. warning:: Before adding Google components to your applications, make sure that the `Google Terms of Use <https://developers.google.com/terms/>`_ allow you to do so.
+
+Navigate to the :file:`src/app/app.js` in the :file:`myviewer` directory. Open up this file in a text editor. In the `API documentation <../../../sdk-api/>`_, find the `gxp.plugins.GoogleSource <../../../sdk-api/lib/plugins/GoogleSource.html>`_ tool. This provides the base Google Maps functionality.
+
+The ``ptype`` for ``gxp.plugins.GoogleSource`` is ``gxp_googlesource``. Open up :file:`app.js`, and configure this tool:
 
 .. code-block:: javascript
 
@@ -32,5 +36,4 @@ In the build config at the top of :file:`app.js`, add a dependency line for :fil
 Finally, restart your application.  There will now be a new base layer called "Google RoadMap" in our viewer:
 
 .. figure:: ../img/viewer_google.png
-   :align: center
 

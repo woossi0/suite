@@ -3,11 +3,7 @@
 Setting up a feature manager
 ============================
 
-Editing with the Client SDK always starts with setting up a "feature manager". The API docs for the feature manager plugin can be found here:
-
-http://suite.opengeo.org/opengeo-docs/sdk-api/lib/plugins/FeatureManager.html
-
-Open up :file:`/src/app/app.js` in the application directory.  Add :file:`plugins/FeatureManager.js` to the list of dependencies at the top of the file.
+Editing with the Client SDK always starts with setting up a "feature manager". In the `API documentation <../../../sdk-api/>`_, find the `gxp.plugins.FeatureManager <../../../sdk-api/lib/plugins/FeatureManager.html>`_ tool. This provides the "feature manager" functionality. The ``ptype`` for ``gxp.plugins.FeatureManager`` is ``gxp_featuremanager``. Open up :file:`app.js` in the application directory.  Add :file:`plugins/FeatureManager.js` to the list of dependencies at the top of the file.
 
 .. code-block:: javascript
 

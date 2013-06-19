@@ -38,7 +38,6 @@ To change the projection, substitute the lines above with the following:
 Now reload the application in your browser:
 
 .. figure:: ../img/viewer_projection_states.png
-   :align: center
 
 Now we can add a WMS of the world as our new base layer, first defining a new source in the ``sources`` section:
 
@@ -48,7 +47,7 @@ Now we can add a WMS of the world as our new base layer, first defining a new so
         ptype: "gxp_olsource"
     }
 
-This type is an "OpenLayers Source", which will allow us to define any OpenLayers Layer type. We want to configure an OpenLayers.Layer.WMS to a vmap0 tilecache instance, so add the following to the ``layers`` configuration:
+The ``ptype`` of ``gxp_olsource`` is an "OpenLayers Source", which will allow us to define any OpenLayers Layer type. (See the plugin `gxp.plugins.OLSource <../../../sdk-api/lib/plugins/OLSource.html>`_ in the `API documentation <../../../sdk-api/>`_.) We want to configure an ``OpenLayers.Layer.WMS`` to a vmap0 tilecache instance, so add the following to the ``layers`` configuration:
 
 .. code-block:: javascript
 
@@ -62,7 +61,6 @@ This type is an "OpenLayers Source", which will allow us to define any OpenLayer
 This will result in:
 
 .. figure:: ../img/viewer_projection_vmap.png
-   :align: center
 
 As a last step, we will add a blank base layer to the application.  Add the following to the ``layers`` configuration:
 
@@ -79,6 +77,4 @@ As a last step, we will add a blank base layer to the application.  Add the foll
 The result will look like this:
 
 .. figure:: ../img/viewer_projection_states_blank.png
-   :align: center
-
 

@@ -3,7 +3,11 @@
 Adding a feature grid
 =====================
 
-A feature grid can be used to show the features in a table (as well as in the map). First we will need to create a Ext container for the grid in the layout. Open up :file:`app.js` and edit the ``items`` section of ``portalConfig`` by adding a container in the 'south' region:
+A feature grid can be used to show the features in a table (as well as in the map).
+
+In the `API documentation <../../../sdk-api/>`_, find the `gxp.plugins.FeatureGrid <../../../sdk-api/lib/plugins/FeatureGrid.html>`_ tool. This provides the functionality for creating a table of features. The ``ptype`` for ``gxp.plugins.FeatureGrid`` is ``gxp_featuregrid``. 
+
+First we will need to create a Ext container for the grid in the layout. Open up :file:`app.js` and edit the ``items`` section of ``portalConfig`` by adding a container in the 'south' region:
 
 .. code-block:: javascript
 
@@ -44,10 +48,8 @@ At the top of :file:`app.js`, add :file:`plugins/FeatureGrid.js` as dependency:
 Restart the application and reload the browser. Now there will be a feature grid in the bottom of the application, which is initially loaded with all the states:
 
 .. figure:: ../img/editor_featuregrid.png
-   :align: center
 
 When the button :guilabel:`Display on map` is pressed, all the features are rendered client-side, and when walking through the grid the respective state is highlighted in the map:
 
 .. figure:: ../img/editor_featuregrid_display.png
-   :align: center
 
