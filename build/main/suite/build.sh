@@ -114,10 +114,10 @@ WIN=192.168.50.40
 OSX=192.168.50.35
 
 # start the build of the OSX installer
-start_remote_job http://$OSX:8080/job/osx-installer "osx installer"
+# start_remote_job http://$OSX:8080/job/osx-installer "osx installer"
 
 # start the build of the OSX installer (ee)
-start_remote_job http://$OSX:8080/job/osx-installer "osx installer" ee
+# start_remote_job http://$OSX:8080/job/osx-installer "osx installer" ee
 
 # start the build of the Windows installer
 start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer"
