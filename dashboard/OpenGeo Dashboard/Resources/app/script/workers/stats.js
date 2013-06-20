@@ -7,7 +7,10 @@ onmessage = function(e) {
 };
 
 function getResource(url, username, password) {
-
+    return null;
+    
+    // NOTE: Block below messes with mapmeter stats and no longer works.
+    /*
     var client = Titanium.Network.createHTTPClient();
     
     client.open("GET", url, false);
@@ -27,7 +30,7 @@ function getResource(url, username, password) {
     }
 
     return resource;
-
+    */
 }
 
 function getWorkspaces(config) {
