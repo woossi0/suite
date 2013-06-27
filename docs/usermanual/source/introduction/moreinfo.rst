@@ -19,5 +19,9 @@ For more information on individual components, please see OpenGeo's project page
 About OpenGeo
 -------------
 
-`OpenGeo <http://opengeo.org>`_, a social enterprise, provides support and services around PostGIS, GeoServer, GeoWebCache, OpenLayers, and GeoExt.  OpenGeo is the geospatial division of `OpenPlans <http://openplans.org>`_, a 503(c)(3) organization. For more information, visit us online at `http://opengeo.org <http://opengeo.org>`_ or email us at inquiry@opengeo.org .
-  
+`OpenGeo <http://opengeo.org>`_ is the world leader for commercial open source geospatial software. Our global customer base uses the OpenGeo Suite, a complete open source geospatial web services stack, to deploy solutions for web mapping, transportation, telecommunications, open government and a huge range of other solutions. 
+
+OpenGeo supports open source communities by employing key developers of PostGIS, GeoServer, and OpenLayers. We are committed to the ideals of open source and aim to bring the best practices of open source software to organizations around the world. 
+
+For more information, visit us online at `http://opengeo.org <http://opengeo.org>`_ or `contact us <http://opengeo.org/about/contact/>`_.
+
