@@ -5,14 +5,14 @@ Installing OpenGeo Suite on Ubuntu
 
 .. |pgupgrade_url| replace:: http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
 
-The commands contained in the following installation instructions assume root privileges. 
+The commands contained in the following installation instructions assume root privileges.
 
-Installing OpenGeo Suite Community Edition
-------------------------------------------
+New install
+-----------
 
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.ubuntu.suite.upgrade`.
 
-.. warning:: Packages are only available for Ubuntu 10.04 and above.
+.. warning:: Packages are only available for Ubuntu 10.04. Newer versions are usually known to work, but are not officially supported at this time.
 
 #. Begin by importing the OpenGeo GPG key:
 
@@ -63,46 +63,6 @@ Installing OpenGeo Suite Community Edition
       http://localhost:8080/dashboard/
 
 Continue reading at the :ref:`installation.linux.suite.details` section.
-
-.. _installation.linux.ubuntu.suite.ee:
-
-Installing OpenGeo Suite Enterprise Edition
--------------------------------------------
-
-#. Follow all of the steps from the previous section.
-
-#. Now add the OpenGeo Enterprise APT repository. This repository is password protected. You will have received a user name and password when you `registered for the Enterprise Edition <http://opengeo.org/products/suite/register/>`_. Add the following APT repository using the command below, making sure to substitute in your user name for ``<username>`` and password for ``<password>``.
-
-   .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
-
-   .. note:: The single command below is wrapped over multiple lines.
-
-   .. code-block:: console
-
-      echo "deb http://<username>:<password>@apt-ee.opengeo.org/suite/v3/ubuntu lucid main"
-        >> /etc/apt/sources.list
-
-#. Update APT:
-
-   .. code-block:: console
-
-      apt-get update
-
-#. Search for packages from OpenGeo:
-
-   .. code-block:: console
-
-      apt-cache search opengeo
-
-   If the search command does not return any results, the repository was not added properly. Examine the output of the ``apt`` commands for any errors or warnings.
-
-#. Install the OpenGeo Suite package (``opengeo-suite-ee``):
-
-   .. code-block:: console
-
-      apt-get install opengeo-suite-ee
-
-#. If the previous command returns an error, the OpenGeo repository may not have been added properly. Examine the output of the ``apt-get`` command for any errors or warnings.
 
 .. _installation.linux.ubuntu.suite.upgrade:
 
@@ -192,17 +152,6 @@ The procedure for upgrading is as follows:
 
       echo "deb http://apt.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
 
-#. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your user name and password:
-
-   .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
-
-   .. note:: The single command below is wrapped over multiple lines.
-
-   .. code-block:: console
-
-      echo "deb http://<username>:<password>@apt-ee.opengeo.org/suite/v3/ubuntu lucid main"
-        >> /etc/apt/sources.list
-
 #. Now update your repository sources:
 
    .. code-block:: console
@@ -211,16 +160,9 @@ The procedure for upgrading is as follows:
 
 #. Install the OpenGeo Suite package:
 
-   .. list-table::
-      :widths: 20 80
-      :header-rows: 1
+   .. code-block:: console
 
-      * - Edition
-        - Command
-      * - Community Edition
-        - ``apt-get install opengeo-suite``
-      * - Enterprise Edition
-        - ``apt-get install opengeo-suite-ee``
+      apt-get install opengeo-suite
 
 #. Ensure the newly-upgraded OpenGeo Suite is running.
 

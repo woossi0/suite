@@ -7,8 +7,8 @@ Installing OpenGeo Suite on CentOS and Red Hat
 
 The commands contained in the following installation instructions assume root privileges.
 
-Installing OpenGeo Suite Community Edition
-------------------------------------------
+New installation
+----------------
 
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.centos.suite.upgrade`.
 
@@ -45,7 +45,7 @@ Installing OpenGeo Suite Community Edition
       * - RHEL 6, 64 bit
         - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
 
-#. Now we are ready to install the OpenGeo Suite. The package is called ``opengeo-suite``:
+#. Now run the install. The package is called ``opengeo-suite``:
 
    .. code-block:: bash
 
@@ -58,50 +58,6 @@ Installing OpenGeo Suite Community Edition
       http://localhost:8080/dashboard/
 
 Continue reading at the :ref:`installation.linux.suite.details` section.
-
-.. _installation.linux.centos.suite.ee:
-
-Installing OpenGeo Suite Enterprise Edition
--------------------------------------------
-
-#. Follow all of the steps from the previous section.
-
-#. Now add the OpenGeo Enterprise YUM repository. This repository is password protected. You will have received a user name and password when you `registered for the Enterprise Edition <http://opengeo.org/products/suite/register/>`_. Add the following YUM repository using the commands below, making sure to substitute in your user name for ``<username>`` and password for ``<password>``. Again, the exact command will differ depending on your system.
-
-   .. tabularcolumns:: |p{1.5cm}|p{13.5cm}|
-
-   .. list-table::
-      :widths: 20 80
-      :header-rows: 1
-
-      * - System
-        - Command
-      * - CentOS 5, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/5/i386/OpenGeoEE.repo``
-      * - CentOS 5, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/5/x86_64/OpenGeoEE.repo``
-      * - CentOS 6, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/6/i686/OpenGeoEE.repo``
-      * - CentOS 6, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/6/x86_64/OpenGeoEE.repo``
-      * - RHEL 5, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/5/i386/OpenGeoEE.repo``
-      * - RHEL 5, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/5/x86_64/OpenGeoEE.repo``
-      * - RHEL 6, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/6/i686/OpenGeoEE.repo``
-      * - RHEL 6, 64 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeoEE.repo``
-
-#. Edit the downloaded :file:`OpenGeoEE.repo` file, filling in your user name and password in place of ``<yourUserName>`` and ``<yourPassword>``.
-
-   .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
-
-#. Now we are ready to install the OpenGeo Suite. The package is called ``opengeo-suite-ee``:
-
-   .. code-block:: bash
-
-      yum install opengeo-suite-ee
 
 .. _installation.linux.centos.suite.upgrade:
 
@@ -247,37 +203,6 @@ Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary 
       * - RHEL 6, 64 bit
         - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
 
-#. And if you are upgrading the OpenGeo Suite Enterprise Edition, run this additional command as well, substituting in your user name for ``<username>`` and password for ``<password>``:
-
-   .. tabularcolumns:: |p{1.5cm}|p{13.5cm}|
-
-   .. list-table::
-      :widths: 20 80
-      :header-rows: 1
-
-      * - System
-        - Command
-      * - CentOS 5, 32 bit
-        - ``wget --user='<username>' --password='<password>' http://yum-ee.opengeo.org/suite/v3/centos/5/i386/OpenGeoEE.repo``
-      * - CentOS 5, 64 bit
-        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/centos/5/x86_64/OpenGeoEE.repo``
-      * - CentOS 6, 32 bit
-        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/centos/6/i686/OpenGeoEE.repo``
-      * - CentOS 6, 64 bit
-        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/centos/6/x86_64/OpenGeoEE.repo``
-      * - RHEL 5, 32 bit
-        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/5/i386/OpenGeoEE.repo``
-      * - RHEL 5, 64 bit
-        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/5/x86_64/OpenGeoEE.repo``
-      * - RHEL 6, 32 bit
-        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/6/i686/OpenGeoEE.repo``
-      * - RHEL 6, 64 bit
-        - ``wget --user='<username>' --password='<password>'  http://yum-ee.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeoEE.repo``
-
-   Edit the download :file:`OpenGeoEE.repo` file, filling in your user name and password in place of ``<yourUserName>`` and ``<yourPassword>``.
-
-   .. note:: If your user name is an email address, substitute a ``%40`` for the ``@`` sign. Example: ``joe@example.com`` would become ``joe%40example.com``.
-
 #. Clean your repository sources:
 
    .. code-block:: console
@@ -292,17 +217,9 @@ Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary 
 
 #. Install the OpenGeo Suite package:
 
-   .. list-table::
-      :widths: 20 80
-      :header-rows: 1
+   .. code-block:: console
 
-      * - Edition
-        - Command
-      * - Community Edition
-        - ``yum install opengeo-suite``
-      * - Enterprise Edition
-        - ``yum install opengeo-suite-ee``
-
+      yum install opengeo-suite
 
 Restore PostGIS data
 ^^^^^^^^^^^^^^^^^^^^

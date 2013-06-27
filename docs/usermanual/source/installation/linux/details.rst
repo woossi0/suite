@@ -96,9 +96,6 @@ Once installed, you will have the following packages installed on your system:
    * - ``pgadmin3``
      - pgAdmin III
      - Graphical client for interacting with PostgreSQL/PostGIS
-   * - ``opengeo-suite-ee`` 
-     - OpenGeo Suite Enterprise Edition package
-     - Enterprise Edition functions and libraries
 
 System requirements
 -------------------
