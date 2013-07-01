@@ -123,6 +123,6 @@ OSX=192.168.50.35
 start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer"
 
 # start the build of the Windows installer (ee)
-start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer" ee
+#start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer" ee
 
 echo "Done."
