@@ -559,9 +559,12 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
                     if (!url) {
                         // href may be to arbitrary url
                         url = el.href;
-                        el.href = "#";
+                        follow = false;
                     }
                     this.openURL(url);
+                }
+                if (!follow) {
+                    evt.preventDefault();
                 }
                 return follow;
             },
