@@ -131,8 +131,8 @@
    <plugins>
     <plugin>
       <inherited>true</inherited>
-      <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-war-plugin</artifactId>
+      <version>2.3</version>
       <configuration>
         <warName>geoserver</warName>
         <webappDirectory>${project.build.directory}/geoserver</webappDirectory>
@@ -215,7 +215,7 @@
            <phase>install</phase>
             <configuration>
               <tasks>
-                <property name="target" value="${build.directory}"/>
+                <property name="target" value="${project.build.directory}"/>
                 <property name="tmp" value="${target}/tmp"/>
 
                 <mkdir dir="${tmp}"/>

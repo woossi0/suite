@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <name>OpenGeo Suite GeoExplorer</name>
     <properties>
-        <war-src>${project.build.directory}/${artifactId}-src</war-src>
+        <war-src>${project.build.directory}/${project.artifactId}-src</war-src>
         <jetty-version>7.1.6.v20100715</jetty-version>
     </properties>
     <dependencies>
@@ -153,12 +153,12 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
                 <configuration>
-                    <warName>${artifactId}</warName>
+                    <warName>${project.artifactId}</warName>
                     <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                    <webappDirectory>${project.build.directory}/${artifactId}</webappDirectory>
+                    <webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
                     <webResources>
                         <resource>
                             <directory>${war-src}/WEB-INF</directory>
