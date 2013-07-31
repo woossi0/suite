@@ -42,12 +42,6 @@
       </excludes>
     </fileSet>
     <fileSet>
-      <outputDirectory>dashboard</outputDirectory>
-      <includes>
-        <include>assembly/dummy</include>
-      </includes>
-    </fileSet>
-    <fileSet>
       <directory>docs/install/windows/target/latex</directory>
       <outputDirectory>docs/install/pdf</outputDirectory>
       <includes>
@@ -94,7 +88,7 @@
       <outputDirectory>webapps/apps</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>dashboard/target/resources</directory>
+      <directory>dashboard/target/dashboard</directory>
       <outputDirectory>webapps/dashboard</outputDirectory>
     </fileSet>
     <fileSet>

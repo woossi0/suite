@@ -355,7 +355,10 @@ ul.quick-links {
     background: url('img/tick.png') no-repeat;
     color: #81cb77;
     top: 8px !important;
-    
+}
+
+.app-inline {
+    display: inline;
 }
 
 /* Buttons on Logs page */

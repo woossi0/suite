@@ -2,7 +2,6 @@
 <project name="assembly" default="build" basedir=".">
 
   <property name="data" value="http://data.opengeo.org/suite"/>
-  <property name="db.ver" value="${dashboard.version}"/>
 
   <target name="build"> 
     <tstamp/>
@@ -31,8 +30,6 @@
     <mkdir dir="postgres-osx"/>
     <unzip src="postgres-osx.zip" dest="postgres-osx/pgsql" overwrite="true"/>
 
-    <antcall target="dashboard-osx"/>
-    <antcall target="dashboard-win32"/>
     <tstamp/>
 
     <!-- postgis medford data -->
@@ -43,47 +40,6 @@
 
     <!-- geoserver jboss war -->
     <antcall target="geoserver-war-jboss"/>
-  </target>
-
-  <target name="dashboard-osx">
-    <!-- Dashboard Mac OSX -->
-    <get src="${data}/dashboard-${db.ver}-osx.zip" dest="dashboard-${db.ver}-osx.zip" usetimestamp="yes"/>
-    <delete dir="dashboard-${db.ver}-osx"/>
-    <mkdir dir="dashboard-${db.ver}-osx"/>
-    <exec executable="unzip" failonerror="true">
-        <arg value="dashboard-${db.ver}-osx.zip"/>
-    </exec>
-    <!--copy todir="dashboard-${db.ver}-osx/OpenGeo Dashboard.app/Contents/Resources">
-        <fileset dir="../dashboard/target/resources">
-            <exclude name="**/.svn/"/>
-            <exclude name="**/.svn*"/>
-        </fileset>
-    </copy>
-    <copy todir="dashboard-${db.ver}-osx/OpenGeo Dashboard.app/Contents">
-        <fileset dir="../dashboard/OpenGeo Dashboard"
-                 includes="CHANGELOG.txt,LICENSE.txt,manifest,tiapp.xml,timanifest"/>
-    </copy-->
-    
-  </target>
-
-  <target name="dashboard-win32">
-    <!-- Dashboard Win32 -->
-    <get src="${data}/dashboard-${db.ver}-win32.zip" dest="dashboard-${db.ver}-win32.zip" usetimestamp="yes"/>
-    <delete dir="dashboard-${db.ver}-win32"/>
-    <mkdir dir="dashboard-${db.ver}-win32"/>
-    <exec executable="unzip" failonerror="true">
-        <arg value="dashboard-${db.ver}-win32.zip"/>
-    </exec>
-    <!--copy todir="dashboard-${db.ver}-win32/OpenGeo Dashboard/Resources">
-        <fileset dir="../dashboard/target/resources">
-            <exclude name="**/.svn/"/>
-            <exclude name="**/.svn*"/>
-        </fileset>
-    </copy>
-    <copy todir="dashboard-${db.ver}-win32/OpenGeo Dashboard/">
-        <fileset dir="../dashboard/OpenGeo Dashboard"
-                 includes="CHANGELOG.txt,LICENSE.txt,manifest,tiapp.xml,timanifest"/>
-    </copy-->
   </target>
 
   <target name="opengeo-docs-war">

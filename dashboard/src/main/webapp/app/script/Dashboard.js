@@ -54,7 +54,7 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
     constructor: function() {
         
         var versionInfo = og.util.getVersionInfo();
-        this.revision = versionInfo["build_revision"];
+        this.revision = versionInfo["build_revision"].substring(0,5) + "@" + versionInfo["build_branch"];
         this.buildProfile = versionInfo["build_profile"];
         var targetVersion = versionInfo["suite_version"];
         var config = og.util.getUserConfig();
@@ -114,8 +114,7 @@ og.Dashboard = Ext.extend(Ext.util.Observable, {
                     previousStarts[this.revision] = true;
                     this.setPreferences({previousStarts: previousStarts});
                     var html = "Starting the OpenGeo Suite";
-                    if (startingDialog.body) {
-                        startingDialog.body.update(html);
+                    if (startingDialog.body) {startingDialog.body.update(html);
                     } else {
                         startingDialog.html = html;
                     }
