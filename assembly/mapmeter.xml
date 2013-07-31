@@ -1,5 +1,5 @@
 <assembly>
-  <id>monitor-console</id>
+  <id>mapmeter</id>
   <formats>
     <format>zip</format>
   </formats>
@@ -8,7 +8,7 @@
       <directory>assembly/target/dependency</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>monitor-console-*.jar</include>
+        <include>mapmeter-*.jar</include>
       </includes>
     </fileSet>
   </fileSets>

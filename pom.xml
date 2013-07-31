@@ -167,7 +167,7 @@
            <descriptor>assembly/pgadmin-postgis.xml</descriptor>
            <descriptor>assembly/geoexplorer-static.xml</descriptor>
            <descriptor>assembly/importer.xml</descriptor>
-           <descriptor>assembly/monitor-console.xml</descriptor>
+           <descriptor>assembly/mapmeter.xml</descriptor>
            <descriptor>assembly/jdbcconfig.xml</descriptor>
          </descriptors>
        </configuration>
