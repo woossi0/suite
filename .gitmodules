@@ -7,15 +7,6 @@
 [submodule "geoserver/externals/geowebcache"]
 	path = geoserver/externals/geowebcache
 	url = git://github.com/opengeo/geowebcache.git
-[submodule "styler/externals/geoext"]
-	path = styler/externals/geoext
-	url = git://github.com/opengeo/GeoExt.git
-[submodule "styler/externals/gxp"]
-	path = styler/externals/gxp
-	url = git://github.com/opengeo/gxp.git
-[submodule "styler/externals/openlayers"]
-	path = styler/externals/openlayers
-	url = git://github.com/openlayers/openlayers.git
 [submodule "geoserver/externals/geoserver-exts"]
 	path = geoserver/externals/geoserver-exts
 	url = git://github.com/opengeo/geoserver-exts.git
