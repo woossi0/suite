@@ -370,7 +370,6 @@
   <module>externals</module>
   <module>extension</module>
   <module>web</module>
-  <module>test</module>
  </modules>
 
  <profiles>
