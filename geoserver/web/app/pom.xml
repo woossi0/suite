@@ -6,8 +6,7 @@
   <parent>
     <groupId>org.opengeo.geoserver</groupId>
     <artifactId>web</artifactId>
-    <version>3.0.2</version>
-
+    <version>4.0-SNAPSHOT</version>
   </parent>
 
   <groupId>org.opengeo.geoserver</groupId>
@@ -78,11 +77,6 @@
     <!-- opengeo specific stuff -->
     <dependency>
       <groupId>org.opengeo.geoserver</groupId>
-      <artifactId>importer</artifactId>
-      <version>${gs.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.opengeo.geoserver</groupId>
       <artifactId>web-wps</artifactId>
       <version>${gs.version}</version>
     </dependency>
@@ -118,8 +112,8 @@
    <plugins>
     <plugin>
       <inherited>true</inherited>
-      <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-war-plugin</artifactId>
+      <version>2.3</version>
       <configuration>
         <warName>geoserver</warName>
         <webappDirectory>${project.build.directory}/geoserver</webappDirectory>
@@ -202,7 +196,7 @@
            <phase>install</phase>
             <configuration>
               <tasks>
-                <property name="target" value="${build.directory}"/>
+                <property name="target" value="${project.build.directory}"/>
                 <property name="tmp" value="${target}/tmp"/>
 
                 <mkdir dir="${tmp}"/>
@@ -230,28 +224,7 @@
 
   <profiles>
      <profile>
-       <id>analytics</id>
-       <dependencies> 
-         <dependency>
-           <groupId>org.opengeo.geoserver</groupId>
-           <artifactId>analytics</artifactId>
-           <version>${gs.version}</version>
-         </dependency>
-       </dependencies> 
-     </profile>
-     <profile>
        <id>ee</id>
-       <dependencies> 
-         <dependency>
-           <groupId>org.geoserver.extension</groupId>
-           <artifactId>control-flow</artifactId>
-         </dependency>
-         <dependency>
-           <groupId>org.opengeo.geoserver</groupId>
-           <artifactId>analytics</artifactId>
-           <version>${gs.version}</version>
-         </dependency>
-        </dependencies> 
      </profile>
      <profile>
        <id>cloud</id>

@@ -1,0 +1,16 @@
+<layer>
+  <name>ne_10m_roads</name>
+  <id>LayerInfoImpl--4bb97f3b:13ca69f6935:-7fe6</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-b1342ff:13c96dbc44b:-6855</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--4bb97f3b:13ca69f6935:-7fe7</id>
+  </resource>
+  <enabled>true</enabled>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

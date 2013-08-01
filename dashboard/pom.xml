@@ -8,88 +8,38 @@
  <parent>
   <groupId>org.opengeo</groupId>
   <artifactId>suite</artifactId>
-  <version>3.0.2</version>
+  <version>4.0-SNAPSHOT</version>
  </parent>
 
  <groupId>org.opengeo</groupId>
  <artifactId>dashboard</artifactId>
- <packaging>jar</packaging>
+ <packaging>war</packaging>
  <name>OpenGeo Suite Dashboard</name>
-
- <dependencies>
-  <dependency>
-   <groupId>org.opengeo.geoserver</groupId>
-   <artifactId>web-app</artifactId>
-   <version>${project.version}</version>
-  </dependency>
-  <dependency>
-   <groupId>org.opengeo</groupId>
-   <artifactId>geoexplorer</artifactId>
-   <version>${project.version}</version>
-  </dependency>
-  <dependency>
-   <groupId>org.mortbay.jetty</groupId>
-   <artifactId>jetty</artifactId>
-   <scope>test</scope>
-  </dependency>
-  <dependency>
-   <groupId>org.mortbay.jetty</groupId>
-   <artifactId>jetty-naming</artifactId>
-   <scope>test</scope>
-  </dependency>
-  <dependency>
-   <groupId>org.mortbay.jetty</groupId>
-   <artifactId>jetty-plus</artifactId>
-   <scope>test</scope>
-  </dependency>
- </dependencies>
 
  <build>
    <plugins>
      <plugin>
-       <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>compile</id>
-            <phase>compile</phase>
-            <configuration>
-              <tasks>
-                <mkdir dir="${build.directory}/resources"/>
-                <copy todir="${build.directory}/resources">
-                  <fileset dir="${basedir}/OpenGeo Dashboard/Resources" includes="**/*" excludes="version.ini"/>
-                  <fileset dir="${build.directory}" includes="version.ini"/>
-                </copy>
-              </tasks>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>install</id>
-            <phase>install</phase>
-            <configuration>
-              <tasks>
-                <war destfile="${build.directory}/dashboard.war" webxml="${basedir}/src/main/webapp/WEB-INF/web.xml">
-                  <fileset dir="${build.directory}/resources" includes="**/*"/>
-                </war>
-              </tasks>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
+        <inherited>true</inherited>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
         <configuration>
-          <classpathScope>test</classpathScope>
-          <mainClass>org.opengeo.Dashboard</mainClass>
+          <warName>${project.artifactId}</warName>
+          <webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
+          <webResources>
+            <resource>
+              <directory>${basedir}/src/main/webapp</directory>
+              <filtering>true</filtering>
+            </resource>
+            <resource>
+              <directory>${project.build.directory}</directory>
+              <includes>
+                <include>version.ini</include>
+              </includes>
+            </resource>
+          </webResources>
         </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
+     </plugin>
+   </plugins>
+ </build>
+ 
 </project>

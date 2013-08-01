@@ -8,8 +8,7 @@
  <parent>
   <groupId>org.opengeo</groupId>
   <artifactId>docs</artifactId>
-  <version>3.0.2</version>
-
+  <version>4.0-SNAPSHOT</version>
  </parent>
 
  <groupId>org.opengeo.docs</groupId>

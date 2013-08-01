@@ -56,7 +56,7 @@
       <outputDirectory>webapps/apps</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>dashboard/target/resources</directory>
+      <directory>dashboard/target/dashboard</directory>
       <outputDirectory>webapps/dashboard</outputDirectory>
     </fileSet>
     <fileSet>

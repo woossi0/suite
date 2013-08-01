@@ -4,9 +4,7 @@
 Installing the OpenGeo Suite Production WAR bundle
 ==================================================
 
-.. note:: The Production WAR bundle is only available as part of the OpenGeo Suite Enterprise Edition. 
-
-In addition to being available through installers and packages, the OpenGeo Suite is available as an operating system independent collection of web applications, or servlets. This collection may be useful for administrators who wish to manage the OpenGeo Suite within their existing infrastructure, and want the flexibility of a custom deployment. As this bundle is often used in a :ref:`sysadmin.production` environment, and the applications themselves are distributed in a .WAR format, they are known as **Production WARs**.
+In addition to being available through installers and packages, the OpenGeo Suite is available as an operating system independent collection of web applications, or servlets. This collection may be useful for administrators who wish to manage the OpenGeo Suite within their existing infrastructure, and want the flexibility of a custom deployment. As this bundle is often used in a :ref:`sysadmin.production` environment, and the applications themselves are distributed in a .WAR (Web Archive) format, they are known as **Production WARs**.
 
 The individual applications shipped as part of the Production WAR bundle are:
 

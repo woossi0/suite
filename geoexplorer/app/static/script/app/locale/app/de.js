@@ -26,7 +26,6 @@ GeoExt.Lang.add("de", {
         queryText: "Abfrage",
         exportMapText: "Karte veröffentlichen",
         saveMapText: "Karte speichern",
-        saveErrorText: "Beim Speichern ist ein Problem aufgetreten: ",
         toolsTitle: "Werkzeuge, die in der Werkzeugleiste zur Verfügung stehen sollen:",
         previewText: "Vorschau",
         backText: "Zurück",

@@ -1,0 +1,20 @@
+<assembly>
+  <id>mapmeter</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>assembly/target/dependency</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>mapmeter-*.jar</include>
+        <include>monitor-core-*.jar</include>
+        <include>geoip-*.jar</include>
+        <include>jfreechart-*.jar</include>
+        <include>wicket-datetime-*.jar</include>
+        <include>poi-*.jar</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</assembly>

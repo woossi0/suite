@@ -3,7 +3,11 @@
 Snapping features
 =================
 
-Snapping is the act of making features automatically touch when they are approximately close to each other.  When editing, it might make sense to use snapping.  For example, it might make sense to snap to the states layer, so when digitizing a new state, we make sure it aligns well with another state. Open up :file:`app.js` and add a tool to the ``tools`` section to configure a snapping agent:
+Snapping is the act of making features automatically touch when they are approximately close to each other. When editing, it might make sense to use snapping. For example, it might make sense to snap to the states layer, so when digitizing a new state, we make sure it aligns well with another state.
+
+In the `API documentation <../../../sdk-api/>`_, find the `gxp.plugins.SnappingAgent <../../../sdk-api/lib/plugins/FeatureEditor.html>`_ tool. This provides the snapping functionality. The ``ptype`` for ``gxp.plugins.SnappingAgent`` is ``gxp_snappingagent``. 
+
+ Open up :file:`app.js` and add a tool to the ``tools`` section to configure a snapping agent:
 
 .. code-block:: javascript
 
@@ -18,7 +22,7 @@ Snapping is the act of making features automatically touch when they are approxi
 
 This creates a snapping agent that will load the ``usa:states`` data using a BBOX Strategy and hooking it up with an OpenLayers snapping control.
 
-Now we hook up our feature editor with the snapping agent.  Replace the existing feature editor tool code block from the previous section:
+Now we hook up our feature editor with the snapping agent. Replace the existing feature editor tool code block from the previous section:
 
 .. code-block:: javascript
 

@@ -7,7 +7,8 @@ In this section we will enhance the viewer application that was built in the pre
 
 .. toctree::
    :maxdepth: 2
-    
+
+   addnewserver
    zoomtolayerextent
    featureinfo
    legend

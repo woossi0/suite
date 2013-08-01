@@ -8,8 +8,7 @@
  <parent>
    <groupId>org.opengeo</groupId>
    <artifactId>suite</artifactId>
-   <version>3.0.2</version>
-
+   <version>4.0-SNAPSHOT</version>
  </parent>
 
  <groupId>org.opengeo</groupId>
@@ -269,8 +268,8 @@
   
    <!-- compilation -->
    <plugin>
-     <groupId>org.apache.maven.plugins</groupId>
      <artifactId>maven-compiler-plugin</artifactId>
+     <version>3.1</version>
      <configuration>
        <source>1.5</source>
        <target>1.5</target>
@@ -286,8 +285,8 @@
 
    <!-- resources -->
    <plugin>
-     <groupId>org.apache.maven.plugins</groupId>
      <artifactId>maven-resources-plugin</artifactId>
+     <version>2.6</version>
      <configuration>
        <encoding>UTF-8</encoding>
      </configuration>
@@ -296,6 +295,7 @@
    <!-- unit testing -->
    <plugin>
     <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.9</version>
     <configuration>
      <source>1.5</source>
      <target>1.5</target>
@@ -347,8 +347,8 @@
 
    <plugin>
     <inherited>true</inherited>
-    <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-source-plugin</artifactId>
+    <version>2.2.1</version>
     <configuration>
      <attach>true</attach>
     </configuration>
@@ -369,7 +369,6 @@
   <module>externals</module>
   <module>extension</module>
   <module>web</module>
-  <module>test</module>
  </modules>
 
  <profiles>

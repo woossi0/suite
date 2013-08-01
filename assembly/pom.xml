@@ -8,7 +8,7 @@
  <parent>
    <groupId>org.opengeo</groupId>
    <artifactId>suite</artifactId>
-   <version>3.0.2</version>
+   <version>4.0-SNAPSHOT</version>
  </parent>
 
  <groupId>org.opengeo</groupId>
@@ -18,13 +18,23 @@
 
  <dependencies>
    <dependency>
-     <groupId>org.opengeo.geoserver</groupId>
-     <artifactId>analytics</artifactId>
+     <groupId>org.geoserver.extension</groupId>
+     <artifactId>control-flow</artifactId>
      <version>${gs.version}</version>
    </dependency>
    <dependency>
-     <groupId>org.geoserver.extension</groupId>
-     <artifactId>control-flow</artifactId>
+     <groupId>org.geoserver.community</groupId>
+     <artifactId>jdbcconfig</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.opengeo.geoserver</groupId>
+     <artifactId>importer</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.opengeo.geoserver</groupId>
+     <artifactId>mapmeter</artifactId>
      <version>${gs.version}</version>
    </dependency>
  </dependencies>
@@ -38,9 +48,7 @@
             <phase>compile</phase>
             <configuration>
               <tasks>
-                <ant antfile="${basedir}/build.xml" dir="${basedir}">
-                  <property name="dashboard.version" value="${dashboard.version}"/>
-                </ant>
+                <ant antfile="${basedir}/build.xml" dir="${basedir}"/>
               </tasks>
             </configuration>
             <goals>

@@ -14,7 +14,19 @@ public class Start {
 
     public static void main(String[] args) throws Exception {
         
-        File ogConfigDir = new File(System.getProperty("user.home")+File.separator+".opengeo");
+        File ogConfigDir = null;
+        String osType = System.getProperty("os.name");
+        
+        if (osType.startsWith("Windows")) {
+            ogConfigDir = new File(System.getenv("ALLUSERSPROFILE") + "\\OpenGeo\\OpenGeoSuite");
+        }
+        else if (osType.startsWith("Mac OS")) {
+            ogConfigDir = new File("/opt/opengeo/suite");
+        }
+        else {
+            System.exit(1);
+        }
+        
         if (!ogConfigDir.exists() ) {
             ogConfigDir.mkdir();
         }

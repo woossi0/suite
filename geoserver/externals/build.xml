@@ -7,16 +7,15 @@
    <property name="gs-exts.flags" value=""/>
 
    <property name="gt.dir" value="geotools"/>
-   <property name="gt.version" value="8-SNAPSHOT"/>
+   <property name="gt.version" value="10-SNAPSHOT"/>
    <property name="gt.flags" value=""/>
 
    <property name="gwc.dir" value="geowebcache"/>
-   <property name="gwc.version" value="1.3-SNAPSHOT"/>
+   <property name="gwc.version" value="1.5-SNAPSHOT"/>
    <property name="gwc.flags" value=""/>
 
    <property name="geoscript-js.dir" value="geoscript/js"/>
    <property name="geoscript-js.flags" value=""/>
-
    <property name="geoscript-py.dir" value="geoscript/py"/>
    <property name="geoscript-py.flags" value=""/>
 
@@ -40,7 +39,7 @@
      <isset property="mvn.offline"/>
    </condition>
 
-   <target name="build-all" depends="build-gt, build-gwc, build-gs, build-gs-exts, build-geoscript-js, build-geoscript-py">
+   <target name="build-all" depends="build-gt, build-gwc, build-geoscript-js, build-geoscript-py, build-gs, build-gs-exts">
    </target>
 
    <target name="build-gt" unless="skip.gt"> 
@@ -54,7 +53,7 @@
    <target name="build-gs" unless="skip.gs"> 
      <antcall target="mvn">
         <param name="dir" value="${gs.dir}/src"/>
-        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -P proxy,printing,monitoring,dbconfig,ftp,script,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
+        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -P proxy,printing,monitoring,jdbcconfig,ftp,script,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
@@ -97,7 +96,7 @@
    </target>
 
   <target name="mvn">
-     <echo message="${mvn_exec} ${mvn_settings} ${mvn_offline} ${flags} ${targets}"/>
+     <echo message="${mvn_exec} -nsu ${mvn_settings} ${mvn_offline} ${flags} ${targets}"/>
      <exec executable="${mvn_exec}" dir="${dir}" failonerror="true">
         <arg line="${mvn_settings} ${mvn_offline} ${flags} ${targets}"/>
      </exec>

@@ -4,14 +4,14 @@
     <parent>
         <groupId>org.opengeo</groupId>
         <artifactId>suite</artifactId>
-        <version>3.0.2</version>
+        <version>4.0-SNAPSHOT</version>
     </parent>
     <groupId>org.opengeo</groupId>
     <artifactId>geoexplorer</artifactId>
     <packaging>jar</packaging>
     <name>OpenGeo Suite GeoExplorer</name>
     <properties>
-        <war-src>${project.build.directory}/${artifactId}-src</war-src>
+        <war-src>${project.build.directory}/${project.artifactId}-src</war-src>
         <jetty-version>7.1.6.v20100715</jetty-version>
     </properties>
     <dependencies>
@@ -114,6 +114,24 @@
                                 </copy>
                                 <!-- build JavaScript -->
                                 <mkdir dir="${war-src}/WEB-INF/app/static/script"/>
+                                <!-- uncompressed -->
+                                <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
+                                    <classpath>
+                                        <fileset dir="${war-src}/WEB-INF/lib">
+                                            <include name="**/*.jar"/>
+                                        </fileset>
+                                    </classpath>
+                                    <sysproperty key="ringo.home" path="${war-src}/WEB-INF"/>
+                                    <arg path="externals/buildkit/lib/buildkit/build.js"/>
+                                    <arg value="-u"/>
+                                    <arg value="-o"/>
+                                    <arg path="${war-src}/WEB-INF/app/static/script"/>
+                                    <arg path="buildjs.cfg"/>
+                                </java>
+                                <move
+                                    file="${war-src}/WEB-INF/app/static/script/GeoExplorer.js"
+                                    tofile="${war-src}/WEB-INF/app/static/script/GeoExplorer-debug.js"/>
+                                <!-- compressed -->
                                 <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
                                     <classpath>
                                         <fileset dir="${war-src}/WEB-INF/lib">
@@ -135,12 +153,12 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
                 <configuration>
-                    <warName>${artifactId}</warName>
+                    <warName>${project.artifactId}</warName>
                     <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                    <webappDirectory>${project.build.directory}/${artifactId}</webappDirectory>
+                    <webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
                     <webResources>
                         <resource>
                             <directory>${war-src}/WEB-INF</directory>

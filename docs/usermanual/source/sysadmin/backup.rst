@@ -35,13 +35,13 @@ The GeoServer data directory is located by default here:
    * - Installation Target
      - GeoServer Data directory
    * - Linux
-     - ``/home/admin/.opengeo/data_dir\``
+     - ``/home/admin/.opengeo/data_dir``
    * - Mac
      - ``/opt/opengeo/suite/data/``
    * - Windows XP
      - ``C:\Documents and Settings\admin\.opengeo\data_dir``
    * - Windows Vista/7
-     - ``C:\Users\admin\.opengeo\data_dir\``
+     - ``C:\Users\admin\.opengeo\data_dir``
    * - Production WAR
      - ``<SERVLET_ROOT>/webapps/geoserver/data/``
 
@@ -59,4 +59,9 @@ The PostGIS databases can be backed up with the built-in utilities `pg_dump <htt
 Miscellaneous backup tasks
 --------------------------
 
-GeoExplorer saves its map configurations in a file called :file:`geoexplorer.db`.  This file is typically located in the same location as the GeoServer data directory.  This file can be safely backed up and restored as necessary.
+GeoExplorer saves its map configurations in a file called :file:`geoexplorer.db`.  This file is typically located in the same location as the GeoServer data directory.  This file can be safely backed up and restored as necessary without any special utilities.
+
+Custom content
+--------------
+
+Make sure to backup all data and custom applications hosted on the server but not contained in the GeoServer data directory. The details are dependent on the content and where it was placed.
