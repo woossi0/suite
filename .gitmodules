@@ -6,7 +6,7 @@
 	url = git://github.com/opengeo/geoserver.git
 [submodule "geoserver/externals/geowebcache"]
 	path = geoserver/externals/geowebcache
-	url = git://github.com/GeoWebCache/geowebcache.git
+	url = git://github.com/opengeo/geowebcache.git
 [submodule "styler/externals/geoext"]
 	path = styler/externals/geoext
 	url = git://github.com/opengeo/GeoExt.git
@@ -24,7 +24,7 @@
 	url = git://github.com/jdeolive/geoscript-py.git
 [submodule "geoserver/externals/geoscript/js"]
 	path = geoserver/externals/geoscript/js
-	url = git://github.com/tschaub/geoscript-js.git
+	url = git://github.com/jdeolive/geoscript-js.git
 [submodule "geoexplorer/externals/buildkit"]
 	path = geoexplorer/externals/buildkit
 	url = git://github.com/opengeo/buildkit.git
