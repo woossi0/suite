@@ -58,7 +58,7 @@ echo "exporting artifacts to: $dist"
 $MVN -s $MVN_SETTINGS -Dfull -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info -Dgs.flags="-Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev" $BUILD_FLAGS clean install
 checkrv $? "maven install"
 
-$MVN -s $MVN_SETTINGS assembly:attached $build_info
+$MVN -s $MVN_SETTINGS initialize assembly:attached $build_info
 checkrv $? "maven assembly"
 
 $MVN -s $MVN_SETTINGS -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info deploy -DskipTests
