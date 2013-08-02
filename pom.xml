@@ -125,6 +125,7 @@
        </plugin>
        <plugin>
          <artifactId>maven-antrun-plugin</artifactId>
+         <version>1.7</version>
          <dependencies>
             <dependency>
               <groupId>ant</groupId>
@@ -257,7 +258,7 @@
    <gt.version>10-SNAPSHOT</gt.version>
    <gwc.version>1.5-SNAPSHOT</gwc.version>
    <jetty.version>6.1.8</jetty.version>
-   <ant.version>1.6.5</ant.version>
+   <ant.version>1.8.1</ant.version>
    <maven.build.timestamp.format>E MMM dd, yyyy @ HH:mm z</maven.build.timestamp.format>
    <build.prettydate>${maven.build.timestamp}</build.prettydate>
    <build.date>${git.build.time}</build.date>

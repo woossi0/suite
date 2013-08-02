@@ -368,6 +368,7 @@
  <modules>
   <module>externals</module>
   <module>extension</module>
+  <module>data_dir</module>
   <module>web</module>
  </modules>
 

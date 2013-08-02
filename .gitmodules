@@ -34,3 +34,6 @@
 [submodule "geoexplorer/externals/stick"]
 	path = geoexplorer/externals/stick
 	url = https://github.com/hns/stick.git
+[submodule "geoserver/data_dir/externals/suite-data"]
+	path = geoserver/data_dir/externals/suite-data
+	url = https://github.com/opengeo/suite-data.git
