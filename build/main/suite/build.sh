@@ -3,27 +3,6 @@
 # load common functions
 . "$( cd "$( dirname "$0" )" && pwd )"/functions 
 
-#
-# function to rebuild with a specific profile
-# profile_rebuild <profile>
-#
-function profile_rebuild {
-  local profile=$1
-
-  pushd geoserver/web/app
-  $MVN -s $MVN_SETTINGS -o clean install -P $profile $build_info
-  checkrv $? "maven clean install geoserver/web/app ($profile profile)"
-  popd
-
-  pushd dashboard
-  $MVN -s $MVN_SETTINGS -o clean install -P $profile $build_info
-  checkrv $? "maven clean install dashboard ($profile profile)"
-  popd
-
-  $MVN -s $MVN_SETTINGS -P $profile -o assembly:attached $build_info
-  checkrv $? "maven assembly ($profile profile)"
-}
-
 set -x
 
 DIST_PATH=`init_dist_path $DIST_PATH`
@@ -79,17 +58,11 @@ echo "exporting artifacts to: $dist"
 $MVN -s $MVN_SETTINGS -Dfull -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info -Dgs.flags="-Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev" $BUILD_FLAGS clean install
 checkrv $? "maven install"
 
-$MVN -o -s $MVN_SETTINGS assembly:attached $build_info
+$MVN -s $MVN_SETTINGS assembly:attached $build_info
 checkrv $? "maven assembly"
 
 $MVN -s $MVN_SETTINGS -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info deploy -DskipTests
 checkrv $? "maven deploy"
-
-# build with the enterprise profile
-profile_rebuild ee
-
-# copy the new artifacts into place
-cp target/*.zip target/ee/*.zip $dist
 
 # Archive build if requested
 if [ "$ARCHIVE_BUILD" == "true" ]; then
