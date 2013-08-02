@@ -6,7 +6,7 @@
   <baseDirectory></baseDirectory>
   <fileSets>
     <fileSet>
-      <directory>data_dir</directory>
+      <directory>geoserver/data_dir/target/data_dir</directory>
     </fileSet>
   </fileSets>
 </assembly>
