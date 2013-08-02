@@ -136,15 +136,15 @@
             <configuration>
               <tasks>
   <!-- check if config is available, if not fail -->
-  <available file="${configDirectory}/${configId}" property="configIsAvailable" 
+  <available file="${dataDir}" property="configIsAvailable" 
 />
-  <fail message="Unable to locate configuration: ${configDirectory}/${configId}"
+  <fail message="Unable to locate configuration: ${dataDir}"
  unless="configIsAvailable" />
 
   <!-- copy the files from the config dir to the webapp dir -->
-  <echo message="Copying data dir from ${configDirectory}/${configId}" />
+  <echo message="Copying data dir from ${dataDir}" />
   <copy todir="${webappSourceDirectory}/data" overwrite="true">
-     <fileset dir="${configDirectory}/${configId}" includes="**/**"/>
+     <fileset dir="${dataDir}" includes="**/**"/>
   </copy>
               </tasks>
             </configuration>
@@ -202,7 +202,7 @@
                 <mkdir dir="${tmp}"/>
                 <unjar src="${target}/geoserver/WEB-INF/lib/printing-${gs.version}.jar" dest="${tmp}"/>
 
-                <copy file="../../../data_dir/printing/config.yaml" tofile="${tmp}/org/geoserver/printing/default-config.yaml" overwrite="yes"/>
+                <copy file="${dataDir}/printing/config.yaml" tofile="${tmp}/org/geoserver/printing/default-config.yaml" overwrite="yes"/>
                 <jar destfile="${target}/printing-${gs.version}.jar" basedir="${tmp}"/>
                 <delete dir="${target}/tmp"/>
 
@@ -227,5 +227,6 @@
     <webappSourceDirectory>${basedir}/src/main/webapp</webappSourceDirectory>
     <configId>data_dir</configId>
     <configDirectory>../../data_dir/target</configDirectory>
+    <dataDir>${configDirectory}/${configId}</dataDir>
   </properties>
 </project>
