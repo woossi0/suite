@@ -120,10 +120,6 @@
       <outputDirectory>pgsql/9.1</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>assembly/pgdata</directory>
-      <outputDirectory>pgdata</outputDirectory>
-    </fileSet>
-    <fileSet>
       <directory>sdk/target/sdk</directory>
       <outputDirectory>sdk</outputDirectory>
     </fileSet>

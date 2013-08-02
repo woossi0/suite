@@ -75,10 +75,6 @@
         <exclude>lib/jetty-start*.jar</exclude>
       </excludes>
     </fileSet>
-    <fileSet>
-      <directory>assembly/pgdata</directory>
-      <outputDirectory>pgdata</outputDirectory>
-    </fileSet>
   </fileSets>
   <files>
     <file>
