@@ -236,57 +236,6 @@
        <module>assembly</module>
      </modules>
    </profile>
-   <profile>
-   </profile>
-   <!--<profile>
-     <id>ee</id>
-     <build>
-     <plugins>
-       <plugin>
-         <artifactId>maven-assembly-plugin</artifactId>
-         <configuration>
-           <finalName>opengeosuite-ee-${build.revision}</finalName>
-           <descriptors>
-             <descriptor>assembly/bin.xml</descriptor>
-             <descriptor>assembly/win.xml</descriptor>
-             <descriptor>assembly/mac.xml</descriptor>
-             <descriptor>assembly/war-geoserver.xml</descriptor>
-             <descriptor>assembly/war-geoserver-jboss.xml</descriptor>
-             <descriptor>assembly/war.xml</descriptor>
-             <descriptor>assembly/dashboard-win32.xml</descriptor>
-             <descriptor>assembly/dashboard-osx.xml</descriptor>
-           </descriptors>
-           <outputDirectory>${project.build.directory}/ee</outputDirectory>
-         </configuration>
-       </plugin>
-     </plugins>
-     </build>
-     <properties>
-       <build.profile>ee</build.profile>
-     </properties>
-   </profile>-->
-   <!--profile>
-     <id>cloud</id>
-     <build>
-     <plugins>
-       <plugin>
-         <artifactId>maven-assembly-plugin</artifactId>
-         <configuration>
-           <finalName>opengeosuite-cloud-${project.version}</finalName>
-           <descriptors>
-             <descriptor>assembly/bin.xml</descriptor>
-             <descriptor>assembly/win.xml</descriptor>
-             <descriptor>assembly/mac.xml</descriptor>
-             <descriptor>assembly/war-geoserver.xml</descriptor>
-             <descriptor>assembly/war-geoserver-jboss.xml</descriptor>
-             <descriptor>assembly/war.xml</descriptor>
-           </descriptors>
-           <outputDirectory>${project.build.directory}/cloud</outputDirectory>
-         </configuration>
-       </plugin>
-     </plugins>
-     </build>
-   </profile-->
  </profiles>
 
  <distributionManagement>

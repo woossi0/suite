@@ -222,24 +222,6 @@
    </plugins>
   </build>
 
-  <profiles>
-     <profile>
-       <id>ee</id>
-     </profile>
-     <profile>
-       <id>cloud</id>
-     </profile>
-     <profile>
-       <id>dbconfig</id>
-       <dependencies> 
-         <dependency>
-           <groupId>org.geoserver.community</groupId>
-           <artifactId>dbconfig</artifactId>
-         </dependency>
-       </dependencies> 
-     </profile>
-  </profiles>
-
   <properties>
     <warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
     <webappSourceDirectory>${basedir}/src/main/webapp</webappSourceDirectory>
