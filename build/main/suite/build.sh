@@ -64,6 +64,9 @@ checkrv $? "maven assembly"
 #$MVN -s $MVN_SETTINGS -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info deploy -DskipTests
 #checkrv $? "maven deploy"
 
+# copy the new artifacts into place
+cp target/*.zip $dist
+
 # Archive build if requested
 if [ "$ARCHIVE_BUILD" == "true" ]; then
   cp -r $dist /var/www/suite/archive/$ALIAS
