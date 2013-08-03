@@ -61,8 +61,8 @@ checkrv $? "maven install"
 $MVN -s $MVN_SETTINGS initialize assembly:attached $build_info
 checkrv $? "maven assembly"
 
-$MVN -s $MVN_SETTINGS -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info deploy -DskipTests
-checkrv $? "maven deploy"
+#$MVN -s $MVN_SETTINGS -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info deploy -DskipTests
+#checkrv $? "maven deploy"
 
 # Archive build if requested
 if [ "$ARCHIVE_BUILD" == "true" ]; then
