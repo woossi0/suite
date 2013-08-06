@@ -57,7 +57,7 @@
         <exclude name="**/lib/xalan*.jar"/>
         <exclude name="**/lib/xerces*.jar"/>
       </fileset>
-      <fileset dir="geoserver" includes="WEB-INF/jboss-classloading.xml"/>
+      <fileset dir="geoserver/jboss" includes="WEB-INF/jboss-classloading.xml"/>
     </jar>
   </target>
 </project>
