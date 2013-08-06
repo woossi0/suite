@@ -47,8 +47,8 @@
       <artifactId>printing</artifactId>
       <exclusions>
         <exclusion>
-           <groupId>com.vividsolutions</groupId>
-           <artifactId>jts</artifactId>
+          <groupId>com.vividsolutions</groupId>
+          <artifactId>jts</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -73,7 +73,7 @@
       <artifactId>gdal</artifactId>
       <version>1.9.1</version>
     </dependency>
-    
+
     <!-- opengeo specific stuff -->
     <dependency>
       <groupId>org.opengeo.geoserver</groupId>
@@ -90,7 +90,8 @@
       <artifactId>web-theme</artifactId>
       <version>${project.version}</version>
     </dependency>
-   <!-- Jetty test deps so that we can start GeoServer from an IDE as well -->
+
+    <!-- Jetty test deps so that we can start GeoServer from an IDE as well -->
     <dependency>
       <groupId>org.mortbay.jetty</groupId>
       <artifactId>jetty</artifactId>
@@ -109,25 +110,25 @@
   </dependencies>
 
   <build>
-   <plugins>
-    <plugin>
-      <inherited>true</inherited>
-      <artifactId>maven-war-plugin</artifactId>
-      <version>2.3</version>
-      <configuration>
-        <warName>geoserver</warName>
-        <webappDirectory>${project.build.directory}/geoserver</webappDirectory>
-      </configuration>
-      <executions>
-        <execution>
-           <phase>install</phase> 
-           <goals>
-             <goal>war</goal>
-           </goals>
-        </execution>
-      </executions>
-    </plugin>
-    <plugin>
+    <plugins>
+      <plugin>
+        <inherited>true</inherited>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <warName>geoserver</warName>
+          <webappDirectory>${project.build.directory}/geoserver</webappDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <goals>
+              <goal>war</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
@@ -135,18 +136,19 @@
             <phase>package</phase>
             <configuration>
               <tasks>
-  <!-- check if config is available, if not fail -->
-  <available file="${dataDir}" property="configIsAvailable" 
-/>
-  <fail message="Unable to locate configuration: ${dataDir}"
- unless="configIsAvailable" />
 
-  <!-- copy the files from the config dir to the webapp dir -->
-  <echo message="Copying data dir from ${dataDir}" />
-  <copy todir="${webappSourceDirectory}/data" overwrite="true">
-     <fileset dir="${dataDir}" includes="**/**"/>
-  </copy>
-              </tasks>
+<!-- check if config is available, if not fail -->
+<available file="${dataDir}" property="configIsAvailable"/>
+<fail message="Unable to locate configuration: ${dataDir}" 
+  unless="configIsAvailable" />
+
+<!-- copy the files from the config dir to the webapp dir -->
+<echo message="Copying data dir from ${dataDir}" />
+<copy todir="${webappSourceDirectory}/data" overwrite="true">
+  <fileset dir="${dataDir}" includes="**/**"/>
+</copy>
+
+             </tasks>
             </configuration>
             <goals>
               <goal>run</goal>
@@ -157,57 +159,53 @@
             <phase>clean</phase>
             <configuration>
               <tasks>
-  <delete dir="${webappSourceDirectory}/data" />
+                <delete dir="${webappSourceDirectory}/data" />
               </tasks>
             </configuration>
             <goals>
               <goal>run</goal>
             </goals>
           </execution>
-         <execution>
-           <id>clean</id>
-           <phase>clean</phase>
-           <configuration>
-             <tasks>
-               <delete dir="${warSourceDirectory}"/>
-             </tasks>
-           </configuration>
-           <goals>
-             <goal>run</goal>
-           </goals>
-         </execution>
-         <execution>
-           <id>generate-resources</id>
-           <phase>generate-resources</phase>
-           <configuration>
-             <tasks>
-               <mkdir dir="${warSourceDirectory}"/>
-               <copy todir="${warSourceDirectory}">
-                 <fileset dir="${basedir}/../../externals/geoserver/src/web/app/src/main/webapp" includes="**/*"/>
-               </copy>
-             </tasks>
-           </configuration>
-           <goals>
-             <goal>run</goal>
-           </goals>
-         </execution>
-         <execution>
-           <id>hack-printing</id>
-           <phase>install</phase>
+          <execution>
+            <id>clean</id>
+            <phase>clean</phase>
+            <configuration>
+              <tasks>
+                <delete dir="${warSourceDirectory}"/>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>generate-resources</id>
+            <phase>generate-resources</phase>
+            <configuration>
+              <tasks>
+                <mkdir dir="${warSourceDirectory}"/>
+                <copy todir="${warSourceDirectory}">
+                  <fileset dir="${basedir}/../../externals/geoserver/src/web/app/src/main/webapp" includes="**/*"/>
+                </copy>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>hack-printing</id>
+            <phase>install</phase>
             <configuration>
               <tasks>
                 <property name="target" value="${project.build.directory}"/>
                 <property name="tmp" value="${target}/tmp"/>
-
                 <mkdir dir="${tmp}"/>
                 <unjar src="${target}/geoserver/WEB-INF/lib/printing-${gs.version}.jar" dest="${tmp}"/>
-
                 <copy file="${dataDir}/printing/config.yaml" tofile="${tmp}/org/geoserver/printing/default-config.yaml" overwrite="yes"/>
                 <jar destfile="${target}/printing-${gs.version}.jar" basedir="${tmp}"/>
                 <delete dir="${target}/tmp"/>
-
                 <copy file="${target}/printing-${gs.version}.jar" todir="${target}/geoserver/WEB-INF/lib" overwrite="true"/>
-               
                 <delete file="${target}/geoserver.war"/>
                 <jar destfile="${target}/geoserver.war" basedir="${target}/geoserver"/>
               </tasks>
@@ -215,11 +213,10 @@
             <goals>
               <goal>run</goal>
             </goals>
-         </execution>
-       </executions>
-    </plugin>
-
-   </plugins>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
   <properties>
@@ -229,4 +226,5 @@
     <configDirectory>../../data_dir/target</configDirectory>
     <dataDir>${configDirectory}/${configId}</dataDir>
   </properties>
+
 </project>
