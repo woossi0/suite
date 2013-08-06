@@ -1,5 +1,5 @@
 <assembly>
-  <id>control-flow</id>
+  <id>controlflow</id>
   <formats>
     <format>zip</format>
   </formats>
@@ -9,6 +9,13 @@
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>control-flow-*.jar</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>assembly/geoserver</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>controlflow.properties</include>
       </includes>
     </fileSet>
   </fileSets>

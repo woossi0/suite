@@ -17,9 +17,15 @@
  <name>OpenGeo Suite Assembly</name>
 
  <dependencies>
+   <!-- core geoserver extensions -->
    <dependency>
      <groupId>org.geoserver.extension</groupId>
      <artifactId>control-flow</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.geoserver.extension</groupId>
+     <artifactId>css</artifactId>
      <version>${gs.version}</version>
    </dependency>
    <dependency>
@@ -38,11 +44,49 @@
      <version>${gs.version}</version>
    </dependency>
    <dependency>
+     <groupId>org.geoserver.script</groupId>
+     <artifactId>script-py</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.geoserver.script</groupId>
+     <artifactId>script-js</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.geoserver.script</groupId>
+     <artifactId>script-js</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.geotools</groupId>
+     <artifactId>gt-imageio-ext-gdal</artifactId>
+     <version>${gt.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.geotools</groupId>
+     <artifactId>gt-ogr-jni</artifactId>
+     <version>${gt.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.gdal</groupId>
+     <artifactId>gdal</artifactId>
+     <version>1.9.1</version>
+   </dependency>
+
+   <!-- opengeo specific extensions -->
+   <dependency>
+     <groupId>org.opengeo.geoserver</groupId>
+     <artifactId>web-wps</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
      <groupId>org.opengeo.geoserver</groupId>
      <artifactId>mapmeter</artifactId>
      <version>${gs.version}</version>
    </dependency>
  </dependencies>
+
  <build>
    <plugins>
      <plugin>

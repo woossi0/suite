@@ -187,10 +187,15 @@
            <descriptor>assembly/pgadmin-postgis.xml</descriptor>
            <descriptor>assembly/geoexplorer-static.xml</descriptor>
            <descriptor>assembly/geoserver/control-flow.xml</descriptor>
+           <descriptor>assembly/geoserver/css.xml</descriptor>
            <descriptor>assembly/geoserver/data-dir.xml</descriptor>
+           <descriptor>assembly/geoserver/gdal.xml</descriptor>
            <descriptor>assembly/geoserver/importer.xml</descriptor>
-           <descriptor>assembly/geoserver/mapmeter.xml</descriptor>
            <descriptor>assembly/geoserver/jdbcconfig.xml</descriptor>
+           <descriptor>assembly/geoserver/mapmeter.xml</descriptor>
+           <descriptor>assembly/geoserver/script-py.xml</descriptor>
+           <descriptor>assembly/geoserver/script-js.xml</descriptor>
+           <descriptor>assembly/geoserver/wps.xml</descriptor>
          </descriptors>
        </configuration>
      </plugin>
