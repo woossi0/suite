@@ -191,8 +191,7 @@
            <descriptor>assembly/geoserver/gdal.xml</descriptor>
            <descriptor>assembly/geoserver/jdbcconfig.xml</descriptor>
            <descriptor>assembly/geoserver/mapmeter.xml</descriptor>
-           <descriptor>assembly/geoserver/script-py.xml</descriptor>
-           <descriptor>assembly/geoserver/script-js.xml</descriptor>
+           <descriptor>assembly/geoserver/script.xml</descriptor>
            <descriptor>assembly/geoserver/wps.xml</descriptor>
          </descriptors>
        </configuration>

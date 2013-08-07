@@ -1,5 +1,5 @@
 <assembly>
-  <id>script-py</id>
+  <id>script</id>
   <formats>
     <format>zip</format>
   </formats>
@@ -8,14 +8,18 @@
       <directory>assembly/target/dependency</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
+        <include>gt-geojson*</include>
+        <include>gt-xsd-kml*</include>
+        <include>gt-process*</include>
+        <include>json-simple*</include>
         <include>script-core*</include>
         <include>script-py*</include>
         <include>geoscript-py*</include>
         <include>jython*</include>
-        <include>gt-process*</include>
-        <include>gt-geojson*</include>
-        <include>gt-xsd-kml*</include>
-        <include>json-simple*</include>
+        <include>script-js*</include>
+        <include>geoscript-js*</include>
+        <include>rhino*</include>
+        <include>jline*</include>
       </includes>
     </fileSet>
   </fileSets>
