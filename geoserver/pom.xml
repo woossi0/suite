@@ -85,6 +85,16 @@
         <version>${gs.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.geoserver.importer</groupId>
+        <artifactId>importer-web</artifactId>
+        <version>${gs.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.geoserver.importer</groupId>
+        <artifactId>importer-rest</artifactId>
+        <version>${gs.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.geoserver.script</groupId>
         <artifactId>script-py</artifactId>
         <version>${gs.version}</version>
