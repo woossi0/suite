@@ -64,6 +64,11 @@
       <artifactId>web-theme</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>xmlunit</groupId>
+      <artifactId>xmlunit</artifactId>
+      <scope>test</scope>
+    </dependency>
 
     <!-- Jetty test deps so that we can start GeoServer from an IDE as well -->
     <dependency>
