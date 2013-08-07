@@ -42,16 +42,6 @@
       <groupId>org.geoserver.importer</groupId>
       <artifactId>importer-rest</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.geoserver.community</groupId>
-      <artifactId>printing</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>com.vividsolutions</groupId>
-          <artifactId>jts</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
 
     <!-- opengeo specific stuff -->
     <dependency>
@@ -166,27 +156,6 @@
                 <copy todir="${warSourceDirectory}">
                   <fileset dir="${basedir}/../../externals/geoserver/src/web/app/src/main/webapp" includes="**/*"/>
                 </copy>
-              </tasks>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>hack-printing</id>
-            <phase>install</phase>
-            <configuration>
-              <tasks>
-                <property name="target" value="${project.build.directory}"/>
-                <property name="tmp" value="${target}/tmp"/>
-                <mkdir dir="${tmp}"/>
-                <unjar src="${target}/geoserver/WEB-INF/lib/printing-${gs.version}.jar" dest="${tmp}"/>
-                <copy file="${dataDir}/printing/config.yaml" tofile="${tmp}/org/geoserver/printing/default-config.yaml" overwrite="yes"/>
-                <jar destfile="${target}/printing-${gs.version}.jar" basedir="${tmp}"/>
-                <delete dir="${target}/tmp"/>
-                <copy file="${target}/printing-${gs.version}.jar" todir="${target}/geoserver/WEB-INF/lib" overwrite="true"/>
-                <delete file="${target}/geoserver.war"/>
-                <jar destfile="${target}/geoserver.war" basedir="${target}/geoserver"/>
               </tasks>
             </configuration>
             <goals>
