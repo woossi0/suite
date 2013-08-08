@@ -8,10 +8,6 @@
       <directory>assembly/target/dependency</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>gt-geojson*</include>
-        <include>gt-xsd-kml*</include>
-        <include>gt-process*</include>
-        <include>json-simple*</include>
         <include>script-core*</include>
         <include>script-py*</include>
         <include>geoscript-py*</include>
