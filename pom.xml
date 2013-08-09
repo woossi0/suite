@@ -188,6 +188,7 @@
            <descriptor>assembly/pgadmin-postgis.xml</descriptor>
            <descriptor>assembly/geoexplorer-static.xml</descriptor>
            <descriptor>assembly/geoserver/css.xml</descriptor>
+           <descriptor>assembly/geoserver/csw.xml</descriptor>
            <descriptor>assembly/geoserver/data-dir.xml</descriptor>
            <descriptor>assembly/geoserver/gdal.xml</descriptor>
            <descriptor>assembly/geoserver/jdbcconfig.xml</descriptor>

@@ -1,0 +1,25 @@
+<assembly>
+  <id>csw</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>assembly/target/dependency</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>csw-*.jar</include>
+        <include>gt-app-schema-resolver-*.jar</include>
+        <include>gt-complex-*.jar</include>
+        <include>gt-xsd-csw-*.jar</include>
+        <include>net.opengis.csw-*.jar</include>
+        <include>iso-19139-2007-*.jar</include>
+        <include>ows-1.0-*.jar</include>
+        <include>xlink-1.0-*.jar</include>
+        <include>filter-1.1-*.jar</include>
+        <include>gml-3.1-*.jar</include>
+        <include>gml-3.2-*.jar</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</assembly>
