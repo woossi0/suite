@@ -18,7 +18,7 @@ public class Start {
         String osType = System.getProperty("os.name");
         
         if (osType.startsWith("Windows")) {
-            ogConfigDir = new File(System.getenv("ALLUSERSPROFILE") + "\\OpenGeo\\OpenGeoSuite");
+            ogConfigDir = new File(System.getenv("ALLUSERSPROFILE") + "\\Boundless\\OpenGeo Suite");
         }
         else if (osType.startsWith("Mac OS")) {
             ogConfigDir = new File("/opt/opengeo/suite");
