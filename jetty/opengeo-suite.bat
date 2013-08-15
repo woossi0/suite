@@ -11,16 +11,16 @@ if "%1" == "" (
 
 REM Start
 if "%1" == "start" (
-  net start "OpenGeo PostgreSQL"
-  net start "OpenGeo Geoserver"
+  net start "OpenGeoPostgresService"
+  net start "OpenGeoGeoserverService"
   goto Done
 )
 
 
 REM Stop
 if "%1" == "stop" (
-  net stop "OpenGeo PostgreSQL"
-  net stop "OpenGeo Geoserver"
+  net stop "OpenGeoPostgresService"
+  net stop "OpenGeoGeoserverService"
   goto Done
 )
 
