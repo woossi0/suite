@@ -1,22 +1,21 @@
 .. _installation.aws:
 
 Installing OpenGeo Suite for AWS
-====================================
+================================
 
-The OpenGeo Suite is available as for use with Amazon's Amazon Web Service (AWS).
+OpenGeo Suite is available for use with `Amazon Web Service <http://aws.amazon.com>`_ (AWS).
 
 Pricing plans
 -------------
 
-There are two pricing options for purchasing the OpenGeo Suite on AWS: **Hourly** and **Monthly**. There is no difference in the software in either option.
+There are two pricing options for purchasing OpenGeo Suite on AWS: **Hourly** and **Monthly**. There is no difference in the software in either option.
 
-On the Hourly plan, you pay only for each hour in which your instance is running. This option is best for those who are just testing the software out, and don't plan on keeping the instance up and running constantly.
+* **On the Hourly plan, you pay for each hour that your instance is running**. This option is best for those who are just testing the software out, and don't plan on keeping the instance up and running constantly.
+* **On the Monthly plan, you pay a fixed monthly fee for instance usage**, regardless of instance uptime. This option is best for those who are building an instance that will be staying online permanently.
 
-On the Monthly plan, you pay a fixed monthly fee for instance usage, regardless of instance uptime. This option is best for those who are building an instance that will be staying online permanently.
+The Hourly plan, if left on over an entire month, will end up being more expensive than the Monthly plan, so it pays to consider your needs and intended usage.
 
-The Hourly plan, if left on over an entire month, will end up being more expensive than the Monthly plan.
-
-.. note:: Both the hourly and monthly plan pricing do not include additional AWS charges such as data transfer fees. 
+.. note:: Both the Hourly and Monthly plan pricing do not include additional AWS charges such as data transfer fees.
 
 Instance options
 ----------------
@@ -61,30 +60,28 @@ More details about instance sizes can be found on Amazon's `Amazon EC2 Instance 
 Purchasing
 ----------
 
-.. todo:: Will there be a main page?
-
-.. warning:: You need to have an Amazon Web Services (AWS) account with EC2 enabled in order to use the OpenGeo Suite for AWS. Amazon has detailed instructions on how to sign up for AWS/EC2 at http://aws.amazon.com/documentation/ec2/.
+.. warning:: You need to have an Amazon Web Services (AWS) account with EC2 enabled in order to use OpenGeo Suite for AWS. Amazon has `detailed instructions on how to sign up for AWS/EC2 <http://aws.amazon.com/documentation/ec2/>`_.
 
 #. Navigate to http://aws.amazon.com and log in by clicking :guilabel:`My Account / Console` and then :guilabel:`My account`. 
 
    .. figure:: img/signin.png
 
-      *Signing in to AWS*
+      Signing in to AWS
 
-#. Navigate to the appropriate page:
+#. Navigate to the appropriate product page:
 
    * `Hourly plan <https://aws.amazon.com/marketplace/pp/B00ED5D1TA>`_
    * `Monthly plan <https://aws.amazon.com/marketplace/pp/B00ED5EGP8>`_
 
-   .. note:: All screenshots on this page will show the Hourly plans, but the details are the same for both.
+   .. note:: All screenshots on this page show the Hourly plan, but the details are the same for both.
 
    .. figure:: img/front.png
 
-      Front page of OpenGeo Suite for AWS offering
+      OpenGeo Suite for AWS product page
 
 #. Click :guilabel:`Continue`. Don't worry about any of the options on the Pricing Details box; you'll have the ability to make those settings on the next page.
 
-#. The following page contains settings, divided into five boxes: :guilabel:`Version`, :guilabel:`Region`, :guilabel:`EC2 instance type`, :guilabel:`Security group`, and :guilabel:`Key Pair`. These boxes and be expanded by clicking them.
+#. The following page contains settings, divided into five boxes: :guilabel:`Version`, :guilabel:`Region`, :guilabel:`EC2 instance type`, :guilabel:`Security group`, and :guilabel:`Key Pair`. These boxes can be expanded by clicking them.
 
    .. figure:: img/settings.png
 
@@ -118,7 +115,7 @@ Purchasing
 
       Security Group box
 
-#. **Key Pair**. In order to be able to connect to your instance via SSH/terminal, you will need to select a saved key pair. 
+#. **Key Pair**. In order to be able to connect to your instance via SSH, you will need to select a saved key pair. 
 
    .. figure:: img/settings-keypairblank.png
 
@@ -144,13 +141,15 @@ Purchasing
 
          Key pair successfully created
 
-      .. figure:: img/settings-keypairfilled.png
+#. Now return to the the settings page, and refresh. Ensure that your settings are still correct, as some setting may revert to their defaults. You should see yoru key pair listed in the :guilabel:`Key pair` box.
 
-         Key pair box with key pair listed
+   .. figure:: img/settings-keypairfilled.png
 
-#. Now back at the :guilabel:`Launch on EC2 page`, all options should be properly set. Click :guilabel:`Accept terms and Launch with 1-Click`.
+      Key pair box with key pair listed
 
-   .. note:: If you skipped the creation of the key pair, you will see a warning. We recommend creating a key pair now, even if you don't anticipate connecting to the instance via SSH or the terminal, so you will have the option of doing so at a later date.
+#. Click :guilabel:`Accept terms and Launch with 1-Click`.
+
+   .. note:: If you skipped the creation of the key pair, you will see a warning. We recommend creating a key pair now, even if you don't anticipate connecting to the instance via SSH, so you will have the option of doing so at a later date.
 
       .. figure:: img/nokeypair.png
 
@@ -168,14 +167,26 @@ Purchasing
 
       Waiting for OpenGeo Suite to be ready
 
-.. todo:: More details about what happens after purchase.
+#. After a short delay, refresh the page to see the instance in the list.
+
+   .. figure:: img/subscription-ready.png
+
+      OpenGeo Suite in the software list
+
+#. Click the plus icon to expand the options.
+
+   .. figure:: img/subscription-expanded.png
+
+      Expanded options
+
+#. Finally, click :guilabel:`Access Software` to access the OpenGeo Suite Dashboard. If the Dashboard loads successfully, your instance is up and running. Take note of the DNS entry as it pertains to SSH access.
 
 SSH access
 ----------
 
-.. todo:: Not verified as part of AWS Marketplace
+SSH access requires that port 22 was opened as part of the Security Group created during the launching of your instance. The default security group, if used, will contain this setting.
 
-.. note:: This step requires that port 22 was opened in the Security Group created during the launching of your instance and that a key pair was generated.
+A keypair must also have been generated and linked to the instance.
 
 Linux / Mac OS X
 ~~~~~~~~~~~~~~~~
@@ -184,7 +195,7 @@ You may connect to this instance via SSH using the ``ssh`` command:
 
 .. code-block:: console
 
-   ssh -i yourkey.pem ubuntu@<Public DNS>
+   ssh -i yourkey.pem ubuntu@<Public_DNS>
 
 For example:
 
@@ -213,7 +224,7 @@ To connect with PuTTY using the command line:
 
 .. code-block:: console
 
-   putty -i yourkey.ppk -ssh ubuntu@<Public DNS>
+   putty -i yourkey.ppk -ssh ubuntu@<Public_DNS>
 
 For example:
 
@@ -226,8 +237,6 @@ where :file:`yourkey.ppk` is the name of the key file created by PuTTYgen.
 PostGIS
 -------
 
-.. todo:: Not verified as part of AWS Marketplace
-
 There is no web-based access to PostGIS, but there are two ways to connect to manage PostGIS:
 
 * Using the command-line utility ``psql`` via SSH.
@@ -238,28 +247,27 @@ Starting/stopping services
 
 .. todo:: Not verified as part of AWS Marketplace
 
-There are two system services used in the OpenGeo Suite:  **Apache Tomcat** (for GeoServer and all other webapps) and **PostgreSQL** (for PostGIS). While these services are started by default when the instance is instantiated, here are the commands to stop and start these services should it become necessary:
+OpenGeo Suite uses two system services:  **Apache Tomcat** (for GeoServer and all other webapps) and **PostgreSQL** (for PostGIS). While all services are running by default when the instance is initialized, here are the commands to stop and start these services should it become necessary:
 
-For PostGIS:
-
-.. code-block:: console
-
-   service postgresql-9.2 stop
-   service postgresql-9.2 start
 
 For Tomcat:
 
 .. code-block:: console
 
-   service tomcat5 stop
-   service tomcat5 start
+   service tomcat6 stop
+   service tomcat6 start
+
+For PostGIS:
+
+.. code-block:: console
+
+   service postgresql stop
+   service postgresql start
 
 For more information
 --------------------
 
 Full documentation is available at the following URL from your instance::
 
-  http://<Public DNS>:8080/opengeo-docs/
-
-Please `contact OpenGeo <http://opengeo.org/about/contact/>`_ for more information.
+  http://<Public_DNS>:8080/opengeo-docs/
 
