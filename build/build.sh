@@ -5,16 +5,17 @@
 
 set -x
 
-DIST_PATH=`init_dist_path $DIST_PATH`
+DIST_ROOT=/var/www/suite
 
-ALIAS=$REV
-if [ "$ALIAS" == "HEAD" ]; then
-  ALIAS="latest"
-fi
+# build category
+build_cat=`init_build_cat $CAT`
+
+# build name
+build_name="init_build_name $NAME"
 
 # set up the maven repository for this particular branch/tag/etc...
 #TODO: fix dist_path logic and how it relates to maven repo, etc...
-MVN_SETTINGS=`init_mvn_repo latest`
+MVN_SETTINGS=`init_mvn_repo $MVN_REPO`
 export MAVEN_OPTS=-Xmx256m
 
 # checkout the requested revision to build
@@ -30,9 +31,10 @@ if [ ! -z $REV ]; then
   git submodule update --init --recursive
 fi
 
-# extract the revision number
-export revision=`get_rev .`
-build_info="-Dbuild.date=$BUILD_ID -Dbuild.revision=$revision"
+# extract the actual revision number
+export build_rev=`get_rev .`
+
+build_info="-Dbuild.date=$BUILD_ID -Dbuild.revision=$build_rev"
 
 gs_externals="geoserver/externals"
 gs_rev=`get_submodule_rev $gs_externals/geoserver`
@@ -43,11 +45,11 @@ gwc_rev=`get_submodule_rev $gs_externals/geowebcache`
 gwc_branch=`get_submodule_branch $gs_externals/geowebcache`
 
 # only use first seven chars
-revision=${revision:0:7}
+build_rev=${revision:0:7}
 
-echo "building $revision ($REV) with maven settings $MVN_SETTINGS"
+echo "building $build_rev ($REV) with maven settings $MVN_SETTINGS"
 
-dist=/var/www/suite/$DIST_PATH/$revision
+dist=$DIST_ROOT/$build_cat/$build_rev
 if [ ! -e $dist ]; then
   mkdir -p $dist
 fi
@@ -67,23 +69,31 @@ checkrv $? "maven assembly"
 # copy the new artifacts into place
 cp target/*.zip $dist
 
+# alias the build with the build name
+dist_alias=$DIST_ROOT/$build_cat/$build_name
+[ -e $dist_alias ] && [ unlink $dist_alias ]
+ln -sf $dist $dist_alias
+
 # Archive build if requested
 if [ "$ARCHIVE_BUILD" == "true" ]; then
-  cp -r $dist /var/www/suite/archive/$ALIAS
+  dist_arch=$DIST_ROOT/archive/$build_name
+  [ -e $dist_arch ] && [ rm -rf $dist_arch ];
+  cp -r $dist $dist_arch
 else
   ARCHIVE_BUILD="false"
 fi
 
 # clean up old artifacts
 pushd $dist/..
+
 # keep around last two builds
 ls -lt | grep -v "^l" | cut -d ' ' -f 8 | tail -n +3 | xargs rm -rf 
 popd
 
-# start_remote_job <url> <name> <profile>
+# start_remote_job <url> <name>
 function start_remote_job() {
-   curl -k --connect-timeout 10 "$1/buildWithParameters?DIST_PATH=${DIST_PATH}&REVISION=${revision}&ALIAS=${ALIAS}&PROFILE=$3&ARCHIVE_BUILD=${ARCHIVE_BUILD}"
-   checkrv $? "trigger $2 $3 with ${DIST_PATH} r${revision}"
+   curl -k --connect-timeout 10 "$1/buildWithParameters?CAT=${build_cat}&REV=${REV}&NAME=${build_name}&ARCHIVE_BUILD=${ARCHIVE_BUILD}"
+   checkrv $? "trigger $2 with ${build_cat} r${rev}"
 }
 
 WIN=192.168.50.40
@@ -92,13 +102,7 @@ OSX=192.168.50.35
 # start the build of the OSX installer
 start_remote_job http://$OSX:8080/job/osx-installer "osx installer"
 
-# start the build of the OSX installer (ee)
-start_remote_job http://$OSX:8080/job/osx-installer "osx installer" ee
-
 # start the build of the Windows installer
 start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer"
-
-# start the build of the Windows installer (ee)
-#start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer" ee
 
 echo "Done."

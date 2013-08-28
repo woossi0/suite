@@ -11,8 +11,17 @@ function checkrv {
   fi
 }
 
-# init_dist_path <dist_path>
-function init_dist_path {
+# init_build_cat <cat>
+function init_build_cat {
+  if [ -z "$1" ]; then
+    echo -n "dev"
+  else
+    echo -n "$1"
+  fi
+}
+
+# init_build_cat <name>
+function init_build_name {
   if [ -z "$1" ]; then
     echo -n "latest"
   else
@@ -23,19 +32,21 @@ function init_dist_path {
 # init_mvn_repo <name>
 function init_mvn_repo {
   # set up the maven repository for this particular branch/tag/etc...
-  local MVN_REPO=$1
-  local MVN_SETTINGS_TEMPLATE=$WORKSPACE/repo/build/settings.xml
-
-  pushd $WORKSPACE/maven > /dev/null
-
-  local MVN_SETTINGS=`pwd`/$MVN_REPO/settings.xml 
-  if [ ! -d $MVN_REPO ]; then
-    echo "Creating new maven repository at `pwd`/$MVN_REPO"
-    mkdir -p $MVN_REPO
-    sed "s#@PATH@#`pwd`/$MVN_REPO/repo#g" $MVN_SETTINGS_TEMPLATE | sed 's#<\!--\(localRepository>.*</localRepository\)-->#<\1>#g' > $MVN_SETTINGS
-    cp -R repo-template $MVN_REPO/repo
+  local name=$1
+  if [ -z "$name" ]; then
+    name="default"
   fi
-  popd > /dev/null
+  local mvn_root=$WORKSPACE/mvn/$name
+  local mvn_repo=$mvn_root/repo
+  local mvn_settings=$mvn_root/settings.xml
+  local mvn_settings_template=$WORKSPACE/mvn/settings.xml.in
+
+  if [ ! -d $mvn_root ]; then
+    echo "Creating new maven repository at $mvn_root"
+    mkdir -p $mvn_repo
+    sed "s/@REPO_NAME@/$name/g" $mvn_settings_template > $mvn_settings
+  fi
+
   echo -n $MVN_SETTINGS
 }
 
