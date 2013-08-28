@@ -56,8 +56,13 @@ fi
 
 echo "exporting artifacts to: $dist"
 
+full_build="-Dfull"
+if [ "$FULL_BUILD" == "no" ]; then
+  full_build=""
+fi
+
 # perform a full build
-$MVN -s $MVN_SETTINGS -Dfull -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info -Dgs.flags="-Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev" $BUILD_FLAGS clean install
+$MVN -s $MVN_SETTINGS $full_build -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info -Dgs.flags="-Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev" $BUILD_FLAGS clean install
 checkrv $? "maven install"
 
 $MVN -s $MVN_SETTINGS initialize assembly:attached $build_info
