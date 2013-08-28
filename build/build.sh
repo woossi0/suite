@@ -19,7 +19,7 @@ MVN_SETTINGS=`init_mvn_repo $MVN_REPO`
 export MAVEN_OPTS=-Xmx256m
 
 # checkout the requested revision to build
-cd repo
+cd git
 if [ ! -z $REV ]; then
   git checkout $REV
 
