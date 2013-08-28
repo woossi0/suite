@@ -47,7 +47,7 @@ function init_mvn_repo {
     sed "s/@REPO_NAME@/$name/g" $mvn_settings_template > $mvn_settings
   fi
 
-  echo -n $MVN_SETTINGS
+  echo -n $mvn_settings
 }
 
 # get_rev <path>
