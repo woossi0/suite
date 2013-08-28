@@ -44,7 +44,14 @@ function init_mvn_repo {
   if [ ! -d $mvn_root ]; then
     echo "Creating new maven repository at $mvn_root"
     mkdir -p $mvn_repo
-    sed "s/@REPO_NAME@/$name/g" $mvn_settings_template > $mvn_settings
+
+    if [ -e $mvn_settings_template ]; then
+      sed "s/@REPO_NAME@/$name/g" $mvn_settings_template > $mvn_settings
+    else
+      echo "<settings> 
+  <localRepository>$mvn_repo</localRepository>
+</settings>" > $mvn_settings
+    fi
   fi
 
   echo -n $mvn_settings
