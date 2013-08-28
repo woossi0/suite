@@ -126,12 +126,12 @@ function proxyPass(config) {
     }
     exchange.wait();
     var headers = new Headers(objects.clone(exchange.headers));
+    // strip out transfer-encoding header because we run our own
+    headers.unset("Transfer-Encoding");
     if (!config.allowAuth) {
         // strip out authorization and cookie headers
         headers.unset("WWW-Authenticate");
         headers.unset("Set-Cookie");
-        // strip out transfer-encoding header because we run our own
-        headers.unset("Transfer-Encoding");
     }
     return {
         status: exchange.status,
