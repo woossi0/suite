@@ -16,7 +16,9 @@ build_name="init_build_name $NAME"
 # set up the maven repository for this particular branch/tag/etc...
 #TODO: fix dist_path logic and how it relates to maven repo, etc...
 MVN_SETTINGS=`init_mvn_repo $MVN_REPO`
-export MAVEN_OPTS=-Xmx256m
+if [ -z $MAVEN_OPTS ]; then
+  export MAVEN_OPTS=-Xmx256m
+fi
 
 # checkout the requested revision to build
 cd git
