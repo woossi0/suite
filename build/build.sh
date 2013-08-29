@@ -11,7 +11,7 @@ DIST_ROOT=/var/www/suite
 build_cat=`init_build_cat $CAT`
 
 # build name
-build_name="init_build_name $NAME"
+build_name=`init_build_name $NAME`
 
 # set up the maven repository for this particular branch/tag/etc...
 #TODO: fix dist_path logic and how it relates to maven repo, etc...
@@ -47,7 +47,7 @@ gwc_rev=`get_submodule_rev $gs_externals/geowebcache`
 gwc_branch=`get_submodule_branch $gs_externals/geowebcache`
 
 # only use first seven chars
-build_rev=${revision:0:7}
+build_rev=${build_rev:0:7}
 
 echo "building $build_rev ($REV) with maven settings $MVN_SETTINGS"
 
