@@ -42,7 +42,6 @@ function init_mvn_repo {
   local mvn_settings_template=$WORKSPACE/mvn/settings.xml.in
 
   if [ ! -d $mvn_root ]; then
-    echo "Creating new maven repository at $mvn_root"
     mkdir -p $mvn_repo
 
     if [ -e $mvn_settings_template ]; then
