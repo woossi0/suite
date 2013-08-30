@@ -3,17 +3,17 @@ Color Overrides
 -----------------------*/
 
 h1, h2, h3, h4, h5, h6 {
-  color: #0A2742; /* was #0076A1 */
+  color: #00A78D;
 }
 
 a:link, a:visited {
-  color: #103F6B; /* was #0076A1 */
+  color: #28728D;
 }
 
 thead th {
-  background: #0A2742;
+  background: #00A78D;
   color: #fff;
-  border-color: #103F6B; /* was #0076A1 */
+  border-color: #28728D;
 }
 
 thead th a:link, 
@@ -22,23 +22,22 @@ thead th a:visited {
 }
 
 tr.even td, tr.even th {
-  background: #A8BCCF;
+  background: #ccede8;
 }
 
 tr:hover td,
 tr.even:hover td,
 tr.even:hover th {
-  background: #F0F5EF;
+  background: #fffaeb;
 }
-
 
 .paginator a,
 .paginator em {
-  border: 1px solid #486300;
+  border: 1px solid #28728D;
 }
 
 .paginator a:hover {
-  background: #103F6B; /* was #0076A1 */
+  background: #ccede8;
 }
 
 .button-group a,
@@ -46,15 +45,14 @@ tr.even:hover th {
 input.btnTxt {
   background-color: #fff;
   background-image: none;
-  color: #486300;
-  border-color: #486300;
+  color: #28728D;
+  border-color: #28728D;
 }
 
 .button-group a:hover,
 .button-group button:hover,
 input.btnTxt:hover {
-  background: #A8BCCF url('../img_opengeo/button-gradient.png') repeat-x scroll left top;
-
+  background: #7EB5D3 url('../img_opengeo/button-gradient.png') repeat-x scroll left top;
 }
 
 .status-bar span, 
@@ -80,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #main {
-  border-top: 2px solid #8a7d79;
+  border-top: 1px solid #28728D;
   background-image: url('../img_opengeo/main-bg.png');
 }
 
@@ -101,9 +99,13 @@ h1, h2, h3, h4, h5, h6 {
   background: url('../img_opengeo/powered-by.png') no-repeat bottom left;
 }
 
+.navigation-tab {
+	border-width: 1px;
+	border-color: #28728D;
+}
 .navigation-tab-single, .navigation-tab-header,
 .navigation-tab-single a, .navigation-tab-header a, .navigation-tab-content a {
-  color: #291C17; /* was #0076A1 */
+  color: #28728D;
 }
 
 /*---------------------------------
