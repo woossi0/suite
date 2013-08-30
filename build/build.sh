@@ -86,7 +86,7 @@ dist_alias=$DIST_ROOT/$build_cat/$build_name
 mkdir -p $dist_alias
 for f in `ls $dist`; do
   g=`echo $f | sed "s/\(opengeosuite-\)[0-9a-z]\+\(-.*\)/\1$build_name\2/g"`
-  echo "ln -sf $dist/$f $dist_alias/$g"
+  ln -sf $dist/$f $dist_alias/$g
 done
 
 # Archive build if requested
