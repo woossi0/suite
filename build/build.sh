@@ -67,6 +67,10 @@ fi
 $MVN -s $MVN_SETTINGS $full_build -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info -Dgs.flags="-Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev" $BUILD_FLAGS clean install
 checkrv $? "maven install"
 
+# clean out old assembly artifacts, usually maven clean does this but it could
+# be skipped if this not a full build
+rm target/*.zip
+
 $MVN -s $MVN_SETTINGS initialize assembly:attached $build_info
 checkrv $? "maven assembly"
 
@@ -78,8 +82,12 @@ cp target/*.zip $dist
 
 # alias the build with the build name
 dist_alias=$DIST_ROOT/$build_cat/$build_name
-[ -e $dist_alias ] && [ unlink $dist_alias ]
-ln -sf $dist $dist_alias
+[ -e $dist_alias ] && [ rm -rf $dist_alias ]
+mkdir -p $dist_alias
+for f in `ls $dist`; do
+  g=`echo $f | sed "s/\(opengeosuite-\)[0-9a-z]\+\(-.*\)/\1$build_name\2/g"`
+  echo "ln -sf $dist/$f $dist_alias/$g"
+done
 
 # Archive build if requested
 if [ "$ARCHIVE_BUILD" == "true" ]; then
