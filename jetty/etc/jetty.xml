@@ -175,7 +175,7 @@
     <!-- =========================================================== -->
     <!-- Configure Request Log                                       -->
     <!-- =========================================================== -->
-    <Ref id="requestLog">
+    <!--Ref id="requestLog">
       <Set name="requestLog">
         <New id="requestLogImpl" class="org.mortbay.jetty.NCSARequestLog">
           <Arg><SystemProperty name="user.home" default="./logs"/>/.opengeo/logs/yyyy_mm_dd.request.log</Arg>
@@ -185,7 +185,7 @@
           <Set name="LogTimeZone">GMT</Set>
         </New>
       </Set>
-    </Ref>
+    </Ref-->
 
     <!-- =========================================================== -->
     <!-- extra options                                               -->
