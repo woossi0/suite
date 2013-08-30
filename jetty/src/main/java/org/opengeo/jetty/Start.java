@@ -21,7 +21,7 @@ public class Start {
             ogConfigDir = new File(System.getenv("ALLUSERSPROFILE") + "\\Boundless\\OpenGeo Suite");
         }
         else if (osType.startsWith("Mac OS")) {
-            ogConfigDir = new File("/opt/opengeo/suite");
+            ogConfigDir = new File(System.getenv("HOME") + "/Library/Application Support/Geoserver");
         }
         else {
             System.exit(1);
