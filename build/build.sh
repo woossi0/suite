@@ -101,8 +101,8 @@ fi
 # clean up old artifacts
 pushd $dist/..
 
-# keep around last two builds
-ls -lt | grep -v "^l" | cut -d ' ' -f 8 | tail -n +3 | xargs rm -rf 
+# keep around last two builds (plus the last alias we created)
+ls -t | tail -n +3 | xargs rm -rf
 popd
 
 # start_remote_job <url> <name>
@@ -115,9 +115,9 @@ WIN=192.168.50.40
 OSX=192.168.50.35
 
 # start the build of the OSX installer
-start_remote_job http://$OSX:8080/job/osx-installer "osx installer"
+#start_remote_job http://$OSX:8080/job/osx-installer "osx installer"
 
 # start the build of the Windows installer
-start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer"
+#start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer"
 
 echo "Done."
