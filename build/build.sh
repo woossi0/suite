@@ -59,7 +59,7 @@ fi
 echo "exporting artifacts to: $dist"
 
 full_build="-Dfull"
-if [ "$FULL_BUILD" == "no" ]; then
+if [ "$FULL_BUILD" == "no" ] || [ "$FULL_BUILD" == "false" ]; then
   full_build=""
 fi
 
