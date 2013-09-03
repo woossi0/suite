@@ -192,4 +192,14 @@ that offline mode should be used::
 
   % mvn clean install -Dfull -Doffline
 
+Building PDFs
+^^^^^^^^^^^^^
 
+The build will attempt to build PDF versions of the installation documentation
+if the ``pdflatex`` command is avaialble on the ``PATH``. If the command is
+not avaialable the build will skip PDF generation.
+
+The ``pdflatex`` requires installing Latex which can be tricky depending on the
+platform. On Ubuntu systems install the following packages::
+
+  % apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
