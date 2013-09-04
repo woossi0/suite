@@ -1,9 +1,7 @@
-.. _sysadmin.security.multipleusers:
+.. _sysadmin.security.multiuser:
 
 Working with multiple GeoServer users
 =====================================
-
-.. warning:: Document status: **Needs technical review and figure**
 
 This section discusses how to set up GeoServer with multiple users based on a common security scenario.
 
@@ -19,9 +17,9 @@ By default, GeoServer comes with two users:
 * An administrative account (``admin``)—This account has the ability to read or write anything in the GeoServer catalog.
 * A master, or ``root``, account—This is an administrator account of "last resort" that is only to be used for disaster recovery purposes. This account can not be disabled or modified. See the GeoServer documentation on the `root account <../../../geoserver/security/root.html>`_.
 
-In addition to the named users above, many functions are available through anonymous access, with no user account required. Functions allowed anonymously include viewing capabilities documents, executing GetFeature and GetMap requests, and using the Demo Request Builder.
+In addition to the named users above, many functions are available through anonymous access, with no user account required. Functions allowed anonymously by default include viewing capabilities documents, executing GetFeature and GetMap requests, and using the Demo Request Builder.
 
-Reading to set up a multi-user system
+Reasons to set up a multi-user system
 -------------------------------------
 
 There are good reasons to set up accounts with granular access. Many of these considerations are not unique to GeoServer, but instead apply to any security situation:
@@ -30,9 +28,7 @@ There are good reasons to set up accounts with granular access. Many of these co
 * Minimizing disaster—Accounts with more fine-grained access lack the ability to accidentally (or maliciously) inflict widespread damage to the system.
 * Audit trail—Sequestering access to certain GeoServer resources allows system administrators to keep track of who has made what changes.
 
-.. todo:: What other reasons?
-
-.. todo:: Can we even audit who has done what in GeoServer?
+.. todo:: What other reasons? Can we audit who has done what in GeoServer?
 
 Multi-user scenario
 -------------------
@@ -66,7 +62,7 @@ Public layers as defined above will be in a workspace called ``public``, and pri
 
 .. figure:: img/workspaces.png
 
-   *Workspaces used in this tutorial*
+   Workspaces used in this tutorial
 
 Creating roles
 --------------
@@ -77,49 +73,49 @@ Setting up roles can be done through the GeoServer web admin interface. This wil
 
 .. note:: For more information, see the GeoServer documentation on `role services <../../../geoserver/security/usergrouprole/roleservices.html>`_.
 
-.. todo:: Is it worhh it to show how to do all this via REST?
+.. todo:: Show this via REST?
 
 #. Open up the GeoServer web interface and log in as the administrator account.
 
    .. figure:: img/adminloggedin.png
 
-      *Logged in as the adminstrator*
+      Logged in as the administrator
 
 #. Click :guilabel:`Users, Groups, Roles` under the :guilabel:`Security` column on the left side of the page.
 
    .. figure:: img/ugrlink.png
 
-      *Click to open the Users, Groups, Roles area*
+      Click to open the Users, Groups, Roles area
 
 #. Under the :guilabel:`Role Services` section, click the :guilabel:`default` role service.
 
    .. figure:: img/roleservicedefaultlink.png
 
-      *Click to edit the role service*
+      Click to edit the role service
 
 #. Click the :guilabel:`Roles` tab at the top.
 
    .. figure:: img/rolestablink.png
 
-      *Click to view the existing roles*
+      Click to view the existing roles
 
 #. The current list of roles will be shown. Click :guilabel:`Add new role`.
 
    .. figure:: img/addnewrolelink.png
 
-      *Click to add a new role*
+      Click to add a new role
 
 #. Enter ``ROLE_PRIVATE`` in the :guilabel:`Name` field and click :guilabel:`Save`.
 
    .. figure:: img/newrole.png
 
-      *Adding a new role*
+      Adding a new role
 
 #. Repeat the process, adding two more roles, ``ROLE_EDIT`` and ``ROLE_PRIVATEEDIT``.
 
    .. figure:: img/roles.png
 
-      *Full list of roles*
+      Full list of roles
 
 Creating users
 --------------
@@ -132,19 +128,19 @@ The next step is to create users and associate them with the newly-created roles
 
    .. figure:: img/ugservicedefaultlink.png
 
-      *Click to edit the user/group service*
+      Click to edit the user/group service
 
 #. Click the :guilabel:`Users` tab. This will show the current list of users.
 
    .. figure:: img/userstablink.png
 
-      *Click to view the existing users*
+      Click to view the existing users
 
 #. Click :guilabel:`Add new user`.
 
    .. figure:: img/addnewuserlink.png
 
-      *Click to add a new user*
+      Click to add a new user
 
 #. Fill out the form with the following information, leaving all other fields blank:
 
@@ -154,7 +150,7 @@ The next step is to create users and associate them with the newly-created roles
 
    .. figure:: img/newuser.png
 
-      *Adding a new user*
+      Adding a new user
 
 #. Click :guilabel:`Save`.
 
@@ -182,13 +178,13 @@ The ``private`` workspace is set up to store the private data. The ``private_vie
 
    .. figure:: img/datalink.png
 
-      *Click to open the data rules area*
+      Click to open the data rules area
 
 #. Click :guilabel:`Add new rule`.
 
    .. figure:: img/dataaddnewrulelink.png
 
-      *Click to add a new rule*
+      Click to add a new rule
 
 #. Fill out the form with the following information:
 
@@ -199,7 +195,7 @@ The ``private`` workspace is set up to store the private data. The ``private_vie
 
    .. figure:: img/newprivateviewrule.png
 
-      *Creating a rule to restrict viewing of private layers*
+      Creating a rule to restrict viewing of private layers
 
 #. Click :guilabel:`Save`.
 
@@ -219,7 +215,7 @@ The ``public`` workspace is set up to store the public data. While anonymous acc
 
    .. figure:: img/newpubliceditrule.png
 
-      *Creating a rule to restrict editing of public layers*
+      Creating a rule to restrict editing of public layers
 
 #. Click :guilabel:`Save`.
 
@@ -232,13 +228,13 @@ The ``public_editor`` and ``private_editor`` users are the only users that shoul
 
    .. figure:: img/serviceslink.png
 
-      *Click to open the service rules area*
+      Click to open the service rules area
 
 #. Click :guilabel:`Add new rule`.
 
    .. figure:: img/serviceaddnewrulelink.png
 
-      *Click to add a new service rule*
+      Click to add a new service rule
 
 #. Fill out the form with the following information:
 
@@ -248,13 +244,13 @@ The ``public_editor`` and ``private_editor`` users are the only users that shoul
 
    .. figure:: img/newservicerule.png
 
-      *Creating a new service rule*
+      Creating a new service rule
 
 #. Click :guilabel:`Save`.
 
    .. figure:: img/wfsrestricted.png
 
-      *Completed rule*
+      Completed rule
 
 5. Restrict editing of the private layers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -274,13 +270,13 @@ The ``private_editor`` user has been given read access to the ``private`` worksp
 
    .. figure:: img/newdatarule.png
 
-      *Creating a new data access rule*
+      Creating a new data access rule
 
 #. Click :guilabel:`Save`.
 
    .. figure:: img/datarules.png
 
-      *Complete list of data access rules*
+      Complete list of data access rules
 
 6. Restrict WPS
 ~~~~~~~~~~~~~~~
@@ -299,13 +295,13 @@ The Web Processing Service (WPS) can impose a strong performance penalty if left
 
    .. figure:: img/newwpsrule.png
 
-      *Creating a rule that restricts WPS*
+      Creating a rule that restricts WPS
 
 #. Click :guilabel:`Save`.
 
    .. figure:: img/servicerules.png
 
-      *Complete list of service access rules*
+      Complete list of service access rules
 
 7. Restrict REST access except for the administrator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
