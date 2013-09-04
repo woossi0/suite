@@ -15,7 +15,7 @@ For polygons, these attributes are as follows:
 
 .. figure:: ./img/de9im1.png
    
-   *Polygon interior, boundary, and exterior*
+   Polygon interior, boundary, and exterior
 
 The interior is bounded by the rings, the boundary is represented by the rings themselves, and the exterior is everything else beyond the boundary.
 
@@ -23,7 +23,7 @@ For linear features, the interior, boundary, and exterior attributes are less ob
 
 .. figure:: ./img/de9im2.png
 
-   *Line interior and boundary*
+   Line interior and boundary
 
 The interior is the part of the line bounded by the ends, the boundary is represented by the ends of the linear feature, and the exterior is everything that is neither interior nor boundary.
 
@@ -31,13 +31,13 @@ For points, the interior is the point, the boundary is an empty set, and the ext
 
 .. figure:: ./img/de9im13.png
 
-   *Point interior*
+   Point interior
 
 Using these definitions of interior, boundary, and exterior attributes, the relationships between any pair of spatial features can be characterized using the dimensionality of the nine possible intersections between the interiors, boundaries, and exteriors.
 
 .. figure:: ./img/de9im3.png
 
-   *Modelling object interactions*
+   Modelling object interactions
 
 For the polygons in the example above, the intersection of the interiors is a two-dimensional area, so that portion of the matrix is completed with a **2**. If the boundaries intersect along a line, that portion of the matrix is completed with a **1**. When the boundaries only intersect at points, which are zero-dimensional, that portion of the matrix is completed with a **0**. When there is no intersection between components, the matrix is filled out with an **F**.
 
@@ -45,13 +45,13 @@ In this next example, a linestring intersects a polygon:
 
 .. figure:: ./img/de9im4.png
 
-  *Linestring intersecting a polygon*
+  Linestring intersecting a polygon
 
 The DE9IM matrix for the interaction is represented as follows:
 
 .. figure:: ./img/de9im5.png
 
-  *DE9IM model for the intersection*
+  DE9IM model for the intersection
 
 Note that the boundaries of the two objects don't intersect at all (the end point of the line interacts with the interior of the polygon, not the boundary, and vice versa), so the B/B (boundary/boundary) cell is completed with an **F**. 
 
@@ -64,7 +64,7 @@ The previous example can be simplified using a simple box and line, with the sam
 
 .. figure:: ./img/de9im6.png
 
-   *Simplified linestring intersecting a polygon*
+   Simplified linestring intersecting a polygon
 
 With the simplified line and polygon, the line and polygon can be converted into short well-known text versions, and the DE9IM information generated in SQL as follows:
 
@@ -106,7 +106,7 @@ The example data comprises two objects, **Lakes** and **Docks**. For this exampl
 
 .. figure:: ./img/de9im7.png
   
-   *Lakes and docks*
+   Lakes and docks
 
 Legal docks, docks that obey the data quality rules, have the following characteristics:
 
@@ -119,7 +119,7 @@ The resulting DE9IM matrix is:
 
 .. figure:: ./img/de9im8.png
  
-   *Lakes and dock DE9IM model*
+   Lakes and dock DE9IM model
 
 To find all the legal docks, identify the docks that intersect lakes (a super-set of **potential** candidates used as the join key), and then find all the docks in that set which have the legal relate pattern.
 
@@ -149,13 +149,13 @@ So for example, one dock not included in the example illustration is a dock with
 
 .. figure:: ./img/de9im9.png
   
-   *Dock with two-dimensional intersection*
+   Dock with two-dimensional intersection
 
 To include this case in the set of "legal" docks, change the relate pattern in the query. In particular, the intersection of the dock interior and lake boundary can now be either **1** (the new case) or **F** (the original case). To identify this case, use the "*" catchall in the pattern.
 
 .. figure:: ./img/de9im10.png
 
- *Using the catchall pattern*
+   Using the catchall pattern
 
 The resulting SQL is as follows:
 
@@ -177,7 +177,7 @@ Data quality testing
 
 .. figure:: ./img/de9im11.png
 
-  *Overlapping census blocks*
+  Overlapping census blocks
 
 The following SQL command will test for any overlaps. The matrix value ('2********') represents an overlap of two interiors.
 
@@ -196,7 +196,7 @@ Similarly, the TIGER data model also requires all roads data to be end-noded, wh
 
 .. figure:: ./img/de9im12.png
 
-   *Road intersections*
+   Road intersections
 
 To test for this data model error, search for streets that intersect, using a join operation, but where the intersection between the boundaries is not zero-dimensional (the end points don't touch).
 

@@ -4,8 +4,6 @@
 PostgreSQL security
 ===================
 
-.. warning:: Document status: **Draft**
-
 PostgreSQL has a flexible permissions system, with the ability to assign specific privileges to specific roles_, and assign users to one or more of those roles_. In addition, as the PostgreSQL server supports a number of methods for authenticating users, the database can use the same authentication infrastructure as other system components. This helps reduces the maintenance overhead by simplifying password management.
 
 
@@ -142,7 +140,7 @@ To use SSL connections, both your client and server must support SSL. The OpenGe
 
     .. figure:: ./screenshots/ssl_conf.png
 
-      *Enabling SSL support*
+      Enabling SSL support
 
  5.  Restart OpenGeo Suite service to activate support for SSL. On the OpenGeo Dashboard, click :guilabel:`Start`.
 
@@ -154,13 +152,13 @@ To use SSL connections, both your client and server must support SSL. The OpenGe
 
   .. figure:: ./screenshots/ssl_create.png
 
-     *Setting the SSL parameter in pgAdmin*
+     Setting the SSL parameter in pgAdmin
 
 Once you connect to the database using the new connection, check the connection properties to confirm SSL encryption is used.
 
 .. figure:: ./screenshots/ssl_props.png
    
-   *SSL-encrypted connection*
+   SSL-encrypted connection
 
 Since the default SSL connection mode is *prefer*, you don't have to specify an SSL preference when connecting. A connection made using the command line ``psql`` tool will read the SSL option and use it by default:
 
@@ -220,7 +218,7 @@ To edit the settings in the :file:`pg_hba.conf` file, on the pgAdmin main menu c
 
 .. figure:: ./screenshots/pg_hba.png
 
-  *Accessing the pg_hba.conf file*
+  Accessing the pg_hba.conf file
 
 The  :file:`pg_hba.conf` file includes the following:
 

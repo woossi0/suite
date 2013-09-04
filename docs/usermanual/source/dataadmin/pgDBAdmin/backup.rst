@@ -1,7 +1,5 @@
 .. _dataadmin.pgDBAdmin.backup:
 
-.. warning:: Document status: **Draft**
-
 PostgreSQL backup and restore
 =============================
 
@@ -28,13 +26,13 @@ To start a back up, right-click the database you want to back up in the pgAdmin 
 
 .. figure:: ./screenshots/backup1.png
 
-   *Backing up a database in pgAdmin*
+   Backing up a database in pgAdmin
 
 Provide a name for the backup file, choose the backup format, and configure the other backup options as required.
 
 .. figure:: ./screenshots/backup2.png
   
-    *Configuring the backup options*
+    Configuring the backup options
 
 
 There are four backup formats to choose from: 
@@ -62,13 +60,13 @@ As this backup file is in :guilabel:`Custom` format, you can view the contents o
 
 .. figure:: ./screenshots/backup3.png
  
-   *Restoring a backup file in pgAdmin*
+   Restoring a backup file in pgAdmin
 
 Expand the :guilabel:`Backup` item to display a list of database objects that are included in the backup file.
 
 .. figure:: ./screenshots/backup4.png
 
-    *Listing the backup file manifest*
+    Listing the backup file manifest
 
 .. note::
 
@@ -122,7 +120,7 @@ With a full database backup, all schemas are included the dump file, so the enti
 
 .. figure:: ./screenshots/backup4s.png
 
-    *Selecting a schema to back up*
+    Selecting a schema to back up
 
 If you want to use the :command:`pg_dump` tool at the command line, include the ``--schema`` and ``--table`` flags to back up specific schemas and tables:
 
@@ -190,7 +188,7 @@ Rather than continually write to the main data tables, PostgreSQL stores changes
 
 .. figure:: ./screenshots/backup5.png
 
-  *Online backup*
+   Online backup
 
 When it is time to recover to a new database, the system starts on the main data copy, then replays all the WAL file entries into the database. The end result is a restored database in the same state as the original at the time when the last WAL was received.
 

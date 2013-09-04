@@ -14,7 +14,7 @@ An easy way to edit this configuration file is to use the pgAdmin :guilabel:`Bac
 
 .. figure:: ./tuning/conf03.png
  
-  *pgAdmin Backend Configuration Editor*
+  pgAdmin Backend Configuration Editor
 
 .. note:: Modifications to the :file:`postgresql.conf` file will not take effect until the server is restarted.
 
@@ -22,7 +22,7 @@ The following sections describe some of the configuration parameters that should
 
 .. figure:: ./tuning/conf03a.png
 
-   *Changing the configuration settings*
+   Changing the configuration settings
 
 .. note:: The values provided here are suggestions only. We recommend you test the changes to determine the optimal configuration for your particular environment.
 
@@ -37,7 +37,7 @@ The :command:`shared_buffers` parameter sets the amount of memory the database s
 
 .. figure:: ./tuning/conf04.png
 
-  *shared_buffers parameter*
+  shared_buffers parameter
 
 
 work_mem
@@ -53,7 +53,7 @@ The benefit of increasing this setting is in the processing of these operations,
 
 .. figure:: ./tuning/conf05.png
 
-    *work_mem parameter*
+    work_mem parameter
 
 maintenance_work_mem
 --------------------
@@ -72,7 +72,7 @@ The :command:`maintenance_work_mem` parameter defines the amount of memory used 
 
 .. figure:: ./tuning/conf06.png
 
-   *maintenance_work_mem parameter*
+   maintenance_work_mem parameter
 
 
 wal_buffers
@@ -88,7 +88,7 @@ The size of this buffer only needs to accommodate WAL data for a single typical 
 
 .. figure:: ./tuning/conf07.png
  
-   *wal_buffers parameter*
+   wal_buffers parameter
 
 checkpoint_segments
 -------------------
@@ -103,7 +103,7 @@ As the checkpoint process requires the flushing of all dirty data pages to disk,
 
 .. figure:: ./tuning/conf08.png
  
-   *checkpoint_segments parameter*
+   checkpoint_segments parameter
 
 random_page_cost
 ----------------
@@ -116,7 +116,7 @@ The :command:`random_page_cost` parameter is a unit-less value that represents t
 
 .. figure:: ./tuning/conf09.png
 
-   *random_page_cost parameter*
+   random_page_cost parameter
 
 
 seq_page_cost
@@ -130,7 +130,7 @@ The :command:`seq_page_cost` parameter controls the cost of a sequential page ac
 
 .. figure:: ./tuning/conf10.png
 
-  *seq_page_cost parameter*
+  seq_page_cost parameter
 
 
 Reload configuration

@@ -1,10 +1,7 @@
 .. _dataadmin.pgDBAdmin.schemas:
 
-
 PostgreSQL schemas
 ==================
-
-.. warning:: Document status: **Draft**
 
 Production databases will inevitably have a large number of tables and views. Managing numerous database objects in one schema can quickly become unwieldy. Fortunately, PostgreSQL_ supports the concept of a "_Schema".
 
@@ -12,7 +9,7 @@ Schemas are like folders for managing tables, views, functions, sequences and ot
 
 .. figure:: ./screenshots/schemas.png
 
-  *Database schema in PostgreSQL*
+  Database schema in PostgreSQL
 
 Inside that schema, the default installation of PostGIS creates the ``geometry_columns``, ``geography_columns`` and ``spatial_ref_sys`` metadata objects, as well as all the types and functions used by PostGIS. All PostGIS users need access to the public schema.
 

@@ -13,7 +13,7 @@ Linear referencing allows you to identify the locations of features using a rela
   
 .. figure:: ./img/lrs2.png
 
-   *Linear referencing of road infrastructure*
+   Linear referencing of road infrastructure
 
 One of the main benefits of linear referencing is dependent spatial observations (the derived relative measurements) don't need to be recorded separately from the base observations (the actual feature measurements). Any updates to features in the base observation layer will result in automatic updates to the dependent observations.
 
@@ -30,7 +30,7 @@ To reference an existing point table to a linear network, use the :command:`ST_L
 
 .. figure:: ./img/lrs3.png
 
-   *Locating a point along a line feature*  
+   Locating a point along a line feature  
   
 The answer returned is 0.5—the distance along the line feature the point was located. If the point is not on the line, the result is determined by projecting to the closest location on the line.
   
@@ -42,7 +42,7 @@ Again, the answer returned is 0.5.
 
 .. figure:: ./img/lrs4.png
 
-   *Locating a point near a line feature*    
+   Locating a point near a line feature    
 
 To convert a **nyc_subway_stations** table into an *event table* relative to the streets, use the function :command:`ST_Line_Locate_Point`. Create a new event table and identify a candidate set of streets that could be the closest to the subway stations. Order the streets by the ``id`` and ``distance`` attributes.
 
@@ -109,7 +109,7 @@ Viewing the original (red star) and event (blue circle) points with the streets,
 
 .. figure:: ./img/lrs1.png
 
-   *Spatial objects and events*
+   Spatial objects and events
 
 .. note:: Using these PostGIS functions to snap points to linear features provides a useful tool for applications that work with GPS tracks or other inputs that are expected to reference a linear network. For further information on the available functions, please refer to the `PostGIS reference documentation <http://postgis.org/>`_.
 

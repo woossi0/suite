@@ -1,8 +1,5 @@
 .. _dataadmin.pgAdvanced:
 
-.. warning:: Document status **Draft**
-
-
 Analyzing data with PostGIS
 ===========================
 
