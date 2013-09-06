@@ -72,7 +72,6 @@
         <exclude>src/**</exclude>
         <exclude>target/**</exclude>
         <exclude>.*</exclude>
-        <exclude>lib/jetty-start*.jar</exclude>
       </excludes>
     </fileSet>
   </fileSets>

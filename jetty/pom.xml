@@ -10,16 +10,11 @@
  </parent>
 
  <groupId>org.opengeo</groupId>
- <artifactId>og-jetty</artifactId>
+ <artifactId>jetty</artifactId>
  <packaging>jar</packaging>
  <name>OpenGeo Suite Jetty Module</name>
 
  <dependencies>
-  <dependency>
-    <groupId>org.ini4j</groupId>
-    <artifactId>ini4j</artifactId>
-    <version>0.5.1</version>
-  </dependency>
   <dependency>
    <groupId>org.mortbay.jetty</groupId>
    <artifactId>jetty</artifactId>
@@ -105,7 +100,7 @@
       </configuration>
       <executions>
         <execution>
-          <phase>install</phase>
+          <phase>package</phase>
           <goals>
             <goal>copy-dependencies</goal>
           </goals>
@@ -113,7 +108,7 @@
       </executions>
     </plugin>
     <plugin>
-       <artifactId>maven-antrun-plugin</artifactId>
+      <artifactId>maven-antrun-plugin</artifactId>
       <executions>
         <execution>
           <id>clean</id>
@@ -121,6 +116,20 @@
           <configuration>
             <tasks>
               <delete dir="${basedir}/lib" includes="*.jar"/>
+              <delete file="${basedir}/start.jar" />
+            </tasks>
+          </configuration>
+          <goals>
+            <goal>run</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>install</id>
+          <phase>install</phase>
+          <configuration>
+            <tasks>
+              <move file="${basedir}/lib/jetty-start-${jetty.version}.jar"
+                  tofile="${basedir}/start.jar"/>
             </tasks>
           </configuration>
           <goals>
