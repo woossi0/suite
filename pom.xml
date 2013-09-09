@@ -258,7 +258,7 @@
  <properties>
    <gs.version>2.4-SNAPSHOT</gs.version>
    <gt.version>10-SNAPSHOT</gt.version>
-   <gwc.version>1.5-SNAPSHOT</gwc.version>
+   <gwc.version>1.5.0-beta</gwc.version>
    <jetty.version>6.1.8</jetty.version>
    <ant.version>1.8.1</ant.version>
    <maven.build.timestamp.format>E MMM dd, yyyy @ HH:mm z</maven.build.timestamp.format>

@@ -1,6 +1,7 @@
 <project name="build" default="build-all">
 
    <property name="gs.dir" value="geoserver"/>
+   <property name="gs.version" value="2.4-SNAPSHOT"/>
    <property name="gs.flags" value=""/>
 
    <property name="gs-exts.dir" value="geoserver-exts"/>
@@ -11,7 +12,7 @@
    <property name="gt.flags" value=""/>
 
    <property name="gwc.dir" value="geowebcache"/>
-   <property name="gwc.version" value="1.5-SNAPSHOT"/>
+   <property name="gwc.version" value="1.5-beta"/>
    <property name="gwc.flags" value=""/>
 
    <property name="geoscript-js.dir" value="geoscript/js"/>
@@ -53,7 +54,7 @@
    <target name="build-gs" unless="skip.gs"> 
      <antcall target="mvn">
         <param name="dir" value="${gs.dir}/src"/>
-        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -P proxy,printing,monitoring,jdbcconfig,script,csw,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
+        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -P proxy,printing,jdbcconfig,csw,script,script-js,script-py,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
@@ -66,7 +67,7 @@
      </antcall>
      <antcall target="mvn">
         <param name="dir" value="${gwc.dir}/geowebcache"/>
-        <param name="flags" value="-DgroupId=org.geowebcache -DartifactId=geowebcache -Dversion=${gwc.version} -Dpackaging=war -Dfile=web/target/geowebcache.war ${gwc.flags}"/>
+        <param name="flags" value="-DgroupId=org.geowebcache -DartifactId=geowebcache -Dgt.version=${gt.version} -Dversion=${gwc.version} -Dpackaging=war -Dfile=web/target/geowebcache.war ${gwc.flags}"/>
         <param name="targets" value="install:install-file"/>
      </antcall>
    </target>
@@ -74,7 +75,7 @@
    <target name="build-gs-exts" unless="skip.gs-exts"> 
      <antcall target="mvn">
         <param name="dir" value="${gs-exts.dir}"/>
-        <param name="flags" value="-DskipTests ${gs-exts.flags}"/>
+        <param name="flags" value="-DskipTests -Dgs.version=${gs.version} -Dgt.version=${gt.version} ${gs-exts.flags}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
@@ -82,7 +83,7 @@
    <target name="build-geoscript-js" unless="skip.geoscript-js"> 
      <antcall target="mvn">
         <param name="dir" value="${geoscript-js.dir}"/>
-        <param name="flags" value="-DskipTests ${geoscript-js.flags}"/>
+        <param name="flags" value="-DskipTests -Dgt.version=${gt.version} ${geoscript-js.flags}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
@@ -90,7 +91,7 @@
    <target name="build-geoscript-py" unless="skip.geoscript-py"> 
      <antcall target="mvn">
         <param name="dir" value="${geoscript-py.dir}"/>
-        <param name="flags" value="-DskipTests ${geoscript-py.flags}"/>
+        <param name="flags" value="-DskipTests -Dgt.version=${gt.version} ${geoscript-py.flags}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
