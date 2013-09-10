@@ -14,6 +14,10 @@
       </excludes>
     </fileSet>
     <fileSet>
+      <directory>geoserver/externals/geowebcache/geowebcache/web/target/geowebcache</directory>
+      <outputDirectory>webapps/geowebcache</outputDirectory>
+    </fileSet>
+    <fileSet>
       <directory>geoexplorer/target/geoexplorer</directory>
       <outputDirectory>webapps/geoexplorer</outputDirectory>
       <excludes>
