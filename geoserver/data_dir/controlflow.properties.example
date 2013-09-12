@@ -1,6 +1,9 @@
 #
 # Sample controlflow configuration.
 #
+# Rename this file to 'controlflow.properties' to activate the control flow 
+# extension.
+#
 # The values in this file should be tailored to the specific GeoServer 
 # deployment. This default configuration reflects a conservative configuration
 # on a dual core machine. The controlflow configuration reference can be found
@@ -18,15 +21,15 @@ timeout=60
 user=6
 
 # don't allow the execution of more than 100 requests total in parallel
-ows.global=50
+ows.global=100
 
-# don't allow more than 5 GetMap in parallel
-ows.wms.getmap=5
+# don't allow more than 10 GetMap in parallel
+ows.wms.getmap=10
 
-# don't allow more than 2 outputs with Excel output as it's memory bound
-ows.wfs.getfeature.application/msexcel=2
+# don't allow more than 4 outputs with Excel output as it's memory bound
+ows.wfs.getfeature.application/msexcel=4
 
-# don't allow the execution of more than 8 tile requests in parallel
+# don't allow the execution of more than 16 tile requests in parallel
 # (assuming a server with 2 cores, GWC empirical tests show that throughput
 # peaks up at 4 x number of cores. Adjust as appropriate to your system)
-ows.gwc=8
+ows.gwc=16
