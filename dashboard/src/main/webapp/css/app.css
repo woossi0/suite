@@ -1,0 +1,185 @@
+/**
+ * custom fonts
+ */
+@font-face {
+  font-family: "Proxima Nova";
+  src: url(../fonts/ProximaNova-Sbold.otf) format("otf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: url(../fonts/ProximaNova-Light.otf) format("otf");
+  font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular-webfont.eot');
+    src: url('../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Bold-webfont.eot');
+    src: url('../fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Bold-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Italic-webfont.eot');
+    src: url('../fonts/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Italic-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Italic-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-BoldItalic-webfont.eot');
+    src: url('../fonts/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-BoldItalic-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-BoldItalic-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-BoldItalic-webfont.svg#open_sansbold_italic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+body {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+h1, 
+h2 {
+  font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+}
+
+h3, 
+h4, 
+h5, 
+h6 {
+  font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+}
+
+/*
+ * navbar stuff
+ */
+
+.navbar {
+  background-color: #28728D;
+  color: white;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+.navbar li {
+  padding-top: 10px;
+}
+
+.navbar li a {
+  padding: 5px 10px;
+}
+
+.navbar-brand {
+  background: url(../img/opengeo_1c_32.png) no-repeat left center;
+  margin-left: 10px;
+  padding-left: 40px;
+  margin-top: 0;
+}
+
+.navbar-brand a, 
+.navbar-brand a:link, 
+.navbar-brand a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-right img {
+  padding-top: 10px;
+}
+
+.nav-pills a {
+  color: white;
+}
+
+.nav-pills a:hover,
+.nav-pills a:focus {
+  color: #28728D;
+}
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
+  color: #28728D;
+  background-color: white;
+}
+
+/*
+ * block on home page for component
+ */
+.dash-component {
+  margin: 10px 0;
+  padding: 0 10px 0 65px;
+  min-height: 55px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: 15px 0px;
+}
+
+.dash-component h2 {
+  margin-top: 0;
+}
+
+a.dash-component {
+  border-right: solid 1px;
+}
+
+.dash-component.postgis {
+   background-image: url(../img/postgis_suite_32.png);
+}
+.dash-component.geoserver {
+   background-image: url(../img/geoserver_suite_32.png);
+}
+.dash-component.geowebcache {
+   background-image: url(../img/geowebcache_suite_32.png);
+}
+.dash-component.geoexplorer {
+   background-image: url(../img/geoext_suite_32.png);
+}
+
+/*
+ * quick links inside component blocks
+ */
+.quick-links {
+  list-style:none;
+  -webkit-padding-start: 2px;
+}
+
+.quick-links li {
+  display: inline;
+  min-width: 4em;
+  margin: 4px 0;
+  padding: 0 8px;
+  border-left: 1px solid #999;
+  text-align: center;
+}
+
+.quick-links li:first-child {
+  border-left: 0px;
+}
