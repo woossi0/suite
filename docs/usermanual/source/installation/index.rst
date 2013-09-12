@@ -3,7 +3,7 @@
 Installation
 ============
 
-This section will describe how to install the OpenGeo Suite in various configurations, as well as information on installing some optional components.
+This section will describe how to install OpenGeo Suite in various configurations, as well as information on installing some optional components.
 
 .. toctree::
    :maxdepth: 1

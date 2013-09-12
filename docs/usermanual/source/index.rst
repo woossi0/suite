@@ -1,6 +1,6 @@
 
 
-Welcome to the OpenGeo Suite. The OpenGeo Suite is a full geospatial software stack that helps you compose, style, and publish maps and data with ease.
+Welcome! OpenGeo Suite is a full geospatial software stack that helps you compose, style, publish, and manage maps and data with ease.
 
 .. toctree::
    :hidden: 
@@ -19,13 +19,13 @@ Welcome to the OpenGeo Suite. The OpenGeo Suite is a full geospatial software st
 OpenGeo Suite User Manual
 -------------------------
 
-The OpenGeo User Manual will help you get the most out of the OpenGeo Suite.
+This User Manual will help you get the most out of OpenGeo Suite.
 
 :ref:`introduction`
-  Getting started with the OpenGeo Suite
+  Getting started with OpenGeo Suite
 
 :ref:`installation`
-  Install the OpenGeo Suite for your platform
+  Install OpenGeo Suite for your platform
 
 :ref:`webmaps`
   Publish your maps and data on the web

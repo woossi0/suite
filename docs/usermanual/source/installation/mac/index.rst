@@ -1,7 +1,7 @@
 .. _installation.osx:
 
-Installing the OpenGeo Suite for Mac OS X
-=========================================
+Installing OpenGeo Suite for Mac OS X
+=====================================
 
 .. |pgupgrade_url| replace:: http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
 

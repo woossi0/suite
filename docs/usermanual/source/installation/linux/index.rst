@@ -1,7 +1,7 @@
 .. _installation.linux.suite:
 
-Installing the OpenGeo Suite for Linux
-======================================
+Installing OpenGeo Suite for Linux
+==================================
 
 This section describes how to install the OpenGeo Suite for Linux. OpenGeo Suite is available for CentOS and Ubuntu systems. In addition, there are even certain differences in installation based on the distribution version. Please see the appropriate section below that matches your system.
 
