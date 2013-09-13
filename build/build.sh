@@ -60,7 +60,7 @@ echo "exporting artifacts to: $dist"
 
 skip_externals=""
 if [ "$SKIP_EXTERNALS" == "yes" ] || [ "$SKIP_EXTERNALS" == "true" ]; then
-  skip_externals="-P \!externals" 
+  skip_externals="-P !externals" 
 fi
 
 # perform a full build
