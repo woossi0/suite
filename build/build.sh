@@ -58,13 +58,13 @@ fi
 
 echo "exporting artifacts to: $dist"
 
-full_build="-Dfull"
-if [ "$FULL_BUILD" == "no" ] || [ "$FULL_BUILD" == "false" ]; then
-  full_build=""
+skip_externals=""
+if [ "$SKIP_EXTERNALS" == "yes" ] || [ "$SKIP_EXTERNALS" == "true" ]; then
+  skip_externals="-P \!externals" 
 fi
 
 # perform a full build
-$MVN -s $MVN_SETTINGS $full_build -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info -Dgs.flags="-Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev" $BUILD_FLAGS clean install
+$MVN -s $MVN_SETTINGS -Dfull $skip_externals -Dmvn.exec=$MVN -Dmvn.settings=$MVN_SETTINGS $build_info -Dgs.flags="-Dbuild.commit.id=$gs_rev -Dbuild.branch=$gs_branch -DGit-Revision=$gt_rev -Dgt.Git-Revision=$gt_rev" $BUILD_FLAGS clean install
 checkrv $? "maven install"
 
 # clean out old assembly artifacts, usually maven clean does this but it could
