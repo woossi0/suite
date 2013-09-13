@@ -27,8 +27,18 @@
           <webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
           <webResources>
             <resource>
+              <!-- filter only html files, it will corrupt binary files -->
               <directory>${basedir}/src/main/webapp</directory>
               <filtering>true</filtering>
+              <includes>
+               <include>**/*.html</include>
+              </includes>
+            </resource>
+            <resource>
+              <directory>${basedir}/src/main/webapp</directory>
+              <excludes>
+               <exclude>**/*.html</exclude>
+              </excludes>
             </resource>
             <resource>
               <directory>${project.build.directory}</directory>
