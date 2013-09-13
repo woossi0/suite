@@ -10,7 +10,6 @@
       <includes>
         <include>jdbcconfig-*.jar</include>
         <include>compress-lzf-*.jar</include>
-        <include>h2-*.jar</include>
         <include>spring-jdbc-*.jar</include>
       </includes>
     </fileSet>
