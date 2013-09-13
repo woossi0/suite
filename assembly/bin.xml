@@ -61,7 +61,7 @@
     </fileSet>
     <fileSet>
       <directory>dashboard/target/dashboard</directory>
-      <outputDirectory>webapps/dashboard</outputDirectory>
+      <outputDirectory>webapps/root</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>geoserver/data_dir/target/data_dir</directory>
