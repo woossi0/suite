@@ -5,14 +5,14 @@ Installing OpenGeo Suite on CentOS and Red Hat
 
 .. |pgupgrade_url| replace:: http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
 
-The commands contained in the following installation instructions assume root privileges.
+OpenGeo Suite packages are available for CentOS 5 and above, and Red Hat Enterprise Linux (RHEL) 5 and above.
+
+The commands below assume root privileges.
 
 New installation
 ----------------
 
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.centos.suite.upgrade`.
-
-.. warning:: Packages are available for CentOS 5 and above, and Red Hat Enterprise Linux (RHEL) 5 and above.
 
 #. Change to the :file:`/etc/yum.repos.d` directory:
 
@@ -20,7 +20,9 @@ New installation
 
       cd /etc/yum.repos.d
 
-#. Add the OpenGeo YUM repository. The exact command will differ depending on whether you are using CentOS/RHEL 5 or 6, and whether you are using a 32 bit installation or 64 installation:
+#. Add the OpenGeo repository. The exact command will differ depending on whether you are using CentOS/RHEL 5 or 6, and whether you are using a 32 bit installation or 64 installation:
+
+   .. warning:: These commands contain links to **beta** packages. When the final version of the software is released, these links will change, so you will need to run these commands again.
 
    .. list-table::
       :widths: 20 80
@@ -29,27 +31,31 @@ New installation
       * - System
         - Command
       * - CentOS 5, 32 bit
-        - ``wget http://yum.opengeo.org/suite/v3/centos/5/i386/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/centos/5/i386/OpenGeo.repo``
       * - CentOS 5, 64 bit
-        - ``wget http://yum.opengeo.org/suite/v3/centos/5/x86_64/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/centos/5/x86_64/OpenGeo.repo``
       * - CentOS 6, 32 bit
-        - ``wget http://yum.opengeo.org/suite/v3/centos/6/i686/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/i686/OpenGeo.repo``
       * - CentOS 6, 64 bit
-        - ``wget http://yum.opengeo.org/suite/v3/centos/6/x86_64/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/x86_64/OpenGeo.repo``
       * - RHEL 5, 32 bit
-        - ``wget http://yum.opengeo.org/suite/v3/rhel/5/i386/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/5/i386/OpenGeo.repo``
       * - RHEL 5, 64 bit
-        - ``wget http://yum.opengeo.org/suite/v3/rhel/5/x86_64/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/5/x86_64/OpenGeo.repo``
       * - RHEL 6, 32 bit
-        - ``wget http://yum.opengeo.org/suite/v3/rhel/6/i686/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/6/i686/OpenGeo.repo``
       * - RHEL 6, 64 bit
-        - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/6/x86_64/OpenGeo.repo``
 
-#. Now run the install. The package is called ``opengeo-suite``:
+#. OpenGeo Suite is a collection of software components. While it is possible to install the entire collection on a single machine for testing purposes, we suggest that you install server tools on one machine and client tools on another. You will have the option of choosing which components you wish during the installation process.
+
+   The server package is called ``opengeo-server``. The client package is ``opengeo-client``. The package to install everything is called ``opengeo``. The instructions below will show the full installation, but please be sure to install the correct package for your system.
+
+#. Install OpenGeo Suite package (``opengeo``):
 
    .. code-block:: bash
 
-      yum install opengeo-suite
+      yum install opengeo
 
 #. If the previous command returns an error, the OpenGeo repositories may not have been added properly. Examine the output of the ``yum`` command for any errors or warnings.
 
@@ -72,27 +78,29 @@ Minor version upgrades of the OpenGeo Suite packages occur along with other syst
 
       yum update
 
-#. The relevant OpenGeo packages should be included in the upgrade list. If you do not wish to do a full update, cancel the upgrade and install the ``opengeo-suite`` package manually:
+#. The relevant OpenGeo packages should be included in the upgrade list. If you do not wish to do a full update, cancel the upgrade and install the ``opengeo`` package (or whichever package was originally installed):
 
    .. code-block:: bash
 
-      yum install opengeo-suite
+      yum install opengeo
 
 Major version upgrades do not happen automatically and require more steps as outlined in the following sections.
 
-.. _installation.linux.centos.suite.upgrade.v3:
+.. _installation.linux.centos.suite.upgrade.fromv2:
 
-Upgrading from version 2.x to 3.x
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Upgrading from version 2.x
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The OpenGeo Suite version 3 contains numerous major version updates to its components. This upgrade is **not-backward compatible** and will not retain all of your previously configured data. You will need to backup your data according to the specific procedures listed below before proceeding with the upgrade. 
+OpenGeo Suite version 2 contains an older version of many major components. This upgrade is also **not-backward compatible**; irreversible changes are made to the data so that they can't be used with earlier versions of OpenGeo Suite.
+
+In addition, the upgrade process will reinitialize the PostGIS database, removing all PostGIS data. Therefore, it is required to follow the upgrade steps below to ensure that your data is retained.
 
 .. warning:: Upgrading on CentOS/RHEL 5 differs from upgrading on CentOS/RHEL 6 and above. Version 5 requires that the previous installation of the OpenGeo Suite be removed before upgrading. Versions 6 and above can do an upgrade in place. In both cases you *must* back up your data before proceeding. 
 
-The procedure for upgrading is as follows.
+The procedure for upgrading is as follows:
 
 Backup PostGIS data
-^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~
 
 #. Ensure the old (2.x) version of the OpenGeo Suite is running.
  
@@ -112,8 +120,8 @@ Backup PostGIS data
 
        mkdir -p /tmp/suite_backup/pg_backup
        cd /tmp/suite_backup/pg_backup
-       wget http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip
-       unzip postgis_upgrade-3.0.zip
+       wget http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
+       unzip postgis_upgrade-3.0.1.zip
 
 #. Run the backup command:
 
@@ -136,16 +144,16 @@ Backup PostGIS data
       sudo su -
 
 Backup GeoServer configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Back up your GeoServer data directory. This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`. To back up this directory, you can create an archive of it, or simply copy it to another location:
+#. Back up your GeoServer data directory. This directory is located by default in :file:`/var/lib/opengeo/geoserver`. To back up this directory, you can create an archive of it, or simply copy it to another location:
 
    .. code-block:: console
 
-      cp -r /usr/share/opengeo-suite-data/geoserver_data /tmp/suite_backup/data_dir_backup
+      cp -r /var/lib/opengeo/geoserver /tmp/suite_backup/data_dir_backup
 
 Uninstall OpenGeo Suite 2.x
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note:: If you are running CentOS/RHEL 6 or above you may skip this step.
 
@@ -155,10 +163,10 @@ Uninstall OpenGeo Suite 2.x
 
       yum remove postgresql84
 
-Install OpenGeo Suite 3.x
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Install OpenGeo Suite
+~~~~~~~~~~~~~~~~~~~~~
 
-Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary to add an additional repository. This repository contains the version 3 packages.
+Now you are ready to install OpenGeo Suite. To do this, it is now necessary to add an additional repository. This repository contains the version 3 packages.
 
 #. If not already, make sure you are running as ``root``:
 
@@ -187,21 +195,21 @@ Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary 
       * - System
         - Command
       * - CentOS 5, 32 bit
-        - ``wget http://yum.opengeo.org/suite/v3/centos/5/i386/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/centos/5/i386/OpenGeo.repo``
       * - CentOS 5, 64 bit
-        - ``wget http://yum.opengeo.org/suite/v3/centos/5/x86_64/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/centos/5/x86_64/OpenGeo.repo``
       * - CentOS 6, 32 bit
-        - ``wget http://yum.opengeo.org/suite/v3/centos/6/i686/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/i686/OpenGeo.repo``
       * - CentOS 6, 64 bit
-        - ``wget http://yum.opengeo.org/suite/v3/centos/6/x86_64/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/x86_64/OpenGeo.repo``
       * - RHEL 5, 32 bit
-        - ``wget http://yum.opengeo.org/suite/v3/rhel/5/i386/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/5/i386/OpenGeo.repo``
       * - RHEL 5, 64 bit
-        - ``wget http://yum.opengeo.org/suite/v3/rhel/5/x86_64/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/5/x86_64/OpenGeo.repo``
       * - RHEL 6, 32 bit
-        - ``wget http://yum.opengeo.org/suite/v3/rhel/6/i686/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/6/i686/OpenGeo.repo``
       * - RHEL 6, 64 bit
-        - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
+        - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/6/x86_64/OpenGeo.repo``
 
 #. Clean your repository sources:
 
@@ -215,14 +223,14 @@ Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary 
 
       yum update
 
-#. Install the OpenGeo Suite package:
+#. Install the full OpenGeo Suite package (``opengeo``) or just the server tools (``opengeo-server``) or client tools (``opengeo-client``):
 
    .. code-block:: console
 
-      yum install opengeo-suite
+      yum install opengeo
 
 Restore PostGIS data
-^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
 #. Ensure the newly-upgraded OpenGeo Suite is running.
 
@@ -245,16 +253,16 @@ Restore PostGIS data
       exit
    
 Restore GeoServer configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Stop tomcat and restore the GeoServer data directory to its original location.
 
    .. code-block:: console
 
       service tomcat5 stop
-      rm -rf /usr/share/opengeo-suite-data/geoserver_data
-      mv /tmp/suite_backup/data_dir_backup /usr/share/opengeo-suite-data/geoserver_data
-      chown -R tomcat /usr/share/opengeo-suite-data/geoserver_data
+      rm -rf /var/lib/opengeo/geoserver
+      mv /tmp/suite_backup/data_dir_backup /var/lib/opengeo/geoserver
+      chown -R tomcat /var/lib/opengeo/geoserver
 
 #. Restart tomcat.
 
@@ -264,7 +272,7 @@ Restore GeoServer configuration
 
 .. note::
 
-   Memory requirements for OpenGeo Suite 3 have increased, which requires modification to the Tomcat Java configuration. These settings are not automatically updated on upgrade and must be set manually. 
+   Memory requirements for OpenGeo Suite have increased, which requires modification to the Tomcat Java configuration. These settings are not automatically updated on upgrade and must be set manually. 
 
    To make the change, edit the file :file:`/etc/sysconfig/tomcat6` (or :file:`/etc/sysconfig/tomcat5` if it exists) and append ``-XX:MaxPermSize=256m`` to the ``JAVA_OPTS`` command. Restart the OpenGeo Suite for the change to take effect.
 

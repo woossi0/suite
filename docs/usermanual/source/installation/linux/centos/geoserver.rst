@@ -3,7 +3,7 @@
 Installing GeoServer on CentOS and Red Hat
 ==========================================
 
-The easiest way to install and set up GeoServer is by :ref:`installing the full OpenGeo Suite <installation.linux.centos.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
+The easiest way to install and set up GeoServer is by :ref:`installing OpenGeo Suite <installation.linux.centos.suite>`. OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation. That said, there are also individual packages for installing the components separately.
 
 This page will describe how to install GeoServer on CentOS 5-6.
 
@@ -11,7 +11,7 @@ This page will describe how to install GeoServer on CentOS 5-6.
 Access the OpenGeo repository
 -----------------------------
 
-OpenGeo provides a repository for packages in RPM format.  To access this repository, you need to first add the OpenGeo  repository to your local list of repositories.
+OpenGeo provides a repository for packages in RPM format. To access this repository, you need to first add the OpenGeo  repository to your local list of repositories.
 
 .. note:: You will need to run these commands on an account with root access.
 
@@ -21,7 +21,9 @@ Change to the :file:`/etc/yum.repos.d` directory:
 
    cd /etc/yum.repos.d
 
-Add the OpenGeo YUM repository.  The exact command will differ depending on whether you are using CentOS/RHEL 5 or 6, and whether you are using a 32 bit installation or 64 installation:
+Add the OpenGeo repository. The exact command will differ depending on whether you are using CentOS/RHEL 5 or 6, and whether you are using a 32 bit installation or 64 installation:
+
+.. warning:: These commands contain links to **beta** packages. When the final version of the software is released, these links will change, so you will need to run these commands again.
 
 .. list-table::
    :widths: 20 80
@@ -30,21 +32,21 @@ Add the OpenGeo YUM repository.  The exact command will differ depending on whet
    * - System
      - Command
    * - CentOS 5, 32 bit
-     - ``wget http://yum.opengeo.org/suite/v3/centos/5/i386/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/beta/suite/v4/centos/5/i386/OpenGeo.repo``
    * - CentOS 5, 64 bit
-     - ``wget http://yum.opengeo.org/suite/v3/centos/5/x86_64/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/beta/suite/v4/centos/5/x86_64/OpenGeo.repo``
    * - CentOS 6, 32 bit
-     - ``wget http://yum.opengeo.org/suite/v3/centos/6/i686/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/i686/OpenGeo.repo``
    * - CentOS 6, 64 bit
-     - ``wget http://yum.opengeo.org/suite/v3/centos/6/x86_64/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/x86_64/OpenGeo.repo``
    * - RHEL 5, 32 bit
-     - ``wget http://yum.opengeo.org/suite/v3/rhel/5/i386/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/5/i386/OpenGeo.repo``
    * - RHEL 5, 64 bit
-     - ``wget http://yum.opengeo.org/suite/v3/rhel/5/x86_64/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/5/x86_64/OpenGeo.repo``
    * - RHEL 6, 32 bit
-     - ``wget http://yum.opengeo.org/suite/v3/rhel/6/i686/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/6/i686/OpenGeo.repo``
    * - RHEL 6, 64 bit
-     - ``wget http://yum.opengeo.org/suite/v3/rhel/6/x86_64/OpenGeo.repo``
+     - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/6/x86_64/OpenGeo.repo``
 
 Package management
 ------------------
@@ -57,7 +59,7 @@ Package management
 
 If the search command does not return any results, the repository was not added properly. Examine the output of the ``yum`` command for any errors or warnings.
 
-Now you can install GeoServer.  The name of the package is :guilabel:`opengeo-geoserver`:
+Now you can install GeoServer. The name of the package is :guilabel:`opengeo-geoserver`:
 
 .. code-block:: bash
 
@@ -67,11 +69,11 @@ Now you can install GeoServer.  The name of the package is :guilabel:`opengeo-ge
 After installation
 ------------------
 
-When completed, GeoServer will be installed as a servlet inside the local version of Tomcat.  Assuming that Tomcat is running on the default port 8080, you can verify that GeoServer is installed by navigating to the following URL::
+When completed, GeoServer will be installed as a servlet inside the local version of Tomcat. Assuming that Tomcat is running on the default port 8080, you can verify that GeoServer is installed by navigating to the following URL::
 
    http://localhost:8080/geoserver/
 
-This will load the Web Administration Interface.  Most management of GeoServer functionality can be done from this interface.
+This will load the Web Administration Interface. Most management of GeoServer functionality can be done from this interface.
 
 .. note:: The username and password for the GeoServer administrator account is **admin** / **geoserver**
 
@@ -80,5 +82,5 @@ For more information about running GeoServer, please see the `GeoServer Document
 Upgrading   
 ---------
 
-See :ref:`Upgrading the OpenGeo Suite <installation.linux.centos.suite.upgrade>` for general information about upgrading. In particular users who wish to upgrade to GeoServer 2.2 should follow the steps outlined in :ref:`installation.linux.centos.suite.upgrade.v3`.
+See :ref:`Upgrading the OpenGeo Suite <installation.linux.centos.suite.upgrade>` for general information about upgrading. In particular users who wish to upgrade to GeoServer 2.2 should follow the steps outlined in :ref:`installation.linux.centos.suite.upgrade.fromv2`.
 

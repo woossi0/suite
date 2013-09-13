@@ -5,14 +5,14 @@ Installing OpenGeo Suite on Ubuntu
 
 .. |pgupgrade_url| replace:: http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
 
-The commands contained in the following installation instructions assume root privileges.
+Opengeo Suite packages are available for Ubuntu 10.04 (Lucid) and 12.04 (Precise).
+
+The commands below assume root privileges.
 
 New install
 -----------
 
 .. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.ubuntu.suite.upgrade`.
-
-.. warning:: Packages are only available for Ubuntu 10.04. Newer versions are usually known to work, but are not officially supported at this time.
 
 #. Begin by importing the OpenGeo GPG key:
 
@@ -22,9 +22,19 @@ New install
 
 #. Add the OpenGeo APT repository:
 
+   .. warning:: These commands contain links to **beta** packages. When the final version of the software is released, these links will change, so you will need to run these commands again.
+
+   Ubuntu 12.04 (Precise):
+
    .. code-block:: console
 
-      echo "deb http://apt.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
+      echo "deb http://apt.opengeo.org/beta/suite/v4/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+
+   Ubuntu 10.04 (Lucid):
+
+   .. code-block:: console
+
+      echo "deb http://apt.opengeo.org/beta/suite/v4/ubuntu/ lucid main" > /etc/apt/sources.list.d/opengeo.list
       
 #. Update APT:
 
@@ -40,23 +50,17 @@ New install
 
    If the search command does not return any results, the repository was not added properly. Examine the output of the ``apt`` commands for any errors or warnings.
 
-#. Install the OpenGeo Suite package (``opengeo-suite``):
+#. OpenGeo Suite is a collection of software components. While it is possible to install the entire collection on a single machine for testing purposes, we suggest that you install server tools on one machine and client tools on another. You will have the option of choosing which components you wish during the installation process.
+
+   The server package is called ``opengeo-server``. The client package is ``opengeo-client``. The package to install everything is called ``opengeo``. The instructions below will show the full installation, but please be sure to install the correct package for your system.
+
+#. Install OpenGeo Suite package (``opengeo``):
 
    .. code-block:: console
 
-      apt-get install opengeo-suite
+      apt-get install opengeo
 
 #. If the previous command returns an error, the OpenGeo repository may not have been added properly. Examine the output of the ``apt-get`` command for any errors or warnings.
-
-#. During the installation process, you will be asked a few questions. The first question is regarding the proxy URL that GeoServer is accessed through publicly. This is only necessary if GeoServer is accessed through an external proxy. If unsure, leave this field blank and just press ``[Enter]``.
-
-#. You will then be prompted for the name of the default GeoServer administrator account. Press ``[Enter]`` to leave it at the default of "admin", or type in a new name.
-
-#. Next, you will be asked for the default GeoServer administrator password. Press ``[Enter]`` to leave it at the default of "geoserver", or type in a new password.
-
-#. You will be asked if you want to install OpenGeo Suite-specific PostGIS extensions. Press ``[Enter]`` to accept.
-
-#. If any other warning or dialog boxes show up, you can cycle through them by pressing ``[Alt-O]``.
 
 #. You can launch the OpenGeo Suite Dashboard (and verify the installation was successful) by navigating to the following URL::
 
@@ -77,25 +81,26 @@ Minor version upgrades of the OpenGeo Suite packages occur along with other syst
 
       apt-get update
 
-#. Update the ``opengeo-suite`` package:
+#. Update the ``opengeo`` package (or whichever package was originally installed):
 
    .. code-block:: console
 
-      apt-get install opengeo-suite
+      apt-get install opengeo
       
 Major version upgrades do not happen automatically and require more steps as outlined in the following sections.
 
-.. _installation.linux.ubuntu.suite.upgrade.v3:
+.. _installation.linux.ubuntu.suite.upgrade.fromv2:
 
-Upgrading from version 2.x to 3.x
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Upgrading from version 2.x
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The OpenGeo Suite version 3 contains numerous major version updates to its components. This upgrade is **not-backward compatible** and will not retain
-all of your previously configured PostGIS data. You will need to backup your data according to the specific procedures listed below before proceeding with the upgrade.
+OpenGeo Suite version 2 contains an older version of many major components. This upgrade is also **not-backward compatible**; irreversible changes are made to the data so that they can't be used with earlier versions of OpenGeo Suite.
+
+In addition, the upgrade process will reinitialize the PostGIS database, removing all PostGIS data. Therefore, it is required to follow the upgrade steps below to ensure that your data is retained.
 
 The procedure for upgrading is as follows:
 
-#. Ensure the old (2.x) version of the OpenGeo Suite is running.
+#. Ensure the old (2.x) version of OpenGeo Suite is running.
  
 #. Change to the root user.
 
@@ -117,8 +122,8 @@ The procedure for upgrading is as follows:
 
        mkdir -p /tmp/suite_backup/pg_backup
        cd /tmp/suite_backup/pg_backup
-       wget http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.zip
-       unzip postgis_upgrade-3.0.zip
+       wget http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
+       unzip postgis_upgrade-3.0.1.zip
 
 #. Run the backup command:
 
@@ -140,17 +145,25 @@ The procedure for upgrading is as follows:
       exit
       sudo su -
 
-#. Back up your GeoServer data directory. This directory is located by default in :file:`/usr/share/opengeo-suite-data/geoserver_data`. To back up this directory, copy it to another location. For example:
+#. Back up your GeoServer data directory. This directory is located by default in :file:`/var/lib/opengeo/geoserver`. To back up this directory, copy it to another location. For example:
 
    .. code-block:: console
 
-      cp -r /usr/share/opengeo-suite-data/geoserver_data  /tmp/suite_backup/data_dir_backup
+      cp -r /var/lib/opengeo/geoserver  /tmp/suite_backup/data_dir_backup
       
-#. Now you are ready to install OpenGeo Suite 3.x. To do this, it is now necessary to add an additional repository. This repository contains the version 3 packages. Run the following command (as root or with ``sudo``):
+#. Now you are ready to install OpenGeo Suite. To do this, it is now necessary to add an additional repository. Run the following command (as root or with ``sudo``):
+
+   Ubuntu 12.04 (Precise):
 
    .. code-block:: console
 
-      echo "deb http://apt.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
+      echo "deb http://apt.opengeo.org/test/suite/v4/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+
+   Ubuntu 10.04 (Lucid):
+
+   .. code-block:: console
+
+      echo "deb http://apt.opengeo.org/test/suite/v4/ubuntu/ lucid main" > /etc/apt/sources.list.d/opengeo.list
 
 #. Now update your repository sources:
 
@@ -158,11 +171,11 @@ The procedure for upgrading is as follows:
 
       apt-get update
 
-#. Install the OpenGeo Suite package:
+#. Install the full OpenGeo Suite package (``opengeo``) or just the server tools (``opengeo-server``) or client tools (``opengeo-client``):
 
    .. code-block:: console
 
-      apt-get install opengeo-suite
+      apt-get install opengeo
 
 #. Ensure the newly-upgraded OpenGeo Suite is running.
 
@@ -190,14 +203,14 @@ The procedure for upgrading is as follows:
 
    .. code-block:: console
 
-      mv /usr/share/opengeo-suite-data/geoserver_data  /tmp/suite_backup/data_dir_backup_30
-      cp -r /tmp/suite_backup/data_dir_backup /usr/share/opengeo-suite-data/geoserver_data
+      mv /var/lib/opengeo/geoserver /tmp/suite_backup/data_dir_backup_30
+      cp -r /tmp/suite_backup/data_dir_backup /var/lib/opengeo/geoserver
 
 #. Change the owner of the restored data directory:
 
    .. code-block:: console
 
-      chown -R tomcat6 /usr/share/opengeo-suite-data/geoserver_data
+      chown -R tomcat6 /var/lib/opengeo/geoserver
 
 #. Start the Tomcat service:
 
@@ -207,9 +220,8 @@ The procedure for upgrading is as follows:
 
 .. note::
 
-   Memory requirements for OpenGeo Suite 3 have increased, which requires modification to the Tomcat Java configuration. These settings are not automatically updated on upgrade and must be set manually. 
+   Memory requirements for OpenGeo Suite have increased, which requires modification to the Tomcat Java configuration. These settings are not automatically updated on upgrade and must be set manually. 
 
    To make the change, edit the file :file:`/etc/default/tomcat6` and append ``-XX:MaxPermSize=256m`` to the ``JAVA_OPTS`` command. Restart the OpenGeo Suite for the change to take effect.
-
 
 Continue reading at the :ref:`installation.linux.suite.details` section.

@@ -3,11 +3,10 @@
 Installation details
 ====================
 
-This section discusses some helpful information about the OpenGeo Suite, as well as how to access the various components after installation.
+This section discusses some helpful information about OpenGeo Suite Linux packages, as well as how to access the various components after installation.
 
-
-Starting/Stopping the OpenGeo Suite
------------------------------------
+Starting/Stopping OpenGeo Suite
+-------------------------------
 
 GeoServer, GeoExplorer, and all other web-based containers including the documentation are installed into the existing Tomcat instance on the machine. Starting and stopping these applications are therefore accomplished by managing them through the standard Tomcat instance. Tomcat is installed as a service under the name of :command:`tomcat6` (or possibly :command:`tomcat5`, depending on your system), and can be managed accordingly:
 
@@ -24,13 +23,12 @@ PostGIS is also installed as a service, under the name of :command:`postgresql`,
    service postgresql start
    service postgresql stop
 
-Both services are started and set to run automatically when the OpenGeo Suite is installed.
-
+Both services are started and set to run automatically when OpenGeo Suite is installed.
 
 Accessing web applications
 --------------------------
 
-The easiest way to launch the web-based applications contained in the OpenGeo Suite is via the Dashboard. All web applications are linked from this application. The Dashboard is accessible via the following URL::
+The easiest way to launch the web-based applications contained in OpenGeo Suite is via the Dashboard. All web applications are linked from this application. The Dashboard is accessible via the following URL::
 
   http://localhost:8080/dashboard/
 
@@ -50,60 +48,21 @@ The easiest way to launch the web-based applications contained in the OpenGeo Su
      - http://localhost:8080/geoexplorer/
    * - OpenGeo Suite Documentation
      - http://localhost:8080/opengeo-docs/
-   * - OpenGeo Recipe Book
-     - http://localhost:8080/recipes/
 
 Accessing PostGIS
 -----------------
 
-You can access PostGIS in one of two ways:  via the command line will the :command:`psql` application, or via a graphical interface with the :command:`pgadmin3` application. Both commands should be on the path and can be invoked from any Terminal window. If unfamiliar with PostGIS, start with :command:`pgadmin3`.
+You can access PostGIS in one of two ways: via the command line will the :command:`psql` application, or via a graphical interface with the :command:`pgadmin3` application. Both commands should be on the path and can be invoked from any Terminal window. If unfamiliar with PostGIS, start with :command:`pgadmin3`.
 
 This version of PostGIS is running on port 5432, with administrator user name and password **opengeo** / **opengeo**.
-
-
-List of packages
-----------------
-
-Once installed, you will have the following packages installed on your system:
-
-.. tabularcolumns:: |l|p{2.5cm}|p{9cm}|
-
-.. list-table::
-   :widths: 20 20 60
-   :header-rows: 1
-
-   * - Package
-     - Name
-     - Description
-   * - ``opengeo-suite``
-     - OpenGeo Suite
-     - The full OpenGeo Suite and all its contents. All packages listed below are installed as dependencies with this package. Contains GeoExplorer, Styler, GeoEditor, Dashboard, Recipe Book, and more.
-   * - ``opengeo-docs``
-     - OpenGeo Suite Documentation
-     - Full documentation for the OpenGeo Suite.
-   * - ``opengeo-geoserver``
-     - GeoServer
-     - High performance, standards-compliant map and geospatial data server
-   * - ``opengeo-jai``
-     - Java Advanced Imaging (JAI)
-     - Set of Java toolkits to provide enhanced image rendering abilities
-   * - ``opengeo-postgis``
-     - PostGIS
-     - Robust, spatially-enabled object-relational database built on PostgreSQL
-   * - ``opengeo-suite-data``
-     - OpenGeo Suite Data
-     - Sample data for use with the OpenGeo Suite
-   * - ``pgadmin3``
-     - pgAdmin III
-     - Graphical client for interacting with PostgreSQL/PostGIS
 
 System requirements
 -------------------
 
-The OpenGeo Suite has the following system requirements:
+OpenGeo Suite has the following system requirements:
 
-* Operating System: Ubuntu 10.04 and 10.10, CentOS 5-6
+* Operating System: Ubuntu 10.04 or higher, CentOS 5 or higher
 * Memory: 512MB minimum (1GB recommended)
 * Disk space: 750MB minimum (plus extra space for any loaded data)
-* Browser: Any modern web browser is supported.
+* Browser: Any modern web browser is supported
 * Permissions: Super user privileges are required for installation

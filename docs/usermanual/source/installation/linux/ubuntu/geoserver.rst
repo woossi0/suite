@@ -3,15 +3,15 @@
 Installing GeoServer on Ubuntu
 ==============================
 
-The easiest way to install and set up GeoServer is by :ref:`installing the full OpenGeo Suite <installation.linux.ubuntu.suite>`.  The OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation.  That said, OpenGeo also provides individual packages for installing the components separately.
+The easiest way to install and set up GeoServer is by :ref:`installing OpenGeo Suite <installation.linux.ubuntu.suite>`. OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation. That said, there are also individual packages for installing the components separately.
 
-This page will describe how to install GeoServer on Ubuntu 10.04 (Lucid).  Later versions may work as well, but are not well-tested at this time.
+This page will describe how to install GeoServer on Ubuntu 12.04 (Precise). Ubuntu 10.04 (Lucid) will also work by specifying ``lucid`` instead of ``precise`` in the following commands.
 
 
 Access the OpenGeo repository
 -----------------------------
 
-OpenGeo provides a repository for packages in APT (Debian/Ubuntu) format.  To access this repository, you need to first import the OpenGeo GPG key in to your apt registry:
+OpenGeo provides a repository for packages in APT (Debian/Ubuntu) format. To access this repository, you need to first import the OpenGeo GPG key in to your apt registry:
 
 .. note:: You will need to run these commands on an account with root access.
 
@@ -21,9 +21,19 @@ OpenGeo provides a repository for packages in APT (Debian/Ubuntu) format.  To ac
 
 Once added, you can add the OpenGeo APT repository (http://apt.opengeo.org) to your local list of repositories:
 
-.. code-block:: bash
+.. warning:: These commands contain links to **beta** packages. When the final version of the software is released, these links will change, so you will need to run these commands again.
 
-   echo "deb http://apt.opengeo.org/suite/v3/ubuntu lucid main" >> /etc/apt/sources.list
+Ubuntu 12.04 (Precise):
+
+.. code-block:: console
+
+   echo "deb http://apt.opengeo.org/beta/suite/v4/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+
+Ubuntu 10.04 (Lucid):
+
+.. code-block:: console
+
+   echo "deb http://apt.opengeo.org/beta/suite/v4/ubuntu/ lucid main" > /etc/apt/sources.list.d/opengeo.list
       
 Now update APT to pull in your changes:
 
@@ -42,27 +52,22 @@ If the search command does not return any results, the repository was not added 
 Package management
 ------------------
 
-Now you can install GeoServer.  The name of the package is :guilabel:`opengeo-geoserver`:
+Now you can install GeoServer. The name of the package is :guilabel:`geoserver`:
 
 .. code-block:: bash
 
-   apt-get install opengeo-geoserver
+   apt-get install geoserver
 
 
 After installation
 ------------------
 
-When completed, GeoServer will be installed as a servlet inside the local version of Tomcat.  Assuming that Tomcat is running on the default port 8080, you can verify that GeoServer is installed by navigating to the following URL::
+When completed, GeoServer will be installed as a servlet inside the local version of Tomcat. Assuming that Tomcat is running on the default port 8080, you can verify that GeoServer is installed by navigating to the following URL::
 
    http://localhost:8080/geoserver/
 
-This will load the Web Administration Interface.  Most management of GeoServer functionality can be done from this interface.
+This will load the Web Administration interface. Most management of GeoServer functionality can be done from this interface.
 
 .. note:: The default username and password for the GeoServer administrator account is **admin** / **geoserver**
 
-For more information about GeoServer, please see the `GeoServer Documentation <http://suite.opengeo.org/opengeo-docs/geoserver/>`_
-
-Upgrading   
----------
-
-See :ref:`Upgrading the OpenGeo Suite <installation.linux.ubuntu.suite.upgrade>` for general information about upgrading. In particular users who wish to upgrade to GeoServer 2.2 should follow the steps outlined in :ref:`installation.linux.ubuntu.suite.upgrade.v3`.
+For more information about GeoServer, please see the documentation.
