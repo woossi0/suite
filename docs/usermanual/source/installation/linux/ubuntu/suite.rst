@@ -7,7 +7,7 @@ Installing OpenGeo Suite on Ubuntu
 
 Opengeo Suite packages are available for Ubuntu 10.04 (Lucid) and 12.04 (Precise).
 
-The commands below assume root privileges.
+.. note:: The sections below assume root privileges.
 
 New install
 -----------
@@ -22,7 +22,7 @@ New install
 
 #. Add the OpenGeo APT repository:
 
-   .. warning:: These commands contain links to **beta** packages. When the final version of the software is released, these links will change, so you will need to run these commands again.
+   .. warning:: These commands will install **beta** packages that are not recommended for production servers. There will be no upgrade from these packages to the final 4.0 packages. The beta packages must be removed before installing the final 4.0 packages.
 
    Ubuntu 12.04 (Precise):
 

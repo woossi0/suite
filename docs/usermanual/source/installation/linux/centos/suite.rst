@@ -7,7 +7,7 @@ Installing OpenGeo Suite on CentOS and Red Hat
 
 OpenGeo Suite packages are available for CentOS 5 and above, and Red Hat Enterprise Linux (RHEL) 5 and above.
 
-The commands below assume root privileges.
+.. note:: The sections below assume root privileges.
 
 New installation
 ----------------
@@ -22,7 +22,7 @@ New installation
 
 #. Add the OpenGeo repository. The exact command will differ depending on whether you are using CentOS/RHEL 5 or 6, and whether you are using a 32 bit installation or 64 installation:
 
-   .. warning:: These commands contain links to **beta** packages. When the final version of the software is released, these links will change, so you will need to run these commands again.
+   .. warning:: These commands will install **beta** packages that are not recommended for production servers. There will be no upgrade from these packages to the final 4.0 packages. The beta packages must be removed before installing the final 4.0 packages.
 
    .. list-table::
       :widths: 20 80

@@ -7,6 +7,7 @@ The easiest way to install and set up GeoServer is by :ref:`installing OpenGeo S
 
 This page will describe how to install GeoServer on Ubuntu 12.04 (Precise). Ubuntu 10.04 (Lucid) will also work by specifying ``lucid`` instead of ``precise`` in the following commands.
 
+.. note:: The sections below assume root privileges.
 
 Access the OpenGeo repository
 -----------------------------
@@ -21,7 +22,7 @@ OpenGeo provides a repository for packages in APT (Debian/Ubuntu) format. To acc
 
 Once added, you can add the OpenGeo APT repository (http://apt.opengeo.org) to your local list of repositories:
 
-.. warning:: These commands contain links to **beta** packages. When the final version of the software is released, these links will change, so you will need to run these commands again.
+.. warning:: These commands will install **beta** packages that are not recommended for production servers. There will be no upgrade from these packages to the final 4.0 packages. The beta packages must be removed before installing the final 4.0 packages.
 
 Ubuntu 12.04 (Precise):
 
