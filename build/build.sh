@@ -107,7 +107,7 @@ popd
 
 # start_remote_job <url> <name>
 function start_remote_job() {
-   curl -k --connect-timeout 10 "$1/buildWithParameters?CAT=${build_cat}&REV=${REV}&NAME=${build_name}&ARCHIVE_BUILD=${ARCHIVE_BUILD}"
+   curl -k --connect-timeout 10 "$1/buildWithParameters?CAT=${build_cat}&REV=${build_rev}&NAME=${build_name}&ARCHIVE_BUILD=${ARCHIVE_BUILD}"
    checkrv $? "trigger $2 with ${build_cat} r${rev}"
 }
 
