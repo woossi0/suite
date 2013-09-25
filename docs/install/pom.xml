@@ -33,7 +33,7 @@
    <module>windows</module>
    <module>mac</module>
    <module>ubuntu</module>
-   <module>centos</module>
+   <module>redhat</module>
  </modules>
 
 </project>

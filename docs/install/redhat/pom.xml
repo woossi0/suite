@@ -43,7 +43,7 @@
                 <copy todir="${basedir}/source">
                  <fileset dir="${basedir}" includes="index.rst">
                  </fileset>
-                 <fileset dir="${basedir}/../../usermanual/source/installation/linux/centos/" includes="suite.rst">
+                 <fileset dir="${basedir}/../../usermanual/source/installation/linux/redhat/" includes="suite.rst">
                  </fileset>
                  <fileset dir="${basedir}/../../usermanual/source/installation/linux/" includes="details.rst">
                  </fileset>
