@@ -12,11 +12,12 @@ Prerequisites
 
 OpenGeo Suite has the following system requirements:
 
-* **Operating System**: Vista, 7, 8, (each 32 and 64 bit), Server 2003 or newer, XP (Client Tools and Dev Tools only) 
+* **Operating System**: Vista, 7, 8, Server 2003 or newer, XP (client and dev tools only) 
 * **Memory**: 1GB minimum (2GB recommended)
-* **Disk space**: 600MB minimum (plus extra space for any loaded data)
+* **Disk space**: 600MB minimum (plus extra space for data)
 * **Browser**: Any modern web browser is supported
 * **Permissions**: Administrative rights
+* **Software**: .NET Framework 4 (`Download <http://www.microsoft.com/en-us/download/details.aspx?id=17851>`_)
 
 Installation options
 --------------------
@@ -25,11 +26,12 @@ OpenGeo Suite is a collection of software components. While it is possible to in
 
 By default only the server tools will be installed.
 
-
 .. _installation.windows.new:
 
-New Installation
+New installation
 ----------------
+
+.. note:: OpenGeo Suite for Windows requires `.NET Framework 4 <http://www.microsoft.com/en-us/download/details.aspx?id=17851>`_. Installation will fail if not present.
 
 .. warning:: If upgrading from version 2.x, please see the section on :ref:`installation.windows.upgrade.fromv2`.
 
