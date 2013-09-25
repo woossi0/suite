@@ -1,12 +1,17 @@
-.. _installation.linux.centos.geoserver:
+.. _installation.linux.redhat.geoserver:
 
-Installing GeoServer on CentOS and Red Hat
-==========================================
+Installing GeoServer on Red Hat-based systems
+=============================================
 
-The easiest way to install and set up GeoServer is by :ref:`installing OpenGeo Suite <installation.linux.centos.suite>`. OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation. That said, there are also individual packages for installing the components separately.
+The easiest way to install and set up GeoServer is by :ref:`installing OpenGeo Suite <installation.linux.redhat.suite>`. OpenGeo Suite comes complete with GeoServer as well as a full geospatial software stack, including utilities, data, and documentation. That said, there are also individual packages for installing the components separately.
 
-This page will describe how to install GeoServer on CentOS 5-6.
+GeoServer packages are available for the following Red Hat-based Linux distributions:
 
+* CentOS 5-6
+* Fedora 18-19
+* Red Hat Enterprise Linux (RHEL) 5-6
+
+This page will describe how to install GeoServer on Red Hat-based Linux distributions.
 
 Access the OpenGeo repository
 -----------------------------
@@ -39,6 +44,14 @@ Add the OpenGeo repository. The exact command will differ depending on whether y
      - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/i686/OpenGeo.repo``
    * - CentOS 6, 64 bit
      - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/x86_64/OpenGeo.repo``
+   * - Fedora 18, 32 bit
+     - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/5/i386/OpenGeo.repo``
+   * - Fedora 18, 64 bit
+     - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/5/x86_64/OpenGeo.repo``
+   * - Fedora 19, 32 bit
+     - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/6/i686/OpenGeo.repo``
+   * - Fedora 19, 64 bit
+     - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/6/x86_64/OpenGeo.repo``
    * - RHEL 5, 32 bit
      - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/5/i386/OpenGeo.repo``
    * - RHEL 5, 64 bit
@@ -82,5 +95,5 @@ For more information about running GeoServer, please see the `GeoServer Document
 Upgrading   
 ---------
 
-See :ref:`Upgrading the OpenGeo Suite <installation.linux.centos.suite.upgrade>` for general information about upgrading. In particular users who wish to upgrade to GeoServer 2.2 should follow the steps outlined in :ref:`installation.linux.centos.suite.upgrade.fromv2`.
+See :ref:`Upgrading the OpenGeo Suite <installation.linux.redhat.suite.upgrade>` for general information about upgrading. In particular users who wish to upgrade to GeoServer 2.2 should follow the steps outlined in :ref:`installation.linux.redhat.suite.upgrade.fromv2`.
 

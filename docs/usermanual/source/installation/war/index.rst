@@ -11,10 +11,9 @@ The individual applications shipped as part of the Production WAR bundle are:
 * GeoServer
 * GeoExplorer
 * GeoWebCache
-* :ref:`Recipe Book <recipes>`
-* :ref:`Dashboard <dashboard>`
+* Dashboard
 
-As PostGIS is not a web application, it is not included in this bundle. If you want to use PostGIS as part of your OpenGeo Suite installation, you should use the :ref:`CentOS <installation.linux.centos.postgis>` or :ref:`Ubuntu <installation.linux.ubuntu.postgis>` packages, or the :ref:`Windows <installation.windows>` or :ref:`Mac OS X <installation.osx>` installers.
+As PostGIS is not a web application, it is not included in this bundle. If you want to use PostGIS as part of your OpenGeo Suite installation, you should use the :ref:`CentOS <installation.linux.redhat.postgis>` or :ref:`Ubuntu <installation.linux.ubuntu.postgis>` packages, or the :ref:`Windows <installation.windows>` or :ref:`Mac OS X <installation.osx>` installers.
 
 .. note:: For further information on optimizing your system, please see the section on :ref:`sysadmin`.
 

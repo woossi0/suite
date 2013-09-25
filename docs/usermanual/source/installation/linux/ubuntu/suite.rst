@@ -50,9 +50,42 @@ New install
 
    If the search command does not return any results, the repository was not added properly. Examine the output of the ``apt`` commands for any errors or warnings.
 
-#. OpenGeo Suite is a collection of software components. While it is possible to install the entire collection on a single machine for testing purposes, we suggest that you install server tools on one machine and client tools on another. You will have the option of choosing which components you wish during the installation process.
+#. While it is possible to install the entire OpenGeo Suite on a single machine for testing purposes, we suggest that you install server tools on one machine and client tools on another. You will have the option of choosing which components you wish during the installation process.
 
-   The server package is called ``opengeo-server``. The client package is ``opengeo-client``. The package to install everything is called ``opengeo``. The instructions below will show the full installation, but please be sure to install the correct package for your system.
+   The following is a list of OpenGeo Suite packages and their functions:
+
+   .. list-table::
+      :widths: 20 80
+      :header-rows: 1
+
+      * - Package
+        - Description
+      * - ``opengeo``
+        - Full installation of OpenGeo Suite (equivalent to ``opengeo-server`` plus ``opengeo-client``)
+      * - ``opengeo-server``
+        - All server tools including GeoServer and GeoWebCache
+      * - ``opengeo-client``
+        - All client tools including pgAdmin and pgShapeloader
+      * - ``postgis``
+        - PostGIS, a spatial database
+      * - ``geoserver``
+        - GeoServer, a web mapping server
+      * - ``geoserver-mapmeter``
+        - Mapmeter extension to GeoServer (see http://mapmeter.com)
+      * - ``geoserver-clustering``
+        - Clustering extension for GeoServer
+      * - ``geoserver-css``
+        - CSS styling extension for GeoServer
+      * - ``geoserver-csw``
+        - Catalogue Service for Web (CSW) extension for GeoServer
+      * - ``geoserver-wps``
+        - Web Processing Service (WPS) extension for GeoServer
+      * - ``geowebcache``
+        - GeoWebCache, a tile caching server
+      * - ``geoexplorer``
+        - GeoExplorer, a browser-based map viewing/editing tool
+
+   Please be sure to install the correct package for your needs.
 
 #. Install OpenGeo Suite package (``opengeo``):
 

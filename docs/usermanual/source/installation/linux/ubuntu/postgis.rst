@@ -71,6 +71,6 @@ To verify that PostGIS is installed properly, you can run the following command 
 
 .. code-block:: bash
 
-   $ psql -U opengeo -p 5432 -c "SELECT postgis_full_version();" medford
+   $ psql -U opengeo -p 5432 -c "SELECT postgis_full_version();" geoserver
 
 If PostGIS is installed correctly, you should see information about the installed database.

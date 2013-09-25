@@ -1,26 +1,32 @@
-.. _installation.linux.centos.suite:
+.. _installation.linux.redhat.suite:
 
-Installing OpenGeo Suite on CentOS and Red Hat
-==============================================
+Installing OpenGeo Suite on Red Hat-based systems
+=================================================
 
 .. |pgupgrade_url| replace:: http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-3.0.1.zip
 
-OpenGeo Suite packages are available for CentOS 5 and above, and Red Hat Enterprise Linux (RHEL) 5 and above.
+OpenGeo Suite packages are available for the following Red Hat-based Linux distributions:
 
-.. note:: The sections below assume root privileges.
+* CentOS 5-6
+* Fedora 18-19
+* Red Hat Enterprise Linux (RHEL) 5-6
+
+This section will show how to install OpenGeo Suite for these systems.
 
 New installation
 ----------------
 
-.. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.centos.suite.upgrade`.
+.. note:: If you are upgrading from a previous version, jump to the section entitled :ref:`installation.linux.redhat.suite.upgrade`.
 
 #. Change to the :file:`/etc/yum.repos.d` directory:
+
+   .. note:: These commands assume root privileges.
 
    .. code-block:: bash
 
       cd /etc/yum.repos.d
 
-#. Add the OpenGeo repository. The exact command will differ depending on whether you are using CentOS/RHEL 5 or 6, and whether you are using a 32 bit installation or 64 installation:
+#. Add the OpenGeo repository. The exact command will differ depending on the distribution:
 
    .. warning:: These commands will install **beta** packages that are not recommended for production servers. There will be no upgrade from these packages to the final 4.0 packages. The beta packages must be removed before installing the final 4.0 packages.
 
@@ -38,6 +44,14 @@ New installation
         - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/i686/OpenGeo.repo``
       * - CentOS 6, 64 bit
         - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/x86_64/OpenGeo.repo``
+      * - Fedora 18, 32 bit
+        - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/5/i386/OpenGeo.repo``
+      * - Fedora 18, 64 bit
+        - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/5/x86_64/OpenGeo.repo``
+      * - Fedora 19, 32 bit
+        - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/6/i686/OpenGeo.repo``
+      * - Fedora 19, 64 bit
+        - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/6/x86_64/OpenGeo.repo``
       * - RHEL 5, 32 bit
         - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/5/i386/OpenGeo.repo``
       * - RHEL 5, 64 bit
@@ -47,11 +61,45 @@ New installation
       * - RHEL 6, 64 bit
         - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/6/x86_64/OpenGeo.repo``
 
-#. OpenGeo Suite is a collection of software components. While it is possible to install the entire collection on a single machine for testing purposes, we suggest that you install server tools on one machine and client tools on another. You will have the option of choosing which components you wish during the installation process.
 
-   The server package is called ``opengeo-server``. The client package is ``opengeo-client``. The package to install everything is called ``opengeo``. The instructions below will show the full installation, but please be sure to install the correct package for your system.
+#. While it is possible to install the entire OpenGeo Suite on a single machine for testing purposes, we suggest that you install server tools on one machine and client tools on another. You will have the option of choosing which components you wish during the installation process.
 
-#. Install OpenGeo Suite package (``opengeo``):
+   The following is a list of OpenGeo Suite packages and their functions:
+
+   .. list-table::
+      :widths: 20 80
+      :header-rows: 1
+
+      * - Package
+        - Description
+      * - ``opengeo``
+        - Full installation of OpenGeo Suite (equivalent to ``opengeo-server`` plus ``opengeo-client``)
+      * - ``opengeo-server``
+        - All server tools including GeoServer and GeoWebCache
+      * - ``opengeo-client``
+        - All client tools including pgAdmin and pgShapeloader
+      * - ``postgis``
+        - PostGIS, a spatial database
+      * - ``geoserver``
+        - GeoServer, a web mapping server
+      * - ``geoserver-mapmeter``
+        - Mapmeter extension to GeoServer (see http://mapmeter.com)
+      * - ``geoserver-clustering``
+        - Clustering extension for GeoServer
+      * - ``geoserver-css``
+        - CSS styling extension for GeoServer
+      * - ``geoserver-csw``
+        - Catalogue Service for Web (CSW) extension for GeoServer
+      * - ``geoserver-wps``
+        - Web Processing Service (WPS) extension for GeoServer
+      * - ``geowebcache``
+        - GeoWebCache, a tile caching server
+      * - ``geoexplorer``
+        - GeoExplorer, a browser-based map viewing/editing tool
+
+   Please be sure to install the correct package for your needs.
+
+#. Install OpenGeo Suite (or appropriate package from the above list):
 
    .. code-block:: bash
 
@@ -65,7 +113,7 @@ New installation
 
 Continue reading at the :ref:`installation.linux.suite.details` section.
 
-.. _installation.linux.centos.suite.upgrade:
+.. _installation.linux.redhat.suite.upgrade:
 
 Upgrading
 ---------
@@ -86,7 +134,7 @@ Minor version upgrades of the OpenGeo Suite packages occur along with other syst
 
 Major version upgrades do not happen automatically and require more steps as outlined in the following sections.
 
-.. _installation.linux.centos.suite.upgrade.fromv2:
+.. _installation.linux.redhat.suite.upgrade.fromv2:
 
 Upgrading from version 2.x
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -202,6 +250,14 @@ Now you are ready to install OpenGeo Suite. To do this, it is now necessary to a
         - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/i686/OpenGeo.repo``
       * - CentOS 6, 64 bit
         - ``wget http://yum.opengeo.org/beta/suite/v4/centos/6/x86_64/OpenGeo.repo``
+      * - Fedora 18, 32 bit
+        - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/5/i386/OpenGeo.repo``
+      * - Fedora 18, 64 bit
+        - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/5/x86_64/OpenGeo.repo``
+      * - Fedora 19, 32 bit
+        - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/6/i686/OpenGeo.repo``
+      * - Fedora 19, 64 bit
+        - ``wget http://yum.opengeo.org/beta/suite/v4/fedora/6/x86_64/OpenGeo.repo``
       * - RHEL 5, 32 bit
         - ``wget http://yum.opengeo.org/beta/suite/v4/rhel/5/i386/OpenGeo.repo``
       * - RHEL 5, 64 bit
