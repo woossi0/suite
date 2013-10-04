@@ -12,7 +12,7 @@
    <property name="gt.flags" value=""/>
 
    <property name="gwc.dir" value="geowebcache"/>
-   <property name="gwc.version" value="1.5-beta"/>
+   <property name="gwc.version" value="1.5-SNAPSHOT"/>
    <property name="gwc.flags" value=""/>
 
    <property name="geoscript-js.dir" value="geoscript/js"/>

@@ -1,15 +1,15 @@
 [submodule "geoserver/externals/geotools"]
 	path = geoserver/externals/geotools
-	url = git://github.com/opengeo/geotools.git
+	url = git://github.com/boundlessgeo/geotools.git
 [submodule "geoserver/externals/geoserver"]
 	path = geoserver/externals/geoserver
-	url = git://github.com/opengeo/geoserver.git
+	url = git://github.com/boundlessgeo/geoserver.git
 [submodule "geoserver/externals/geowebcache"]
 	path = geoserver/externals/geowebcache
-	url = git://github.com/opengeo/geowebcache.git
+	url = git://github.com/boundlessgeo/geowebcache.git
 [submodule "geoserver/externals/geoserver-exts"]
 	path = geoserver/externals/geoserver-exts
-	url = git://github.com/opengeo/geoserver-exts.git
+	url = git://github.com/boundlessgeo/geoserver-exts.git
 [submodule "geoserver/externals/geoscript/py"]
 	path = geoserver/externals/geoscript/py
 	url = git://github.com/jdeolive/geoscript-py.git
@@ -18,10 +18,10 @@
 	url = git://github.com/jdeolive/geoscript-js.git
 [submodule "geoexplorer/externals/buildkit"]
 	path = geoexplorer/externals/buildkit
-	url = git://github.com/opengeo/buildkit.git
+	url = git://github.com/boundlessgeo/buildkit.git
 [submodule "geoexplorer/app/static/externals/gxp"]
 	path = geoexplorer/app/static/externals/gxp
-	url = git://github.com/opengeo/gxp.git
+	url = git://github.com/boundlessgeo/gxp.git
 [submodule "geoexplorer/app/static/externals/geoext"]
 	path = geoexplorer/app/static/externals/geoext
 	url = git://github.com/geoext/geoext.git
@@ -30,10 +30,10 @@
 	url = git://github.com/openlayers/openlayers.git
 [submodule "geoexplorer/app/static/externals/printpreview"]
 	path = geoexplorer/app/static/externals/printpreview
-	url = git://github.com/opengeo/PrintPreview.git
+	url = git://github.com/boundlessgeo/PrintPreview.git
 [submodule "geoexplorer/externals/stick"]
 	path = geoexplorer/externals/stick
 	url = https://github.com/hns/stick.git
 [submodule "geoserver/data_dir/externals/suite-data"]
 	path = geoserver/data_dir/externals/suite-data
-	url = https://github.com/opengeo/suite-data.git
+	url = https://github.com/boundlessgeo/suite-data.git
