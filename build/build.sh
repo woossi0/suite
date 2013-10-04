@@ -107,15 +107,16 @@ popd
 
 # start_remote_job <url> <name>
 function start_remote_job() {
-   curl -k --connect-timeout 10 "$1/buildWithParameters?CAT=${build_cat}&REV=${build_rev}&NAME=${build_name}&ARCHIVE_BUILD=${ARCHIVE_BUILD}"
-   checkrv $? "trigger $2 with ${build_cat} r${rev}"
+   curl -k --connect-timeout 10 "$1/buildWithParameters?CAT=${build_cat}&REV=${build_rev}&NAME=${build_name}&ARCHIVE_BUILD=${ARCHIVE_BUILD}&TOKEN=buildme"
+   #checkrv $? "trigger $2 with ${build_cat} r${rev}"
 }
 
-WIN=192.168.50.40
+WIN=162.209.53.106
 OSX=199.19.86.219
 
 # start the build of the OSX installer
-start_remote_job http://$OSX:8080/job/build_all "osx installer"
+start_remote_job http://$OSX:8080/job/mac-installer "osx installer"
+start_remote_job http://$WIN:8080/job/win-installer-32 "win installer"
 
 # start the build of the Windows installer
 #start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer"
