@@ -72,7 +72,6 @@
       <outputDirectory>/</outputDirectory>
       <excludes>
         <exclude>pom.xml</exclude>
-        <exclude>opengeo-suite*</exclude>
         <exclude>src/**</exclude>
         <exclude>target/**</exclude>
         <exclude>.*</exclude>
@@ -80,11 +79,6 @@
     </fileSet>
   </fileSets>
   <files>
-    <file>
-      <source>jetty/opengeo-suite</source>
-      <outputDirectory>/</outputDirectory>
-      <fileMode>544</fileMode>
-    </file>
     <file>
       <source>target/version.ini</source>
       <outputDirectory>/</outputDirectory>

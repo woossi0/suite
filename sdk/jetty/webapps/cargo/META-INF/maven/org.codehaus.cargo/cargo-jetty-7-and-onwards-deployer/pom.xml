@@ -21,11 +21,11 @@
   <parent>
     <groupId>org.codehaus.cargo</groupId>
     <artifactId>cargo-resources</artifactId>
-    <version>1.2.1</version>
+    <version>1.4.4</version>
   </parent>
-  <artifactId>cargo-jetty-6-and-earlier-deployer</artifactId>
+  <artifactId>cargo-jetty-7-and-onwards-deployer</artifactId>
   <packaging>war</packaging>
-  <name>Cargo Remote Deployer for Jetty (version 6 and earlier)</name>
+  <name>Cargo Remote Deployer for Jetty (version 7 and onwards)</name>
   <description>Webapp used by Cargo to remotely deploy applications of a Jetty server</description>
   <url>http://maven.apache.org</url>
   <dependencies>
@@ -36,9 +36,9 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.mortbay.jetty</groupId>
-      <artifactId>jetty</artifactId>
-      <version>6.1.7</version>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-deploy</artifactId>
+      <version>7.6.12.v20130726</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
