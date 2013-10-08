@@ -21,7 +21,6 @@
         <fileSet>
             <directory>sdk/jetty</directory>
             <outputDirectory>/jetty</outputDirectory>
-            </excludes>
         </fileSet>
     </fileSets>
     <files>
