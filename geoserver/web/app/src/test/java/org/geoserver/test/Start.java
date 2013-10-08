@@ -9,12 +9,12 @@ import java.io.FileInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.mortbay.jetty.Connector;
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.bio.SocketConnector;
-import org.mortbay.jetty.webapp.WebAppContext;
-import org.mortbay.thread.BoundedThreadPool;
-import org.mortbay.xml.XmlConfiguration;
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.bio.SocketConnector;
+import org.eclipse.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.util.thread.QueuedThreadPool;
+import org.eclipse.jetty.xml.XmlConfiguration;
 
 
 /**
@@ -36,7 +36,7 @@ public class Start {
 
             // don't even think of serving more than XX requests in parallel... we
             // have a limit in our processing and memory capacities
-            BoundedThreadPool tp = new BoundedThreadPool();
+            QueuedThreadPool tp = new QueuedThreadPool();
             tp.setMaxThreads(50);
 
             SocketConnector conn = new SocketConnector();
