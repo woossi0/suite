@@ -56,6 +56,11 @@
             <artifactId>jetty-servlet</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-client</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.codehaus.cargo</groupId>
             <artifactId>cargo-ant</artifactId>
             <version>1.2.1</version>
