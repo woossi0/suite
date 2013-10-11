@@ -22,51 +22,58 @@ Preparation
 
 #. Identify the SRID ("projection") of your data. If available, this information is easily accessed via the layer metadata in GeoServer. If the projection is unknown, use a service like `prj2epsg.org <http://prj2epsg.org>`_ to upload and convert the shapefile's ``.prj`` file to a SRID code.
 
-#. Either identify the target database where you would like to load the data, or create a new database. The OpenGeo Suite comes with a default database that you may use. This database is usually named after the user who installed the OpenGeo Suite.
+#. Either identify the target database where you would like to load the data, or :ref:`create a new database <dataadmin.pgGettingStarted.createdb>`. 
+
+Launching pgShapeloader
+-----------------------
+
+Depending on how OpenGeo Suite was installed pgShapeloader may or may not have been installed. See the :ref:`installation` section for installation instructions. Once installed follow the instructions below for your platform. 
+
+Windows
+^^^^^^^
+
+On Windows pgShapeloader can be launched from the :guilabel:`Start Menu`. 
+
+.. figure:: img/pgshploader_win.png
+
+   Launching pgAdmin on Windows
+
+Mac
+^^^
+
+On Mac the pgShapeloader application is accessible from the installer image under :guilabel:`PostGIS Utilities`.
+
+.. figure:: img/pgadmin_mac.png
+
+   Launching pgShapeloader on Mac
+
+Linux
+^^^^^
+
+On Linux pgShapeloader can be launched from the terminal with the ``shp2pgsql-gui`` command.
 
 
 Loading data
 ------------
 
-#. Make sure the OpenGeo Suite is running.
+#. Make sure OpenGeo Suite is running and launch pgShapeloader.
 
-#. Open the PostGIS Shapefile Import/Export Manager tool using one of the following options: 
-
-   * Click :guilabel:`Import shapefiles` on the :ref:`dashboard` (not available on the web-based Dashboard).
-   * In pgAdmin click :menuselection:`Plugins --> PostGIS Shapefile and DBF loader` (if the plugin is installed).
-   * Run the command line :file:`shp2pgsql-gui` tool.
-
-   .. figure:: img/pgshapeloader.png
-
-      *pgShapeloader*
-
-#. Click :guilabel:`View connection details` and enter the connection information in the :guilabel:`PostGIS Connection` section. This information will depend on how the OpenGeo Suite was installed, and whether ``pgShapeloader`` is running locally or remotely. For a default local installation, the following credentials may be used:
+#. Click :guilabel:`View connection details` and enter the connection information in the :guilabel:`PostGIS Connection` section. This information will depend on how the OpenGeo Suite was installed, and whether ``pgShapeloader`` is running locally or remotely. For a default local installation, the following connection info may be used:
 
    .. list-table::
-      :header-rows: 1
 
-      * - Field
-        - Windows/Mac
-        - Linux
       * - **Username**
         - postgres
-        - opengeo
       * - **Password**
         - [blank/any]
-        - opengeo
       * - **Server Host**
         - localhost
-        - localhost
       * - **Port**
-        - **54321**
         - **5432**
-      * - **Database**
-        - [user name]
-        - [user name]
 
    .. figure:: img/pgshp_connection.png
 
-      *PostGIS connection options*
+      PostGIS connection options
 
 #. Click :guilabel:`OK` to return to the main application. The shapefile loader uses the supplied connection details to connect to the target database; the connection status is reported in the :guilabel:`Log Window`. If you see any errors, check your details and try again.
 
@@ -143,7 +150,7 @@ Loading data
 
     .. code-block:: console
 
-      psql -p <PORT> -U <USERNAME> -d <DATABASE> -c "\d" -h localhost
+      psql -U <USERNAME> -d <DATABASE> -c "\d" 
 
     .. note:: The specific command parameters will depend on your local configuration.
 

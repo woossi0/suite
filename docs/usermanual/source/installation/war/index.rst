@@ -1,29 +1,26 @@
 .. _installation.war:
 
 
-Installing OpenGeo Suite Production WAR bundle
-==============================================
+Installing OpenGeo Suite WAR bundle
+===================================
 
-In addition to being available through installers and packages, the OpenGeo Suite is available as an operating system independent collection of web applications, or servlets. This collection may be useful for administrators who wish to manage the OpenGeo Suite within their existing infrastructure, and want the flexibility of a custom deployment. As this bundle is often used in a :ref:`sysadmin.production` environment, and the applications themselves are distributed in a .WAR (Web Archive) format, they are known as **Production WARs**.
+In addition to being available through installers and packages, OpenGeo Suite components are available as operating system independent web application archives (WAR). This is the recommended method of install for systems that already have an application server in place. Rather than install a second Tomcat or Jetty container it is desirable to deploy the applications on the existing infrastructure.
 
-The individual applications shipped as part of the Production WAR bundle are:
+The individual applications shipped as part of the WAR bundle are:
 
 * GeoServer
 * GeoExplorer
 * GeoWebCache
 * Dashboard
 
-As PostGIS is not a web application, it is not included in this bundle. If you want to use PostGIS as part of your OpenGeo Suite installation, you should use the :ref:`CentOS <installation.linux.redhat.postgis>` or :ref:`Ubuntu <installation.linux.ubuntu.postgis>` packages, or the :ref:`Windows <installation.windows>` or :ref:`Mac OS X <installation.osx>` installers.
-
-.. note:: For further information on optimizing your system, please see the section on :ref:`sysadmin`.
-
+As PostGIS is not a web application, it is not included in this bundle. If you want to use PostGIS as part of your OpenGeo Suite installation, you should use the packages available for your operating system, and install only the PostGIS component.
 
 Installing a servlet container
 ------------------------------
 
 .. note:: If you already have a servlet container installed, you may skip to the next section.
 
-The OpenGeo Suite is compatible with a number of servlet containers, among them Jetty, JBoss, and WebSphere. One of the most popular platforms is `Apache Tomcat <http://tomcat.apache.org/>`_. Tomcat is available for all operating systems and is a stable and well-tested solution.
+OpenGeo Suite is compatible with a number of servlet containers, among them Jetty, JBoss, and WebSphere. One of the most popular platforms is `Apache Tomcat <http://tomcat.apache.org/>`_. Tomcat is available for all operating systems and is a stable and well-tested solution.
 
 The following sections will assume that Tomcat is used, although most of the instructions and recommended strategies will also apply to other servlet containers with minimal additional effort.
 
@@ -38,9 +35,7 @@ Web applications are usually deployed by copying the individual WAR files to a s
 Installation strategies
 -----------------------
 
-The main benefit of the Production WAR bundle is its flexibility. Unlike a monolithic installer, you can install individual components of the OpenGeo Suite as needed. The most important point to note is *not all applications need to be deployed on the same machine*, or even installed at all. 
-
-The following installation strategies and configuration options are available.
+The main benefit of the WAR bundle is its flexibility. It is up to determine the exact deployment that suits our needs. The following describes some common deployment scenarios.
 
 
 Split GeoServer and GeoWebCache
@@ -56,5 +51,5 @@ It is possible to deploy multiple copies of GeoServer in the same servlet contai
 Separate PostGIS and GeoServer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A recommended installation strategy is to ensure PostGIS and GeoServer are not installed on the same server. This is primarily for security reasons, to prevent PostGIS from being accessed via the web. Give that PostGIS is a separate installation in the Production WARs, this configuration is straightforward to implement.
+A recommended installation strategy is to ensure PostGIS and GeoServer are not installed on the same server. This is primarily for security reasons, to prevent PostGIS from being accessed via the web. Give that PostGIS is a separate installation the WAR bundle, this configuration is straightforward to implement.
 

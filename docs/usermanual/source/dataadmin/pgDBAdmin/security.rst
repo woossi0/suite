@@ -115,9 +115,9 @@ Database columns can be encrypted using the pgcrypto_ module, which includes has
 SSL connections
 ~~~~~~~~~~~~~~~
 
-To use SSL connections, both your client and server must support SSL. The OpenGeo Suite provides PostgreSQL with SSL support, but SSL is not enabled by default.  To enable SLL support:
+To use SSL connections, both your client and server must support SSL. OpenGeo Suite provides PostgreSQL with SSL support, but SSL is not enabled by default.  To enable SLL support:
 
- 1. Shutdown the OpenGeo Suite server. On the OpenGeo Dashboard click :guilabel:`Shutdown`.
+ 1. Shut down the PostgreSQL service.
  2. Acquire or generate an SSL certificate and key. The certificate must not include a passphrase otherwise the database server won't be able to start up. To generate a self-signed key, enter the following:
 
   .. code-block:: console 
@@ -142,7 +142,7 @@ To use SSL connections, both your client and server must support SSL. The OpenGe
 
       Enabling SSL support
 
- 5.  Restart OpenGeo Suite service to activate support for SSL. On the OpenGeo Dashboard, click :guilabel:`Start`.
+ 5.  Restart the PostgreSQL service to activate support for SSL.
 
  6.  To add an encrypted server connection, on the pgAdmin main menu click :guilabel:`File` and click :guilabel:`Add Server` to open the :guilabel:`New Server Registration` dialog box. 
 

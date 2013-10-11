@@ -22,7 +22,7 @@ Preparation
 
 #. Identify the SRID ("projection") of your data. If available, this information is accessed via the layer metadata in GeoServer.
 
-#. Either identify the target database where you would like to load the data, or create a new database. The OpenGeo Suite comes with a default database that you may use. This database is usually named after the user who installed the OpenGeo Suite.
+#. Either identify the target database where you would like to load the data, or  ref:`create a new database <dataadmin.pgGettingStarted.createdb>`. 
 
 Loading data
 ------------
@@ -35,7 +35,7 @@ Loading data
 
    .. code-block:: console
 
-      psql -p 54321 -c "SELECT PostGIS_Version()"
+      psql -c "SELECT PostGIS_Version()"
 
    .. code-block:: console
 
@@ -43,7 +43,7 @@ Loading data
       ---------------------------------------
        2.0 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
 
-   .. note:: These examples use port 54321, but substitute your own PostGIS port if different. The port number on Linux is 5432. If your connection is denied, you may need to add your user name with the ``-U`` option or set the hostname with the ``-h`` option.
+   .. note:: These examples use the default port (5432), but substitute your own PostGIS port if different with the ``-p`` option.
 
 
 #. To see a list of the supported raster formats, use ``raster2pgsql`` with the -G option.
@@ -93,7 +93,7 @@ Loading data
 
    .. code-block:: console
 
-      raster2pgsql -s 4236 -I -C -M *.tif -F -t 100x100 public.demelevation | psql -d gisdb -h localhost -p 54321
+      raster2pgsql -s 4236 -I -C -M *.tif -F -t 100x100 public.demelevation | psql -d gisdb 
 
 
    .. note:: If you omit the name of the schema and use *demelevation* instead of *public.demelevation*, the raster table will be created in the default schema of the database or user.
@@ -108,7 +108,7 @@ Loading data
 
       raster2pgsql -s 4236 -I -C -M *.tif -F -t 100x100 public.demelevation > elev.sql
    
-      psql -U postgres -d gisdb -f elev.sql -h localhost -p 54321
+      psql -U postgres -d gisdb -f elev.sql
 
 
 Batch Loading
@@ -129,7 +129,7 @@ Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as
 .. code-block:: console
 
    for %%f in (*.tif) do raster2pgsql -I -s <SRID> %%f %%~nf > %%~nf.sql
-   for %%f in (*.sql) do psql -p <PORT> -d <DATABASE> -f %%f
+   for %%f in (*.sql) do psql -d <DATABASE> -f %%f
 
 Run this batch file to load all the selected raster files into the database.
 
@@ -153,7 +153,7 @@ Create a shell script file, for example :file:`loadfiles.sh`, in the same direct
 
    for f in *.sql
    do
-       psql -p <PORT> -d <DATABASE> -f $f
+       psql -d <DATABASE> -f $f
    done
 
 

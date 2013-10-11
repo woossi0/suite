@@ -3,7 +3,7 @@
 Layer Importer user interface reference 
 =======================================
 
-The Layer Importer user interface is a component of the GeoServer web interface. You can access it from the :ref:`dashboard` and clicking on :guilabel:`Layer Importer`, or by going to GeoServer and clicking on :guilabel:`Import Data`, found on the left side of the screen after logging in.
+The Layer Importer user interface is a component of the GeoServer web interface. You can access it from the GeoServer web interface by clicking the :guilabel:`Import Data` link, found on the left side of the screen after logging in.
 
 Data sources page
 -----------------

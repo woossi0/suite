@@ -4,7 +4,7 @@ Creating WPS processes with Java
 ================================
 
 Web Processing Service (WPS) processes are able to perform almost any kind of computation.  
-The OpenGeo Suite supplies many useful WPS processes built in to GeoServer.
+OpenGeo Suite supplies many useful WPS processes built in to GeoServer.
 For even more capability, GeoServer can be extended by adding new WPS processes.  
 This section describes creating a custom WPS process in Java and how to deploy and run it in GeoServer.
 
@@ -77,7 +77,7 @@ Add the following GeoTools library dependencies to this file:
       <version>8-SNAPSHOT</version>
     </dependency>
 
-Please ensure that the GeoTools version matches the one used by the OpenGeo Suite being deployed into. 
+Please ensure that the GeoTools version matches the one used by OpenGeo Suite being deployed into. 
 You can check the version of GeoTools by clicking on the :guilabel:`About Geoserver` section at the bottom of the :guilabel:`About & Status` section of the `GeoServer Web Admin Interface <../../geoserver/webadmin/>`_.
 
 .. todo:: Replace this image with an image of version 3.0 showing GeoTools 8

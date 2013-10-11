@@ -19,7 +19,7 @@ Preparation
 
 #. Identify the SRID ("projection") of your data. If available, this information is easily accessed via the layer metadata in GeoServer. If the projection is unknown, use a service like `prj2epsg.org <http://prj2epsg.org>`_ to upload and convert the shapefile's ``.prj`` file to a SRID code.
 
-#. Either identify the target database where you would like to load the data, or create a new database. The OpenGeo Suite comes with a default database you may use. This database is usually named after the user who installed the OpenGeo Suite.
+#. Either identify the target database where you would like to load the data, or :ref:`create a new database <dataadmin.pgGettingStarted.createdb>`. 
 
 Loading data
 ------------
@@ -34,7 +34,7 @@ Loading data
 
    .. code-block:: console
 
-      psql -p 54321 -c "SELECT PostGIS_Version()"
+      psql -c "SELECT PostGIS_Version()"
 
    .. code-block:: console
 
@@ -44,7 +44,7 @@ Loading data
 
    .. note::
 
-     These examples use port 54321, but substitute your own PostGIS port if different. The port number on Linux is 5432. If your connection is denied, you may need to add your user name with the ``-U`` option or set the hostname with the ``-h`` option.
+     These examples use the default of 5432, but substitute your own PostGIS port if different with the ``-p`` option.
 
 #. Run the ``shp2pgsql`` command and pipe the output into the ``psql`` command to load the shapefile into the database in one step. The recommended syntax is:
 
@@ -63,7 +63,7 @@ Loading data
 
    .. code-block:: console
 
-      shp2pgsql -I -s 4269 C:\MyData\roads\roads.shp roads | psql -p 54321 -d MyDatabase
+      shp2pgsql -I -s 4269 C:\MyData\roads\roads.shp roads | psql -d MyDatabase
 
    The ``-I`` option will create a spatial index after the table is created. This is strongly recommended for improved performance. For more information about shp2pgsql command options, please refer to the `Using the Loader <http://postgis.refractions.net/documentation/manual-2.0/using_postgis_dbmanagement.html#id2853463>`_ section of the PostGIS Documentation.
 
@@ -78,13 +78,13 @@ Loading data
 
    .. code-block:: console
 
-      psql -p 54321 -d <DATABASE> -f SHAPEFILE.sql
+      psql -d <DATABASE> -f SHAPEFILE.sql
 
 The shapefile has now been imported as a table in your PostGIS database. You can verify this by either using pgAdmin to view the list of tables, or by executing the following query at the command line:
 
 .. code-block:: console
 
-   psql -p <PORT> -U <USERNAME> -d <DATABASE> -c "\d" -h localhost
+   psql -U <USERNAME> -d <DATABASE> -c "\d"
 
 .. note::
 
@@ -116,7 +116,7 @@ Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as
 .. code-block:: console
 
    for %%f in (*.shp) do shp2pgsql -I -s <SRID> %%f %%~nf > %%~nf.sql
-   for %%f in (*.sql) do psql -p <PORT> -d <DATABASE> -f %%f
+   for %%f in (*.sql) do psql -d <DATABASE> -f %%f
 
 Run this batch file to load all the selected shapefiles into the database.
 
@@ -138,7 +138,7 @@ Create a shell script file, for example :file:`loadfiles.sh`, in the same direct
 
    for f in *.sql
    do
-       psql -p <PORT> -d <DATABASE> -f $f
+       psql -d <DATABASE> -f $f
    done
 
 

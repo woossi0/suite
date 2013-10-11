@@ -3,13 +3,11 @@
 Load your data with GeoExplorer
 ===============================
 
-The first step is to load data into the OpenGeo Suite. These are many tools and methods to accomplish this (see the :ref:`dataadmin` section), but the simplest way is to use **GeoExplorer**. GeoExplorer allows you to create web maps based on layers served through GeoServer and a variety of other sources. When deployed alongside GeoServer and PostGIS, GeoExplorer will convert spatial files into PostGIS tables, and then serve that data through GeoServer. This process is seamless; all you need to do is supply the data.
+The first step is to load data into OpenGeo Suite. These are many tools and methods to accomplish this (see the :ref:`dataadmin` section), but the simplest way is to use **GeoExplorer**. GeoExplorer allows you to create web maps based on layers served through GeoServer and a variety of other sources. When deployed alongside GeoServer and PostGIS, GeoExplorer will convert spatial files into PostGIS tables, and then serve that data through GeoServer. This process is seamless; all you need to do is supply the data.
 
-#. First, make sure the OpenGeo Suite is running. You can do this by clicking the :guilabel:`Start` button in the :ref:`dashboard`. If running on Linux or without a desktop-based Dashboard, start the Tomcat or other servlet container service.
+#. First, make sure OpenGeo Suite is running.
 
-#. Run GeoExplorer by clicking :guilabel:`GeoExplorer` in the Dashboard or by navigating to its direct URL (such as ``http://localhost:8080/geoexplorer``).
-
-   .. note:: A web-based Dashboard is always available in any OpenGeo Suite deployment. If the OpenGeo Suite webapps are deployed at ``http://localhost:8080/``, then the Dashboard will be available at ``http://localhost:8080/dashboard``.
+#. Run GeoExplorer by clicking :guilabel:`GeoExplorer` in the :ref:`dashboard` or by navigating to its direct URL (such as ``http://localhost:8080/geoexplorer``).
 
    .. figure:: img/load_geoexplorer.png
 

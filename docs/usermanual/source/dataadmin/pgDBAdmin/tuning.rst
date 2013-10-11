@@ -4,11 +4,16 @@ Tuning PostgreSQL for spatial
 =============================
 
 PostgreSQL is a versatile database system, capable of operating efficiently in low-resource and multi-application environments. To ensure that efficient operation in different environments, the default configuration settings are conservative and generally unsuitable for a high-performance production database. This is further compounded by the typical usage profile of a geospatial database, with fewer, larger records being accessed compared to a non-geospatial database.
- 
-The database configuration parameters are available to edit (using a text editor) in the :file:`postgresql.conf` file. This file is stored in the OpenGeo Suite PostgreSQL installation folder's data directory (``pgdata``).
 
- * Windows—:file:`<installation_folder>\\pgdata\\%USER\\`
- * MAX OS X and Linux—:file:`<installation_folder>/pgdata/<username>/`
+postgresql.conf
+---------------
+
+The database configuration parameters are available to edit (using a text editor) in the :file:`postgresql.conf` file. The location of this file differs based on platform.
+
+* :ref:`Windows <installation.windows.misc.pgconfig>`
+* :ref:`Mac <installation.mac.misc.pgconfig>`
+* :ref:`Ubuntu <installation.linux.redhat.misc.pgconfig>`
+* :ref:`Fedora/CentOS/Red Hat <installation.linux.ubuntu.misc.pgconfig>`
 
 An easy way to edit this configuration file is to use the pgAdmin :guilabel:`Backend Configuration Editor`. On the pgAdmin main menu, click :guilabel:`File` and click :guilabel:`Open postgresql.conf`. In the :guilabel:`Open configuration file` dialog box navigate to the data directory folder and select the configuration file to open it in the :guilabel:`Backend Configuration Editor`.
 
@@ -131,16 +136,3 @@ The :command:`seq_page_cost` parameter controls the cost of a sequential page ac
 .. figure:: ./tuning/conf10.png
 
   seq_page_cost parameter
-
-
-Reload configuration
---------------------
-
-Once you saved the changes, to reload the configuration:
-
-1. Right-click the server :guilabel:`PostGIS (localhost:54321)` in pgAdmin and click :guilabel:`Disconnect`.
-2. Click :guilabel:`Shutdown` on the OpenGeo Dashboard and then click :guilabel:`Start`.
-3. To reconnect to the server in pgAdmin, right-click :guilabel:`PostGIS (localhost:54321)` and click :guilabel:`Connect`.
- 
- 
- 

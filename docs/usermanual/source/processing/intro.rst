@@ -24,13 +24,13 @@ And when it comes to "deriving insight", one might wish to accomplish the follow
 
 These questions and many more like them can be asked and answered via spatial processing.
 
-In the past, web mapping software has focused primarily on composition and display, leaving processing to desktop clients.  But web-based tools today, such as the OpenGeo Suite, have a wide range of processing capabilities, all but equaling their desktop equivalents.
+In the past, web mapping software has focused primarily on composition and display, leaving processing to desktop clients.  But web-based tools today, such as OpenGeo Suite, have a wide range of processing capabilities, all but equaling their desktop equivalents.
 
 
-Spatial Processing in the OpenGeo Suite
----------------------------------------
+Spatial Processing in OpenGeo Suite
+-----------------------------------
 
-Spatial processing is available through a variety of tools in the OpenGeo Suite.
+Spatial processing is available through a variety of tools in OpenGeo Suite.
 
 Web Processing Service
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -39,7 +39,7 @@ One powerful method of performing spatial processing is through the :term:`Web P
 
 Processes fall into three categories:  vector, raster, and geometry, referring to the type of geospatial content used as the process's input. These categories are broad, as processes can take multiple types of input.
 
-WPS is a `service published by GeoServer <../geoserver/extensions/wps/>`_ and so is an integral part of the OpenGeo Suite.  It provides a collection of many standard processes along with the ability to add additional ones.  These processes can be employed inside custom applications, built with the :ref:`OpenGeo Client SDK <apps.sdk.client.dev>`, for a full web-based spatial processing solution.
+WPS is a `service published by GeoServer <../geoserver/extensions/wps/>`_ and so is an integral part of the OpenGeo Suite.  It provides a collection of many standard processes along with the ability to add additional ones.  These processes can be employed inside custom applications, built with the :ref:`OpenGeo Client SDK <webapps.sdk.dev>`, for a full web-based spatial processing solution.
 
 For example, one can run the ``JTS:union`` process on a collection of geometries to output a single geometry that is the union of them.  Processes can be chained, so one can run the ``gs:Reproject`` process to reproject a raster image to a different SRS, then take the output of that and run ``gs:CropCoverage`` to crop the raster down to a certain bounds.  The result can be fed into the ``gs:Import`` process to save the resulting coverage as a new layer in GeoServer, for use by other clients.
 

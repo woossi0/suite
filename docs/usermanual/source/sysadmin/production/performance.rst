@@ -12,7 +12,7 @@ Java Virtual Machine
 
 For best performance, use the **Oracle (Sun) Java HotSpot Virtual Machine (JVM)**. Testing has shown that the Oracle JVM is significantly faster than other JVM implementations.  For best results use the latest release of the JVM, since each new version has offered significant performance improvements. Oracle's `Java SE 6 Performance White Paper <http://www.oracle.com/technetwork/java/6-performance-137236.html>`_ describes the JVM improvements that were introduced in Java SE 6 (specifically see `Section 2.3 - Ergonomics in the 6.0 Virtual Machine <http://www.oracle.com/technetwork/java/6-performance-137236.html#2.3>`_).
 
-For production use, the OpenGeo Suite should be run using the **Server mode** of the JVM.  This mode is used by default on some platforms (such as Linux and Solaris), but not on others (such as Windows or OS X).   The ``-server`` JVM option forces the use of the Server VM.  To determine the default JVM mode, run ``java -version``, and the output should be as follows::
+For production use, OpenGeo Suite should be run using the **Server mode** of the JVM.  This mode is used by default on some platforms (such as Linux and Solaris), but not on others (such as Windows or OS X).   The ``-server`` JVM option forces the use of the Server VM.  To determine the default JVM mode, run ``java -version``, and the output should be as follows::
 
   java version "1.6.0_26"
   Java(TM) SE Runtime Environment (build 1.6.0_26-b03)
@@ -23,7 +23,7 @@ Note that the final line says ``Server VM``.
 JVM tuning
 ----------
 
-Certain JVM operating characteristics can be tuned to optimize performance when running the OpenGeo Suite.  The following parameters can be configured:
+Certain JVM operating characteristics can be tuned to optimize performance when running OpenGeo Suite.  The following parameters can be configured:
   
 * ``-server`` forces the use of the Java HotSpot Server VM
 * ``-Xms2048m -Xmx2048m`` sets the JVM to use 2048 megabytes (2 GB) of memory for the heap, and allocates it all on startup (the heap size should be adjusted to fit the actual memory available)

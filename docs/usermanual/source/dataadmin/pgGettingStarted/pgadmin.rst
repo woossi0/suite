@@ -8,20 +8,46 @@ There are a number of front-end tools available for connecting to, and working w
 
 .. note:: Any data querying and manipulation you can do with ``pgAdmin`` can also be done at the command line with ``psql``.
 
-pgAdmin is available from the OpenGeo Suite :ref:`Dashboard`—from the list of :guilabel:`Components`, locate :guilabel:`PostGIS` and click :guilabel:`Manage` to launch the tool.
+
+Launching pgAdmin
+-----------------
+
+Depending on how OpenGeo Suite was installed pgAdmin may or may not have been installed. See the :ref:`installation` section for installation instructions. Once installed follow the instructions below for your platform. 
+
+Windows
+^^^^^^^
+
+On Windows pgAdmin can be launched from the :guilabel:`Start Menu`. 
+
+.. figure:: img/pgadmin_win.png
+
+   Launching pgAdmin on Windows
+
+Mac
+^^^
+
+On Mac the pgAdmin application is accessible from the installer image under :guilabel:`PostGIS Utilities`.
+
+.. figure:: img/pgadmin_mac.png
+
+   Launching pgAdmin on Mac
+
+Linux
+^^^^^
+
+On Linux pgAdmin can be launched from the terminal with the ``pgadmin3`` command.
 
 
-.. figure:: img/dashboard_pgadmin.png
+Working with pgAdmin
+--------------------
 
-   *Accessing pgAdmin from the OpenGeo Suite Dashboard*
-
-As part of the installation of the OpenGeo Suite, you should have one pre-configured PostGIS server, localhost:54321 (port 5432 on Linux), listed in the pgAdmin :guilabel:`Object browser`. 
+As part of the installation of the OpenGeo Suite, you should have one pre-configured PostGIS server, localhost:5432, listed in the pgAdmin :guilabel:`Object browser`. 
 
 .. figure:: img/pgadmin_postgissrv.png
 
    *PostGIS server in pgAdmin*
 
-If you don't have an entry for PostGIS listed, add a new server connection manually. Click :menuselection:`File --> Add Server` and complete the :guilabel:`New Server Registation` dialog box to register a new server. Ensure the Host is set to **localhost** and Port is **54321**  (**5432** on Linux).
+If you don't have an entry for PostGIS listed, add a new server connection manually. Click :menuselection:`File --> Add Server` and complete the :guilabel:`New Server Registation` dialog box to register a new server. Ensure the Host is set to **localhost** and Port is **5432** (unless you have configured PostgreSQL for a different port). 
 
 
 .. figure:: img/pgadmin_connectwindows.png

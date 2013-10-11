@@ -4,23 +4,7 @@
 Backing up
 ==========
 
-Backing up is a vital task of any system administrator.  It should be done on a regular basis, and especially before doing any in-place upgrades.  This section discusses how to backup the various components of the OpenGeo Suite.
-
-The location of the OpenGeo Suite data and settings are dependent on the operating system, but typically are in the home directory of the user account where the software was installed.  For example, given an account called "admin", the data and settings are located here:
-
-.. list-table::
-   :header-rows: 1
-
-   * - Operating System
-     - Directory
-   * - Linux
-     - ``/home/admin/.opengeo/``
-   * - Mac
-     - ``/opt/opengeo/suite/``
-   * - Windows XP
-     - ``C:\Documents and Settings\admin\.opengeo\``
-   * - Windows Vista/7
-     - ``C:\Users\admin\.opengeo\``
+Backing up is a vital task of any system administrator.  It should be done on a regular basis, and especially before doing any in-place upgrades.  This section discusses how to backup the various components of OpenGeo Suite.
 
 .. _sysadmin.backup.geoserver:
 
@@ -34,32 +18,42 @@ The GeoServer data directory is located by default here:
 
    * - Installation Target
      - GeoServer Data directory
-   * - Linux
-     - ``/home/admin/.opengeo/data_dir``
+   * - Windows
+     - ``C:\\ProgramData\\Boundless\\OpenGeo\\geoserver``
    * - Mac
-     - ``/opt/opengeo/suite/data/``
-   * - Windows XP
-     - ``C:\Documents and Settings\admin\.opengeo\data_dir``
-   * - Windows Vista/7
-     - ``C:\Users\admin\.opengeo\data_dir``
-   * - Production WAR
+     - ``~/Library/Application Support/GeoServer/data_dir``
+   * - Linux
+     - ``/var/lib/opengeo/geoserver``
+   * - War Install
      - ``<SERVLET_ROOT>/webapps/geoserver/data/``
 
-In general, the directory can safely be copied or archived to another location, and can be restored by reversing the process.  Please be sure to shut down the OpenGeo Suite before making any backups or restores.
+In general, the directory can safely be copied or archived to another location, and can be restored by reversing the process.  Please be sure to shut down GeoServer before making any backups or restores.
 
 .. _sysadmin.backup.postgis:
 
 Backing up the PostGIS database system
 --------------------------------------
 
-.. note:: Please see the :ref:`installation` section for your particular operating system if backing up in preparation for an upgrade to OpenGeo Suite 3.x.
+.. note:: Please see the :ref:`installation` section for your particular operating system if backing up in preparation for an upgrade to OpenGeo Suite 4.x.
 
-The PostGIS databases can be backed up with the built-in utilities `pg_dump <http://www.postgresql.org/docs/9.1/static/app-pgdump.html>`_ (for a single database) and `pg_dumpall <http://www.postgresql.org/docs/9.1/static/app-pg-dumpall.html>`_ (for multiple databases).
+The PostGIS databases can be backed up with the built-in utilities `pg_dump <http://www.postgresql.org/docs/9.3/static/app-pgdump.html>`_ (for a single database) and `pg_dumpall <http://www.postgresql.org/docs/9.3/static/app-pg-dumpall.html>`_ (for multiple databases).
 
 Miscellaneous backup tasks
 --------------------------
 
-GeoExplorer saves its map configurations in a file called :file:`geoexplorer.db`.  This file is typically located in the same location as the GeoServer data directory.  This file can be safely backed up and restored as necessary without any special utilities.
+GeoExplorer saves its map configurations in a file called :file:`geoexplorer.db`.  
+By default this file is located at:
+
+.. list-table::
+
+   * - Windows
+     - ``C:\\ProgramData\\Boundless\\OpenGeo\\geoexplorer``
+   * - Mac
+     - ``~/Library/Application Support/GeoServer/data_dir``
+   * - Linux
+     - ``/var/lib/opengeo/geoexplorer``
+
+This file can be safely backed up and restored as necessary without any special utilities.
 
 Custom content
 --------------

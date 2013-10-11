@@ -4,20 +4,7 @@
 Creating a Spatial Database
 ===========================
 
-PostgreSQL, the relational database underlying PostGIS, contains a **template database** for initializing new databases. Databases created from this template will always include a copy of everything in the template.
-
-The OpenGeo Suite installation process automatically creates five databases:
-
-* geoserver—Repository for data imported via GeoServer
-* <username>—Default database for the user who installed the OpenGeo Suite
-* medford—Sample data
-* postgres—Default database for *postgres* user
-* template_postgis—Spatially enabled database
-
-
-.. note:: A spatially enabled database has been optimized to store and manipulate spatial data. Any new databases created from the ``template_postgis`` database are automatically spatially enabled.
-
-.. note:: The GeoServer database is connected to the default PostGIS data store. Whenever data is imported in GeoServer, with the *opengeo* workspace selected as the target workspace, a table for the new layer's data will be created in the GeoServer database.
+This section describes the process of creating a new spatially enabled PostGIS database.
 
 #. Expand the :guilabel:`Databases` item in the :guilabel:`Object browser` to reveal the available databases. 
 
@@ -27,15 +14,11 @@ The OpenGeo Suite installation process automatically creates five databases:
 
       *Creating a new database in pgAdmin*
 
-   .. note:: If you receive an error indicating that the source database (``template_postgis``) is being accessed by other users, you probably have it selected. Right-click the :guilabel:`PostGIS (localhost: 54321)` item and select :guilabel:`Disconnect`. Double-click the same item to reconnect and try again.
-
 #. Complete the :guilabel:`New database` form with the following information:
 
    * **Name**—<user-defined database name>
-   * **Encoding**—UTF8
    * **Owner**—postgres 
-   * **Template**—template_postgis
-   
+      
    .. figure:: img/createdb_newdbtemplate.png
 
       *Creating a new database in pgAdmin from template_postgis*
@@ -52,31 +35,36 @@ The OpenGeo Suite installation process automatically creates five databases:
  
 #. Either click :guilabel:`Execute arbitrary SQL queries` on the pgAdmin toolbar or click :menuselection:`Tools --> Query tool` to open the :guilabel:`Query` dialog box.
 
+#. Enter the following query into the :guilabel:`SQL editor` input box and click the :guilabel:`Execute query` button, or press **F5**, to run the query. 
 
-#. Enter the following query into the :guilabel:`SQL editor` input box.  
+   .. code-block:: sql
+
+      CREATE EXTENSION postgis;
+
+   .. figure:: img/createdb_postgisext.png
+
+      Creating a new PostGIS database.
+
+#. Verify the database was created correctly with the management function `postgis_full_version() <../../postgis/postgis/html/PostGIS_Full_Version.html>`_ returns version and build configuration information. 
 
    .. code-block:: sql
 
       SELECT postgis_full_version();
 
-#. Click the :guilabel:`Execute query` button, or press **F5**, to run the query. The management function `postgis_full_version() <../../postgis/postgis/html/PostGIS_Full_Version.html>`_ returns version and build configuration information. If this command executes successfully, the database is spatially enabled and you will see output similar to the following:
+   .. figure:: img/createdb_postgisversion.png
 
-::
+      Verifying a new PostGIS database.
 
-   +-------------+--------+
-   |postgis_full_version  |
-   +======================+
-   |POSTGIS="2.0.1 r9979" |   
-   +-------------+--------+
-
+   If the command runs successfully the PostGIS database is setup correctly and ready to use. 
 
 Creating a spatial database from the command line
 -------------------------------------------------
 
-You can also create a PostGIS database from the command line with the ``createdb`` command.
+You can also create a PostGIS database from the command line with the ``createdb`` and ``psql`` commands. 
 
 .. code-block::  console
 
-  createdb -p <PORT> -T template_postgis <DATABASENAME>
+  createdb <DATABASENAME>
+  psql <DATABASENAME> -c 'CREATE EXTENSION postgis'
 
 
