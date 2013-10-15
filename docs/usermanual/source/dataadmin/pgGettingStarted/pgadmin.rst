@@ -19,9 +19,9 @@ Windows
 
 On Windows pgAdmin can be launched from the :guilabel:`Start Menu`. 
 
-.. figure:: img/pgadmin_win.png
+.. .. figure:: img/pgadmin_win.png
 
-   Launching pgAdmin on Windows
+..   Launching pgAdmin on Windows
 
 Mac
 ^^^

@@ -3,11 +3,6 @@
 Installing OpenGeo Suite for Linux
 ==================================
 
-.. toctree::
-   :hidden:
-
-   upgrade
-   
 This section describes how to install OpenGeo Suite for Linux. 
 
 System requirements

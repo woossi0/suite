@@ -34,9 +34,9 @@ Windows
 
 On Windows pgShapeloader can be launched from the :guilabel:`Start Menu`. 
 
-.. figure:: img/pgshploader_win.png
+.. .. figure:: img/pgshploader_win.png
 
-   Launching pgAdmin on Windows
+..   Launching pgAdmin on Windows
 
 Mac
 ^^^

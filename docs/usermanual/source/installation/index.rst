@@ -11,9 +11,9 @@ Installation
    linux/index
    war/index
    aws/index
-   .. gdal/index
-   .. mrsid/index
    upgrade
+   gdal/index
+   mrsid/index
 
 This section describes how to install OpenGeo Suite on your platform. 
 

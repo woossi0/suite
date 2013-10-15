@@ -15,7 +15,7 @@ To enable GDAL image formats on the Production WAR installation, read at the cor
 Ubuntu
 ------
 
-#. Install the following package from the OpenGeo repository.  (See :ref:`installation.linux.suite` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository.  (See :ref:`installation.linux.ubuntu` for instructions on how to add the OpenGeo repository)::
 
       # apt-get install gdal
 
@@ -31,7 +31,7 @@ Continue reading at the :ref:`installation.gdal.verify` section.
 CentOS / Red Hat
 ----------------
 
-#. Install the following package from the OpenGeo repository.  (See :ref:`installation.linux.suite` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository.  (See :ref:`installation.linux.redhat` for instructions on how to add the OpenGeo repository)::
 
       # yum install gdal
 
