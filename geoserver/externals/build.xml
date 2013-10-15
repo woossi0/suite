@@ -13,6 +13,7 @@
 
    <property name="gwc.dir" value="geowebcache"/>
    <property name="gwc.version" value="1.5-SNAPSHOT"/>
+   <property name="gwc.branch" value="1.5.x"/>
    <property name="gwc.flags" value=""/>
 
    <property name="geoscript-js.dir" value="geoscript/js"/>
@@ -44,25 +45,34 @@
    </target>
 
    <target name="build-gt" unless="skip.gt"> 
+     <exec executable="git" dir="${gt.dir}" failonerror="false" outputproperty="gt.rev">
+       <arg line="rev-parse HEAD"/>
+     </exec>
      <antcall target="mvn">
         <param name="dir" value="${gt.dir}"/>
-        <param name="flags" value="-DskipTests -Dall -P ogr -Dpostgresql.jdbc.version=${postgresql.jdbc.version} ${gt.flags}"/>
+        <param name="flags" value="-DskipTests -Dall -P ogr -Dpostgresql.jdbc.version=${postgresql.jdbc.version} -Dbuild.commit.id=${gt.rev} ${gt.flags}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
 
    <target name="build-gs" unless="skip.gs"> 
+     <exec executable="git" dir="${gs.dir}" failonerror="false" outputproperty="gs.rev">
+       <arg line="rev-parse HEAD"/>
+     </exec>
      <antcall target="mvn">
         <param name="dir" value="${gs.dir}/src"/>
-        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -P proxy,printing,jdbcconfig,csw,script,script-js,script-py,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
+        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -Dbuild.commit.id=${gs.rev} -P proxy,printing,jdbcconfig,csw,script,script-js,script-py,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
         <param name="targets" value="clean install"/>
      </antcall>
    </target>
 
    <target name="build-gwc" unless="skip.gwc"> 
+     <exec executable="git" dir="${gwc.dir}" failonerror="false" outputproperty="gwc.rev">
+       <arg line="rev-parse HEAD"/>
+     </exec>
      <antcall target="mvn">
         <param name="dir" value="${gwc.dir}/geowebcache"/>
-        <param name="flags" value="-DskipTests -Dgt.version=${gt.version}"/>
+        <param name="flags" value="-DskipTests -Dgt.version=${gt.version} -Dbuild.branch=${gwc.branch} -Dbuild.commit.id=${gwc.rev}"/>
         <param name="targets" value="clean install"/>
      </antcall>
      <antcall target="mvn">
