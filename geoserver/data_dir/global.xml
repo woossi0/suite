@@ -3,9 +3,9 @@
     <addressCity>New York</addressCity>
     <addressCountry>USA</addressCountry>
     <addressType>Work</addressType>
-    <contactEmail>inquiry@opengeo.org</contactEmail>
-    <contactOrganization>OpenGeo</contactOrganization>
-    <contactPerson>OpenGeo</contactPerson>
+    <contactEmail>contact@boundlessgeo.com</contactEmail>
+    <contactOrganization>Boundless</contactOrganization>
+    <contactPerson>Contact</contactPerson>
     <contactPosition>Outreach</contactPosition>
   </contact>
   <jai>
