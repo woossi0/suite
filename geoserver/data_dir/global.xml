@@ -5,8 +5,9 @@
     <addressType>Work</addressType>
     <contactEmail>contact@boundlessgeo.com</contactEmail>
     <contactOrganization>Boundless</contactOrganization>
-    <contactPerson>Contact</contactPerson>
-    <contactPosition>Outreach</contactPosition>
+    <contactPerson>Boundless</contactPerson>
+    <contactPosition>Customer Support</contactPosition>
+    <onlineResource>http://boundlessgeo.com/about/contact-us/customer-support/</onlineResource>
   </contact>
   <jai>
     <allowInterpolation>false</allowInterpolation>
@@ -22,7 +23,7 @@
   </jai>
   <charset>UTF-8</charset>
   <numDecimals>8</numDecimals>
-  <onlineResource>http://opengeo.org</onlineResource>
+  <onlineResource>http://boundlessgeo.com/solutions/solutions-software/geoserver/</onlineResource>
   <verbose>false</verbose>
   <verboseExceptions>false</verboseExceptions>
   <updateSequence>57</updateSequence>
