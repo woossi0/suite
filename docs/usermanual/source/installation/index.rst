@@ -3,35 +3,44 @@
 Installation
 ============
 
+This section describes how to install OpenGeo Suite on your platform.
+
+.. note::
+
+   OpenGeo Suite is comprised of several distinct components. While it is possible to install all of the components on a single machine, for production systems it is recommended that the database, the web applications, and the client tools all be installed on separate systems. 
+
+New installation
+----------------
+
+Please choose from the following options:
+
 .. toctree::
-   :hidden:
+   :maxdepth: 1
 
    windows/index
    mac/index
-   linux/index
-   war/index
+   ubuntu/index
+   redhat/index
    aws/index
-   upgrade
-   gdal/index
-   mrsid/index
-
-This section describes how to install OpenGeo Suite on your platform. 
-
-* :ref:`Windows <installation.windows>`
-* :ref:`Mac <installation.mac>`
-* :ref:`Linux <installation.linux>`
-* :ref:`Amazon <installation.aws>`
-* :ref:`Application Server <installation.war>`
-
-.. note:: 
-
-   OpenGeo Suite is comprised of several distinct components. While it is 
-   possible to install all of the components on a single machine it is 
-   recommended that for production systems the database, the web applications, 
-   and the client tools be installed on separate systems. 
+   war/index
 
 Upgrading
 ---------
 
-If upgrading from a previous version jump the :ref:`installation.upgrade` 
-section.
+If upgrading from a previous version, start here:
+
+.. toctree::
+   :maxdepth: 1
+
+   upgrade
+
+Additional components
+---------------------
+
+Some additional components require extra configuration, as shown in the following sections:
+
+.. toctree::
+   :maxdepth: 1
+
+   gdal/index
+   mrsid/index

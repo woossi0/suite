@@ -5,25 +5,25 @@ Enabling GDAL image formats support
 
 The OpenGeo Suite comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL).  These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
 
-GDAL image formats are enabled by default when using the Windows installer, Mac OS X installer, or Linux packages.  Extra configuration is required only if using the **Production WAR** builds of the OpenGeo Suite.
+GDAL image formats are enabled by default when using the Windows installer, Mac OS X installer, or Linux packages.  Extra configuration is required only if using **OpenGeo Suite for Application Servers** (WAR bundle).
 
-To enable GDAL image formats on the Production WAR installation, read at the correct target operating system below.
+To enable GDAL image formats on OpenGeo Suite for Application Servers, read at the correct target operating system below.
 
-.. note:: See the :ref:`installation` section for more information on the various ways to install the OpenGeo Suite.
+.. note:: See the :ref:`installation` section for more information on the various ways to install OpenGeo Suite.
 
 
 Ubuntu
 ------
 
-#. Install the following package from the OpenGeo repository.  (See :ref:`installation.linux.ubuntu` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository.  (See :ref:`installation.ubuntu.install` for instructions on how to add the OpenGeo repository)::
 
-      # apt-get install gdal
+      apt-get install gdal
 
    .. note::  You must run this command as root or use :command:`sudo`.
 
 #. Once the package is installed, restart Tomcat to allow the changes to take effect::
 
-     # service tomcat6 restart
+      service tomcat6 restart
 
 Continue reading at the :ref:`installation.gdal.verify` section.
 
@@ -31,9 +31,9 @@ Continue reading at the :ref:`installation.gdal.verify` section.
 CentOS / Red Hat
 ----------------
 
-#. Install the following package from the OpenGeo repository.  (See :ref:`installation.linux.redhat` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository.  (See :ref:`installation.redhat.install` for instructions on how to add the OpenGeo repository)::
 
-      # yum install gdal
+      yum install gdal
 
    .. note::  You must run this command as root or use :command:`sudo`.
 
@@ -43,7 +43,7 @@ CentOS / Red Hat
 
 #. Once the package is installed, restart Tomcat to allow the changes to take effect::
 
-   # service tomcat6 restart
+      service tomcat6 restart
 
 Continue reading at the :ref:`installation.gdal.verify` section.
 
@@ -109,7 +109,6 @@ Verifying installation
 #. Click on :guilabel:`Stores` and then :guilabel:`Add new Store`.  There should be many raster image formats, such as DTED, EHdr, AIG, and ENVIHdr in the list of formats.
 
    .. figure:: img/gdal_verify.png
-      :align: center
       
-      *Verifying that GDAL is an option in the Raster Data Sources*
+      Verifying that GDAL is an option in the Raster Data Sources
 

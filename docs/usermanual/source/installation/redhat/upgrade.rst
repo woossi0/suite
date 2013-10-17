@@ -1,19 +1,20 @@
-.. _installation.linux.redhat.upgrade:
+.. _installation.redhat.upgrade:
 
-Upgrading OpenGeo Suite for Red Hat
-===================================
+Upgrading
+=========
 
-This section describes how to upgrade from a previous **major** version of 
-OpenGeo Suite. If performing a **minor** upgrade the steps in this section are 
-unnecessary and you may proceed with a normal 
-:ref:`install <installation.linux>`. 
+This section describes how to upgrade from a previous **major** version of OpenGeo Suite.
 
-.. warning:: This upgrade is **not-backward compatible**; none of your existing configuration and data will be migrated to the new installation and must be done so manually. 
+If performing a **minor** upgrade, you may proceed with a typical :ref:`install <installation.redhat.install>`. 
 
-.. note:: The commands in this section require root privileges. 
+.. note:: A "major" version upgrade is from version 3.x to 4.y. A "minor" version upgrade is from 4.x to 4.y.
+
+.. warning:: This upgrade is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
 
 Back up PostGIS databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note:: The commands in this section require root privileges. 
 
 The first step of the upgrade process is to back up your existing PostGIS data. 
 
@@ -96,7 +97,7 @@ You may now uninstall the old version of OpenGeo Suite. Do this by uninstalling 
 Install new Suite
 ~~~~~~~~~~~~~~~~~
 
-You may now install the new version of OpenGeo Suite. See :ref:`installation.linux.redhat` for details.
+You may now install the new version of OpenGeo Suite. See :ref:`installation.redhat.install` for details.
 
 Restore PostGIS databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~

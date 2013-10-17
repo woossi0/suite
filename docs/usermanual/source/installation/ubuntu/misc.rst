@@ -1,10 +1,9 @@
-.. _installation.linux.ubuntu.misc:
+.. _installation.ubuntu.misc:
 
 Working with OpenGeo Suite for Ubuntu
 =====================================
 
-This document contains information about various tasks specific to OpenGeo 
-Suite for Ubuntu.
+This document contains information about various tasks specific to OpenGeo Suite for Ubuntu.
 
 Starting and stopping OpenGeo services
 --------------------------------------
@@ -43,9 +42,7 @@ To start/stop/restart the PostgreSQL service:
 Service port configuration
 --------------------------
 
-The Tomcat and PostgreSQL services run on ports **8080** and **5432** respectively.
-In certain cases it is desirable to change these port values to resolve conflicts 
-with other services on the system.
+The Jetty and PostgreSQL services run on ports **8080** and **5432** respectively. These ports can often conflict with existing services on the systemk, in which case the ports must be changed. 
 
 Changing the Tomcat port
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -54,9 +51,9 @@ To change the Tomcat port:
 
 #. Edit the file :file:`/etc/tomcat6/server.xml`. 
 
-#. Search for "8080" (around line 71) and change the ``port`` attribute to the desired value.
+#. Search for ``8080`` (around line 71) and change the ``port`` attribute to the desired value.
 
-#. Restart tomcat. 
+#. Restart Tomcat. 
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -72,22 +69,19 @@ To change the PostgreSQL port:
 GeoServer Data Directory
 ------------------------
 
-The *GeoServer Data Directory* is the location on the file system where GeoServer
-stores all of its configuration, and optionally data. When working with GeoServer
-it is often necessary to know where this directory is. It is located at 
-:file:`/var/lib/opengeo/geoserver`. 
+The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/lib/opengeo/geoserver`. 
 
-You may wish to change this location to an alternate location, perhaps to use an 
-existing GeoServer configuration. To do so:
+To point GeoServer to an alternate location:
 
 #. Edit the file :file:`/usr/share/opengeo/geoserver/WEB-INF/web.xml`.
+
 #. Search for ``GEOSERVER_DATA_DIR`` and change its value accordingly.
+
 #. Restart Tomcat.
 
-.. _installation.linux.ubuntu.misc.pgconfig:
+.. _installation.ubuntu.misc.pgconfig:
 
 PostgreSQL Configuration
 ------------------------
 
-PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This
-file is located at :file:`/etc/postgresql/9.3/main/postgresql.conf`. 
+PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located at :file:`/etc/postgresql/9.3/main/postgresql.conf`. 

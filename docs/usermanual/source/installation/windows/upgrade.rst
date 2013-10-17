@@ -1,14 +1,15 @@
 .. _installation.windows.upgrade:
 
-Upgrading OpenGeo Suite for Windows
-===================================
+Upgrading
+=========
 
-This section describes how to upgrade from a previous **major** version of 
-OpenGeo Suite. If performing a **minor** upgrade the steps in this section are 
-unnecessary and you may proceed with a normal 
-:ref:`install <installation.windows>`. 
+This section describes how to upgrade from a previous **major** version of OpenGeo Suite.
 
-.. warning:: This upgrade is **not-backward compatible**; irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
+If performing a **minor** upgrade, you may proceed with a typical :ref:`install <installation.windows.install>`. 
+
+.. note:: A "major" version upgrade is from version 3.x to 4.y. A "minor" version upgrade is from 4.x to 4.y.
+
+.. warning:: This upgrade is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
 
 Back up PostGIS databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -29,7 +30,7 @@ The first step of the upgrade process is to back up your existing PostGIS data.
 
       set PATH=%PATH%;C:\Program Files\OpenGeo\OpenGeo Suite\pgsql\9.1\bin
 
-#. To backup a PostGIS upgrade utility is used. `Download <http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip>`_  the archive and extract it to a temporary directory. To avoid permissions issues, it is best to put this directory on your desktop or in your home directory. By default, the backup files created from using this script will be saved into this directory.
+#. To backup, a specialized PostGIS upgrade utility is used. `Download this utility <http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip>`_, and extract the archive to a temporary directory. To avoid permissions issues, it is best to put this directory on your desktop or in your home directory. By default, the backup files created from using this script will be saved into this directory.
 
 #. Run the backup command:
 
@@ -110,7 +111,6 @@ Restore GeoServer data directory
       :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`.
 
    #. Copy the existing contents of :file:`<user_home_directory>\\.opengeo\\data_dir` to :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`. 
-
 
 #. Restart the OpenGeo Jetty service. 
 

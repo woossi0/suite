@@ -1,28 +1,26 @@
-.. _installation.linux.ubuntu:
+.. _installation.ubuntu.install:
 
+New installation
+================
 
-Installing OpenGeo Suite for Ubuntu
-===================================
-
-.. toctree:: 
-   :hidden:
-
-   upgrade
-   misc
-   packages
-
-
-This section describes how to install OpenGeo Suite on Ubuntu. The following 
-Ubuntu versions are supported. 
+This section describes how to install OpenGeo Suite on Ubuntu. The following Ubuntu versions are supported:
 
 * `Lucid Lynx <http://releases.ubuntu.com/lucid/>`_ (10.04 LTS)
 * `Precise Pangolin <http://releases.ubuntu.com/precise/>`_ (12.04 LTS)
 
 .. warning:: 
 
-   If upgrading from a previous version see the 
-   :ref:`Upgrade <installation.linux.ubuntu.upgrade>` section.
+   If upgrading from a previous version see the :ref:`Upgrade <installation.ubuntu.upgrade>` section.
 
+System requirements
+-------------------
+
+OpenGeo Suite for Ubuntu has the following system requirements:
+
+* Memory: 512MB minimum (1GB recommended)
+* Disk space: 750MB minimum (plus extra space for any loaded data)
+* Browser: Any modern web browser is supported
+* Permissions: Super user privileges are required for installation
 
 Installation
 ------------
@@ -73,15 +71,10 @@ Installation
 
       apt-get install opengeo
 
-   .. note:: The above will install all OpenGeo Suite packages. See the :ref:`Packages <installation.linux.ubuntu.packages>` section for details of individual packages. 
+   .. note:: The above will install all OpenGeo Suite packages. See the :ref:`Packages <installation.ubuntu.packages>` section for details of individual packages. 
 
-Installation is now complete. It is recommend that you read through the 
-:ref:`installation.linux.ubuntu.misc` section that contains information about 
-working with OpenGeo Suite on Ubuntu. 
+After installation
+------------------
 
-
-
-
-
-
+Installation is now complete. Please see the section on :ref:`installation.ubuntu.misc`.
 

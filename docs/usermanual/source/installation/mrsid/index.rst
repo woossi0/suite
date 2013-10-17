@@ -14,11 +14,11 @@ Find the method of installation below and continue there.
 Ubuntu
 ------
 
-.. note:: By default, the Production WARs install will not show **any** of the GDAL image formats at all. To enable GDAL image formats in the Production WAR file, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
+.. note:: By default, OpenGeo Suite for Applications Servers (WAR bundle) will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of installation, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
-#. Install the following package from the OpenGeo repository. (See :ref:`installation.linux.ubuntu` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository. (See :ref:`installation.ubuntu.install` for instructions on how to add the OpenGeo repository)::
 
       # apt-get install gdal-mrsid
 
@@ -33,11 +33,11 @@ Continue at the :ref:`installation.mrsid.verify` section.
 CentOS / Red Hat
 ----------------
 
-.. note:: By default, the Production WARs install will not show **any** of the GDAL image formats at all. To enable GDAL image formats in the Production WAR file, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
+.. note:: By default, the OpenGeo Suite for Application Servers will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of install, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
-#. Install the following package from the OpenGeo repository. (See :ref:`installation.linux.redhat` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository. (See :ref:`installation.redhat.install` for instructions on how to add the OpenGeo repository)::
 
       # yum install gdal-mrsid
 
@@ -64,16 +64,14 @@ MrSID support must be enabled during the installation process.
 #. Navigate through the installer until you reach the :guilabel:`Choose Components` page.
 
    .. figure:: img/mrsid_win_components.png
-      :align: center
       
-      *The Components page of the Windows installer*
+      The Components page of the Windows installer
 
 #. Scroll down to the :guilabel:`Extensions` option, and expand the tree. Check the box for :guilabel:`MrSID`.
 
    .. figure:: img/mrsid_win_checked.png
-      :align: center
       
-      *Enabling the MrSID extension*
+      Enabling the MrSID extension
 
 
 #. Click :guilabel:`Next` and continue the installation process. 
@@ -81,8 +79,8 @@ MrSID support must be enabled during the installation process.
 Continue reading at the :ref:`installation.mrsid.verify` section.
 
 
-Windows Production WARs
-~~~~~~~~~~~~~~~~~~~~~~~
+Windows Application Servers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/ .
 
@@ -109,13 +107,13 @@ MrSID support is enabled via a separate installation package, available in the O
 
 .. figure:: img/mrsid_mac_ext.png
       
-   *OpenGeo Suite Extensions contain MrSID support*
+   OpenGeo Suite Extensions contain MrSID support
 
 #. Double click on this file to install MrSID after the OpenGeo Suite installation process has completed. Click :guilabel:`Next` to continue.
 
    .. figure:: img/mrsid_mac_welcome.png
       
-      *OpenGeo Suite Extensions contain the MrSID extension*
+      OpenGeo Suite Extensions contain the MrSID extension
 
 #. Select the target disk, which should be the same as where the OpenGeo Suite was installed. Click  :guilabel:`Next` again.
 
@@ -123,27 +121,26 @@ MrSID support is enabled via a separate installation package, available in the O
 
    .. figure:: img/mrsid_mac_components.png
       
-      *Check this box to install MrSID support*
+      Check this box to install MrSID support
 
 #. Please wait while the installation proceeds.
 
    .. figure:: img/mrsid_mac_progress.png
       
-      *Installation*
+      Installation
 
 #. You will receive confirmation that the installation was successful. 
 
     .. figure:: img/mrsid_mac_success.png
-       :align: center
 
-       *MrSID support successfully installed*
+       MrSID support successfully installed
 
 Continue reading at the :ref:`installation.mrsid.verify` section.
 
 
 
-Mac OS X Production WARs
-~~~~~~~~~~~~~~~~~~~~~~~~
+Mac OS X Application Servers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/
 
@@ -168,7 +165,6 @@ Verifying installation
 #. Click on :guilabel:`Stores` and then :guilabel:`Add new Store`. There should be a :guilabel:`MrSID` option under :guilabel:`Raster Data Formats`.
 
    .. figure:: img/mrsid_verify.png
-      :align: center
       
-      *Verifying that MrSID is an option in the Raster Data Sources*
+      Verifying that MrSID is an option in the Raster Data Sources
 

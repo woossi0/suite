@@ -1,10 +1,9 @@
-.. _installation.linux.redhat.misc:
+.. _installation.redhat.misc:
 
 Working with OpenGeo Suite for Red Hat
 ======================================
 
-This document contains information about various tasks specific to OpenGeo 
-Suite for Red Hat based Linux distributions. 
+This document contains information about various tasks specific to OpenGeo Suite for Red Hat-based Linux distributions. 
 
 Starting and stopping OpenGeo services
 --------------------------------------
@@ -15,8 +14,7 @@ OpenGeo Suite is comprised of two main services:
 
 #. The `PostgreSQL <http://www.postgresql.org/>`_ database server with the PostGIS spatial extensions. 
 
-On Red Hat based distributions the :command:`service` command is used to control
-the services. 
+On Red Hat based distributions the :command:`service` command is used to control the services. 
 
 Controlling the Tomcat service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -48,13 +46,10 @@ To start/stop/restart the PostgreSQL service:
  
      service postgresql-9.3 start|stop|restart
 
-
 Service port configuration
 --------------------------
 
-The Tomcat and PostgreSQL services run on ports **8080** and **5432** respectively.
-In certain cases it is desirable to change these port values to resolve conflicts 
-with other services on the system.
+The Jetty and PostgreSQL services run on ports **8080** and **5432** respectively. These ports can often conflict with existing services on the systemk, in which case the ports must be changed. 
 
 Changing the Tomcat port
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -107,7 +102,7 @@ existing GeoServer configuration. To do so:
 #. Search for ``GEOSERVER_DATA_DIR`` and change its value accordingly.
 #. Restart Tomcat.
 
-.. _installation.linux.redhat.misc.pgconfig:
+.. _installation.redhat.misc.pgconfig:
 
 PostgreSQL Configuration
 ------------------------

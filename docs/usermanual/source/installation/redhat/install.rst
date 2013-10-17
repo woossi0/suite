@@ -1,15 +1,7 @@
-.. _installation.linux.redhat:
+.. _installation.redhat.install:
 
-
-Installing OpenGeo Suite for Red Hat
-====================================
-
-.. toctree:: 
-   :hidden:
-
-   upgrade
-   misc
-   packages
+New installation
+================
 
 This section describes how to install OpenGeo Suite on Red Hat based 
 distributions. The following distributions are supported:
@@ -17,6 +9,16 @@ distributions. The following distributions are supported:
 * Fedora 18 and 19
 * CentOS 5 and 6
 * RHEL 5 and 6
+
+System requirements
+-------------------
+
+OpenGeo Suite for Red Hat has the following system requirements:
+
+* Memory: 512MB minimum (1GB recommended)
+* Disk space: 750MB minimum (plus extra space for any loaded data)
+* Browser: Any modern web browser is supported
+* Permissions: Super user privileges are required for installation
 
 Installation
 ------------
@@ -54,8 +56,9 @@ Installation
 
       yum install opengeo
 
-   .. note:: The above will install all OpenGeo Suite packages. See the :ref:`Packages <installation.linux.redhat.packages>` section for details of individual packages. 
+   .. note:: The above will install all OpenGeo Suite packages. See the :ref:`Packages <installation.redhat.packages>` section for details of individual packages. 
 
-Installation is now complete. It is recommend that you read through the 
-:ref:`installation.linux.redhat.misc` section that contains information about 
-working with OpenGeo Suite on Red Hat based distributions. 
+After intstallation
+-------------------
+
+Installation is now complete. Please see the section on :ref:`installation.redhat.misc`.

@@ -1,14 +1,15 @@
 .. _installation.mac.upgrade:
 
-Upgrading OpenGeo Suite for Mac
-===============================
+Upgrading
+=========
 
-This section describes how to upgrade from a previous **major** version of 
-OpenGeo Suite. If performing a **minor** upgrade the steps in this section are 
-unnecessary and you may proceed with a normal 
-:ref:`install <installation.mac>`. 
+This section describes how to upgrade from a previous **major** version of OpenGeo Suite.
 
-.. warning:: This upgrade is **not-backward compatible**; none of your existing configuration and data will be migrated to the new installation and must be done so manually. 
+If performing a **minor** upgrade, you may proceed with a typical :ref:`install <installation.mac.install>`. 
+
+.. note:: A "major" version upgrade is from version 3.x to 4.y. A "minor" version upgrade is from 4.x to 4.y.
+
+.. warning:: This upgrade is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
 
 Back up PostGIS databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -24,7 +25,7 @@ The first step of the upgrade process is to back up your existing PostGIS data.
       export PATH=$PATH:/opt/opengeo/pgsql/9.1/bin
       psql --version 
 
-#. To backup a PostGIS upgrade utility is used. `Download <http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip>`_  the archive and extract it to a temporary directory. By default, the backup files created from using this script will be saved into this same directory:
+#. To backup, a specialized PostGIS upgrade utility is used. `Download this utility <http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip>`_, and extract the archive to a temporary directory. To avoid permissions issues, it is best to put this directory on your desktop or in your home directory. By default, the backup files created from using this script will be saved into this directory.
 
    .. code-block:: console
 
@@ -50,7 +51,7 @@ The first step of the upgrade process is to back up your existing PostGIS data.
 Install new Suite
 ~~~~~~~~~~~~~~~~~
 
-You may now install the new version of OpenGeo Suite. See :ref:`installation.mac` for details. In order to run the PostGIS restore script you must :guilabel:`OpenGeo Client Tools` package.
+You may now install the new version of OpenGeo Suite. See :ref:`installation.mac.install` for details. In order to run the PostGIS restore script you must install the :guilabel:`OpenGeo Client Tools` package.
 
 Restore PostGIS databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,7 +76,7 @@ Restore PostGIS databases
 Restore GeoServer data directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Stop ``GeoServer.app``. 
+#. Quit ``GeoServer.app``. 
 
 #. Restore the GeoServer data directory:
 
@@ -87,8 +88,7 @@ Restore GeoServer data directory
 
 #. Restart ``GeoServer.app``. 
 
-
-Uninstall old Suite
-~~~~~~~~~~~~~~~~~~~
+Uninstall old version
+~~~~~~~~~~~~~~~~~~~~~
 
 You may now uninstall the previous version of OpenGeo Suite. The uninstaller is located at :file:`/Applications/OpenGeo/OpenGeo Suite Uninstaller.app`. 

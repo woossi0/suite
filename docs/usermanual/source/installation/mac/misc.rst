@@ -1,21 +1,19 @@
 .. _installation.mac.misc:
 
-Working with OpenGeo Suite for Mac
-==================================
+Working with OpenGeo Suite for Mac OS X
+=======================================
 
-This document contains information about various tasks specific to OpenGeo 
-Suite for Mac. 
+This document contains information about various tasks specific to OpenGeo Suite for Mac OS X. 
 
 Starting and stopping OpenGeo services
 --------------------------------------
 
+To stop the Jetty (GeoServer) or PostgreSQL (PostGIS) services, just quit the application.
 
 Service port configuration
 --------------------------
 
-The Jetty and PostgreSQL services run on ports **8080** and **5432** respectively. 
-These ports can often conflict with existing services on the system. In this case
-the ports must be changed. 
+The Jetty and PostgreSQL services run on ports **8080** and **5432** respectively. These ports can often conflict with existing services on the systemk, in which case the ports must be changed. 
 
 Changing the Jetty port
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -26,9 +24,10 @@ To change the Jetty port:
 
 #. Search for the Java system property named ``jetty.port`` and change its value to a number that does not conflict with any existing services on the machine. 
 
+.. note:: It is a common convention for Java services like Jetty to use port values greater than 8000. 
+
 #. Optionally change the ``STOP.PORT`` property in the same manner.
 
-.. note:: It is a common convention for Java services like Jetty to use port values greater than 8000. 
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,13 +41,9 @@ To change the PostgreSQL port:
 GeoServer Data Directory
 ------------------------
 
-The *GeoServer Data Directory* is the location on the file system where GeoServer
-stores all of its configuration, and optionally data. When working with GeoServer
-it is often necessary to know where this directory is. It is located at 
-:file:`~/Library/Application Support/GeoServer/data_dir`. 
+The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at :file:`~/Library/Application Support/GeoServer/data_dir`. 
 
-You may wish to change this location to an alternate location, perhaps to use an 
-existing GeoServer configuration. To do so:
+To point GeoServer to an alternate location:
 
 #. Edit the file :file:`~/Library/Application Support/GeoServer/jetty/start.ini`.
 
@@ -57,14 +52,12 @@ existing GeoServer configuration. To do so:
     # geoserver data directory, uncomment and change to specify an alternative
     -DGEOSERVER_DATA_DIR=/Users/opengeo/geoserver_data
 
-#. Restart GeoServer.app.
+#. Close and relaunch ``GeoServer.app``.
 
 .. _installation.mac.misc.pgconfig:
 
 PostgreSQL Configuration
 ------------------------
 
-PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This
-file is located at :file:`~/Library/Application Support/PostGIS/var/postgresql.conf`. 
-
+PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located at :file:`~/Library/Application Support/PostGIS/var/postgresql.conf`. 
 
