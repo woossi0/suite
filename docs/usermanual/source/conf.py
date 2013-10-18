@@ -190,7 +190,7 @@ htmlhelp_basename = 'OpenGeoSuitedoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'OpenGeoSuiteUserManual.tex', u'OpenGeo Suite User Manual',
-   u'OpenGeo', 'manual'),
+   u'Boundless', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
