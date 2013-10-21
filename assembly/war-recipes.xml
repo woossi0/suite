@@ -1,0 +1,21 @@
+<assembly>
+  <id>war-recipes</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>recipes/target</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>recipes.war</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+  <files>
+    <file>
+      <source>target/version.ini</source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+  </files>
+</assembly>

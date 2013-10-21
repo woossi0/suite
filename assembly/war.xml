@@ -46,6 +46,13 @@
         <include>opengeo-docs.war</include>
       </includes>
     </fileSet>
+    <fileSet>
+      <directory>recipes/target</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>recipes.war</include>
+      </includes>
+    </fileSet>
   </fileSets>
   <files>
     <file>

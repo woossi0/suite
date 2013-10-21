@@ -238,6 +238,7 @@
   <module>geoexplorer</module>
   <module>dashboard</module>
   <module>jetty</module>
+  <module>recipes</module>
  </modules>
 
  <profiles>
