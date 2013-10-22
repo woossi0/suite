@@ -207,6 +207,7 @@
            <descriptor>assembly/war-geoexplorer.xml</descriptor>
            <descriptor>assembly/war-geowebcache.xml</descriptor>
            <descriptor>assembly/war-geoserver-jboss.xml</descriptor>
+           <descriptor>assembly/war-recipes.xml</descriptor>
            <descriptor>assembly/war.xml</descriptor>
            <descriptor>assembly/pgadmin-postgis.xml</descriptor>
            <descriptor>assembly/geoexplorer-static.xml</descriptor>
