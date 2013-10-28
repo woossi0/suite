@@ -105,9 +105,10 @@ pushd $dist/..
 ls -t | tail -n +3 | xargs rm -rf
 popd
 
-# start_remote_job <url> <name>
+# start_remote_job <url> <name> <api_key>
 function start_remote_job() {
-   curl -k --connect-timeout 10 "$1/buildWithParameters?CAT=${build_cat}&REV=${build_rev}&NAME=${build_name}&ARCHIVE_BUILD=${ARCHIVE_BUILD}&TOKEN=buildme"
+   local creds=build:$3
+   curl -k --connect-timeout 10 --user $creds "$1/buildWithParameters?CAT=${build_cat}&REV=${build_rev}&NAME=${build_name}&ARCHIVE_BUILD=${ARCHIVE_BUILD}&TOKEN=buildme"
    #checkrv $? "trigger $2 with ${build_cat} r${rev}"
 }
 
@@ -115,8 +116,8 @@ WIN=162.209.53.106
 OSX=199.19.86.219
 
 # start the build of the OSX installer
-start_remote_job http://$OSX:8080/job/mac-installer "osx installer"
-start_remote_job http://$WIN:8080/job/win-installer-32 "win installer"
+start_remote_job http://$OSX:8080/job/mac-installer "osx installer"  7babda1c4cf05ee099baa3d4c6579dab
+start_remote_job http://$WIN:8080/job/win-installer-32 "win installer" c7df8777ad146449f39272c596e963e4
 
 # start the build of the Windows installer
 #start_remote_job http://$WIN:8080/hudson/job/windows-installer "win installer"
