@@ -47,6 +47,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>2.3</version>
         <configuration>
+          <warName>geowebcache</warName>
           <overlays>
             <overlay>
               <groupId>org.geowebcache</groupId>
