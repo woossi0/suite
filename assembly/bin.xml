@@ -14,7 +14,7 @@
       </excludes>
     </fileSet>
     <fileSet>
-      <directory>geoserver/externals/geowebcache/geowebcache/web/target/geowebcache</directory>
+      <directory>geowebcache/target/geowebcache</directory>
       <outputDirectory>webapps/geowebcache</outputDirectory>
     </fileSet>
     <fileSet>

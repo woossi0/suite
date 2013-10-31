@@ -48,6 +48,7 @@
         <version>2.3</version>
         <configuration>
           <warName>geowebcache</warName>
+          <webappDirectory>target/geowebcache</webappDirectory>
           <overlays>
             <overlay>
               <groupId>org.geowebcache</groupId>
