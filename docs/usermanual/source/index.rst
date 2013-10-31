@@ -22,28 +22,28 @@ OpenGeo Suite User Manual
 This User Manual will help you get the most out of OpenGeo Suite.
 
 :ref:`installation`
-  Install OpenGeo Suite for your platform
+  Install OpenGeo Suite for your platform.
 
 :ref:`introduction`
-  Getting started with OpenGeo Suite
+  Get started with OpenGeo Suite.
 
 :ref:`webmaps`
-  Publish your maps and data on the web
+  Publish your maps and data on the web.
 
 :ref:`cartography`
-  Visualize your data on the web
+  Visualize your data on the web.
 
 :ref:`webapps`
-  Building complete web-based applications using the Webapp SDK
+  Build complete web-based applications using the Webapp SDK and OpenLayers.
 
 :ref:`processing`
-  Performing server-based spatial analysis
+  Perform server-based spatial analysis.
 
 :ref:`dataadmin`
-  Loading and managing your data
+  Load and manage your data.
 
 :ref:`sysadmin`
-  Manage and optimize your OpenGeo Suite installation
+  Manage and optimize your OpenGeo Suite installation.
 
 Additional Documentation
 ------------------------
