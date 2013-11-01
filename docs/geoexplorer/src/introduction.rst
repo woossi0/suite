@@ -8,10 +8,6 @@ This section provides a brief introduction to GeoExplorer.
 
 #. To launch GeoExplorer, locate the GeoExplorer component on the OpenGeo Suite Dashboard, and click the :guilabel:`Launch` link. 
 
-   .. figure:: images/launch_geoexplorer.png
-   
-      *Launching GeoExplorer*
-
    The GeoExplorer web application is usually available at ``http://localhost:8080/geoexplorer/composer``, although your local setup may differ.
 
    .. figure:: images/geoexplorer.png
