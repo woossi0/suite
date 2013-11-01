@@ -40,13 +40,9 @@
             <phase>generate-sources</phase>
             <configuration>
               <tasks>
+                <property name="dir" value="${basedir}/../../usermanual/source/installation/ubuntu"/>
                 <copy todir="${basedir}/source">
-                 <fileset dir="${basedir}" includes="index.rst">
-                 </fileset>
-                 <fileset dir="${basedir}/../../usermanual/source/installation/ubuntu/" includes="suite.rst">
-                 </fileset>
-                 <!--<fileset dir="${basedir}/../../usermanual/source/installation/linux/" includes="details.rst">
-                 </fileset>-->
+                  <fileset dir="${dir}"/>
                 </copy>
               </tasks>
             </configuration>
