@@ -34,6 +34,7 @@
    <module>mac</module>
    <module>ubuntu</module>
    <module>redhat</module>
+   <module>war</module>
  </modules>
 
 </project>

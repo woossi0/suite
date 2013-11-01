@@ -38,11 +38,11 @@ source_suffix = '.rst'
 #source_encoding = 'utf-8'
 
 # The master toctree document.
-master_doc = 'README-mac'
+master_doc = 'index'
 
 # General information about the project.
 project = u'OpenGeo Suite Mac OS X Installation'
-copyright = u'2011 OpenGeo'
+copyright = u'Boundless'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -187,7 +187,7 @@ htmlhelp_basename = 'OpenGeoSuiteInstallationdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('README-mac', 'README-mac.tex', u'OpenGeo Suite for Mac OS X',
+  ('index', 'README-mac.tex', u'OpenGeo Suite for Mac OS X',
    u'OpenGeo', 'howto'),
 ]
 

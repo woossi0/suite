@@ -42,7 +42,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Installing the OpenGeo Suite for CentOS and Red Hat'
-copyright = u'OpenGeo'
+copyright = u'Boundless'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
