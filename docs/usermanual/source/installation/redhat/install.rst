@@ -35,7 +35,7 @@ Installation
 
       [opengeo]
       name=opengeo
-      baseurl=http://yum.opengeo.org/suite/v4/<OS>/$releasever/$arch
+      baseurl=http://yum.opengeo.org/suite/v4/<OS>/$releasever/$basearch
       enabled=1
       gpgcheck=0
 
