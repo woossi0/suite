@@ -8,7 +8,7 @@
  <parent>
   <groupId>org.opengeo.docs</groupId>
   <artifactId>install</artifactId>
-  <version>4.0</version>
+  <version>4-SNAPSHOT</version>
  </parent>
 
  <groupId>org.opengeo.docs</groupId>
