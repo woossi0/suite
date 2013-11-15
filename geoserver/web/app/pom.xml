@@ -152,7 +152,7 @@
               <tasks>
                 <mkdir dir="${warSourceDirectory}"/>
                 <copy todir="${warSourceDirectory}">
-                  <fileset dir="${basedir}/../../externals/geoserver/src/web/app/src/main/webapp" includes="**/*"/>
+                  <fileset dir="${basedir}/../../externals/geoserver/src/web/app/src/main/webapp" includes="**/*" excludes="data/**/*"/>
                 </copy>
               </tasks>
             </configuration>
