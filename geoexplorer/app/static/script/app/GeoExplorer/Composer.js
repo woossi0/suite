@@ -68,10 +68,10 @@ GeoExplorer.Composer = Ext.extend(GeoExplorer, {
                 ptype: "gxp_addlayers",
                 actionTarget: "layers.tbar",
                 outputTarget: "tree",
-                /*uploadSource: "local",
+                uploadSource: "local",
                 postUploadAction: {
                     plugin: "styler"
-                },*/
+                },
                 catalogSourceKey: "local",
                 search: {
                     selectedSource: "csw"
