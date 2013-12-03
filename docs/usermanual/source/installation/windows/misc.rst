@@ -84,3 +84,5 @@ PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This
 file is located at:
 
 |postgresql.conf|
+
+.. note:: The :file:`ProgramData` directory is hidden, so it will not display in standard directory listings.
