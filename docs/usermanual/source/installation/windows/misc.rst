@@ -5,6 +5,10 @@ Working with OpenGeo Suite for Windows
 
 This document contains information about various tasks specific to OpenGeo Suite for Windows. 
 
+.. |postgresql.conf| replace:: :file:`C:\\ProgramData\\Boundless\\OpenGeo\\pgsql\\9.3\\postgresql.conf`
+
+.. todo:: Might want to make the PG version a global var.
+
 Starting and stopping OpenGeo services
 --------------------------------------
 
@@ -77,4 +81,6 @@ PostgreSQL Configuration
 ------------------------
 
 PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This
-file is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo\\pgsql\\postgresql.conf`. 
+file is located at:
+
+|postgresql.conf|
