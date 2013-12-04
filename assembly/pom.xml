@@ -58,11 +58,6 @@
      <artifactId>gt-ogr-jni</artifactId>
      <version>${gt.version}</version>
    </dependency>
-   <dependency>
-     <groupId>org.gdal</groupId>
-     <artifactId>gdal</artifactId>
-     <version>1.9.2</version>
-   </dependency>
 
    <!-- opengeo specific extensions -->
    <dependency>
