@@ -302,25 +302,30 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
     
     /** private: method[showUrl]
      */
-    showUrl: function() {
-        var win = new Ext.Window({
-            title: this.bookmarkText,
-            layout: 'form',
-            labelAlign: 'top',
-            modal: true,
-            bodyStyle: "padding: 5px",
-            width: 300,
-            items: [{
-                xtype: 'textfield',
-                fieldLabel: this.permakinkText,
-                readOnly: true,
-                anchor: "100%",
-                selectOnFocus: true,
-                value: window.location.href
-            }]
-        });
-        win.show();
-        win.items.first().selectText();
+    showUrl: function(request) {
+        if (request.status == 200) {
+            var win = new Ext.Window({
+                title: this.bookmarkText,
+                layout: 'form',
+                labelAlign: 'top',
+                modal: true,
+                bodyStyle: "padding: 5px",
+                width: 300,
+                items: [{
+                    xtype: 'textfield',
+                    fieldLabel: this.permakinkText,
+                    readOnly: true,
+                    anchor: "100%",
+                    selectOnFocus: true,
+                    value: window.location.href
+                }]
+            });
+            win.show();
+            win.items.first().selectText();
+        } else {
+            var response = Ext.util.JSON.decode(request.responseText);
+            this.displayXHRTrouble(response.error, request.status);
+        }
     },
     
     /** api: method[getBookmark]
