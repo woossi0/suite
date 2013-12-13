@@ -34,7 +34,7 @@ if [ ! -z $REV ]; then
 fi
 
 # extract the actual revision number
-export build_rev=`get_rev .`
+export build_rev=`get_rev`
 
 build_info="-Dbuild.date=$BUILD_ID -Dbuild.revision=$build_rev"
 
