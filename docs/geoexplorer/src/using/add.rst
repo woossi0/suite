@@ -12,7 +12,7 @@ When the GeoExplorer application is started, the :guilabel:`Overlays` folder is 
 
 #. Click :guilabel:`Add Layers` |addlayer| on the :ref:`geoexplorer.workspace.layerstoolbar` and click :guilabel:`Add layers` to display the :guilabel:`Available Layers` panel and a list of available layers.
 
-   .. figure:: images/addlayerstemp.png
+   .. figure:: images/addlayers.png
 
       *Add Layers tool*
 
@@ -30,7 +30,7 @@ When the GeoExplorer application is started, the :guilabel:`Overlays` folder is 
 
       *Displaying the Abstract for a layer*
 
-.. Hiding this note temporarily .. note:: You can upload your own data directly through this panel. See the :ref:`geoexplorer.using.upload` section to learn more.
+.. note:: You can upload your own data directly through this panel. See the :ref:`geoexplorer.using.upload` section to learn more.
 
 #. To select a layer, click the required list entry. To add multiple layers, hold down Ctrl while you click all the layers you want to add.
 
