@@ -88,6 +88,11 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
     contactText: "Contact",
     aboutThisMapText: "About this Map",
     // End i18n.
+
+    /** api: config[aboutUrl]
+     *  ``String`` The relative url to the about page.
+     */
+    aboutUrl: "../about.html",
     
     /**
      * private: property[mapPanel]
@@ -353,7 +358,7 @@ var GeoExplorer = Ext.extend(gxp.Viewer, {
     displayAppInfo: function() {
         var appInfo = new Ext.Panel({
             title: this.appInfoText,
-            html: "<iframe style='border: none; height: 100%; width: 100%' src='../about.html' frameborder='0' border='0'><a target='_blank' href='../about.html'>"+this.aboutText+"</a> </iframe>"
+            html: "<iframe style='border: none; height: 100%; width: 100%' src='" + this.aboutUrl + "' frameborder='0' border='0'><a target='_blank' href='" + this.aboutUrl + "'>"+this.aboutText+"</a> </iframe>"
         });
 
         var about = Ext.applyIf(this.about, {
