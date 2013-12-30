@@ -115,7 +115,7 @@ The following packages add additional functionality to GeoServer.
    * - ``geoserver-cluster``
      - Clustering extension for GeoServer
      - ``geoserver``
-   * - ``geoserver-jdbc``
+   * - ``geoserver-jdbcconfig``
      - Database catalog and configuration extension
      - ``geoserver``
    * - ``geoserver-css``
