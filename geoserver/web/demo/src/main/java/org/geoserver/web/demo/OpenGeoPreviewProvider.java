@@ -53,15 +53,17 @@ public class OpenGeoPreviewProvider extends GeoServerDataProvider<OpenGeoPreview
         }
 
         for (LayerGroupInfo group : getCatalog().getLayerGroups()) {
-            boolean enabled = true;
-            //JD: should probably do this recursively, and check for layer groups within the layer 
-            // group and check those layers for being enabled/disabled
-            for (LayerInfo layer : group.layers()) {
-                // ask for enabled() instead of isEnabled() to account for disabled resource/store
-                enabled &= layer.enabled();
+            if (!LayerGroupInfo.Mode.CONTAINER.equals(group.getMode())) {
+                boolean enabled = true;
+                //JD: should probably do this recursively, and check for layer groups within the layer 
+                // group and check those layers for being enabled/disabled
+                for (LayerInfo layer : group.layers()) {
+                    // ask for enabled() instead of isEnabled() to account for disabled resource/store
+                    enabled &= layer.enabled();
+                }
+                if (enabled)
+                    result.add(new OpenGeoPreviewLayer(group));
             }
-            if (enabled)
-                result.add(new OpenGeoPreviewLayer(group));
         }
 
         return result;
