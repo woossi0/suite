@@ -82,9 +82,9 @@ Restore GeoServer data directory
 
    .. code-block:: console
 
-      cd ~/Libary/Application\ Support/GeoServer
+      cd ~/Library/Application\ Support/GeoServer
       mv data_dir data_dir.old
-      cp -R /opt/opengeo/suite/data_dir .
+      cp -R ~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer .
 
 #. Restart ``GeoServer.app``. 
 
