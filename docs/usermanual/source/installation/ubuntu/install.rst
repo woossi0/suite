@@ -3,14 +3,19 @@
 New installation
 ================
 
+.. note:: 
+
+   If upgrading from a previous version of OpenGeo Suite see the :ref:`Upgrade <installation.ubuntu.upgrade>` section.
+
 This section describes how to install OpenGeo Suite on Ubuntu. The following Ubuntu versions are supported:
 
 * `Lucid Lynx <http://releases.ubuntu.com/lucid/>`_ (10.04 LTS)
 * `Precise Pangolin <http://releases.ubuntu.com/precise/>`_ (12.04 LTS)
 
-.. warning:: 
+.. warning::
 
-   If upgrading from a previous version see the :ref:`Upgrade <installation.ubuntu.upgrade>` section.
+   OpenGeo Suite is not supported on any other versions (such as 13.04 or later). If running an unsupported installation, dependency conflicts may occur.
+
 
 System requirements
 -------------------
