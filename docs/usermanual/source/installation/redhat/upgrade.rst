@@ -92,7 +92,7 @@ You may now uninstall the old version of OpenGeo Suite. Do this by uninstalling 
 
    .. code-block:: bash
 
-      apt-get remove opengeo-geoserver opengeo-postgis
+      yum remove opengeo-geoserver opengeo-postgis
 
 Install new Suite
 ~~~~~~~~~~~~~~~~~
