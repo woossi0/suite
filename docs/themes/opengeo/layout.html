@@ -5,19 +5,20 @@
 
 {%- macro breadcrumbs() %}
 
- <ul id="breadcrumbs">
+<ul id="breadcrumbs">
+  {% if pagename != 'index' %}
   {%- block rootrellink %}
-    {% if pagename != 'index' %} 
-      <li><a href="{{ pathto('index') }}">Home</a>{{ breadcrumbdelim }}</li>
-    {%- endif %}
+  <li><a href="{{ pathto('index') }}">{{ docstitle }}</a>{{ breadcrumbdelim }}</li>
   {%- endblock %}
 
   {%- for parent in parents %}
-   <li><a href="{{ parent.link|e }}" accesskey="U">{{ parent.title }}</a>{{ breadcrumbdelim }}</li>
+  <li><a href="{{ parent.link|e }}" accesskey="U">{{ parent.title }}</a>{{ breadcrumbdelim }}</li>
   {%- endfor %}
-
-  <li>{{ title|striptags }}</li> 
-  </ul> 
+  <li>{{ title|striptags }}</li>
+  {%- else %}
+  <li>{{ docstitle }}</li>
+  {%- endif %}
+</ul>
 
 {%- endmacro %}
 
