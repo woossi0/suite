@@ -22,7 +22,7 @@ A restart of the OpenGeo Jetty service will be required.
 OS X
 ~~~~
 
-The clustering extension is not currently supported on using the OS X installer, as OpenGeo Suite for OS X is not designed to be used in a production environment. If you would like to use Clustering on OS X, use the Production WARs.
+The clustering extension is not currently supported on using the OS X installer, as OpenGeo Suite for OS X is not designed to be used in a production environment. If you would like to use Clustering on OS X, use OpenGeo Suite for Application Servers.
 
 Linux
 ~~~~~
@@ -46,10 +46,10 @@ Ubuntu::
 
 A restart of GeoServer is not required.
 
-Production WARs
-~~~~~~~~~~~~~~~
+Application Server
+~~~~~~~~~~~~~~~~~~
 
-The clustering extension must be downloaded and installed manually when using the Production WARs.
+The clustering extension must be downloaded and installed manually when running OpenGeo Suite for Application Servers.
 
 #. Stop the servlet container (or just the GeoServer webapp).
 
