@@ -9,6 +9,7 @@ This section will discuss how to manage OpenGeo Suite deployments, including ser
    :maxdepth: 2
 
    production/index
+   jvm/index
    security/index
    backup
    virtualservices/index
