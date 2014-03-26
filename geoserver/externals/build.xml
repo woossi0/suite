@@ -1,18 +1,18 @@
 <project name="build" default="build-all">
 
    <property name="gs.dir" value="geoserver"/>
-   <property name="gs.version" value="2.4-SNAPSHOT"/>
+   <property name="gs.version" value="2.5-SNAPSHOT"/>
    <property name="gs.flags" value=""/>
 
    <property name="gs-exts.dir" value="geoserver-exts"/>
    <property name="gs-exts.flags" value=""/>
 
    <property name="gt.dir" value="geotools"/>
-   <property name="gt.version" value="10-SNAPSHOT"/>
+   <property name="gt.version" value="11-SNAPSHOT"/>
    <property name="gt.flags" value=""/>
 
    <property name="gwc.dir" value="geowebcache"/>
-   <property name="gwc.version" value="1.5-SNAPSHOT"/>
+   <property name="gwc.version" value="1.5.1"/>
    <property name="gwc.branch" value="1.5.x"/>
    <property name="gwc.flags" value=""/>
 
