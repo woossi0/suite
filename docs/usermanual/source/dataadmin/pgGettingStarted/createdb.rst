@@ -19,9 +19,11 @@ This section describes the process of creating a new spatially enabled PostGIS d
    * **Name**—<user-defined database name>
    * **Owner**—postgres 
       
-   .. figure:: img/createdb_newdbtemplate.png
+   .. figure:: img/createdb_newdbsettings.png
 
-      Creating a new database in pgAdmin from template_postgis
+      New database settings
+
+#. Click :guilabel:`OK`.
 
 #. Either click :guilabel:`Execute arbitrary SQL queries` on the pgAdmin toolbar or click :menuselection:`Tools --> Query tool` to open the :guilabel:`Query` dialog box.
 
