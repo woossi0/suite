@@ -35,7 +35,7 @@
       </dependency>
       <dependency>
         <groupId>org.geoserver.web</groupId>
-        <artifactId>gs-web-security</artifactId>
+        <artifactId>gs-web-sec</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
