@@ -18,29 +18,29 @@
     <!-- core geoserver modules -->
     <dependency>
       <groupId>org.geoserver.web</groupId>
-      <artifactId>web-app</artifactId>
+      <artifactId>gs-web-app</artifactId>
     </dependency>
     <dependency>
       <groupId>org.geoserver.web</groupId>
-      <artifactId>web-security</artifactId>
+      <artifactId>gs-web-security</artifactId>
     </dependency>
 
     <!-- extension modules -->
     <dependency>
       <groupId>org.geoserver.extension</groupId>
-      <artifactId>control-flow</artifactId>
+      <artifactId>gs-control-flow</artifactId>
     </dependency>
     <dependency>
       <groupId>org.geoserver.extension</groupId>
-      <artifactId>h2</artifactId>
+      <artifactId>gs-h2</artifactId>
     </dependency>
     <dependency>
       <groupId>org.geoserver.importer</groupId>
-      <artifactId>importer-web</artifactId>
+      <artifactId>gs-importer-web</artifactId>
     </dependency>
     <dependency>
       <groupId>org.geoserver.importer</groupId>
-      <artifactId>importer-rest</artifactId>
+      <artifactId>gs-importer-rest</artifactId>
     </dependency>
 
     <!-- opengeo specific stuff -->
@@ -60,6 +60,23 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Jetty test deps so that we can start GeoServer from an IDE as well -->
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-server</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-jndi</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-plus</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
     <!-- Jetty test deps so that we can start GeoServer from an IDE as well -->
     <dependency>
       <groupId>org.eclipse.jetty</groupId>

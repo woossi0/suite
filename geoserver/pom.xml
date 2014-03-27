@@ -20,88 +20,88 @@
     <dependencies>
       <dependency>
         <groupId>org.geoserver.web</groupId>
-        <artifactId>web-core</artifactId>
+        <artifactId>gs-web-core</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.web</groupId>
-        <artifactId>web-app</artifactId>
+        <artifactId>gs-web-app</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.web</groupId>
-        <artifactId>web-demo</artifactId>
+        <artifactId>gs-web-demo</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.web</groupId>
-        <artifactId>web-security</artifactId>
+        <artifactId>gs-web-security</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver</groupId>
-        <artifactId>main</artifactId>
+        <artifactId>gs-main</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver</groupId>
-        <artifactId>main</artifactId>
+        <artifactId>gs-main</artifactId>
         <classifier>tests</classifier>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver</groupId>
-        <artifactId>restconfig</artifactId>
+        <artifactId>gs-restconfig</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.extension</groupId>
-        <artifactId>web-wps</artifactId>
+        <artifactId>gs-web-wps</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.extension</groupId>
-        <artifactId>control-flow</artifactId>
+        <artifactId>gs-control-flow</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.extension</groupId>
-        <artifactId>charts</artifactId>
+        <artifactId>gs-charts</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.extension</groupId>
-        <artifactId>h2</artifactId>
+        <artifactId>gs-h2</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.community</groupId>
-        <artifactId>proxy</artifactId>
+        <artifactId>gs-proxy</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.community</groupId>
-        <artifactId>printing</artifactId>
+        <artifactId>gs-printing</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.importer</groupId>
-        <artifactId>importer-web</artifactId>
+        <artifactId>gs-importer-web</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.importer</groupId>
-        <artifactId>importer-rest</artifactId>
+        <artifactId>gs-importer-rest</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.script</groupId>
-        <artifactId>script-py</artifactId>
+        <artifactId>gs-script-py</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geoserver.script</groupId>
-        <artifactId>script-js</artifactId>
+        <artifactId>gs-script-js</artifactId>
         <version>${gs.version}</version>
       </dependency>
       <dependency>

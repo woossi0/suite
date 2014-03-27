@@ -19,22 +19,22 @@
   <dependencies>
     <dependency>
       <groupId>org.geoserver.extension</groupId>
-      <artifactId>h2</artifactId>
+      <artifactId>gs-h2</artifactId>
       <version>${gs.version}</version>
     </dependency>
     <dependency>
       <groupId>org.geoserver.extension</groupId>
-      <artifactId>oracle</artifactId>
+      <artifactId>gs-oracle</artifactId>
       <version>${gs.version}</version>
     </dependency>
     <dependency>
       <groupId>org.geoserver.extension</groupId>
-      <artifactId>arcsde</artifactId>
+      <artifactId>gs-arcsde</artifactId>
       <version>${gs.version}</version>
     </dependency>
     <dependency>
       <groupId>org.geoserver.extension</groupId>
-      <artifactId>sqlserver</artifactId>
+      <artifactId>gs-sqlserver</artifactId>
       <version>${gs.version}</version>
     </dependency>
   </dependencies>

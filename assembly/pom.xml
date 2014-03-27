@@ -20,32 +20,32 @@
    <!-- core geoserver extensions -->
    <dependency>
      <groupId>org.geoserver.extension</groupId>
-     <artifactId>css</artifactId>
+     <artifactId>gs-css</artifactId>
      <version>${gs.version}</version>
    </dependency>
    <dependency>
      <groupId>org.geoserver.community</groupId>
-     <artifactId>jdbcconfig</artifactId>
+     <artifactId>gs-jdbcconfig</artifactId>
      <version>${gs.version}</version>
    </dependency>
    <dependency>
      <groupId>org.geoserver.script</groupId>
-     <artifactId>script-py</artifactId>
+     <artifactId>gs-script-py</artifactId>
      <version>${gs.version}</version>
    </dependency>
    <dependency>
      <groupId>org.geoserver.script</groupId>
-     <artifactId>script-js</artifactId>
+     <artifactId>gs-script-js</artifactId>
      <version>${gs.version}</version>
    </dependency>
    <dependency>
      <groupId>org.geoserver.script</groupId>
-     <artifactId>script-js</artifactId>
+     <artifactId>gs-script-js</artifactId>
      <version>${gs.version}</version>
    </dependency>
    <dependency>
      <groupId>org.geoserver.csw</groupId>
-     <artifactId>csw-core</artifactId>
+     <artifactId>gs-csw-core</artifactId>
      <version>${gs.version}</version>
    </dependency>
    <dependency>
