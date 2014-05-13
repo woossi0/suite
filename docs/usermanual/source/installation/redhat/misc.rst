@@ -1,7 +1,7 @@
 .. _installation.redhat.misc:
 
-Working with OpenGeo Suite for Red Hat
-======================================
+Working with OpenGeo Suite for Red Hat Linux
+============================================
 
 This document contains information about various tasks specific to OpenGeo Suite for Red Hat-based Linux distributions. 
 

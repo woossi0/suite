@@ -1,9 +1,9 @@
 .. _installation.redhat.packages:
 
-RPM packages
-============
+Red Hat Linux packages
+======================
 
-OpenGeo Suite for Red Hat is broken up into a number of discrete packages. This section describes all of the available packages.
+OpenGeo Suite for Red Hat Linux is broken up into a number of discrete packages. This section describes all of the available packages.
 
 Top level packages
 ------------------

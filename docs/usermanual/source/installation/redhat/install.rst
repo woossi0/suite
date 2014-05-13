@@ -1,10 +1,9 @@
 .. _installation.redhat.install:
 
-New installation
-================
+New installation on Red Hat Linux 
+=================================
 
-This section describes how to install OpenGeo Suite on Red Hat based 
-distributions. The following distributions are supported:
+This section describes how to install OpenGeo Suite on Red Hat-based Linux distributions. The following distributions are supported:
 
 * Fedora 18 and 19
 * CentOS 5 and 6

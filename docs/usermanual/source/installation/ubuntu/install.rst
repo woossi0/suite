@@ -1,13 +1,13 @@
 .. _installation.ubuntu.install:
 
-New installation
-================
+New installation on Ubuntu Linux
+================================
 
 .. note:: 
 
    If upgrading from a previous version of OpenGeo Suite see the :ref:`Upgrade <installation.ubuntu.upgrade>` section.
 
-This section describes how to install OpenGeo Suite on Ubuntu. The following Ubuntu versions are supported:
+This section describes how to install OpenGeo Suite on Ubuntu Linux. The following Ubuntu versions are supported:
 
 * `Lucid Lynx <http://releases.ubuntu.com/lucid/>`_ (10.04 LTS)
 * `Precise Pangolin <http://releases.ubuntu.com/precise/>`_ (12.04 LTS)

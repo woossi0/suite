@@ -1,15 +1,14 @@
 .. _installation.ubuntu.packages:
 
-Ubuntu packages
-===============
+Ubuntu Linux packages
+=====================
 
 OpenGeo Suite for Ubuntu is broken up into a number of discrete packages. This section describes all of the available packages.
 
 Top level packages
 ------------------
 
-The following packages are considered "meta" packages that only depend on other
-upstream packages, and contain no libraries or binaries themselves.
+The following packages are considered "meta" packages that only depend on other upstream packages, and contain no libraries or binaries themselves.
 
 .. list-table::
    :header-rows: 1

@@ -1,7 +1,7 @@
 .. _installation.ubuntu.upgrade:
 
-Upgrading
-=========
+Upgrading on Ubuntu Linux
+=========================
 
 This section describes how to upgrade from a previous **major** version of OpenGeo Suite.
 

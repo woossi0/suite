@@ -1,9 +1,9 @@
 .. _installation.ubuntu.misc:
 
-Working with OpenGeo Suite for Ubuntu
-=====================================
+Working with OpenGeo Suite for Ubuntu Linux
+===========================================
 
-This document contains information about various tasks specific to OpenGeo Suite for Ubuntu.
+This document contains information about various tasks specific to OpenGeo Suite for Ubuntu Linux.
 
 Starting and stopping OpenGeo services
 --------------------------------------
