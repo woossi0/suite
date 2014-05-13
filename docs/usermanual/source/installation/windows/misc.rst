@@ -36,7 +36,9 @@ Changing the Jetty port
 
 To change the Jetty port:
 
-#. Open the file :file:`C:\\Program Files\\Boundless\\OpenGeo\\bin\\jetty\\start.ini` in a text editor such as Notepad.
+#. Open the file :file:`C:\\Program Files\\Boundless\\OpenGeo\\jetty\\start.ini` in a text editor such as Notepad.
+
+   .. note:: If you're running Windows 64 bit, the path will be :file:`C:\\Program Files (x86)\\Boundless\\OpenGeo\\jetty\\start.ini`.
 
 #. Edit the property named ``jetty.port`` near the top of the file changing its value from ``8080`` to a number that that does not conflict with any existing services on the machine. 
 
@@ -51,7 +53,7 @@ Changing the PostgreSQL port
 
 To change the PostgreSQL port:
 
-#. Open the file :file:`C:\\ProgramData\\Boundless\\OpenGeo\\pgsql\\postgresql.conf` in a text editor such as Notepad. 
+#. Open the file :file:`C:\\Program Files\\Boundless\\OpenGeo\\pgsql\\postgresql.conf` in a text editor such as Notepad.
 
 #. Search or the ``port`` property (around line 63), uncomment it and change its value from ``5432`` to a number that does not conflict with any existing services on the machine.
 
