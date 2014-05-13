@@ -36,7 +36,7 @@ The first step of the upgrade process is to back up your existing PostGIS data.
 
    .. code-block:: console
 
-      postgis_upgrade.exe backup --port 54321 
+      postgis_upgrade.exe backup --port 5432
 
    .. note:: For more information about supported options run ``postgis_upgrade.exe --help``. 
 

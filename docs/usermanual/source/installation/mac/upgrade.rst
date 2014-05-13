@@ -37,7 +37,7 @@ The first step of the upgrade process is to back up your existing PostGIS data.
 
    .. code-block:: console
 
-      perl postgis_upgrade.pl backup --port 54321 
+      perl postgis_upgrade.pl backup --port 5432 
 
    .. note:: For more information about supported options run ``perl postgis_upgrade.pl --help``. 
 
