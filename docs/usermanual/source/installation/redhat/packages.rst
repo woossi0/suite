@@ -5,6 +5,12 @@ Red Hat Linux packages
 
 OpenGeo Suite for Red Hat Linux is broken up into a number of discrete packages. This section describes all of the available packages.
 
+The packages use the standard `RPM format <http://www.rpm.org/>`_ used in Red Hat-based systems. All packages can be installed with the following command::
+
+  sudo yum install <package>
+
+where ``<package>`` is any one of the package names listed below.
+
 Top level packages
 ------------------
 

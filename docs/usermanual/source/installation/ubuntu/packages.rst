@@ -5,6 +5,12 @@ Ubuntu Linux packages
 
 OpenGeo Suite for Ubuntu is broken up into a number of discrete packages. This section describes all of the available packages.
 
+The packages are managed through the standard package management system for Ubuntu called `APT <https://help.ubuntu.com/community/AptGet/Howto>`_. All packages can be installed with the following command::
+
+  sudo apt-get install <package>
+
+where ``<package>`` is any one of the package names listed below.
+
 Top level packages
 ------------------
 
