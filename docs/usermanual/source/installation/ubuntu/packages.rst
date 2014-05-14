@@ -104,7 +104,11 @@ The following packages contain the client components of OpenGeo Suite.
 GeoServer add-ons
 -----------------
 
-The following packages add additional functionality to GeoServer.
+The following packages add additional functionality to GeoServer. After installing any of these packages, you will need to restart Tomcat:
+
+.. code-block:: console
+
+   sudo service tomcat6 restart
 
 .. list-table::
    :header-rows: 1
