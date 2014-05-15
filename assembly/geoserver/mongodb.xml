@@ -9,8 +9,6 @@
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>gt-mongodb-*.jar</include>
-        <include>gson-*.jar</include>
-        <include>hamcrest-core-*.jsr</include>
         <include>mongo-java-driver-*.jar</include>
       </includes>
     </fileSet>
