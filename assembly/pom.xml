@@ -81,8 +81,8 @@
      <version>${gs.version}</version>
    </dependency>
    <dependency>
-     <groupId>org.opengeo.geoserver</groupId>
-     <artifactId>mongodb</artifactId>
+     <groupId>org.opengeo</groupId>
+     <artifactId>gt-mongodb</artifactId>
      <version>${gs.version}</version>
    </dependency>
  </dependencies>
