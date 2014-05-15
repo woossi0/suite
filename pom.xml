@@ -215,6 +215,7 @@
            <descriptor>assembly/geoserver/csw.xml</descriptor>
            <descriptor>assembly/geoserver/data-dir.xml</descriptor>
            <descriptor>assembly/geoserver/gdal.xml</descriptor>
+           <descriptor>assembly/geoserver/geopackage.xml</descriptor>
            <descriptor>assembly/geoserver/jdbcconfig.xml</descriptor>
            <descriptor>assembly/geoserver/cluster.xml</descriptor>
            <descriptor>assembly/geoserver/mongodb.xml</descriptor>
