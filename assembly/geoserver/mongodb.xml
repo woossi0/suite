@@ -1,0 +1,19 @@
+<assembly>
+  <id>mongodb</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>assembly/target/dependency</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>gt-mongodb-*.jar</include>
+        <include>gson-*.jar</include>
+        <include>hamcrest-core-*.jsr</include>
+        <include>mongo-java-driver-*.jar</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</assembly>
+
