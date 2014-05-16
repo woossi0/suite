@@ -2,15 +2,23 @@
  * custom fonts
  */
 @font-face {
-  font-family: "Proxima Nova";
-  src: url(../fonts/ProximaNova-Sbold.otf) format("otf");
-  font-weight: bold;
+  font-family: 'Montserrat';
+  font-weight: normal;
+  src: url('Montserrat-Regular.eot');
+  src: url('Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+       url('Montserrat-Regular.woff') format('woff'),
+       url('Montserrat-Regular.ttf') format('truetype'),
+       url('Montserrat-Regular.svg#Montserrat-Regular') format('svg');
 }
 
 @font-face {
-  font-family: "Proxima Nova";
-  src: url(../fonts/ProximaNova-Light.otf) format("otf");
-  font-weight: normal;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  src: url('Montserrat-Bold.eot');
+  src: url('Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+       url('Montserrat-Bold.woff') format('woff'),
+       url('Montserrat-Bold.ttf') format('truetype'),
+       url('Montserrat-Bold.svg#Montserrat-Bold') format('svg');
 }
 
 @font-face {
@@ -59,18 +67,20 @@
 
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  overflow: scroll;
+  font-size: 16px;
 }
 
-h1, 
+h1,
 h2 {
-  font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-h3, 
-h4, 
-h5, 
+h3,
+h4,
+h5,
 h6 {
-  font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
 }
 
@@ -78,14 +88,17 @@ h6 {
  * navbar stuff
  */
 
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
 .navbar {
-  background-color: #28728D;
+  background-color: #262b35;
   color: white;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  margin-top: 20px;
+  height: 150px;
   padding-top: 10px;
+  border-radius: 0;
 }
 
 .navbar li {
@@ -96,15 +109,56 @@ h6 {
   padding: 5px 10px;
 }
 
-.navbar-brand {
-  background: url(../img/opengeo_1c_32.png) no-repeat left center;
-  margin-left: 10px;
-  padding-left: 40px;
-  margin-top: 0;
+.navbar-header {
+  float: none;
 }
 
-.navbar-brand a, 
-.navbar-brand a:link, 
+.navbar-brand {
+  float: none;
+  width: 280px;
+  margin: 0 auto;
+  font-size: 2em;
+  font-weight: normal;
+  text-shadow: 5px 5px 5px #222;
+  letter-spacing: 1px;
+}
+
+h5.version {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  margin: 5px auto;
+  letter-spacing: 1px;
+}
+
+.navbar-logo {
+  background: url(../img/opengeo_logo.png) no-repeat center center;
+  margin: 10px auto 0 auto;
+  width: 118px;
+  height: 116px;
+}
+
+.navbar-link {
+  display: inline-block;
+  margin-top: 25px;
+  font-size: 1.2em;
+}
+.navbar-link a {
+  color: #aaa;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+.navbar-link a:hover {
+  color: #fff;
+}
+.navbar-link.pull-left {
+  margin-left: 20%;
+}
+.navbar-link.pull-right {
+  margin-right: 20%;
+}
+
+.navbar-brand a,
+.navbar-brand a:link,
 .navbar-brand a:hover {
   color: white;
   text-decoration: none;
@@ -131,19 +185,46 @@ h6 {
 }
 
 /*
+ *   Main page sectino
+ */
+
+ .main {
+  margin-top: 60px;
+ }
+
+ .row-tier {
+  margin-top: 40px;
+  margin-bottom: 10px;
+ }
+
+ .dash-tier {
+  font-weight: bold;
+  font-size: 1.6em;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #aaa;
+  margin: 20px auto;
+ }
+
+/*
  * block on home page for component
  */
+
 .dash-component {
-  margin: 10px 0;
   padding: 0 10px 0 65px;
   min-height: 55px;
   position: relative;
   background-repeat: no-repeat;
-  background-position: 15px 0px;
+  background-position: 15px 18px;
 }
 
-.dash-component h2 {
-  margin-top: 0;
+.dash-component h3 {
+  font-weight: bold;
+}
+
+.dash-component p {
+  line-height: 1.6em;
 }
 
 a.dash-component {
@@ -156,11 +237,20 @@ a.dash-component {
 .dash-component.geoserver {
    background-image: url(../img/geoserver_suite_32.png);
 }
+.dash-component.qgis {
+   background-image: url(../img/qgis_suite_32.png);
+}
 .dash-component.geowebcache {
    background-image: url(../img/geowebcache_suite_32.png);
 }
 .dash-component.geoexplorer {
    background-image: url(../img/geoext_suite_32.png);
+}
+.dash-component.boundlesssdk {
+   background-image: url(../img/boundlesssdk_suite_32.png);
+}
+.dash-component.openlayers {
+   background-image: url(../img/openlayers_suite_32.png);
 }
 
 /*
@@ -175,11 +265,55 @@ a.dash-component {
   display: inline;
   min-width: 4em;
   margin: 4px 0;
-  padding: 0 8px;
+  padding: 0 9px;
   border-left: 1px solid #999;
   text-align: center;
 }
 
 .quick-links li:first-child {
   border-left: 0px;
+  padding-left: 0;
+}
+
+footer {
+  margin-top: 100px;
+  width: 100%;
+  background-color: #262b35;
+  height: 80px;
+}
+.footer-nav {
+  margin: 33px 5px;
+}
+.footer-nav.pull-right {
+  margin-right: 40px;
+}
+.footer-nav li {
+  display: inline-block;
+  border-right: 1px solid #555;
+  padding: 0 10px;
+}
+.footer-nav li a {
+  text-decoration: none;
+  color: #999;
+}
+.footer-nav li a:hover {
+  color: #fff;
+}
+.footer-nav li:last-child {
+  border-right: none;
+}
+footer div.boundless-logo {
+  float: left;
+  display: inline-block;
+  margin: 20px 0 0 40px;
+  width: 206px;
+  height: 40px;
+  background-image: url(../img/boundless_logo_sprites.png);
+  background-position: -1px -8px;
+}
+footer div.boundless-logo:hover {
+  cursor: pointer;
+  background-position: -1px -50px;
+  width: 206px;
+  height: 40px;
 }
