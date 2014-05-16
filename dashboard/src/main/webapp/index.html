@@ -21,156 +21,194 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button> -->
-          <h1 class="navbar-brand"><a href="index.html">OpenGeo Suite</a></h1>
-          <h5 class="version text-center">Version 4.1</h5>
+          <h1 class="navbar-brand"><a class="homelink">OpenGeo Suite</a></h1>
+          <h5 class="text-center">Version <span id="version">${project.version}</span><span class="version"></span></h5>
           <div>
-            <div class="navbar-link pull-left"><a href="#gettingstarted">Getting Started</a></div><div class="navbar-link pull-right"><a href="./opengeo-docs/">Documentation</a></div>
+            <div class="navbar-link pull-left"><a id="gslink" href="">Getting Started</a></div><div class="navbar-link pull-right"><a class="docs" href="">Documentation</a></div>
           </div>
-          <div class="navbar-logo"></div>
+          <div class="navbar-logo homelink"></div>
         </div>
       </nav>
     </div>
     <div class="container">
 
-      <div class="main tab-content">
+      <div class="tab-content main">
 
         <div class="tab-pane active" id="home">
-          <div class="row row-tier">
-            <div class="col-md-4 dash-tier">Database</div>
-            <div class="col-md-4 dash-tier">Server</div>
-            <div class="col-md-4 dash-tier">Desktop</div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="dash-tier">Database</div>
+              <div class="dash-component postgis">
+                <h3>PostGIS</h3>
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="#dataadmin/pgGettingStarted/">Tools</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="#postgis">Docs</a>
+                  </div>
+                </div>
+                <p>
+                  PostGIS provides spatial objects for the PostgreSQL object-relational database, allowing  efficient storage, query, and analysis of location information.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="dash-tier">Server</div>
+              <div class="dash-component geoserver">
+                <h3>GeoServer</h3>
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="geoserver">Admin</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="geoserver/mapmeter">Mapmeter</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="#geoserver">Docs</a>
+                  </div>
+                </div>
+                <p>
+                  GeoServer is a powerful map and feature server for sharing, analyzing, and editing geospatial data from any major spatial data source using open standards.
+                </p>
+              </div>
+              <div class="dash-component geowebcache">
+                <h3>GeoWebCache</h3>
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="./geowebcache">Configure</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="#geowebcache">Docs</a>
+                  </div>
+                </div>
+                <p>
+                  GeoWebCache accelerates delivery of web maps by caching map tiles upfront or on-demand.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="dash-tier">Desktop</div>
+              <div class="dash-component qgis">
+                <h3>QGIS</h3>
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="#qgisplugin">Plugin</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="http://qgis.org/en/docs">Docs</a>
+                  </div>
+                </div>
+                <p>
+                Use our QGIS plugin <em>OpenGeo Explorer</em> to configure Suite. Prep data in PostGIS, publish to GeoServer, or seed map tiles with GeoWebCache from desktop QGIS.
+                </p>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="col-md-4 dash-component postgis">
-              <h3>PostGIS</h3>
-              <ul class="quick-links">
-                <li><a class="dash-doc-link" href="#postgis">Docs</a></li>
-              </ul>
-              <p>
-                PostGIS provides spatial objects for the PostgreSQL object-relational database, allowing  efficient storage, query, and analysis of location information.
-              </p>
+            <div class="col-md-4">
+              <div class="dash-tier">Web Map Library</div>
+              <div class="dash-component openlayers">
+                <h3>OpenLayers 2 & 3</h3>
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink">OL 2</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink">OL 3</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="#openlayers">Docs</a>
+                  </div>
+                </div>
+                <p>
+                  OpenLayers provides advanced web mapping capabilities in any browser using Javascript.
+                </p>
+              </div>
             </div>
-            <div class="col-md-4 dash-component geoserver">
-              <h3>GeoServer</h3>
-              <ul class="quick-links">
-                <li><a href="/geoserver">Configure</a></li>
-                <!--li><a href="/geoserver">Import Data</a></li-->
-                <li><a href="http://mapmeter.com/getting-started.html">Mapmeter</a></li>
-                <li><a class="dash-doc-link" href="#geoserver">Docs</a></li>
-              </ul>
-              <p>
-                GeoServer is a powerful map and feature server for sharing, analyzing, and editing geospatial data from any major spatial data source using open standards.
-              </p>
+            <div class="col-md-4">
+              <div class="dash-tier">Web App Buildkit</div>
+                <div class="dash-component boundlesssdk">
+                <h3>Boundless SDK</h3>
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/boundless_sdk/demo">Demo</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/boundless_sdk/templates">Templates</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="#boundless_sdk">API Docs</a>
+                  </div>
+                </div>
+                <p>
+                  The Boundless SDK simplifies creation of ready-to-deploy map applications using OpenLayers 3 and Suite.
+                </p>
+              </div>
             </div>
-            <div class="col-md-4 dash-component qgis">
-              <h3>QGIS</h3>
-              <ul class="quick-links">
-                <li><a href="/qgis">Configure</a></li>
-                <!--li><a href="/geoserver">Import Data</a></li-->
-                <li><a href="http://mapmeter.com/getting-started.html">Mapmeter</a></li>
-                <li><a class="dash-doc-link" href="#geoserver">Docs</a></li>
-              </ul>
-              <p>
-                GeoServer is a powerful map and feature server for sharing, analyzing, and editing geospatial data from any major spatial data source using open standards.
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4 col-md-offset-4 dash-component geowebcache">
-              <h3>GeoWebCache</h3>
-              <ul class="quick-links">
-                <li><a href="/geowebcache">Configure</a></li>
-                <li><a class="dash-doc-link" href="#geowebcache">Docs</a></li>
-              </ul>
-              <p>
-                GeoWebCache accelerates delivery of web maps by caching map tiles upfront or on-demand.
-              </p>
-            </div>
-          </div>
-          <div class="row row-tier">
-            <div class="col-md-4 dash-tier">Web Map Library</div>
-            <div class="col-md-4 dash-tier">Web App Buildkit</div>
-            <div class="col-md-4 dash-tier">Web Map Client</div>
-          </div>
-          <div class="row">
-            <div class="col-md-4 dash-component openlayers">
-              <h3>OpenLayers 2 & 3</h3>
-              <ul class="quick-links">
-                <li><a class="dash-doc-link" href="#ol2">OpenLayers 2</a></li>
-                <li><a class="dash-doc-link" href="#ol3">OpenLayers 3</a></li>
-                <li><a class="dash-doc-link" href="#ol-docs">Docs</a></li>
-              </ul>
-              <p>
-                OpenLayers provides advanced web mapping capabilities in any browser using Javascript.
-              </p>
-            </div>
-            <div class="col-md-4 dash-component boundlesssdk">
-              <h3>Boundless SDK</h3>
-              <ul class="quick-links">
-                <li><a href="/boundless_sdk/demo">Demo</a></li>
-                <li><a class="dash-doc-link" href="/boundless_sdk/templates">Templates</a></li>
-                <li><a class="dash-doc-link" href="/boundless_sdk/api">API Docs</a></li>
-              </ul>
-              <p>
-                The Boundless SDK simplifies creation of ready-to-deploy map applications using OpenLayers 3 and Suite.
-              </p>
-            </div>
-            <div class="col-md-4 dash-component geoexplorer">
-              <h3>GeoExplorer</h3>
-              <ul class="quick-links">
-                <li><a href="/qgis">Configure</a></li>
-                <!--li><a href="/geoserver">Import Data</a></li-->
-                <li><a href="http://mapmeter.com/getting-started.html">Launch</a></li>
-                <li><a class="dash-doc-link" href="#geoserver">Docs</a></li>
-              </ul>
-              <p>
-                GeoExplorer is an application for composing, styling, editing, and publishing maps from the browser.
-              </p>
+            <div class="col-md-4">
+              <div class="dash-tier">Web Map Client</div>
+              <div class="dash-component geoexplorer">
+                <h3>GeoExplorer</h3>
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="./geoexplorer/composer/">Launch</a>
+                  </div>
+                  <div class="btn-group">
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="#geoexplorer">Docs</a>
+                  </div>
+                </div>
+                <p>
+                  GeoExplorer is an application for composing, styling, editing, and publishing maps from the browser.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="tab-pane" id="gettingstarted">
-          <h2>Getting Started</h2>
+          <h2 class="tabpage-header">Getting Started</h2>
 
-          <h3>Step 1: Load your data</h3>
-          <p>
-            Use <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> to upload shapefiles directly into PostGIS database
-            tables and serve through <a href="/geoserver">GeoServer</a>.
-          </p>
-          <p>
-            Alternately, use <a class="dash-doc-link" href="#dataadmin/pgGettingStarted/pgshapeloader.html">pgShapeLoader</a> to convert local shapefiles to
-            tables in your PostGIS database and the <a class="dash-doc-link" href="#dataadmin/importer/">Layer Importer</a> to load
-            your database tables into <a href="/geoserver">GeoServer</a>.
-          </p>
-          <p>
-          If you are looking for data to get started, the
-          <a class="dash-ext-link" href="http://www.naturalearthdata.com/">Natural Earth Data</a> has
-          free shapefiles available for download.
-          </p>
+          <div class="tabpage-content">
+            <h3>Step 1: Load your data</h3>
+            <p>
+              Use <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> to upload shapefiles directly into PostGIS database
+              tables and serve through <a href="/geoserver">GeoServer</a>.
+            </p>
+            <p>
+              Alternately, use <a class="dash-doc-link" href="#dataadmin/pgGettingStarted/pgshapeloader.html">pgShapeLoader</a> to convert local shapefiles to
+              tables in your PostGIS database and the <a class="dash-doc-link" href="#dataadmin/importer/">Layer Importer</a> to load
+              your database tables into <a href="/geoserver">GeoServer</a>.
+            </p>
+            <p>
+            If you are looking for data to get started, the
+            <a class="dash-ext-link" href="http://www.naturalearthdata.com/">Natural Earth Data</a> has
+            free shapefiles available for download.
+            </p>
 
-          <h3>Step 2: Style your layers</h3>
+            <h3>Step 2: Style your layers</h3>
 
-          <p>Use <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> and its built-in graphical styling tools to
-            design the look and feel for each map layer.</p>
+            <p>Use <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> and its built-in graphical styling tools to
+              design the look and feel for each map layer.</p>
 
-          <h3>Step 3: Edit your data</h3>
-          <p>
-            Use <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> to create and edit features graphically, right
-            in the browser, on any layers served through GeoServer.
-          </p>
+            <h3>Step 3: Edit your data</h3>
+            <p>
+              Use <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> to create and edit features graphically, right
+              in the browser, on any layers served through GeoServer.
+            </p>
 
-          <h3>Step 4: Compose and publish your map</h3>
-          <p>
-            <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> save your finished map such that it can be embedded
-            in any web page.
-          </p>
+            <h3>Step 4: Compose and publish your map</h3>
+            <p>
+              <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> save your finished map such that it can be embedded
+              in any web page.
+            </p>
 
-          <h3>Advanced: Make your own mapping application</h3>
-          <p>
-            Use the <a class="dash-doc-link" href="#sdk-api">OpenGeo Webapp SDK</a> and associated <a class="dash-doc-link" href="#webapps/sdkintro/">tutorial</a> to
-            create and deploy your own custom mapping application.
-          </p>
+            <h3>Advanced: Make your own mapping application</h3>
+            <p>
+              Use the <a class="dash-doc-link" href="#sdk-api">OpenGeo Webapp SDK</a> and associated <a class="dash-doc-link" href="#webapps/sdkintro/">tutorial</a> to
+              create and deploy your own custom mapping application.
+            </p>
+          </div>
         </div>
 
         <!--div class="tab-pane" id="faq">
@@ -178,37 +216,39 @@
         </div-->
 
         <div class="tab-pane" id="about">
-          <h2>About</h2>
-          <h3>OpenGeo Suite</h3>
-          <p>
-            OpenGeo Suite powers web, mobile, and desktop applications across the enterprise. Built on leading open source software - including PostGIS, GeoServer, GeoWebCache, and OpenLayers - OpenGeo Suite optimizes standards-based technology for organizations large and small.
-          </p>
+          <h2 class="tabpage-header">About</h2>
+          <div class="tabpage-content">
+            <h3>OpenGeo Suite</h3>
+            <p>
+              OpenGeo Suite powers web, mobile, and desktop applications across the enterprise. Built on leading open source software - including PostGIS, GeoServer, GeoWebCache, and OpenLayers - OpenGeo Suite optimizes standards-based technology for organizations large and small.
+            </p>
 
-          <h3>Boundless</h3>
-          <p>
-            Boundless is the most trusted provider of enterprise-grade, open source
-            geospatial software. From database to server to client, Boundless reduces the
-            costs of developing, deploying, and maintaining geospatial software. Boundless
-            is where companies turn when they want to free themselves of the rigid
-            architectures and unsustainable pricing models of proprietary geospatial
-            software.
-          </p>
-          <h3>This Build</h3>
-          <p>
-            <p>Version <strong>${project.version}</strong> (<code>${git.commit.id.abbrev}</code>) built on
-              ${build.prettydate}.</p>
-          </p>
+            <h3>Boundless</h3>
+            <p>
+              Boundless is the most trusted provider of enterprise-grade, open source
+              geospatial software. From database to server to client, Boundless reduces the
+              costs of developing, deploying, and maintaining geospatial software. Boundless
+              is where companies turn when they want to free themselves of the rigid
+              architectures and unsustainable pricing models of proprietary geospatial
+              software.
+            </p>
+            <h3>This Build</h3>
+            <p>
+              <p>Version <span style="font-weight: bold;" class="version">${project.version}</span><code class="commit"> (${git.commit.id.abbrev})</code><span class="date"> built on ${build.prettydate}.</span></p>
+            </p>
+          </div>
         </div>
 
       </div>
     </div>
 
+    <div class="close-to-footer text-center">Version <span class="version"></span></div>
     <footer>
       <div class="boundless-logo"><a href="http://boundlessgeo.com"> </a></div>
       <ul class="footer-nav pull-left">
-        <li><a href="#about">About</a></li>
-        <li><a href="legal.html">Legal</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a class="aboutlink" href="">About</a></li>
+        <li><a href="http://boundlessgeo.com/site-map/legal/opengeo-suite-eula/">Legal</a></li>
+        <li><a href="http://boundlessgeo.com/about/contact-us/">Contact</a></li>
       </ul>
       <ul class="footer-nav pull-right">
         <li><a href="http://boundlessgeo.com/support/">Support</a></li>

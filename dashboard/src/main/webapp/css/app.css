@@ -1,24 +1,17 @@
 /**
  * custom fonts
  */
+
 @font-face {
-  font-family: 'Montserrat';
-  font-weight: normal;
-  src: url('Montserrat-Regular.eot');
-  src: url('Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
-       url('Montserrat-Regular.woff') format('woff'),
-       url('Montserrat-Regular.ttf') format('truetype'),
-       url('Montserrat-Regular.svg#Montserrat-Regular') format('svg');
+  font-family: "Proxima Nova";
+  src: url(../fonts/ProximaNova-Sbold.otf) format("otf");
+  font-weight: bold;
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  font-weight: bold;
-  src: url('Montserrat-Bold.eot');
-  src: url('Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
-       url('Montserrat-Bold.woff') format('woff'),
-       url('Montserrat-Bold.ttf') format('truetype'),
-       url('Montserrat-Bold.svg#Montserrat-Bold') format('svg');
+  font-family: "Proxima Nova";
+  src: url(../fonts/ProximaNova-Light.otf) format("otf");
+  font-weight: normal;
 }
 
 @font-face {
@@ -68,20 +61,23 @@
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   overflow: scroll;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 h1,
-h2 {
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+h2,
+h3 {
+  font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-h3,
 h4,
 h5,
 h6 {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
+}
+p {
+  line-height: 1.8em;
 }
 
 /*
@@ -115,16 +111,16 @@ h6 {
 
 .navbar-brand {
   float: none;
-  width: 280px;
+  width: 260px;
   margin: 0 auto;
-  font-size: 2em;
-  font-weight: normal;
+  font-size: 2.2em;
+  font-weight: bold;
   text-shadow: 5px 5px 5px #222;
   letter-spacing: 1px;
 }
 
 h5.version {
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   margin: 5px auto;
   letter-spacing: 1px;
@@ -135,6 +131,10 @@ h5.version {
   margin: 10px auto 0 auto;
   width: 118px;
   height: 116px;
+}
+
+.homelink {
+  cursor: pointer;
 }
 
 .navbar-link {
@@ -185,26 +185,33 @@ h5.version {
 }
 
 /*
- *   Main page sectino
+ *   Main page section
  */
 
- .main {
-  margin-top: 60px;
- }
-
- .row-tier {
-  margin-top: 40px;
-  margin-bottom: 10px;
- }
-
- .dash-tier {
-  font-weight: bold;
-  font-size: 1.6em;
+.tabpage-header {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: #aaa;
-  margin: 20px auto;
+  font-size: 1.4em;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+.tabpage-content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dash-tier {
+  font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.4em;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #aaa;
+  margin: 60px auto 40px auto;
  }
 
 /*
@@ -212,19 +219,22 @@ h5.version {
  */
 
 .dash-component {
+  margin-top: 40px;
   padding: 0 10px 0 65px;
   min-height: 55px;
   position: relative;
   background-repeat: no-repeat;
-  background-position: 15px 18px;
+  background-position: 20px 0;
 }
 
 .dash-component h3 {
+  padding-top: 4px;
   font-weight: bold;
 }
 
 .dash-component p {
-  line-height: 1.6em;
+  line-height: 1.8em;
+  text-shadow: 0 1px 1px rgba(230,230,230,0.75);
 }
 
 a.dash-component {
@@ -256,9 +266,51 @@ a.dash-component {
 /*
  * quick links inside component blocks
  */
-.quick-links {
-  list-style:none;
-  -webkit-padding-start: 2px;
+
+.btn.btn-sm {
+  border-radius: 0;
+  padding: 4px 10px;
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+  background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+  background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+  background-repeat: repeat-x;
+  border: 1px solid #bbb;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  border-bottom-color: #a2a2a2;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+}
+.btn.btn-sm .active, .btn.btn-sm:active {
+  background-color: #e6e6e6;
+  background-color: #d9d9d9 \9;
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+  -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+}
+
+.btn-group.btn-group-justified {
+  margin: 10px 0;
+ }
+
+.btn-group.btn-group-justified .btn-group {
+  max-width: 33%;
+}
+
+.btn-default.quicklink {
+  color: #28728D !important;
 }
 
 .quick-links li {
@@ -275,22 +327,27 @@ a.dash-component {
   padding-left: 0;
 }
 
-footer {
+.close-to-footer {
   margin-top: 100px;
+  margin-bottom: 10px;
+}
+
+footer {
   width: 100%;
   background-color: #262b35;
-  height: 80px;
+  height: 70px;
 }
 .footer-nav {
-  margin: 33px 5px;
+  margin: 28px 5px 20px 0;
+  padding-left: 15px;
 }
 .footer-nav.pull-right {
   margin-right: 40px;
 }
 .footer-nav li {
   display: inline-block;
-  border-right: 1px solid #555;
-  padding: 0 10px;
+  border-right: 1px solid #333;
+  padding: 0 15px;
 }
 .footer-nav li a {
   text-decoration: none;
@@ -305,7 +362,7 @@ footer {
 footer div.boundless-logo {
   float: left;
   display: inline-block;
-  margin: 20px 0 0 40px;
+  margin: 15px 0 0 40px;
   width: 206px;
   height: 40px;
   background-image: url(../img/boundless_logo_sprites.png);
@@ -316,4 +373,43 @@ footer div.boundless-logo:hover {
   background-position: -1px -50px;
   width: 206px;
   height: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-link.pull-left {
+    margin-left: 3% !important;
+  }
+  .navbar-link.pull-right {
+    margin-right: 3% !important;
+  }
+
+  footer {
+    height: 200px;
+  }
+
+  .footer-nav, .footer-nav.pull-left, .footer-nav.pull-right {
+    margin: 30px 0 5px;
+    padding-left: 25px;
+    float: left !important;
+  }
+
+}
+
+@media screen and (min-width: 496px) and (max-width: 897px) {
+  footer {
+    height: 140px;
+  }
+}
+
+@media screen and (min-width: 898px) and (max-width: 1199px) {
+  .btn.btn-sm {
+    padding: 4px 0;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .btn-group.btn-group-justified .btn-group {
+    margin-left: -2px;
+    margin-right: -2px;
+  }
 }

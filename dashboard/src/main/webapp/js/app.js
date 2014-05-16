@@ -1,30 +1,60 @@
+// In case of static HTML, serve static info:
+var SUITE_VERSION = 4.1;
+
 function onLoad() {
-  // set up tab navigation 
-  $('.nav a').click(function(e) {
-    e.preventDefault();
-    $(this).tab('show');
-  });
+  var active_tab = $('#home');
 
-  // click on brand forwards to "home"
-  $('.navbar-brand').click(function(e) {
-    e.preventDefault();
-    $(".nav a[href='#home']").tab('show');
-  })
+  // set up link navigation
+  function setUpTabs (tab_button) {
+    $(tab_button).click(function(e) {
+      e.preventDefault();
+      active_tab.hide();
 
-  // ensure quick links open in new window
-  $('.quick-links a').each(function() {
-    this.target = '_blank';
-  });
+      switch (tab_button) {
+        case '#gslink':
+          active_tab = $('#gettingstarted');
+          break;
+        case '.homelink':
+          active_tab = $('#home');
+          break;
+        case '.aboutlink':
+          active_tab = $('#about');
+          break;
+        default:
+          break;
+      }
 
-  // update all targets of external links
-  $('.dash-ext-link').each(function() {
-    this.target = '_blank';
-  });
+      active_tab.show();
+    });
+  }
 
-  // update all doc links 
-  $('.dash-doc-link').each(function() {
-    var path = this.href.split("#")[1];
-    this.href = "/opengeo-docs/" + path;
-    this.target = '_blank';
-  });
+  setUpTabs('#gslink');
+  setUpTabs('.homelink');
+  setUpTabs('.aboutlink');
+
+  // Add version info to all version spans
+  var proj_version = $('#version').html();
+  if (proj_version == "${project.version}") {
+    proj_version = SUITE_VERSION;
+    $('#version').html("");
+  }
+  $('.version').html(proj_version);
+
+  // Add version to all docs links
+  var docs_version = "opengeo-docs/" + proj_version + "/";
+  $('.docs').each(function( index ) {
+      var component = $(this).attr("component");
+      var path = this.href.split("#")[1];
+      this.href = docs_version + path;
+       this.target = '_blank';
+    });
+
+  // Remove non-static info
+  if ($('.commit').html() == " (${git.commit.id.abbrev})") {
+    $('.commit').html("");
+  }
+  if ($('.date').html() == " built on ${build.prettydate}.") {
+    $('.date').html("");
+  }
+
 }
