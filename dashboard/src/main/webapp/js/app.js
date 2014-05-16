@@ -20,7 +20,11 @@ function onLoad() {
         case '.aboutlink':
           active_tab = $('#about');
           break;
+        case '#documentationlink':
+          active_tab = $('#documentation');
+          break;
         default:
+          active_tab = $('#home');
           break;
       }
 
@@ -31,6 +35,7 @@ function onLoad() {
   setUpTabs('#gslink');
   setUpTabs('.homelink');
   setUpTabs('.aboutlink');
+  setUpTabs('#documentationlink');
 
   // Add version info to all version spans
   var proj_version = $('#version').html();
@@ -41,7 +46,7 @@ function onLoad() {
   $('.version').html(proj_version);
 
   // Add version to all docs links
-  var docs_version = "opengeo-docs/" + proj_version + "/";
+  var docs_version = "docs/" + proj_version + "/";
   $('.docs').each(function( index ) {
       var component = $(this).attr("component");
       var path = this.href.split("#")[1];

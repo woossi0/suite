@@ -332,6 +332,27 @@ a.dash-component {
   margin-bottom: 10px;
 }
 
+.tabpage-content h3 {
+  margin-top: 40px;
+}
+
+.doclinks {
+  margin-left: 20px;
+  line-height: 1.8em;
+  display: block;
+  color: #28728D;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+.doclinks li {
+  display: block;
+  margin: 15px;
+}
+.doclinks li a.btn-sm {
+  padding: 4px 10px;
+  color: #28728D;
+}
+
 footer {
   width: 100%;
   background-color: #262b35;
@@ -402,7 +423,7 @@ footer div.boundless-logo:hover {
 }
 
 @media screen and (min-width: 898px) and (max-width: 1199px) {
-  .btn.btn-sm {
+  .btn.btn-sm.quicklink {
     padding: 4px 0;
   }
 }

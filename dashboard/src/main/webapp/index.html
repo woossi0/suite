@@ -24,7 +24,7 @@
           <h1 class="navbar-brand"><a class="homelink">OpenGeo Suite</a></h1>
           <h5 class="text-center">Version <span id="version">${project.version}</span><span class="version"></span></h5>
           <div>
-            <div class="navbar-link pull-left"><a id="gslink" href="">Getting Started</a></div><div class="navbar-link pull-right"><a class="docs" href="">Documentation</a></div>
+            <div class="navbar-link pull-left"><a id="gslink" href="">Getting Started</a></div><div class="navbar-link pull-right"><a id="documentationlink" href="">Documentation</a></div>
           </div>
           <div class="navbar-logo homelink"></div>
         </div>
@@ -62,7 +62,7 @@
                     <a type="button" class="btn btn-default btn-sm quicklink" href="geoserver">Admin</a>
                   </div>
                   <div class="btn-group">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="geoserver/mapmeter">Mapmeter</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="geoserver/mapmeter">Monitor</a>
                   </div>
                   <div class="btn-group">
                     <a type="button" class="btn btn-default btn-sm quicklink docs" href="#geoserver">Docs</a>
@@ -235,6 +235,40 @@
             <h3>This Build</h3>
             <p>
               <p>Version <span style="font-weight: bold;" class="version">${project.version}</span><code class="commit"> (${git.commit.id.abbrev})</code><span class="date"> built on ${build.prettydate}.</span></p>
+            </p>
+          </div>
+        </div>
+
+
+        <div class="tab-pane" id="documentation">
+          <h2 class="tabpage-header">Documentation</h2>
+          <div class="tabpage-content">
+            <h3>OpenGeo Suite</h3>
+            <p>
+              Suite documentation refers to installation and usage instructions for Suite as a single package.</p>
+            <p>
+            <a class="btn btn-sm doclinks docs" href="#">OpenGeo Suite v. <span class="version"></span> User Manual</a>
+            </p>
+
+            <h3>Docs for Suite Components</h3>
+            <p>
+              OpenGeo Suite is composed of PostGIS, GeoServer, GeoWebCache, and OpenLayers, and now works with QGIS. We have packaged open source community documentation for these components here:</p>
+              <ul class="doclinks list-unstyled">
+                <li><a class="btn btn-sm docs" href="#postgis">PostGIS v. 9.3</a></li>
+                <li><a class="btn btn-sm docs" href="#eoserver">GeoServer v. 2.5.5</a></li>
+                <li><a class="btn btn-sm docs" href="#geowebcache">GeoWebCache v. 1.3</a></li>
+                <li><a class="btn btn-sm docs" href="#openlayers">OpenLayers 2 and 3</a></li>
+                <li><a class="btn btn-sm docs" href="http://qgis.org/en/docs/">QGIS v. 2.2</a>  <a class="btn btn-sm docs" href="#qgisplugin">OpenGeo Explorer Plugin v. 1.2</a></li>
+              </ul>
+            </p>
+            <h3>Docs for Other Suite Versions</h3>
+            <p>
+              <p>
+                <ul class="doclinks list-unstyled">
+                  <li><a class="btn btn-sm" href="http://suite.opengeo.org/docs/4.0.2/">Version 4.0.2</a></li>
+                  <li><a class="btn btn-sm" href="http://suite.opengeo.org/docs/4.0/">Version 4.0</a></li>
+                </ul>
+              </p>
             </p>
           </div>
         </div>
