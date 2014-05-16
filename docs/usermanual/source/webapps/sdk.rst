@@ -1,9 +1,9 @@
 ﻿.. _webapps.sdk:
 
-Creating and deploying apps with OpenGeo Webapp SDK
-===================================================
+Creating and deploying apps with Boundless SDK
+==============================================
 
-OpenGeo Webapp SDK provides tools for building web mapping applications backed by OpenGeo Suite. The application development life-cycle are as follows:
+Boundless SDK provides tools for building web mapping applications backed by OpenGeo Suite. The application development life-cycle are as follows:
 
 #. **Creation** - Generating a new template application
 #. **Customization** - Adding features and functionality to the template application
@@ -14,7 +14,7 @@ This tutorial will discuss creating, testing, and deploying of an application. S
 
 Prerequisites:
 
-* OpenGeo Webapp SDK installed. See the next section for installation details.
+* Boundless SDK installed. See the next section for installation details.
 
 * A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_. A standard Java Runtime Environment (JRE) is not sufficient.
 
@@ -25,11 +25,11 @@ Prerequisites:
 Installation
 ------------
 
-The SDK can be installed in one of two ways. The first is as part of a regular OpenGeo Suite install. See the :ref:`installation` section for details.
+The Boundless SDK can be installed in one of two ways. The first is as part of a regular OpenGeo Suite install. See the :ref:`installation` section for details.
 
 The second method involves installing the SDK standalone:
 
-#. Downloaded the SDK from http://boundlessgeo.com/solutions/solutions-software/software/. 
+#. Download the Boundless SDK from http://boundlessgeo.com/solutions/solutions-software/software/. 
 
 #. Extract the archive to a suitable location on the file system.
 
@@ -44,7 +44,7 @@ a command prompt.
 Creating a new application
 --------------------------
 
-The SDK comes with an application template that can be useful for getting started developing with the Suite. To create a new application based on this template, run the ``suite-sdk create`` command::
+The Boundless SDK comes with an application template that can be useful for getting started developing with the Suite. To create a new application based on this template, run the ``suite-sdk create`` command::
 
   suite-sdk create path/to/myapp
 
@@ -57,7 +57,7 @@ In the above command, the app will be called :file:`myapp` and will be placed in
 Testing the application
 -----------------------
 
-The SDK comes with a server that can be used to debug your application during development. The server loads all of your JavaScript as individual, unminified scripts - very useful for debugging in a browser, but not suitable for production.
+The Boundless SDK comes with a server that can be used to debug your application during development. The server loads all of your JavaScript as individual, unminified scripts - very useful for debugging in a browser, but not suitable for production.
 
 Run the following command to launch a server that loads the application in "debug mode"::
 

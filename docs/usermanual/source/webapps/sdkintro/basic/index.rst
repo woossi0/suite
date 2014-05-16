@@ -3,12 +3,12 @@
 Creating a viewer
 =================
 
-In this section we will create a viewer application using the webapp SDK.
+In this section we will create a viewer application using the Boundless SDK.
 
 Background
 ----------
 
-The central object in the architecture of the SDK is the **viewer** (`gxp.Viewer <../../../sdk-api/lib/widgets/Viewer.html>`_). Primarily, a viewer combines a map panel with tools, but it can do much more. 
+The central object in the architecture of the Boundless SDK is the **viewer** (`gxp.Viewer <../../../sdk-api/lib/widgets/Viewer.html>`_). Primarily, a viewer combines a map panel with tools, but it can do much more. 
 
 The main configuration options for a ``gxp.Viewer`` are:
 
@@ -93,7 +93,7 @@ Application details
 
 In the example application, the main component (``gxp.Viewer``) is created with a single configuration object, exposing a single global variable named ``app``.
 
-The ``gxp.Viewer`` instance is configured to create a viewport filled with a border layout, which has two items, a container in the 'west' region 200 pixels wide, and the map in the 'center' region. Please note that all tools in the Client SDK are Ext plugins, so they can be created with a ``ptype`` shortcut in the config, similar to the ``xtype`` shortcut for Ext components. This viewer application defines the following tools:
+The ``gxp.Viewer`` instance is configured to create a viewport filled with a border layout, which has two items, a container in the 'west' region 200 pixels wide, and the map in the 'center' region. Please note that all tools in the Boundless SDK are Ext plugins, so they can be created with a ``ptype`` shortcut in the config, similar to the ``xtype`` shortcut for Ext components. This viewer application defines the following tools:
 
 * A **Layer Tree**, which will be rendered in the 'west' panel defined in the portalConfig.
 * The **Add Layers** tool, a button that, when clicked, creates a dialog to add new layers to the map. This tool will be part of the top toolbar of the layer tree.
