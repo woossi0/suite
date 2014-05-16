@@ -24,13 +24,13 @@ Once this process is completed, you can use the included SDK scripts to :ref:`de
 Windows
 -------
 
-In order to remote deploy on Windows the :guilabel:`Webapp SDK` component must be selected during install. If not installed simply re-run the installer and ensure it is selected.
+In order to remote deploy on Windows the :guilabel:`Boundless SDK` component must be selected during install. If not installed simply re-run the installer and ensure it is selected.
 
 .. figure:: img/winwebappsdk.png
 
-   Installing the Webapp SDK on Windows
+   Installing the Boundless SDK on Windows
 
-After the Webapp SDK is installed the manager password must be set in 
+After the Boundless SDK is installed the manager password must be set in 
 :file:`C:\Program Files\Boundless\OpenGeo\jetty\etc\realm.properties`. The file 
 should have a line like the following::
 
@@ -40,17 +40,10 @@ This means that the username is "manager" (``manager:``), the password is "mypas
 
 After changing the password restart the :guilabel:`OpenGeo Jetty` service.
 
-Mac
----
-
-.. todo:: this section, we don't yet have the webapp sdk installable for mac
-
 Linux
 -----
 
-Unlike Windows and Mac, Linux installations use a Tomcat servlet container. In 
-order to perform remote application deployment with Tomcat additional packages 
-must be installed.
+In order to perform remote application deployment with Tomcat additional packages must be installed.
 
 Feddora/CentOS/Red Hat
 ^^^^^^^^^^^^^^^^^^^^^^

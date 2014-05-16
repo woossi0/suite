@@ -125,7 +125,7 @@ Dev Tools
    :stub-columns: 1
    :class: table-leftwise
 
-   * - Webapp SDK
+   * - Boundless SDK
      - Toolkit for building web map applications.
    * - GeoScript
      - Scripting extension for GeoServer.

@@ -34,7 +34,7 @@ This User Manual will help you get the most out of OpenGeo Suite.
   Visualize your data on the web.
 
 :ref:`webapps`
-  Build complete web-based applications using the Webapp SDK and OpenLayers.
+  Build complete web-based applications using the Boundless SDK and OpenLayers.
 
 :ref:`processing`
   Perform server-based spatial analysis.
