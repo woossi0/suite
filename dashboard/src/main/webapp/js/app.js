@@ -1,8 +1,10 @@
 // In case of static HTML, serve static info:
 var SUITE_VERSION = 4.1;
+var RELEASE_DATE = "June 19, 2014";
 
 function onLoad() {
   var active_tab = $('#home');
+  var previous_link;
 
   // set up link navigation
   function setUpTabs (tab_button) {
@@ -27,8 +29,14 @@ function onLoad() {
           active_tab = $('#home');
           break;
       }
-
       active_tab.show();
+      $(this).addClass("active");
+
+      // highlight clicked link
+      if (previous_link) {
+        previous_link.removeClass("active");
+      }
+      previous_link = $(this);
     });
   }
 
@@ -56,10 +64,11 @@ function onLoad() {
 
   // Remove non-static info
   if ($('.commit').html() == " (${git.commit.id.abbrev})") {
-    $('.commit').html("");
+    $('.commit').hide();
   }
-  if ($('.date').html() == " built on ${build.prettydate}.") {
-    $('.date').html("");
+  if ($('.date').html() == " built on ${build.prettydate}") {
+    $('.date').hide();
   }
+  $('.release_date').html(RELEASE_DATE);
 
 }

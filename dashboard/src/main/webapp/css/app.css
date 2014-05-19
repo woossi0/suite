@@ -139,7 +139,7 @@ h5.version {
 
 .navbar-link {
   display: inline-block;
-  margin-top: 25px;
+  margin-top: 15px;
   font-size: 1.2em;
 }
 .navbar-link a {
@@ -148,6 +148,9 @@ h5.version {
   letter-spacing: 1px;
 }
 .navbar-link a:hover {
+  color: #fff;
+}
+.tablink.active {
   color: #fff;
 }
 .navbar-link.pull-left {
@@ -206,12 +209,12 @@ h5.version {
 .dash-tier {
   font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: bold;
-  font-size: 1.4em;
-  text-align: center;
+  font-size: 1.1em;
+  text-align: left;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #aaa;
-  margin: 60px auto 40px auto;
+  color: #bbb;
+  margin: 70px auto 0 65px;
  }
 
 /*
@@ -330,6 +333,12 @@ a.dash-component {
 .close-to-footer {
   margin-top: 100px;
   margin-bottom: 10px;
+  font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .tabpage-content h3 {
@@ -357,6 +366,7 @@ footer {
   width: 100%;
   background-color: #262b35;
   height: 70px;
+  font-size: 0.9em;
 }
 .footer-nav {
   margin: 28px 5px 20px 0;
@@ -383,17 +393,17 @@ footer {
 footer div.boundless-logo {
   float: left;
   display: inline-block;
-  margin: 15px 0 0 40px;
-  width: 206px;
-  height: 40px;
+  margin: 20px 0 0 40px;
+  width: 154px;
+  height: 30px;
   background-image: url(../img/boundless_logo_sprites.png);
-  background-position: -1px -8px;
+  background-position: 0px 0px;
 }
 footer div.boundless-logo:hover {
   cursor: pointer;
-  background-position: -1px -50px;
-  width: 206px;
-  height: 40px;
+  background-position: 0px -30px;
+  width: 154px;
+  height: 30px;
 }
 
 @media screen and (max-width: 768px) {

@@ -24,7 +24,8 @@
           <h1 class="navbar-brand"><a class="homelink">OpenGeo Suite</a></h1>
           <h5 class="text-center">Version <span id="version">${project.version}</span><span class="version"></span></h5>
           <div>
-            <div class="navbar-link pull-left"><a id="gslink" href="">Getting Started</a></div><div class="navbar-link pull-right"><a id="documentationlink" href="">Documentation</a></div>
+            <div class="navbar-link pull-left"><a id="gslink" class="tablink" href="">Getting Started</a></div>
+            <div class="navbar-link pull-right"><a id="documentationlink" class="tablink" href="">Documentation</a></div>
           </div>
           <div class="navbar-logo homelink"></div>
         </div>
@@ -234,7 +235,7 @@
             </p>
             <h3>This Build</h3>
             <p>
-              <p>Version <span style="font-weight: bold;" class="version">${project.version}</span><code class="commit"> (${git.commit.id.abbrev})</code><span class="date"> built on ${build.prettydate}.</span></p>
+            <p>Version <span style="font-weight: bold;" class="version">${project.version}</span><code class="commit"> (${git.commit.id.abbrev})</code><span class="date"> built on ${build.prettydate}</span><br/>This version was released <span class="release_date"></span>.</p>
             </p>
           </div>
         </div>
@@ -276,11 +277,11 @@
       </div>
     </div>
 
-    <div class="close-to-footer text-center">Version <span class="version"></span></div>
+    <div class="close-to-footer text-center">OpenGeo Suite Version <span class="version"></span></div>
     <footer>
       <div class="boundless-logo"><a href="http://boundlessgeo.com"> </a></div>
       <ul class="footer-nav pull-left">
-        <li><a class="aboutlink" href="">About</a></li>
+        <li><a class="aboutlink tablink" href="">About</a></li>
         <li><a href="http://boundlessgeo.com/site-map/legal/opengeo-suite-eula/">Legal</a></li>
         <li><a href="http://boundlessgeo.com/about/contact-us/">Contact</a></li>
       </ul>
