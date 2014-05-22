@@ -1,5 +1,4 @@
-.. _sampledata:
-
+.. _intro.sampledata:
 
 Sample Data
 ===========
@@ -11,8 +10,7 @@ OpenGeo Suite comes with some preloaded sample layers that may be viewed and res
 States
 ------
 
-A population distribution layer for the United States of America taken from the 
-the 2010 Census. See the `U.S. Census Bureau <http://census.gov>`_ for more details.
+A population distribution layer for the United States of America taken from the 2010 Census. See the `U.S. Census Bureau <http://census.gov>`_ for more details.
 
 The :guilabel:`usa:states` layer is in a geographic projection (EPSG:4326) with an approximate spatial extent of ``-179.2, 17.8, -65.2, 71.4`` (west, south, east, north). 
 
@@ -21,14 +19,14 @@ Countries
 
 A world wide country layer taken from the Natural Earth `1:50m cultural <http://www.naturalearthdata.com/downloads/50m-cultural-vectors/>`_ vector dataset. 
 
-The :guilabel:`opengeo:countries` layer is in a geographic projection (EPSG:4326) with a spatial extent of +-180 (longitude) and +-90 (latitude). 
+The :guilabel:`opengeo:countries` layer is in a geographic projection (EPSG:4326) with a full world extent. 
 
-.. _sampledata.medford:
+.. _intro.sampledata.medford:
 
 Medford
 -------
 
-The city of Medford, in the USA state of Oregon, has generously shared some of their public domain municipal data. 
+The city of Medford, in the United States state of Oregon, has generously shared some of their public domain municipal data.
 
 .. note:: This data does not ship with OpenGeo Suite by default. To install the data download `medford.zip <http://data.opengeo.org/medford.zip>`_ and unpack it into the root of the GeoServer data directory.
 
@@ -40,7 +38,7 @@ The following layers are available in the Medford dataset:
    
    * - Layer Name
      - Abstract
-     - Last Update
+     - Last Updated
      - Type
    * - :guilabel:`medford:bikelanes`
      - Bike lanes in Jackson County
@@ -109,11 +107,11 @@ The following layers are available in the Medford dataset:
 
 .. figure:: img/medford.png
 
-   *Medford zoning data viewed in GeoExplorer*
+   Medford zoning data viewed in GeoExplorer
    
 The Medford layers are in a geographic projection (EPSG:4326) with an approximate spatial extent of ``-122.904, 42.231, -123.042, 42.438`` (west, south, east, north). 
 
-.. _sampledata.world:
+.. _intro.sampledata.world:
 
 World
 -----
@@ -157,8 +155,7 @@ The :guilabel:`world:urbanareas1_1` layer was obtained from the `Nordpil world d
 
 The :guilabel:`world:cities` layer was derived from public domain data obtained from the `Natural Earth <http://www.naturalearthdata.com/>`_ website. The :guilabel:`world:borders` layer was downloaded from the `Mapping Hacks <http://www.mappinghacks.com/data>`_ website. The original data was derived from public domain sources. 
 
-For further information, please refer to the Readme.txt file included with the data bundle. 
-
+For further information, please refer to the :file:`Readme.txt` file included with the data. 
 
 Base Maps
 ---------
@@ -167,11 +164,10 @@ GeoExplorer provides a link to the MapQuest OpenStreetMap (OSM) web service, pro
 
 .. figure:: ../webmaps/easypublish/img/load_geoexplorer.png
 
-   *OSM world map in GeoExplorer*
-
+   OSM world map in GeoExplorer
 
 Layer preview
 -------------
 
-You can use GeoExplorer to view any of the sample layers. To open GeoExplorer, click :guilabel:`Launch` next to :guilabel:`GeoExplorer` on the OpenGeo Suite :ref:`Dashboard`. For more information on viewing and adding layers to GeoExplorer, see the :ref:`webmaps.basic` tutorial or the GeoExplorer `reference documentation <../geoexplorer/>`_.
+You can use GeoExplorer to view any of the sample layers. You can launch GeoExplorer from the :ref:`intro.dashboard`. For more information on viewing and adding layers to GeoExplorer, see the :ref:`webmaps.basic` tutorial or the `GeoExplorer documentation <../geoexplorer/>`_.
 
