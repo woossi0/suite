@@ -64,7 +64,6 @@ General styles
 
 body {
 z-index: -1;
-padding-left: 20px;
 background: #fff;
 color: #000;
 font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -258,7 +257,7 @@ color: #332722;
 
 #sidebar .pgClass h4.disclaimer {
 font-weight: bold;
-font-size: 13px;
+font-size: 1.2em;
 color: #BF381A;
 padding: 15px 0 15px 10px;
 border-bottom: 2px solid #BF381A;
@@ -297,7 +296,7 @@ font-size: 1.2em;
 #sidebar {
 width: 230px;
 margin: 0 40px 0 -15px;
-padding: 58px 0 0 ;
+padding: 43px 0 0 ;
 /*color: #0A2742;*/
 /*background: url(./chrome/sidebar-content-bg.png) no-repeat; */
 }
@@ -440,8 +439,8 @@ Content
 #content #breadcrumbs {
 font-size: 0.85em;
 color: #F58D50;
-margin: -1205px 0 5px 0;
-padding: 7px 0;
+margin: -1211px 0 5px 0;
+padding: 10px 0;
 height: 20px;
 }
 
@@ -453,6 +452,7 @@ height: 1px;
 #content #breadcrumbs li {
 list-style-type: none;
 display: inline;
+font-size: 1.2em;
 }
 
 #content #breadcrumbs a {
@@ -1061,30 +1061,18 @@ Footer
 -----------------------*/
 
 #footer {
-/* background: #0A2742 url(./chrome/footer-bg.png) repeat-x; */
-/* background: #332722 url("chrome/footer-bg.png") repeat-x; */
-background-color: #00A78D;
-color: #d9d9d9;
-margin-left: -25px;
-margin-top: 40px;
-padding: 20px;
-text-align: center;
+width: 100%;
+background-color: #7db5d2;
+height: 87px;
+font-size: 1.1em;
+color: #efefef;
 }
 
-#footer p {
-margin: 0;
-padding: 1em 0 0;
-color: #d9d9d9;
+#footer .footer-wrap {
+padding: 16px 0 0 0;
+width: 1000px;
+margin: auto;
 }
-
-#footer strong,
-#footer em,
-#footer dt,
-#footer b,
-#footer i {
-color: #d9d9d9;
-}
-
 
 #footer a {
 color: #fff;
@@ -1092,9 +1080,47 @@ text-decoration: none;
 }
 
 #footer a:hover {
-color: #fff;
+color: #f58d50;
 text-decoration: underline;
 }
+
+#footer .footer-wrap a.boundless-logo {
+float: left;
+display: inline-block;
+margin: 15px 0 0 0;
+width: 154px;
+height: 30px;
+background-image: url(./chrome/boundless_logo_sprites.png);
+background-position: 0px 0px;
+}
+#footer .footer-wrap a.boundless-logo:hover {
+cursor: pointer;
+background-position: 0px -30px;
+}
+#footer .footer-center {
+width: 450px;
+margin: 0 auto;
+padding: 0 auto;
+text-align: center;
+}
+#footer .footer-center p {
+margin: 0 0 5px 0;
+}
+#footer .footer-right {
+float: right;
+margin-top: -46px;
+}
+.close-to-footer {
+text-align:center;
+font-family: "Open Sans", Helvetica, Arial, sans-serif;
+font-size: 1.3em;
+color: #bbb;
+letter-spacing: 1px;
+margin-top: 25px;
+margin-bottom: 10px;
+text-transform: uppercase;
+}
+
 
 /*-----------------------
 Miscellaneous
