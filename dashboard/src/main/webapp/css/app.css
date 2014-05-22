@@ -111,7 +111,7 @@ p {
 
 .navbar-brand {
   float: none;
-  width: 260px;
+  text-align: center;
   margin: 0 auto;
   font-size: 2.2em;
   font-weight: bold;
@@ -309,7 +309,7 @@ a.dash-component {
  }
 
 .btn-group.btn-group-justified .btn-group {
-  max-width: 33%;
+  width: 33%;
 }
 
 .btn-default.quicklink {
@@ -334,7 +334,6 @@ a.dash-component {
   margin-top: 100px;
   margin-bottom: 10px;
   font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
-  font-weight: bold;
   font-size: 1.1em;
   color: #bbb;
   text-transform: uppercase;
