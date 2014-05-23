@@ -10,6 +10,7 @@ This section will guide you through the basic functionality of OpenGeo Suite.  M
 
    whatis
    dashboard
+   extensions
    recipes
    sampledata
    moreinfo
