@@ -95,9 +95,14 @@
         </java>
     </target>
 
-    <target name="build" depends="checkpath">
-        <fail message="Directory '${app.fullpath}' doesn't exist." unless="app.exists"/>
-        <echo file="${sdk.logfile}" append="true" message="Building application resources for '${app.fullpath}'.${line.separator}"/>
+    <target name="use-checks">
+        <available file="${app.fullpath}/src/ext" property="use.ext"/>
+        <available file="${app.fullpath}/src/openlayers" property="use.openlayers"/>
+        <available file="${app.fullpath}/src/geoext" property="use.geoext"/>
+        <available file="${app.fullpath}/src/gxp" property="use.gxp"/>
+    </target>
+
+    <target name="copy-app">
         <property name="app.build" location="${sdk.build}/${app.name}"/>
         <mkdir dir="${app.build}"/>
         <copy todir="${app.build}">
@@ -106,22 +111,39 @@
                 <filter token="APP_NAME" value="${app.name}"/>
             </filterset>
         </copy>
+    </target>
+
+    <target name="copy-ext" if="use.ext">
         <!-- copy Ext resources -->
         <copy todir="${app.build}/src/ext">
             <fileset dir="${app.fullpath}/src/ext"/>
         </copy>
+    </target>
+
+    <target name="copy-openlayers" if="use.openlayers">
         <!-- copy OpenLayers resources -->
         <copy todir="${app.build}/src/openlayers/theme">
             <fileset dir="${app.fullpath}/src/openlayers/theme"/>
         </copy>
+    </target>
+
+    <target name="copy-geoext" if="use.geoext">
         <!-- copy GeoExt resources -->
         <copy todir="${app.build}/src/geoext/resources">
             <fileset dir="${app.fullpath}/src/geoext/resources"/>
         </copy>
+    </target>
+
+    <target name="copy-gxp" if="use.gxp">
         <!-- copy gxp resources -->
         <copy todir="${app.build}/src/gxp/theme">
             <fileset dir="${app.fullpath}/src/gxp/theme"/>
         </copy>
+    </target>
+
+    <target name="build" depends="checkpath,copy-app,use-checks,copy-ext,copy-openlayers,copy-geoext,copy-gxp">
+        <fail message="Directory '${app.fullpath}' doesn't exist." unless="app.exists"/>
+        <echo file="${sdk.logfile}" append="true" message="Building application resources for '${app.fullpath}'.${line.separator}"/>
         <!-- build app js -->
         <mkdir dir="${app.build}/lib"/>
         <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true" output="${sdk.logfile}" append="true">
