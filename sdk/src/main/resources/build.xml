@@ -24,6 +24,7 @@
     <property name="suite.password" value="geoserver"/>
     <property name="sdk.build" location="${java.io.tmpdir}/suite-sdk/build"/>
     <property name="sdk.logfile" location="${java.io.tmpdir}/suite-sdk/error.log"/>
+    <property name="client.template" value="gxp-template"/>
     
     <target name="version">
         <property file="${sdk.home}/version.ini"/>
@@ -71,7 +72,7 @@
         <echo file="${sdk.logfile}" append="true" message="Creating application in '${app.fullpath}'.${line.separator}"/>
         <mkdir dir="${app.fullpath}"/>
         <copy todir="${app.fullpath}">
-            <fileset dir="${sdk.home}/src/main/resources/client"/>
+            <fileset dir="${sdk.home}/src/main/resources/client/${client.template}"/>
         </copy>
         <echo message="Created application: ${app.fullpath}"/>
     </target>
