@@ -22,7 +22,7 @@ See '$NAME <command> --help' for more detail on a specific command.
 
 ## Usage for create command
 CREATE_USAGE="
-Usage: $NAME create <app-path>
+Usage: $NAME create <app-path> <app-template>
 
 Create a new application.  A new directory will be created using the <app-path> 
 argument (it must not already exist).
@@ -179,7 +179,7 @@ case $COMMAND in
             exit 0
         fi
         APP_PATH=$1
-        if [ $# -ne 1 -o -z "$APP_PATH" ]; then
+        if [ $# -ne 2 -o -z "$APP_PATH" ]; then
             echo "$CREATE_USAGE"
             exit 1
         fi
@@ -187,7 +187,13 @@ case $COMMAND in
             echo "Directory '$APP_PATH' already exists.  Supply the path for a new directory."
             exit 1
         fi
-        ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\""
+        APP_TEMPLATE=$2
+        if [ $# -ne 2 -o -z "$APP_TEMPLATE" ]; then
+            echo "$CREATE_USAGE"
+            exit 1
+        fi
+        ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\" -Dapp.template=\"$APP_TEMPLATE\""
+        echo "$ANT_ARGS"
         ;;
     debug )
         if $HELP ; then
