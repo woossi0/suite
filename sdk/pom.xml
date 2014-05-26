@@ -125,6 +125,12 @@
                                 <copy todir="${project.build.directory}/sdk/src/main/resources/client/gxp-template/src/ext">
                                     <fileset dir="${geoexplorer}/app/static/externals/ext"/>
                                 </copy>
+                                <copy todir="${project.build.directory}/sdk/src/main/resources/client/ol3-view-template/src">
+                                    <fileset dir="src/main/resources/client/ol3-common"/>
+                                </copy>
+                                <copy todir="${project.build.directory}/sdk/src/main/resources/client/ol3-edit-template/src">
+                                    <fileset dir="src/main/resources/client/ol3-common"/>
+                                </copy>
                                 <copy todir="${project.build.directory}/sdk" file="src/main/resources/build.xml"/>
                                 <echo message="copy sdk dependencies"/>
                                 <mkdir dir="${project.build.directory}/sdk/lib"/>
