@@ -9,13 +9,14 @@
 
 // ========= config section =============================================
 var url = '/geoserver/wfs?';
-var featurePrefix = 'foo';
-var featureType = 'FAULTS';
-var featureNS = 'http://foo';
+var featurePrefix = 'usa';
+var featureType = 'states';
+var featureNS = 'http://census.gov';
 var srsName = 'EPSG:900913';
 var geometryName = 'the_geom';
-var geometryType = 'MultiLineString';
-var fields = ['TYPE'];
+var geometryType = 'MultiPolygon';
+var fields = ['STATE_NAME', 'STATE_ABBR'];
+var layerTitle = 'States';
 // ======================================================================
 var loadFeatures = function(response) {
   vectorSource.addFeatures(vectorSource.readFeatures(response));
@@ -36,7 +37,7 @@ var vectorSource = new ol.source.ServerVector({
   projection: 'EPSG:3857'
 });
 var vector = new ol.layer.Vector({
-  title: "Fault Lines",
+  title: layerTitle,
   source: vectorSource,
   style: new ol.style.Style({
     stroke: new ol.style.Stroke({
@@ -95,8 +96,8 @@ var map = new ol.Map({
   ],
   // initial center and zoom of the map's view
   view: new ol.View2D({
-    center: [-8908887.277395891, 5381918.072437216],
-    zoom: 4
+    center: [-10764594.758211, 4523072.3184791],
+    zoom: 3
   })
 });
 var transaction = new Boundless.TransactionHandler({
