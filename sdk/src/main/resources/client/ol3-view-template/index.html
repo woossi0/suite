@@ -30,7 +30,7 @@
         overflow-y: auto;
       }
     </style>
-    <script src="src/ol3/ol-whitespace.js"></script>
+    <script src="src/ol3/ol.js"></script>
     <script src="src/jquery/jquery-1.11.0.min.js"></script>
     <script src="src/bootstrap/js/bootstrap.min.js"></script>
     <title>OpenLayers 3 Viewer</title>
@@ -50,7 +50,7 @@
           <li class="dropdown">
             <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe" style="color: white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="map.getView().getView2D().fitExtent(boroughs.getSource().getExtent(), map.getSize()); return false;"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="map.getView().getView2D().setCenter(center); map.getView().getView2D().setZoom(zoom); return false;"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
             </ul>
           </li>
         </ul>

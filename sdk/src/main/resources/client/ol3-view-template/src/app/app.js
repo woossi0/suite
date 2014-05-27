@@ -5,7 +5,7 @@
  * @require LayersControl.js
  */
 
-// ========= config section =============================================
+// ========= config section ================================================
 var url = '/geoserver/wfs?';
 var featurePrefix = 'usa';
 var featureType = 'states';
@@ -15,10 +15,10 @@ var geometryName = 'the_geom';
 var geometryType = 'MultiPolygon';
 var fields = ['STATE_NAME', 'STATE_ABBR'];
 var layerTitle = 'States';
-// ======================================================================
-
-var infoFormat = 'text/html';
-infoFormat = 'application/vnd.ogc.gml/3.1.1';
+var infoFormat = 'application/vnd.ogc.gml/3.1.1'; // can also be 'text/html'
+var center = [-10764594.758211, 4523072.3184791];
+var zoom = 3;
+// =========================================================================
 
 // override the axis orientation for WMS GetFeatureInfo
 ol.proj.addProjection(
@@ -39,7 +39,6 @@ var popup = new Boundless.Popup({
 var wmsSource = new ol.source.TileWMS({
   url: '/geoserver/wms',
   params: {'LAYERS': featurePrefix + ':' + featureType, 'TILED': true},
-  extent: [-13884991, 2870341, -7455066, 6338219],
   serverType: 'geoserver'
 });
 
@@ -102,8 +101,8 @@ var map = new ol.Map({
   ],
   // initial center and zoom of the map's view
   view: new ol.View2D({
-    center: [-10764594.758211, 4523072.3184791],
-    zoom: 3
+    center: center,
+    zoom: zoom
   })
 });
 
@@ -132,34 +131,34 @@ map.on('singleclick', function(evt) {
       popup.setContent('<iframe seamless frameborder="0" src="' + url + '"></iframe>');
       popup.show();
     } else {
-$.ajax({
-  url: url,
-  success: function(data) {
-    var features = format.readFeatures(data);
-    if (highlight) {
-      featureOverlay.removeFeature(highlight);
-    }
-    if (features && features.length >= 1) {
-      var feature = features[0];
-      var html = '<table class="table table-striped table-bordered table-condensed">';
-      var values = feature.getProperties();
-      for (var key in values) {
-        if (key !== 'the_geom' && key !== 'boundedBy') {
-          html += '<tr><td>' + key + '</td><td>' + values[key] + '</td></tr>';
+      $.ajax({
+        url: url,
+        success: function(data) {
+          var features = format.readFeatures(data);
+          if (highlight) {
+            featureOverlay.removeFeature(highlight);
+          }
+          if (features && features.length >= 1) {
+            var feature = features[0];
+            var html = '<table class="table table-striped table-bordered table-condensed">';
+            var values = feature.getProperties();
+            for (var key in values) {
+              if (key !== 'the_geom' && key !== 'boundedBy') {
+                html += '<tr><td>' + key + '</td><td>' + values[key] + '</td></tr>';
+              }
+            }
+            popup.setPosition(evt.coordinate);
+            popup.setContent(html);
+            popup.show();
+            feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
+            highlight = feature;
+            featureOverlay.addFeature(feature);
+          } else {
+            popup.hide();
+            highlight = null;
+          }
         }
-      }
-      popup.setPosition(evt.coordinate);
-      popup.setContent(html);
-      popup.show();
-      feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
-      highlight = feature;
-      featureOverlay.addFeature(feature);
-    } else {
-      popup.hide();
-      highlight = null;
-    }
-  }
-});
+      });
     }
   } else {
     popup.hide();
