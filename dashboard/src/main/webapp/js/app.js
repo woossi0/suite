@@ -58,7 +58,9 @@ function onLoad() {
       this.href = docs_version + path;
        this.target = '_blank';
     });
+<<<<<<< HEAD
 */
+
   // Remove non-static info
   if ($('.commit').html() == " (${git.commit.id.abbrev})") {
     $('.commit').hide();
