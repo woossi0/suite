@@ -10,6 +10,7 @@ This section will discuss how to manage OpenGeo Suite deployments, including ser
 
    production/index
    jvm/index
+   manager/index
    security/index
    backup
    virtualservices/index
