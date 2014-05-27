@@ -1,6 +1,7 @@
 /**
  * custom fonts
  */
+
 @font-face {
   font-family: "Proxima Nova";
   src: url(../fonts/ProximaNova-Sbold.otf) format("otf");
@@ -59,33 +60,41 @@
 
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  overflow: scroll;
+  font-size: 13px;
 }
 
-h1, 
-h2 {
-  font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-h3, 
-h4, 
-h5, 
+h4,
+h5,
 h6 {
-  font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
+}
+p {
+  line-height: 1.8em;
 }
 
 /*
  * navbar stuff
  */
 
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
 .navbar {
-  background-color: #28728D;
+  background-color: #262b35;
   color: white;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  margin-top: 20px;
+  height: 150px;
   padding-top: 10px;
+  border-radius: 0;
 }
 
 .navbar li {
@@ -96,15 +105,63 @@ h6 {
   padding: 5px 10px;
 }
 
-.navbar-brand {
-  background: url(../img/opengeo_1c_32.png) no-repeat left center;
-  margin-left: 10px;
-  padding-left: 40px;
-  margin-top: 0;
+.navbar-header {
+  float: none;
 }
 
-.navbar-brand a, 
-.navbar-brand a:link, 
+.navbar-brand {
+  float: none;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2.2em;
+  font-weight: bold;
+  text-shadow: 5px 5px 5px #222;
+  letter-spacing: 1px;
+}
+
+h5.version {
+  font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  margin: 5px auto;
+  letter-spacing: 1px;
+}
+
+.navbar-logo {
+  background: url(../img/opengeo_logo.png) no-repeat center center;
+  margin: 10px auto 0 auto;
+  width: 118px;
+  height: 116px;
+}
+
+.homelink {
+  cursor: pointer;
+}
+
+.navbar-link {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 1.1em;
+}
+.navbar-link a {
+  color: #aaa;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+.navbar-link a:hover {
+  color: #fff;
+}
+.tablink.active {
+  color: #fff;
+}
+.navbar-link.pull-left {
+  margin-left: 20%;
+}
+.navbar-link.pull-right {
+  margin-right: 20%;
+}
+
+.navbar-brand a,
+.navbar-brand a:link,
 .navbar-brand a:hover {
   color: white;
   text-decoration: none;
@@ -131,19 +188,56 @@ h6 {
 }
 
 /*
+ *   Main page section
+ */
+
+.tabpage-header {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #aaa;
+  font-size: 1.4em;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+.tabpage-content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dash-tier {
+  font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #bbb;
+  margin: 70px auto 0 65px;
+ }
+
+/*
  * block on home page for component
  */
+
 .dash-component {
-  margin: 10px 0;
+  margin-top: 40px;
   padding: 0 10px 0 65px;
   min-height: 55px;
   position: relative;
   background-repeat: no-repeat;
-  background-position: 15px 0px;
+  background-position: 20px 0;
 }
 
-.dash-component h2 {
-  margin-top: 0;
+.dash-component h3 {
+  padding-top: 4px;
+  font-weight: bold;
+}
+
+.dash-component p {
+  line-height: 1.8em;
+  text-shadow: 0 1px 1px rgba(230,230,230,0.75);
 }
 
 a.dash-component {
@@ -156,30 +250,212 @@ a.dash-component {
 .dash-component.geoserver {
    background-image: url(../img/geoserver_suite_32.png);
 }
+.dash-component.qgis {
+   background-image: url(../img/qgis_suite_32.png);
+}
 .dash-component.geowebcache {
    background-image: url(../img/geowebcache_suite_32.png);
 }
 .dash-component.geoexplorer {
    background-image: url(../img/geoext_suite_32.png);
 }
+.dash-component.boundlesssdk {
+   background-image: url(../img/boundlesssdk_suite_32.png);
+}
+.dash-component.openlayers {
+   background-image: url(../img/openlayers_suite_32.png);
+}
 
 /*
  * quick links inside component blocks
  */
-.quick-links {
-  list-style:none;
-  -webkit-padding-start: 2px;
+
+.btn.btn-sm {
+  border-radius: 0;
+  padding: 4px 10px;
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top,#fff,#e6e6e6);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+  background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+  background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+  background-repeat: repeat-x;
+  border: 1px solid #bbb;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+  border-bottom-color: #a2a2a2;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#ffe6e6e6',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+}
+.btn.btn-sm .active, .btn.btn-sm:active {
+  background-color: #e6e6e6;
+  background-color: #d9d9d9 \9;
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+  -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+}
+
+.btn-group.btn-group-justified {
+  margin: 10px 0;
+ }
+
+.btn-group.btn-group-justified .btn-group {
+  width: 33%;
+}
+
+.btn-default.quicklink {
+  color: #28728D !important;
 }
 
 .quick-links li {
   display: inline;
   min-width: 4em;
   margin: 4px 0;
-  padding: 0 8px;
+  padding: 0 9px;
   border-left: 1px solid #999;
   text-align: center;
 }
 
 .quick-links li:first-child {
   border-left: 0px;
+  padding-left: 0;
+}
+
+.close-to-footer {
+  margin-top: 100px;
+  margin-bottom: 10px;
+  font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
+  font-size: 1.1em;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tabpage-content h3 {
+  margin-top: 40px;
+}
+
+.doclinks {
+  margin-left: 20px;
+  line-height: 1.8em;
+  display: block;
+  color: #28728D;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+.doclinks li {
+  display: block;
+  margin: 15px;
+}
+.doclinks li a.btn-sm {
+  padding: 4px 10px;
+  color: #28728D;
+}
+
+footer {
+  width: 100%;
+  background-color: #262b35;
+  height: 70px;
+  font-size: 0.9em;
+}
+.footer-nav {
+  margin: 28px 5px 20px 0;
+  padding-left: 15px;
+}
+.footer-nav.pull-right {
+  margin-right: 40px;
+}
+.footer-nav li {
+  display: inline-block;
+  border-right: 1px solid #333;
+  padding: 0 15px;
+}
+.footer-nav li a {
+  text-decoration: none;
+  color: #999;
+}
+.footer-nav li a:hover {
+  color: #fff;
+}
+.footer-nav li:last-child {
+  border-right: none;
+}
+footer div.boundless-logo {
+  float: left;
+  display: inline-block;
+  margin: 20px 0 0 40px;
+  width: 154px;
+  height: 30px;
+  background-image: url(../img/boundless_logo_sprites.png);
+  background-position: 0px 0px;
+}
+footer div.boundless-logo:hover {
+  cursor: pointer;
+  background-position: 0px -30px;
+  width: 154px;
+  height: 30px;
+}
+
+.footer-nav > li > a > .hidden-xs {
+  display: inline-block !important;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-link.pull-left {
+    margin-left: 3% !important;
+  }
+  .navbar-link.pull-right {
+    margin-right: 3% !important;
+  }
+  .navbar-logo {
+    background: url(../img/opengeo_logo_half.png) no-repeat center center;
+    margin: 15px auto 0 auto;
+    width: 59px;
+    height: 56px;
+  }
+  .dash-tier {
+    margin: 50px auto 0 20px;
+  }
+
+  footer {
+    height: 200px;
+  }
+
+  .footer-nav, .footer-nav.pull-left, .footer-nav.pull-right {
+    padding-left: 25px;
+    float: left !important;
+  }
+
+  .footer-nav > li > a > .hidden-xs {
+    display: none !important;
+  }
+
+}
+
+@media screen and (min-width: 496px) and (max-width: 724px) {
+  footer {
+    height: 140px;
+  }
+}
+
+@media screen and (min-width: 898px) and (max-width: 1199px) {
+  .btn.btn-sm.quicklink {
+    padding: 4px 0;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .btn-group.btn-group-justified .btn-group {
+    margin-left: -2px;
+    margin-right: -2px;
+  }
 }
