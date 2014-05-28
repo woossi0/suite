@@ -48,10 +48,11 @@ List of options:
 
 ## Usage for package command
 PACKAGE_USAGE="
-Usage: $NAME package <app-path>
+Usage: $NAME package <app-path> <build-path>
 
 Package an existing application.  The <app-path> argument must be the path to an
-existing application.
+existing application. The <build-path> is where to create the WAR file, a subdirectory
+called 'build' will be created.
 
 "
 
@@ -169,7 +170,7 @@ case $COMMAND in
             exit 0
         fi
         APP_PATH=$1
-        if [ $# -ne 1 -o -z "$APP_PATH" ]; then
+        if [ $# -ne 2 -o -z "$APP_PATH" ]; then
             echo "$PACKAGE_USAGE"
             exit 1
         fi
@@ -177,7 +178,12 @@ case $COMMAND in
             echo "Directory '$APP_PATH' doesn't exist.  Supply the path for an existing app directory."
             exit 1
         fi
-        ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\""
+        WAR_PATH=$2
+        if [ $# -ne 2 -o -z "$WAR_PATH" ]; then
+            echo "$PACKAGE_USAGE"
+            exit 1
+        fi
+        ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\" -Dapp.warpath=\"$WAR_PATH\""
         ;;
 esac
 
