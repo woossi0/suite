@@ -108,24 +108,29 @@ Boundless.TransactionHandler.prototype.deleteSelected = function() {
   var features = this.select_.getFeatures();
   if (features.getLength() === 1) {
     var feature = features.getAt(0);
-    // TODO prompt the user to make he's sure
-    var node = this.format_.writeTransaction(null, null, [feature], {
-      featureNS: this.featureNS_,
-      featureType: this.featureType_
-    });
-    $.ajax({
-      type: "POST",
-      url: this.url_,
-      data: this.serializer_.serializeToString(node),
-      contentType: 'text/xml',
-      success: function(data) {
-        var result = this.format_.readTransactionResponse(data);
-        if (result.transactionSummary.totalDeleted === 1) {
-          this.select_.getFeatures().clear();
-          this.source_.removeFeature(feature);
-        }
-      },
-      context: this
-    });
+    bootbox.confirm("Are you sure you want to delete the currently selected feature?", $.proxy(function(result) {
+      if (result === true) {
+        var node = this.format_.writeTransaction(null, null, [feature], {
+          featureNS: this.featureNS_,
+          featureType: this.featureType_
+        });
+        $.ajax({
+          type: "POST",
+          url: this.url_,
+          data: this.serializer_.serializeToString(node),
+          contentType: 'text/xml',
+          success: function(data) {
+            var result = this.format_.readTransactionResponse(data);
+            if (result.transactionSummary.totalDeleted === 1) {
+              this.select_.getFeatures().clear();
+              this.source_.removeFeature(feature);
+            } else {
+              bootbox.alert("There was an issue deleting the feature.");
+            }
+          },
+          context: this
+        });
+      }
+    }, this));
   }
 };
