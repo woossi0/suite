@@ -91,7 +91,7 @@
                   </div>
                 </div>
                 <p>
-                Use our QGIS plugin <em>OpenGeo Explorer</em> to configure Suite. Prep data in PostGIS, publish to GeoServer, or seed map tiles with GeoWebCache from desktop QGIS.
+                Use our QGIS plugin <em>Suite Explorer</em> to configure Suite. Prep data in PostGIS, publish to GeoServer, or seed map tiles with GeoWebCache from desktop QGIS.
                 </p>
               </div>
             </div>
@@ -158,14 +158,14 @@
           <h2 class="tabpage-header">Getting Started</h2>
 
           <div class="tabpage-content">
-            <h4 style="line-height:1.8em;">Suite provides many ways to import, export, transform, serve GIS data for the web and make it interactive. Find your preferred method here.</h4>
-            <h3 style="margin-bottom: 20px;">Step 0: Find Data</h3>
+            <h4 style="text-shadow: 0 1px 1px rgba(230,230,230,0.75);; line-height:1.6em; font-size: 1.4em; margin: 0 15%;">Suite provides many ways to import, export, transform, serve GIS data for the web and make it interactive. Find your preferred method here.</h4>
+            <h3 style="margin-bottom: 20px;">Step 1: Find Data</h3>
 
             <div class="row steprow">
               <table class="table steptable">
                 <tbody>
                   <tr>
-                    <td>Where to find GIS data:</td>
+                    <td>Where to get GIS data:</td>
                     <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#neModal">Natural Earth</button></td>
                     <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#geonamesModal">GeoNames</button></td>
                     <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#osmModal">OpenStreetMap</button></td>
@@ -173,36 +173,50 @@
                 </tbody>
               </table>
             </div>
-            <h3 style="margin-bottom: 20px;">Step 1: Load Data into PostGIS</h3>
+            <h3 style="margin-bottom: 20px;">Step 2: Load Data into PostGIS</h3>
             <div class="row steprow">
               <table class="table steptable">
                 <tbody>
                   <tr>
                     <td><span class="stepchoose" style="padding-top: 30px;">Choose one of:</span></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgshapeloader.html"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/shp2pgsql.html"><img src="img/console.png"/>  Command Line</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</a></td>
+                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#pgModal"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</a></td>
+                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#cmdLineModal"><img src="img/console.png"/> Command Line</a></td>
+                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#qgisLoadModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</a></td></td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <button type="button" style="margin-left: 15px;" class="btn btn-default btn-xs" data-toggle="modal" data-target="#loadingModal">More Loading Options</button>
 
-            <h3>Step 2: Style Layers</h3>
+            <h3>Step 3: View and Edit Data</h3>
+            <div class="row steprow">
+              <table class="table steptable">
+                <tbody>
+                  <tr>
+                    <td><span class="stepchoose">Choose one of:</span></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/geoserver/web/"><img src="img/qgis_suite_32.png"/> GeoServer</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgadmin.html"><img src="img/postgis_pgadmin.png"/> pgAdmin</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/geoexplorer/"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Step 4: Style Layers</h3>
             <div class="row steprow">
               <table class="table steptable">
                 <tbody>
                   <tr>
                     <td><span class="stepchoose">Choose one of:</span></td>
                     <td><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/style/"><img src="img/geoext_suite_32.png"/> GeoExplorer (web)</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/style/"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></td>
                     <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/styling/"><img src="img/geoserver_suite_32.png"/> GeoServer SLD</a></td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <h3>Step 3: Compose and Publish a Map</h3>
+            <h3>Step 5: Compose and Publish a Map</h3>
             <div class="row steprow">
               <table class="table steptable">
                 <tbody>
@@ -217,7 +231,7 @@
             </div>
 
 
-            <h3>Step 4: Make interacitve mapping applications</h3>
+            <h3>Step 6: Make interactive mapping applications</h3>
             <div class="row steprow">
               <table class="table steptable">
                 <tbody>
@@ -231,10 +245,7 @@
               </table>
             </div>
 
-
-
           </div>
-
 
           <!-- Modals -->
           <div class="modal fade" id="neModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -262,7 +273,8 @@
                   <h4 class="modal-title" id="geonamesModalLabel">GeoNames</h4>
                 </div>
                 <div class="modal-body">
-                  <p>GeoNames has placenames (for oceans, all countries, cities, etc.). You could start with <a class="dash-ext-link" href="http://download.geonames.org/export/dump/allCountries.zip">all countries data</a>.
+                  <p>GeoNames has placenames (for oceans, all countries, cities, etc.).</p>
+                  <p>You could start with <a class="dash-ext-link" href="http://download.geonames.org/export/dump/allCountries.zip">all countries data</a>.</p>
                   <p><a href="http://www.geonames.org" target="_blank">http://www.geonames.org</a></p>
                 </div>
                 <div class="modal-footer">
@@ -271,7 +283,7 @@
               </div>
             </div>
           </div>
-          <div class="modal fade" id="osmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal fade" id="osmModal" tabindex="-1" role="dialog" aria-labelledby="osmModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -287,7 +299,62 @@
               </div>
             </div>
           </div>
-          <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal fade" id="pgModal" tabindex="-1" role="dialog" aria-labelledby="pgModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="pgModalLabel">pgAdmin &amp; pgShapeLoader</h4>
+                </div>
+                <div class="modal-body">
+                  <p><strong>pgAdmin</strong> and <strong>pgShapeLoader</strong> are graphical tools to import shapefiles and manage database tables in PostGIS.</p>
+                  <p class="text-center">
+                    <a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgadmin.html"><img src="img/postgis_pgadmin.png"/> pgAdmin</a>
+                    <a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgshapeloader.html"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</a></p>
+                  <p>Before importing shapefiles use pgAdmin to create a PostGIS-enabled database for your data.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="cmdLineModal" tabindex="-1" role="dialog" aria-labelledby="cmdLineModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="cmdLineModalLabel">Command Line Import</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Shapefiles can also be loaded into PostGIS using a command-line tool called <strong>shp2pgsql</strong>.</p>
+                  <p class="text-center"><a href="/opengeo-docs/dataadmin/pgGettingStarted/shp2pgsql.html">shp2pgsql how-to</a></p>
+                  <p>Tip: If you're working on a remote server you can also download data directly to that server using <strong>wget</strong> and one of the GIS data download links.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="qgisLoadModal" tabindex="-1" role="dialog" aria-labelledby="qgisLoadModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="qgisLoadModalLabel">QGIS</h4>
+                </div>
+                <div class="modal-body">
+                  <p>The desktop GIS client <strong>QGIS</strong> and our <strong>Suite QGIS Plugin</strong> can be used to carry out steps 1 through 4 on this page. Once your data is open in QGIS, use the plugin to connect and publish to PostGIS.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-from-postgis"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin: Publishing from PostGIS</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">

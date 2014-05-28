@@ -352,6 +352,7 @@ a.dash-component {
 
 .tabpage-content h3 {
   margin-top: 40px;
+  line-height: 1.4em;
 }
 
 .doclinks {
@@ -416,7 +417,7 @@ a.btn-link.steplink:hover  {
 }
 
 .data-link {
-  font-size: 1.4em;
+  font-size: 1.2em;
   margin-left: 10px;
 }
 
