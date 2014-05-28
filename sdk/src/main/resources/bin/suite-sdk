@@ -25,7 +25,11 @@ CREATE_USAGE="
 Usage: $NAME create <app-path> <app-template>
 
 Create a new application.  A new directory will be created using the <app-path> 
-argument (it must not already exist).
+argument (it must not already exist). Possible values for <app-template> are:
+
+    gxp-template        a template based on GXP, GeoExt and OpenLayers 2
+    ol3-view-template   a template based on OpenLayers 3 and bootstrap for viewing
+    ol3-edit-template   a template based on OpenLayers 3 and bootstrap for editing
 "
 
 ## Usage for debug command
@@ -248,7 +252,8 @@ CREATE_FAILURE="
 The '$NAME create' command failed.
 
 A common cause of this is the failure to create the provided directory:
-'$APP_PATH'
+'$APP_PATH' or that the <app-template> option specified has an invalid value
+(should be one of: gxp-template, ol3-view-template or ol3-edit-template).
 
 Please ensure that the directory name is valid and that you have permission
 to create this directory.  Run '$NAME create --help' for help on the usage.

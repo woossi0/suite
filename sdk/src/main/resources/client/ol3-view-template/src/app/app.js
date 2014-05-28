@@ -117,8 +117,8 @@ var featureOverlay = new ol.FeatureOverlay({
   })
 });
 
-// register a single click listener on the map
-// show the popup for layers that have a featureInfo function
+// register a single click listener on the map and show a popup
+// based on WMS GetFeatureInfo
 var highlight;
 map.on('singleclick', function(evt) {
   var viewResolution = map.getView().getView2D().getResolution();
