@@ -70,4 +70,7 @@ function onLoad() {
   }
   $('.release_date').html(RELEASE_DATE);
 
+  // Initialize popovers
+  $("#data-tip").popover();
+
 }

@@ -64,6 +64,13 @@ body {
   font-size: 13px;
 }
 
+table {
+  border-color: #fff !important;
+}
+.table tbody>tr>td {
+  border-top: 0;
+}
+
 h1,
 h2,
 h3 {
@@ -201,7 +208,7 @@ h5.version {
   margin-bottom: 50px;
 }
 .tabpage-content {
-  max-width: 800px;
+  max-width: 980px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -362,6 +369,55 @@ a.dash-component {
 .doclinks li a.btn-sm {
   padding: 4px 10px;
   color: #28728D;
+}
+
+.other-options {
+  color: #999;
+}
+
+.tabpage-content > .steprow {
+  min-height: 60px;
+  margin-left: 10px;
+}
+
+.load-data-links {
+  display: inline-block;
+}
+
+.load-data-links li {
+  display: inline-block;
+  margin-left: 10px;
+  margin-top:10px;
+}
+
+.tabpage-content > .steprow .load-data-links {
+  margin-top:-10px;
+}
+a.btn-link.steplink  {
+  font-size: 1em;
+  color: #666;
+  text-decoration: none;
+}
+a.btn-link.steplink:hover  {
+  color: #000;
+}
+
+.table.steptable tbody>tr>td {
+  vertical-align: middle;
+  text-align: left;
+  min-width: 175px;
+}
+
+.table.steptable tbody>tr>td:first-child {
+  width: 185px;
+}
+.stepchoose {
+  color: #999;
+}
+
+.data-link {
+  font-size: 1.4em;
+  margin-left: 10px;
 }
 
 footer {

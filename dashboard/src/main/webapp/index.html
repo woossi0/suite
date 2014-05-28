@@ -158,71 +158,160 @@
           <h2 class="tabpage-header">Getting Started</h2>
 
           <div class="tabpage-content">
-            <h4 style="line-height:1.8em;">Suite provides many ways to import, export, transform, serve GIS data and make it interactive. Find your preferred method here.</h4>
-            <h3>Step 0: Find Data</h3>
-            <p>
-            If you're looking for data to get started:
-            <ul>
-              <li><a href="http://www.naturalearthdata.com">http://www.naturalearthdata.com</a> has free shapefiles available for download. Try the <a class="dash-ext-link" href="http://kelso.it/x/nequickstart">Natural Earth Quickstart kit</a> to start.</li>
-              <li><a href="http://www.geonames.org">http://www.geonames.org</a> has placenames (for oceans, all countries, cities, etc.). You could start with <a class="dash-ext-link" href="http://download.geonames.org/export/dump/allCountries.zip">all countries data</a>.</li>
-              <li><a href="http://www.openstreetmap.org">http://www.openstreetmap.org</a> is a freely editable map of the world that can be downloaded in parts. You can select a bounding box to download <a href="http://docs.qgis.org/2.2/en/docs/training_manual/foreword/preparing_data.html">using QGIS</a> or find countries to download from <a href="http://download.geofabrik.de/">Geofabrik</a>.</li>
-              </ul>
-            </p>
-            <p>Quick Tip: If you're using a remote server try a command line <strong>wget</strong> using any download link above.</p>
+            <h4 style="line-height:1.8em;">Suite provides many ways to import, export, transform, serve GIS data for the web and make it interactive. Find your preferred method here.</h4>
+            <h3 style="margin-bottom: 20px;">Step 0: Find Data</h3>
+
+            <div class="row steprow">
+              <table class="table steptable">
+                <tbody>
+                  <tr>
+                    <td>Where to find GIS data:</td>
+                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#neModal">Natural Earth</button></td>
+                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#geonamesModal">GeoNames</button></td>
+                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#osmModal">OpenStreetMap</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h3 style="margin-bottom: 20px;">Step 1: Load Data into PostGIS</h3>
+            <div class="row steprow">
+              <table class="table steptable">
+                <tbody>
+                  <tr>
+                    <td><span class="stepchoose" style="padding-top: 30px;">Choose one of:</span></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgshapeloader.html"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/shp2pgsql.html"><img src="img/console.png"/>  Command Line</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <button type="button" style="margin-left: 15px;" class="btn btn-default btn-xs" data-toggle="modal" data-target="#loadingModal">More Loading Options</button>
+
+            <h3>Step 2: Style Layers</h3>
+            <div class="row steprow">
+              <table class="table steptable">
+                <tbody>
+                  <tr>
+                    <td><span class="stepchoose">Choose one of:</span></td>
+                    <td><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/style/"><img src="img/geoext_suite_32.png"/> GeoExplorer (web)</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/styling/"><img src="img/geoserver_suite_32.png"/> GeoServer SLD</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Step 3: Compose and Publish a Map</h3>
+            <div class="row steprow">
+              <table class="table steptable">
+                <tbody>
+                  <tr>
+                    <td><span class="stepchoose">Choose one of:</span></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/webadmin/data/layergroups.html"><img src="img/geoserver_suite_32.png"/> GeoServer</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-a-qgis-project"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/publish.html"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
 
-            <h3>Step 1: Load Data</h3>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>RECOMMENDED</th>
-                  <th>GeoServer</th>
-                  <th>QGIS</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Into PostGIS</td>
-                  <td>Into GeoServer directly</td>
-                  <td>Using QGIS</td>
-                </tr>
-                <tr>
-                  <td>1. Use <a class="dash-doc-link" href="/opengeo-docs/dataadmin/pgGettingStarted/pgshapeloader.html">pgShapeLoader</a> to convert local shapefiles to database tables in your PostGIS database
-                  <br/><br/><strong>or</strong><br/><br/>
-                  Use <a href="/opengeo-docs/dataadmin/pgGettingStarted/shp2pgsql.html" target="_blank">command line psql</a></td>
-                  <td><a href="/opengeo-docs/dataadmin/importer/">via GeoServer Importer</td>
-                  <td>
-                    <a href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-from-postgis" target="_blank">via OpenGeo Plugin into PostGIS</a>
-                    <br/>or<br/>
-                    <a href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#connecting-to-geoserver" target="_blank">via OpenGeo Plugin into GeoServer</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <h3>Step 4: Make interacitve mapping applications</h3>
+            <div class="row steprow">
+              <table class="table steptable">
+                <tbody>
+                  <tr>
+                    <td><span class="stepchoose">Choose one of:</span></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/"><img src="img/boundlesssdk_suite_32.png"/> Boundless SDK</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/openlayers3/"><img src="img/openlayers_suite_32.png"/> OpenLayers</a></td>
+                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/publish.html"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-            <h3>Step 2: Style your layers</h3>
 
-            <p>Use <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> and its built-in graphical styling tools to
-              design the look and feel for each map layer.</p>
 
-            <h3>Step 3: Edit your data</h3>
-            <p>
-              Use <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> to create and edit features graphically, right
-              in the browser, on any layers served through GeoServer.
-            </p>
-
-            <h3>Step 4: Compose and publish your map</h3>
-            <p>
-              <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> save your finished map such that it can be embedded
-              in any web page.
-            </p>
-
-            <h3>Advanced: Make your own mapping application</h3>
-            <p>
-              Use the <a class="dash-doc-link" href="#sdk-api">OpenGeo Webapp SDK</a> and associated <a class="dash-doc-link" href="#webapps/sdkintro/">tutorial</a> to
-              create and deploy your own custom mapping application.
-            </p>
           </div>
+
+
+          <!-- Modals -->
+          <div class="modal fade" id="neModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="neModalLabel">Natural Earth</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Natural Earth has free shapefiles available for download. Try downloading the <a href="http://kelso.it/x/nequickstart" target="_blank">Natural Earth Quickstart kit</a> to start.</p>
+                  <p><a href="http://www.naturalearthdata.com" target="_blank">http://www.naturalearthdata.com</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="geonamesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="geonamesModalLabel">GeoNames</h4>
+                </div>
+                <div class="modal-body">
+                  <p>GeoNames has placenames (for oceans, all countries, cities, etc.). You could start with <a class="dash-ext-link" href="http://download.geonames.org/export/dump/allCountries.zip">all countries data</a>.
+                  <p><a href="http://www.geonames.org" target="_blank">http://www.geonames.org</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="osmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="osmModalLabel">OpenStreetMap</h4>
+                </div>
+                <div class="modal-body">
+                  <a href="http://www.openstreetmap.org">http://www.openstreetmap.org</a> is a freely editable map of the world that can be downloaded in parts. You can select a bounding box to download <a href="http://docs.qgis.org/2.2/en/docs/training_manual/foreword/preparing_data.html">using QGIS</a> or find countries to download from <a href="http://download.geofabrik.de/">Geofabrik</a>.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="loadingModalLabel">More Options</h4>
+                </div>
+                <div class="modal-body">
+                  <ul class="list-unstyled load-data-links">
+                    <li>You can also load data into GeoServer directly using the </li>
+                    <li><a href="/opengeo-docs/dataadmin/importer/"><img src="img/geoserver_suite_32.png"/> GeoServer Importer</a></li>
+                  </ul>
+                  <ul class="list-unstyled load-data-links">
+                    <li>Or load data into QGIS and work with it there:</li>
+                    <li><a href="http://qgis.boundlessgeo.com/static/docs/"><img src="img/qgis_suite_32.png"/> QGIS + Suite Explorer Plugin</a></li>
+                  </ul>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- end Modals -->
         </div>
 
         <!--div class="tab-pane" id="faq">
@@ -255,8 +344,10 @@
 
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4 close-to-footer text-center">OpenGeo Suite Version <span class="version"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4 close-to-footer text-center">OpenGeo Suite Version <span class="version"></span>
+        </div>
       </div>
     </div>
 
