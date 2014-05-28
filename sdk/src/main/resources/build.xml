@@ -11,7 +11,7 @@
         <echo message=""/>
         <echo message=" create     --&gt; create a new application"/>
         <echo message=" debug      --&gt; run an application in debug mode"/>
-        <echo message=" deploy     --&gt; deploy an existing application"/>
+        <echo message=" package     --&gt; create a WAR file"/>
     </target>
 
     <property name="sdk.home" location="."/>
@@ -22,7 +22,7 @@
     <property name="suite.container" value="tomcat6x"/>
     <property name="suite.username" value="manager"/>
     <property name="suite.password" value="geoserver"/>
-    <property name="sdk.build" location="${java.io.tmpdir}/suite-sdk/build"/>
+    <property name="sdk.build" location="${app.warpath}/build"/>
     <property name="sdk.logfile" location="${java.io.tmpdir}/suite-sdk/error.log"/>
     
     <target name="version">
@@ -176,28 +176,4 @@
         </war>
     </target>
     
-    <target name="deploy" depends="package">
-        <echo message="Deploying application (disregard message about undeployment failure if this is the first deployment)"/>
-        <echo file="${sdk.logfile}" append="true" message="Deploying application archive '${sdk.build}/${app.name}.war'.${line.separator}"/>
-        <taskdef resource="cargo.tasks">
-            <classpath>
-                <fileset dir="${sdk.home}/lib">
-                    <include name="**/*.jar"/>
-                </fileset>
-            </classpath>
-        </taskdef>
-        <cargo containerId="${suite.container}" action="redeploy" type="remote">
-            <configuration type="runtime">
-                <property name="cargo.hostname" value="${suite.domain}"/>
-                <property name="cargo.servlet.port" value="${suite.port}"/>
-                <property name="cargo.remote.username" value="${suite.username}"/>
-                <property name="cargo.remote.password" value="${suite.password}"/>
-                <deployable type="war" file="${sdk.build}/${app.name}.war">
-                    <property name="context" value="${app.name}"/>
-                </deployable>
-            </configuration>
-        </cargo>
-        <echo message="Successfully deployed application: http://${suite.domain}:${suite.port}/${app.name}/"/>
-    </target>
-
 </project>
