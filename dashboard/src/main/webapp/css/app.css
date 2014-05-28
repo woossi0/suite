@@ -308,8 +308,11 @@ a.dash-component {
   margin: 10px 0;
  }
 
-.btn-group.btn-group-justified .btn-group {
+.btn-group.btn-group-justified .btn-group.third {
   width: 33%;
+}
+.btn-group.btn-group-justified .btn-group.half {
+  width: 49%;
 }
 
 .btn-default.quicklink {
