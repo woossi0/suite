@@ -158,22 +158,47 @@
           <h2 class="tabpage-header">Getting Started</h2>
 
           <div class="tabpage-content">
-            <h5 style="line-height:1.8em;">Suite provides many ways to import, export, transform, serve GIS data and make it interactive. It's a versatile GIS toolkit and web stack. Find your preferred method here.</h5>
+            <h4 style="line-height:1.8em;">Suite provides many ways to import, export, transform, serve GIS data and make it interactive. Find your preferred method here.</h4>
+            <h3>Step 0: Find Data</h3>
+            <p>
+            If you're looking for data to get started:
+            <ul>
+              <li><a href="http://www.naturalearthdata.com">http://www.naturalearthdata.com</a> has free shapefiles available for download. Try the <a class="dash-ext-link" href="http://kelso.it/x/nequickstart">Natural Earth Quickstart kit</a> to start.</li>
+              <li><a href="http://www.geonames.org">http://www.geonames.org</a> has placenames (for oceans, all countries, cities, etc.). You could start with <a class="dash-ext-link" href="http://download.geonames.org/export/dump/allCountries.zip">all countries data</a>.</li>
+              <li><a href="http://www.openstreetmap.org">http://www.openstreetmap.org</a> is a freely editable map of the world that can be downloaded in parts. You can select a bounding box to download <a href="http://docs.qgis.org/2.2/en/docs/training_manual/foreword/preparing_data.html">using QGIS</a> or find countries to download from <a href="http://download.geofabrik.de/">Geofabrik</a>.</li>
+              </ul>
+            </p>
+            <p>Quick Tip: If you're using a remote server try a command line <strong>wget</strong> using any download link above.</p>
+
+
             <h3>Step 1: Load Data</h3>
-            <p>
-              Use <a class="dash-ext-link" href="/geoexplorer">GeoExplorer</a> to upload shapefiles directly into PostGIS database
-              tables and serve through <a href="/geoserver">GeoServer</a>.
-            </p>
-            <p>
-              Alternately, use <a class="dash-doc-link" href="#dataadmin/pgGettingStarted/pgshapeloader.html">pgShapeLoader</a> to convert local shapefiles to
-              tables in your PostGIS database and the <a class="dash-doc-link" href="#dataadmin/importer/">Layer Importer</a> to load
-              your database tables into <a href="/geoserver">GeoServer</a>.
-            </p>
-            <p>
-            If you are looking for data to get started, the
-            <a class="dash-ext-link" href="http://www.naturalearthdata.com/">Natural Earth Data</a> has
-            free shapefiles available for download.
-            </p>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>RECOMMENDED</th>
+                  <th>GeoServer</th>
+                  <th>QGIS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Into PostGIS</td>
+                  <td>Into GeoServer directly</td>
+                  <td>Using QGIS</td>
+                </tr>
+                <tr>
+                  <td>1. Use <a class="dash-doc-link" href="/opengeo-docs/dataadmin/pgGettingStarted/pgshapeloader.html">pgShapeLoader</a> to convert local shapefiles to database tables in your PostGIS database
+                  <br/><br/><strong>or</strong><br/><br/>
+                  Use <a href="/opengeo-docs/dataadmin/pgGettingStarted/shp2pgsql.html" target="_blank">command line psql</a></td>
+                  <td><a href="/opengeo-docs/dataadmin/importer/">via GeoServer Importer</td>
+                  <td>
+                    <a href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-from-postgis" target="_blank">via OpenGeo Plugin into PostGIS</a>
+                    <br/>or<br/>
+                    <a href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#connecting-to-geoserver" target="_blank">via OpenGeo Plugin into GeoServer</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
             <h3>Step 2: Style your layers</h3>
 
