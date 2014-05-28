@@ -197,7 +197,6 @@ case $COMMAND in
             exit 1
         fi
         ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\" -Dapp.template=\"$APP_TEMPLATE\""
-        echo "$ANT_ARGS"
         ;;
     debug )
         if $HELP ; then
