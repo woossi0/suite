@@ -41,6 +41,24 @@ function onLoad() {
   setUpTabs('.homelink');
   setUpTabs('.aboutlink');
 
+
+  // set up getting started stepchoose-detail-inner show/hide
+
+  function setUpStepDetails () {
+    $(".data-link").click (function() {
+      var target = $(this).attr('data-target');
+      var dataclass = $(this).attr('dataclass');
+      // hide all with that dataclass in title attribute
+      var l = $('.stepchoose-detail-inner[title="' + dataclass + '"]').hide();
+      $('.stepchoose-detail[title="' + dataclass + '"]').show();
+
+      // show selected
+      $(target).show();
+    });
+  }
+
+  setUpStepDetails();
+
   // Add version info to all version spans
   var proj_version = $('#version').html();
   if (proj_version == "${project.version}") {
