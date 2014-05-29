@@ -350,10 +350,15 @@ a.dash-component {
   letter-spacing: 1px;
 }
 
-.tabpage-content h3 {
+.tabpage-content a h3 {
   margin-top: 40px;
   line-height: 1.4em;
+  font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-decoration: none;
 }
+
+/* Getting Started */
 
 .doclinks {
   margin-left: 20px;
@@ -417,10 +422,56 @@ a.btn-link.steplink:hover  {
   font-size: 1.1em;
 }
 
+/* Panels on Getting Started */
+
+.panel {
+  box-shadow: none;
+}
+.panel-default {
+  border-color: transparent;
+}
+.panel-default > .panel-heading.no-background {
+  background-color: transparent;
+  border-color: transparent;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.panel-body {
+  padding: 0 20%;
+}
+.panel-group .panel-heading+.panel-collapse .panel-body,
+.panel-group .panel-heading-.panel-collapse .panel-body {
+  border-top: transparent;
+}
+.panel-default > .panel-heading > .panel-title a {
+  text-decoration: none;
+}
+.panel-default > .panel-heading > .panel-title a:hover {
+  color: #2f607a;
+}
+.icon-round {
+  font-size: 28px;
+  background: #2f607a;
+  color: #fff;
+  border-color: transparent;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  margin-bottom: 10px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 30px;
+  margin-right: 15px;
+}
+.panel-default > .panel-heading > .panel-title a:hover > h3 > .icon-round {
+  background: #262b35;
+}
+
 button.data-link {
   font-size: 1.1em;
   margin-left: 10px;
   width: 194px;
+  text-align: left;
 }
 
 footer {

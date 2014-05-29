@@ -159,93 +159,219 @@
 
           <div class="tabpage-content">
             <h4 style="text-shadow: 0 1px 1px rgba(230,230,230,0.75);; line-height:1.6em; font-size: 1.4em; margin: 0 15%;">Suite provides many ways to import, export, transform, serve GIS data for the web and make it interactive. Find your preferred method here.</h4>
-            <h3 style="margin-bottom: 20px;">Step 1: Find Data</h3>
-
-            <div class="row steprow">
-              <table class="table steptable">
-                <tbody>
-                  <tr>
-                    <td><p class="stepchoose">Where to get GIS data:</p></td>
-                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#neModal">Natural Earth</button></td>
-                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#geonamesModal">GeoNames</button></td>
-                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#osmModal">OpenStreetMap</button></td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading no-background">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <h3><div class="icon-round">1</div> Prepare Data</h3>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row steprow">
+                      <table class="table steptable">
+                        <tbody>
+                          <tr>
+                            <td><p class="stepchoose">Where to get GIS data:</p></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#neModal">Natural Earth</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#geonamesModal">GeoNames</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#osmModal">OpenStreetMap</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading no-background">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                      <h3><div class="icon-round">2</div> Load Data</h3>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row steprow">
+                      <table class="table steptable">
+                        <tbody>
+                          <tr>
+                            <td><span class="stepchoose" style="padding-top: 30px;">Choose one of:</span></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#pgModal"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#cmdLineModal"><img src="img/console.png"/> command line</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisLoadModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <button type="button" class="btn btn-default btn-md" style="padding: 12px 22px;" data-toggle="modal" data-target="#loadingModal">More Loading Options</button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading no-background">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                      <h3><div class="icon-round">3</div> View and Edit Data</h3>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row steprow">
+                      <table class="table steptable">
+                        <tbody>
+                          <tr>
+                            <td><span class="stepchoose">Choose one of:</span></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverPreviewModal"><img src="img/geoserver_suite_32.png"/> GeoServer</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#pgViewModal"><img src="img/postgis_pgadmin.png"/> pgAdmin</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geViewModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading no-background">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                      <h3><div class="icon-round">4</div> Style Layers</h3>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row steprow">
+                      <table class="table steptable">
+                        <tbody>
+                          <tr>
+                            <td><span class="stepchoose">Choose one of:</span></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisStyleModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geStyleModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverStyleModal"><img src="img/geoserver_suite_32.png"/> GeoServer SLD</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading no-background">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                      <h3><div class="icon-round">5</div> Compose and Publish a Map</h3>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row steprow">
+                      <table class="table steptable">
+                        <tbody>
+                          <tr>
+                            <td><span class="stepchoose">Choose one of:</span></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverMapModal"><img src="img/geoserver_suite_32.png"/> GeoServer</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisMapModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geMapModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading no-background">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                      <h3><div class="icon-round">6</div> Make interactive mapping applications</h3>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseSix" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row steprow">
+                      <table class="table steptable">
+                        <tbody>
+                          <tr>
+                            <td><span class="stepchoose">Choose one of:</span></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#boundlessSDKModal"><img src="img/boundlesssdk_suite_32.png"/> Boundless SDK</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#olSDKModal"><img src="img/openlayers_suite_32.png"/> OpenLayers</button></td>
+                          </tr>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geSDKModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading no-background">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                      <h3><div class="icon-round">7</div> Administer OpenGeo Suite</h3>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseSeven" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row steprow">
+                      <table class="table steptable">
+                        <tbody>
+                          <tr>
+                            <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#suiteTuneModal"><img src="img/geoserver_suite_32.png"/> Tuning</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3 style="margin-bottom: 20px;">Step 2: Load Data into PostGIS</h3>
-            <div class="row steprow">
-              <table class="table steptable">
-                <tbody>
-                  <tr>
-                    <td><span class="stepchoose" style="padding-top: 30px;">Choose one of:</span></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#pgModal"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#cmdLineModal"><img src="img/console.png"/> Command Line</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisLoadModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <button type="button" style="margin-left: 15px;" class="btn btn-default btn-xs" data-toggle="modal" data-target="#loadingModal">More Loading Options</button>
-
-            <h3>Step 3: View and Edit Data</h3>
-            <div class="row steprow">
-              <table class="table steptable">
-                <tbody>
-                  <tr>
-                    <td><span class="stepchoose">Choose one of:</span></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverPreviewModal"><img src="img/geoserver_suite_32.png"/> GeoServer</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#pgViewModal"><img src="img/postgis_pgadmin.png"/> pgAdmin</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geViewModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-
-            <h3>Step 4: Style Layers</h3>
-            <div class="row steprow">
-              <table class="table steptable">
-                <tbody>
-                  <tr>
-                    <td><span class="stepchoose">Choose one of:</span></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisStyleModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geStyleModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverStyleModal"><img src="img/geoserver_suite_32.png"/> GeoServer SLD</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h3>Step 5: Compose and Publish a Map</h3>
-            <div class="row steprow">
-              <table class="table steptable">
-                <tbody>
-                  <tr>
-                    <td><span class="stepchoose">Choose one of:</span></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverMapModal"><img src="img/geoserver_suite_32.png"/> GeoServer</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisMapModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geMapModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h3>Step 6: Make interactive mapping applications</h3>
-            <div class="row steprow">
-              <table class="table steptable">
-                <tbody>
-                  <tr>
-                    <td><span class="stepchoose">Choose one of:</span></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverMapModal"><img src="img/boundlesssdk_suite_32.png"/> Boundless SDK</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisMapModal"><img src="img/openlayers_suite_32.png"/> OpenLayers</button></td>
-                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geMapModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
           </div>
+
 
           <!-- Modals -->
           <div class="modal fade" id="neModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -469,7 +595,128 @@
                 </div>
                 <div class="modal-body">
                   <p><strong>SLD</strong> (Style Layer Descriptor) is the native GeoServer styling language.</p>
-                  <p class="text-center"><a href="/opengeo-docs/geoserver/styling/" target="_blank"><img src="img/geoserver_suite_32.png"/> GeoServer: Styling</a>.</p>
+                  <p class="text-center"><a href="/opengeo-docs/geoserver/styling/" target="_blank"><img src="img/geoserver_suite_32.png"/> GeoServer: Styling</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="geoserverMapModal" tabindex="-1" role="dialog" aria-labelledby="geoserverMapModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="geoserverMapModalLabel">GeoServer</h4>
+                </div>
+                <div class="modal-body">
+                  <p>In GeoServer you can create <strong>Layer Groups</strong> to publish complex web maps.</p>
+                  <p class="text-center"><a href="/opengeo-docs/geoserver/webadmin/data/layergroups.html" target="_blank"><img src="img/geoserver_suite_32.png"/> GeoServer: Layer Groups</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="qgisMapModal" tabindex="-1" role="dialog" aria-labelledby="qgisMapModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="qgisMapModalLabel">QGIS</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Using the QGIS OpenGeo Suite Plugin, you can organize your data into workspaces in GeoServer and publish layers to the web.</p>
+                  <p class="text-center"><a href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-a-qgis-project" target="_blank"><img src="img/qgis_suite_32.png"/> QGIS: Publising a Project</a></p>
+                  <p>QGIS can also be used to create <strong>print maps</strong> using the <a href="http://docs.qgis.org/2.0/en/docs/user_manual/print_composer/print_composer.html#first-steps" target="_blank">QGIS Print Composer</a>.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="geMapModal" tabindex="-1" role="dialog" aria-labelledby="geMapModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="geMapModalLabel">GeoExplorer</h4>
+                </div>
+                <div class="modal-body">
+                  <p>With <strong>GeoExplorer</strong> you can create a map interface that can be embedded in any web page.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="/geoexplorer"><img src="img/geoext_suite_32.png"/> GeoExplorer</a> <a href="/opengeo-docs/geoexplorer/using/publish.html" style="padding-left: 20px;" target="_blank">Publish and Embed Documentation</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="boundlessSDKModal" tabindex="-1" role="dialog" aria-labelledby="boundlessSDKModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="boundlessSDKModalLabel">Boundless SDK</h4>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Boundless SDK</strong> provides templates and build commands for quickly creating and deploying web applications (as .war files) using OpenLayers 3 or OpenLayer 2 and GeoServer.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/"><img src="img/boundlesssdk_suite_32.png"/> Boundless SDK</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="olSDKModal" tabindex="-1" role="dialog" aria-labelledby="olSDKModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="olSDKModalLabel">OpenLayers</h4>
+                </div>
+                <div class="modal-body">
+                  <p><strong>OpenLayers 3</strong> is a high-performance JavaScript library that can go beyond Mercator web maps in the browser.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/"><img src="img/openlayers_suite_32.png"/> OpenLayers 3</a></p>
+                  <p>Tip: Try the <strong>Boundless SDK</strong> which includes OpenLayers 3 if you'd like to deploy your applications with GeoServer.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="geSDKModal" tabindex="-1" role="dialog" aria-labelledby="geSDKModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="geSDKModalLabel">GeoExplorer</h4>
+                </div>
+                <div class="modal-body">
+                  <p>For quickly embedding an interactive web map in an HTML page, try <strong>GeoExplorer</strong>.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="/geoexplorer"><img src="img/geoext_suite_32.png"/> GeoExplorer</a> <a href="/opengeo-docs/geoexplorer/using/publish.html" style="padding-left: 20px;" target="_blank">Documentation</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="suiteTuneModal" tabindex="-1" role="dialog" aria-labelledby="suiteTuneModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="suiteTuneModalLabel">Suite for Production</h4>
+                </div>
+                <div class="modal-body">
+                  <p>The OpenGeo Suite documentation describes a number of ways to improve performance, set up security, backup, partition virtual services, cache map tiles, and set up clustering for production projects.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="/opengeo-docs/sysadmin/"><img src="img/opengeo_logo_half.png"/> OpenGeo System Administration</a></p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
