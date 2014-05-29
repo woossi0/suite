@@ -2,12 +2,12 @@
 <project name="suite-sdk" default="usage">
 
     <description>
-        Suite Client SDK
+        Boundless SDK
     </description>
 
     <target name="usage">
         <echo message=""/>
-        <echo message="Suite Client SDK Commands"/>
+        <echo message="Boundless SDK Commands"/>
         <echo message=""/>
         <echo message=" create     --&gt; create a new application"/>
         <echo message=" debug      --&gt; run an application in debug mode"/>
@@ -27,7 +27,7 @@
     
     <target name="version">
         <property file="${sdk.home}/version.ini"/>
-        <echo message="Suite Client SDK ${suite_version} (${build_revision})"/>
+        <echo message="Boundless SDK ${suite_version} (${build_revision})"/>
     </target>
 
     <target name="checkpath">

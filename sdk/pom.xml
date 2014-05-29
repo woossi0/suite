@@ -9,7 +9,7 @@
     <groupId>org.opengeo</groupId>
     <artifactId>sdk</artifactId>
     <packaging>jar</packaging>
-    <name>OpenGeo Suite Client SDK</name>
+    <name>Boundless SDK</name>
     <repositories>
         <repository>
             <id>opengeo</id>
