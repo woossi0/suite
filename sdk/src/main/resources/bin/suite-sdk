@@ -51,8 +51,9 @@ PACKAGE_USAGE="
 Usage: $NAME package <app-path> <build-path>
 
 Package an existing application.  The <app-path> argument must be the path to an
-existing application. The <build-path> is where to create the WAR file, a subdirectory
-called 'build' will be created.
+existing application. The <build-path> is the location where the package will be 
+created. A subdirectory called 'build' will be created, which will contain the WAR 
+file.
 
 "
 
@@ -209,8 +210,8 @@ A common cause of this is the failure to create the provided directory:
 '$APP_PATH'
 
 Please ensure that the directory name is valid and that you have permission
-to create this directory.  Run '$NAME create --help' for help on the usage.
-"
+to create this directory.  Please run '$NAME create --help' for help on the 
+usage."
 
 DEBUG_START="
 Starting debug server for application (use CTRL+C to stop)"
@@ -235,9 +236,11 @@ Packaging application ..."
 PACKAGE_FAILURE="
 The '$NAME package' command failed.
 
-The <app-path> argument must be the path to an existing application.
-Run '$NAME package --help' for help on the usage.
-"
+Two commmon causes of this are:
+* The ^<app-path^> directory does not contain a valid application: $APP_PATH
+* The ^<build-path^> directory must be valid and writeable: $WAR_PATH
+
+Please run '$NAME package --help' for help on the usage."
 
 # provide feedback that work is starting
 case $COMMAND in
