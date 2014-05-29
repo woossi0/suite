@@ -165,7 +165,7 @@
               <table class="table steptable">
                 <tbody>
                   <tr>
-                    <td>Where to get GIS data:</td>
+                    <td><p class="stepchoose">Where to get GIS data:</p></td>
                     <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#neModal">Natural Earth</button></td>
                     <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#geonamesModal">GeoNames</button></td>
                     <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#osmModal">OpenStreetMap</button></td>
@@ -179,9 +179,9 @@
                 <tbody>
                   <tr>
                     <td><span class="stepchoose" style="padding-top: 30px;">Choose one of:</span></td>
-                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#pgModal"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</a></td>
-                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#cmdLineModal"><img src="img/console.png"/> Command Line</a></td>
-                    <td><button type="button" class="btn btn-link data-link" data-toggle="modal" data-target="#qgisLoadModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</a></td></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#pgModal"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#cmdLineModal"><img src="img/console.png"/> Command Line</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisLoadModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -194,13 +194,14 @@
                 <tbody>
                   <tr>
                     <td><span class="stepchoose">Choose one of:</span></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/geoserver/web/"><img src="img/qgis_suite_32.png"/> GeoServer</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgadmin.html"><img src="img/postgis_pgadmin.png"/> pgAdmin</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/geoexplorer/"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverPreviewModal"><img src="img/geoserver_suite_32.png"/> GeoServer</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#pgViewModal"><img src="img/postgis_pgadmin.png"/> pgAdmin</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geViewModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
 
             <h3>Step 4: Style Layers</h3>
             <div class="row steprow">
@@ -208,9 +209,9 @@
                 <tbody>
                   <tr>
                     <td><span class="stepchoose">Choose one of:</span></td>
-                    <td><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/style/"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/styling/"><img src="img/geoserver_suite_32.png"/> GeoServer SLD</a></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisStyleModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geStyleModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverStyleModal"><img src="img/geoserver_suite_32.png"/> GeoServer SLD</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -222,14 +223,13 @@
                 <tbody>
                   <tr>
                     <td><span class="stepchoose">Choose one of:</span></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/webadmin/data/layergroups.html"><img src="img/geoserver_suite_32.png"/> GeoServer</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-a-qgis-project"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/publish.html"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverMapModal"><img src="img/geoserver_suite_32.png"/> GeoServer</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisMapModal"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geMapModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
                   </tr>
                 </tbody>
               </table>
             </div>
-
 
             <h3>Step 6: Make interactive mapping applications</h3>
             <div class="row steprow">
@@ -237,9 +237,9 @@
                 <tbody>
                   <tr>
                     <td><span class="stepchoose">Choose one of:</span></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/"><img src="img/boundlesssdk_suite_32.png"/> Boundless SDK</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/openlayers3/"><img src="img/openlayers_suite_32.png"/> OpenLayers</a></td>
-                    <td><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/publish.html"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geoserverMapModal"><img src="img/boundlesssdk_suite_32.png"/> Boundless SDK</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#qgisMapModal"><img src="img/openlayers_suite_32.png"/> OpenLayers</button></td>
+                    <td><button type="button" class="btn btn-default data-link" data-toggle="modal" data-target="#geMapModal"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -291,7 +291,8 @@
                   <h4 class="modal-title" id="osmModalLabel">OpenStreetMap</h4>
                 </div>
                 <div class="modal-body">
-                  <a href="http://www.openstreetmap.org">http://www.openstreetmap.org</a> is a freely editable map of the world that can be downloaded in parts. You can select a bounding box to download <a href="http://docs.qgis.org/2.2/en/docs/training_manual/foreword/preparing_data.html">using QGIS</a> or find countries to download from <a href="http://download.geofabrik.de/">Geofabrik</a>.
+                <p><a href="http://www.openstreetmap.org">http://www.openstreetmap.org</a> is a freely editable map of the world that can be downloaded in parts.</p>
+                <p>You can select a bounding box to download <a href="http://docs.qgis.org/2.2/en/docs/training_manual/foreword/preparing_data.html">using QGIS</a> or find countries to download from <a href="http://download.geofabrik.de/">Geofabrik</a>.</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -307,7 +308,7 @@
                   <h4 class="modal-title" id="pgModalLabel">pgAdmin &amp; pgShapeLoader</h4>
                 </div>
                 <div class="modal-body">
-                  <p><strong>pgAdmin</strong> and <strong>pgShapeLoader</strong> are graphical tools to import shapefiles and manage database tables in PostGIS.</p>
+                  <p><strong>pgAdmin</strong> and <strong>pgShapeLoader</strong> are graphical desktop tool to import shapefiles and manage database tables in PostGIS.</p>
                   <p class="text-center">
                     <a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgadmin.html"><img src="img/postgis_pgadmin.png"/> pgAdmin</a>
                     <a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgshapeloader.html"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</a></p>
@@ -345,8 +346,130 @@
                   <h4 class="modal-title" id="qgisLoadModalLabel">QGIS</h4>
                 </div>
                 <div class="modal-body">
+                  <p>The desktop GIS client <strong>QGIS</strong> and our <strong>Suite QGIS Plugin</strong> can be used to carry out steps 1 through 5 on this page. Once your data is open in QGIS, use the plugin to connect and publish to PostGIS.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-from-postgis"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin: Publishing from PostGIS</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="qgisLoadModal" tabindex="-1" role="dialog" aria-labelledby="qgisLoadModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="qgisLoadModalLabel">QGIS</h4>
+                </div>
+                <div class="modal-body">
                   <p>The desktop GIS client <strong>QGIS</strong> and our <strong>Suite QGIS Plugin</strong> can be used to carry out steps 1 through 4 on this page. Once your data is open in QGIS, use the plugin to connect and publish to PostGIS.</p>
                   <p class="text-center"><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-from-postgis"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin: Publishing from PostGIS</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="geoserverPreviewModal" tabindex="-1" role="dialog" aria-labelledby="geoserverPreviewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="geoserverPreviewModalLabel">GeoServer Layer Preview</h4>
+                </div>
+                <div class="modal-body">
+                  <p>To view your data quickly, visit GeoServer's <strong>Layer Preview</strong> page.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/webadmin/layerpreview/index.html"><img src="img/geoserver_suite_32.png"/> GeoServer</a></p>
+                  <p>Tip: If your data isn't visible, make sure it's been loaded from PostGIS or a file with <a href="/opengeo-docs/dataadmin/importer/guireference.html" target="_blank">GeoServer's Data Import</a>.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="pgViewModal" tabindex="-1" role="dialog" aria-labelledby="pgViewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="pgViewModalLabel">pgAdmin</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Using <strong>pgAdmin</strong> you can query, edit and organize your GIS data in tabular format.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="/dataadmin/pgGettingStarted/pgadmin.html"><img src="img/postgis_pgadmin.png"/> pgAdmin</a></p>
+                  <p>PostGIS provides <a target="_blank" href="/opengeo-docs/dataadmin/index.html#dataadmin">powerful spatial processing tools</a> for data storage, indexing and analysis.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="geViewModal" tabindex="-1" role="dialog" aria-labelledby="geViewModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="geViewModalLabel">GeoExplorer</h4>
+                </div>
+                <div class="modal-body">
+                  <p><strong>GeoExplorer</strong> is a web-based viewer for viewing and editing layers.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="/geoexplorer"><img src="img/geoext_suite_32.png"/> GeoExplorer</a> <a href="/opengeo-docs/geoexplorer/index.html" style="padding-left: 20px;" target="_blank">Documentation</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="qgisStyleModal" tabindex="-1" role="dialog" aria-labelledby="qgisStyleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="qgisStyleModalLabel">QGIS</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Create styles natively in <strong>QGIS</strong> with optional export to <strong>GeoServer</strong>.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#editing-a-style"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin: Editing a Style</a></p>
+                  <p>About <a href="http://qgis.boundlessgeo.com/static/docs/intro.html#styling-limitations">styling limitations</a> of the plugin.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="geStyleModal" tabindex="-1" role="dialog" aria-labelledby="geStyleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="geStyleModalLabel">GeoExplorer</h4>
+                </div>
+                <div class="modal-body">
+                  <p><strong>GeoExplorer</strong> provides a basic graphical styling web interface with direct connection to GeoServer.</p>
+                  <p class="text-center"><a type="button" class="btn btn-link steplink" href="/geoexplorer"><img src="img/geoext_suite_32.png"/> GeoExplorer</a> <a href="/opengeo-docs/geoexplorer/using/style/index.html" style="padding-left: 20px;" target="_blank">Styling Documentation</a></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="geoserverStyleModal" tabindex="-1" role="dialog" aria-labelledby="geoserverStyleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="geoserverStyleModalLabel">GeoServer SLD Styling</h4>
+                </div>
+                <div class="modal-body">
+                  <p><strong>SLD</strong> (Style Layer Descriptor) is the native GeoServer styling language.</p>
+                  <p class="text-center"><a href="/opengeo-docs/geoserver/styling/" target="_blank"><img src="img/geoserver_suite_32.png"/> GeoServer: Styling</a>.</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -369,6 +492,7 @@
                   <ul class="list-unstyled load-data-links">
                     <li>Or load data into QGIS and work with it there:</li>
                     <li><a href="http://qgis.boundlessgeo.com/static/docs/"><img src="img/qgis_suite_32.png"/> QGIS + Suite Explorer Plugin</a></li>
+                    <li>If you have raster files, typically they are loaded directly into GeoServer.</li>
                   </ul>
                 </div>
                 <div class="modal-footer">
