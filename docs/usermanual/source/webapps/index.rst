@@ -10,6 +10,5 @@ This section discuss how to build complete web mapping applications from scratch
 
    sdk
    sdkintro/index
-   remotedeploy
    plugincreate/index
    ol3
