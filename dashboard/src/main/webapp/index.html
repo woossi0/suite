@@ -179,19 +179,19 @@
                           <li><button type="button" class="btn btn-link data-link" data-target="#osm" dataclass="1">OpenStreetMap</button></li>
                         </ul>
                       </div>
-                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" title="1">
-                        <div class="stepchoose-detail-inner" title="1" id="ne">
+                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" dtitle="1">
+                        <div class="stepchoose-detail-inner" dtitle="1" id="ne">
                           <h4>Natural Earth</h4>
                           <p>Natural Earth has free shapefiles available for download. Try downloading the <a href="http://kelso.it/x/nequickstart" target="_blank">Natural Earth Quickstart kit</a> for a quick default set.</p>
                           <p><a href="http://www.naturalearthdata.com" target="_blank">http://www.naturalearthdata.com</a></p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="1" id="geonames">
+                        <div class="stepchoose-detail-inner" dtitle="1" id="geonames">
                           <h4>GeoNames</h4>
                           <p>GeoNames has placenames (for oceans, all countries, cities, etc.).</p>
                           <p>You could start with <a class="dash-ext-link" href="http://download.geonames.org/export/dump/allCountries.zip">all countries data</a>.</p>
                           <p><a href="http://www.geonames.org" target="_blank">http://www.geonames.org</a></p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="1" id="osm">
+                        <div class="stepchoose-detail-inner" dtitle="1" id="osm">
                           <h4>OSM</h4>
                           <p><a href="http://www.openstreetmap.org" target="_blank">http://www.openstreetmap.org</a> is a freely editable map of the world that can be downloaded in parts.</p>
                           <p>You can select a bounding box to download <a href="http://docs.qgis.org/2.2/en/docs/training_manual/foreword/preparing_data.html" target="_blank">using QGIS</a> or find countries to download from <a href="http://download.geofabrik.de/" target="_blank">Geofabrik</a>.</p>
@@ -217,42 +217,42 @@
                           <li><p class="stepchoose">Choose one of:</p></li>
                           <li><button type="button" class="btn btn-link data-link" dataclass="2" data-target="#pgshp"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</button></li>
                           <li><button type="button" class="btn btn-link data-link" dataclass="2" data-target="#cmdline"><img src="img/console.png"/> command line</button></li>
-                          <li><button type="button" class="btn btn-link data-link" dataclass="2" data-target="#qgisload"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></li>
-                          <li><button type="button" class="btn btn-link data-link" dataclass="2" data-target="#loading">More Options</button></li>
+                          <li><button type="button" class="btn btn-link data-link" dataclass="2" data-target="#qgisload"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</button></li>
+                          <li><button type="button" class="btn btn-link data-link" dataclass="2" data-target="#gsload"><img src="img/geoserver_suite_32.png"/> GeoServer*</button><br> &nbsp; &nbsp; * best for rasters</li>
                         </ul>
                       </div>
-                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" title="2">
-                        <div class="stepchoose-detail-inner" title="2" id="pgshp">
+                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" dtitle="2">
+                        <div class="stepchoose-detail-inner" dtitle="2" id="pgshp">
                           <h4>pgAdmin &amp pgShapeLoader</h4>
-                          <p><strong>pgAdmin</strong> and <strong>pgShapeLoader</strong> are graphical desktop tool to import shapefiles and manage database tables in PostGIS.</p>
+                          <p><strong>pgAdmin</strong> and <strong>pgShapeLoader</strong> are graphical desktop tools to import shapefiles and manage database tables in PostGIS.</p>
                           <ul class="list-unstyled">
                             <li><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgadmin.html" target="_blank"><img src="img/postgis_pgadmin.png"/> pgAdmin</a></li>
                             <li><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/pgshapeloader.html" target="_blank"><img src="img/postgis_shapeloader.png"/> pgShapeLoader</a></li>
                           </ul>
                           <p>Before importing shapefiles use pgAdmin to create a PostGIS-enabled database for your data.</p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="2" id="cmdline">
+                        <div class="stepchoose-detail-inner" dtitle="2" id="cmdline">
                           <h4>Command Line Import</h4>
                           <p>Shapefiles can also be loaded into PostGIS using a command-line tool called <strong>shp2pgsql</strong>.</p>
                           <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/pgGettingStarted/shp2pgsql.html" target="_blank">shp2pgsql How-To</a></p>
                           <p>Tip: If you're working on a remote server you can also download data directly to that server using <strong>wget</strong> and one of the GIS data download links.</p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="2" id="qgisload">
-                          <h4>QGIS OpenGeo Suite Plugin</h4>
-                          <p>The desktop GIS client <strong>QGIS</strong> and our <strong>Suite QGIS Plugin</strong> can be used to carry out steps 1 through 5 on this page. Once your data is open in QGIS, use the plugin to connect and publish to PostGIS.</p>
+                        <div class="stepchoose-detail-inner" dtitle="2" id="qgisload">
+                          <h4>QGIS + Suite QGIS Plugin</h4>
+                          <p>The desktop GIS client <strong>QGIS</strong> and our <strong> Suite QGIS Plugin</strong> can be used to carry out steps 1 through 5 on this page. Once your data is open in QGIS, use the plugin to connect and publish to PostGIS.</p>
                           <p><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-from-postgis" target="_blank"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin: Publishing from PostGIS</a></p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="2" id="loading">
-                          <h4>More Options</h4>
+                        <div class="stepchoose-detail-inner" dtitle="2" id="gsload">
+                          <h4>GeoServer</h4>
                           <p>
                             <ul class="list-unstyled load-data-links">
                               <li>You can load data into GeoServer directly:</li>
                               <li><a type="button" class="btn btn-link steplink" href="/opengeo-docs/dataadmin/importer/" target="_blank"><img src="img/geoserver_suite_32.png"/> GeoServer Importer</a></li>
                             </ul>
                             <ul class="list-unstyled load-data-links">
-                              <li>Or load data into QGIS and work with it there:</li>
-                              <li><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/" target="_blank"><img src="img/qgis_suite_32.png"/> QGIS + Suite Explorer Plugin</a></li>
-                              <li style="margin-top: 10px;">If you have <strong>raster files</strong>, typically they are loaded directly into GeoServer.</li>
+                              <li>Or load data into QGIS and then GeoServer:</li>
+                              <li><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/" target="_blank"><img src="img/qgis_suite_32.png"/> QGIS + Suite QGIS Plugin</a></li>
+                              <li style="margin-top: 10px;">If you have <strong>raster files</strong>, typically they are loaded directly to GeoServer.</li>
                             </ul>
                           </p>
                         </div>
@@ -281,28 +281,28 @@
                           <li><button type="button" class="btn btn-link data-link" dataclass="3" data-target="#qgisview"><img src="img/qgis_suite_32.png"/> QGIS</button></li>
                         </ul>
                       </div>
-                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" title="3">
-                        <div class="stepchoose-detail-inner" title="3" id="gslp">
+                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" dtitle="3">
+                        <div class="stepchoose-detail-inner" dtitle="3" id="gslp">
                           <h4>GeoServer Layer Preview</h4>
                           <p>To view your data quickly, visit GeoServer's <strong>Layer Preview</strong> page.</p>
-                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/webadmin/layerpreview/index.html" target="_blank"><img src="img/geoserver_suite_32.png"/> GeoServer</a></p>
-                          <p>Tip: If your data isn't visible, make sure it's been loaded from PostGIS or a file with <a href="/opengeo-docs/dataadmin/importer/guireference.html" target="_blank">GeoServer's Data Import</a>.</p>
+                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/webadmin/layerpreview/index.html" target="_blank"><img src="img/geoserver_suite_32.png"/> GeoServer Layer Preview</a></p>
+                          <p>Tip: If your data isn't visible, make sure it's been loaded from PostGIS or a file with <a href="/opengeo-docs/dataadmin/importer/" target="_blank">GeoServer Importer</a>.</p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="3" id="pgadmin">
+                        <div class="stepchoose-detail-inner" dtitle="3" id="pgadmin">
                           <h4>pgAdmin</h4>
                           <p>Using <strong>pgAdmin</strong> you can query, edit and organize your GIS data in tabular format.</p>
                           <p><a type="button" class="btn btn-link steplink" href="/dataadmin/pgGettingStarted/pgadmin.html" target="_blank"><img src="img/postgis_pgadmin.png"/> pgAdmin</a></p>
                           <p>PostGIS provides <a href="/opengeo-docs/dataadmin/index.html#dataadmin" target="_blank">powerful spatial processing tools</a> for data storage, indexing and analysis.</p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="3" id="geview">
+                        <div class="stepchoose-detail-inner" dtitle="3" id="geview">
                           <h4>GeoExplorer</h4>
                           <p><strong>GeoExplorer</strong> is a web-based viewer for viewing and editing layers.</p>
                           <p><a type="button" class="btn btn-link steplink" href="/geoexplorer" target="_blank"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></p>
-                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/index.html" target="_blank">GeoExplorer Documentation</a></p>
+                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/index.html" target="_blank"><img src="img/geoext_suite_32.png"/> GeoExplorer Documentation</a></p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="3" id="qgisview">
+                        <div class="stepchoose-detail-inner" dtitle="3" id="qgisview">
                           <h4>QGIS</h4>
-                          <p><strong>QGIS</strong> offers powerful geoprocessing capabilities, and our <strong>Suite QGIS Plugin</strong> can connect to various Suite components such as PostGIS and GeoServer.</p>
+                          <p><strong>QGIS</strong> offers powerful geoprocessing capabilities, and our <strong> Suite QGIS Plugin</strong> can connect to various Suite components such as PostGIS and GeoServer.</p>
                           <p><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html" target="_blank"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</a> and <a type="button" class="btn btn-link steplink" href="http://qgis.org/en/docs/index.html#22" target="_blank"><img src="img/qgis-yellow.png"/> QGIS</a></p>
                         </div>
                       </div>
@@ -324,19 +324,19 @@
                       <div class="col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2">
                         <ul class="list-unstyled">
                           <li><p class="stepchoose">Choose one of:</p></li>
-                          <li><button type="button" class="btn btn-link data-link" dataclass="4" data-target="#qgisstyle"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></li>
+                          <li><button type="button" class="btn btn-link data-link" dataclass="4" data-target="#qgisstyle"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</button></li>
                           <li><button type="button" class="btn btn-link data-link" dataclass="4" data-target="#gestyle"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></li>
                           <li><button type="button" class="btn btn-link data-link" dataclass="4" data-target="#gsstyle"><img src="img/geoserver_suite_32.png"/> GeoServer SLD</button></li>
                         </ul>
                       </div>
-                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" title="4">
-                        <div class="stepchoose-detail-inner" title="4" id="qgisstyle">
+                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" dtitle="4">
+                        <div class="stepchoose-detail-inner" dtitle="4" id="qgisstyle">
                           <h4>QGIS</h4>
                           <p>Create styles natively in <strong>QGIS</strong> with optional export to <strong>GeoServer</strong>.</p>
                           <p><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#editing-a-style" target="_blank"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin: Editing a Style</a></p>
                           <p>Note: About <a href="http://qgis.boundlessgeo.com/static/docs/intro.html#styling-limitations" target="_blank">styling limitations</a> of the plugin.</p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="4" id="gestyle">
+                        <div class="stepchoose-detail-inner" dtitle="4" id="gestyle">
                           <h4>GeoExplorer</h4>
                           <p><strong>GeoExplorer</strong> provides a basic graphical styling web interface with direct connection to GeoServer.</p>
                           <p class="text-center">
@@ -346,7 +346,7 @@
                             <ul>
                           </p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="4" id="gsstyle">
+                        <div class="stepchoose-detail-inner" dtitle="4" id="gsstyle">
                           <h4>GeoServer SLD Styling</h4>
                           <p><strong>SLD</strong> (Style Layer Descriptor) is the native GeoServer styling language.</p>
                           <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/styling/" target="_blank"><img src="img/geoserver_suite_32.png"/> GeoServer: Styling</a></p>
@@ -371,27 +371,27 @@
                         <ul class="list-unstyled">
                           <li><p class="stepchoose">Choose one of:</p></li>
                           <li><button type="button" class="btn btn-link data-link" dataclass="5" data-target="#gsmap"><img src="img/geoserver_suite_32.png"/> GeoServer</button></li>
-                          <li><button type="button" class="btn btn-link data-link"dataclass="5" data-target="#qgismap"><img src="img/qgis_suite_32.png"/> QGIS Suite Plugin</button></li>
+                          <li><button type="button" class="btn btn-link data-link"dataclass="5" data-target="#qgismap"><img src="img/qgis_suite_32.png"/> Suite QGIS Plugin</button></li>
                           <li><button type="button" class="btn btn-link data-link" dataclass="5" data-target="#gemap"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></li>
                         </ul>
                       </div>
-                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" title="5">
-                        <div class="stepchoose-detail-inner" title="5" id="gsmap">
+                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" dtitle="5">
+                        <div class="stepchoose-detail-inner" dtitle="5" id="gsmap">
                           <h4>GeoServer Layer Groups</h4>
                           <p>In GeoServer you can create <strong>Layer Groups</strong> to publish multi-layer web maps.</p>
                           <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoserver/webadmin/data/layergroups.html" target="_blank"><img src="img/geoserver_suite_32.png"/> GeoServer: Layer Groups</a></p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="5" id="qgismap">
+                        <div class="stepchoose-detail-inner" dtitle="5" id="qgismap">
                           <h4>QGIS</h4>
-                          <p>Using the QGIS OpenGeo Suite Plugin, you can organize your data into workspaces in GeoServer and publish layers to the web.</p>
+                          <p>Using the Suite QGIS Plugin, you can organize your data into workspaces in GeoServer and publish layers to the web.</p>
                           <p><a type="button" class="btn btn-link steplink" href="http://qgis.boundlessgeo.com/static/docs/quickstart.html#publishing-a-qgis-project" target="_blank"><img src="img/qgis_suite_32.png"/> QGIS: Publising a Project</a></p>
                           <p>QGIS can also be used to create <strong>print maps</strong> using the <a href="http://docs.qgis.org/2.0/en/docs/user_manual/print_composer/print_composer.html#first-steps" target="_blank">QGIS Print Composer</a>.</p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="5" id="gemap">
+                        <div class="stepchoose-detail-inner" dtitle="5" id="gemap">
                           <h4>GeoExplorer</h4>
                           <p>With <strong>GeoExplorer</strong> you can create a map interface that can be embedded in any web page.</p>
                           <p><a type="button" class="btn btn-link steplink" href="/geoexplorer" target="_blank"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></p>
-                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/publish.html" target="_blank"><img src="img/geoext_suite_32.png"/> GeoExplorer: Publish &amp; Embed Documentation</a></p>
+                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/publish.html" target="_blank"><img src="img/geoext_suite_32.png"/> GeoExplorer: Publish Maps</a></p>
                         </div>
                       </div>
                     </div>
@@ -417,23 +417,23 @@
                           <li><button type="button" class="btn btn-link data-link" dataclass="6" data-target="#geSDK"><img src="img/geoext_suite_32.png"/> GeoExplorer</button></li>
                         </ul>
                       </div>
-                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" title="6">
-                        <div class="stepchoose-detail-inner" title="6" id="boundlessSDK">
+                      <div class="col-sm-6 col-md-6 col-lg-6 stepchoose-detail" dtitle="6">
+                        <div class="stepchoose-detail-inner" dtitle="6" id="boundlessSDK">
                           <h4>Boundless SDK</h4>
                           <p><strong>Boundless SDK</strong> provides templates and build commands for quickly creating and deploying web applications (as .war files) using OpenLayers 3 or OpenLayer 2 and GeoServer.</p>
                           <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/"><img src="img/boundlesssdk_suite_32.png"/> Boundless SDK</a></p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="6" id="olSDK">
+                        <div class="stepchoose-detail-inner" dtitle="6" id="olSDK">
                           <h4>OpenLayers</h4>
-                          <p><strong>OpenLayers 3</strong> is a high-performance JavaScript library that can go beyond Mercator web maps in the browser.</p>
+                          <p><strong>OpenLayers 3</strong> is a high-performance JavaScript library for working with interactive maps in a browser.</p>
                           <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/"><img src="img/openlayers_suite_32.png"/> OpenLayers 3</a></p>
                           <p>Tip: Try the <strong>Boundless SDK</strong> which includes OpenLayers 3 if you'd like to deploy your applications with GeoServer.</p>
                         </div>
-                        <div class="stepchoose-detail-inner" title="6" id="geSDK">
+                        <div class="stepchoose-detail-inner" dtitle="6" id="geSDK">
                           <h4>GeoExplorer</h4>
                           <p>With <strong>GeoExplorer</strong> you can create a map interface that can be embedded in any web page.</p>
                           <p><a type="button" class="btn btn-link steplink" href="/geoexplorer"><img src="img/geoext_suite_32.png"/> GeoExplorer</a></p>
-                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/publish.html" target="_blank"><img src="img/geoext_suite_32.png"/> GeoExplorer: Publish &amp; Embed Documentation</a></p>
+                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/geoexplorer/using/publish.html" target="_blank"><img src="img/geoext_suite_32.png"/> GeoExplorer: Publish Maps</a></p>
                         </div>
                       </div>
                     </div>

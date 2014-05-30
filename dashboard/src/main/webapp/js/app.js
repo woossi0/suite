@@ -49,8 +49,8 @@ function onLoad() {
       var target = $(this).attr('data-target');
       var dataclass = $(this).attr('dataclass');
       // hide all with that dataclass in title attribute
-      var l = $('.stepchoose-detail-inner[title="' + dataclass + '"]').hide();
-      $('.stepchoose-detail[title="' + dataclass + '"]').show();
+      var l = $('.stepchoose-detail-inner[dtitle="' + dataclass + '"]').hide();
+      $('.stepchoose-detail[dtitle="' + dataclass + '"]').show();
 
       // show selected
       $(target).show();
