@@ -59,6 +59,13 @@ function onLoad() {
 
   setUpStepDetails();
 
+  // toggle accordion title active state
+  $('#accordion h3.acc-toggle').click(function (e){
+    $('#accordion h3.acc-toggle').removeClass("active");
+    $(this).toggleClass("active");
+  });
+
+
   // Add version info to all version spans
   var proj_version = $('#version').html();
   if (proj_version == "${project.version}") {
