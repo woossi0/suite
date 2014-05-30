@@ -87,6 +87,11 @@ p {
   line-height: 1.8em;
 }
 
+a:focus, a:active {
+  outline: 0;
+  border: 0;
+}
+
 /*
  * navbar stuff
  */
@@ -350,7 +355,7 @@ a.dash-component {
   letter-spacing: 1px;
 }
 
-.tabpage-content a h3 { /* accordion headers */
+h3.acc-toggle { /* accordion headers */
   margin-top: 20px;
   margin-bottom: 0;
   line-height: 1.4em;
@@ -439,7 +444,7 @@ a.btn-link.steplink:hover  {
   border-top: transparent;
 }
 .panel-default > .panel-heading > .panel-title a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .panel-default > .panel-heading > .panel-title a:hover {
   color: #2f607a;
