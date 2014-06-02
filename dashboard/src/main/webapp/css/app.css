@@ -612,3 +612,72 @@ footer div.boundless-logo:hover {
     margin-right: -2px;
   }
 }
+
+/* Larger Screens? */
+@media screen and (max-width: 768px) {
+  /* hover state override for laptop/desktop */
+  .panel-default > .panel-heading > .panel-title a:hover > h3 > .hover-only {
+    display: none;
+  }
+  .panel-default > .panel-heading > .panel-title a > h3.active > .hover-only {
+    display: none;
+  }
+  .panel-default > .panel-heading > .panel-title a:hover {
+    color: inherit;
+  }
+  .panel-default > .panel-heading > .panel-title a:hover > h3 > .icon-round,
+  .panel-default > .panel-heading > .panel-title a > h3.active > .icon-round {
+    background: #2f607a;
+  }
+  .stepchoose-detail {
+    display: block;
+  }
+  .stepchoose-detail-inner {
+    display: block;
+    padding-left: 25px;
+  }
+  .stepchoose {
+    display: block;
+    padding-top: 20px;
+    padding-left: 20px;
+  }
+  .panel-default > .panel-heading.no-background {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .data-link {
+    display: none;
+  }
+  .get_started_text {
+    margin: 0 2% 3% 2%;
+  }
+  .tabpage-header {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  .icon-round {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 30px;
+  }
+  .dash-tier {
+    margin-left: 2%;
+    margin-top: 35px;
+  }
+  .dash-component {
+    background-position: 2% 0%;
+    padding-left: 50px;
+    margin-top: 30px;
+  }
+} /* end max-width: 768px */
+
+@media screen and (min-width: 768px) {
+  .hidden-xs {
+    display: inline-block!important;
+  }
+}

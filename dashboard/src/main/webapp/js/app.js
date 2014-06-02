@@ -43,7 +43,6 @@ function onLoad() {
 
 
   // set up getting started stepchoose-detail-inner show/hide
-
   function setUpStepDetails () {
     $(".data-link").click (function() {
       var target = $(this).attr('data-target');
@@ -65,6 +64,16 @@ function onLoad() {
     $(this).toggleClass("active");
   });
 
+  // scroll to top of open accordion if in responsive view
+  $(".panel-collapse").on("shown.bs.collapse", function () {
+    if ($(window).width() <= 768) {
+      var selected = $(this);
+
+      $('html, body').animate({
+          scrollTop: selected.offset().top - 70
+      }, 500);
+    }
+  });
 
   // Add version info to all version spans
   var proj_version = $('#version').html();
