@@ -101,6 +101,12 @@
         <available file="${app.fullpath}/src/openlayers" property="use.openlayers"/>
         <available file="${app.fullpath}/src/geoext" property="use.geoext"/>
         <available file="${app.fullpath}/src/gxp" property="use.gxp"/>
+        <available file="${app.fullpath}/src/jquery" property="use.jquery"/>
+        <available file="${app.fullpath}/src/bootstrap" property="use.bootstrap"/>
+        <available file="${app.fullpath}/src/font-awesome" property="use.fa"/>
+        <available file="${app.fullpath}/src/bootbox" property="use.bootbox"/>
+        <available file="${app.fullpath}/src/ol3" property="use.ol3"/>
+        <available file="${app.fullpath}/src/ol3-components" property="use.ol3comp"/>
     </target>
 
     <target name="copy-app">
@@ -121,10 +127,52 @@
         </copy>
     </target>
 
+    <target name="copy-jquery" if="use.jquery">
+        <!-- copy jQuery resources -->
+        <copy todir="${app.build}/src/jquery">
+            <fileset dir="${app.fullpath}/src/jquery"/>
+        </copy>
+    </target>
+
+    <target name="copy-bootstrap" if="use.bootstrap">
+        <!-- copy bootstrap resources -->
+        <copy todir="${app.build}/src/bootstrap">
+            <fileset dir="${app.fullpath}/src/bootstrap"/>
+        </copy>
+    </target>
+
+    <target name="copy-bootbox" if="use.bootbox">
+        <!-- copy bootbox resources -->
+        <copy todir="${app.build}/src/bootbox">
+            <fileset dir="${app.fullpath}/src/bootbox"/>
+        </copy>
+    </target>
+
+    <target name="copy-fa" if="use.fa">
+        <!-- copy font-awesome resources -->
+        <copy todir="${app.build}/src/font-awesome">
+            <fileset dir="${app.fullpath}/src/font-awesome"/>
+        </copy>
+    </target>
+
+    <target name="copy-ol3" if="use.ol3">
+        <!-- copy ol3 resources -->
+        <copy todir="${app.build}/src/ol3">
+            <fileset dir="${app.fullpath}/src/ol3"/>
+        </copy>
+    </target>
+
     <target name="copy-openlayers" if="use.openlayers">
         <!-- copy OpenLayers resources -->
         <copy todir="${app.build}/src/openlayers/theme">
             <fileset dir="${app.fullpath}/src/openlayers/theme"/>
+        </copy>
+    </target>
+
+    <target name="copy-ol3comp" if="use.ol3comp">
+        <!-- copy ol3 components resources -->
+        <copy todir="${app.build}/src/ol3-components/css">
+            <fileset dir="${app.fullpath}/src/ol3-components/css"/>
         </copy>
     </target>
 
@@ -142,7 +190,7 @@
         </copy>
     </target>
 
-    <target name="build" depends="checkpath,copy-app,use-checks,copy-ext,copy-openlayers,copy-geoext,copy-gxp">
+    <target name="build" depends="checkpath,copy-app,use-checks,copy-ext,copy-openlayers,copy-geoext,copy-gxp,copy-jquery,copy-bootstrap,copy-fa,copy-bootbox,copy-ol3,copy-ol3comp">
         <fail message="Directory '${app.fullpath}' doesn't exist." unless="app.exists"/>
         <echo file="${sdk.logfile}" append="true" message="Building application resources for '${app.fullpath}'.${line.separator}"/>
         <!-- build app js -->
@@ -160,7 +208,7 @@
             <arg path="${app.fullpath}/buildjs.cfg"/>
         </java>
         <!-- copy additional app resources -->
-        <copy todir="${app.build}/theme">
+        <copy todir="${app.build}/theme" failonerror="false">
             <fileset dir="${app.fullpath}/theme"/>
         </copy>
         <copy todir="${app.build}">
