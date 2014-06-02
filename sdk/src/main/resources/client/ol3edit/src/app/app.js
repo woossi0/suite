@@ -54,7 +54,7 @@ var map = new ol.Map({
           title: "Base Layers",
           exclusive: true
         },
-        default: {
+        'default': {
           title: "Overlays"
         }
       }
