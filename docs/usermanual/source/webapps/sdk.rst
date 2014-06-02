@@ -9,7 +9,7 @@ Boundless SDK provides tools for building web mapping applications backed by Ope
 #. **Customization** - Adding features and functionality to the template application
 #. **Testing** - Deploying the application in a test mode to verify functionality and debug
 #. **Deployment** - Deploying the application in a production environment
-
+re
 This tutorial will discuss creating, testing, and deploying of an application. See the tutorial :ref:`webapps.sdk.dev` for information on customizing your application.
 
 Prerequisites:
@@ -108,7 +108,7 @@ To deploy your application to your (remote) OpenGeo Suite instance, run the foll
 
 .. note::  Type ``suite-sdk deploy --help`` without any arguments to see a full list of possible arguments.
 
-The above command assumes your Suite instance is available at ``http://example.com:8080/``. Using the ``-u`` and ``p`` options supplies the :ref:`remote manager credentials <webapps.sdk.remotedeploy>` for the remote OpenGeo Suite.
+The above command assumes your Suite instance is available at ``http://example.com:8080/``. Using the ``-u`` and ``p`` options supplies the remote manager credentials for the remote OpenGeo Suite.
 
 The container type also needs to be supplied by the ``-c`` flag (default is ``tomcat6x``). See the following table for the default containers for the various installation types.
 
