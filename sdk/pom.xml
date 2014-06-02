@@ -122,13 +122,13 @@
                                         <exclude name="tests/"/>
                                     </fileset>
                                 </copy>
-                                <copy todir="${project.build.directory}/sdk/src/main/resources/client/gxp-template/src/ext">
+                                <copy todir="${project.build.directory}/sdk/src/main/resources/client/gxp/src/ext">
                                     <fileset dir="${geoexplorer}/app/static/externals/ext"/>
                                 </copy>
-                                <copy todir="${project.build.directory}/sdk/src/main/resources/client/ol3-view-template/src">
+                                <copy todir="${project.build.directory}/sdk/src/main/resources/client/ol3view/src">
                                     <fileset dir="src/main/resources/client/ol3-common"/>
                                 </copy>
-                                <copy todir="${project.build.directory}/sdk/src/main/resources/client/ol3-edit-template/src">
+                                <copy todir="${project.build.directory}/sdk/src/main/resources/client/ol3edit/src">
                                     <fileset dir="src/main/resources/client/ol3-common"/>
                                 </copy>
                                 <copy todir="${project.build.directory}/sdk" file="src/main/resources/build.xml"/>
