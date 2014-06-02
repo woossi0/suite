@@ -30,7 +30,6 @@
     {% if use_opensearch %}
       <link rel="search" type="application/opensearchdescription+xml" title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}" href="{{ pathto('_static/opensearch.xml', 1) }}"/>
     {% endif %}
-
   {% endif %}
 
   {# RTD hosts this file, so just load on non RTD builds #}
@@ -69,6 +68,11 @@
     {%- endif %}
   {%- endblock %}
   {%- block extrahead %} {% endblock %}
+
+  {# ZENDESK FEEDBACK FORM #}
+  {% if theme_display_zendesk %}
+    <link rel="stylesheet" href="//assets.zendesk.com/external/zenbox/v2.6/zenbox.css" type="text/css" media="screen, projection" />
+  {% endif %}
 
   {# Keep modernizr in head - http://modernizr.com/docs/#installing #}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -156,6 +160,12 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
+  {% endif %}
+
+  {# ZENDESK FEEDBACK FORM #}
+  {% if theme_display_zendesk %}
+    <script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script>
+    <script type="text/javascript" src="{{pathto('_static/js/zendesk.js', 1) }}"></script>
   {% endif %}
 
   {%- block footer %} {% endblock %}

@@ -14,9 +14,9 @@
 
   <div role="contentinfo">
     <div class="info">
-    <a class="logo-link" href="http://boundlessgeo.com">
-      <div class="boundless-logo"></div>
-    </a>
+      <a class="logo-link" href="http://boundlessgeo.com">
+        <div class="boundless-logo"></div>
+      </a>
       <div class="copyright">
         <a href="http://boundlessgeo.com" class="normal-text">Boundless</a>
         &copy; Copyright 2014.
@@ -27,5 +27,10 @@
         {%- endif %}
       </div>
     </div>
+    <div class="footer-aside">
+        {% if theme_display_zendesk %}
+          <a id="zenbox" class="help-contact" data="{{ pagename }}" href="https://opengeo.zendesk.com/account/dropboxes/20307456">Report an Issue</a>
+        {% endif %}
+      </div>
   </div>
 </footer>

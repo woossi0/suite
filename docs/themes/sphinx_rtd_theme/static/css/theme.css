@@ -4611,3 +4611,16 @@ footer .copyright {
 footer .copyright .normal-text {
   color: #999999;
 }
+footer .footer-aside {
+  display: inline-block;
+  float: right;
+  padding-top: 6px;
+}
+
+#zenbox_container {
+  height: 1000px;
+  opacity: 0.99;
+  position: relative;
+  width: 1000px;
+  z-index: inherit;
+}
