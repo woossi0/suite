@@ -216,6 +216,13 @@
                 <include name="*"/>
             </fileset>
         </copy>
+        <!-- replace debug versions with production versions -->
+        <replace file="${app.build}/index.html" token="ol-whitespace.js" value="ol.js"/>
+        <replace file="${app.build}/index.html" token="jquery.js" value="jquery.min.js"/>
+        <replace file="${app.build}/index.html" token="bootstrap.js" value="bootstrap.min.js"/>
+        <replace file="${app.build}/index.html" token="bootbox.js" value="bootbox.min.js"/>
+        <replace file="${app.build}/index.html" token="bootstrap.css" value="bootstrap.min.css"/>
+        <replace file="${app.build}/index.html" token="font-awesome.css" value="font-awesome.min.css"/>
     </target>
 
     <target name="package" depends="build">
