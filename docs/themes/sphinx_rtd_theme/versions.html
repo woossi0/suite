@@ -1,0 +1,26 @@
+{% if theme_display_version %}
+{# Add rst-badge after rst-versions for small badge style. #}
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> &nbsp; Component Manuals</span>
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt></dt>
+        <dd><ul class="simple">
+            <li> <a class="abs-link" href="/opengeo-docs/postgis/index.html">PostGIS</a>
+            <li> <a class="abs-link" href="/opengeo-docs/geoserver/index.html">GeoServer</a> </li>
+            <li> <a class="abs-link" href="/opengeo-docs/geowebcache/index.html">GeoWebCache</a> </li>
+            <li> <a class="abs-link" href="/opengeo-docs/geoexplorer/index.html">GeoExplorer</a> </li>
+            <li> <a class="abs-link" href="/opengeo-docs/sdk-api/index.html">Boundless SDK</a> </li>
+            <li> <a class="abs-link" href="/opengeo-docs/sdk-api/index.html">OpenLayers</a> </li>
+          </ul>
+        </dd>
+    </dl>
+    <hr/>
+    <span class="versions-footer">Document theme based on <a href="https://github.com/snide/sphinx_rtd_theme">RTD theme</a>.
+
+  </div>
+</div>
+{% endif %}

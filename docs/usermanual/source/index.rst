@@ -24,7 +24,7 @@ This User Manual will help you get the most out of OpenGeo Suite.
 :ref:`installation`
   Install OpenGeo Suite for your platform.
 
-:ref:`introduction`
+:ref:`intro`
   Get started with OpenGeo Suite.
 
 :ref:`webmaps`

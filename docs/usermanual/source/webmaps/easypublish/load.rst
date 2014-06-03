@@ -7,7 +7,7 @@ The first step is to load data into OpenGeo Suite. These are many tools and meth
 
 #. First, make sure OpenGeo Suite is running.
 
-#. Run GeoExplorer by clicking :guilabel:`GeoExplorer` in the :ref:`dashboard` or by navigating to its direct URL (such as ``http://localhost:8080/geoexplorer``).
+#. Run GeoExplorer by clicking :guilabel:`GeoExplorer` in the :ref:`intro.dashboard` or by navigating to its direct URL (such as ``http://localhost:8080/geoexplorer``).
 
    .. figure:: img/load_geoexplorer.png
 

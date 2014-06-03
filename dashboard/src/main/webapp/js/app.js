@@ -41,6 +41,40 @@ function onLoad() {
   setUpTabs('.homelink');
   setUpTabs('.aboutlink');
 
+
+  // set up getting started stepchoose-detail-inner show/hide
+  function setUpStepDetails () {
+    $(".data-link").click (function() {
+      var target = $(this).attr('data-target');
+      var dataclass = $(this).attr('dataclass');
+      // hide all with that dataclass in title attribute
+      var l = $('.stepchoose-detail-inner[dtitle="' + dataclass + '"]').hide();
+      $('.stepchoose-detail[dtitle="' + dataclass + '"]').show();
+
+      // show selected
+      $(target).show();
+    });
+  }
+
+  setUpStepDetails();
+
+  // toggle accordion title active state
+  $('#accordion h3.acc-toggle').click(function (e){
+    $('#accordion h3.acc-toggle').removeClass("active");
+    $(this).toggleClass("active");
+  });
+
+  // scroll to top of open accordion if in responsive view
+  $(".panel-collapse").on("shown.bs.collapse", function () {
+    if ($(window).width() <= 768) {
+      var selected = $(this);
+
+      $('html, body').animate({
+          scrollTop: selected.offset().top - 70
+      }, 500);
+    }
+  });
+
   // Add version info to all version spans
   var proj_version = $('#version').html();
   if (proj_version == "${project.version}") {
@@ -58,7 +92,9 @@ function onLoad() {
       this.href = docs_version + path;
        this.target = '_blank';
     });
+<<<<<<< HEAD
 */
+
   // Remove non-static info
   if ($('.commit').html() == " (${git.commit.id.abbrev})") {
     $('.commit').hide();
@@ -67,5 +103,8 @@ function onLoad() {
     $('.date').hide();
   }
   $('.release_date').html(RELEASE_DATE);
+
+  // Initialize popovers
+  $("#data-tip").popover();
 
 }

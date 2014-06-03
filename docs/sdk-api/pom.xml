@@ -9,7 +9,7 @@
     <groupId>org.opengeo.docs</groupId>
     <artifactId>sdk-api</artifactId>
     <packaging>jar</packaging>
-    <name>OpenGeo Suite Client SDK Doc Module</name>
+    <name>Boundless SDK Doc Module</name>
 
     <properties>
       <sphinx-flag></sphinx-flag>
