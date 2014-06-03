@@ -8,7 +8,7 @@
       <directory>assembly/target/dependency</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
-        <include>css-*.jar</include>
+        <include>gs-css-*.jar</include>
         <include>geocss_*.jar</include>
         <include>scala-library-*.jar</include>
       </includes>

@@ -1,23 +1,22 @@
-.. _recipes:
+.. _intro.recipes:
 
-Recipe Book
-===========
+Recipes
+=======
 
-The OpenGeo Suite includes an application called the **Recipe Book**, which contains code examples (or "recipes") for building applications using the OpenGeo Suite.  The Recipe Book can be launched from the :ref:`dashboard`.
+OpenGeo Suite includes an application called **OpenGeo Suite Recipes**, which contains code examples (or "recipes") for building applications using the OpenGeo Suite. This can be launched from the :ref:`intro.dashboard` or by navigating to http://localhost:8080/recipes.
 
-.. figure:: img/recipebook.png
-   :align: center
+.. figure:: img/recipes.png
 
-   *The OpenGeo Recipe Book*
+   OpenGeo Suite Recipes
 
 Each recipe contains a map, the code required to build the map, and links to relevant API documentation.
 
-.. figure:: img/mappaneldemo.png
-   :align: center
+.. figure:: img/recipedemo.png
 
-   *A demo showing a map layer in a GeoExt MapPanel*
+   A demo from a recipe
 
-.. figure:: img/mappanelcode.png
-   :align: center
+.. figure:: img/recipecode.png
 
-   *The source code required to generate the GeoExt MapPanel*
+   The source code required to generate the demo
+
+.. note:: You can also build complete web applications using the :ref:`Boundless SDK <webapps>`.

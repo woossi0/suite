@@ -1,3 +1,3 @@
-# OpenGeo Suite Client SDK Builder
+# Boundless SDK Builder
 
-Builds a zip archive that contains all the resources for the Suite Client SDK.
+Builds a zip archive that contains all the resources for Boundless SDK.
