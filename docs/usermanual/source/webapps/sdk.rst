@@ -9,7 +9,7 @@ Boundless SDK provides tools for building web mapping applications backed by Ope
 #. **Customization** - Adding features and functionality to the template application
 #. **Testing** - Deploying the application in a test mode to verify functionality and debug
 #. **Deployment** - Deploying the application in a production environment
-re
+
 This tutorial will discuss creating, testing, and deploying of an application. See the tutorial :ref:`webapps.sdk.dev` for information on customizing your application.
 
 Prerequisites:
