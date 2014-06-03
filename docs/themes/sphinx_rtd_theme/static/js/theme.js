@@ -15,6 +15,18 @@ $( document ).ready(function() {
     // Make tables responsive
     $("table.docutils:not(.field-list)").wrap("<div class='wy-table-responsive'></div>");
 
+    // ribbon drawer
+    $("#ribbon").click(function(evt) {
+        if ($(this).height() == 40) {
+            $(this).animate({height: "220px"}, 500);
+            $("#disclaimer").show();
+        } else {
+            $(this).animate({height: "40px"}, 500);
+            $("#disclaimer").fadeOut("slow");
+        }
+        evt.stopPropagation();
+    });
+
 });
 
 window.SphinxRtdTheme = (function (jquery) {
