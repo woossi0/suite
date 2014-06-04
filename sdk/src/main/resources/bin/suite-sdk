@@ -22,10 +22,14 @@ See '$NAME <command> --help' for more detail on a specific command.
 
 ## Usage for create command
 CREATE_USAGE="
-Usage: $NAME create <app-path>
+Usage: $NAME create <app-path> <app-template>
 
 Create a new application.  A new directory will be created using the <app-path> 
-argument (it must not already exist).
+argument (it must not already exist). Possible values for <app-template> are:
+
+    gxp        a template based on GXP, GeoExt and OpenLayers 2
+    ol3view    a template based on OpenLayers 3 and bootstrap for viewing
+    ol3edit    a template based on OpenLayers 3 and bootstrap for editing
 "
 
 ## Usage for debug command
@@ -139,7 +143,7 @@ case $COMMAND in
             exit 0
         fi
         APP_PATH=$1
-        if [ $# -ne 1 -o -z "$APP_PATH" ]; then
+        if [ $# -ne 2 -o -z "$APP_PATH" ]; then
             echo "$CREATE_USAGE"
             exit 1
         fi
@@ -147,7 +151,12 @@ case $COMMAND in
             echo "Directory '$APP_PATH' already exists.  Supply the path for a new directory."
             exit 1
         fi
-        ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\""
+        APP_TEMPLATE=$2
+        if [ $# -ne 2 -o -z "$APP_TEMPLATE" ]; then
+            echo "$CREATE_USAGE"
+            exit 1
+        fi
+        ANT_ARGS="$ANT_ARGS -Dapp.path=\"$APP_PATH\" -Dapp.template=\"$APP_TEMPLATE\""
         ;;
     debug )
         if $HELP ; then
@@ -207,7 +216,8 @@ CREATE_FAILURE="
 The '$NAME create' command failed.
 
 A common cause of this is the failure to create the provided directory:
-'$APP_PATH'
+'$APP_PATH' or that the <app-template> option specified has an invalid value
+(should be one of: gxp, ol3view or ol3edit).
 
 Please ensure that the directory name is valid and that you have permission
 to create this directory.  Please run '$NAME create --help' for help on the 

@@ -1,30 +1,110 @@
+// In case of static HTML, serve static info:
+var SUITE_VERSION = 4.1;
+var RELEASE_DATE = "June 19, 2014";
+
 function onLoad() {
-  // set up tab navigation 
-  $('.nav a').click(function(e) {
-    e.preventDefault();
-    $(this).tab('show');
+  var active_tab = $('#home');
+  var previous_link;
+
+  // set up link navigation
+  function setUpTabs (tab_button) {
+    $(tab_button).click(function(e) {
+      e.preventDefault();
+      active_tab.hide();
+
+      switch (tab_button) {
+        case '#gslink':
+          active_tab = $('#gettingstarted');
+          break;
+        case '.homelink':
+          active_tab = $('#home');
+          break;
+        case '.aboutlink':
+          active_tab = $('#about');
+          break;
+        default:
+          active_tab = $('#home');
+          break;
+      }
+      active_tab.show();
+      $(this).addClass("active");
+
+      // highlight clicked link
+      if (previous_link) {
+        previous_link.removeClass("active");
+      }
+      previous_link = $(this);
+    });
+  }
+
+  setUpTabs('#gslink');
+  setUpTabs('.homelink');
+  setUpTabs('.aboutlink');
+
+
+  // set up getting started stepchoose-detail-inner show/hide
+  function setUpStepDetails () {
+    $(".data-link").click (function() {
+      var target = $(this).attr('data-target');
+      var dataclass = $(this).attr('dataclass');
+      // hide all with that dataclass in title attribute
+      var l = $('.stepchoose-detail-inner[dtitle="' + dataclass + '"]').hide();
+      $('.stepchoose-detail[dtitle="' + dataclass + '"]').show();
+
+      // show selected
+      $(target).show();
+    });
+  }
+
+  setUpStepDetails();
+
+  // toggle accordion title active state
+  $('#accordion h3.acc-toggle').click(function (e){
+    $('#accordion h3.acc-toggle').removeClass("active");
+    $(this).toggleClass("active");
   });
 
-  // click on brand forwards to "home"
-  $('.navbar-brand').click(function(e) {
-    e.preventDefault();
-    $(".nav a[href='#home']").tab('show');
-  })
+  // scroll to top of open accordion if in responsive view
+  $(".panel-collapse").on("shown.bs.collapse", function () {
+    if ($(window).width() <= 768) {
+      var selected = $(this);
 
-  // ensure quick links open in new window
-  $('.quick-links a').each(function() {
-    this.target = '_blank';
+      $('html, body').animate({
+          scrollTop: selected.offset().top - 70
+      }, 500);
+    }
   });
 
-  // update all targets of external links
-  $('.dash-ext-link').each(function() {
-    this.target = '_blank';
-  });
+  // Add version info to all version spans
+  var proj_version = $('#version').html();
+  if (proj_version == "${project.version}") {
+    proj_version = SUITE_VERSION;
+    $('#version').html("");
+  }
+  $('.version').html(proj_version);
 
-  // update all doc links 
-  $('.dash-doc-link').each(function() {
-    var path = this.href.split("#")[1];
-    this.href = "/opengeo-docs/" + path;
-    this.target = '_blank';
-  });
+  // Add version to all docs links
+/*
+  var docs_version = "docs/" + proj_version + "/";
+  $('.docs').each(function( index ) {
+      var component = $(this).attr("component");
+      var path = this.href.split("#")[1];
+      this.href = docs_version + path;
+       this.target = '_blank';
+    });
+<<<<<<< HEAD
+*/
+
+  // Remove non-static info
+  if ($('.commit').html() == " (${git.commit.id.abbrev})") {
+    $('.commit').hide();
+  }
+  if ($('.date').html() == " built on ${build.prettydate}") {
+    $('.date').hide();
+  }
+  $('.release_date').html(RELEASE_DATE);
+
+  // Initialize popovers
+  $("#data-tip").popover();
+
 }
