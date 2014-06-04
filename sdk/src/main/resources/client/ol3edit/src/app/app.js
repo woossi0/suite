@@ -17,10 +17,16 @@ var geometryName = 'the_geom';
 var geometryType = 'MultiPolygon';
 var fields = ['STATE_NAME', 'STATE_ABBR'];
 var layerTitle = 'States';
+var center = [-10764594.758211, 4523072.3184791];
+var zoom = 3;
 // ======================================================================
+
+// this is the callback function that will get called when the features are in
 var loadFeatures = function(response) {
   vectorSource.addFeatures(vectorSource.readFeatures(response));
-};    
+};
+
+// create a WFS BBOX loader helper
 var BBOXLoader = new Boundless.WFSBBOXLoader({
   url: url,
   featurePrefix: featurePrefix,
@@ -28,6 +34,8 @@ var BBOXLoader = new Boundless.WFSBBOXLoader({
   srsName: srsName,
   callback: loadFeatures
 });
+
+// create a source to fetch the WFS features using a BBOX loader
 var vectorSource = new ol.source.ServerVector({
   format: new ol.format.GeoJSON({geometryName: geometryName}),
   loader: $.proxy(BBOXLoader.load, BBOXLoader),
@@ -36,6 +44,8 @@ var vectorSource = new ol.source.ServerVector({
   })),
   projection: 'EPSG:3857'
 });
+
+// create a vector layer that uses the source
 var vector = new ol.layer.Vector({
   title: layerTitle,
   source: vectorSource,
@@ -46,6 +56,8 @@ var vector = new ol.layer.Vector({
     })
   })
 });
+
+// create the map
 var map = new ol.Map({
   controls: ol.control.defaults().extend([
     new Boundless.LayersControl({
@@ -96,10 +108,13 @@ var map = new ol.Map({
   ],
   // initial center and zoom of the map's view
   view: new ol.View2D({
-    center: [-10764594.758211, 4523072.3184791],
-    zoom: 3
+    center: center,
+    zoom: zoom
   })
 });
+
+// create a WFS transaction helper which can help us draw new features,
+// modify existing features and delete existing features.
 var transaction = new Boundless.TransactionHandler({
   source: vector.getSource(),
   geometryType: geometryType,
@@ -110,6 +125,8 @@ var transaction = new Boundless.TransactionHandler({
   url: url,
   map: map
 });
+
+// create a feature table that will represent our features in a tabular form
 var table = new Boundless.FeatureTable({
   id: 'features',
   fields: fields,
@@ -118,11 +135,15 @@ var table = new Boundless.FeatureTable({
   map: map, 
   container: 'features-container',
   select: transaction.getSelect(),
-  offset: 37 /* not sure why this is 37 pixels */
+  offset: 37
 });
+
+// delete the selected feature
 var deleteFeature = function() {
   transaction.deleteSelected();
 };
+
+// draw a new feature
 var drawFeature = function() {
   transaction.activateInsert();
 };
