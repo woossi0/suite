@@ -6,7 +6,7 @@
  */
 
 // ========= config section ================================================
-var url = '/geoserver/wfs?';
+var url = '/geoserver/ows?';
 var featurePrefix = 'usa';
 var featureType = 'states';
 var featureNS = 'http://census.gov';
@@ -25,7 +25,8 @@ ol.proj.addProjection(
     new ol.proj.EPSG4326('http://www.opengis.net/gml/srs/epsg.xml#4326', 'enu')
 );
 
-var format = new ol.format.WFS({featureNS: featureNS, featureType: featureType});
+// create a GML format to read WMS GetFeatureInfo response
+var format = new ol.format.GML({featureNS: featureNS, featureType: featureType});
 
 // create a new popup with a close box
 // the popup will draw itself in the popup div container
@@ -36,12 +37,14 @@ var popup = new Boundless.Popup({
   autoPan: true
 });
 
+// the tiled WMS source for our local GeoServer layer
 var wmsSource = new ol.source.TileWMS({
-  url: '/geoserver/wms',
+  url: url,
   params: {'LAYERS': featurePrefix + ':' + featureType, 'TILED': true},
   serverType: 'geoserver'
 });
 
+// create a vector layer to contain the feature to be highlighted
 var highlight = new ol.layer.Vector({
   style: new ol.style.Style({
     stroke: new ol.style.Stroke({
@@ -50,6 +53,11 @@ var highlight = new ol.layer.Vector({
     })
   }),
   source: new ol.source.Vector()
+});
+
+// when the popup is closed, clear the highlight
+$(popup).on('close', function() {
+  highlight.getSource().clear();
 });
 
 // create the OpenLayers Map object
@@ -125,7 +133,7 @@ map.on('singleclick', function(evt) {
       evt.coordinate, viewResolution, map.getView().getView2D().getProjection(),
       {'INFO_FORMAT': infoFormat});
   if (url) {
-    if (infoFormat === 'text/html') {
+    if (infoFormat == 'text/html') {
       popup.setPosition(evt.coordinate);
       popup.setContent('<iframe seamless frameborder="0" src="' + url + '"></iframe>');
       popup.show();
@@ -135,18 +143,22 @@ map.on('singleclick', function(evt) {
         success: function(data) {
           var features = format.readFeatures(data);
           highlight.getSource().clear();
-          if (features && features.length >= 1) {
+          if (features && features.length >= 1 && features[0]) {
             var feature = features[0];
             var html = '<table class="table table-striped table-bordered table-condensed">';
             var values = feature.getProperties();
+            var hasContent = false;
             for (var key in values) {
               if (key !== 'the_geom' && key !== 'boundedBy') {
                 html += '<tr><td>' + key + '</td><td>' + values[key] + '</td></tr>';
+                hasContent = true;
               }
             }
-            popup.setPosition(evt.coordinate);
-            popup.setContent(html);
-            popup.show();
+            if (hasContent === true) {
+              popup.setPosition(evt.coordinate);
+              popup.setContent(html);
+              popup.show();
+            }
             feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
             highlight.getSource().addFeature(feature);
           } else {

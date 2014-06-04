@@ -39,9 +39,11 @@ Boundless.Popup = function(options) {
   this.autoPan = options.autoPan !== undefined ? options.autoPan : false;
   this.margin = options.margin !== undefined ? options.margin : 10;
   ol.Overlay.call(this, options);
+  var me = this;
   if (options.closeBox === true) {
     $('<a href="#" id="popup-closer" class="ol-popup-closer"></a>').click(
       this.getElement(), function(evt) {
+        $(me).trigger('close');
         evt.data.style.display = 'none';
         evt.target.blur();
         return false;
