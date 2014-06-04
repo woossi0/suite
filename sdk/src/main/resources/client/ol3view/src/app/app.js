@@ -42,6 +42,16 @@ var wmsSource = new ol.source.TileWMS({
   serverType: 'geoserver'
 });
 
+var highlight = new ol.layer.Vector({
+  style: new ol.style.Style({
+    stroke: new ol.style.Stroke({
+      color: '#00FFFF',
+      width: 3
+    })
+  }),
+  source: new ol.source.Vector()
+});
+
 // create the OpenLayers Map object
 // we add a layer switcher to the map with two groups:
 // 1. background, which will use radio buttons
@@ -97,7 +107,8 @@ var map = new ol.Map({
     new ol.layer.Tile({
       title: layerTitle,
       source: wmsSource
-    })
+    }),
+    highlight
   ],
   // initial center and zoom of the map's view
   view: new ol.View2D({
@@ -106,20 +117,8 @@ var map = new ol.Map({
   })
 });
 
-// create a feature overlay which is used to show the highlighted state
-var featureOverlay = new ol.FeatureOverlay({
-  map: map,
-  style: new ol.style.Style({
-    stroke: new ol.style.Stroke({
-      color: '#00FFFF',
-      width: 3
-    })
-  })
-});
-
 // register a single click listener on the map and show a popup
 // based on WMS GetFeatureInfo
-var highlight;
 map.on('singleclick', function(evt) {
   var viewResolution = map.getView().getView2D().getResolution();
   var url = wmsSource.getGetFeatureInfoUrl(
@@ -135,9 +134,7 @@ map.on('singleclick', function(evt) {
         url: url,
         success: function(data) {
           var features = format.readFeatures(data);
-          if (highlight) {
-            featureOverlay.removeFeature(highlight);
-          }
+          highlight.getSource().clear();
           if (features && features.length >= 1) {
             var feature = features[0];
             var html = '<table class="table table-striped table-bordered table-condensed">';
@@ -151,11 +148,9 @@ map.on('singleclick', function(evt) {
             popup.setContent(html);
             popup.show();
             feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
-            highlight = feature;
-            featureOverlay.addFeature(feature);
+            highlight.getSource().addFeature(feature);
           } else {
             popup.hide();
-            highlight = null;
           }
         }
       });
