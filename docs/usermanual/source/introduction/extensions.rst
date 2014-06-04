@@ -9,7 +9,9 @@ These optional components can be selected during the :ref:`Windows installation 
 
 .. figure:: ../installation/windows/img/components.png
 
-   Component installation on Windows (extensions are in GeoServer Add-ons and PostGIS Add-ons)
+   Component installation on Windows
+
+.. todo:: May want to update this graphic eventually
 
 .. note:: If you have already installed OpenGeo Suite on Windows, you can add extensions to your deployment by running the installer again and selecting just the desired extensions.
 
@@ -43,7 +45,7 @@ Scripts for setting up clusters either on Amazon Web Services (AWS) or locally-h
 CSS Styling
 -----------
 
-The CSS Styling extension adds functionality to GeoServer to be able to style layers using a syntax that is similar to CSS (Cascading Style Sheets). CSS can be preferable to the standard Styled Layer Descriptor (SLD) styling method, due to the compactness and widespread familiarity of CSS.
+The CSS Styling extension adds functionality to GeoServer to be able to style layers using a syntax that is similar to CSS (Cascading Style Sheets). CSS can be preferable to the standard Styled Layer Descriptor (SLD) styling method, due to the compactness of CSS as well as greater familiarity.
 
 For more information about CSS styling in GeoServer, please see the `GeoServer CSS documentation <../geoserver/extensions/css/>`_.
 
@@ -121,6 +123,6 @@ For more information of WPS in OpenGeo Suite, please see the :ref:`processing` s
 Point Cloud
 -----------
 
-The Point Cloud extension adds support for the PostGIS Point Cloud functionality.
+The Point Cloud extension adds support for the PostgreSQL/PostGIS Point Cloud functionality.
 
-.. todo:: Need to add something useful here.
+For more information on Point Cloud, please see the :ref:`dataadmin.pointcloud` section.

@@ -14,5 +14,5 @@ This section describes how to work with your data using  OpenGeo Suite, from con
    pgBasics/index
    pgAdvanced/index
    pgDBAdmin/index
+   pointcloud/index
    importer/index
-
