@@ -3,6 +3,29 @@ if (!window.Boundless) {
 }
 var Boundless = window.Boundless;
 
+/**
+ * Options for Boundless.TransactionHandler.
+ * @typedef {Object} TransactionHandlerOptions
+ * @property {ol.source.Vector} source - The vector source to use for the
+ * features.
+ * @property {ol.geom.GeometryType} geometryType - The type of geometry.
+ * @property {string} geometryName  - The name of the geometry attribute.
+ * @property {string} srsName - The srsName to use (normally the
+ * view's projection).
+ * @property {string} featureNS - The feature namespace.
+ * @property {string} featureType - The name of the featureType.
+ * @property {string} url - The url of the Web Feature Service.
+ * @property {ol.Map} map - The map to interact with.
+ */
+
+/**
+ * @class
+ * The TransactionHandler is a helper class to facilitate inserts, updates
+ * and deletes using WFS-T.
+ *
+ * @constructor
+ * @param {TransactionHandlerOptions} options Options.
+ */
 Boundless.TransactionHandler = function(options) {
   this.srsName_ = options.srsName;
   this.source_ = options.source;
@@ -32,10 +55,19 @@ Boundless.TransactionHandler = function(options) {
   this.draw_.on('drawend', this.onDrawEnd, this);
 };
 
+/**
+ * Get a reference to the select interaction.
+ * @returns {ol.interaction.Select}
+ */
 Boundless.TransactionHandler.prototype.getSelect = function() {
   return this.select_;
 };
 
+/**
+ * Handler for when a featue gets selected. Register a change listener on the
+ * feature to see if it got modified.
+ * @param {ol.CollectionEvent} evt The event object.
+ */
 Boundless.TransactionHandler.prototype.onSelectAdd_ = function(evt) {
   var feature = evt.element;
   var fid = feature.getId();
@@ -44,6 +76,11 @@ Boundless.TransactionHandler.prototype.onSelectAdd_ = function(evt) {
   }, this);
 };
 
+/**
+ * Handler for when a featue gets unselected. If the feature is dirty, send
+ * a WFS Update transaction.
+ * @param {ol.CollectionEvent} evt The event object.
+ */
 Boundless.TransactionHandler.prototype.onSelectRemove_ = function(evt) {
   var feature = evt.element;
   var fid = feature.getId();
@@ -75,6 +112,10 @@ Boundless.TransactionHandler.prototype.onSelectRemove_ = function(evt) {
   }
 };
 
+/**
+ * Handler for when drawing ends. Send a WFS Insert Transaction.
+ * @param {ol.DrawEvent} evt The event object.
+ */
 Boundless.TransactionHandler.prototype.onDrawEnd = function(evt) {
   var feature = evt.feature;
   var node = this.format_.writeTransaction([feature], null, null, {
@@ -97,6 +138,9 @@ Boundless.TransactionHandler.prototype.onDrawEnd = function(evt) {
   });
 };
 
+/**
+ * Activate the draw interaction for inserting new features.
+ */
 Boundless.TransactionHandler.prototype.activateInsert = function() {
   if (this.hasDraw_ !== true) {
     this.map_.addInteraction(this.draw_);
@@ -104,6 +148,9 @@ Boundless.TransactionHandler.prototype.activateInsert = function() {
   }
 };
 
+/**
+ * Send a WFS Delete Transaction for the currently selected feature.
+ */
 Boundless.TransactionHandler.prototype.deleteSelected = function() {
   var features = this.select_.getFeatures();
   if (features.getLength() === 1) {
