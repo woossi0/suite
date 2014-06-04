@@ -9,7 +9,7 @@
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>gs-wps*</include>
-        <include>web-wps*</include>
+        <include>gs-web-wps*</include>
         <include>web-wps-ext*</include>
         <include>gt-process-geometry*</include>
         <include>gt-xsd-wps*</include>
