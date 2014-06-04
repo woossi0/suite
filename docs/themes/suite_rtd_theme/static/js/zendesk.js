@@ -16,4 +16,9 @@ $( document ).ready(function() {
     e.preventDefault();
     return false;
   });
+  $("#zenbox-community, a.contact-support").click(function(e){
+    Zenbox.show();
+    e.preventDefault();
+    return false;
+  });
 });

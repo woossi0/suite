@@ -71,7 +71,7 @@
 
   {# ZENDESK FEEDBACK FORM #}
   {% if theme_display_zendesk %}
-    <link rel="stylesheet" href="//assets.zendesk.com/external/zenbox/v2.6/zenbox.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="{{ pathto('_static/css/zenbox.css', 1) }}" type="text/css" media="screen, projection" />
   {% endif %}
 
   {# Keep modernizr in head - http://modernizr.com/docs/#installing #}
@@ -82,24 +82,8 @@
 <body class="wy-body-for-nav" role="document">
 
     {# HEADER NAV, VARIES WITH PROJECT #}
-    {% if project != "OpenGeo Suite" %}
-    <div id="component_bar" style="position: fixed; z-index: 1010; background-color: #28728d; height: 10px; width: 100%;"></div>
-    <div id="ribbon">
-      <div class="ribbon_container">
-        <div id="disclaimer">
-          This documentation is from an open source community project.<br/><br/>
-          While every reasonable effort is made to ensure it is correct, it is provided "as is" for reference only, with no guarantees that it is complete, accurate, or current. Not all features, extensions, and plug-ins described within these docs are supported by Boundless.
-        </div>
-        <div class="base">Community Docs &nbsp; <i class="fa fa-chevron-down"></i></div>
-      </div>
-    </div>
-    <div id="header" class="selfclear" style="background-color: #7EB5D3;">
-        <div class="postgis_logo"><a href="{{ theme_documentation_root }}/{{ project }}"></a></div>
-        <div class="component_version_info">Version {{ theme_project_version }}</div>
-        <div class="back-to-suite">
-          <a href="{{ theme_documentation_root }}"><div class="back-to-suite-inner"></div></a>
-        </div>
-    </div>
+    {% if theme_is_community %}
+      {% include "component_headers.html" %}
     {% else %}
       <div id="header" class="selfclear">
         <div class="suite_logo"><a href="{{ pathto('index') }}">{{ shorttitle }}</a> </div>
@@ -185,8 +169,8 @@
 
   {# ZENDESK FEEDBACK FORM #}
   {% if theme_display_zendesk %}
-    <script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script>
-    <script type="text/javascript" src="{{pathto('_static/js/zendesk.js', 1) }}"></script>
+    <script type="text/javascript" src="{{ pathto('_static/js/zenbox.js', 1) }}"></script>
+    <script type="text/javascript" src="{{ pathto('_static/js/zendesk.js', 1) }}"></script>
   {% endif %}
 
   {%- block footer %} {% endblock %}

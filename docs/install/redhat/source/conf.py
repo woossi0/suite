@@ -11,7 +11,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import sys, os, string
 from xml.dom import minidom
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -23,7 +23,7 @@ from xml.dom import minidom
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.todo']
+extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 
 # Include TODOs
 todo_include_todos = True
@@ -42,7 +42,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Installing the OpenGeo Suite for CentOS and Red Hat'
-copyright = u'Boundless'
+copyright = u'2014, Boundless'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -100,15 +100,23 @@ pygments_style = 'sphinx'
 
 # -- Options for HTML output ---------------------------------------------------
 
-# The theme to use for HTML and HTML Help pages.  Major themes that come with
-# Sphinx are currently 'default' and 'sphinxdoc'.
-html_theme = 'default'
-html_theme_path = ['../../../themes']
+# The style sheet to use for HTML and HTML Help pages. A file of that name
+# must exist either in Sphinx' static/ path, or in one of the custom paths
+# given in html_static_path.
+html_style = 'css/theme.css'
+
+html_theme = 'suite_rtd_theme'
+html_theme_path = ['../../themes']
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {
+  #'sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
+  'is_community': "false", # Community Docs flag for Suite component docs
+  'display_zendesk': "true", # Display link to report doc bugs to Suite Zendesk
+  'display_version': "true"  # Whether to show version number
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
@@ -150,16 +158,16 @@ html_theme_path = ['../../../themes']
 #html_additional_pages = {}
 
 # If false, no module index is generated.
-#html_use_modindex = True
+html_use_modindex = False
 
 # If false, no index is generated.
-#html_use_index = True
+html_use_index = False
 
 # If true, the index is split into individual pages for each letter.
 #html_split_index = False
 
 # If true, the reST sources are included in the HTML build as _sources/<name>.
-html_copy_source = False
+html_copy_source = True
 
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = False
@@ -201,19 +209,19 @@ latex_documents = [
 
 # NOTE!
 #
-# This LaTeX preamble overrides some Sphinx/LaTeX defaults in order to make 
+# This LaTeX preamble overrides some Sphinx/LaTeX defaults in order to make
 # better output.  This comment will try to explain what's going on here.
 # These hacks were perpetrated by Mike and Jeff.
 #
 # 1. Resize images so that they are no wider than 4in.
-#      Accomplished by renewing the \includegraphics command, and creating an 
-#      if/then statement saying to resize to 4in if large than 4in, otherwise 
+#      Accomplished by renewing the \includegraphics command, and creating an
+#      if/then statement saying to resize to 4in if large than 4in, otherwise
 #      leave alone
 # 2. Add drop shadow to images
-#      Accomplished by wrapping the above imcludegraphics commands with a 
+#      Accomplished by wrapping the above imcludegraphics commands with a
 #      \shadowbox.  Default border and spacing are changed in the \setlength
 #      commands
-# 3. Force LaTeX to place the images inline  
+# 3. Force LaTeX to place the images inline
 #      For whatever reason, Sphinx automatically appends the \begin{figure}
 #      command with [htbp], which means "put the figure where ever you feel
 #      like it."  We replaced the command to be appended with [H], which

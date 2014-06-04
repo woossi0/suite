@@ -18,11 +18,15 @@ $( document ).ready(function() {
     // ribbon drawer
     $("#ribbon").click(function(evt) {
         if ($(this).height() == 40) {
-            $(this).animate({height: "220px"}, 500);
+            $(this).animate({height: "275px"}, 500);
             $("#disclaimer").show();
+            $("#ribbon .base i").removeClass("fa-chevron-down")
+                                    .addClass("fa-chevron-up");
         } else {
             $(this).animate({height: "40px"}, 500);
             $("#disclaimer").fadeOut("slow");
+            $("#ribbon .base i").removeClass("fa-chevron-up")
+                                .addClass("fa-chevron-down");
         }
         evt.stopPropagation();
     });

@@ -78,7 +78,7 @@ release = '4.1'
 
 # List of directories, relative to source directory, that shouldn't be searched
 # for source files.
-exclude_trees = []
+exclude_trees = ['_build']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -110,13 +110,16 @@ html_style = 'css/theme.css'
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'suite_rtd_theme'
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {
+  #sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
+  is_community: False # Community Docs flag for Suite component docs
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 html_theme_path =  ['../../themes',]

@@ -27,9 +27,9 @@
             <configuration>
               <tasks>
                 <exec executable="sphinx-build" failonerror="true" dir="${basedir}/src">
-                  <arg line="-D html_theme='pg' -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
+                  <arg line="-b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
                 </exec>
-                
+
                 <get src="http://data.opengeo.org/suite/postgis-docs-2.0.1.zip" dest="doc.zip" usetimestamp="true"/>
                 <property name="pgdoc" value="${build.directory}/html/postgis"/>
                 <mkdir dir="${pgdoc}"/>

@@ -11,7 +11,7 @@
 # All configuration values have a default value; values that are commented out
 # serve to show the default value.
 
-import sys, os
+import sys, os, string
 from xml.dom import minidom
 
 # If your extensions are in another directory, add it here. If the directory
@@ -24,7 +24,7 @@ from xml.dom import minidom
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.todo']
+extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 
 todo_include_todos = False
 
@@ -89,20 +89,32 @@ pygments_style = 'sphinx'
 
 # Options for HTML output
 # -----------------------
-html_theme = 'geoexplorer'
-html_theme_path = ['../../themes']
 
 # The style sheet to use for HTML and HTML Help pages. A file of that name
 # must exist either in Sphinx' static/ path, or in one of the custom paths
 # given in html_static_path.
-#html_style = 'default.css'
+html_style = 'css/theme.css'
+
+html_theme = 'suite_rtd_theme'
+html_theme_path = ['../../themes']
+
+# Theme options are theme-specific and customize the look and feel of a theme
+# further.  For a list of options available for each theme, see the
+# documentation.
+html_theme_options = {
+  #'sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
+  'is_community': "true", # Community Docs flag for Suite component docs
+  'display_zendesk': "true", # Display link to report doc bugs to Suite Zendesk
+  'display_version': "true"  # Whether to show version number
+}
+
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 #html_title = None
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-#html_short_title = None
+html_short_title = 'GeoExplorer'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -111,7 +123,7 @@ html_theme_path = ['../../themes']
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = 'geoexplorer.ico'
+html_favicon = '../../themes/suite_rtd_theme/static/img/geoexplorer.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -124,7 +136,7 @@ html_last_updated_fmt = '%b %d, %Y'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
-#html_use_smartypants = True
+html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {}
@@ -143,7 +155,7 @@ html_use_index = False
 #html_split_index = False
 
 # If true, the reST sources are included in the HTML build as _sources/<name>.
-html_copy_source = False
+html_copy_source = True
 
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = False
@@ -199,7 +211,7 @@ latex_elements = {
     urlcolor = [rgb]{0,0.46,0.63}
 	}
 
-	
+
 """
 }
 

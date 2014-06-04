@@ -17,10 +17,10 @@
 
   <target name="html">
      <exec executable="sphinx-build" failonerror="true" dir="${basedir}/source">
-       <arg line="${sphinx-flag} -D html_theme='opengeo' -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
+       <arg line="${sphinx-flag} -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
      </exec>
   </target>
-  
+
   <target name="text">
      <exec executable="sphinx-build" failonerror="true" dir="${basedir}/source">
        <arg line="${sphinx-flag} -b text -d ${build.directory}/doctrees . ${build.directory}/text "/>
