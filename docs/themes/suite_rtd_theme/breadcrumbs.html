@@ -10,8 +10,10 @@
     {% for doc in parents %}
         <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> &raquo;</li>
     {% endfor %}
-    {% if doc.title != masterdoc.title %}
+    {% if title != shorttitle %}
     <li>{{ title }}</li>
+    {% else %}
+    <li>Home</li>
     {% endif %}
   </ul>
   <hr/>
