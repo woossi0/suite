@@ -12,3 +12,6 @@ This section will discuss how to use the clustering extension for GeoServer in O
    install
    setup
    params
+   autoaws
+   autovmware
+   
