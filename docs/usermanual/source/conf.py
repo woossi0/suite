@@ -11,7 +11,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import sys, os, string
 from xml.dom import minidom
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -117,8 +117,10 @@ html_theme = 'suite_rtd_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-  #sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
-  is_community: False # Community Docs flag for Suite component docs
+  #'sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
+  'is_community': "true", # Community Docs flag for Suite component docs
+  'display_zendesk': "true", # Display link to report doc bugs to Suite Zendesk
+  'display_version': "true"  # Whether to show version number
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
