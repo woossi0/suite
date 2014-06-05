@@ -43,6 +43,7 @@
                 <copy todir="${basedir}/src">
                   <fileset dir="${basedir}/../../geoserver/externals/geoserver/doc/en/user/source" includes="**/*"/>
                 </copy>
+                <copy file="${basedir}/conf.py" tofile="${basedir}/src/conf.py" overwrite="true"/>
               </tasks>
             </configuration>
             <goals>

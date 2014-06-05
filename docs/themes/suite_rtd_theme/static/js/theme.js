@@ -16,14 +16,15 @@ $( document ).ready(function() {
     $("table.docutils:not(.field-list)").wrap("<div class='wy-table-responsive'></div>");
 
     // ribbon drawer
-    $("#ribbon").click(function(evt) {
-        if ($(this).height() == 40) {
-            $(this).animate({height: "275px"}, 500);
+    $("#ribbon .base").click(function(evt) {
+        var ribbon = $('#ribbon');
+        if (ribbon.height() == 40) {
+            ribbon.animate({height: "290px"}, 500);
             $("#disclaimer").show();
             $("#ribbon .base i").removeClass("fa-chevron-down")
                                     .addClass("fa-chevron-up");
         } else {
-            $(this).animate({height: "40px"}, 500);
+            ribbon.animate({height: "40px"}, 500);
             $("#disclaimer").fadeOut("slow");
             $("#ribbon .base i").removeClass("fa-chevron-up")
                                 .addClass("fa-chevron-down");

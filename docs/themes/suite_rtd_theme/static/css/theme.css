@@ -4538,35 +4538,35 @@ div[class^='highlight'] pre {
   width: 203px;
   height: 40px;
   display: inline-block;
-  margin: 1.3em 0 0;
+  margin: 1em 0 0;
 }
 #header .gs_logo a {
   background: url("../img/geoserver-logo.png") no-repeat;
   width: 231px;
   height: 40px;
   display: inline-block;
-  margin: 1.2em 0 0;
+  margin: 1em 0 0;
 }
 #header .gwc_logo a {
   background: url("../img/gwc-logo.png") no-repeat;
   width: 284px;
   height: 40px;
   display: inline-block;
-  margin: 1.3em 0 0;
+  margin: 1em 0 0;
 }
 #header .sdk_logo a {
   background: url("../img/boundlesssdk-logo.png") no-repeat;
   width: 240px;
   height: 40px;
   display: inline-block;
-  margin: 1.2em 0 0;
+  margin: 1em 0 0;
 }
 #header .ge_logo a {
   background: url("../img/geoexplorer-logo.png") no-repeat;
   width: 245px;
   height: 40px;
   display: inline-block;
-  margin: 1.2em 0 0;
+  margin: 1em 0 0;
 }
 #header .component_version_info {
   display: inline-block;
@@ -4614,14 +4614,14 @@ div[class^='highlight'] pre {
 #ribbon .ribbon_container #disclaimer {
   display: none;
   padding: 0 10px 0 10px;
-  margin-bottom: 12px;
   font-size: 0.8em;
   line-height: 1.5em;
   color: white;
+  margin-bottom: 12px;
 }
 #ribbon .base {
   width: 100%;
-  z-index: 2;
+  z-index: -1;
   text-align: center;
   color: white;
   font-weight: bold;

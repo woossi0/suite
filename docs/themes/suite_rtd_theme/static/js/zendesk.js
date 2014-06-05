@@ -11,12 +11,14 @@ $( document ).ready(function() {
     });
   }
 
-  $("#zenbox, a.contact-support").click(function(e){
+  $("#zenbox, a.help-contact").click(function(e){
     Zenbox.show();
     e.preventDefault();
     return false;
   });
-  $("#zenbox-community, a.contact-support").click(function(e){
+  
+  $("#zenbox-community, a.help-contact").click(function(e){
+    debugger;
     Zenbox.show();
     e.preventDefault();
     return false;
