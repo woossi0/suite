@@ -113,9 +113,9 @@ html_theme_path = ['../../../themes']
 # documentation.
 html_theme_options = {
   #'sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
-  'is_community': "false", # Community Docs flag for Suite component docs
-  'display_zendesk': "true", # Display link to report doc bugs to Suite Zendesk
-  'display_version': "true"  # Whether to show version number
+  'is_community': False, # Community Docs flag for Suite component docs
+  'display_zendesk': True, # Display link to report doc bugs to Suite Zendesk
+  'display_version': True  # Whether to show version number
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
