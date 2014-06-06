@@ -165,7 +165,7 @@ With setup complete, you can now launch the cluster.
 
    .. code-block:: bash
 
-      ansible-playbook aws-launch.yml -i hosts -e "use_aws=true" --private-key=key.pem
+      ansible-playbook aws-launch.yml -i hosts.aws -e "use_aws=true" --private-key=key.pem
 
    substituting the name and path of the key file as downloaded in a previous step for :file:`key.pem`.
    
