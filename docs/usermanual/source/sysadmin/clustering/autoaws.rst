@@ -211,3 +211,7 @@ To shut down the cluster:
 #. Open the `AWS VPC console <https://console.aws.amazon.com/vpc/home>`_.
 
 #. Find the VPC (or VPCs) created by the script and :guilabel:`Delete` them.
+
+#. Open the `AWS RDS console` <https://console.aws.amazon.com/rds/home>`_.
+
+#. Find the RDS instances created by the script and :guilabel:`Delete` them.
