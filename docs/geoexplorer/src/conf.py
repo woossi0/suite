@@ -111,7 +111,7 @@ html_theme_options = {
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = project 
+html_title = project
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 html_short_title = 'GeoExplorer'
@@ -190,7 +190,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-# latex_logo = 'theme/_static/GeoServer_500.png'
+latex_logo = '../../themes/suite_rtd_theme/static/img/geoexplorer-logo-only.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

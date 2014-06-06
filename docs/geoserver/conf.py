@@ -112,7 +112,7 @@ if os.environ.get('HTML_THEME_PATH'):
 html_title = project + manual
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = 'GeoServer' 
+html_short_title = 'GeoServer'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -188,7 +188,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '../../themes/geoserver/static/GeoServer_500.png'
+latex_logo = '../../themes/suite_rtd_theme/static/img/geoserver-logo-only.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -210,7 +210,7 @@ latex_elements = {
     urlcolor = [rgb]{0,0.46,0.63}
 	}
 
-	
+
 """
 }
 
