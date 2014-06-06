@@ -5,6 +5,7 @@ Welcome! OpenGeo Suite is a full geospatial software stack that helps you compos
 .. toctree::
    :hidden: 
 
+   self
    installation/index
    introduction/index
    webmaps/index

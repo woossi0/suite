@@ -18,7 +18,6 @@ $( document ).ready(function() {
   });
   
   $("#zenbox-community, a.help-contact").click(function(e){
-    debugger;
     Zenbox.show();
     e.preventDefault();
     return false;

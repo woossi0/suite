@@ -9,6 +9,7 @@ GeoExplorer is a web application, based on the :term:`GeoExt` framework, for com
 .. toctree::
    :hidden: 
 
+   self
    introduction
    workspace
    using/index
