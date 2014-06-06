@@ -15,8 +15,9 @@ being continually improved and funded by many FOSS4G Developers as well
 as corporations all over the world that gain great benefit from its
 functionality and versatility.
 
+
 Project Steering Committee
-==========================
+----------------------------
 
 The PostGIS Project Steering Committee (PSC) coordinates the general
 direction, release cycles, documentation, and outreach efforts for the
@@ -55,8 +56,9 @@ Sandro Santilli
     and alignment with GEOS releases, Topology support, and Raster
     framework and low level api functions.
 
+
 Core Contributors Present
-=========================
+----------------------------
 
 Jorge Arévalo
     Raster development, GDAL driver support, loader
@@ -76,8 +78,9 @@ Pierre Racine
 David Zwarg
     Raster development (mostly map algebra analytic functions)
 
+
 Core Contributors Past
-======================
+-------------------------
 
 Chris Hodgson
     Prior PSC Member. General development, site and buildbot
@@ -104,10 +107,13 @@ Mark Leslie
     Ongoing maintenance and development of core functions. Enhanced
     curve support. Shapefile GUI loader.
 
+
+
 Other Contributors
-==================
+--------------------
 
 Individual Contributors
+
     In alphabetical order: Alex Bodnaru, Alex Mayrhofer, Andrea Peri,
     Andreas Forø Tollefsen, Andreas Neumann, Anne Ghisla, Barbara
     Phillipot, Ben Jubb, Bernhard Reiter, Brian Hamlin, Bruce Rindahl,
@@ -124,6 +130,7 @@ Individual Contributors
     Picavet
 
 Corporate Sponsors
+
     These are corporate entities that have contributed developer time,
     hosting, or direct monetary funding to the PostGIS project
 
@@ -141,6 +148,7 @@ Corporate Sponsors
     Laval, U.S Department of State (HIU), Vizzuality, Zonar Systems
 
 Crowd Funding Campaigns
+
     Crowd funding campaigns are campaigns we run to get badly wanted
     features funded that can service a large number of people. Each
     campaign is specifically focused on a particular feature or set of
@@ -167,6 +175,7 @@ Crowd Funding Campaigns
     stack builder.
 
 Important Support Libraries
+
     The `GEOS <http://trac.osgeo.org/geos/>`__ geometry operations
     library, and the algorithmic work of Martin Davis in making it all
     work, ongoing maintenance and support of Mateusz Loskot, Sandro
@@ -189,7 +198,7 @@ Important Support Libraries
     and plethora of SQL features provided by PostgreSQL.
 
 More Information
-================
+------------------
 
 -  The latest software, documentation and news items are available at
    the PostGIS web site, http://postgis.net.
