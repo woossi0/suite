@@ -13,7 +13,6 @@ Prerequisites
 * Machine running the script must use Ubuntu, Red Hat-based Linux or Mac OS X
 * Python 2.7 or higher
 * Ansible 1.6.2 or higher (installed via `pip <https://pypi.python.org/pypi/pip>`_)
-* Java JDK 7 or higher (not a JRE)
 * Super user access
 * VMWare
 
@@ -49,22 +48,6 @@ Packages
 
       pip install boto
 
-Java
-^^^^
-
-#. Set the ``$JAVA_HOME`` variable to the location of Java. For example:
-
-   .. code-block:: bash
-
-      export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386/jre
-
-   .. note:: The command :command:`which java` may not give the true path. For more information on how to find the real location of Java, see the `Amazon EC2 documentation <http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html#java_runtime_linux>`_.
-
-#. To verify, type the following command:
-
-   .. code-block:: bash
-
-      $JAVA_HOME/bin/java -version
 
 VMware
 ^^^^^^
