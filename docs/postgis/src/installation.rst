@@ -4,7 +4,7 @@ PostGIS Installation
 This chapter details the steps required to install PostGIS.
 
 Short Version
-=============
+------------------
 
 To compile assuming you have all the dependencies in your search path:
 
@@ -60,7 +60,7 @@ The rest of this chapter goes into detail each of the above installation
 steps.
 
 Install Requirements
-====================
+------------------------
 
 PostGIS has the following requirements for building and usage:
 
@@ -153,7 +153,7 @@ PostGIS has the following requirements for building and usage:
    http://www.imagemagick.org/ .
 
 Getting the Source
-==================
+--------------------
 
 Retrieve the PostGIS source archive from the downloads website
 `POSTGIS\_DOWNLOAD\_URL <&postgis_download_url;>`__
@@ -177,8 +177,10 @@ http://svn.osgeo.org/postgis/trunk/ .
 Change into the newly created ``postgis-LAST_RELEASE_VERSION`` directory
 to continue the installation.
 
+
+
 Compiling and Install from Source: Detailed
-===========================================
+----------------------------------------------
 
     **Note**
 
@@ -234,7 +236,7 @@ PostGIS source. They are written for Linux users and will not work on
 Windows or Mac.
 
 Configuration
--------------
+~~~~~~~~~~~~~~~
 
 As with most linux installations, the first step is to generate the
 Makefile that will be used to build the source code. This is done by
@@ -350,7 +352,7 @@ complete list, use the ``--help`` or ``--help=short`` parameters.
     generated.
 
 Building
---------
+~~~~~~~~~~
 
 Once the Makefile has been generated, building PostGIS is as simple as
 running
@@ -382,8 +384,9 @@ Guides <http://www.postgis.us/study_guides>`__
 
 ``make cheatsheets``
 
+
 Building PostGIS Extensions and Deploying them
-----------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The PostGIS extensions are built and installed automatically if you are
 using PostgreSQL 9.1+.
@@ -408,14 +411,14 @@ on a different server.
     cd extensions
     cd postgis
     make clean
-    make 
+    make
     make install
     cd ..
     cd postgis_topology
     make clean
-    make 
+    make
     make install
-          
+
 
 The extension files will always be the same for the same version of
 PostGIS regardless of OS, so it is fine to copy over the extension files
@@ -445,12 +448,12 @@ by running this query:
 
 ::
 
-    SELECT name, default_version,installed_version 
+    SELECT name, default_version,installed_version
     FROM pg_available_extensions WHERE name LIKE 'postgis%' ;
           name       | default_version | installed_version
     -----------------+-----------------+-------------------
     postgis          | LAST_RELEASE_VERSION     | LAST_RELEASE_VERSION
-    postgis_topology | LAST_RELEASE_VERSION      | 
+    postgis_topology | LAST_RELEASE_VERSION      |
 
 If you have the extension installed in the database you are querying,
 you'll see mention in the ``installed_version`` column. If you get no
@@ -475,7 +478,7 @@ what schema they are installed.
 ::
 
     \connect mygisdb
-    \x 
+    \x
     \dx postgis*
 
 ::
@@ -533,7 +536,7 @@ respective extension.
     CREATE EXTENSION postgis_tiger_geocoder FROM unpackaged;
 
 Testing
--------
+~~~~~~~~~
 
 If you wish to test the PostGIS build, run
 
@@ -744,8 +747,8 @@ following:
                    tests       198     198     198       0
                    asserts    1728    1728    1728       0
 
-    Creating database 'postgis_reg' 
-    Loading PostGIS into 'postgis_reg' 
+    Creating database 'postgis_reg'
+    Loading PostGIS into 'postgis_reg'
     PostgreSQL 9.3beta1 on x86_64-unknown-linux-gnu, compiled by gcc (Debian 4.4.5-8) 4.4.5, 64-bit
       Postgis 2.1.0SVN - r11415 - 2013-05-11 02:48:21
       GEOS: 3.4.0dev-CAPI-1.8.0 r3797
@@ -753,101 +756,101 @@ following:
 
     Running tests
 
-     loader/Point .............. ok 
-     loader/PointM .............. ok 
-     loader/PointZ .............. ok 
-     loader/MultiPoint .............. ok 
-     loader/MultiPointM .............. ok 
-     loader/MultiPointZ .............. ok 
-     loader/Arc .............. ok 
-     loader/ArcM .............. ok 
-     loader/ArcZ .............. ok 
-     loader/Polygon .............. ok 
-     loader/PolygonM .............. ok 
-     loader/PolygonZ .............. ok 
-     loader/TSTPolygon ......... ok 
-     loader/TSIPolygon ......... ok 
-     loader/TSTIPolygon ......... ok 
-     loader/PointWithSchema ..... ok 
-     loader/NoTransPoint ......... ok 
-     loader/NotReallyMultiPoint ......... ok 
-     loader/MultiToSinglePoint ......... ok 
-     loader/ReprojectPts ........ ok 
-     loader/ReprojectPtsGeog ........ ok 
-     loader/Latin1 .... ok 
-     binary .. ok 
-     regress .. ok 
-     regress_index .. ok 
-     regress_index_nulls .. ok 
-     regress_selectivity .. ok 
-     lwgeom_regress .. ok 
-     regress_lrs .. ok 
-     removepoint .. ok 
-     setpoint .. ok 
-     simplify .. ok 
-     snaptogrid .. ok 
-     summary .. ok 
-     affine .. ok 
-     empty .. ok 
-     measures .. ok 
-     legacy .. ok 
-     long_xact .. ok 
-     ctors .. ok 
-     sql-mm-serialize .. ok 
-     sql-mm-circularstring .. ok 
-     sql-mm-compoundcurve .. ok 
-     sql-mm-curvepoly .. ok 
-     sql-mm-general .. ok 
-     sql-mm-multicurve .. ok 
-     sql-mm-multisurface .. ok 
-     polyhedralsurface .. ok 
-     polygonize .. ok 
-     postgis_type_name .. ok 
-     geography .. ok 
-     out_geometry .. ok 
-     out_geography .. ok 
-     in_geohash .. ok 
-     in_gml .. ok 
-     in_kml .. ok 
-     iscollection .. ok 
-     regress_ogc .. ok 
-     regress_ogc_cover .. ok 
-     regress_ogc_prep .. ok 
-     regress_bdpoly .. ok 
-     regress_proj .. ok 
-     regress_management .. ok 
-     dump .. ok 
-     dumppoints .. ok 
-     boundary .. ok 
-     wmsservers .. ok 
-     wkt .. ok 
-     wkb .. ok 
-     tickets .. ok 
-     typmod .. ok 
-     remove_repeated_points .. ok 
-     split .. ok 
-     relate .. ok 
-     bestsrid .. ok 
-     concave_hull .. ok 
-     hausdorff .. ok 
-     regress_buffer_params .. ok 
-     offsetcurve .. ok 
-     relatematch .. ok 
-     isvaliddetail .. ok 
-     sharedpaths .. ok 
-     snap .. ok 
-     node .. ok 
-     unaryunion .. ok 
-     clean .. ok 
-     relate_bnr .. ok 
-     delaunaytriangles .. ok 
-     in_geojson .. ok 
+     loader/Point .............. ok
+     loader/PointM .............. ok
+     loader/PointZ .............. ok
+     loader/MultiPoint .............. ok
+     loader/MultiPointM .............. ok
+     loader/MultiPointZ .............. ok
+     loader/Arc .............. ok
+     loader/ArcM .............. ok
+     loader/ArcZ .............. ok
+     loader/Polygon .............. ok
+     loader/PolygonM .............. ok
+     loader/PolygonZ .............. ok
+     loader/TSTPolygon ......... ok
+     loader/TSIPolygon ......... ok
+     loader/TSTIPolygon ......... ok
+     loader/PointWithSchema ..... ok
+     loader/NoTransPoint ......... ok
+     loader/NotReallyMultiPoint ......... ok
+     loader/MultiToSinglePoint ......... ok
+     loader/ReprojectPts ........ ok
+     loader/ReprojectPtsGeog ........ ok
+     loader/Latin1 .... ok
+     binary .. ok
+     regress .. ok
+     regress_index .. ok
+     regress_index_nulls .. ok
+     regress_selectivity .. ok
+     lwgeom_regress .. ok
+     regress_lrs .. ok
+     removepoint .. ok
+     setpoint .. ok
+     simplify .. ok
+     snaptogrid .. ok
+     summary .. ok
+     affine .. ok
+     empty .. ok
+     measures .. ok
+     legacy .. ok
+     long_xact .. ok
+     ctors .. ok
+     sql-mm-serialize .. ok
+     sql-mm-circularstring .. ok
+     sql-mm-compoundcurve .. ok
+     sql-mm-curvepoly .. ok
+     sql-mm-general .. ok
+     sql-mm-multicurve .. ok
+     sql-mm-multisurface .. ok
+     polyhedralsurface .. ok
+     polygonize .. ok
+     postgis_type_name .. ok
+     geography .. ok
+     out_geometry .. ok
+     out_geography .. ok
+     in_geohash .. ok
+     in_gml .. ok
+     in_kml .. ok
+     iscollection .. ok
+     regress_ogc .. ok
+     regress_ogc_cover .. ok
+     regress_ogc_prep .. ok
+     regress_bdpoly .. ok
+     regress_proj .. ok
+     regress_management .. ok
+     dump .. ok
+     dumppoints .. ok
+     boundary .. ok
+     wmsservers .. ok
+     wkt .. ok
+     wkb .. ok
+     tickets .. ok
+     typmod .. ok
+     remove_repeated_points .. ok
+     split .. ok
+     relate .. ok
+     bestsrid .. ok
+     concave_hull .. ok
+     hausdorff .. ok
+     regress_buffer_params .. ok
+     offsetcurve .. ok
+     relatematch .. ok
+     isvaliddetail .. ok
+     sharedpaths .. ok
+     snap .. ok
+     node .. ok
+     unaryunion .. ok
+     clean .. ok
+     relate_bnr .. ok
+     delaunaytriangles .. ok
+     in_geojson .. ok
      uninstall .. ok (4112)
 
     Run tests: 90
 
 Installation
-------------
+~~~~~~~~~~~~~
 
 To install PostGIS, type
 
@@ -877,8 +880,10 @@ file by running
     installation targets since with it comes the extra dependency of
     ``xsltproc``.
 
+
+
 Create a spatially-enabled database on PostgreSQL lower than 9.1
-================================================================
+-------------------------------------------------------------------
 
 The first step in creating a PostGIS database is to create a simple
 PostgreSQL database.
@@ -950,8 +955,10 @@ run:
 You can later run ``uninstall_legacy.sql`` to get rid of the deprecated
 functions after you are done with restoring and cleanup.
 
+
+
 Creating a spatial database using EXTENSIONS
-============================================
+------------------------------------------------
 
 If you are using PostgreSQL 9.1+ and have compiled and installed the
 extensions/ postgis modules, you can create a spatial database the new
@@ -983,8 +990,10 @@ run:
 You can later run ``uninstall_legacy.sql`` to get rid of the deprecated
 functions after you are done with restoring and cleanup.
 
+
+
 Installing, Upgrading Tiger Geocoder and loading data
-=====================================================
+------------------------------------------------------
 
 Extras like Tiger geocoder may not be packaged in your PostGIS
 distribution, but will always be available in the
@@ -996,7 +1005,7 @@ If you are on Windows and you don't have tar installed, you can use
 http://www.7-zip.org/ to unzip the PostGIS tarball.
 
 Tiger Geocoder Enabling your PostGIS database: Using Extension
---------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you are using PostgreSQL 9.1+ and PostGIS 2.1.0+, you can take
 advantage of the new extension model for installing tiger geocoder. To
@@ -1014,7 +1023,7 @@ do so:
 
    ::
 
-       CREATE EXTENSION postgis;     
+       CREATE EXTENSION postgis;
        CREATE EXTENSION fuzzystrmatch;
        CREATE EXTENSION postgis_tiger_geocoder;
 
@@ -1042,9 +1051,9 @@ do so:
 
    ::
 
-       INSERT INTO tiger.loader_platform(os, declare_sect, pgbin, wget, unzip_command, psql, path_sep, 
+       INSERT INTO tiger.loader_platform(os, declare_sect, pgbin, wget, unzip_command, psql, path_sep,
                   loader, environ_set_command, county_process_command)
-       SELECT 'debbie', declare_sect, pgbin, wget, unzip_command, psql, path_sep, 
+       SELECT 'debbie', declare_sect, pgbin, wget, unzip_command, psql, path_sep,
               loader, environ_set_command, county_process_command
          FROM tiger.loader_platform
          WHERE os = 'sh';
@@ -1065,7 +1074,7 @@ do so:
        SELECT Loader_Generate_Nation_Script('debbie');
 
 Converting a Tiger Geocoder Regular Install to Extension Model
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you installed the tiger geocoder without using the extension model,
 you can convert to the extension model as follows:
@@ -1080,7 +1089,7 @@ you can convert to the extension model as follows:
        CREATE EXTENSION postgis_tiger_geocoder FROM unpackaged;
 
 Using PAGC address standardizer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 One of the many complaints of folks is the address normalizer function ?
 function that normalizes an address for prepping before geocoding. The
@@ -1123,7 +1132,7 @@ Compiling
     cd address_standardizer
     make
     #if you have in non-standard location pcre try
-    # make SHLIB_LINK="-L/path/pcre/lib -lpostgres -lpgport -lpcre" CPPFLAGS="-I.  -I/path/pcre/include" 
+    # make SHLIB_LINK="-L/path/pcre/lib -lpostgres -lpgport -lpcre" CPPFLAGS="-I.  -I/path/pcre/include"
     make install
 
 Once you have installed, you can connect to your database and run the
@@ -1139,7 +1148,7 @@ installed ``postgis_tiger_geocoder``, then the ? can be used instead of
 so can be used with other data sources such as international addresses.
 
 Tiger Geocoder Enabling your PostGIS database: Not Using Extensions
--------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 First install PostGIS using the prior instructions.
 
@@ -1181,10 +1190,10 @@ like this:
     pretty_address
     ---------------------------------------
     202 E Fremont St, Las Vegas, NV 89101
-                
+
 
 Loading Tiger Data
-------------------
+~~~~~~~~~~~~~~~~~~~
 
 The instructions for loading data are available in a more detailed form
 in the ``extras/tiger_geocoder/tiger_2011/README``. This just includes
@@ -1240,7 +1249,7 @@ To test that things are working as they should, try to run a geocode on
 an address in your state using ?
 
 Upgrading your Tiger Geocoder Install
--------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you have Tiger Geocoder packaged with 2.0+ already installed, you can
 upgrade the functions at any time even from an interim tar ball if there
@@ -1279,7 +1288,7 @@ Generate a nation load script with this SELECT statement as detailed in
 
 ::
 
-    SELECT loader_generate_nation_script('windows'); 
+    SELECT loader_generate_nation_script('windows');
 
 **For unix/linux**
 
@@ -1297,7 +1306,7 @@ needs to be done once.
     to drop the 2010 tables for that state using ?.
 
 Create a spatially-enabled database from a template
-===================================================
+------------------------------------------------------
 
 Some packaged distributions of PostGIS (in particular the Win32
 installers for PostGIS >= 1.1.5) load the PostGIS functions into a
@@ -1321,7 +1330,7 @@ From SQL:
     postgres=# CREATE DATABASE my_spatial_db TEMPLATE=template_postgis
 
 Upgrading
-=========
+------------------
 
 Upgrading existing spatial databases can be tricky as it requires
 replacement or introduction of new PostGIS object definitions.
@@ -1337,7 +1346,7 @@ data. If you use the -Fc flag to pg\_dump you will always be able to
 restore the dump with a HARD UPGRADE.
 
 Soft upgrade
-------------
+~~~~~~~~~~~~~~
 
 If you installed your database using extensions, you'll need to upgrade
 using the extension model as well. If you installed using the old sql
@@ -1345,7 +1354,7 @@ script way, then you should upgrade using the sql script way. Please
 refer to the appropriate.
 
 Soft Upgrade Pre 9.1+ or without extensions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section applies only to those who installed PostGIS not using
 extensions. If you have extensions and try to upgrade with this approach
@@ -1387,7 +1396,7 @@ The ? function should inform you about the need to run this kind of
 upgrade using a "procs need upgrade" message.
 
 Soft Upgrade 9.1+ using extensions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you originally installed PostGIS with extensions, then you need to
 upgrade using extensions as well. Doing a minor upgrade with extensions,
@@ -1432,7 +1441,7 @@ Then everything is already up to date and you can safely ignore it.
     thus picks up the newest latest version during restore.
 
 Hard upgrade
-------------
+~~~~~~~~~~~~~
 
 By HARD UPGRADE we mean full dump/reload of postgis-enabled databases.
 You need a HARD UPGRADE when PostGIS objects' internal storage changes
@@ -1522,7 +1531,7 @@ Errors may arise in the following cases:
        ALTER TABLE spatial_ref_sys ADD PRIMARY KEY(srid));
 
 Common Problems during installation
-===================================
+------------------------------------
 
 There are several things to check when your installation or upgrade
 doesn't go as you expected.
@@ -1562,7 +1571,7 @@ version of PostgreSQL, the Proj4 library and the GEOS library.
    been set correctly.
 
 JDBC
-====
+------
 
 The JDBC extensions provide Java objects corresponding to the internal
 PostGIS types. These objects can be used to write Java clients which
@@ -1587,7 +1596,7 @@ PostgreSQL JDBC drivers can be downloaded from
 http://jdbc.postgresql.org .
 
 Loader/Dumper
-=============
+------------------
 
 The data loader and dumper are built and installed automatically as part
 of the PostGIS build. To build and install them manually:
@@ -1605,5 +1614,5 @@ files. For more verbose documentation, see the online help, and the
 manual pages.
 
  .. toctree::
-    
+
     template
