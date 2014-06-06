@@ -10,7 +10,7 @@ This script is available to Enterprise clients only. Please `contact us <http://
 Prerequisites
 -------------
 
-* Ubuntu or Red Hat-based Linux
+* Machine running the script must use Ubuntu, Red Hat-based Linux or Mac OS X
 * Python 2.7 or higher
 * Ansible 1.6.2 or higher (installed via `pip <https://pypi.python.org/pypi/pip>`_)
 * Java JDK 7 or higher (not a JRE)
@@ -25,6 +25,12 @@ Setup
 Packages
 ^^^^^^^^
 
+#. (Mac OS X only) Install pip 
+
+   .. code-block:: bash
+      
+      sudo easy_install pip
+
 #. Ansible must be installed via ``pip``. If you have Ansible installed through your standard package manager, run :command:`apt-get remove --purge ansible` first before running :command:`pip install ansible`.
 
 #. Install the ``python-dev`` package through your package manager. For example, on Ubuntu:
@@ -38,6 +44,7 @@ Packages
    .. code-block:: bash
 
       pip install boto
+
 
 Java
 ^^^^

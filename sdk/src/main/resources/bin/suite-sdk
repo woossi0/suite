@@ -216,12 +216,14 @@ CREATE_FAILURE="
 The '$NAME create' command failed.
 
 A common cause of this is the failure to create the provided directory:
-'$APP_PATH' or that the <app-template> option specified has an invalid value
-(should be one of: gxp, ol3view or ol3edit).
+'$APP_PATH'. Please ensure that the directory name is valid and that you
+have permission to create this directory.
 
-Please ensure that the directory name is valid and that you have permission
-to create this directory.  Please run '$NAME create --help' for help on the 
-usage."
+Another common cause is that the <app-template> value is invalid
+(should be one of: gxp, ol3view or ol3edit). Option specified was: 
+'$APP_TEMPLATE'
+
+Please run '$NAME create --help' for help on the usage."
 
 DEBUG_START="
 Starting debug server for application (use CTRL+C to stop)"

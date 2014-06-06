@@ -1,7 +1,7 @@
 How to set up an OpenGeo Suite cluster on VMware
 ================================================
 
-This page will show how to automatically set up and configure a cluster of servers on `VMware <http://vmware.com>`_.
+This page will show how to automatically set up and configure a cluster of servers on `VMware <http://vmware.com>`_ or other hosted environments.
 
 This script is available to Enterprise clients only. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ to become an Enterprise client.
 
@@ -10,10 +10,9 @@ This script is available to Enterprise clients only. Please `contact us <http://
 Prerequisites
 -------------
 
-* Ubuntu or Red Hat-based Linux
+* Machine running the script must use Ubuntu, Red Hat-based Linux or Mac OS X
 * Python 2.7 or higher
 * Ansible 1.6.2 or higher (installed via `pip <https://pypi.python.org/pypi/pip>`_)
-* Java JDK 7 or higher (not a JRE)
 * Super user access
 * VMWare
 
@@ -29,6 +28,12 @@ Setup
 Packages
 ^^^^^^^^
 
+#. (Mac OS X only) Install pip 
+
+   .. code-block:: bash
+      
+      sudo easy_install pip
+
 #. Ansible must be installed via ``pip``. If you have Ansible installed through your standard package manager, run :command:`apt-get remove --purge ansible` first before running :command:`pip install ansible`.
 
 #. Install the ``python-dev`` package through your package manager. For example, on Ubuntu:
@@ -43,22 +48,6 @@ Packages
 
       pip install boto
 
-Java
-^^^^
-
-#. Set the ``$JAVA_HOME`` variable to the location of Java. For example:
-
-   .. code-block:: bash
-
-      export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386/jre
-
-   .. note:: The command :command:`which java` may not give the true path. For more information on how to find the real location of Java, see the `Amazon EC2 documentation <http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html#java_runtime_linux>`_.
-
-#. To verify, type the following command:
-
-   .. code-block:: bash
-
-      $JAVA_HOME/bin/java -version
 
 VMware
 ^^^^^^
@@ -106,7 +95,10 @@ With setup complete, you can now launch the cluster.
 
    .. code-block:: bash
 
-      ansible-playbook ansible-playbook hosted-launch.yml -i hosts
+      ansible-playbook ansible-playbook hosted-launch.yml -i hosts.hosted
+   
+   If you want to change the username that the script logs in as, add '--user=<username>' to the command line
+   If you want to prompt for a password to login as that user, add '-k'
 
 #. Details on the cluster created will be available in the log file :file:`/tmp/informationoutput`.
 
