@@ -1,34 +1,39 @@
-How to set up an OpenGeo Suite cluster on VMware
-================================================
+.. _sysadmin.clustering.autovm:
 
-This page will show how to automatically set up and configure a cluster of servers on `VMware <http://vmware.com>`_ or other hosted environments.
+How to set up an OpenGeo Suite cluster in a virtual environment
+===============================================================
+
+This page will show how to automatically set up and configure a cluster of servers on `VMware <http://vmware.com>`_ or other virtual environment.
 
 This script is available to Enterprise clients only. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ to become an Enterprise client.
-
-.. todo:: Say more about what the scripts will do.
 
 Prerequisites
 -------------
 
 * Machine running the script must use Ubuntu, Red Hat-based Linux or Mac OS X
-* Python 2.7 or higher
+* Python 2.7 or higher (not guaranteed on Python 3)
 * Ansible 1.6.2 or higher (installed via `pip <https://pypi.python.org/pypi/pip>`_)
 * Super user access
-* VMWare
-
-.. todo:: Python 3? Check these
-
-.. todo:: What version of VMware?
+* VMWare or other virtual environment
 
 Setup
 -----
 
-.. todo:: VMware setup?
+Virtual environment
+^^^^^^^^^^^^^^^^^^^
+
+#. Set up five instances of Ubuntu 12.04 in VMware or other virtual environment. These will be configured by the script as:
+
+   * 2 GeoServers
+   * 2 Fileshares (PostgreSQL servers)
+   * 1 NFS backend
+
+#. Make note of the IP addresses for each of these servers as they will be needed later.
 
 Packages
 ^^^^^^^^
 
-#. (Mac OS X only) Install pip 
+#. *Mac OS X only:* Install ``pip``: 
 
    .. code-block:: bash
       
@@ -48,23 +53,12 @@ Packages
 
       pip install boto
 
-
-VMware
-^^^^^^
-
-#. Set up five instances of Ubuntu 12.04 in VMware. These will be configured by the script as:
-
-   * 2 GeoServers
-   * 2 Fileshares
-   * 1 RDS backend
-
-
 Clustering script
 ^^^^^^^^^^^^^^^^^
 
 #. Download and extract the clustering script archive to a directory.
 
-   .. note:: If you are an Enterprise client and do not have the script, please `send us a note and let us know <http://boundlessgeo.com/about/contact-us/>`_.
+   .. note:: If you are an Enterprise client and do not have the script, please `let us know <http://boundlessgeo.com/about/contact-us/>`_.
 
 #. Open the file :file:`hosted_vars/main.yml` in a text editor.
 
@@ -78,11 +72,20 @@ Clustering script
 
 #. Save and close the file.
 
-#. Open the file :file:`hosts` in a text editor.
+#. Open the file :file:`hosts.hosted` in a text editor.
 
-#. Enter in the same IP addresses here as well.
+#. Enter the same IP addresses here as well under their respective headers, with the exception of the NFS server, which is not needed in this file::
 
-   .. todo:: Need more details.
+     [local]
+     127.0.0.1
+
+     [geoservers]
+     10.63.25.156
+     10.95.184.118
+
+     [postgresservers]
+     10.146.172.94
+     10.171.41.240
 
 #. Save and close the file.
 
@@ -97,10 +100,9 @@ With setup complete, you can now launch the cluster.
 
       ansible-playbook ansible-playbook hosted-launch.yml -i hosts.hosted
    
-   If you want to change the username that the script logs in as, add '--user=<username>' to the command line
-   If you want to prompt for a password to login as that user, add '-k'
+   If you want to change the username that the script uses to log in, add ``--user=<username>`` to the command line. If you want to prompt for a password to login as that user, add ``-k``.
 
-#. Details on the cluster created will be available in the log file :file:`/tmp/informationoutput`.
+#. Details on the cluster will be available in the log file :file:`/tmp/informationoutput`.
 
 Troubleshooting
 ---------------
@@ -110,4 +112,4 @@ If you encounter errors while running the script, you can run the script in "deb
 Shutting down the cluster
 -------------------------
 
-For security reasons, there is no script to shut down a cluster. Instead, you can shut down your VMware instances manually.
+For security reasons, there is no script to shut down a cluster. Instead, you can shut down your instances manually.
