@@ -127,7 +127,7 @@ The following are other setup tasks that don't fall under any specific category.
 
       export ANSIBLE_HOST_KEY_CHECKING=False
 
-#. Open :file:`/etc/ssh/ssh_config` in a text editor.
+#. Open :file:`$HOME/ssh_config` in a text editor.
 
 #. Add the following line to the bottom of the file::
 
@@ -168,7 +168,22 @@ With setup complete, you can now launch the cluster.
       ansible-playbook aws-launch.yml -i hosts -e "use_aws=true" --private-key=key.pem
 
    substituting the name and path of the key file as downloaded in a previous step for :file:`key.pem`.
+   
 
+#. When you reach the pause to setup your ssh config, add the following to the :file:`$HOME/.ssh/config`
+
+  .. code-block:: bash
+   
+     
+     Host 10.1.2?.*
+        IdentityFile LOCATIONOFPEMFILE.pem
+        User ubuntu
+        Port 22
+        ProxyCommand ssh -o "ControlMaster no" -p 22 -i LOCATIONOFPEMFILE.pem ec2-user@IPOFNATINSTANCE -W %h:%p
+ 
+  subsituting the LOCATATIONOFPEM with the location of your key.pem file and IPOFNATINSTANCE with the ip given by the script.
+  
+   
 #. Details on the cluster created, including AWS-specific information, will be available in the log file :file:`/tmp/informationoutput`.
 
 Troubleshooting
