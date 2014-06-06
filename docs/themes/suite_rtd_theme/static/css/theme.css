@@ -2200,7 +2200,7 @@ a .fa, a .rst-content .admonition-title, .rst-content a .admonition-title, a .rs
   min-width: 20%;
   opacity: 0;
   height: 0;
-  line-height: 60px;
+  line-height: 56px;
   overflow: hidden;
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
@@ -2220,7 +2220,7 @@ a .fa, a .rst-content .admonition-title, .rst-content a .admonition-title, a .rs
 }
 .wy-tray-container li.on {
   opacity: 1;
-  height: 60px;
+  height: 56px;
 }
 
 @media screen and (max-width: 768px) {
@@ -3265,6 +3265,9 @@ code.code-large, .rst-content tt.code-large {
   list-style: disc;
   margin-left: 24px;
 }
+.wy-plain-list-disc li p:last-child, .rst-content .section ul li p:last-child, .rst-content .toctree-wrapper ul li p:last-child, article ul li p:last-child {
+  margin-bottom: 0;
+}
 .wy-plain-list-disc li ul, .rst-content .section ul li ul, .rst-content .toctree-wrapper ul li ul, article ul li ul {
   margin-bottom: 0;
 }
@@ -3286,6 +3289,9 @@ code.code-large, .rst-content tt.code-large {
 .wy-plain-list-decimal li, .rst-content .section ol li, .rst-content ol.arabic li, article ol li {
   list-style: decimal;
   margin-left: 24px;
+}
+.wy-plain-list-decimal li p:last-child, .rst-content .section ol li p:last-child, .rst-content ol.arabic li p:last-child, article ol li p:last-child {
+  margin-bottom: 0;
 }
 .wy-plain-list-decimal li ul, .rst-content .section ol li ul, .rst-content ol.arabic li ul, article ol li ul {
   margin-bottom: 0;
@@ -4490,6 +4496,10 @@ div[class^='highlight'] pre {
   background-color: #00a78d !important;
 }
 
+.ol-header {
+  background-color: #00a78d !important;
+}
+
 #header {
   position: fixed;
   height: 70px;
@@ -4542,28 +4552,35 @@ div[class^='highlight'] pre {
 }
 #header .gs_logo a {
   background: url("../img/geoserver-logo.png") no-repeat;
-  width: 231px;
+  width: 235px;
   height: 40px;
   display: inline-block;
   margin: 1em 0 0;
 }
 #header .gwc_logo a {
-  background: url("../img/gwc-logo.png") no-repeat;
-  width: 284px;
+  background: url("../img/geowebcache-logo.png") no-repeat;
+  width: 308px;
   height: 40px;
   display: inline-block;
   margin: 1em 0 0;
 }
 #header .sdk_logo a {
   background: url("../img/boundlesssdk-logo.png") no-repeat;
-  width: 240px;
+  width: 322px;
   height: 40px;
   display: inline-block;
   margin: 1em 0 0;
 }
 #header .ge_logo a {
   background: url("../img/geoexplorer-logo.png") no-repeat;
-  width: 245px;
+  width: 272px;
+  height: 40px;
+  display: inline-block;
+  margin: 1em 0 0;
+}
+#header .ols_logo a {
+  background: url("../img/openlayers-logo.png") no-repeat;
+  width: 263px;
   height: 40px;
   display: inline-block;
   margin: 1em 0 0;
@@ -4621,7 +4638,7 @@ div[class^='highlight'] pre {
 }
 #ribbon .base {
   width: 100%;
-  z-index: -1;
+  z-index: 2;
   text-align: center;
   color: white;
   font-weight: bold;
@@ -4652,7 +4669,7 @@ div[class^='highlight'] pre {
   background: url("../img/opengeo-logo-only.png") no-repeat;
   height: 40px;
   width: 40px;
-  margin: 1.2em auto;
+  margin: 0.9em auto;
 }
 
 @media screen and (max-width: 768px) {
