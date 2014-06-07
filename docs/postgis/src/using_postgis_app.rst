@@ -2,7 +2,7 @@ Using PostGIS Geometry: Building Applications
 =============================================
 
 Using MapServer
-===============
+----------------
 
 The Minnesota MapServer is an internet web-mapping server which conforms
 to the OpenGIS Web Mapping Server specification.
@@ -13,7 +13,7 @@ to the OpenGIS Web Mapping Server specification.
    http://www.opengeospatial.org/standards/wms.
 
 Basic Usage
------------
+~~~~~~~~~~~~
 
 To use PostGIS with MapServer, you will need to know about how to
 configure MapServer, which is beyond the scope of this documentation.
@@ -39,33 +39,33 @@ the systems, the better.
 
    ::
 
-       LAYER 
-         CONNECTIONTYPE postgis 
-         NAME "widehighways" 
+       LAYER
+         CONNECTIONTYPE postgis
+         NAME "widehighways"
          # Connect to a remote spatial database
          CONNECTION "user=dbuser dbname=gisdatabase host=bigserver"
          PROCESSING "CLOSE_CONNECTION=DEFER"
-         # Get the lines from the 'geom' column of the 'roads' table 
-         DATA "geom from roads using srid=4326 using unique gid" 
+         # Get the lines from the 'geom' column of the 'roads' table
+         DATA "geom from roads using srid=4326 using unique gid"
          STATUS ON
-         TYPE LINE 
-         # Of the lines in the extents, only render the wide highways 
-         FILTER "type = 'highway' and numlanes >= 4" 
-         CLASS 
+         TYPE LINE
+         # Of the lines in the extents, only render the wide highways
+         FILTER "type = 'highway' and numlanes >= 4"
+         CLASS
            # Make the superhighways brighter and 2 pixels wide
-           EXPRESSION ([numlanes] >= 6) 
+           EXPRESSION ([numlanes] >= 6)
            STYLE
-             COLOR 255 22 22 
-             WIDTH 2 
+             COLOR 255 22 22
+             WIDTH 2
            END
-         END 
-         CLASS 
-           # All the rest are darker and only 1 pixel wide 
-           EXPRESSION ([numlanes] < 6) 
+         END
+         CLASS
+           # All the rest are darker and only 1 pixel wide
+           EXPRESSION ([numlanes] < 6)
            STYLE
              COLOR 205 92 82
            END
-         END 
+         END
        END
 
    In the example above, the PostGIS-specific directives are as follows:
@@ -125,8 +125,9 @@ the systems, the better.
    value you specify in order to provide these unique identifiers. Using
    the table primary key is the best practice.
 
+
 Frequently Asked Questions
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Q:** When I use an ``EXPRESSION`` in my map file, the condition never
 returns as true, even though I know the values exist in my table.
@@ -163,7 +164,7 @@ that you have not built a spatial index on your table.
 
 ::
 
-    postgis# CREATE INDEX geotable_gix ON geotable USING GIST ( geocolumn ); 
+    postgis# CREATE INDEX geotable_gix ON geotable USING GIST ( geocolumn );
     postgis# VACUUM ANALYZE;
 
 **Q:** My PostGIS layer draws fine, but queries are really slow. What is
@@ -191,8 +192,9 @@ Everything else works exactly the same as with geometry.
 
     DATA "geog FROM geogtable USING SRID=4326 USING UNIQUE gid"
 
+
 Advanced Usage
---------------
+~~~~~~~~~~~~~~~~
 
 The ``USING`` pseudo-SQL clause is used to add some information to help
 mapserver understand the results of more complex queries. More
@@ -206,12 +208,12 @@ follows:
 ::
 
     DATA "geom FROM (
-      SELECT 
-        table1.geom AS geom, 
-        table1.gid AS gid, 
-        table2.data AS data 
-      FROM table1 
-      LEFT JOIN table2 
+      SELECT
+        table1.geom AS geom,
+        table1.gid AS gid,
+        table2.data AS data
+      FROM table1
+      LEFT JOIN table2
       ON table1.id = table2.id
     ) AS new_table USING UNIQUE gid USING SRID=4326"
 
@@ -242,26 +244,27 @@ USING SRID=<srid>
     subselects and views. So the ``USING SRID=`` option allows the
     correct SRID to be specified in the ``DATA`` definition.
 
+
 Examples
---------
+~~~~~~~~~~~
 
 Lets start with a simple example and work our way up. Consider the
 following MapServer layer definition:
 
 ::
 
-    LAYER 
-      CONNECTIONTYPE postgis 
+    LAYER
+      CONNECTIONTYPE postgis
       NAME "roads"
-      CONNECTION "user=theuser password=thepass dbname=thedb host=theserver" 
-      DATA "geom from roads" 
-      STATUS ON 
-      TYPE LINE 
-      CLASS 
+      CONNECTION "user=theuser password=thepass dbname=thedb host=theserver"
+      DATA "geom from roads"
+      STATUS ON
+      TYPE LINE
+      CLASS
         STYLE
-          COLOR 0 0 0 
+          COLOR 0 0 0
         END
-      END 
+      END
     END
 
 This layer will display all the road geometries in the roads table as
@@ -273,40 +276,40 @@ effect:
 
 ::
 
-    LAYER 
-      CONNECTIONTYPE postgis 
-      CONNECTION "user=theuser password=thepass dbname=thedb host=theserver" 
-      PROCESSING "CLOSE_CONNECTION=DEFER"
-      DATA "geom from roads"
-      MINSCALE 100000 
-      STATUS ON 
-      TYPE LINE 
-      FILTER "road_type = 'highway'" 
-      CLASS 
-        COLOR 0 0 0 
-      END 
-    END 
-    LAYER 
-      CONNECTIONTYPE postgis 
+    LAYER
+      CONNECTIONTYPE postgis
       CONNECTION "user=theuser password=thepass dbname=thedb host=theserver"
       PROCESSING "CLOSE_CONNECTION=DEFER"
-      DATA "geom from roads" 
-      MAXSCALE 100000 
-      STATUS ON 
+      DATA "geom from roads"
+      MINSCALE 100000
+      STATUS ON
       TYPE LINE
-      CLASSITEM road_type 
-      CLASS 
-        EXPRESSION "highway" 
+      FILTER "road_type = 'highway'"
+      CLASS
+        COLOR 0 0 0
+      END
+    END
+    LAYER
+      CONNECTIONTYPE postgis
+      CONNECTION "user=theuser password=thepass dbname=thedb host=theserver"
+      PROCESSING "CLOSE_CONNECTION=DEFER"
+      DATA "geom from roads"
+      MAXSCALE 100000
+      STATUS ON
+      TYPE LINE
+      CLASSITEM road_type
+      CLASS
+        EXPRESSION "highway"
         STYLE
-          WIDTH 2 
-          COLOR 255 0 0  
+          WIDTH 2
+          COLOR 255 0 0
         END
-      END 
-      CLASS  
+      END
+      CLASS
         STYLE
-          COLOR 0 0 0 
+          COLOR 0 0 0
         END
-      END 
+      END
     END
 
 The first layer is used when the scale is greater than 1:100000, and
@@ -324,34 +327,35 @@ whatever reason) and we need to do a join to get it and label our roads.
 
 ::
 
-    LAYER 
+    LAYER
       CONNECTIONTYPE postgis
-      CONNECTION "user=theuser password=thepass dbname=thedb host=theserver" 
-      DATA "geom FROM (SELECT roads.gid AS gid, roads.geom AS geom, 
-            road_names.name as name FROM roads LEFT JOIN road_names ON 
-            roads.road_name_id = road_names.road_name_id) 
-            AS named_roads USING UNIQUE gid USING SRID=4326" 
-      MAXSCALE 20000 
-      STATUS ON 
-      TYPE ANNOTATION 
+      CONNECTION "user=theuser password=thepass dbname=thedb host=theserver"
+      DATA "geom FROM (SELECT roads.gid AS gid, roads.geom AS geom,
+            road_names.name as name FROM roads LEFT JOIN road_names ON
+            roads.road_name_id = road_names.road_name_id)
+            AS named_roads USING UNIQUE gid USING SRID=4326"
+      MAXSCALE 20000
+      STATUS ON
+      TYPE ANNOTATION
       LABELITEM name
-      CLASS 
-        LABEL 
-          ANGLE auto 
-          SIZE 8 
-          COLOR 0 192 0 
-          TYPE truetype 
+      CLASS
+        LABEL
+          ANGLE auto
+          SIZE 8
+          COLOR 0 192 0
+          TYPE truetype
           FONT arial
         END
-      END 
+      END
     END
 
 This annotation layer adds green labels to all the roads when the scale
 gets down to 1:20000 or less. It also demonstrates how to use an SQL
 join in a ``DATA`` definition.
 
+
 Java Clients (JDBC)
-===================
+--------------------
 
 Java clients can access PostGIS "geometry" objects in the PostgreSQL
 database either directly as text representations or using the JDBC
@@ -361,53 +365,53 @@ objects, the "postgis.jar" file must be in your CLASSPATH along with the
 
 ::
 
-    import java.sql.*; 
-    import java.util.*; 
-    import java.lang.*; 
-    import org.postgis.*; 
+    import java.sql.*;
+    import java.util.*;
+    import java.lang.*;
+    import org.postgis.*;
 
-    public class JavaGIS { 
+    public class JavaGIS {
 
-    public static void main(String[] args) { 
+    public static void main(String[] args) {
 
-      java.sql.Connection conn; 
+      java.sql.Connection conn;
 
-      try { 
-        /* 
-        * Load the JDBC driver and establish a connection. 
+      try {
+        /*
+        * Load the JDBC driver and establish a connection.
         */
-        Class.forName("org.postgresql.Driver"); 
-        String url = "jdbc:postgresql://localhost:5432/database"; 
-        conn = DriverManager.getConnection(url, "postgres", ""); 
-        /* 
-        * Add the geometry types to the connection. Note that you 
-        * must cast the connection to the pgsql-specific connection 
-        * implementation before calling the addDataType() method. 
+        Class.forName("org.postgresql.Driver");
+        String url = "jdbc:postgresql://localhost:5432/database";
+        conn = DriverManager.getConnection(url, "postgres", "");
+        /*
+        * Add the geometry types to the connection. Note that you
+        * must cast the connection to the pgsql-specific connection
+        * implementation before calling the addDataType() method.
         */
         ((org.postgresql.PGConnection)conn).addDataType("geometry",Class.forName("org.postgis.PGgeometry"));
         ((org.postgresql.PGConnection)conn).addDataType("box3d",Class.forName("org.postgis.PGbox3d"));
-        /* 
-        * Create a statement and execute a select query. 
-        */ 
-        Statement s = conn.createStatement(); 
-        ResultSet r = s.executeQuery("select geom,id from geomtable"); 
-        while( r.next() ) { 
-          /* 
-          * Retrieve the geometry as an object then cast it to the geometry type. 
-          * Print things out. 
-          */ 
-          PGgeometry geom = (PGgeometry)r.getObject(1); 
-          int id = r.getInt(2); 
+        /*
+        * Create a statement and execute a select query.
+        */
+        Statement s = conn.createStatement();
+        ResultSet r = s.executeQuery("select geom,id from geomtable");
+        while( r.next() ) {
+          /*
+          * Retrieve the geometry as an object then cast it to the geometry type.
+          * Print things out.
+          */
+          PGgeometry geom = (PGgeometry)r.getObject(1);
+          int id = r.getInt(2);
           System.out.println("Row " + id + ":");
-          System.out.println(geom.toString()); 
-        } 
-        s.close(); 
-        conn.close(); 
-      } 
-    catch( Exception e ) { 
-      e.printStackTrace(); 
-      } 
-    } 
+          System.out.println(geom.toString());
+        }
+        s.close();
+        conn.close();
+      }
+    catch( Exception e ) {
+      e.printStackTrace();
+      }
+    }
     }
 
 The "PGgeometry" object is a wrapper object which contains a specific
@@ -417,34 +421,34 @@ MultiPoint, MultiLineString, MultiPolygon.
 
 ::
 
-    PGgeometry geom = (PGgeometry)r.getObject(1); 
-    if( geom.getType() == Geometry.POLYGON ) { 
-      Polygon pl = (Polygon)geom.getGeometry(); 
-      for( int r = 0; r < pl.numRings(); r++) { 
-        LinearRing rng = pl.getRing(r); 
-        System.out.println("Ring: " + r); 
-        for( int p = 0; p < rng.numPoints(); p++ ) { 
-          Point pt = rng.getPoint(p); 
+    PGgeometry geom = (PGgeometry)r.getObject(1);
+    if( geom.getType() == Geometry.POLYGON ) {
+      Polygon pl = (Polygon)geom.getGeometry();
+      for( int r = 0; r < pl.numRings(); r++) {
+        LinearRing rng = pl.getRing(r);
+        System.out.println("Ring: " + r);
+        for( int p = 0; p < rng.numPoints(); p++ ) {
+          Point pt = rng.getPoint(p);
           System.out.println("Point: " + p);
-          System.out.println(pt.toString()); 
-        } 
-      } 
+          System.out.println(pt.toString());
+        }
+      }
     }
 
 The JavaDoc for the extension objects provides a reference for the
 various data accessor functions in the geometric objects.
 
 C Clients (libpq)
-=================
+-------------------
 
 ...
 
 Text Cursors
-------------
+~~~~~~~~~~~~~~
 
 ...
 
 Binary Cursors
---------------
+~~~~~~~~~~~~~~~~~
 
 ...

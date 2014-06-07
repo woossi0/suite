@@ -2,18 +2,17 @@ Performance tips
 ================
 
 Small tables of large geometries
-================================
+---------------------------------
 
 Problem description
--------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Current PostgreSQL versions (including 8.0) suffer from a query
 optimizer weakness regarding TOAST tables. TOAST tables are a kind of
 "extension room" used to store large (in the sense of data size) values
 that do not fit into normal data pages (like long texts, images or
 complex geometries with lots of vertices), see `the PostgreSQL
-Documentation for
-TOAST <http://www.postgresql.org/docs/current/static/storage-toast.html>`__
+Documentation for TOAST <http://www.postgresql.org/docs/current/static/storage-toast.html>`_
 for more information).
 
 The problem appears if you happen to have a table with rather large
@@ -38,7 +37,7 @@ can read the thread on the postgres performance mailing list:
 http://archives.postgresql.org/pgsql-performance/2005-02/msg00030.php
 
 Workarounds
------------
+~~~~~~~~~~~~
 
 The PostgreSQL people are trying to solve this issue by making the query
 estimation TOAST-aware. For now, here are two workarounds:
@@ -58,7 +57,7 @@ example, the commands are like:
 
 ::
 
-    SELECT AddGeometryColumn('myschema','mytable','bbox','4326','GEOMETRY','2'); 
+    SELECT AddGeometryColumn('myschema','mytable','bbox','4326','GEOMETRY','2');
     UPDATE mytable SET bbox = ST_Envelope(ST_Force2D(the_geom));
 
 Now change your query to use the && operator against bbox instead of
@@ -66,8 +65,8 @@ geom\_column, like:
 
 ::
 
-    SELECT geom_column 
-    FROM mytable 
+    SELECT geom_column
+    FROM mytable
     WHERE bbox && ST_SetSRID('BOX3D(0 0,1 1)'::box3d,4326);
 
 Of course, if you change or add rows to mytable, you have to keep the
@@ -76,7 +75,7 @@ but you also can modify your application to keep the bbox column current
 or run the UPDATE query above after every modification.
 
 CLUSTERing on geometry indices
-==============================
+--------------------------------
 
 For tables that are mostly read-only, and where a single index is used
 for the majority of queries, PostgreSQL offers the CLUSTER command. This
@@ -94,7 +93,7 @@ error message like:
 
 ::
 
-    lwgeom=# CLUSTER my_geom_index ON my_table; 
+    lwgeom=# CLUSTER my_geom_index ON my_table;
     ERROR: cannot cluster when index access method does not handle null values
     HINT: You may be able to work around this by marking column "the_geom" NOT NULL.
 
@@ -103,7 +102,7 @@ adding a "not null" constraint to the table:
 
 ::
 
-    lwgeom=# ALTER TABLE my_table ALTER COLUMN the_geom SET not null; 
+    lwgeom=# ALTER TABLE my_table ALTER COLUMN the_geom SET not null;
     ALTER TABLE
 
 Of course, this will not work if you in fact need NULL values in your
@@ -112,7 +111,7 @@ constraint, using a CHECK constraint like "ALTER TABLE blubb ADD CHECK
 (geometry is not null);" will not work.
 
 Avoiding dimension conversion
-=============================
+-------------------------------
 
 Sometimes, you happen to have 3D or 4D data in your table, but always
 access it using OpenGIS compliant ST\_AsText() or ST\_AsBinary()
@@ -123,7 +122,7 @@ feasible to pre-drop those additional dimensions once and forever:
 
 ::
 
-    UPDATE mytable SET the_geom = ST_Force2D(the_geom); 
+    UPDATE mytable SET the_geom = ST_Force2D(the_geom);
     VACUUM FULL ANALYZE mytable;
 
 Note that if you added your geometry column using AddGeometryColumn()
@@ -141,7 +140,7 @@ dimension(the\_geom)>2" skips re-writing of geometries that already are
 in 2D.
 
 Tuning your configuration
-=========================
+--------------------------
 
 These tips are taken from Kevin Neufeld's presentation "Tips for the
 PostGIS Power User" at the FOSS4G 2007 conference. Depending on your use
@@ -153,7 +152,7 @@ For a more tips (and better formatting), the original presentation is at
 http://2007.foss4g.org/presentations/view.php?abstract_id=117.
 
 Startup
--------
+~~~~~~~~
 
 These settings are configured in postgresql.conf:
 
@@ -188,8 +187,9 @@ These settings are configured in postgresql.conf:
 
 -  Set to about 1/3 to 3/4 of available RAM
 
+
 Runtime
--------
+~~~~~~~~~
 
 `work\_mem <http://www.postgresql.org/docs/current/static/runtime-config-resource.html#GUC-WORK-MEM>`__
 (the memory used for sort operations and complex queries)
@@ -205,7 +205,7 @@ Runtime
    ::
 
                            SET work_mem TO 1200000;
-                       
+
 
 `maintenance\_work\_mem <http://www.postgresql.org/docs/current/static/runtime-config-resource.html#GUC-MAINTENANCE-WORK-MEM>`__
 (used for VACUUM, CREATE INDEX, etc.)
@@ -221,6 +221,6 @@ Runtime
    ::
 
                            SET maintainence_work_mem TO 1200000;
-                       
+
 
 

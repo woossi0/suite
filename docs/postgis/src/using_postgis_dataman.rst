@@ -2,7 +2,7 @@ Using PostGIS: Data Management and Queries
 ==========================================
 
 GIS Objects
-===========
+------------
 
 The GIS objects supported by PostGIS are all the vector types defined in
 the "Simple Features for SQL 1.2.1" standard defined by the OpenGIS
@@ -16,7 +16,7 @@ The OGC and ISO standards define 2D (x/y), 3D (x/y/z, x/y/m) and 4D
 polyhedra, and TINS.
 
 Well-Known Binary (WKB) and Well-Known Text (WKT) Representations
------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The OGC and ISO specifications define both text and binary
 representations for geometry objects, WKT and WKB. Both representations
@@ -64,8 +64,9 @@ spatial object would be:
     INSERT INTO geotable ( the_geom, the_name )
       VALUES ( ST_GeomFromText('POINT(-126.4 45.32)', 312), 'A Place');
 
+
 PostGIS EWKB, EWKT and Canonical Forms
---------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 OGC formats only support 2d geometries, and the associated SRID is
 \*never\* embedded in the input/output representations.
@@ -143,7 +144,7 @@ postgis 'geometry' type these are:
         ascii: HEXEWKB (EWKB in hex form)
     - Input
       - binary: EWKB
-        ascii: HEXEWKB|EWKT 
+        ascii: HEXEWKB|EWKT
 
 For example this statement reads EWKT and returns HEXEWKB in the process
 of canonical ascii input/output:
@@ -158,7 +159,7 @@ of canonical ascii input/output:
     (1 row)
 
 SQL-MM Part 3
--------------
+~~~~~~~~~~~~~~~~~
 
 The SQL Multimedia Applications Spatial specification extends the simple
 features for SQL spec by defining a number of circularly interpolated
@@ -232,7 +233,7 @@ some simple curved geometries are shown below:
     performed to a specified tolerance, currently 1E-8.
 
 PostGIS Geography Type
-======================
+-----------------------
 
 The geography type provides native support for spatial features
 represented on "geographic" coordinates (sometimes called "geodetic"
@@ -267,8 +268,9 @@ The new geography type uses the PostgreSQL 8.3+ typmod definition format
 so that a table with a geography field can be added in a single step.
 All the standard OGC formats except for curves are supported.
 
+
 Geography Basics
-----------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 The geography type only supports the simplest of simple features.
 Standard geometry type data will autocast to geography if it is of SRID
@@ -313,7 +315,7 @@ AddGeometryColumns() process to register the column in metadata.
 
 ::
 
-    CREATE TABLE global_points ( 
+    CREATE TABLE global_points (
         id SERIAL PRIMARY KEY,
         name VARCHAR(64),
         location GEOGRAPHY(POINT,4326)
@@ -399,8 +401,9 @@ flat map of the world. The nominal units of the result might be called
 difference between the points, so even calling them "degrees" is
 inaccurate.
 
+
 When to use Geography Data type over Geometry data type
--------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The new GEOGRAPHY type allows you to store data in longitude/latitude
 coordinates, but at a cost: there are fewer functions defined on
@@ -432,7 +435,7 @@ Geometry. For a brief listing and description of Geography functions,
 refer to ?
 
 Geography Advanced FAQ
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Q:** Do you calculate on the sphere or the spheroid?
 
@@ -480,8 +483,9 @@ parts of the object and so queries don't have to pull out the whole
 object every time. Just because you \*can\* store all of Europe in one
 polygon doesn't mean you \*should\*.
 
+
 Using OpenGIS Standards
-=======================
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The OpenGIS "Simple Features Specification for SQL" defines standard GIS
 object types, the functions required to manipulate them, and a set of
@@ -494,8 +498,9 @@ There are two OpenGIS meta-data tables: ``SPATIAL_REF_SYS`` and
 IDs and textual descriptions of coordinate systems used in the spatial
 database.
 
+
 The SPATIAL\_REF\_SYS Table and Spatial Reference Systems
----------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The spatial\_ref\_sys table is a PostGIS included and OGC compliant
 database table that lists over 3000 known `spatial reference
@@ -607,7 +612,7 @@ PROJ4TEXT
     projections.
 
 The GEOMETRY\_COLUMNS VIEW
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In versions of PostGIS prior to 2.0.0, geometry\_columns was a table
 that could be directly edited, and sometimes got out of synch with the
@@ -666,7 +671,7 @@ TYPE
         specification, but is required for ensuring type homogeneity.
 
 Creating a Spatial Table
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Creating a table with spatial data, can be done in one step. As shown in
 the following example which creates a roads table with a 2D linestring
@@ -751,7 +756,7 @@ undefined SRID value of 0:
     SELECT AddGeometryColumn( 'roads', 'roads_geom', 0, 'GEOMETRY', 3 );
 
 Manually Registering Geometry Columns in geometry\_columns
-----------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The AddGeometryColumn() approach creates a geometry column and also
 registers the new column in the geometry\_columns table. If your
@@ -776,15 +781,15 @@ need to do anything.
     CREATE VIEW  public.vwmytablemercator AS
         SELECT gid, ST_Transform(geom,3395) As geom, f_name
         FROM public.mytable;
-        
-    -- For it to register correctly in PostGIS 2.0+ 
+
+    -- For it to register correctly in PostGIS 2.0+
     -- You need to cast the geometry
     --
     DROP VIEW public.vwmytablemercator;
     CREATE VIEW  public.vwmytablemercator AS
         SELECT gid, ST_Transform(geom,3395)::geometry(Geometry, 3395) As geom, f_name
         FROM public.mytable;
-        
+
     -- If you know the geometry type for sure is a 2D POLYGON then you could do
     DROP VIEW public.vwmytablemercator;
     CREATE VIEW  public.vwmytablemercator AS
@@ -799,11 +804,11 @@ need to do anything.
     --Create 2d index on new table
     CREATE INDEX idx_myschema_myspecialpois_geom_gist
       ON myschema.my_special_pois USING gist(geom);
-      
-    -- If your points are 3D points or 3M points, 
+
+    -- If your points are 3D points or 3M points,
     -- then you might want to create an nd index instead of a 2d index
     -- like so
-    CREATE INDEX my_special_pois_geom_gist_nd 
+    CREATE INDEX my_special_pois_geom_gist_nd
         ON my_special_pois USING gist(geom gist_geometry_ops_nd);
 
     --To manually register this new table's geometry column in geometry_columns
@@ -811,13 +816,13 @@ need to do anything.
     -- For PostGIS 2.0 it will also change the underlying structure of the table to
     -- to make the column typmod based.
     -- For PostGIS prior to 2.0, this technique can also be used to register views
-    SELECT populate_geometry_columns('myschema.my_special_pois'::regclass); 
+    SELECT populate_geometry_columns('myschema.my_special_pois'::regclass);
 
     --If you are using PostGIS 2.0 and for whatever reason, you
-    -- you need the old constraint based definition behavior 
+    -- you need the old constraint based definition behavior
     -- (such as case of inherited tables where all children do not have the same type and srid)
     -- set new optional  use_typmod argument to false
-    SELECT populate_geometry_columns('myschema.my_special_pois'::regclass, false); 
+    SELECT populate_geometry_columns('myschema.my_special_pois'::regclass, false);
 
 Although the old-constraint based method is still supported, a
 constraint-based geomentry column used directly in a view, will not
@@ -855,7 +860,7 @@ constraint
         "pois_ny_pkey" PRIMARY KEY, btree (gid)
     Check constraints:
         "enforce_dims_geom_2160" CHECK (st_ndims(geom_2160) = 2)
-        "enforce_geotype_geom_2160" CHECK (geometrytype(geom_2160) = 'POINT'::text 
+        "enforce_geotype_geom_2160" CHECK (geometrytype(geom_2160) = 'POINT'::text
             OR geom_2160 IS NULL)
         "enforce_srid_geom_2160" CHECK (st_srid(geom_2160) = 2160)
 
@@ -863,8 +868,8 @@ In geometry\_columns, they both register correctly
 
 ::
 
-    SELECT f_table_name, f_geometry_column, srid, type 
-        FROM geometry_columns 
+    SELECT f_table_name, f_geometry_column, srid, type
+        FROM geometry_columns
         WHERE f_table_name = 'pois_ny';
 
     f_table_name | f_geometry_column | srid | type
@@ -876,13 +881,13 @@ However -- if we were to create a view like this
 
 ::
 
-    CREATE VIEW vw_pois_ny_parks AS 
-    SELECT * 
-      FROM pois_ny 
+    CREATE VIEW vw_pois_ny_parks AS
+    SELECT *
+      FROM pois_ny
       WHERE cat='park';
-      
-    SELECT f_table_name, f_geometry_column, srid, type 
-        FROM geometry_columns 
+
+    SELECT f_table_name, f_geometry_column, srid, type
+        FROM geometry_columns
         WHERE f_table_name = 'vw_pois_ny_parks';
 
 The typmod based geom view column registers correctly, but the
@@ -901,14 +906,14 @@ constraint based view column to register correctly, we need to do this:
 ::
 
     DROP VIEW vw_pois_ny_parks;
-    CREATE VIEW vw_pois_ny_parks AS 
+    CREATE VIEW vw_pois_ny_parks AS
     SELECT gid, poi_name, cat
       , geom
-      , geom_2160::geometry(POINT,2160) As geom_2160 
-      FROM pois_ny 
+      , geom_2160::geometry(POINT,2160) As geom_2160
+      FROM pois_ny
       WHERE cat='park';
-    SELECT f_table_name, f_geometry_column, srid, type 
-        FROM geometry_columns 
+    SELECT f_table_name, f_geometry_column, srid, type
+        FROM geometry_columns
         WHERE f_table_name = 'vw_pois_ny_parks';
 
        f_table_name   | f_geometry_column | srid | type
@@ -916,8 +921,9 @@ constraint based view column to register correctly, we need to do this:
      vw_pois_ny_parks | geom              | 4326 | POINT
      vw_pois_ny_parks | geom_2160         | 2160 | POINT
 
+
 Ensuring OpenGIS compliancy of geometries
------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 PostGIS is compliant with the Open Geospatial Consortium’s (OGC) OpenGIS
 Specifications. As such, many PostGIS methods require, or more
@@ -1027,8 +1033,9 @@ returns an invalid geometry for valid input.
     `AddGeometryColumn() <#AddGeometryColumn>`__ will add a constraint
     checking geometry dimensions, so it is enough to specify 2 there.
 
+
 Dimensionally Extended 9 Intersection Model (DE-9IM)
-----------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is sometimes the case that the typical spatial predicates (?, ?, ?,
 ?, ...) are insufficient in and of themselves to adequately provide that
@@ -1244,7 +1251,7 @@ SQL terminal monitor:
     psql -d [database] -f roads.sql
 
 shp2pgsql: Using the ESRI Shapefile Loader
-------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``shp2pgsql`` data loader converts ESRI Shape files into SQL
 suitable for insertion into a PostGIS/PostgreSQL database either in
@@ -1374,14 +1381,14 @@ A conversion and upload can be done all in one step using UNIX pipes:
     # shp2pgsql shaperoads.shp myschema.roadstable | psql -d roadsdb
 
 Retrieving GIS Data
-===================
+---------------------
 
 Data can be extracted from the database using either SQL or the Shape
 file loader/dumper. In the section on SQL we will discuss some of the
 operators available to do comparisons and queries on spatial tables.
 
 Using SQL to Retrieve Data
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The most straightforward means of pulling data out of the database is to
 use a SQL select query to reduce the number of RECORDS and COLUMNS
@@ -1463,8 +1470,9 @@ frame, such a query looks like this:
 
 Note the use of the SRID 312, to specify the projection of the envelope.
 
+
 Using the Dumper
-----------------
+~~~~~~~~~~~~~~~~~
 
 The ``pgsql2shp`` table dumper connects directly to the database and
 converts a table (possibly defined by a query) into a shape file. The
@@ -1518,7 +1526,7 @@ The commandline options are:
     ANOTHERVERYLONGSYMBOL SHORTER etc.
 
 Building Indexes
-================
+------------------
 
 Indexes are what make using a spatial database for large data sets
 possible. Without indexing, any search for a feature would require a
@@ -1542,8 +1550,9 @@ of indexes by default: B-Tree indexes, R-Tree indexes, and GiST indexes.
    be used on a wide range of data-types, including GIS data. PostGIS
    uses an R-Tree index implemented on top of GiST to index GIS data.
 
+
 GiST Indexes
-------------
+~~~~~~~~~~~~~~
 
 GiST stands for "Generalized Search Tree" and is a generic form of
 indexing. In addition to GIS indexing, GiST is used to speed up searches
@@ -1560,7 +1569,7 @@ follows:
 
 ::
 
-    CREATE INDEX [indexname] ON [tablename] USING GIST ( [geometryfield] ); 
+    CREATE INDEX [indexname] ON [tablename] USING GIST ( [geometryfield] );
 
 The above syntax will always build a 2D-index. To get the an
 n-dimensional index supported in PostGIS 2.0+ for the geometry type, you
@@ -1592,7 +1601,7 @@ objects, just the bounding box. GIS objects larger than 8K will cause
 R-Tree indexes to fail in the process of being built.
 
 Using Indexes
--------------
+~~~~~~~~~~~~~~~
 
 Ordinarily, indexes invisibly speed up data access: once the index is
 built, the query planner transparently decides when to use index
@@ -1637,7 +1646,7 @@ indexes, for that matter) there are a couple things you can do:
    more inclined of using Index scans.
 
 Complex Queries
-===============
+-----------------
 
 The *raison d'etre* of spatial database functionality is performing
 queries inside the database which would ordinarily require desktop GIS
@@ -1654,8 +1663,9 @@ the internals of a molecule or a good location on Mars to transport the
 human race in the event of a nuclear holocaust, then simply leave out
 the SRID or make one up and insert it in the ``spatial_ref_sys`` table.
 
+
 Taking Advantage of Indexes
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When constructing a query it is important to remember that only the
 bounding-box-based operators such as && can take advantage of the GiST
@@ -1701,7 +1711,7 @@ reduce the number of distance calculations that need to be done.
     implicit bounding box overlap operators.
 
 Examples of Spatial SQL
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The examples in this section will make use of two tables, a table of
 linear roads, and a table of polygonal municipality boundaries. The

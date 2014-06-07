@@ -2,7 +2,7 @@ PostGIS Special Functions Index
 ===============================
 
 PostGIS Aggregate Functions
-===========================
+-----------------------------
 
 The functions given below are spatial aggregate functions provided with
 PostGIS that can be used just like any other sql aggregate function such
@@ -41,12 +41,12 @@ as sum, average.
    topoelementarray for a set of element\_id, type arrays (topoelements)
 
 PostGIS SQL-MM Compliant Functions
-==================================
+------------------------------------
 
 The functions given below are PostGIS functions that conform to the
 SQL/MM 3 standard
 
-    **Note**
+  **Note**
 
     SQL-MM defines the default SRID of all geometry constructors as 0.
     PostGIS uses a default SRID of -1.
@@ -502,7 +502,7 @@ SQL/MM 3 standard
    SQL/MM specification.
 
 PostGIS Geography Support Functions
-===================================
+----------------------------------------
 
 The functions and operators given below are PostGIS functions/operators
 that take as input or return as output a
@@ -625,7 +625,7 @@ that take as input or return as output a
    intersects B's 2D bounding box.
 
 PostGIS Raster Support Functions
-================================
+----------------------------------
 
 The functions and operators given below are PostGIS functions/operators
 that take as input or return as output a ? data type object. Listed in

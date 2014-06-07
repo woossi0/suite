@@ -1,7 +1,7 @@
 PostGIS Frequently Asked Questions
 ==================================
 
-**Q:** Where can I find tutorials, guides and workshops on working with PostGIS
+**Q:** Where can I find tutorials, guides and workshops on working with PostGIS?
 ---------------------------------------------------------------------------------
 
 **A:** OpenGeo has a step by step tutorial guide workshop `Introduction
@@ -72,8 +72,8 @@ However if you use this fix, you are advised to at a later point drop
 the index and recreate it without the operator class. This will save you
 grief in the future when you need to upgrade again.
 
-**Q:** I'm running PostgreSQL 9.0 and I can no longer read/view
-geometries in OpenJump, Safe FME, and some other tools?
+**Q:** I'm running PostgreSQL 9.0 and I can no longer read/view geometries in OpenJump, Safe FME, and some other tools?
+-------------------------------------------------------------------------------------------------------------------------
 
 **A:** In PostgreSQL 9.0+, the default encoding for bytea data has been
 changed to hex and older JDBC drivers still assume escape format. This
@@ -98,9 +98,8 @@ the default back to the old behavior with the following change:
     ALTER DATABASE mypostgisdb SET bytea_output='escape';
 
 
-**Q:** I tried to use PgAdmin to view my geometry column and it is
-blank, what gives?
----------------------------------------------------------------------
+**Q:** I tried to use PgAdmin to view my geometry column and it is blank, what gives?
+-------------------------------------------------------------------------------------------
 
 **A:** PgAdmin doesn't show anything for large geometries. The best ways
 to verify you do have data in your geometry columns are?
@@ -135,9 +134,8 @@ circle.
 The "raster" type has a distinct set of functions for manipulation and
 analysis. Refer to ? and ? for more details.
 
-**Q:** I'm all confused. Which data store should I use geometry or
-geography?
-----------------------------------------------------------------------
+**Q:** I'm all confused. Which data store should I use geometry or geography?
+---------------------------------------------------------------------------------
 
 **A:** Short Answer: geography is a new data type that supports long
 range distances measurements, but most computations on it are currently

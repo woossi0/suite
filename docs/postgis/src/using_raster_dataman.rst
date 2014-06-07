@@ -2,13 +2,13 @@ Raster Data Management, Queries, and Applications
 =================================================
 
 Loading and Creating Rasters
-============================
+-----------------------------
 
 For most use cases, you will create PostGIS rasters by loading existing
 raster files using the packaged ``raster2pgsql`` raster loader.
 
 Using raster2pgsql to load rasters
-----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``raster2pgsql`` is a raster loader executable that loads GDAL
 supported raster formats into sql suitable for loading into a PostGIS
@@ -303,7 +303,7 @@ The -G commands outputs a list something like
       NOAA NGS Geoid Height Grids
 
 Creating rasters using PostGIS raster functions
------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On many occasions, you'll want to create rasters and raster tables right
 in the database. There are a plethora of functions to do that. The
@@ -347,8 +347,9 @@ general steps to follow.
 
 4. Apply raster constraints using ?
 
+
 Raster Catalogs
-===============
+----------------
 
 There are two raster catalog views that come packaged with PostGIS. Both
 views utilize information embedded in the constraints of the raster
@@ -364,7 +365,7 @@ raster data in the tables since the constraints are enforced.
    during load.
 
 Raster Columns Catalog
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``raster_columns`` is a catalog of all raster table columns in your
 database that are of type raster. It is a view utilizing the constraints
@@ -436,7 +437,7 @@ information about your raster tiles.
    constraints with ? after load.
 
 Raster Overviews
-----------------
+~~~~~~~~~~~~~~~~~~
 
 ``raster_overviews`` catalogs information about raster table columns
 used for overviews and additional information about them that is useful
@@ -509,8 +510,9 @@ information.
    as its parent, but is of a lower resolution where each pixel of it
    represents (Power(2,overview\_factor) pixels of the original).
 
+
 Building Custom Applications with PostGIS Raster
-================================================
+--------------------------------------------------
 
 The fact that PostGIS raster provides you with SQL functions to render
 rasters in known image formats gives you a lot of optoins for rendering
@@ -521,7 +523,7 @@ In addition you can use a wide variety of languages as demonstrated in
 this section.
 
 PHP Example Outputting using ST\_AsPNG in concert with other raster functions
------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this section, we'll demonstrate how to use the PHP PostgreSQL driver
 and the ? family of functions to output band 1,2,3 of a raster to a PHP
@@ -547,7 +549,7 @@ to get the raster image in Massachusetts state plane feet.
     /** contents of test_raster.php **/
     $conn_str ='dbname=mydb host=localhost port=5432 user=myuser password=mypwd';
     $dbconn = pg_connect($conn_str);
-    header('Content-Type: image/png');  
+    header('Content-Type: image/png');
     /**If a particular projection was requested use it otherwise use mass state plane meters **/
     if (!empty( $_REQUEST['srid'] ) && is_numeric( $_REQUEST['srid']) ){
             $input_srid = intval($_REQUEST['srid']);
@@ -558,9 +560,9 @@ to get the raster image in Massachusetts state plane feet.
     SELECT ST_AsPNG(ST_Transform(
                 ST_AddBand(ST_Union(rast,1), ARRAY[ST_Union(rast,2),ST_Union(rast,3)])
                     ,$input_srid) ) As new_rast
-     FROM aerials.boston 
-        WHERE 
-         ST_Intersects(rast, ST_Transform(ST_MakeEnvelope(-71.1217, 42.227, -71.1210, 42.218,4326),26986) )"; 
+     FROM aerials.boston
+        WHERE
+         ST_Intersects(rast, ST_Transform(ST_MakeEnvelope(-71.1217, 42.227, -71.1210, 42.218,4326),26986) )";
     $result = pg_query($sql);
     $row = pg_fetch_row($result);
     pg_free_result($result);
@@ -569,7 +571,7 @@ to get the raster image in Massachusetts state plane feet.
     ?>
 
 ASP.NET C# Example Outputting using ST\_AsPNG in concert with other raster functions
-------------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this section, we'll demonstrate how to use Npgsql PostgreSQL .NET
 driver and the ? family of functions to output band 1,2,3 of a raster to
@@ -600,7 +602,7 @@ to get the raster image in Massachusetts state plane feet.
 
      -- web.config connection string section --
     <connectionStrings>
-        <add name="DSN" 
+        <add name="DSN"
             connectionString="server=localhost;database=mydb;Port=5432;User Id=myuser;password=mypwd"/>
     </connectionStrings>
 
@@ -617,10 +619,10 @@ to get the raster image in Massachusetts state plane feet.
     {
         public void ProcessRequest(HttpContext context)
         {
-            
+
             context.Response.ContentType = "image/png";
             context.Response.BinaryWrite(GetResults(context));
-            
+
         }
 
         public bool IsReusable {
@@ -639,21 +641,21 @@ to get the raster image in Massachusetts state plane feet.
 
                     if (context.Request["srid"] != null)
                     {
-                        input_srid = Convert.ToInt32(context.Request["srid"]);  
+                        input_srid = Convert.ToInt32(context.Request["srid"]);
                     }
                     sql = @"SELECT ST_AsPNG(
                                 ST_Transform(
                                 ST_AddBand(
                                     ST_Union(rast,1), ARRAY[ST_Union(rast,2),ST_Union(rast,3)])
-                                        ,:input_srid) ) As new_rast 
-                            FROM aerials.boston 
-                                WHERE 
-                                    ST_Intersects(rast, 
+                                        ,:input_srid) ) As new_rast
+                            FROM aerials.boston
+                                WHERE
+                                    ST_Intersects(rast,
                                         ST_Transform(ST_MakeEnvelope(-71.1217, 42.227, -71.1210, 42.218,4326),26986) )";
                     command = new NpgsqlCommand(sql, conn);
                     command.Parameters.Add(new NpgsqlParameter("input_srid", input_srid));
-               
-                
+
+
                     result = (byte[]) command.ExecuteScalar();
                     conn.Close();
                 }
@@ -668,8 +670,9 @@ to get the raster image in Massachusetts state plane feet.
         }
     }
 
+
 Java console app that outputs raster query as Image file
---------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is a simple java console app that takes a query that returns one
 image and outputs to specified file.
@@ -689,7 +692,7 @@ And call it from the command-line with something like
 
 ::
 
-    java -jar SaveQueryImage.jar "SELECT ST_AsPNG(ST_AsRaster(ST_Buffer(ST_Point(1,5),10, 'quad_segs=2'),150, 150, '8BUI',100));" "test.png" 
+    java -jar SaveQueryImage.jar "SELECT ST_AsPNG(ST_AsRaster(ST_Buffer(ST_Point(1,5),10, 'quad_segs=2'),150, 150, '8BUI',100));" "test.png"
 
 ::
 
@@ -709,27 +712,27 @@ And call it from the command-line with something like
     public class SaveQueryImage {
       public static void main(String[] argv) {
           System.out.println("Checking if Driver is registered with DriverManager.");
-          
+
           try {
             //java.sql.DriverManager.registerDriver (new org.postgresql.Driver());
             Class.forName("org.postgresql.Driver");
-          } 
+          }
           catch (ClassNotFoundException cnfe) {
             System.out.println("Couldn't find the driver!");
             cnfe.printStackTrace();
             System.exit(1);
           }
-          
+
           Connection conn = null;
-          
+
           try {
             conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/mydb","myuser", "mypwd");
             conn.setAutoCommit(false);
 
             PreparedStatement sGetImg = conn.prepareStatement(argv[0]);
-            
+
             ResultSet rs = sGetImg.executeQuery();
-            
+
             FileOutputStream fout;
             try
             {
@@ -744,21 +747,21 @@ And call it from the command-line with something like
                 System.out.println("Can't create file");
                 e.printStackTrace();
             }
-            
+
             rs.close();
             sGetImg.close();
             conn.close();
-          } 
+          }
           catch (SQLException se) {
             System.out.println("Couldn't connect: print out a stack trace and exit.");
             se.printStackTrace();
             System.exit(1);
-          }   
+          }
       }
     }
 
 Use PLPython to dump out images via SQL
----------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is a plpython stored function that creates a file in the server
 directory for each record. plpython postgresql stored proc. Requires you
@@ -784,17 +787,18 @@ plpython3u.
         ST_AsRaster(ST_Buffer(ST_Point(1,5),j*5, 'quad_segs=2'),150*j, 150*j, '8BUI',100)),
          'C:/temp/slices'|| j || '.png')
          FROM generate_series(1,5) As j;
-         
+
          write_file
     ---------------------
      C:/temp/slices1.png
      C:/temp/slices2.png
      C:/temp/slices3.png
      C:/temp/slices4.png
-     C:/temp/slices5.png     
+     C:/temp/slices5.png
+
 
 Outputting Rasters with PSQL
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Sadly PSQL doesn't have easy to use built-in functionality for
 outputting binaries. This is a bit of a hack and based on one of the
@@ -809,20 +813,20 @@ computer.
 ::
 
     SELECT oid, lowrite(lo_open(oid, 131072), png) As num_bytes
-     FROM 
-     ( VALUES (lo_create(0), 
-       ST_AsPNG( (SELECT rast FROM aerials.boston WHERE rid=1) ) 
+     FROM
+     ( VALUES (lo_create(0),
+       ST_AsPNG( (SELECT rast FROM aerials.boston WHERE rid=1) )
       ) ) As v(oid,png);
     -- you'll get an output something like --
        oid   | num_bytes
     ---------+-----------
      2630819 |     74860
-     
+
     -- next note the oid and do this replacing the c:/test.png to file path location
     -- on your local computer
      \lo_export 2630819 'C:/temp/aerial_samp.png'
-     
+
     -- this deletes the file from large object storage on db
     SELECT lo_unlink(2630819);
-                
+
 
