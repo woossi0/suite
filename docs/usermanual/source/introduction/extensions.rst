@@ -11,7 +11,7 @@ These optional components can be selected during the :ref:`Windows installation 
 
    Component installation on Windows
 
-.. todo:: May want to update this graphic eventually
+.. todo:: May want to update this graphic to be specific to this page.
 
 .. note:: If you have already installed OpenGeo Suite on Windows, you can add extensions to your deployment by running the installer again and selecting just the desired extensions.
 
@@ -50,9 +50,6 @@ The CSS Styling extension adds functionality to GeoServer to be able to style la
 For more information about CSS styling in GeoServer, please see the `GeoServer CSS documentation <../geoserver/extensions/css/>`_.
 
 .. warning:: The installation instructions in the GeoServer documentation do not apply to users of OpenGeo Suite. Users of OpenGeo Suite can install the extension in the standard way as indicated above.
-
-.. todo:: NEED TO UPDATE COMMUNITY DOCS
-
 
 .. _intro.extensions.csw:
 
@@ -123,6 +120,6 @@ For more information of WPS in OpenGeo Suite, please see the :ref:`processing` s
 Point Cloud
 -----------
 
-The Point Cloud extension adds support for the PostgreSQL/PostGIS Point Cloud functionality.
+The Point Cloud extension adds support for storing and working with point cloud data in PostgreSQL/PostGIS.
 
 For more information on Point Cloud, please see the :ref:`dataadmin.pointcloud` section.

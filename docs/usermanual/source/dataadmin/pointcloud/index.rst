@@ -3,7 +3,7 @@
 Using Point Cloud
 =================
 
-This section will discuss **Point Cloud**, an OpenGeo Suite :ref:`extension <intro.extensions>`_ for storing point cloud (LIDAR) data in PostgreSQL.
+This section will discuss **Point Cloud**, an OpenGeo Suite :ref:`extension <intro.extensions>` for storing point cloud (LIDAR) data in PostgreSQL.
 
 .. toctree::
    :maxdepth: 2
