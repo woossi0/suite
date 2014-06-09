@@ -4438,6 +4438,7 @@ body {
 p {
   font-size: 14px !important;
   line-height: 1.8em;
+  margin-bottom: 0.85em;
 }
 
 h1, h2, h3, h4, h5, h6 {
