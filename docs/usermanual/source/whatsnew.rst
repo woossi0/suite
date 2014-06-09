@@ -22,7 +22,7 @@ The `OpenGeo Suite Explorer plugin for QGIS <http://qgis.boundlessgeo.com>`_ all
 New Boundless SDK templates
 ---------------------------
 
-There are now two new templates for use with the :ref:`Boundless SDK <webapps>`_, both including the new OpenLayers 3 (ol3js). They include a viewing application as well as an editing application. The original template, "gxp", is still available as well
+There are now two new templates for use with the :ref:`Boundless SDK <webapps>`, both including the new OpenLayers 3 (ol3js). They include a viewing application as well as an editing application. The original template, "gxp", is still available as well
 
 .. todo:: Link will probably be to /webapps
 
