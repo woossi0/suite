@@ -4578,7 +4578,7 @@ div[class^='highlight'] pre {
   display: inline-block;
   margin: 1em 0 0;
 }
-#header .ols_logo a {
+#header .ol_logo a {
   background: url("../img/openlayers-logo.png") no-repeat;
   width: 263px;
   height: 40px;
