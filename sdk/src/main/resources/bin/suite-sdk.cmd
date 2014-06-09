@@ -225,7 +225,7 @@ exit /b
 
 :Run
 :: Create log files (in case they don't already exist)
-set LOG_DIR=%USERPROFILE%\.opengeo\logs
+set LOG_DIR=%TEMP%\suite-sdk
 set LOG_FILE=%LOG_DIR%\suite-sdk.log
 set ANT_LOG=%LOG_DIR%\ant.log
 
