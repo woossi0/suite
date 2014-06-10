@@ -39,7 +39,7 @@ pre, .literallayout { border-right-width: 0px; border-left-width: 0px; border-bo
 .question {font-weight: bold; color: #213780;}
 .term { font-weight: bold; color: #38488d;}
 .term:hover { font-weight: bold; color: #88000f;}
-.chapter { margin-top: 60px; }
+.chapter { margin-top: 0; }
 .sect1 { margin-top: 50px; }
 .sect2 { margin-top: 40px; }
 .sect3 { margin-top: 30px; }
