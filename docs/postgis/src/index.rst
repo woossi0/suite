@@ -2,7 +2,7 @@ PostGIS Documentation
 ======================
 
  .. toctree::
-    :hidden:
+    :numbered:
 
     self
     introduction
