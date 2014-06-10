@@ -12,7 +12,7 @@
    <property name="gt.flags" value=""/>
 
    <property name="gwc.dir" value="geowebcache"/>
-   <property name="gwc.version" value="1.5.1"/>
+   <property name="gwc.version" value="1.5-SNAPSHOT"/>
    <property name="gwc.branch" value="1.5.x"/>
    <property name="gwc.flags" value=""/>
 
