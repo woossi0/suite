@@ -1,6 +1,10 @@
 QGIS Desktop GIS and Suite Plugin
 ==================================
 
+
+QGIS Desktop
+------------
+
 QGIS is a cross-platform open source GIS desktop application for viewing, editing, and analyzing geospatial data from a variety of vector, raster, and database formats.
 
 **Features**

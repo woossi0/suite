@@ -1,3 +1,18 @@
+/* Suite-specific Fonts */
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("../fonts/proximanova-sbold-webfont.eot");
+  src: url("../fonts/proximanova-sbold.eot?#iefix") format("embedded-opentype"), url("../fonts/proximanova-sbold-webfont.woff") format("woff"), url("../fonts/proximanova-sbold-webfont.ttf") format("truetype"), url("../fonts/proximanova-sbold-webfont.svg#proxima_nova_ltsemibold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Proxima Nova";
+  src: url("../fonts/proximanova-light-webfont.eot");
+  src: url("../fonts/proximanova-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/proximanova-light-webfont.woff") format("woff"), url("../fonts/proximanova-light-webfont.ttf") format("truetype"), url("../fonts/proximanova-light-webfont.svg#proxima_nova_ltlight") format("svg");
+  font-weight: 300;
+  font-style: normal;
+}
 /* Suite-specific Sass variables */
 * {
   -webkit-box-sizing: border-box;
@@ -3198,7 +3213,7 @@ a.wy-text-neutral:hover {
 h1, h2, h3, h4, h5, h6, legend {
   margin-top: 0;
   font-weight: 700;
-  font-family: "Montserrat", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
+  font-family: "Proxima Nova", "Montserrat", "Helvetica", Arial, sans-serif;
 }
 
 p {
@@ -4262,7 +4277,7 @@ nav.stickynav {
 }
 .rst-content .sidebar .sidebar-title {
   display: block;
-  font-family: "Montserrat", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
+  font-family: "Proxima Nova", "Montserrat", "Helvetica", Arial, sans-serif;
   font-weight: bold;
   background: #e1e4e5;
   padding: 6px 12px;
@@ -4442,9 +4457,22 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
+  font-family: "Proxima Nova", "Montserrat", "Helvetica", Arial, sans-serif;
   font-weight: bold;
-  margin-top: 1em;
+  margin-top: 0.8em;
+}
+
+h1 {
+  font-size: 2em !important;
+}
+
+h2 {
+  font-size: 1.6em !important;
+  font-weight: 300 !important;
+}
+
+.section {
+  margin-top: 2em;
 }
 
 a {
@@ -4458,10 +4486,17 @@ a:hover {
   text-decoration: underline;
 }
 
+.code {
+  font-size: 90% !important;
+}
+
 .rst-content img {
   border: 1px solid #888888;
   box-shadow: 0.33em 0.33em 0.17em #888888, 0.33em 0.33em 1em rgba(0, 0, 0, 0.3);
   max-width: 100%;
+}
+.rst-content tt {
+  font-size: 90% !important;
 }
 .rst-content div.figure {
   margin-bottom: 24px;
@@ -4475,10 +4510,6 @@ a:hover {
 div[class^='highlight'] pre {
   font-size: 13px;
   line-height: 1.8em;
-}
-
-.section {
-  margin-top: 36px;
 }
 
 /* Header options */
