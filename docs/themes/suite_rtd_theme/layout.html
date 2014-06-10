@@ -125,7 +125,11 @@
         <div class="rst-content">
           {% include "breadcrumbs.html" %}
           <div role="main">
-            {% block body %}{% endblock %}
+	  {% if shorttitle == "PostGIS" %}
+	     {% include "optional_body.html" %}
+          {% else %}
+	     {% block body %}{% endblock %}
+	  {% endif %}
           </div>
           {% include "footer.html" %}
         </div>

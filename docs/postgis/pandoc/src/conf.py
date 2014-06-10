@@ -12,6 +12,7 @@
 # serve to show the default value.
 
 import sys, os, string
+from xml.dom import minidom
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -25,11 +26,10 @@ import sys, os, string
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 
-
-todo_include_todos = True
+todo_include_todos = False
 
 # Add any paths that contain templates here, relative to this directory.
-#templates_path = ['../../theme/_templates']
+#templates_path = ['theme/_templates']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -39,16 +39,22 @@ master_doc = 'index'
 
 # General substitutions.
 project = u'PostGIS'
-manual = u'User Manual'
-copyright = u'2011 PostGIS'
+copyright = u'CC 3.0 postgis.net'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = '1.5.2'
+version = minidom.parse(
+        "../pom.xml"
+    ).getElementsByTagName(
+        "parent"
+    )[0].getElementsByTagName(
+        "version"
+    )[0].firstChild.nodeValue
+
 # The full version, including alpha/beta/rc tags.
-release = '1.5.2'
+release = version
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -102,13 +108,13 @@ html_theme_options = {
   'display_version': True  # Whether to show version number
 }
 
+
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = project + manual
+html_title = project
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = "PostGIS" 
-
+html_short_title = 'PostGIS'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -122,7 +128,7 @@ html_favicon = '../../themes/suite_rtd_theme/static/img/postgis.ico'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-#html_static_path = ['../../theme/_static']
+#html_static_path = ['theme/_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -163,7 +169,7 @@ html_show_sourcelink = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'PostGISUserManual'
+htmlhelp_basename = 'PostGIS Manual'
 
 
 # Options for LaTeX output
@@ -178,17 +184,17 @@ htmlhelp_basename = 'PostGISUserManual'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'PostGISUserManual.tex', u'PostGIS User Manual',
-   u'GeoServer', 'manual'),
+  ('index', 'PostGISManual.tex', u'PostGIS Manual',
+   u'PostGIS', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '../../themes/geoserver/static/PostGIS_500.png'
+latex_logo = '../../themes/suite_rtd_theme/static/img/postgis-logo-only.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-#latex_use_parts = False
+# latex_use_parts = False
 
 # Additional stuff for the LaTeX preamble.
 latex_elements = {
@@ -214,3 +220,4 @@ latex_elements = {
 
 # If false, no module index is generated.
 #latex_use_modindex = True
+

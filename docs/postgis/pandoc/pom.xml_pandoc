@@ -16,6 +16,19 @@
  <packaging>jar</packaging>
  <name>OpenGeo PostGIS Doc Module</name>
 
+ <properties>
+   <sphinx-flag></sphinx-flag>
+ </properties>
+
+ <profiles>
+   <profile>
+     <id>test</id>
+     <properties>
+       <sphinx-flag>-q</sphinx-flag>
+     </properties>
+   </profile>
+ </profiles>
+
  <build>
    <plugins>
      <plugin>
@@ -26,15 +39,9 @@
             <phase>compile</phase>
             <configuration>
               <tasks>
-                <exec executable="sphinx-build" failonerror="true" dir="${basedir}/src">
-                  <arg line="-b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
+                <exec executable="sphinx-build" failonerror="true" dir="${basedir}/src"> 
+                  <arg line="${sphinx-flag} -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
                 </exec>
-
-                <get src="http://data.opengeo.org/suite/postgis-docs-2.0.1.zip" dest="doc.zip" usetimestamp="true"/>
-                <property name="pgdoc" value="${build.directory}/html/postgis"/>
-                <mkdir dir="${pgdoc}"/>
-                <unzip src="doc.zip" dest="${pgdoc}"/>
-                <copy file="style.css" todir="${pgdoc}/html" overwrite="true"/>
               </tasks>
             </configuration>
             <goals>
