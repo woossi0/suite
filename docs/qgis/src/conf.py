@@ -12,6 +12,7 @@
 # serve to show the default value.
 
 import sys, os, string
+from xml.dom import minidom
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -23,9 +24,9 @@ import sys, os, string
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.todo']
+extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 
-#todo_include_todos = True
+todo_include_todos = True
 
 # Add any paths that contain templates here, relative to this directory.
 #templates_path = ['../../theme/_templates']
@@ -37,20 +38,18 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General substitutions.
-project = u'GeoServer'
+project = u'QGIS'
 manual = u'User Manual'
-copyright = u'CC BY 3.0'
+copyright = u'CC BY-SA 3.0'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = '2.5'
+#version = '3'
+
 # The full version, including alpha/beta/rc tags.
-release = '2.5-SNAPSHOT'
-# Users don't need to see the "SNAPSHOT" notation when it's there
-if release.find('SNAPSHOT') != -1:
-   release = '2.5.x'
+#release = '2.13.1' 
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -89,6 +88,7 @@ pygments_style = 'sphinx'
 # The style sheet to use for HTML and HTML Help pages. A file of that name
 # must exist either in Sphinx' static/ path, or in one of the custom paths
 # given in html_static_path.
+
 html_style = 'css/theme.css'
 
 html_theme = 'suite_rtd_theme'
@@ -99,20 +99,17 @@ html_theme_path = ['../../themes']
 # documentation.
 html_theme_options = {
   #'sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
-  'is_community': "true", # Community Docs flag for Suite component docs
-  'display_zendesk': "true", # Display link to report doc bugs to Suite Zendesk
-  'display_version': "true"  # Whether to show version number
+  'is_community': True, # Community Docs flag for Suite component docs
+  'display_zendesk': False, # Display link to report doc bugs to Suite Zendesk
+  'display_version': True  # Whether to show version number
 }
-
-if os.environ.get('HTML_THEME_PATH'):
-  html_theme_path.append(os.environ.get('HTML_THEME_PATH'))
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = project + manual
+html_title = project 
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = 'GeoServer'
+html_short_title = "QGIS"
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -121,7 +118,7 @@ html_short_title = 'GeoServer'
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-#html_favicon = None
+html_favicon = '../../themes/suite_rtd_theme/static/img/qgis.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -167,8 +164,7 @@ html_show_sourcelink = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'GeoServerUserManual'
-
+htmlhelp_basename = 'QGISUserManual'
 
 # Options for LaTeX output
 # ------------------------
@@ -182,13 +178,13 @@ htmlhelp_basename = 'GeoServerUserManual'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'GeoServerUserManual.tex', u'GeoServer User Manual',
-   u'GeoServer', 'manual'),
+  ('index', 'QGISUserManual.tex', u'QGIS User Manual',
+   u'QGIS', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '../../themes/suite_rtd_theme/static/img/geoserver-logo-only.png'
+latex_logo = '../../theme/_static/qgis-logo-only.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

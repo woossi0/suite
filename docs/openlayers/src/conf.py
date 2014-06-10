@@ -164,7 +164,7 @@ html_show_sourcelink = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'OpenLayers3CacheUserManual'
+htmlhelp_basename = 'OpenLayersUserManual'
 
 # Options for LaTeX output
 # ------------------------
@@ -184,7 +184,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '../../theme/_static/geowebcache_logo.png'
+latex_logo = '../../theme/_static/openlayers-logo-only.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

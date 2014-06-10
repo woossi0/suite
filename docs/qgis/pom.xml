@@ -12,9 +12,9 @@
  </parent>
 
  <groupId>org.opengeo.docs</groupId>
- <artifactId>openlayers</artifactId>
+ <artifactId>qgis</artifactId>
  <packaging>jar</packaging>
- <name>OpenLayers Doc Module</name>
+ <name>QGIS Doc Module</name>
 
  <profiles>
    <profile>

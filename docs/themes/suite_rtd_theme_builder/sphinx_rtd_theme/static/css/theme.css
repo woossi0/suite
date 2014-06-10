@@ -4444,6 +4444,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Montserrat", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
   font-weight: bold;
+  margin-top: 1em;
 }
 
 a {
@@ -4476,6 +4477,10 @@ div[class^='highlight'] pre {
   line-height: 1.8em;
 }
 
+.section {
+  margin-top: 36px;
+}
+
 /* Header options */
 .pg-header {
   background-color: #7eb5d3 !important;
@@ -4498,6 +4503,10 @@ div[class^='highlight'] pre {
 }
 
 .ol-header {
+  background-color: #00a78d !important;
+}
+
+.qgis-header {
   background-color: #00a78d !important;
 }
 
@@ -4581,6 +4590,13 @@ div[class^='highlight'] pre {
 }
 #header .ol_logo a {
   background: url("../img/openlayers-logo.png") no-repeat;
+  width: 263px;
+  height: 40px;
+  display: inline-block;
+  margin: 1em 0 0;
+}
+#header .qgis_logo a {
+  background: url("../img/qgis-logo.png") no-repeat;
   width: 263px;
   height: 40px;
   display: inline-block;
