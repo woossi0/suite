@@ -15,7 +15,7 @@ Prerequisites
 * Ansible 1.6.2 or higher (installed via `pip <https://pypi.python.org/pypi/pip>`_)
 * Super user access
 * VMWare or other virtual environment
-* NFS Server that is already setup (v3 recommended v4 requires `this workaround <https://www.novell.com/support/kb/doc.php?id=7014266>` ) 
+* NFS Server that is already setup (v3 recommended v4 requires `this workaround <https://www.novell.com/support/kb/doc.php?id=7014266>`_ ) 
 
 Setup
 -----
