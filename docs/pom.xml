@@ -24,6 +24,8 @@
   <module>geoserver</module>
   <module>sdk-api</module>
   <module>postgis</module>
+  <module>openlayers</module>
+  <module>qgis</module>
  </modules>
 
 </project>

@@ -40,7 +40,7 @@ master_doc = 'index'
 # General substitutions.
 project = u'QGIS'
 manual = u'User Manual'
-copyright = u'CC BY-SA 3.0'
+copyright = u'2014 Boundless, CC BY-SA 3.0'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.

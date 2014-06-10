@@ -1,5 +1,5 @@
-QGIS Desktop GIS
-=================
+QGIS Desktop GIS and Suite Plugin
+==================================
 
 QGIS is a cross-platform open source GIS desktop application for viewing, editing, and analyzing geospatial data from a variety of vector, raster, and database formats.
 
@@ -14,6 +14,10 @@ QGIS is a cross-platform open source GIS desktop application for viewing, editin
 
 QGIS also has a vibrant user and developer community. Visit http://qgis.org to learn more.
 
+**Documentation**
+
+* `QGIS Documentation`_
+* `Boundless QGIS Resources`_
 
 
 OpenGeo Suite QGIS Plugin
@@ -21,23 +25,33 @@ OpenGeo Suite QGIS Plugin
 
 .. sidebar:: Suite Plugin for QGIS
 
-    .. figure:: explorer_ui.png
+    .. figure:: img/intro/explorer.png
 
 
 OpenGeo Suite Explorer is a QGIS plugin for configuring the components of OpenGeo Suite through QGIS.
 
 Use it to prepare data in PostGIS or style and publish directly to GeoServer, all through the QGIS interface.
 
-The 4.1 Suite Release's QGIS comes with this plugin already installed. If you have a version of QGIS without the plugin, installation directions can be found `here <http://qgis.boundlessgeo.com/static/docs/index.html>`_.
+**Getting the Plugin**
 
+The 4.1 Suite Release's QGIS comes with this plugin already installed. If you have a version of QGIS without the plugin, installation directions can be found in the :ref:`install` section of this manual. 
 
 **Documentation**
 
-* `QGIS Documentation`_
-* `OpenGeo Suite QGIS Plugin Documentation`_
-* `Boundless QGIS Resources`_
+This manual describes how to use the plugin and the operations that it supports for interacting with OpenGeo Suite.
+
+.. toctree::
+   :hidden: 
+
+   self
+   intro
+   quickstart
+   actions
+   console
+   developers
+   install
+
 
 
 .. _QGIS Documentation: http://qgis.org/en/docs/index.html
-.. _OpenGeo Suite QGIS Plugin Documentation: http://qgis.boundlessgeo.com/static/docs/index.html
 .. _Boundless QGIS Resources: http://boundlessgeo.com/solutions/solutions-software/qgis/
