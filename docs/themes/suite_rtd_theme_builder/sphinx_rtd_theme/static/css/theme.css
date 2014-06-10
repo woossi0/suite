@@ -4772,6 +4772,15 @@ nav.stickynav {
 .rst-versions .rst-other-versions hr {
   margin: 8px 0;
 }
+.rst-versions .rst-other-versions .component-desc {
+  color: #666666;
+  font-size: 1.1em;
+  padding-left: 5px;
+  display: none;
+}
+.rst-versions .rst-other-versions ul.simple li:hover .component-desc {
+  display: inline-block;
+}
 .rst-versions .rst-current-version {
   font-size: 100%;
   padding: 13px 15px 8px;
