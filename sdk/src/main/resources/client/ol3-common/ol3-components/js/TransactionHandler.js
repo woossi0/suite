@@ -134,6 +134,13 @@ Boundless.TransactionHandler.prototype.onDrawEnd = function(evt) {
       this.map_.removeInteraction(this.draw_);
       this.hasDraw_ = false;
     },
+    error: function(e) {
+      this.map_.removeInteraction(this.draw_);
+      this.hasDraw_ = false;
+      var errorMsg = e? (e.status + ' ' + e.statusText) : "";
+      bootbox.alert('Error saving this feature to GeoServer.<br><br>'
+        + errorMsg);
+    },
     context: this
   });
 };

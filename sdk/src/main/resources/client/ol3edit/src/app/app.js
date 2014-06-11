@@ -138,6 +138,16 @@ var table = new Boundless.FeatureTable({
   offset: 37
 });
 
+var turnOnCursor = function() {
+  $('#map').addClass('drawcursor');
+  $('#draw-btn').addClass('active');
+}
+
+var turnOffCursor = function() {
+  $('#map').removeClass('drawcursor');
+  $('#draw-btn').removeClass('active');
+}
+
 // delete the selected feature
 var deleteFeature = function() {
   transaction.deleteSelected();
@@ -146,6 +156,9 @@ var deleteFeature = function() {
 // draw a new feature
 var drawFeature = function() {
   transaction.activateInsert();
+  turnOnCursor();
+
+  transaction.draw_.on('drawend', turnOffCursor, this);
 };
 
 // on body resize update the map size
@@ -154,8 +167,6 @@ var resizeMap = function() {
 }
 
 // add layers control collapse button
-// perhaps this should be moved into LayersControl.js?
-// It assumes Bootstrap however.
 var addLayersControlBtn = function() {
   var layersControl =  $("#map .layers-control");
 
@@ -179,4 +190,5 @@ var addLayersControlBtn = function() {
 
 }
 addLayersControlBtn();
+
 
