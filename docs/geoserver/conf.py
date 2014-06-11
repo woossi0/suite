@@ -45,7 +45,7 @@ copyright = u'CC BY 3.0'
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = '2.5'
+version = '2.5.1'
 # The full version, including alpha/beta/rc tags.
 release = '2.5-SNAPSHOT'
 # Users don't need to see the "SNAPSHOT" notation when it's there
