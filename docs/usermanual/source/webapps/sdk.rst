@@ -11,41 +11,6 @@ Boundless SDK provides tools for building JavaScript-based web mapping applicati
 #. **Packaging** - Creating a web archive that be deployed on any application server
 #. **Deployment** - Deploying the application in a production environment
 
-This tutorial will discuss all of the above steps except for customization. See the tutorial :ref:`webapps.sdk.dev` for information on customizing your application.
-
-.. todo:: Change this ref when other templates are accounted for.
-
-
-Prerequisites
--------------
-
-To create an application with Boundless SDK, you will need:
-
-* Boundless SDK installed. See the next section for installation details.
-
-* A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_. A standard Java Runtime Environment (JRE) is not sufficient.
-
-* `Apache Ant <http://ant.apache.org>`_ installed and on the ``PATH``. To verify this, execute the command ``ant -version`` from a command prompt.
-
-
-.. _webapps.sdk.install:
-
-Installation
-------------
-
-Boundless SDK can be installed in one of two ways. The first is as part of a regular OpenGeo Suite install. See the main :ref:`installation` section for details on your platform.
-
-The second method involves installing the SDK by itself:
-
-#. Download Boundless SDK from http://boundlessgeo.com/solutions/solutions-software/software/.
-
-#. Extract the archive to a suitable location on the file system.
-
-#. Ensure the SDK :file:`bin` directory is on the ``PATH``. 
-
-To verify the SDK is installed properly, execute the command ``suite-sdk`` from a command prompt.
-
-
 .. _webapps.sdk.create:
 
 Creating a new application
@@ -66,6 +31,16 @@ To create a new application based on this template, run the ``suite-sdk create``
 In the above command, the application will be called :file:`myapp` and will be placed in the :file:`path/to/myapp` directory. The ``template`` to be used must be one of the three listed above (``gxp``, ``ol3view``, ``ol3edit``).
 
 .. warning:: Be sure to not name your application :file:`geoserver`, :file:`geoexplorer`, :file:`manager`, :file:`docs`, or any other name that might cause a conflict when deploying your application.
+
+
+.. _webapps.sdk.customize:
+
+Customizing the application
+---------------------------
+
+The method of customizing the application depends on which template is used.
+
+* If using the ``gxp`` template, please see the 
 
 
 .. _webapps.sdk.debug:
