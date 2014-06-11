@@ -180,11 +180,3 @@ var addLayersControlBtn = function() {
 }
 addLayersControlBtn();
 
-
-// x-editable for feature table fields
-
-//turn to inline mode
-$.fn.editable.defaults.mode = 'inline';
-
-
-
