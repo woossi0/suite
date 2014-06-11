@@ -12,9 +12,30 @@
     <link rel="stylesheet" href="src/ol3-components/css/LayersControl.css">
     <style>
       .layers-control {
-        position: fixed;
-        bottom: 10px;
+        bottom: 21px;
         top: auto;
+        right: 20px;
+        background-color: #333;
+        color: #fff;
+      }
+      .layers-control-btn {
+        display: inline-block;
+        bottom: 20px;
+        right: 0;
+        position: absolute;
+        border-radius: 0;
+        border: 0;
+        z-index: 10000;
+        background-color: #333;
+        color: #fff;
+      }
+      .layers-control-btn:hover,
+      .layers-control-btn:focus,
+      .layers-control-btn:active  {
+        outline: 0 !important;
+        background-color: #333;
+        color: #fff;
+        box-shadow: none;
       }
       .table tbody tr.highlight td {
         background-color: yellow;
@@ -36,6 +57,15 @@
         max-height: 150px;
         overflow: auto;
       }
+      .nopadding {
+         padding: 0 !important;
+         margin: 0 !important;
+      }
+      @media screen and (max-width: 768px) {
+        .map-container {
+          height: 70%;
+        }
+      }
     </style>
     <script src="src/ol3/ol-whitespace.js"></script>
     <script src="src/jquery/jquery.js"></script>
@@ -43,7 +73,7 @@
     <script src="src/bootbox/bootbox.js"></script>
     <title>Suite OpenLayers 3 Editor</title>
   </head>
-  <body>
+  <body onresize="resizeMap()">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -55,21 +85,22 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe" style="color: white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="map.getView().getView2D().fitExtent(vector.getSource().getExtent(), map.getSize()); return false;"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
-              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="drawFeature(); return false;"><i class="fa fa-edit"></i>&nbsp;&nbsp;Draw Feature</a></li>
-              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="deleteFeature(); return false;"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete Feature</a></li>
-            </ul>
-          </li>
+          <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="map.getView().getView2D().fitExtent(vector.getSource().getExtent(), map.getSize()); return false;"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
+          <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="drawFeature(); return false;"><i class="fa fa-edit"></i>&nbsp;&nbsp;Draw Feature</a></li>
+          <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="deleteFeature(); return false;"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete Feature</a></li>
         </ul>
       </div><!--/.navbar-collapse -->
     </div>
-    <div id="map">
-      <div id="features-container">
-        <table id="features" class="table table-hover">
-        </table>
+    <div class="container-fluid map-container">
+      <div class="row">
+        <div class="col-sm-8 col-md-8 nopadding">
+          <div id="map"></div>
+        </div>
+        <div class="col-sm-4 col-md-4 ">
+          <div id="features-container">
+            <table id="features" class="table table-hover table-responsive"></table>
+          </div>
+        </div>
       </div>
     </div>
     <script src="lib/app.js"></script>
