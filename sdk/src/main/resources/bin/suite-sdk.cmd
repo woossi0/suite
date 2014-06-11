@@ -259,8 +259,6 @@ if %COMMAND%=="package" (
   echo.
 )
 
-echo ant -e -f %SDK_HOME%\build.xml -Dsdk.logfile="%LOG_FILE%" -Dsdk.home=%SDK_HOME% -Dbasedir=. %COMMAND% %ANT_ARGS% 2>>"%ANT_LOG%"
-
 call ant -e -f %SDK_HOME%\build.xml -Dsdk.logfile="%LOG_FILE%" -Dsdk.home=%SDK_HOME% -Dbasedir=. %COMMAND% %ANT_ARGS% 2>>"%ANT_LOG%"
 
 :: Handle results
@@ -274,7 +272,7 @@ IF %ERRORLEVEL% NEQ 0 (
     echo have permission to create this directory.
     echo.
     echo Another common cause is that the ^<app-template^> value is invalid
-    echo (should be one of: gxp, ol3view or ol3edit). Option specified was: 
+    echo ^(should be one of: gxp, ol3view or ol3edit^). Option specified was: 
     echo %APP_TEMPLATE%
     echo.
     echo Please run '%NAME% create --help' for help on the usage.
