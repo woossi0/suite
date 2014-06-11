@@ -6,31 +6,35 @@
 
     <link rel="shortcut icon" href="img/favicon.ico"/>
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
     <link href="css/app.css" rel="stylesheet" media="screen">
 
   </head>
   <body onload="onLoad()">
     <div class="container-full">
-      <nav class="navbar navbar-static" role="navigation">
-
-        <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar navbar-static navbar-inverse" role="navigation">
+      <div class="container-fluid">
         <div class="navbar-header">
-          <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button> -->
-          <h1 class="navbar-brand"><a class="homelink">OpenGeo Suite</a></h1>
-          <h5 class="text-center">Version <span id="version">${project.version}</span><span class="version"></span></h5>
-          <div>
-            <div class="navbar-link pull-left"><a id="gslink" class="tablink" href="">Getting Started</a></div>
-            <div class="navbar-link pull-right"><a id="_documentationlink" class="tablink" href="/opengeo-docs/">Documentation</a></div>
-          </div>
-          <div class="navbar-logo homelink"></div>
+          </button>
+          <a class="navbar-brand"></a>
         </div>
-      </nav>
+        <div class="navbar-collapse collapse">
+          <ul class="nav nav-pills navbar-nav navbar-right">
+            <li class="active"><a class="homelink tablink" href="">Dashboard</a></li>
+            <li><a id="gslink" class="tablink" href="">Getting Started</a></li>
+            <li><a id="_documentationlink" class="tablink" href="/opengeo-docs/">Documentation</a></li>
+            <li class="hidden-xs"><h5 class="text-center version-info">Version <span id="version">${project.version}</span><span class="version"></span></h5></li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+
     <div class="container">
 
       <div class="tab-content main">
@@ -41,7 +45,7 @@
               <div class="dash-tier">Database</div>
               <div class="dash-component postgis">
                 <h3>PostGIS</h3>
-                    <a style="margin: 10px 0; width:50%;" type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/dataadmin/index.html">Get Started</a>
+                    <a style="margin-bottom: 10px; width:50%;" type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/dataadmin/index.html">Get Started <span class="fa fa-arrow-circle-right"></span></a>
                 <p>
                   PostGIS provides spatial objects for the PostgreSQL object-relational database, allowing  efficient storage, query, and analysis of location information.
                 </p>
@@ -53,10 +57,10 @@
                 <h3>GeoServer</h3>
                 <div class="btn-group btn-group-justified">
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geoserver/">Admin</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geoserver/"><span class="fa fa-gear"></span> Admin</a>
                   </div>
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geoserver/gettingstarted/web-admin-quickstart/index.html">Quick Start</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geoserver/gettingstarted/web-admin-quickstart/index.html"> Quick Start</a>
                   </div>
                 </div>
                 <p>
@@ -67,7 +71,7 @@
                 <h3>GeoWebCache</h3>
                 <div class="btn-group btn-group-justified">
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geoserver/gwc/">Configure</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geoserver/gwc/"> Configure</a>
                   </div>
                   <div class="btn-group half">
                     <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geowebcache/index.html">Overview</a>
@@ -84,7 +88,7 @@
                 <h3>QGIS</h3>
                 <div class="btn-group btn-group-justified">
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="http://qgis.boundlessgeo.com/static/docs/intro.html#usage">Suite Plugin</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="http://qgis.boundlessgeo.com/static/docs/intro.html#usage"> Suite Plugin</a>
                   </div>
                   <div class="btn-group half">
                     <a type="button" class="btn btn-default btn-sm quicklink" href="http://qgis.org/en/docs">QGIS Docs</a>
@@ -103,10 +107,10 @@
                 <h3>OpenLayers 2 & 3</h3>
                 <div class="btn-group btn-group-justified">
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/openlayers2/">OpenLayers 2</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/openlayers2/">OL 2</a>
                   </div>
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/openlayers3/">OpenLayers 3</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/openlayers3/">OL 3</a>
                   </div>
                 </div>
                 <p>
@@ -119,14 +123,11 @@
                 <div class="dash-component boundlesssdk">
                 <h3>Boundless SDK</h3>
                 <div class="btn-group btn-group-justified">
-                  <div class="btn-group third">
+                  <div class="btn-group half">
                     <a type="button" class="btn btn-default btn-sm quicklink" href="/boundless_sdk/demo">Demo</a>
                   </div>
-                  <div class="btn-group third">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/boundless_sdk/templates">Templates</a>
-                  </div>
-                  <div class="btn-group third">
-                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/webapps/index.html">Get Started</a>
+                  <div class="btn-group half">
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/webapps/index.html">Get Started <span class="fa fa-arrow-circle-right"></span></a>
                   </div>
                 </div>
                 <p>
@@ -143,7 +144,7 @@
                     <a type="button" class="btn btn-default btn-sm quicklink" href="/geoexplorer/composer/">Launch</a>
                   </div>
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/webmaps/easypublish/index.html">Get Started</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/webmaps/easypublish/index.html">Docs</a>
                   </div>
                 </div>
                 <p>
