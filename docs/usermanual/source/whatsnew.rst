@@ -17,7 +17,7 @@ QGIS, the popular open-source desktop software, has been added to the collection
 OpenGeo Suite Explorer for QGIS 
 -------------------------------
 
-The `OpenGeo Suite Explorer plugin for QGIS <http://qgis.boundlessgeo.com>`_ allows users to upload their layers and styles directly into PostGIS and GeoServer, creating a seamless link between desktop and server.
+The :doc:`OpenGeo Suite Explorer plugin for QGIS </qgis/index>` allows users to upload their layers and styles directly into PostGIS and GeoServer, creating a seamless link between desktop and server.
 
 New Boundless SDK templates
 ---------------------------
@@ -49,4 +49,10 @@ Enterprise only: Auto-deployment on Amazon Web Services and VMware
 OpenGeo Suite Enterprise clients only: scale your OpenGeo Suite deployment with scripts available to enable automatic clustering on AWS and local virtual machines.
 
 .. todo:: Add link to autoaws/autovmware.
+
+  
+  .. toctree::
+     :hidden:
+
+     qgis/index
 
