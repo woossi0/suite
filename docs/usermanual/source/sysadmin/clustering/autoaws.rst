@@ -186,7 +186,7 @@ Troubleshooting
 
 * If you encounter errors while running the script, you can run the script in "debug mode" by appending ``-vvvv`` to the command. The individual commands run by the script will be displayed in the terminal.
 
-* Try running the script again. Sometimes, due to issues with AWS connectivity, a script may fail the first time but succeed the second.
+* Try running the script again. Sometimes, due to issues with AWS connectivity, a script may fail the first time but succeed the second. (There is a fix checked into the latest development version of Ansible which should fix a lot of these problems)
 
 Shutting down the cluster
 -------------------------
