@@ -69,7 +69,7 @@
 
     <target name="create" depends="checkpath">
         <condition property="app.template.exists">
-            <available dir="${sdk.home}/src/main/resources/client/${app.template}" />
+            <available file="${sdk.home}/src/main/resources/client/${app.template}" type="dir"/>
         </condition>
         <fail message="Directory '${app.fullpath}' already exists.  Specify the name for a new app directory." if="app.exists"/>
         <fail message="Template '${app.template}' is not available.  Specify the name of an existing template." unless="app.template.exists"/>
