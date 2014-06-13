@@ -161,10 +161,6 @@ var drawFeature = function() {
   transaction.draw_.on('drawend', turnOffCursor, this);
 };
 
-// on body resize update the map size
-var resizeMap = function() {
-  map.updateSize();
-}
 
 // add layers control collapse button
 var addLayersControlBtn = function() {
