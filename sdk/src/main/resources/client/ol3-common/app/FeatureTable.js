@@ -1,10 +1,10 @@
-if (!window.Boundless) {
-  window.Boundless = {};
+if (!window.app) {
+  window.app = {};
 }
-var Boundless = window.Boundless;
+var app = window.app;
 
 /**
- * Options for Boundless.FeatureTable.
+ * Options for app.FeatureTable.
  * @typedef {Object} FeatureTableOptions
  * @property {string} id - The id of the HTML table to use.
  * @property {string[]} fields - A list of fields to display.
@@ -27,7 +27,7 @@ var Boundless = window.Boundless;
  * @constructor
  * @param {FeatureTableOptions} options Options.
  */
-Boundless.FeatureTable = function(options) {
+app.FeatureTable = function(options) {
   this.id_ = options.id;
   this.container_ = options.container;
   this.source_ = options.source;
@@ -46,7 +46,7 @@ Boundless.FeatureTable = function(options) {
 /**
  * Add the header for the feature table.
  */
-Boundless.FeatureTable.prototype.addHeader = function() {
+app.FeatureTable.prototype.addHeader = function() {
   var html = '';
   if (this.showFid_ === true) {
     html += '<thead><th>FID</th>';
@@ -63,7 +63,7 @@ Boundless.FeatureTable.prototype.addHeader = function() {
  * Add a table row for a feature.
  * @param {ol.source.VectorEvent} evt The event object.
  */
-Boundless.FeatureTable.prototype.addRow = function(evt) {
+app.FeatureTable.prototype.addRow = function(evt) {
   var feature = evt.feature, key;
   var row = '<tr>';
   if (this.showFid_ === true) {
@@ -81,7 +81,7 @@ Boundless.FeatureTable.prototype.addRow = function(evt) {
  * Handle clicking on a row in the feature table.
  * @param {Event} evt The event object.
  */
-Boundless.FeatureTable.prototype.handleRowClick = function(evt) {
+app.FeatureTable.prototype.handleRowClick = function(evt) {
   var me = evt.data;
   var fid = $(this).closest("tr").find(".fid").text();
   var feature = me.source_.forEachFeature(function(feature) {
@@ -103,7 +103,7 @@ Boundless.FeatureTable.prototype.handleRowClick = function(evt) {
  * Select a row in the feature table.
  * @param {ol.CollectionEvent} evt The event object.
  */
-Boundless.FeatureTable.prototype.selectRow = function(evt) {
+app.FeatureTable.prototype.selectRow = function(evt) {
   if (this.select_._silent === true) {
     return;
   }
@@ -124,7 +124,7 @@ Boundless.FeatureTable.prototype.selectRow = function(evt) {
 /**
  * Unselect all rows in the feature table.
  */
-Boundless.FeatureTable.prototype.unselectRow = function() {
+app.FeatureTable.prototype.unselectRow = function() {
   $('#' + this.id_ + ' tr').each(function (i, row) {
     if ($(row).hasClass('highlight')) {
       $(row).removeClass('highlight');

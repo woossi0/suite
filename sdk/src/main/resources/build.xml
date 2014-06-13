@@ -110,7 +110,7 @@
         <available file="${app.fullpath}/src/font-awesome" property="use.fa"/>
         <available file="${app.fullpath}/src/bootbox" property="use.bootbox"/>
         <available file="${app.fullpath}/src/ol3" property="use.ol3"/>
-        <available file="${app.fullpath}/src/ol3-components" property="use.ol3comp"/>
+        <available file="${app.fullpath}/src/css" property="use.css"/>
     </target>
 
     <target name="copy-app">
@@ -173,10 +173,10 @@
         </copy>
     </target>
 
-    <target name="copy-ol3comp" if="use.ol3comp">
-        <!-- copy ol3 components resources -->
-        <copy todir="${app.build}/src/ol3-components/css">
-            <fileset dir="${app.fullpath}/src/ol3-components/css"/>
+    <target name="copy-css" if="use.css">
+        <!-- copy css resources -->
+        <copy todir="${app.build}/src/css">
+            <fileset dir="${app.fullpath}/src/css"/>
         </copy>
     </target>
 
@@ -194,7 +194,7 @@
         </copy>
     </target>
 
-    <target name="build" depends="checkpath,copy-app,use-checks,copy-ext,copy-openlayers,copy-geoext,copy-gxp,copy-jquery,copy-bootstrap,copy-fa,copy-bootbox,copy-ol3,copy-ol3comp">
+    <target name="build" depends="checkpath,copy-app,use-checks,copy-ext,copy-openlayers,copy-geoext,copy-gxp,copy-jquery,copy-bootstrap,copy-fa,copy-bootbox,copy-ol3,copy-css">
         <fail message="Directory '${app.fullpath}' doesn't exist." unless="app.exists"/>
         <echo file="${sdk.logfile}" append="true" message="Building application resources for '${app.fullpath}'.${line.separator}"/>
         <!-- build app js -->

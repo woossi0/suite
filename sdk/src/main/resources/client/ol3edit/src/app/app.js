@@ -27,7 +27,7 @@ var loadFeatures = function(response) {
 };
 
 // create a WFS BBOX loader helper
-var BBOXLoader = new Boundless.WFSBBOXLoader({
+var BBOXLoader = new app.WFSBBOXLoader({
   url: url,
   featurePrefix: featurePrefix,
   featureType: featureType,
@@ -60,7 +60,7 @@ var vector = new ol.layer.Vector({
 // create the map
 var map = new ol.Map({
   controls: ol.control.defaults().extend([
-    new Boundless.LayersControl({
+    new app.LayersControl({
       groups: {
         background: {
           title: "Base Layers",
@@ -115,7 +115,7 @@ var map = new ol.Map({
 
 // create a WFS transaction helper which can help us draw new features,
 // modify existing features and delete existing features.
-var transaction = new Boundless.TransactionHandler({
+var transaction = new app.TransactionHandler({
   source: vector.getSource(),
   geometryType: geometryType,
   geometryName: geometryName,
@@ -127,7 +127,7 @@ var transaction = new Boundless.TransactionHandler({
 });
 
 // create a feature table that will represent our features in a tabular form
-var table = new Boundless.FeatureTable({
+var table = new app.FeatureTable({
   id: 'features',
   fields: fields,
   showFeatureId: true,

@@ -1,20 +1,20 @@
-if (!window.Boundless) {
-  window.Boundless = {};
+if (!window.app) {
+  window.app = {};
 }
-var Boundless = window.Boundless;
+var app = window.app;
 
 /**
  * @class
  * The LayersControl is a layer switcher that can be configured with groups.
  * A minimal configuration is:
  *
- *     new Boundless.LayersControl()
+ *     new app.LayersControl()
  *
  * In this case, all layers are shown with checkboxes and in a single list.
  * If you want to group layers in separate lists, you can configure the control
  * with a groups config option, for example:
  *
- *     new Boundless.LayersControl({
+ *     new app.LayersControl({
  *       groups: {
  *         background: {
  *           title: "Base Layers",
@@ -35,7 +35,7 @@ var Boundless = window.Boundless;
  * @extends {ol.control.Control}
  * @param {Object} opt_options Options.
  */
-Boundless.LayersControl = function(opt_options) {
+app.LayersControl = function(opt_options) {
   this.defaultGroup = "default";
   var options = opt_options || {};
   var element = document.createElement('div');
@@ -63,14 +63,14 @@ Boundless.LayersControl = function(opt_options) {
   });
 };
 
-ol.inherits(Boundless.LayersControl, ol.control.Control);
+ol.inherits(app.LayersControl, ol.control.Control);
 
 /**
  * Remove the control from its current map and attach it to the new map.
  * Here we create the markup for our layer switcher component.
  * @param {ol.Map} map Map.
  */
-Boundless.LayersControl.prototype.setMap = function(map) {
+app.LayersControl.prototype.setMap = function(map) {
   ol.control.Control.prototype.setMap.call(this, map);
   var layers = map.getLayers().getArray();
   for (var i=0, ii=layers.length; i < ii; ++i) {

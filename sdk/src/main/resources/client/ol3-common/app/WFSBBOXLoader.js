@@ -1,10 +1,10 @@
-if (!window.Boundless) {
-  window.Boundless = {};
+if (!window.app) {
+  window.app = {};
 }
-var Boundless = window.Boundless;
+var app = window.app;
 
 /**
- * Options for Boundless.WFSBBOXLoader.
+ * Options for app.WFSBBOXLoader.
  * @typedef {Object} WFSBBOXLoaderOptions
  * @property {string} url - The OnlineResource of the WFS.
  * @property {string} featurePrefix - The prefix for the featureNS.
@@ -24,7 +24,7 @@ var Boundless = window.Boundless;
  * @constructor
  * @param {WFSBBOXLoaderOptions} options Options.
  */
-Boundless.WFSBBOXLoader = function(options) {
+app.WFSBBOXLoader = function(options) {
   this.url_ = options.url;
   this.featurePrefix_ = options.featurePrefix;
   this.featureType_ = options.featureType;
@@ -37,7 +37,7 @@ Boundless.WFSBBOXLoader = function(options) {
  * Load features from the WFS in a certain extent.
  * @param {ol.Extent} extent The extent to query for.
  */
-Boundless.WFSBBOXLoader.prototype.load = function(extent) {
+app.WFSBBOXLoader.prototype.load = function(extent) {
   var wfs = this.url_;
   var featureType = this.featurePrefix_ + ':' + this.featureType_;
   var outputFormat = this.outputFormat_;

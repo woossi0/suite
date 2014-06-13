@@ -1,7 +1,7 @@
-if (!window.Boundless) {
-  window.Boundless = {};
+if (!window.app) {
+  window.app = {};
 }
-var Boundless = window.Boundless;
+var app = window.app;
 
 /**
  * @class
@@ -9,13 +9,13 @@ var Boundless = window.Boundless;
  * The map is the core component of OpenLayers. In its minimal configuration it
  * needs an element (a div that is normally a child of the map div):
  *
- *     var popup = new Boundless.Popup({
+ *     var popup = new app.Popup({
  *       element: document.getElementById('popup')
  *     });
  *
  * A more complete configuration would be:
  *
- *     var popup = new Boundless.Popup({
+ *     var popup = new app.Popup({
  *       element: document.getElementById('popup'),
  *       closeBox: true,
  *       offsetY: -25,
@@ -35,7 +35,7 @@ var Boundless = window.Boundless;
  * @extends {ol.Overlay}
  * @param {Object} options Options.
  */
-Boundless.Popup = function(options) {
+app.Popup = function(options) {
   this.autoPan = options.autoPan !== undefined ? options.autoPan : false;
   this.margin = options.margin !== undefined ? options.margin : 10;
   ol.Overlay.call(this, options);
@@ -52,27 +52,27 @@ Boundless.Popup = function(options) {
   $('<div id="popup-content"></div>').appendTo($(this.getElement()));
 };
 
-ol.inherits(Boundless.Popup, ol.Overlay);
+ol.inherits(app.Popup, ol.Overlay);
 
 /**
  * Set the content to be shown in the popup.
  * @param {string} content The content to be shown.
  */
-Boundless.Popup.prototype.setContent = function(content) {
+app.Popup.prototype.setContent = function(content) {
   document.getElementById('popup-content').innerHTML = content;
 };
 
 /**
  * Show this popup.
  */
-Boundless.Popup.prototype.show = function() {
+app.Popup.prototype.show = function() {
   $(this.getElement()).show();
 };
 
 /**
  * Hide this popup.
  */
-Boundless.Popup.prototype.hide = function() {
+app.Popup.prototype.hide = function() {
   $(this.getElement()).hide();
 };
 
@@ -80,7 +80,7 @@ Boundless.Popup.prototype.hide = function() {
  * Set the position for this overlay.
  * @param {ol.Coordinate|undefined} position Position.
  */
-Boundless.Popup.prototype.setPosition = function(position) {
+app.Popup.prototype.setPosition = function(position) {
   ol.Overlay.prototype.setPosition.call(this, position);
   if (this.autoPan === true) {
     var map = this.getMap();
