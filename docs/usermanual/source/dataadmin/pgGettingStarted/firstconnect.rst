@@ -52,7 +52,7 @@ The file :file:`pg_hba.conf` governs the basic constraints underlying connection
 
 To allow this:
 
-#. As a super user, open :file:`/etc/postgresql/9.3/main/pg_hba.conf` in a text editor.
+#. As a super user, open :file:`/etc/postgresql/9.3/main/pg_hba.conf` (Ubuntu) or :file:`/var/lib/pgsql/9.3/data/pg_hba.conf` (Red Hat) in a text editor.
 
 #. Scroll down to the line that desribes local connections. It may look like this:
 
