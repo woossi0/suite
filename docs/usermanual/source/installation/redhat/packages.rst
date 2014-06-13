@@ -56,6 +56,9 @@ The following packages contain the server components of OpenGeo Suite.
    * - ``geoserver``
      - GeoServer geospatial data server
      - 
+   * - ``opengeo-jai``
+     - Java Advanced Imaging, enhanced image rendering abilities
+     - 
    * - ``geowebcache``
      - GeoWebCache tile caching server
      - 
