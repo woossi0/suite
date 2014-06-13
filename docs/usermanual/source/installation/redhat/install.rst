@@ -57,7 +57,7 @@ Installation
 
    .. note:: The above will install all OpenGeo Suite packages. See the :ref:`Packages <installation.redhat.packages>` section for details of individual packages. 
 
-After intstallation
--------------------
+After installation
+------------------
 
 Installation is now complete. Please see the section on :ref:`installation.redhat.misc`.
