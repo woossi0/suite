@@ -110,15 +110,17 @@ To install an extension:
 
 .. note:: Read more about :ref:`GeoServer extensions <intro.extensions>`.
 
+.. _installation.mac.install.cli:
 
 CLI tools
 ^^^^^^^^^
 
 The CLI tools package contains all the command line tools for OpenGeo Suite:
 
-* The PostGIS data conversion utilities such as ``shp2pgsql``
-* The `GDAL/OGR <http://www.gdal.org/>`_ format translation utilities
-* The `PDAL <http://www.pointcloud.org/>`_ tools for working with LIDAR point cloud data
+* :ref:`Boundless SDK <webapps.sdk>`
+* PostGIS data conversion utilities such as ``shp2pgsql``
+* `GDAL/OGR <http://www.gdal.org/>`_ format translation utilities
+* `PDAL <http://www.pointcloud.org/>`_ tools for working with LIDAR point cloud data
 
 To install the CLI Tools:
 

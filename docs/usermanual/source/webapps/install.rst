@@ -11,7 +11,6 @@ To create an application with Boundless SDK, you will need:
 
 * `Apache Ant <http://ant.apache.org>`_ installed and on the ``PATH``. To verify this, execute the command ``ant -version`` from a command prompt.
 
-
 Installation with OpenGeo Suite
 -------------------------------
 
@@ -24,7 +23,20 @@ Boundless SDK is included in OpenGeo Suite for Windows as an optional component.
 
 .. todo:: Figure
 
-.. todo:: OS X info needed
+OS X
+~~~~
+
+Boundless SDK is part of the OS X OpenGeo Suite CLI tools.
+
+#. In the OpenGeo folder, double-click :guilabel:`OpenGeo CLI Tools`.
+
+   .. figure:: ../installation/mac/img/apps.png
+
+#. Follow the instllation process to install the CLI tools, including Boundless SDK.
+
+#. Add :file:`/usr/local/opengeo/bin` to your ``PATH`` as described in the :ref:`OS X CLI tools installation section <installation.mac.install.cli>`.
+
+#. To verify installation, type :command:`suite-sdk` on a terminal.
 
 Ubuntu Linux
 ~~~~~~~~~~~~
@@ -35,8 +47,6 @@ Boundless SDK is available as an individual package, installed through standard 
 
    sudo apt-get install opengeo-webapp-sdk
 
-.. todo:: When is it included?
-
 Red Hat-based Linux
 ~~~~~~~~~~~~~~~~~~~
 
@@ -46,13 +56,10 @@ Boundless SDK is available as an individual package, installed through standard 
 
    sudo yum install opengeo-webapp-sdk
 
-.. todo:: When is it included?
-
 Application Servers
 ~~~~~~~~~~~~~~~~~~~
 
-For installation when using OpenGeo Suite for Application Servers, please see the next section.
-
+For installation when using OpenGeo Suite for Application Servers, please see the section on standalone installation.
 
 Standalone installation
 -----------------------
