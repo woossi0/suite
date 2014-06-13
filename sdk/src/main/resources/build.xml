@@ -68,7 +68,11 @@
     </target>
 
     <target name="create" depends="checkpath">
+        <condition property="app.template.exists">
+            <available dir="${sdk.home}/src/main/resources/client/${app.template}" />
+        </condition>
         <fail message="Directory '${app.fullpath}' already exists.  Specify the name for a new app directory." if="app.exists"/>
+        <fail message="Template '${app.template}' is not available.  Specify the name of an existing template." unless="app.template.exists"/>
         <echo file="${sdk.logfile}" append="true" message="Creating application in '${app.fullpath}'.${line.separator}"/>
         <mkdir dir="${app.fullpath}"/>
         <copy todir="${app.fullpath}">

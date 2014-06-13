@@ -49,7 +49,7 @@ copyright = u'2005-14 OpenLayers Contributors'
 #version = '3'
 
 # The full version, including alpha/beta/rc tags.
-#release = '2.13.1' 
+#release = '3' 
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:

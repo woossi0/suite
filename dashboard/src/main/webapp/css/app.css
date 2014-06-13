@@ -110,7 +110,7 @@ a:focus, a:active {
   background-color: #28728d;
   color: white;
   height: 70px;
-  padding: 13px 15px;
+  padding: 13px 15px 13px 20px;
   border-radius: 0;
 }
 
@@ -124,11 +124,19 @@ a:focus, a:active {
   font-weight: 300;
 }
 
-h5.version {
+h5.version-info {
   font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  margin: 5px auto;
-  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: #f3f3f3;
+  display: inline-block;
+  padding-left: 25%;
+  margin-right: 3px;
+}
+
+.version {
+  display: inline;
 }
 
 .navbar-nav.navbar-right:last-child {
@@ -139,13 +147,13 @@ h5.version {
   padding: 8px 10px;
   color: white;
   font-size: 14px;
+  text-shadow: 0 1px 1px rgba(50,50,50,0.1);
 }
 .nav-pills > li > a {
   border-radius: 3px;
 }
-
-.navbar-nav > li > h5.version-info {
-  padding-left: 25%;
+.nav-pills > li:last-child:hover {
+  background-color: transparent;
 }
 
 .homelink {
@@ -617,10 +625,10 @@ footer {
 }
 .footer-nav li a {
   text-decoration: none;
-  color: #aaa;
+  color: #fff;
 }
 .footer-nav li a:hover {
-  color: #fff;
+  color: #dedede;
 }
 .footer-nav li:last-child {
   border-right: none;
@@ -647,7 +655,7 @@ footer div.boundless-logo:hover {
 
 @media screen and (max-width: 768px) {
   .navbar-inverse .navbar-collapse {
-    margin-left: -15px;
+    margin-left: -20px;
     margin-right: -15px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -669,6 +677,13 @@ footer div.boundless-logo:hover {
     display: none !important;
   }
 
+}
+
+@media screen and (max-width: 891px) {
+
+  h5.version-info {
+    padding-left: 10%;
+  }
 }
 
 @media screen and (min-width: 496px) and (max-width: 724px) {
