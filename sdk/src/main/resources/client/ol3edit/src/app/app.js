@@ -138,6 +138,16 @@ var table = new app.FeatureTable({
   offset: 37
 });
 
+var turnOnCursor = function() {
+  $('#map').addClass('drawcursor');
+  $('#draw-btn').addClass('active');
+}
+
+var turnOffCursor = function() {
+  $('#map').removeClass('drawcursor');
+  $('#draw-btn').removeClass('active');
+}
+
 // delete the selected feature
 var deleteFeature = function() {
   transaction.deleteSelected();
@@ -146,4 +156,35 @@ var deleteFeature = function() {
 // draw a new feature
 var drawFeature = function() {
   transaction.activateInsert();
+  turnOnCursor();
+
+  transaction.draw_.on('drawend', turnOffCursor, this);
 };
+
+
+// add layers control collapse button
+var addLayersControlBtn = function() {
+  var layersControl =  $("#map .layers-control");
+
+  var btnString = '<button type="button" data-toggle="dropdown" class="layers-control-btn btn btn-default btn-sm"><i class="glyphicon glyphicon-minus"></button>';
+  var $btn = $($.parseHTML(btnString));
+  $btn.css('bottom', layersControl.height()-2);
+  $('#map').append($btn);
+
+  $btn.click(function () {
+    var iconDiv = $('.layers-control-btn > i.glyphicon');
+
+    if (iconDiv.hasClass('glyphicon-minus')) {
+      iconDiv.removeClass('glyphicon-minus')
+              .addClass('glyphicon-plus');
+    } else {
+      iconDiv.removeClass('glyphicon-plus')
+              .addClass('glyphicon-minus');
+    }
+    layersControl.toggle();
+  });
+
+}
+addLayersControlBtn();
+
+
