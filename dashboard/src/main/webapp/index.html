@@ -28,7 +28,7 @@
             <li class="active"><a class="homelink tablink" href="">Dashboard</a></li>
             <li><a id="gslink" class="tablink" href="">Getting Started</a></li>
             <li><a id="_documentationlink" class="tablink" href="/opengeo-docs/">Documentation</a></li>
-            <li class="hidden-xs"><h5 class="text-center version-info">Version <span id="version">${project.version}</span><span class="version"></span></h5></li>
+            <li class="hidden-xs"><h5 class="text-center version-info">Version <span id="version">${project.version}</span></h5></li>
           </ul>
         </div>
       </div>
@@ -45,7 +45,7 @@
               <div class="dash-tier">Database</div>
               <div class="dash-component postgis">
                 <h3>PostGIS</h3>
-                    <a style="margin-bottom: 10px; width:50%;" type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/dataadmin/index.html">Get Started <span class="fa fa-arrow-circle-right"></span></a>
+                <a style="margin-bottom: 10px; width:50%;" type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/dataadmin/index.html">Get Started <span class="fa fa-arrow-circle-right"></span></a>
                 <p>
                   PostGIS provides spatial objects for the PostgreSQL object-relational database, allowing  efficient storage, query, and analysis of location information.
                 </p>
@@ -71,7 +71,7 @@
                 <h3>GeoWebCache</h3>
                 <div class="btn-group btn-group-justified">
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geoserver/gwc/"> Configure</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geowebcache/"> Configure</a>
                   </div>
                   <div class="btn-group half">
                     <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/geowebcache/index.html">Overview</a>
@@ -88,14 +88,14 @@
                 <h3>QGIS</h3>
                 <div class="btn-group btn-group-justified">
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="http://qgis.boundlessgeo.com/static/docs/intro.html#usage"> Suite Plugin</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/qgis/index.html"> Suite Plugin</a>
                   </div>
                   <div class="btn-group half">
                     <a type="button" class="btn btn-default btn-sm quicklink" href="http://qgis.org/en/docs">QGIS Docs</a>
                   </div>
                 </div>
                 <p>
-                Use our QGIS plugin <em>Suite Explorer</em> to configure Suite. Prep data in PostGIS, publish to GeoServer, or seed map tiles with GeoWebCache from desktop QGIS.
+                Use our QGIS plugin <em>OpenGeo Suite Explorer</em> to configure Suite. Prep data in PostGIS, publish to GeoServer, or seed map tiles with GeoWebCache from desktop QGIS.
                 </p>
               </div>
             </div>
@@ -107,10 +107,7 @@
                 <h3>OpenLayers 2 & 3</h3>
                 <div class="btn-group btn-group-justified">
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/openlayers2/">OL 2</a>
-                  </div>
-                  <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/openlayers3/">OL 3</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/openlayers/">OpenLayers</a>
                   </div>
                 </div>
                 <p>
@@ -124,14 +121,14 @@
                 <h3>Boundless SDK</h3>
                 <div class="btn-group btn-group-justified">
                   <div class="btn-group half">
-                    <a type="button" class="btn btn-default btn-sm quicklink" href="/boundless_sdk/demo">Demo</a>
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="http://workshops.boundlessgeo.com/tutorial-sdk/">Demo</a>
                   </div>
                   <div class="btn-group half">
                     <a type="button" class="btn btn-default btn-sm quicklink docs" href="/opengeo-docs/webapps/index.html">Get Started <span class="fa fa-arrow-circle-right"></span></a>
                   </div>
                 </div>
                 <p>
-                  The Boundless SDK simplifies creation of ready-to-deploy map applications using OpenLayers 3 and Suite.
+                  The Boundless SDK for webapps simplifies creation of ready-to-deploy map applications using OpenLayers 3 and Suite.
                 </p>
               </div>
             </div>
@@ -422,12 +419,12 @@
                         <div class="stepchoose-detail-inner" dtitle="6" id="boundlessSDK">
                           <h4>Boundless SDK</h4>
                           <p><strong>Boundless SDK</strong> provides templates and build commands for quickly creating and deploying web applications (as .war files) using OpenLayers 3 or OpenLayer 2 and GeoServer.</p>
-                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/"><img src="img/boundlesssdk_suite_32.png"/> Boundless SDK</a></p>
+                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/index.html"><img src="img/boundlesssdk_suite_32.png"/> Boundless SDK</a></p>
                         </div>
                         <div class="stepchoose-detail-inner" dtitle="6" id="olSDK">
                           <h4>OpenLayers</h4>
                           <p><strong>OpenLayers 3</strong> is a high-performance JavaScript library for working with interactive maps in a browser.</p>
-                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/"><img src="img/openlayers_suite_32.png"/> OpenLayers 3</a></p>
+                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/webapps/index.html"><img src="img/openlayers_suite_32.png"/> OpenLayers 3</a></p>
                           <p>Tip: Try the <strong>Boundless SDK</strong> which includes OpenLayers 3 if you'd like to deploy your applications with GeoServer.</p>
                         </div>
                         <div class="stepchoose-detail-inner" dtitle="6" id="geSDK">
@@ -458,7 +455,7 @@
                         <div class="stepchoose-detail-inner show">
                           <h4>Suite for Production</h4>
                           <p>The OpenGeo Suite documentation describes a number of ways to improve performance, set up security, backup, partition virtual services, cache map tiles, and set up clustering for production projects.</p>
-                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/sysadmin/" target="_blank"><img src="img/opengeo_logo_half.png"/> OpenGeo System Administration</a></p>
+                          <p><a type="button" class="btn btn-link steplink" href="/opengeo-docs/sysadmin/index.html" target="_blank"><img src="img/opengeo_logo_half.png"/> OpenGeo System Administration</a></p>
                         </div>
                       </div>
                     </div>
@@ -492,7 +489,7 @@
             </p>
             <h3>This Build</h3>
             <p>
-            <p>Version <span style="font-weight: bold;" class="version">${project.version}</span><code class="commit"> (${git.commit.id.abbrev})</code><span class="date"> built on ${build.prettydate}</span><br/>This version was released <span class="release_date"></span>.</p>
+            <p>Version <span style="font-weight: bold;" class="version">${project.version}</span> <code class="commit"> (${git.commit.id.abbrev})</code><span class="date"> built on ${build.prettydate}</span><br/>This version was released <span class="release_date"></span>.</p>
             </p>
           </div>
         </div>
