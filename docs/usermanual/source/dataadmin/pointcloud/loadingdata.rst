@@ -9,7 +9,7 @@ The examples in the previous pages show how to form patches from arrays of doubl
 Loading with PDAL
 -----------------
 
-PDAL is a LIDAR conversion library that includes some useful commandline utilities for automating LIDAR loading and processing.
+PDAL is a LIDAR conversion library that includes some useful commandline utilities for automating LIDAR loading and processing. The PDAL package was included in the :ref:`dataadmin.pointcloud.install` directions.
 
 .. note:: 
 

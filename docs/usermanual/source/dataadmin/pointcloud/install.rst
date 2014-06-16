@@ -24,6 +24,7 @@ A package for Ubuntu Linux is available called ``postgresql-9.3-pointcloud``. It
 .. code-block:: console
 
    apt-get install postgresql-9.3-pointcloud
+   apt-get install pdal
 
 Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
 
@@ -35,6 +36,7 @@ A package for Red Hat-based Linux distributions such as RHEL, CentOS, and Fedora
 .. code-block:: console
 
    yum install pointcloud-postgresql93
+   yum install pdal
 
 Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
 
