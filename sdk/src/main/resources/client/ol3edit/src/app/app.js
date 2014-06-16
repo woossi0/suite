@@ -138,6 +138,25 @@ var table = new app.FeatureTable({
   offset: 37
 });
 
+// set table height based on responsive panel size
+var resizeTableHeight = function() {
+  var _window = $(window);
+  var window_h = _window.height(), 
+      window_w =  _window.width(), 
+      navbar_h = $('.navbar').height(),
+      table_container = $('#features-container'),
+      table = $('#features');
+
+  if (window_w < 768) { // table is beneath map
+    var table_height = window_h - $('#map').height();
+
+  } else { // table is right of map
+    var table_height = $('#map').height(); 
+  }
+  table.height(table_height);
+  table_container.height(table_height);
+}
+
 var turnOnCursor = function() {
   $('#map').addClass('drawcursor');
   $('#draw-btn').addClass('active');
@@ -185,6 +204,20 @@ var addLayersControlBtn = function() {
   });
 
 }
-addLayersControlBtn();
+
+$(document).ready(function() {
+
+  addLayersControlBtn();
+
+  // add resize listener for table height, enables scroll-y
+  // on table for responsive and full view
+  var rszTimer;
+
+  $(window).resize(function(e) {
+    clearTimeout(rszTimer);
+    rszTimer = setTimeout(resizeTableHeight(), 100);
+  }).resize(); // call on first load
+
+});
 
 
