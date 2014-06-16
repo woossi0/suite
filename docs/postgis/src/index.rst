@@ -15,6 +15,7 @@ PostGIS Documentation
     reference
     reference_raster
     faq_raster
+    topology
     extras
     postgis_aggs_mm
     reporting
