@@ -99,9 +99,9 @@ With setup complete, you can now launch the cluster.
 
    .. code-block:: bash
 
-      ansible-playbook ansible-playbook hosted-launch.yml -i hosts.hosted
+      ansible-playbook ansible-playbook hosted-launch.yml -i hosts.hosted --user=<remoteusername>
    
-   If you want to change the username that the script uses to log in, add ``--user=<username>`` to the command line. If you want to prompt for a password to login as that user, add ``-k``. Or if you need a private key use ``--private-key=``.
+   If you want to prompt for a password to login as that user, add ``-k``. Or if you need a private key use ``--private-key=``.
 
 #. Details on the cluster will be available in the log file :file:`/tmp/informationoutput`.
 
