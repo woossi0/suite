@@ -161,7 +161,7 @@ app.TransactionHandler.prototype.activateInsert = function() {
 app.TransactionHandler.prototype.deleteSelected = function() {
   var features = this.select_.getFeatures();
   if (features.getLength() === 1) {
-    var feature = features.getAt(0);
+    var feature = features.item(0);
     bootbox.confirm("Are you sure you want to delete the currently selected feature?", $.proxy(function(result) {
       if (result === true) {
         var node = this.format_.writeTransaction(null, null, [feature], {
