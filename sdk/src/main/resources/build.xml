@@ -15,7 +15,7 @@
     </target>
 
     <property name="sdk.home" location="."/>
-    <property name="app.proxy.geoserver" value=""/>
+    <property name="app.proxy.geoserver" value="http://localhost:8080/geoserver"/>
     <property name="app.port" value="9080"/>
     <property name="suite.domain" value="localhost"/>
     <property name="suite.port" value="8080"/>
