@@ -4850,7 +4850,6 @@ div[class^='highlight'] pre {
 }
 #header .suite_logo a {
   margin: 1em 0 0 1em;
-  padding-left: 10px;
   float: left;
   width: 304px;
   height: 40px;
@@ -4937,10 +4936,23 @@ div[class^='highlight'] pre {
   margin-top: 2.5em;
 }
 #header .version_info {
-  margin: 1.75em 3.236em 0 0;
-  float: right;
+  margin: 1.2em 3.236em 0 1.5em;
+  float: left;
   color: white;
-  font-size: 1.1em;
+  font-size: 1.4em;
+  font-weight: 300;
+}
+#header .powered_by {
+  float: right;
+  background: url("../img/powered-by-boundless.png") no-repeat;
+  height: 30px;
+  width: 100px;
+  margin: 1.3em 1em 0 0;
+}
+@media screen and (max-width: 768px) {
+  #header .powered_by {
+    display: none;
+  }
 }
 
 /* Community Docs Ribbon */
