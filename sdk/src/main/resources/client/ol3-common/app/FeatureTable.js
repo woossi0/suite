@@ -41,6 +41,7 @@ app.FeatureTable = function(options) {
   this.select_.getFeatures().on('remove', this.unselectRow, this);
   $('#' + this.id_).on('click', 'tbody tr', this, this.handleRowClick);
   this.addHeader();
+  this.addSpacerRow();
 };
 
 /**
@@ -60,7 +61,7 @@ app.FeatureTable.prototype.addHeader = function() {
 };
 
 /**
- * Add a table row for a feature.
+ * Add a table row for a feature, insert as first row.
  * @param {ol.source.VectorEvent} evt The event object.
  */
 app.FeatureTable.prototype.addRow = function(evt) {
@@ -74,6 +75,17 @@ app.FeatureTable.prototype.addRow = function(evt) {
     row += '<td>' + feature.get(field) + '</td>';
   }
   row += '</tr>';
+  $('#' + this.id_).prepend(row);
+};
+
+/**
+ * Add a spacer table row to feature tables of set height.
+ * Enables other rows to have normal height.
+ * @param {ol.source.VectorEvent} evt The event object.
+ */
+app.FeatureTable.prototype.addSpacerRow = function(evt) {
+  
+  var row = '<tr style="height: auto;"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>';
   $('#' + this.id_).append(row);
 };
 
