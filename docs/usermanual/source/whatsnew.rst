@@ -12,26 +12,20 @@ QGIS now a part of OpenGeo Suite
 
 QGIS, the popular open-source desktop software, has been added to the collection of components that comprise OpenGeo Suite.
 
-.. todo:: Link to User Manual page on QGIS
-
 OpenGeo Suite Explorer for QGIS 
 -------------------------------
 
-The :doc:`OpenGeo Suite Explorer plugin for QGIS </qgis/index>` allows users to upload their layers and styles directly into PostGIS and GeoServer, creating a seamless link between desktop and server.
+The `OpenGeo Suite Explorer plugin for QGIS <qgis>`_ allows users to upload their layers and styles directly into PostGIS and GeoServer, creating a seamless link between desktop and server.
 
 New Boundless SDK templates
 ---------------------------
 
-There are now two new templates for use with the :ref:`Boundless SDK <webapps>`, both including the new OpenLayers 3 (ol3js). They include a viewing application as well as an editing application. The original template, "gxp", is still available as well
-
-.. todo:: Link will probably be to /webapps
+There are now two new templates for use with the :ref:`Boundless SDK <webapps.sdk>`, both including the new OpenLayers 3. They include a viewing application as well as an editing application. The original template, "gxp", is still available as well.
 
 Better Mapmeter integration
 ---------------------------
 
-This version brings tighter integration with `Mapmeter <http://mapmeter.com>`_, the cloud-based service that allows you to monitor and analyze your GeoServer deployments in real-time.
-
-.. todo:: Link to Mapmeter docs in User Manual
+This version brings tighter integration with :ref:`Mapmeter <sysadmin.mapmeter>`, the cloud-based service that allows you to monitor and analyze your GeoServer deployments in real-time.
 
 GeoPackage support
 ------------------
@@ -46,13 +40,4 @@ OpenGeo Suite now supports loading data from :ref:`MongoDB <intro.extensions.mon
 Enterprise only: Auto-deployment on Amazon Web Services and VMware
 ------------------------------------------------------------------
 
-OpenGeo Suite Enterprise clients only: scale your OpenGeo Suite deployment with scripts available to enable automatic clustering on AWS and local virtual machines.
-
-.. todo:: Add link to autoaws/autovmware.
-
-  
-  .. toctree::
-     :hidden:
-
-     qgis/index
-
+OpenGeo Suite Enterprise clients only: scale your OpenGeo Suite deployment with scripts available to enable :ref:`automatic clustering on AWS <sysadmin.clustering.autoaws>` and :ref:`local virtual machines <sysadmin.clustering.autovm>`.

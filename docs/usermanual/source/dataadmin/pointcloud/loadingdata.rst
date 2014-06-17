@@ -20,7 +20,7 @@ PDAL is a LIDAR conversion library that includes some useful commandline utiliti
 Running ``pdal pipeline``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-PDAL includes a `command line program <http://www.pdal.io/apps.html>`_ that allows both simple format translations and more complex "`pipelines <http://www.pdal.io/pipeline.html>`_" of transformation. The ``pdal translate`` does simple format transformations. In order to load data into Pointcloud we use a "PDAL pipeline", by calling ``pdal pipeline``. A pipeline combines a format reader, and format writer, with filters that can alter or group the points together. The `PDAL stage reference <http://www.pdal.io/stages/index.html>`_provides a listing of available stages and configuration options.
+PDAL includes a `command line program <http://www.pdal.io/apps.html>`_ that allows both simple format translations and more complex "`pipelines <http://www.pdal.io/pipeline.html>`_" of transformation. The ``pdal translate`` does simple format transformations. In order to load data into Pointcloud we use a "PDAL pipeline", by calling ``pdal pipeline``. A pipeline combines a format reader, and format writer, with filters that can alter or group the points together. The `PDAL stage reference <http://www.pdal.io/stages/index.html>`_ provides a listing of available stages and configuration options.
 
 PDAL pipelines are XML files, which nest together readers, filters, and writers into a processing chain that will be applied to the LIDAR data. 
 
