@@ -78,9 +78,7 @@ function onLoad() {
 
   // Add version info to all version spans
   var proj_version = $('#version').html();
-  if (proj_version == "${project.version}") {
-    proj_version = SUITE_VERSION;
-  }
+  proj_version = SUITE_VERSION;
   $('#version').html(proj_version);
 
   // Add version to all docs links
