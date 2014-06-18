@@ -23,11 +23,13 @@ Setup
 Virtual environment
 ^^^^^^^^^^^^^^^^^^^
 
-#. Set up five instances of Ubuntu 12.04 in VMware or other virtual environment. These will be configured by the script as:
+#. Set up five instances of Ubuntu 12.04 in VMware or other virtual environment. 
+
+The following servers will be configured by the script:
 
    * 2 GeoServers
-   * 2 Fileshares (PostgreSQL servers)
-   * 1 NFS backend
+   * 2 PostgreSQL servers (with replication)
+   * 1 NFS backend (only the connection from the Geoservers, no configuration on the NFS Server itself will be done)
 
 #. Make note of the IP addresses for each of these servers as they will be needed later.
 
@@ -103,6 +105,7 @@ With setup complete, you can now launch the cluster.
    
    If you want to prompt for a password to login as that user, add ``-k``. Or if you need a private key use ``--private-key=``.
 
+#. You will be prompted to chown the /var/suite_share directory on the nfs server to tomcat6 user (easiest way is to create a user locally on the nfs server with the same uid/gid as on the geoserver servers)
 #. Details on the cluster will be available in the log file :file:`/tmp/informationoutput`.
 
 Troubleshooting
