@@ -269,10 +269,10 @@ h5.version-info {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #aaa;
-  font-size: 1.4em;
+  color: #333;
+  font-size: 1.5em;
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .tabpage-content {
   max-width: 980px;
@@ -515,11 +515,18 @@ a.btn-link.steplink:hover  {
 
 /* Panels on Getting Started */
 
+.get_started_img {
+  float: right;
+  margin-bottom: 15px;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
 .get_started_text {
   text-shadow: 0 1px 1px rgba(230,230,230,0.75);
-  line-height:1.6em;
-  font-size: 1.1em;
-  margin: 0 15%;"
+  font-size: 1em;
+  line-height: 1.8em;
+  margin-bottom: 1%;
+  margin-right: 10%;
 }
 
 #about {
@@ -677,6 +684,9 @@ footer div.boundless-logo:hover {
   h5.version-info {
     padding-left: 10%;
   }
+  .get_started_img {
+    float: none;
+  }
 }
 
 @media screen and (min-width: 496px) and (max-width: 724px) {
@@ -759,6 +769,14 @@ footer div.boundless-logo:hover {
   .panel-default > .panel-heading > .panel-title a > h3.active > .icon-round {
     background: #2f607a;
   }
+  .get_started_img {
+    float: none;
+    margin: 20px auto;
+    height: 200px;
+  }
+  .get_started_text {
+    margin-right: 0;
+  }
   .stepchoose-detail {
     display: block;
   }
@@ -780,11 +798,8 @@ footer div.boundless-logo:hover {
   .data-link {
     display: none;
   }
-  .get_started_text {
-    margin: 0 2% 3% 2%;
-  }
   .tabpage-header {
-    margin-top: 60px;
+    margin-top: 30px;
     margin-bottom: 30px;
   }
   h3 {
