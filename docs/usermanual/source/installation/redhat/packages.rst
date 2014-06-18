@@ -103,15 +103,30 @@ The following packages contain the client components of OpenGeo Suite.
    * - ``gdal``
      - GDAL/OGR format library
      - ``proj`` ``geos`` ``postgresql93-libs``
+   * - ``libgeos``
+     - GEOS geometry engine
+     -
+   * - ``laszip``
+     - LiDAR compression utility
+     - 
+   * - ``libgeotiff``
+     - GeoTIFF library
+     - 
+   * - ``proj``
+     - Cartographic projection library
+     - 
 
-GeoServer add-ons
------------------
+
+GeoServer extensions
+--------------------
 
 The following packages add additional functionality to GeoServer. After installing any of these packages, you will need to restart Tomcat:
 
 .. code-block:: console
 
    sudo service tomcat6 restart
+
+For more information, please see the section on :ref:`GeoServer extensions <introduction.extensions>`.
 
 .. list-table::
    :header-rows: 1
@@ -122,13 +137,13 @@ The following packages add additional functionality to GeoServer. After installi
      - Description
      - Dependencies
    * - ``geoserver-mapmeter``
-     - Mapmeter extension to GeoServer (see http://mapmeter.com)
+     - Mapmeter extension for GeoServer
      - ``geoserver``
    * - ``geoserver-cluster``
      - Clustering extension for GeoServer
      - ``geoserver``
    * - ``geoserver-jdbcconfig``
-     - Database catalog and configuration extension
+     - Database catalog and configuration extension for GeoServer
      - ``geoserver``
    * - ``geoserver-css``
      - CSS styling extension for GeoServer
@@ -141,4 +156,10 @@ The following packages add additional functionality to GeoServer. After installi
      - ``geoserver``
    * - ``geoserver-script``
      - Scripting extension for GeoServer
+     - ``geoserver``
+   * - ``geoserver-mongodb``
+     - MongoDB extension for GeoServer
+     - ``geoserver``
+   * - ``geoserver-geopackage``
+     - GeoPackage extension for GeoServer
      - ``geoserver``
