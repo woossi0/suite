@@ -117,6 +117,11 @@ a:focus, a:active {
   padding-right: 0;
 }
 
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 .navbar {
   background-color: #28728d;
   color: white;
@@ -235,7 +240,7 @@ h5.version-info {
   border-color: #28728D;
 }
 
-.navbar-inverse .navbar-nav>.active>a, 
+.navbar-inverse .navbar-nav>.active>a,
 .navbar-inverse .navbar-nav>.active>a:hover,
 .navbar-inverse .navbar-nav>.active>a:focus {
   background-color: #f3f6f6;
@@ -667,32 +672,6 @@ footer div.boundless-logo:hover {
   display: inline-block !important;
 }
 
-@media screen and (max-width: 768px) {
-  .navbar-inverse .navbar-collapse {
-    margin-left: -20px;
-    margin-right: -15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-  .dash-tier {
-    margin: 50px auto 0 20px;
-  }
-  footer {
-    height: 200px;
-  }
-
-  .footer-nav, .footer-nav.pull-left, .footer-nav.pull-right {
-    margin: 30px 0 5px;
-    padding-left: 25px;
-    float: left !important;
-  }
-
-  .footer-nav > li > a > .hidden-xs {
-    display: none !important;
-  }
-
-}
-
 @media screen and (max-width: 891px) {
 
   h5.version-info {
@@ -719,8 +698,53 @@ footer div.boundless-logo:hover {
   }
 }
 
-/* Larger Screens? */
 @media screen and (max-width: 768px) {
+  .navbar-brand {
+    background: #28728d url(../img/opengeo-logo@small.png) no-repeat left center;
+    width: 241px;
+    height: 32px;
+    margin: 6px 0;
+    padding-left: 0;
+  }
+  media
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+    .navbar-brand {
+      background: #28728d url(../img/opengeo-logo@small@2x.png) no-repeat left center;
+      width: 241px;
+      height: 32px;
+    }
+  }
+
+  .navbar-inverse .navbar-collapse {
+    margin-left: -20px;
+    margin-right: -15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .dash-tier {
+    margin: 50px auto 0 20px;
+  }
+
+  .dash-component {
+    background-position: 2% 0%;
+    padding-left: 50px;
+    margin-top: 30px;
+  }
+  footer {
+    height: 200px;
+  }
+
+  .footer-nav, .footer-nav.pull-left, .footer-nav.pull-right {
+    margin: 30px 0 5px;
+    padding-left: 25px;
+    float: left !important;
+  }
+
+  .footer-nav > li > a > .hidden-xs {
+    display: none !important;
+  }
+
   /* hover state override for laptop/desktop */
   .panel-default > .panel-heading > .panel-title a:hover > h3 > .hover-only {
     display: none;
@@ -770,15 +794,6 @@ footer div.boundless-logo:hover {
     border-radius: 15px;
     font-size: 14px;
     line-height: 30px;
-  }
-  .dash-tier {
-    margin-left: 2%;
-    margin-top: 35px;
-  }
-  .dash-component {
-    background-position: 2% 0%;
-    padding-left: 50px;
-    margin-top: 30px;
   }
 } /* end max-width: 768px */
 
