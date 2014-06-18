@@ -15,8 +15,6 @@ Mapmeter can be installed during the installation process. When running the inst
 
 .. note:: If you have already installed OpenGeo Suite for Windows, you can always run the installer again to install just the Mapmeter extension. In this case, make sure that no other components are checked aside from Mapmeter.
 
-.. todo:: Add figure
-
 OS X
 ~~~~
 
@@ -50,4 +48,6 @@ Post-installation
 
 To verify that Mapmeter is installed correctly, open the GeoServer web interface, log in as an administrator, and verify that there is a :guilabel:`Monitor` section in the configuration menu on the left.
 
-.. todo:: Add figure
+.. figure:: img/install_mapmeterlink.png
+
+   Mapmeter in the GeoServer admin menu
