@@ -768,8 +768,10 @@ footer div.boundless-logo:hover {
   }
   .stepchoose {
     display: block;
-    padding-top: 20px;
-    padding-left: 20px;
+    padding-top: 10px;
+    padding-left: 0;
+    margin-bottom: 0;
+    text-align: center;
   }
   .panel-default > .panel-heading.no-background {
     margin-left: 0;
@@ -795,6 +797,11 @@ footer div.boundless-logo:hover {
     font-size: 14px;
     line-height: 30px;
   }
+
+  #gettingstarted {
+    padding: 0 15px;
+  }
+
 } /* end max-width: 768px */
 
 @media screen and (min-width: 768px) {
