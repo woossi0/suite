@@ -28,11 +28,14 @@ The following packages are considered "meta" packages that only depend on other 
      - Top level package, installs everything
      - ``opengeo-server`` ``opengeo-server`` 
    * - ``opengeo-server``
-     - Installs all server packages
+     - All server packages
      - ``postgis21-postgresql93`` ``geoserver`` ``geowebcache`` ``geoexplorer`` ``opengeo-dashboard`` ``opengeo-docs`` ``opengeo-tomcat`` 
    * - ``opengeo-client``
-     - Installs all client packages
+     - All client packages
      - ``postgis21`` ``pgadmin3`` ``pdal``
+   * - ``opengeo-webapp-sdk``
+     - Boundless SDK
+     - 
 
 Server packages
 ---------------
