@@ -18,7 +18,7 @@ Mapmeter can be installed during the installation process. When running the inst
 OS X
 ~~~~
 
-Mapmeter can be installed at any time after OpenGeo Suite is installed. In the OpenGeo folder, there will be a folder called :guilabel:`GeoServer Extensions` wich contains a :guilabel:`Mapmeter` folder. Copy the contents of this folder as described in the :ref:`OS X extension installation section <installation.mac.install.extensions>`.
+Mapmeter can be installed at any time after OpenGeo Suite is installed. In the OpenGeo folder, there will be a folder called :guilabel:`GeoServer Extensions` which contains a :guilabel:`Mapmeter` folder. Copy the contents of this folder as described in the :ref:`OS X extension installation section <installation.mac.install.extensions>`.
 
 Ubuntu Linux
 ~~~~~~~~~~~~
