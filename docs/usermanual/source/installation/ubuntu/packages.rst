@@ -128,7 +128,7 @@ The following packages add additional functionality to GeoServer. After installi
 
    sudo service tomcat6 restart
 
-For more information, please see the section on :ref:`GeoServer extensions <introduction.extensions>`.
+For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
 .. list-table::
    :header-rows: 1
