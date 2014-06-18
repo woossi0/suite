@@ -77,9 +77,9 @@ function onLoad() {
   });
 
   // Add version info to all version spans
-  var proj_version = $('#version').html();
+  var proj_version = $('.version').html();
   proj_version = SUITE_VERSION;
-  $('#version').html(proj_version);
+  $('.version').html(proj_version);
 
   // Add version to all docs links
 /*
