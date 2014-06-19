@@ -55,8 +55,7 @@ version = gwc_ver.split("-")[0]
 release = gwc_ver
 
 # Users don't need to see the "SNAPSHOT" notation when it's there
-if release.find('SNAPSHOT') != -1:
-   release = '2.5.x'
+release.replace('-SNAPSHOT','.x') != -1:
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
