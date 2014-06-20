@@ -42,6 +42,12 @@
                 <exec executable="sphinx-build" failonerror="true" dir="${basedir}/source"> 
                   <arg line="${sphinx-flag} -b html -d ${build.directory}/doctrees . ${build.directory}/html"/>
                 </exec>
+                <exec executable="sphinx-build" failonerror="false" dir="${basedir}/source">
+                  <arg line="${sphinx-flag} -b latex -d ${build.directory}/doctrees . ${build.directory}/latex"/>
+                </exec>
+                <exec executable="make" failonerror="false" dir="${build.directory}/latex">
+                  <arg line="all-pdf"/>
+                </exec>
               </tasks>
             </configuration>
             <goals>

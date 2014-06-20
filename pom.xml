@@ -202,6 +202,7 @@
            <descriptor>assembly/ext.xml</descriptor>
            <descriptor>assembly/sdk.xml</descriptor>
            <descriptor>assembly/readme.xml</descriptor>
+           <descriptor>assembly/pdfdoc.xml</descriptor>
            <descriptor>assembly/war-dashboard.xml</descriptor>
            <descriptor>assembly/war-geoserver.xml</descriptor>
            <descriptor>assembly/war-geoexplorer.xml</descriptor>
