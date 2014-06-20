@@ -98,6 +98,8 @@ MongoDB
 
 The MongoDB extension adds the ability for GeoServer to publish data from `MongoDB <http://www.mongodb.org/>`_ sources. Once this extension is added, GeoServer will show MongoDB as one of its available data sources when adding a new store.
 
+.. note:: This extension will only work when connecting to MongoDB databases at version 2.4 and above.
+
 
 .. _intro.extensions.wps:
 
