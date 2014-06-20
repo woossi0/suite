@@ -33,7 +33,7 @@ Certain JVM operating characteristics can be tuned to optimize performance when 
 * ``-XX:NewRatio=2`` tunes the JVM for handling a large number of short-lived objects
 * ``-XX:+AggressiveOpts`` enables experimental optimizations that will be defaults in future versions of the JVM
   
-The method of setting these parameters is container-specific.  For example, in Apache Tomcat, they are configured by defining them in the ``CATALINA_OPTS`` variable in a ``setenv`` script file located in the installation ``bin`` directory.
+The method of setting these parameters is container-specific.  For example, in Apache Tomcat, they are configured by defining them in the ``OPENGEO_OPTS`` variable in a ``setenv`` script file located in the installation ``bin`` directory.
 
 JAI and JAI Image I/O
 ---------------------
