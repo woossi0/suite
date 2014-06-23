@@ -216,9 +216,8 @@ exit /b
 echo Usage: %NAME% package ^<app-path^> ^<build-path^>
 echo.
 echo Package an existing application. The ^<app-path^> argument must be the path to an
-echo existing application. The ^<build-path^> is the location where the package will be 
-echo created. A subdirectory called 'build' will be created, which will contain the WAR 
-echo file.
+echo existing application. The ^<build-path^> is the location where the WAR file package
+echo will be created.
 echo.
 exit /b
 

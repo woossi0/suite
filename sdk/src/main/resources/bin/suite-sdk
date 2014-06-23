@@ -55,9 +55,8 @@ PACKAGE_USAGE="
 Usage: $NAME package <app-path> <build-path>
 
 Package an existing application.  The <app-path> argument must be the path to an
-existing application. The <build-path> is the location where the package will be 
-created. A subdirectory called 'build' will be created, which will contain the WAR 
-file.
+existing application. The <build-path> is the location where the WAR file package
+will be created.
 
 "
 
