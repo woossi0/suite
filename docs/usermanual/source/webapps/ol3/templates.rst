@@ -87,8 +87,8 @@ The application comes with the following options:
 
 * **Zoom/Pan**—The standard OpenLayers Zoom and Pan options are active.
 * **Layer Switcher**—The bottom right contains a layer switcher with three basemaps from MapQuest (:guilabel:`Street Map`, :guilabel:`Aerial Imagery`, and :guilabel:`Imagery with Streets`) as well as a single overlay (:guilabel:`States`).
-* **Tool bar**—At the top is a tool bar with a title and a :guilabel:`Tools` drop-down list containing three tools: :guilabel:`Zoom To Full Extent`, :guilabel:`Draw feature` and :guilabel:`Delete Feature`.
-* **Feature table**—Below the tool bar is a table containing the list of features and their attributes for the ``states`` layer, contained in a table.
+* **Tool bar**—At the top is a tool bar with a title and three tools: :guilabel:`Zoom To Full Extent`, :guilabel:`Draw feature` and :guilabel:`Delete Feature`.
+* **Feature table**—Next to the map window is a table containing the list of features and their attributes for the ``states`` layer.
 
 Functions available on this map:
 
