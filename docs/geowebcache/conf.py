@@ -12,7 +12,7 @@
 # serve to show the default value.
 
 import sys, os, string
-from xml.dom import minidom
+sys.path.append('../../../build'); from build_properties import *
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -45,17 +45,12 @@ copyright = u'CC BY-SA 3.0'
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
 #
-# Find gwc version from pom.xml
-pom_path = "../../../pom.xml"
-pom = minidom.parse(pom_path)
-gwc_ver = pom.getElementsByTagName('gwc.version')[0].firstChild.nodeValue
 # The short X.Y version.
-version = gwc_ver.split("-")[0]
-# The full version, including alpha/beta/rc tags.
-release = gwc_ver
+version = gwc_version
 
+# The full version, including alpha/beta/rc tags.
 # Users don't need to see the "SNAPSHOT" notation when it's there
-release.replace('-SNAPSHOT','.x')
+release = gwc_version_short
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
