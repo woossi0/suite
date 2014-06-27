@@ -53,10 +53,19 @@
             <param name="dir" value="target"/>
             <param name="includes" value="opengeo-docs/**/*"/>
         </antcall>
+        <antcall target="assemble-artifact">
+            <param name="name" value="pdfdoc"/>
+            <param name="dir" value="usermanual/target/latex"/>
+            <param name="includes" value="*.pdf"/>
+        </antcall>
     </target>
 
     <target name="publish" depends="init">
         <antcall target="publish-artifact"/>
+        <antcall target="publish-artifact">
+            <param name="name" value="pdfdoc"/>
+            <param name="path" value="docs"/>
+        </antcall>
     </target>
 
 </project>
