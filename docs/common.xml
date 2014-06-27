@@ -38,7 +38,7 @@
               <param name="dir" value="source"/>
               <param name="builder" value="latex"/>
             </antcall>
-            <exec executable="make" failonerror="true" dir="${build.directory}/latex">
+            <exec executable="make" failonerror="true" dir="target/latex">
               <arg line="all-pdf"/>
             </exec>
           </sequential>
