@@ -4932,35 +4932,35 @@ div[class^='highlight'] pre {
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
   #header .suite_logo a {
     background: url("../img/opengeo-logo@2x.png") no-repeat;
-    background-size: 40px auto;
+    background-size: 304px 40px;
   }
   #header .pg_logo a {
     background: url("../img/postgis-logo@2x.png") no-repeat;
-    background-size: 40px auto;
+    background-size: 304px 40px;
   }
   #header .gs_logo a {
     background: url("../img/geoserver-logo@2x.png") no-repeat;
-    background-size: 40px auto;
+    background-size: 304px 40px;
   }
   #header .gwc_logo a {
     background: url("../img/geowebcache-logo@2x.png") no-repeat;
-    background-size: 40px auto;
+    background-size: 304px 40px;
   }
   #header .sdk_logo a {
     background: url("../img/boundlesssdk-logo@2x.png") no-repeat;
-    background-size: 40px auto;
+    background-size: 304px 40px;
   }
   #header .ol_logo a {
     background: url("../img/openlayers-logo@2x.png") no-repeat;
-    background-size: 40px auto;
+    background-size: 304px 40px;
   }
   #header .ge_logo a {
     background: url("../img/geoexplorer-logo@2x.png") no-repeat;
-    background-size: 40px auto;
+    background-size: 304px 40px;
   }
   #header .qgis_logo a {
     background: url("../img/qgis-logo@2x.png") no-repeat;
-    background-size: 40px auto;
+    background-size: 304px 40px;
   }
 }
 #header .component_version_info {
