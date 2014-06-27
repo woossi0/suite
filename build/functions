@@ -105,5 +105,5 @@ function get_submodule_branch {
 # start_installer_job <job_url> <credentials>
 function start_installer_job {
   local creds=build:$2
-   curl -k --connect-timeout 10 --user $creds "$1/buildWithParameters?CAT=${BUILD_CAT}&NAME=${BUILD_NAME}&BRANCH=${GIT_BRANCH}&TOKEN=buildme"
+   curl -k --connect-timeout 10 --user $creds "$1/buildWithParameters?CAT=${BUILD_CAT}&NAME=${BUILD_NAME}&BRANCH=${GIT_BRANCH}&REV=${GIT_COMMIT:0:7}&TOKEN=buildme"
 }
