@@ -20,8 +20,6 @@ Database setup
 The following databases are supported for containing the data directory:
 
 * PostgreSQL
-* MySQL
-* SQL Server
 * H2
 
 To set up the shared database that will contain the data directory:
