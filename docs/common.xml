@@ -31,7 +31,7 @@
   <target name="build-pdf" depends="check-pdf"
     description="Build pdf docs">
     <if>
-        <equals arg1="${pdflatext.isPresent}" arg2="true"/>
+        <equals arg1="${pdflatex.isPresent}" arg2="true"/>
         <then>
           <sequential>
             <antcall target="sphinx">
