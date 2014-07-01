@@ -9,7 +9,7 @@ This section describes how to add the ability to add a Google Maps layer to the 
 
 Navigate to the :file:`src/app/app.js` in the :file:`myviewer` directory. Open up this file in a text editor. In the `API documentation <../../../sdk-api/>`_, find the `gxp.plugins.GoogleSource <../../../sdk-api/lib/plugins/GoogleSource.html>`_ tool. This provides the base Google Maps functionality.
 
-The ``ptype`` for ``gxp.plugins.GoogleSource`` is ``gxp_googlesource``. Open up :file:`app.js`, and configure this tool:
+The ``ptype`` for ``gxp.plugins.GoogleSource`` is ``gxp_googlesource``. Open up :file:`app.js`, and configure this source:
 
 .. code-block:: javascript
 
