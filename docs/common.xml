@@ -31,14 +31,14 @@
   <target name="build-pdf" depends="check-pdf"
     description="Build pdf docs">
     <if>
-        <equals arg1="${pdflatext.isPresent}" arg2="true"/>
+        <equals arg1="${pdflatex.isPresent}" arg2="true"/>
         <then>
           <sequential>
             <antcall target="sphinx">
               <param name="dir" value="source"/>
               <param name="builder" value="latex"/>
             </antcall>
-            <exec executable="make" failonerror="true" dir="${build.directory}/latex">
+            <exec executable="make" failonerror="true" dir="target/latex">
               <arg line="all-pdf"/>
             </exec>
           </sequential>

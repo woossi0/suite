@@ -27,12 +27,57 @@
     </for>
   </target>
 
+  <target name="assemble-bin">
+    <property name="bindir" value="target/bin"/>
+    <property name="webappsdir" value="${bindir}/webapps"/>
+    <delete dir="${bindir}"/>
+    <mkdir dir="${bindir}"/>
+    <unzip dest="${bindir}">
+      <fileset dir="jetty/target" includes="*.zip"/>
+    </unzip>
+    <copy todir="${webappsdir}/root">
+      <fileset dir="dashboard/target/war" includes="**/*"/>
+    </copy>
+    <copy todir="${webappsdir}/geoserver">
+      <fileset dir="geoserver/app/target/geoserver" includes="**/*">
+        <exclude name="META-INF/**"/>
+        <exclude name="data/**"/>
+      </fileset>
+    </copy>
+    <copy todir="${webappsdir}/geowebcache">
+      <fileset dir="geowebcache/target/war" includes="**/*"/>
+    </copy>
+    <copy todir="${webappsdir}/geoexplorer">
+      <fileset dir="geoexplorer/target/war" includes="**/*"/>
+    </copy>
+    <copy todir="${webappsdir}">
+      <fileset dir="docs/target" includes="opengeo-docs/**/*"/>
+    </copy>
+    <unzip dest="${webappsdir}/apps" src="apps/target/apps.war"/>
+    <unzip dest="${webappsdir}/recipes" src="recipes/target/recipes.war"/>
+    <unzip dest="${webappsdir}/recipes" src="recipes/target/recipes.war"/>
+    <copy todir="${bindir}/data_dir">
+      <fileset dir="geoserver/data_dir/target" includes="**/*"/>
+    </copy>
+
+    <antcall target="assemble-artifact">
+      <param name="name" value="bin"/>
+      <param name="dir" value="target/bin"/>
+    </antcall>
+  </target>
+
   <target name="publish" description="Publishes project artifacts">
     <for list="${modules.list}" param="mod">
       <sequential>
         <ant dir="@{mod}" target="publish" inheritAll="false"/>
       </sequential>
     </for>
+  </target>
+
+  <target name="publish-bin">
+    <antcall target="publish-artifact">
+      <param name="name" value="bin"/>
+    </antcall>
   </target>
 
 </project>

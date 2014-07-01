@@ -187,7 +187,8 @@ Common build targets.
 
         <mkdir dir="${artifact_dir}"/>
         <copy file="target/${artifact_file}" todir="${artifact_dir}" overwrite="true"/>  
-        <symlink resource="${artifact_dir}" link="${artifact_dir}/suite-${name}-${suite.build_name}.zip" 
+        <symlink resource="${artifact_dir}/${artifact_file}" 
+          link="${artifact_dir}/suite-${name}-${suite.build_name}.zip" 
           overwrite="true" failonerror="false"/>
     </target>
 
