@@ -134,6 +134,12 @@ a:focus, a:active {
   border-radius: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding-left: 10px;
+  }
+}
+
 .navbar-brand {
   background: #28728d url(../img/opengeo-logo.png) no-repeat left center;
   width: 304px;
@@ -827,4 +833,4 @@ footer div.boundless-logo:hover {
   .hidden-xs {
     display: inline-block!important;
   }
-}
+

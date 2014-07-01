@@ -96,3 +96,23 @@ h4 a:hover .accordion-btn {
   line-height: 1.6em;
   margin-bottom: 5px;
 }
+
+@media screen and (max-width: 768px) {
+  .panel-group {
+    margin-left: 0;
+  }
+  h3.release-no {
+    margin-left: 10px;
+  }
+  .panel-group .accordion-icon {
+    margin-right: 0;
+  }
+
+  .panel-body {
+    margin-left: 0px;
+  }
+  .panel-body h4 {
+    margin-left: 20px;
+  }
+
+}
