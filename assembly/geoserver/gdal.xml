@@ -9,7 +9,8 @@
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>*gt-imageio-ext-gdal*.jar</include>
-        <include>*gt-ogr-*.jar</include>
+        <include>*gt-ogr-core-*.jar</include>
+        <include>*gt-ogr-jni-*.jar</include>
         <include>*imageio-ext-gdal*.jar</include>
         <include>*imageio-ext-imagereadmt*.jar</include>
         <include>gdal-*.jar</include>
