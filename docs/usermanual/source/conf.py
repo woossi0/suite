@@ -195,11 +195,11 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-#latex_logo = None
+latex_logo = "../../themes/suite_rtd_theme/static/img/opengeo-logo-only-blue.png" 
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-#latex_use_parts = False
+latex_use_parts = True 
 
 # Additional stuff for the LaTeX preamble.
 # NOTE!
@@ -208,6 +208,8 @@ latex_documents = [
 # better output.  This comment will try to explain what's going on here.
 # These hacks were perpetrated by Mike and Jeff.
 #
+# 0. Set Helvetica as default font
+#	See the \\usepackage[scaled]{helvet} command
 # 1. Resize images so that they are no wider than 4in.
 #      Accomplished by renewing the \includegraphics command, and creating an
 #      if/then statement saying to resize to 4in if large than 4in, otherwise
@@ -232,6 +234,9 @@ latex_documents = [
 
 latex_preamble = """
 
+\\usepackage[scaled]{helvet}
+\\renewcommand*\\familydefault{\\sfdefault} 
+\\usepackage[T1]{fontenc}
 
 \\usepackage{ifthen}
 \\setlength\\fboxsep{0pt}
