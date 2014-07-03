@@ -195,11 +195,11 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = "../../themes/suite_rtd_theme/static/img/opengeo-logo-only-blue.png" 
+latex_logo = "../../themes/suite_rtd_theme/static/img/opengeo-logo-only-blue.png"
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-latex_use_parts = True 
+latex_use_parts = False
 
 # Additional stuff for the LaTeX preamble.
 # NOTE!
@@ -214,6 +214,7 @@ latex_use_parts = True
 #      Accomplished by renewing the \includegraphics command, and creating an
 #      if/then statement saying to resize to 4in if large than 4in, otherwise
 #      leave alone
+#      (The Suite logo on the title page is not given a dropshadow.)
 # 2. Add drop shadow to images
 #      Accomplished by wrapping the above imcludegraphics commands with a
 #      \shadowbox.  Default border and spacing are changed in the \setlength
@@ -230,25 +231,38 @@ latex_use_parts = True
 #      \setcounter{secnumdepth}{3}
 # 5. Include a.b.c sections in TOC
 #      \setcounter{tocdepth}{2}
-
+# 6. Enable line breaking in code
+#      \lstset
+# 7. Remove blank pages
+#    \let\cleardoublepage\clearpage
+# 8. Add OpenGeo logo to some headers
+#    \fancyhead
+# 9. Remove headers in 8. from the title page
+#    \pagestyle{empty}
+#
 
 latex_preamble = """
 
 \\usepackage[scaled]{helvet}
-\\renewcommand*\\familydefault{\\sfdefault} 
+\\renewcommand*\\familydefault{\\sfdefault}
 \\usepackage[T1]{fontenc}
 
 \\usepackage{ifthen}
 \\setlength\\fboxsep{0pt}
 \\setlength\\fboxrule{1pt}
 
+\\usepackage{fancybox, graphicx}
 \\let\\OLDincludegraphics\\includegraphics
 \\newlength{\\somewidth}
 \\renewcommand{\\includegraphics}[1]{
   \\settowidth{\\somewidth}{\\OLDincludegraphics{#1}}
-  \\ifthenelse{\\lengthtest{\\somewidth>4in}}{
-    \\shadowbox{\\OLDincludegraphics[width=4in]{#1}}}{
-    \\shadowbox{\\OLDincludegraphics{#1}}}
+  \\ifnum\\pdfstrcmp{#1}{opengeo-logo-only-blue.png}=0
+    \\OLDincludegraphics{#1}
+  \\else
+    \\ifthenelse{\\lengthtest{\\somewidth>4in}}{
+      \\shadowbox{\\OLDincludegraphics[width=4in]{#1}}}{
+      \\shadowbox{\\OLDincludegraphics{#1}}}
+  \\fi
 }
 
 \\usepackage{float}
@@ -258,11 +272,37 @@ latex_preamble = """
   \\origfigure[H]}
 {\\endlist}
 
+\\setcounter{secnumdepth}{3}
+\\setcounter{tocdepth}{2}
 
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{2}
+\\usepackage{listings}
+\\lstset{
+  basicstyle=\\small\\ttfamily,
+  columns=flexible,
+  breaklines=true
+}
+
+\\let\\cleardoublepage\\clearpage
+
+\\usepackage{fancyhdr}
+\\fancypagestyle{plain}{
+    \\fancyhead{}
+    \\fancyhead[L]{\\OLDincludegraphics{../../../themes/suite_rtd_theme/static/img/opengeo-small-logo.png}}
+}
+\\pagestyle{plain}
+
+\\if@titlepage
+  \\pagestyle{empty}
+\\fi
+
 
 """
+
+latex_elements = {
+	'classoptions': ',oneside',
+	'babel': '\\usepackage[english]{babel}',
+}
+
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
 
