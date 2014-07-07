@@ -40,8 +40,8 @@ Customizing the application
 
 The method of customizing the application depends on which template is used.
 
-* If using the ``gxp`` template, please see the 
-
+* If using the ``gxp`` template, please see the section on :ref:`webapps.gxp`.
+* If using the ``ol3view`` or ``ol3edit`` templates, please see the section on :ref:`webapps.ol3.templates`.
 
 .. _webapps.sdk.debug:
 
