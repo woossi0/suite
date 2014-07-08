@@ -8,10 +8,11 @@ In this section we will create a viewer application.
 Background
 ----------
 
-The central object in the architecture of the Boundless SDK is the **viewer** (`gxp.Viewer <../../../sdk-api/lib/widgets/Viewer.html>`_). Primarily, a viewer combines a map panel with tools, but it can do much more. 
+The central object in the architecture of the Boundless SDK is the **viewer** (`gxp.Viewer <../../../sdk-api/lib/widgets/Viewer.html>`_). Primarily, a viewer combines a map panel with tools, but it can do much more.
 
 The main configuration options for a ``gxp.Viewer`` are:
 
+.. tabularcolumns:: |p{4cm}|p{11cm}|
 .. list-table::
    :widths: 20 80
    :header-rows: 1
@@ -78,7 +79,7 @@ The :file:`app.js` file can be found in :file:`/src/app/` from the root of your 
 The first thing to see in :file:`app.js` is the list of JavaScript dependencies that are required to run the application. Whenever you add a component to the application, be sure to add a line to this file with the relative path to the file it is defined in, using the following pattern:
 
 .. code-block:: javascript
-    
+
    * @require path/to/Dependency.js
 
 Everything listed here will be pulled in by the application build tool. The result is a small application footprint, because only the required components are included in the build.
@@ -108,11 +109,11 @@ Proxying GeoServer
 
 A GeoServer instance will not be accessible by default unless you add the ``-g`` option to the ``debug`` command. This will proxy a remote GeoServer, or just one running on a different port. If you have a GeoServer instance running locally on port 8080, use the following command::
 
-  suite-sdk debug -g http://localhost:8080/geoserver /path/to/myviewer 
+  suite-sdk debug -g http://localhost:8080/geoserver /path/to/myviewer
 
 To proxy a remote GeoServer, simply replace the URL with the location of the remote GeoServer instance::
 
-  suite-sdk debug -g http://demo.opengeo.org/geoserver /path/to/myviewer 
+  suite-sdk debug -g http://demo.opengeo.org/geoserver /path/to/myviewer
 
 .. note::  Pressing ``Ctrl-C`` in the terminal will shut down the server and allow the new command to be issued.
 

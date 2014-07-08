@@ -16,6 +16,7 @@ Top level packages
 
 The following packages are considered "meta" packages that only depend on other upstream packages, and contain no libraries or binaries themselves.
 
+.. tabularcolumns:: |p{3cm}|p{6cm}|p{6cm}|
 .. list-table::
    :header-rows: 1
    :widths: 20 40 40
@@ -26,22 +27,23 @@ The following packages are considered "meta" packages that only depend on other 
      - Dependencies
    * - ``opengeo``
      - Top level package, installs everything
-     - ``opengeo-server`` ``opengeo-server`` 
+     - ``opengeo-server`` ``opengeo-server``
    * - ``opengeo-server``
      - All server packages
-     - ``postgis21-postgresql93`` ``geoserver`` ``geowebcache`` ``geoexplorer`` ``opengeo-dashboard`` ``opengeo-docs`` ``opengeo-tomcat`` 
+     - ``postgis21-postgresql93`` ``geoserver`` ``geowebcache`` ``geoexplorer`` ``opengeo-dashboard`` ``opengeo-docs`` ``opengeo-tomcat``
    * - ``opengeo-client``
      - All client packages
      - ``postgis21`` ``pgadmin3`` ``pdal``
    * - ``opengeo-webapp-sdk``
      - Boundless SDK
-     - 
+     -
 
 Server packages
 ---------------
 
-The following packages contain the server components of OpenGeo Suite. 
+The following packages contain the server components of OpenGeo Suite.
 
+.. tabularcolumns:: |p{3cm}|p{6cm}|p{6cm}|
 .. list-table::
    :header-rows: 1
    :widths: 20 40 40
@@ -51,29 +53,29 @@ The following packages contain the server components of OpenGeo Suite.
      - Description
      - Dependencies
    * - ``postgresql-9.3-postgis-2.1``
-     - PostGIS 2.1 extensions for PostgreSQL 9.3 
+     - PostGIS 2.1 extensions for PostgreSQL 9.3
      - ``postgis-2.1`` ``postgresql-9.3``
    * - ``postgresql-9.3-pointcloud``
-     - Point cloud extensions for PostgreSQL 9.3 
+     - Point cloud extensions for PostgreSQL 9.3
      - ``postgresql93`` ``libght``
    * - ``geoserver``
      - GeoServer geospatial data server
-     - 
+     -
    * - ``opengeo-jai``
      - Java Advanced Imaging, enhanced image rendering abilities
-     - 
+     -
    * - ``geowebcache``
      - GeoWebCache tile caching server
-     - 
+     -
    * - ``geoexplorer``
      - GeoExplorer map composing application
-     - 
+     -
    * - ``opengeo-dashboard``
      - OpenGeo Suite dashboard
-     - 
+     -
    * - ``opengeo-docs``
      - OpenGeo Suite documentation
-     - 
+     -
    * - ``opengeo-tomcat6``
      - OpenGeo Suite webapps for Tomcat 6
      - ``tomcat6``
@@ -83,6 +85,7 @@ Client/library packages
 
 The following packages contain the client components of OpenGeo Suite.
 
+.. tabularcolumns:: |p{3cm}|p{6cm}|p{6cm}|
 .. list-table::
    :header-rows: 1
    :widths: 20 40 40
@@ -98,8 +101,8 @@ The following packages contain the client components of OpenGeo Suite.
      - pgAdmin database manager for PostgreSQL
      - ``wxGTK``
    * - ``libght``
-     - GeoHash Tree library for point cloud data 
-     - 
+     - GeoHash Tree library for point cloud data
+     -
    * - ``pdal``
      - Point Cloud format library
      - ``libgeotiff`` ``laszip`` ``libgdal`` ``geos`` ``postgresql93-libs``
@@ -111,13 +114,13 @@ The following packages contain the client components of OpenGeo Suite.
      -
    * - ``laszip``
      - LiDAR compression utility
-     - 
+     -
    * - ``libgeotiff``
      - GeoTIFF library
-     - 
+     -
    * - ``proj``
      - Cartographic projection library
-     - 
+     -
 
 GeoServer extensions
 --------------------
@@ -130,6 +133,7 @@ The following packages add additional functionality to GeoServer. After installi
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
+.. tabularcolumns:: |p{3cm}|p{6cm}|p{6cm}|
 .. list-table::
    :header-rows: 1
    :widths: 20 40 40

@@ -22,6 +22,7 @@ Inputs and outputs
 Inputs
 ~~~~~~
 
+.. tabularcolumns:: |p{3cm}|p{5.5cm}|p{4cm}|p{2.5cm}|
 .. list-table::
    :header-rows: 1
 
