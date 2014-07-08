@@ -1,23 +1,26 @@
 .. _installation.ubuntu.install:
 
-New installation on Ubuntu Linux
-================================
+Installation on Ubuntu Linux
+============================
 
-.. note:: 
+This section describes how to install OpenGeo Suite on Ubuntu Linux. These instructions should be followed if:
 
-   If upgrading from a previous version of OpenGeo Suite see the :ref:`Upgrade <installation.ubuntu.upgrade>` section.
+* Your system does not have OpenGeo Suite
+* You are upgrading from a **minor version** of OpenGeo Suite (for example: from **4.x** to **4.y**)
 
-This section describes how to install OpenGeo Suite on Ubuntu Linux. The following Ubuntu versions are supported:
+Do not use these instructions if upgrading from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**). Instead, see the :ref:`Upgrade <installation.ubuntu.upgrade>` section.
+
+System requirements
+-------------------
+
+The following Ubuntu versions are supported:
 
 * `Lucid Lynx <http://releases.ubuntu.com/lucid/>`_ (10.04 LTS)
 * `Precise Pangolin <http://releases.ubuntu.com/precise/>`_ (12.04 LTS)
 
 .. warning::
 
-   OpenGeo Suite is not supported on any other versions (such as 13.04 or later). If running an unsupported installation, dependency conflicts may occur.
-
-System requirements
--------------------
+   OpenGeo Suite is not supported on any other versions of Ubuntu (such as 13.04 or later). If running an unsupported installation, dependency conflicts may occur.
 
 OpenGeo Suite for Ubuntu has the following system requirements:
 
@@ -26,8 +29,8 @@ OpenGeo Suite for Ubuntu has the following system requirements:
 * Browser: Any modern web browser is supported
 * Permissions: Super user privileges are required for installation
 
-Installation
-------------
+Pre-installation
+----------------
 
 This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <installation.ubuntu.packages>` section for details about the possible packages to install.
 
@@ -47,7 +50,9 @@ The commands in this section require root privileges.
 
       wget -qO- http://apt.opengeo.org/gpg.key | apt-key add - 
 
-#. Add the OpenGeo repository. If installing for Precise:
+#. Add the OpenGeo Suite repository.
+
+   If installing for Precise:
 
    .. code-block:: bash
 
@@ -58,6 +63,9 @@ The commands in this section require root privileges.
    .. code-block:: bash
 
       echo "deb http://apt.opengeo.org/suite/v4/ubuntu/ lucid main" > /etc/apt/sources.list.d/opengeo.list
+
+Installation
+------------
 
 #. Update:
 
@@ -73,13 +81,25 @@ The commands in this section require root privileges.
 
    If the search command does not return any results, the repository was not added properly. Examine the output of the ``apt`` commands for any errors or warnings.
 
-#. Install:
+#. You have options on what packages to install.
+
+   For server components:
 
    .. code-block:: bash
 
+      apt-get install opengeo-server
+
+   For client components:
+
+   .. code-block:: bash
+
+      apt-get install opengeo-client
+
+   For both client and server components:
+
       apt-get install opengeo
 
-   .. note:: The above will install all OpenGeo Suite packages. See the :ref:`Packages <installation.ubuntu.packages>` section for details of individual packages. 
+   .. note::  See the :ref:`Packages <installation.ubuntu.packages>` section for details of individual packages.
 
 After installation
 ------------------

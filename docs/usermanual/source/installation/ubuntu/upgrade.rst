@@ -3,11 +3,11 @@
 Upgrading on Ubuntu Linux
 =========================
 
-This section describes how to upgrade from a previous **major** version of OpenGeo Suite.
+.. warning::
 
-If performing a **minor** upgrade, you may proceed with a typical :ref:`install <installation.ubuntu.install>`. 
+   This section describes how to **upgrade from a previous major version of OpenGeo Suite**. A "major" version upgrade is defined as when the first number in the version changes (for example: from 3.x to 4.y)
 
-.. note:: A "major" version upgrade is from version 3.x to 4.y. A "minor" version upgrade is from 4.x to 4.y.
+   **Do not use these instructions if upgrading on a minor release.** (for example: from 4.x to 4.y). Instead, follow the standard :ref:`new installation process <installation.ubuntu.install>`.
 
 .. warning:: This upgrade is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
 
@@ -40,7 +40,7 @@ The first step of the upgrade process is to back up your existing PostGIS data.
 
    .. code-block:: console
 
-      mkdir /tmp/opengeo_backup/pg_backup
+      mkdir -p /tmp/opengeo_backup/pg_backup
       cd /tmp/opengeo_backup/pg_backup
       wget http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip
       unzip postgis_upgrade-4.0.zip
@@ -71,7 +71,7 @@ The first step of the upgrade process is to back up your existing PostGIS data.
 Back up GeoServer data directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The next step is to back up the GeoServer data directory, located at :file:`/usr/share/opengeo-suite-data/geoserver_data`. 
+The next step is to back up the GeoServer data directory, located at :file:`/var/lib/opengeo/geoserver`. 
 
 #. Shutdown the Tomcat service:
 
@@ -83,19 +83,19 @@ The next step is to back up the GeoServer data directory, located at :file:`/usr
 
    .. code-block:: bash
 
-      cp -r /usr/share/opengeo-suite-data/geoserver_data /tmp/opengeo_backup
+      cp -r /var/lib/opengeo/geoserver /tmp/opengeo_backup
 
-Uninstall old Suite
+Uninstall old version
+~~~~~~~~~~~~~~~~~~~~~
+
+You may now uninstall the old version of OpenGeo Suite. For example, if the full package ``opengeo`` was used, run the following command:
+
+.. code-block:: bash
+
+   apt-get remove opengeo
+
+Install new version
 ~~~~~~~~~~~~~~~~~~~
-
-You may now uninstall the old version of OpenGeo Suite. Do this by uninstalling the ``opengeo-geoserver`` and ``opengeo-postgis`` packages:
-
-   .. code-block:: bash
-
-      apt-get remove opengeo-geoserver opengeo-postgis
-
-Install new Suite
-~~~~~~~~~~~~~~~~~
 
 You may now install the new version of OpenGeo Suite. See :ref:`installation.ubuntu.install` for details.
 
@@ -128,13 +128,19 @@ Restore GeoServer data directory
 
 The default GeoServer data directory location for OpenGeo Suite 4.x is located at :file:`/var/lib/opengeo/geoserver`. 
 
+#. Go back to the root account:
+
+   .. code-block:: bash
+
+      exit
+   
 #. Stop the Tomcat service:
 
    .. code-block:: bash
 
       service tomcat6 stop
 
-#. Rename the new default data directory.
+#. Rename the new default data directory:
 
    .. code-block:: bash
 
@@ -144,7 +150,7 @@ The default GeoServer data directory location for OpenGeo Suite 4.x is located a
 
    .. code-block:: console
 
-      cp -r /tmp/opengeo_backup/geoserver_data /var/lib/opengeo/geoserver
+      cp -r /tmp/opengeo_backup/geoserver /var/lib/opengeo/geoserver
 
 #. Ensure proper permissions on the restored copy:
 
