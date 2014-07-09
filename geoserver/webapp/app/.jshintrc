@@ -1,0 +1,28 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "indent": 2,
+  "latedef": true,
+  "newcap": true,
+  "nonew": true,
+  "quotmark": "single",
+  "undef": true,
+  "trailing": true,
+  "maxlen": 80,
+  "globals": {
+    "exports": true,
+    "module": false,
+    "process": false,
+    "require": false,
+    "__dirname": false,
+    "angular": false,
+    "describe": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "jasmine": false,
+    "expect": false,
+    "it": false,
+    "inject": false,
+    "urlMatcher": false
+  }
+}
