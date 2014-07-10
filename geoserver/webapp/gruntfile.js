@@ -24,10 +24,11 @@ var dependencies = [
     'bower_components/angular-ui-bootstrap/build/angular-ui.min.js',
     'bower_components/angular-bootstrap/ui-bootstrap.js',
     'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-    'vendor/angular-strap/dimensions.min.js',
-    'vendor/angular-strap/tooltip.js',
-    'vendor/angular-strap/tooltip.tpl.js'
-].map(function(dep) {
+    'bower_components/ace-builds/src-min-noconflict/ace.js',
+    'bower_components/angular-ui-ace/ui-ace.js',
+    'bower_components/angular-strap/dist/angular-strap.js',
+    'bower_components/angular-strap/dist/angular-strap.tpl.js'
+    ].map(function(dep) {
     return dep;
 });
 

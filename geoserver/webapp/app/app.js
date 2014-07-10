@@ -5,7 +5,7 @@ angular.module('gsApp', [
   'gsApp.home',
   'gsApp.topnav',
   'gsApp.layers',
-  'gsApp.map'
+  'gsApp.mapstyler'
 ]).config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -14,9 +14,9 @@ angular.module('gsApp', [
         templateUrl: '/home/home.tpl.html',
         controller: 'HomeCtrl'
       })
-      .when('/maps', {
-        templateUrl: '/map/map.tpl.html',
-        controller: 'MapCtrl'
+      .when('/styler', {
+        templateUrl: '/mapstyler/mapstyler.tpl.html',
+        controller: 'MapStylerCtrl'
       })
       .otherwise({redirectTo: '/'});
   }]);

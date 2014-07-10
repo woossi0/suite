@@ -2,24 +2,28 @@
   <topnav></topnav>
   <div class="container-fluid">
     <div class="row">
-    <div><h3 class="page-title">Layers</h3></div>
-      <div class="col-sm-6">
-        {{ workspaces.length }} layers in Workspace:
-        <div class="btn-group" dropdown>
-          <button type="button" class="btn btn-default">Default</button>
-          <button type="button" style="height:32px;" class="btn btn-default dropdown-toggle">
-            <span class="caret"></span>
-            <span class="sr-only">Split button!</span>
-          </button>
-          <ul class="dropdown-menu" role="menu" ng-repeat="workspace in workspaces">
-            <li>{{ workspace.name }}</li>
-          </ul>
+      <div class="col-sm-5">
+        <div class="panel panel-default" style="padding-left: 20px;">
+          <div class="panel-body">
+            GeoServer Workspace:
+            <div class="btn-group" dropdown style="margin-left: 20px;">
+              <button type="button" class="btn btn-default" style="min-width: 150px;">Default</button>
+              <button type="button" style="height:32px;" class="btn btn-default dropdown-toggle">
+                <span class="caret"></span>
+                <span class="sr-only">Split button!</span>
+              </button>
+              <ul class="dropdown-menu" role="menu" ng-repeat="workspace in workspaces">
+                <li>{{ workspace.name }}</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-          <layers></layers>
+        <div><h3 class="page-title">Layers</h3></div>
+        <layers></layers>
       </div>
     </div>
   </div>
