@@ -14,10 +14,10 @@ angular.module('gsApp', [
         templateUrl: '/home/home.tpl.html',
         controller: 'HomeCtrl'
       })
-      .when('/styler', {
+   /*   .when('/styler', {
         templateUrl: '/mapstyler/mapstyler.tpl.html',
         controller: 'MapStylerCtrl'
-      })
+      })*/
       .otherwise({redirectTo: '/'});
   }]);
 

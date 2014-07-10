@@ -1,3 +1,22 @@
-<div>
-{{ title }}
+ <div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Map Styler</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="map">Map goes here</div>
+    </div>
+    <div class="col-sm-6">
+      <div ui-ace="{
+        useWrapMode : true,
+        showGutter: false,
+        theme:'Clouds',
+        mode: 'xml',
+        onLoad: aceLoaded,
+        onChange: aceChanged
+      }"></div>
+    </div>
+  </div>
 </div>
