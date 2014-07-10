@@ -1,0 +1,52 @@
+ <table class="table table-responsive data-table resources filterable">
+  <thead>
+    <tr>
+      <th ng-repeat="header in layerHeaders" ng-style="table_header_style(header)">{{ header }}
+        <a href="" ng-if="header!='edit' && header !='tags'" ng-click="sortBy(header); reverse = !reverse;">
+          <small><i class="glyphicon glyphicon-chevron-down light-grey"></i></small>
+        </a>
+        <button ng-show="header == 'tags'" popover-placement="right" popover="Resources can have multiple tags to represent Suite deployments. E.g. 'Prod', 'QA', etc." class="btn btn-link inline inline-btn"><i class="glyphicon glyphicon-info-sign grey-icon"></i></button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="layer in layerCollection | orderBy:predicate:reverse"
+      ng-class="{last: $last}"
+      ng-click="layerType = layer.type">
+      <td class="check"><input type="checkbox"></td>
+      <td class="text-data">{{layer.name}}</td>
+      <td class="text-data">{{layer.type}}</td>
+      <td class="text-data">{{layer.title}}</td>
+      <td class="text-data">{{layer.store}}</td>
+      <td class="text-data">{{layer.srs}}</td>
+      <td class="text-data">
+        <div ng-show="layer.style == 'draft'" style="display:inline;">
+          <button type="button" class="btn btn-warning btn-sm">Draft <small><i class="glyphicon glyphicon-pencil"></i></small></button>
+        </div>
+        <div ng-show="layer.style == 'none'" style="display:inline;">
+        <button type="button" class="btn btn-info btn-sm">Create <small><i class="glyphicon glyphicon-pencil"></i></small></button>
+        </div>
+        <div ng-show="layer.style == 'applied'" style="display:inline;"r>
+          <button type="button" class="btn btn-success btn-sm">Applied <small><i class="glyphicon glyphicon-pencil"></i></small></button>
+        </div>
+      </td>
+      <td class="number">
+        <!-- _Preview Dropdown -->
+        <div class="btn-group" dropdown>
+          <button type="button" class="btn btn-default">Action</button>
+          <button type="button" class="btn btn-default dropdown-toggle">
+            <span class="caret"></span>
+            <span class="sr-only">Split button!</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">OpenLayers</a></li>
+            <li><a href="#">Google Maps</a></li>
+            <li><a href="#">Shapefile</a></li>
+            <li class="divider"></li>
+            <li><a href="#">GeoJSON</a></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

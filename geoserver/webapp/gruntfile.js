@@ -17,12 +17,18 @@ var sources = {
 };
 
 var dependencies = [
-    'jquery/dist/jquery.min.js',
-    'angular/angular.js',
-    'angular-route/angular-route.js',
-    'angular-resource/angular-resource.js'
+    'bower_components/jquery/dist/jquery.min.js',
+    'bower_components/angular/angular.js',
+    'bower_components/angular-route/angular-route.js',
+    'bower_components/angular-resource/angular-resource.js',
+    'bower_components/angular-ui-bootstrap/build/angular-ui.min.js',
+    'bower_components/angular-bootstrap/ui-bootstrap.js',
+    'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+    'vendor/angular-strap/dimensions.min.js',
+    'vendor/angular-strap/tooltip.js',
+    'vendor/angular-strap/tooltip.tpl.js'
 ].map(function(dep) {
-    return 'bower_components/' + dep;
+    return dep;
 });
 
 module.exports = function(grunt) {
@@ -85,19 +91,27 @@ module.exports = function(grunt) {
                 port: config.proxy.port
             }]
           }
-        }, 
+        },
         jshint: {
           options: {
             jshintrc: true
           },
           js: sources.js,
           test: sources.tests
-        }, 
+        },
+        less: {
+          build: {
+            cleancss: true,
+            files: {
+              'build/geoserver.css': [sources.less]
+            }
+          }
+        },
         copy: {
           index: {
             expand: true,
             cwd: 'app/',
-            src: 'index.html', 
+            src: 'index.html',
             dest: 'build/'
           }
         },
@@ -114,11 +128,11 @@ module.exports = function(grunt) {
                 return '/app/' + relativePath;
               },
               module: 'gsApp.templates',
-            }, 
-            src: sources.tpl, 
+            },
+            src: sources.tpl,
             dest: 'build/templates.js'
           }
-        }, 
+        },
         uglify: {
            dist: {
              files: {
@@ -162,6 +176,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -170,6 +185,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-html2js');
 
     // tasks
-    grunt.registerTask('build', ['copy', 'ngmin', 'html2js', 'uglify']);
-    grunt.registerTask('start', ['configureProxies:server','connect', 'watch']);
+    grunt.registerTask('build', [
+      'less', 'copy', 'ngmin', 'html2js', 'uglify']);
+    grunt.registerTask('start', [
+      'less', 'configureProxies:server','connect', 'watch']);
 };

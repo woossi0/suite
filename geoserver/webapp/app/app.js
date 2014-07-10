@@ -1,8 +1,11 @@
 angular.module('gsApp', [
+  'ui.bootstrap',
   'ngRoute',
   'gsApp.service',
   'gsApp.home',
-  'gsApp.map',
+  'gsApp.topnav',
+  'gsApp.layers',
+  'gsApp.map'
 ]).config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
