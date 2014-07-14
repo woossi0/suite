@@ -3,6 +3,8 @@ angular.module('gsApp.mapstyler',
   .controller('MapStylerCtrl', ['$scope', function($scope) {
     $scope.title = 'Maps';
 
+    $scope.chosenLayer = {};
+
     // Ace editor: https://github.com/angular-ui/ui-ace
 
     $scope.aceLoaded = function(_editor) {

@@ -4,20 +4,20 @@ angular.module('gsApp.home', ['gsApp.service'])
     $scope.workspaces = GeoServer.workspaces();
 
     $scope.workspace = {};
-    $scope.layer = {};
+    $scope.layers = {};
 
     $scope.layerCollection = [
-      {check: 'ok', name: 'states', type: 'Point',
+      {name: 'states', type: 'Point',
       title: 'States', store: 'states_shp', srs: 'EPSG:4326',
       style: 'draft', preview: ''},
-      {check: 'ok', name: 'streets', type: 'Line',
+      {name: 'streets', type: 'Line',
       title: 'Streets', store: 'Medford', srs: 'EPSG:4326',
       style: 'none', preview: ''},
-      {check: 'ok', name: 'wetlands', type: 'Polygon',
+      {name: 'wetlands', type: 'Polygon',
       title: 'Wetlands', store: 'Medford', srs: 'EPSG:4326',
       style: 'applied', preview: ''},
-      {check: 'ok', name: 'wetlands', type: 'Raster',
-      title: 'Wetlands', store: 'Medford', srs: 'EPSG:4326',
+      {name: 'hillshade', type: 'Raster',
+      title: 'Hillshade', store: 'Medford', srs: 'EPSG:4326',
       style: 'none', preview: ''}
     ];
 
@@ -25,11 +25,16 @@ angular.module('gsApp.home', ['gsApp.service'])
   .controller('LayerTableCtrl', ['$scope', '$modal',
     function($scope, $modal) {
 
-      $scope.layerHeaders = ['Select', 'Name', 'Type', 'Title',
+      $scope.layerHeaders = ['Name', 'Type', 'Title',
       'Store', 'SRS', 'Style', 'Preview'];
 
       $scope.sortBy = function (chosen_header) {
         $scope.predicate =  '' + chosen_header;
+      };
+
+      $scope.layers.selectedLayer = null;
+      $scope.setSelected = function(lyr) {
+        $scope.layers.selectedLayer = lyr;
       };
 
     }]);
