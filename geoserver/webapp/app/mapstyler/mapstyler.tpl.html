@@ -21,18 +21,29 @@
         </div>
       </div>
     </div>
-  <div class="row">
+  <div class="row" ng-controller="MapStylerController">
     <div class="col-sm-6">
       <div class="map">Map goes here</div>
     </div>
     <div class="col-sm-6">
+      <div class="button-bar">
+        <ui-select ng-change="modeChanged()" ng-model="editor.mode.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 200px; display:inline-block;">
+          <ui-select-match placeholder="Editor...">{{$select.selected}}</ui-select-match>
+          <ui-select-choices repeat="editor_mode in editor_modes | filter: $select.search">
+            <span ng-bind-html="editor_mode | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+        <button type="button" class="btn btn-success pull-right">Save</button>
+         <button type="button" class="btn btn-info pull-right" style="margin-right: 10px;">Save As...</button>
+        <button type="button" class="btn btn-default pull-right" style="margin-right: 10px;">Undo</button>
+      </div>
       <div ui-ace="{
         useWrapMode : true,
         showGutter: true,
         mode: 'xml',
         onLoad: aceLoaded,
         onChange: aceChanged
-      }"></div>
+        }" ng-model="aceModel"></div>
     </div>
   </div>
 </div>

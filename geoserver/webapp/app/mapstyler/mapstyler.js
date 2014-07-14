@@ -1,30 +1,43 @@
 angular.module('gsApp.mapstyler',
-  ['gsApp.mapstyler.directives', 'ui.ace'])
-  .controller('MapStylerCtrl', ['$scope', function($scope) {
-    $scope.title = 'Maps';
+    ['gsApp.mapstyler.directives', 'ui.ace'])
+  .controller('MapStylerController', ['$scope', function($scope) {
+      $scope.title = 'Maps';
 
-    $scope.chosenLayer = {};
+      $scope.editor_modes = ['SLD', 'YSLD', 'CSS'];
+      $scope.editor = {};
+      $scope.editor.mode = $scope.editor_modes[0];
 
-    // Ace editor: https://github.com/angular-ui/ui-ace
+      // Initial code content...
+      $scope.aceModel = '<!-- SLD code in here. -->\n';
+      $scope.chosenLayer = {};
 
-    $scope.aceLoaded = function(_editor) {
-       // Editor part
-      var _session = _editor.getSession();
-      var _renderer = _editor.renderer;
+      // Ace editor: https://github.com/angular-ui/ui-ace
 
-      // Options
-      _editor.setTheme('ace/theme/monokai');
-      _editor.setReadOnly(false);
-    //  _session.setUndoManager(new ace.UndoManager());
-      _renderer.setShowGutter(false);
+      $scope.aceLoaded = function(_editor) {
+        $scope.ace = _editor;
+        var _session = _editor.getSession();
+        var _renderer = _editor.renderer;
 
-      // Events
-      _editor.on('changeSession', function(){  });
-      _session.on('change', function(){  });
-    };
+        // Options
+        _editor.setTheme('ace/theme/monokai');
+        _editor.setReadOnly(false);
+        _session.setUndoManager(new ace.UndoManager());
+        _renderer.setShowGutter(false);
 
-    $scope.aceChanged = function(e) {
+        // Events
+        _editor.on('changeSession', function() {
+        });
+        _session.on('change', function() {
+        });
+      };
 
-    };
+      $scope.modeChanged = function() {
+        $scope.ace.getSession().setMode(
+            '/ace/mode/' + $scope.editor.mode.toLowerCase());
+      };
 
-  }]);
+      $scope.aceChanged = function(e) {
+
+      };
+
+    }]);
