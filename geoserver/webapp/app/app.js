@@ -1,5 +1,7 @@
 angular.module('gsApp', [
   'ui.bootstrap',
+  'ui.select',
+  'ngSanitize',
   'ngRoute',
   'gsApp.service',
   'gsApp.home',
@@ -19,5 +21,8 @@ angular.module('gsApp', [
         controller: 'MapStylerCtrl'
       })*/
       .otherwise({redirectTo: '/'});
-  }]);
+
+  }]).config(function(uiSelectConfig) {
+    uiSelectConfig.theme = 'bootstrap';
+  });
 

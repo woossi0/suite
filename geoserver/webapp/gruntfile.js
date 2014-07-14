@@ -19,6 +19,7 @@ var sources = {
 var dependencies = [
     'bower_components/jquery/dist/jquery.min.js',
     'bower_components/angular/angular.js',
+    'bower_components/angular-sanitize/angular-sanitize.min.js',
     'bower_components/angular-route/angular-route.js',
     'bower_components/angular-resource/angular-resource.js',
     'bower_components/angular-ui-bootstrap/build/angular-ui.min.js',
@@ -26,6 +27,7 @@ var dependencies = [
     'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
     'bower_components/ace-builds/src-min-noconflict/ace.js',
     'bower_components/angular-ui-ace/ui-ace.js',
+    'bower_components/angular-ui-select/dist/select.min.js',
     'bower_components/angular-strap/dist/angular-strap.js',
     'bower_components/angular-strap/dist/angular-strap.tpl.js'
     ].map(function(dep) {

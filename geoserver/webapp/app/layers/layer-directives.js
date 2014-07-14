@@ -4,9 +4,6 @@ angular.module('gsApp.layers', ['ui.bootstrap.popover'])
       restrict: 'EA',
       templateUrl:
           '/layers/layers.tpl.html',
-      scope: {
-        user: '='
-      },
       replace: true
     };
   })

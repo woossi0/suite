@@ -1,9 +1,28 @@
  <div>
   <div class="row">
     <div class="col-sm-12">
-      <h3>Map Styler</h3>
+      <h3>Layer Styler</h3>
     </div>
   </div>
+  <div class="row">
+      <div class="col-sm-5">
+        <div class="panel panel-default" style="padding-left: 20px;">
+          <div class="panel-body">
+            Selected Layer:
+            <span  class="nullable">
+              <ui-select ng-model="chosenLayer.selected" ng-disabled="disabled" ng-options="layer.name for layer in layerCollection" theme="bootstrap" style="width: 300px;">
+                <ui-select-match placeholder="Enter an address...">{{$select.selected.formatted_address}}</ui-select-match>
+                <ui-select-choices repeat="address in addresses track by $index"
+                         refresh="refreshAddresses($select.search)"
+                         refresh-delay="0">
+                  <div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   <div class="row">
     <div class="col-sm-6">
       <div class="map">Map goes here</div>
@@ -11,8 +30,7 @@
     <div class="col-sm-6">
       <div ui-ace="{
         useWrapMode : true,
-        showGutter: false,
-        theme:'Clouds',
+        showGutter: true,
         mode: 'xml',
         onLoad: aceLoaded,
         onChange: aceChanged
