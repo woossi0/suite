@@ -8,6 +8,11 @@
   <target name="build" depends="init" 
       description="Build project">
 
+    <mkdir dir="${war.dir}"/>
+    <copy todir="${war.src}">
+      <fileset dir="src/main/webapp" includes="WEB-INF/**/*"/>
+    </copy>
+
     <!-- resolve dependencies -->
     <antcall target="retrieve">
       <param name="pattern" value="${war.src}/WEB-INF/lib/[artifact]-[revision].[ext]"/>
