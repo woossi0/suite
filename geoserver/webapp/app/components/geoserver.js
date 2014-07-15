@@ -1,18 +1,40 @@
-angular.module('gsApp.service', ['ngResource'])
-  .factory('GeoServer', ['$resource', function($resource) {
-      var headers = {'Content-Type': 'application/json'};
-      return $resource('/geoserver/rest/:path', {}, {
-        workspaces: {
-          method: 'GET',
-          params: {
-            path: 'workspaces.json'
-          },
-          isArray: true,
-          transformResponse: function(data, headersGetter) {
-            var response = JSON.parse(data);
-            return response.workspaces.workspace;
-          },
-          headers: headers
-        }
-      });
+angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
+  .factory('GeoServer', ['$http', '$resource',
+    function($http, $resource) {
+      var apiRoot = '/geoserver/rest';
+
+      return {
+        workspaces: $resource(apiRoot + '/workspaces.json', {}, {
+          get: {
+            method: 'GET',
+            isArray: true,
+            transformResponse: function(data, header) {
+              var response = angular.fromJson(data);
+              return response.workspaces.workspace;
+            }
+          }
+        }),
+        layers: $resource(apiRoot + '/layers.json', {}, {
+          get: {
+            method: 'GET',
+            isArray: true,
+            transformResponse: function(data, header) {
+              var response = angular.fromJson(data);
+              return response.layers.layer;
+            }
+          }
+        }),
+        layer: $resource(apiRoot + '/layers/:layer.json',
+          {layer: '@layer'}, {
+          get: {
+            method: 'GET',
+            isArray: true,
+            transformResponse: function(data, header) {
+              var response = angular.fromJson(data);
+              return response.layer.layer;
+            }
+          }
+        })
+      };
+
     }]);

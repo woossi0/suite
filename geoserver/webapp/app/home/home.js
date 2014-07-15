@@ -1,29 +1,41 @@
 angular.module('gsApp.home', [
   'gsApp.service'
 ])
-  .controller('HomeCtrl', ['$scope', 'GeoServer', function($scope, GeoServer) {
-      $scope.title = 'Home';
-      $scope.workspaces = GeoServer.workspaces();
+  .controller('HomeCtrl', ['$scope', 'GeoServer', '$q',
+      function($scope, GeoServer, $q) {
+        $scope.title = 'Home';
+        $scope.workspaces = GeoServer.workspaces.get();
+        $scope.workspace = {};
+        $scope.layerCollection = [];
+        var promises = [];
 
-      $scope.workspace = {};
-      $scope.layers = {};
+        $scope.setSelectedWorkspace = function(_workspace) {
+          GeoServer.layers.get({ /*workspace: _workspace.name*/ })
+          .$promise.then(
+              function(result) {
+                angular.forEach(result, function(_layer, key) {
+                  /* GeoServer.layer.get({ layer: _layer.name})
+                   .$promise.then(function(layerResult) {
+                    console.log(layerResult);*/
+                  $scope.layerCollection.push({
+                    name: _layer.name,
+                    //   type: layerResult.type,
+                    //   title: layerResult.name,
+                    srs: ' ',
+                    style: 'default'
+                    //  });
+                  });
 
-      $scope.layerCollection = [
-        {name: 'states', type: 'Point',
-          title: 'States', store: 'states_shp', srs: 'EPSG:4326',
-          style: 'draft', preview: ''},
-        {name: 'streets', type: 'Line',
-          title: 'Streets', store: 'Medford', srs: 'EPSG:4326',
-          style: 'none', preview: ''},
-        {name: 'wetlands', type: 'Polygon',
-          title: 'Wetlands', store: 'Medford', srs: 'EPSG:4326',
-          style: 'applied', preview: ''},
-        {name: 'hillshade', type: 'Raster',
-          title: 'Hillshade', store: 'Medford', srs: 'EPSG:4326',
-          style: 'none', preview: ''}
-      ];
+                });
+              });
+        };
 
-    }])
+
+
+
+        $scope.layers = [];
+
+      }])
   .controller('LayerTableCtrl', ['$scope', '$modal',
       function($scope, $modal) {
 

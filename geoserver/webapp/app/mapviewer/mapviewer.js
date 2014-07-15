@@ -4,7 +4,6 @@ angular.module('gsApp.mapviewer', [
 ])
   .controller('MapViewerController', ['$scope', function($scope) {
 
-
       $scope.mapOpts = {
         center: [-45.0000, -72.0000],
         zoom: 12

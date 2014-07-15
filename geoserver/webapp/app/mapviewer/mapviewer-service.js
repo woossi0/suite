@@ -15,8 +15,17 @@ angular.module('gsApp.mapviewer.services', [])
 
       this.baselayers = function() {
         return [
-          new ol.layer.Tile({
-            source: new ol.source.MapQuest({layer: 'osm'})
+          new ol.layer.Image({
+            source: new ol.source.ImageWMS({
+              url: 'http://localhost:8080/geoserver/opengeo/wms',
+              params: {
+                'LAYERS': 'opengeo:countries',
+                'VERSION': '1.1.0',
+                'TRANSPARENT': true
+              },
+              serverType: 'geoserver',
+              hidpi: false
+            })
           })
         ];
       };
