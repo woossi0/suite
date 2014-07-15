@@ -8,8 +8,6 @@
 
     <target name="build" depends="init" description="Build project">
         <foreach list="${gs-core.ext.list}" target="unpack-core-ext" param="ext"/>
-    </target>
-    <target name="build" depends="init" description="Build project">
         <foreach list="${gs-ext.ext.list}" target="unpack-ext" param="ext"/>
     </target>
 
