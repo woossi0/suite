@@ -1,4 +1,6 @@
-angular.module('gsApp.layers', ['ui.bootstrap.popover'])
+angular.module('gsApp.layers', [
+  'ui.bootstrap.popover'
+])
   .directive('layers', function() {
       return {
         restrict: 'EA',

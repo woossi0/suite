@@ -1,5 +1,7 @@
-angular.module('gsApp.mapstyler.directives', ['ui.select'])
-  .directive('mapstyler', function() {
+angular.module('gsApp.mapstyler.directives', [
+  'ui.select'
+])
+  .directive('mapStyler', function() {
       return {
         restrict: 'EA',
         templateUrl:

@@ -8,7 +8,7 @@
       <div class="col-sm-6">
         <div class="panel panel-default" style="padding-left: 20px;">
           <div class="panel-body">
-            Select Layer:
+            Selected Layer:
             <span  class="nullable">
               <ui-select ng-model="layers.selectedLayer" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 300px; display:inline-block; margin-left: 10px;">
                 <ui-select-match placeholder="Select a layer...">{{$select.selected.name}}</ui-select-match>
@@ -21,16 +21,17 @@
         </div>
       </div>
     </div>
-  <div class="row" ng-controller="MapStylerController">
+  <div class="row">
     <div class="col-sm-6">
-      <div class="map">Map goes here</div>
+      <div map-viewer>Map goes here</div>
     </div>
     <div class="col-sm-6">
       <div class="button-bar">
-        <ui-select ng-change="modeChanged()" ng-model="editor.mode.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 200px; display:inline-block;">
-          <ui-select-match placeholder="Editor...">{{$select.selected}}</ui-select-match>
+        <span>Editor:</span>
+        <ui-select ng-change="modeChanged()" ng-init="firstMode()" ng-model="editor" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 130px; display:inline-block;margin-left: 10px;">
+          <ui-select-match placeholder="Editor...">{{$select.selected.title}}</ui-select-match>
           <ui-select-choices repeat="editor_mode in editor_modes | filter: $select.search">
-            <span ng-bind-html="editor_mode | highlight: $select.search"></span>
+            <span ng-bind-html="editor_mode.title | highlight: $select.search"></span>
           </ui-select-choices>
         </ui-select>
         <button type="button" class="btn btn-success pull-right">Save</button>
@@ -39,8 +40,6 @@
       </div>
       <div ui-ace="{
         useWrapMode : true,
-        showGutter: true,
-        mode: 'xml',
         onLoad: aceLoaded,
         onChange: aceChanged
         }" ng-model="aceModel"></div>

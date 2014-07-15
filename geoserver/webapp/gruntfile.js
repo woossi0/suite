@@ -17,6 +17,7 @@ var sources = {
 };
 
 var dependencies = [
+    'vendor/ol-whitespace.js',
     'bower_components/jquery/dist/jquery.min.js',
     'bower_components/angular/angular.js',
     'bower_components/angular-sanitize/angular-sanitize.min.js',
