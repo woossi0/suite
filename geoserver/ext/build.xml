@@ -1,11 +1,16 @@
 <project name="geoserver.ext" default="build">
     <import file="../../build/common.xml"/>
 
-    <property name="ext.list" value="arcsde,control-flow,css,csw,gdal,jp2k,libjpeg-turbo,oracle,sqlserver,wps"/>
-    <property name="ext.dir" value="../externals/geoserver/src/target/release"/>
+    <property name="gs-core.ext.list" value="arcsde,control-flow,css,csw,gdal,jp2k,libjpeg-turbo,oracle,sqlserver,wps"/>
+    <property name="gs-core.ext.dir" value="../externals/geoserver/src/target/release"/>
+    <property name="gs-ext.ext.list" value="cluster,gsr,mapmeter,mongodb"/>
+    <property name="gs-ext.ext.dir" value="../externals/geoserver/src/target/release"/>
 
     <target name="build" depends="init" description="Build project">
-        <foreach list="${ext.list}" target="unpack-ext" param="ext"/>
+        <foreach list="${gs-core.ext.list}" target="unpack-core-ext" param="ext"/>
+    </target>
+    <target name="build" depends="init" description="Build project">
+        <foreach list="${gs-ext.ext.list}" target="unpack-ext" param="ext"/>
     </target>
 
     <target name="clean" depends="destroy" description="Clean project"/>
@@ -22,9 +27,14 @@
         </antcall>
     </target>
 
+    <target name="unpack-core-ext">
+        <mkdir dir="target/${ext}"/>
+        <unzip src="${gs-core.ext.dir}/geoserver-${gs.version}-${ext}-plugin.zip"
+            dest="target/${ext}"/>
+    </target>
     <target name="unpack-ext">
         <mkdir dir="target/${ext}"/>
-        <unzip src="${ext.dir}/geoserver-${gs.version}-${ext}-plugin.zip"
+        <unzip src="${gs-exts.ext.dir}/geoserver-${gs.version}-${ext}-plugin.zip"
             dest="target/${ext}"/>
     </target>
 
