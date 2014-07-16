@@ -58,12 +58,30 @@
             <param name="dir" value="usermanual/target/latex"/>
             <param name="includes" value="*.pdf"/>
         </antcall>
+        <antcall target="assemble-artifact">
+            <param name="name" value="osx-readme"/>
+            <param name="dir" value="install/mac/target/latex/"/>
+            <param name="includes" value="README*.pdf"/>
+        </antcall>
+        <antcall target="assemble-artifact">
+            <param name="name" value="win-readme"/>
+            <param name="dir" value="install/windows/target/latex/"/>
+            <param name="includes" value="README*.pdf"/>
+        </antcall>
     </target>
 
     <target name="publish" depends="init">
         <antcall target="publish-artifact"/>
         <antcall target="publish-artifact">
             <param name="name" value="pdfdoc"/>
+            <param name="path" value="docs"/>
+        </antcall>
+        <antcall target="publish-artifact">
+            <param name="name" value="osx-readme"/>
+            <param name="path" value="docs"/>
+        </antcall>
+        <antcall target="publish-artifact">
+            <param name="name" value="win-readme"/>
             <param name="path" value="docs"/>
         </antcall>
     </target>
