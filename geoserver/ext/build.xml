@@ -1,7 +1,7 @@
 <project name="geoserver.ext" default="build">
     <import file="../../build/common.xml"/>
 
-    <property name="gs-core.ext.list" value="arcsde,control-flow,css,csw,gdal,jp2k,libjpeg-turbo,oracle,sqlserver,wps"/>
+    <property name="gs-core.ext.list" value="arcsde,control-flow,css,csw,gdal,geopkg,jdbcconfig,jp2k,libjpeg-turbo,oracle,sqlserver,wps"/>
     <property name="gs-core.ext.dir" value="../externals/geoserver/src/target/release"/>
     <property name="gs-exts.ext.list" value="cluster,gsr,mapmeter,mongodb"/>
     <property name="gs-exts.ext.dir" value="../externals/geoserver-exts/target/"/>
