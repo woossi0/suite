@@ -29,7 +29,12 @@
      </exec>
      <antcall target="mvn">
         <param name="dir" value="${gs.dir}/src"/>
-        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -Dbuild.commit.id=${gs.rev} -P release,proxy,printing,importer,jdbcconfig,csw,script,script-js,script-py,geopkg,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
+        <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -Dbuild.commit.id=${gs.rev} -P release,allExtensions ${gs.flags} -Dgwc.version=${gwc.version}"/>
+        <param name="goals" value="clean install assembly:attached"/>
+     </antcall>
+     <antcall target="mvn">
+        <param name="dir" value="${gs.dir}/src/community"/>
+        <param name="flags" value="-DskipTests -Dbuild.commit.id=${gs.rev} -P communityRelease ${gs.flags} -Dgwc.version=${gwc.version}"/>
         <param name="goals" value="clean install assembly:attached"/>
      </antcall>
    </target>
