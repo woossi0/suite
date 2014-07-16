@@ -7,31 +7,30 @@ angular.module('gsApp.home', [
         $scope.workspaces = GeoServer.workspaces.get();
         $scope.workspace = {};
         $scope.layerCollection = [];
-        var promises = [];
 
         $scope.setSelectedWorkspace = function(_workspace) {
           GeoServer.layers.get({ /*workspace: _workspace.name*/ })
-          .$promise.then(
+        .$promise.then(
               function(result) {
-                angular.forEach(result, function(_layer, key) {
-                  /* GeoServer.layer.get({ layer: _layer.name})
-                   .$promise.then(function(layerResult) {
-                    console.log(layerResult);*/
-                  $scope.layerCollection.push({
-                    name: _layer.name,
-                    //   type: layerResult.type,
-                    //   title: layerResult.name,
-                    srs: ' ',
-                    style: 'default'
-                    //  });
-                  });
+                var promises = [];
 
-                });
+                for (var i = 0, len = result.length; i < len; i++) {
+                  GeoServer.layer.get({ layer: result[i].name})
+                  .$promise.then(
+                      function(l) {
+                        $scope.layerCollection.push({
+                          name: l.name,
+                          type: l.type,
+                          title: l.name,
+                          srs: ' ',
+                          style: 'default'
+                        });
+                      }
+                      );
+                }
               });
+
         };
-
-
-
 
         $scope.layers = [];
 
