@@ -49,16 +49,16 @@ angular.module('gsApp.mapstyler', [
         );
         switch ($scope.editor.currentMode.mode) {
           case 'xml':
-            $scope.aceModel = '<!-- SLD code in here. -->\n';
+       //     $scope.aceModel = '<!-- SLD code in here. -->\n';
             break;
           case 'yaml':
-            $scope.aceModel = '<!-- YSLD code in here. -->\n';
+         //   $scope.aceModel = '<!-- YSLD code in here. -->\n';
             break;
           case 'css':
-            $scope.aceModel = '<!-- CSS code in here. -->\n';
+         //   $scope.aceModel = '<!-- CSS code in here. -->\n';
             break;
           default:
-            $scope.aceModel = '<!-- SLD code in here. -->\n';
+        //    $scope.aceModel = '<!-- SLD code in here. -->\n';
         }
       };
 
