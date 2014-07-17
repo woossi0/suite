@@ -6,7 +6,7 @@ angular.module('gsApp', [
   'gsApp.service',
   'gsApp.home',
   'gsApp.topnav',
-  'gsApp.layers',
+  'gsApp.layerstable',
   'gsApp.mapviewer',
   'gsApp.mapstyler'
 ]).config(['$routeProvider', '$locationProvider',

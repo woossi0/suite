@@ -10,9 +10,9 @@ angular.module('gsApp.mapstyler', [
         {title: 'YSLD', mode: 'yaml'},
         {title: 'CSS', mode: 'css'}
       ];
-      $scope.editor = null;
+      $scope.editor = {};
       $scope.firstMode = function() {
-        $scope.editor = $scope.editor_modes[0];
+        $scope.editor.currentMode = $scope.editor_modes[0];
       };
 
       // Initial code content...
@@ -45,8 +45,21 @@ angular.module('gsApp.mapstyler', [
 
       $scope.modeChanged = function() {
         $scope.ace.getSession().setMode(
-            '/ace/mode/' + $scope.editor.mode
+            '/ace/mode/' + $scope.editor.currentMode.mode
         );
+        switch($scope.editor.currentMode.mode) {
+          case 'xml':
+              $scope.aceModel = '<!-- SLD code in here. -->\n';
+              break;
+          case 'yaml':
+              $scope.aceModel = '<!-- YSLD code in here. -->\n';
+              break;
+          case 'css':
+              $scope.aceModel = '<!-- CSS code in here. -->\n';
+              break;
+          default:
+              $scope.aceModel = '<!-- SLD code in here. -->\n';
+        }
       };
 
       $scope.aceChanged = function(e) {

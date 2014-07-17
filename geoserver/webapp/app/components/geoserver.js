@@ -1,10 +1,11 @@
 angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
 .factory('GeoServer', ['$http', '$resource',
       function($http, $resource) {
-        var apiRoot = '/geoserver/rest';
+        var apiRestRoot = '/geoserver/rest';
+        var apiRoot = '/geoserver/';
 
         return {
-          workspaces: $resource(apiRoot + '/workspaces.json', {}, {
+          workspaces: $resource(apiRestRoot + '/workspaces.json', {}, {
             get: {
               method: 'GET',
               isArray: true,
@@ -14,7 +15,7 @@ angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
               }
             }
           }),
-          layers: $resource(apiRoot + '/layers.json', {}, {
+          layers: $resource(apiRestRoot + '/layers.json', {}, {
             get: {
               method: 'GET',
               isArray: true,
@@ -29,7 +30,7 @@ angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
               }
             }
           }),
-          layer: $resource(apiRoot + '/layers/:layer.json',
+          layer: $resource(apiRestRoot + '/layers/:layer.json',
               {layer: '@layer'}, {
                 get: {
                   method: 'GET',
@@ -41,6 +42,23 @@ angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
                       response = angular.fromJson(data);
                     }
                     return response.layer;
+                  }
+                }
+              }),
+          capabilities: $resource(apiRoot + ':workspace/ows',
+              {workspace: '@workspace'}, {
+                get: {
+                  method: 'GET',
+                  params: {
+                    'SERVICE': 'WFS',
+                    'REQUEST': 'GetCapabilities'
+                  },
+                  isArray: false,
+                  responseType: 'xml',
+                  transformResponse: function(data, header) {
+                    var x2js = new X2JS();
+                    var json = x2js.xml_str2json(data);
+                    return json.WFS_Capabilities;
                   }
                 }
               })

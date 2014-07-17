@@ -15,8 +15,8 @@ angular.module('gsApp.mapviewer.services', [])
 
       this.baselayers = function() {
         return [
-          new ol.layer.Image({
-            source: new ol.source.ImageWMS({
+          new ol.layer.Tile({
+            source: new ol.source.TileWMS({
               url: 'http://localhost:8080/geoserver/opengeo/wms',
               params: {
                 'LAYERS': 'opengeo:countries',
