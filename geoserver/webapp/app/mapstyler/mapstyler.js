@@ -47,23 +47,30 @@ angular.module('gsApp.mapstyler', [
         $scope.ace.getSession().setMode(
             '/ace/mode/' + $scope.editor.currentMode.mode
         );
-        switch($scope.editor.currentMode.mode) {
+        switch ($scope.editor.currentMode.mode) {
           case 'xml':
-              $scope.aceModel = '<!-- SLD code in here. -->\n';
-              break;
+            $scope.aceModel = '<!-- SLD code in here. -->\n';
+            break;
           case 'yaml':
-              $scope.aceModel = '<!-- YSLD code in here. -->\n';
-              break;
+            $scope.aceModel = '<!-- YSLD code in here. -->\n';
+            break;
           case 'css':
-              $scope.aceModel = '<!-- CSS code in here. -->\n';
-              break;
+            $scope.aceModel = '<!-- CSS code in here. -->\n';
+            break;
           default:
-              $scope.aceModel = '<!-- SLD code in here. -->\n';
+            $scope.aceModel = '<!-- SLD code in here. -->\n';
         }
       };
 
       $scope.aceChanged = function(e) {
 
       };
+
+      $scope.$watch('stylesInfo', function(stylesInfo) {
+        if (stylesInfo && stylesInfo.length > 0) {
+          // vkbeautify adds code spacing
+          $scope.aceModel = vkbeautify.xml(stylesInfo[0]);
+        }
+      }, true);
 
     }]);

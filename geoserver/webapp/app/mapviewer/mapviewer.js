@@ -95,7 +95,6 @@ angular.module('gsApp.mapviewer', [
           if (layersInfo) {
             angular.forEach(layersInfo, function(_layer, key) {
               // get the layer info to load the layer
-              // get the layer style and load that in the editor
               if (_layer.type && _layer.type.toLowerCase() === 'vector') {
                 var layerRef = _layer.workspace +
                     ':' + _layer.name;
@@ -119,7 +118,8 @@ angular.module('gsApp.mapviewer', [
                 }
                 $scope.layersData.layers.push(layerRequest);
 
-              } else if (_layer.type && _layer.type.toLowerCase() === 'raster') {
+              } else if (_layer.type && _layer.type.toLowerCase() ===
+                  'raster') {
                 // get as raster layer
               }
             });

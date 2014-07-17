@@ -1,8 +1,8 @@
 angular.module('gsApp.home', [
   'gsApp.service'
 ])
-  .controller('HomeCtrl', ['$scope', 'GeoServer',
-      function($scope, GeoServer) {
+  .controller('HomeCtrl', ['$scope', 'GeoServer', '$http',
+      function($scope, GeoServer, $http) {
         $scope.title = 'Home';
         $scope.workspaces = GeoServer.workspaces.get();
         $scope.workspace = {}; $scope.layers = [];
@@ -58,7 +58,20 @@ angular.module('gsApp.home', [
                       });
                 }
               });
+        };
 
+        // TODO only gets style with the same name as layer
+        $scope.retrieveStyleForLayer = function(_layername) {
+          if (_layername) {
+            var url = GeoServer.apiRestRoot() + '/styles/' + _layername + '.sld';
+            $http.get(url, {
+              responseType: 'xml'
+            })
+            .success(function(data) {
+                  $scope.stylesInfo.push(data);
+                });
+          }
+          // mapstyler is watching $scope.stylesInfo when request returns
         };
       }])
   .controller('LayerTableCtrl', ['$scope', '$modal',
@@ -81,6 +94,12 @@ angular.module('gsApp.home', [
             $scope.layersInfo = [];
           }
           $scope.layersInfo.push($scope.layers.selectedLayer);
+
+          // load style
+          if (!$scope.stylesInfo) {
+            $scope.stylesInfo = [];
+          }
+          $scope.retrieveStyleForLayer($scope.layers.selectedLayer.name);
         };
 
       }]);

@@ -3,7 +3,7 @@ angular.module('gsApp.mapstyler.directives', [
 ])
   .directive('mapStyler', function() {
       return {
-        restrict: 'EA',
+        restrict: 'EAC',
         templateUrl:
             '/mapstyler/mapstyler.tpl.html',
         replace: true,

@@ -5,6 +5,9 @@ angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
         var apiRoot = '/geoserver/';
 
         return {
+          apiRestRoot: function() {
+            return apiRestRoot;
+          },
           workspaces: $resource(apiRestRoot + '/workspaces.json', {}, {
             get: {
               method: 'GET',
