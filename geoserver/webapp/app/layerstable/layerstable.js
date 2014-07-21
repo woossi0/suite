@@ -24,19 +24,6 @@ angular.module('gsApp.layerstable', [
           return $scope.currentWorkspace;
         }
 
-        $scope.loadLayer = function() {
-          if (! $scope.layersInfo) {
-            $scope.layersInfo = [];
-          }
-          $scope.layersInfo.push($scope.layers.selectedLayer);
-
-          // load style
-          if (!$scope.stylesInfo) {
-            $scope.stylesInfo = [];
-          }
-          $scope.retrieveStyleForLayer($scope.layers.selectedLayer.name);
-        };
-
         $scope.openPreview = function(_layername) {
           var workspace = setWorkspace();
           var imageContent = '<img src="' + GeoServer.apiRoot() + workspace + '/wms?service=WMS&version=1.1.0&request=GetMap&layers=' + workspace + ':' + _layername + '&styles=&bbox=-180.0,-89.99892578124998,180.00000000000003,83.59960937500006&width=555&height=268&srs=EPSG:4326&format=image/png"/>';
@@ -52,7 +39,6 @@ angular.module('gsApp.layerstable', [
               }
             }
           });
-
         };
 
         $scope.retrieveGeojson = function(_layername) {

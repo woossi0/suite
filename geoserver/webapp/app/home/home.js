@@ -62,25 +62,11 @@ angular.module('gsApp.home', [
               });
         };
 
-        // TODO only gets style with the same name as layer
-        $scope.retrieveStyleForLayer = function(_layername) {
-          if (_layername) {
-            var url = GeoServer.apiRestRoot() + '/styles/' +
-                _layername + '.sld';
-            $http.get(url, {
-              responseType: 'xml'
-            })
-            .success(function(data) {
-                  $scope.stylesInfo.push(data);
-                });
-          }
-          // mapstyler is watching $scope.stylesInfo when request returns
-        };
-
         $scope.$watch('selectedLayer', function(lyr) {
           $scope.$parent.selectedLayer = lyr;
         });
         $scope.$watch('layers', function(lyrs) {
           $scope.$parent.layers = lyrs;
         });
+
       }]);

@@ -2,10 +2,11 @@ angular.module('gsApp.mapstyler', [
   'gsApp.mapstyler.directives',
   'ui.ace'
 ])
-  .controller('MapStylerController', ['$scope', function($scope) {
+  .controller('MapStylerController', ['$scope', 'GeoServer', '$http',
+    function($scope, GeoServer, $http) {
       $scope.title = 'Maps';
 
-      $scope.selectedLayer = $scope.$parent.selectedLayer.name;
+      $scope.selectedLayer = $scope.$parent.selectedLayer;
       $scope.layers = $scope.$parent.layers;
 
       $scope.editor_modes = [
@@ -67,6 +68,34 @@ angular.module('gsApp.mapstyler', [
 
       $scope.aceChanged = function(e) {
 
+      };
+
+      $scope.loadLayer = function() {
+        if (! $scope.layersInfo) {
+          $scope.layersInfo = [];
+        }
+        $scope.layersInfo.push($scope.layers.selectedLayer);
+
+        // load style
+        if (!$scope.stylesInfo) {
+          $scope.stylesInfo = [];
+        }
+        $scope.retrieveStyleForLayer($scope.layers.selectedLayer.name);
+      };
+
+      // TODO only gets style with the same name as layer
+      $scope.retrieveStyleForLayer = function(_layername) {
+        if (_layername) {
+          var url = GeoServer.apiRestRoot() + '/styles/' +
+              _layername + '.sld';
+          $http.get(url, {
+            responseType: 'xml'
+          })
+          .success(function(data) {
+                $scope.stylesInfo.push(data);
+              });
+        }
+        // mapstyler is watching $scope.stylesInfo when request returns
       };
 
       $scope.$watch('stylesInfo', function(stylesInfo) {
