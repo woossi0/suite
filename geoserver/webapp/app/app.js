@@ -27,10 +27,11 @@ angular.module('gsApp', [
   uiSelectConfig.theme = 'bootstrap';
 })
 .controller('MainCtrl', ['$scope',
-  function($scope) {
-  $scope.selectedWorkspace;
-  $scope.selectedLayer;
-}]);
+      function($scope) {
+        $scope.selectedWorkspace;
+        $scope.selectedLayer;
+        $scope.layerCollection;
+      }]);
 
 
 

@@ -68,5 +68,8 @@ angular.module('gsApp.home', [
         $scope.$watch('layers', function(lyrs) {
           $scope.$parent.layers = lyrs;
         });
+        $scope.$watch('layerCollection', function(lyrCollection) {
+          $scope.$parent.layerCollection = lyrCollection;
+        });
 
       }]);

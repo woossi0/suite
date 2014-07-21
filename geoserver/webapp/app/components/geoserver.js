@@ -8,7 +8,7 @@ angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
           apiRestRoot: function() {
             return apiRestRoot;
           },
-           apiRoot: function() {
+          apiRoot: function() {
             return apiRoot;
           },
           workspaces: $resource(apiRestRoot + 'workspaces.json', {}, {

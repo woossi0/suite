@@ -29,9 +29,9 @@ angular.module('gsApp.layerstable', [
           var imageContent = '<img src="' + GeoServer.apiRoot() + workspace + '/wms?service=WMS&version=1.1.0&request=GetMap&layers=' + workspace + ':' + _layername + '&styles=&bbox=-180.0,-89.99892578124998,180.00000000000003,83.59960937500006&width=555&height=268&srs=EPSG:4326&format=image/png"/>';
 
           var modalInstance = $modal({
-            title: "Layer Preview",
+            title: 'Layer Preview',
             html: true,
-          /*  contentTemplate: '/layerstable/modal/preview.tpl.html',*/
+            /*  contentTemplate: '/layerstable/modal/preview.tpl.html',*/
             content: imageContent,
             resolve: {
               layername: function() {
