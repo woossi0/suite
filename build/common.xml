@@ -112,27 +112,20 @@ Common build targets.
     <target name="init" depends="init-buildinfo"/>
 
     <!-- 
-    Ivy dependency resolution task.
-    -->
-    <target name="resolve">
-      <property name="type" value="jar,bundle"/>
-      <echo message="type=${type}"/>
-      <ivy:configure file="${common.basedir}/ivysettings.xml"/>
-      <ivy:resolve type="${type}"/>
-      <ivy:report todir="target/ivy-report"/>
-    </target>
-
-    <!-- 
     Ivy dependency retrieval task.
 
     @param dir Directory to copy dependencies to, defaults to "${basedir}/lib". 
     @param pattern Retrieval pattern, defaults to "${dir}/[artifact]-[revision].[ext]". 
     -->
-    <target name="retrieve" depends="resolve">
+    <target name="retrieve">
       <property name="dir" value="lib"/>
       <property name="type" value="jar,bundle"/>
       <property name="pattern" value="${dir}/[artifact]-[revision].[ext]"/>
-      <ivy:retrieve pattern="${pattern}" type="${type}"/>
+      <property name="conf" value="*"/>
+      <ivy:configure file="${common.basedir}/ivysettings.xml"/>
+      <ivy:resolve type="${type}" conf="${conf}"/>
+      <ivy:report todir="target/ivy-report"/>
+      <ivy:retrieve pattern="${pattern}" type="${type}" conf="${conf}"/>
     </target>
 
     <!--
