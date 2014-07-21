@@ -8,7 +8,7 @@
   <target name="build" depends="init" 
       description="Build project">
 
-    <mkdir dir="${war.dir}"/>
+    <mkdir dir="${war.src}"/>
     <copy todir="${war.src}">
       <fileset dir="src/main/webapp" includes="WEB-INF/**/*"/>
     </copy>
