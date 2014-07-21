@@ -17,11 +17,20 @@ angular.module('gsApp', [
           templateUrl: '/home/home.tpl.html',
           controller: 'HomeCtrl'
         })
+      .when('/styler', {
+          templateUrl: '/home/styler.tpl.html',
+          controller: 'MapStylerController'
+        })
       .otherwise({redirectTo: '/'});
 
   }]).config(function(uiSelectConfig) {
   uiSelectConfig.theme = 'bootstrap';
-});
+})
+.controller('MainCtrl', ['$scope',
+  function($scope) {
+  $scope.selectedWorkspace;
+  $scope.selectedLayer;
+}]);
 
 
 

@@ -5,6 +5,9 @@ angular.module('gsApp.mapstyler', [
   .controller('MapStylerController', ['$scope', function($scope) {
       $scope.title = 'Maps';
 
+      $scope.selectedLayer = $scope.$parent.selectedLayer.name;
+      $scope.layers = $scope.$parent.layers;
+
       $scope.editor_modes = [
         {title: 'SLD', mode: 'xml'},
         {title: 'YSLD', mode: 'yaml'},

@@ -14,6 +14,7 @@ angular.module('gsApp.layerstable', [
         $scope.layers.selectedLayer = null;
         $scope.setSelected = function(lyr) {
           $scope.layers.selectedLayer = lyr;
+          $scope.selectedLayer = lyr;
         };
 
         function setWorkspace() {
