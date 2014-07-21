@@ -1,11 +1,13 @@
 angular.module('gsApp.home', [
-  'gsApp.service'
+  'gsApp.service',
+  'gsApp.layerstable'
 ])
   .controller('HomeCtrl', ['$scope', 'GeoServer', '$http',
       function($scope, GeoServer, $http) {
         $scope.title = 'Home';
         $scope.workspaces = GeoServer.workspaces.get();
-        $scope.workspace = {}; $scope.layers = [];
+        $scope.workspace = {};
+        $scope.layers = [];
 
         $scope.setSelectedWorkspace = function(_workspace) {
           $scope.layerCollection = [];
@@ -73,33 +75,4 @@ angular.module('gsApp.home', [
           }
           // mapstyler is watching $scope.stylesInfo when request returns
         };
-      }])
-  .controller('LayerTableCtrl', ['$scope', '$modal',
-      function($scope, $modal) {
-
-        $scope.layerHeaders = ['Name', 'Type', 'Title',
-          'Store', 'SRS', 'Style', 'Preview'];
-
-        $scope.sortBy = function(chosen_header) {
-          $scope.predicate = '' + chosen_header;
-        };
-
-        $scope.layers.selectedLayer = null;
-        $scope.setSelected = function(lyr) {
-          $scope.layers.selectedLayer = lyr;
-        };
-
-        $scope.loadLayer = function() {
-          if (! $scope.layersInfo) {
-            $scope.layersInfo = [];
-          }
-          $scope.layersInfo.push($scope.layers.selectedLayer);
-
-          // load style
-          if (!$scope.stylesInfo) {
-            $scope.stylesInfo = [];
-          }
-          $scope.retrieveStyleForLayer($scope.layers.selectedLayer.name);
-        };
-
       }]);

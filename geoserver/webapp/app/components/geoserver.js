@@ -1,14 +1,17 @@
 angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
 .factory('GeoServer', ['$http', '$resource',
       function($http, $resource) {
-        var apiRestRoot = '/geoserver/rest';
+        var apiRestRoot = '/geoserver/rest/';
         var apiRoot = '/geoserver/';
 
         return {
           apiRestRoot: function() {
             return apiRestRoot;
           },
-          workspaces: $resource(apiRestRoot + '/workspaces.json', {}, {
+           apiRoot: function() {
+            return apiRoot;
+          },
+          workspaces: $resource(apiRestRoot + 'workspaces.json', {}, {
             get: {
               method: 'GET',
               isArray: true,
@@ -18,7 +21,7 @@ angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
               }
             }
           }),
-          layers: $resource(apiRestRoot + '/layers.json', {}, {
+          layers: $resource(apiRestRoot + 'layers.json', {}, {
             get: {
               method: 'GET',
               isArray: true,
@@ -33,7 +36,7 @@ angular.module('gsApp.service', ['ngResource', 'ngSanitize'])
               }
             }
           }),
-          layer: $resource(apiRestRoot + '/layers/:layer.json',
+          layer: $resource(apiRestRoot + 'layers/:layer.json',
               {layer: '@layer'}, {
                 get: {
                   method: 'GET',

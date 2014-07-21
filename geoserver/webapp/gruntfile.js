@@ -28,6 +28,8 @@ var dependencies = [
     'bower_components/angular-ui-bootstrap/build/angular-ui.min.js',
     'bower_components/angular-bootstrap/ui-bootstrap.js',
     'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+    'bower_components/angular-strap/dist/modules/modal.js',
+    'bower_components/angular-strap/dist/modules/modal.tpl.js',
     'bower_components/ace-builds/src-min-noconflict/ace.js',
     'bower_components/angular-ui-ace/ui-ace.js',
     'bower_components/angular-ui-select/dist/select.min.js',

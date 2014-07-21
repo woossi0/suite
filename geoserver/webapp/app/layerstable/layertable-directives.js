@@ -1,12 +1,10 @@
-angular.module('gsApp.layerstable', [
-  'ui.bootstrap.popover'
-])
+angular.module('gsApp.layerstable')
   .directive('layerstable', function() {
       return {
         restrict: 'EA',
         templateUrl:
             '/layerstable/layerstable.tpl.html',
-        controller: 'LayerTableCtrl',
-        replace: true
+        replace: true,
+        controller: 'LayerTableCtrl'
       };
     });

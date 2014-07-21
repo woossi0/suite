@@ -29,22 +29,17 @@
           <a href="/styler" type="button" class="btn btn-success btn-sm">Applied <small><i class="glyphicon glyphicon-pencil"></i></small></a>
         </div>
       </td>
-      <td class="number">
-        <!-- _Preview Dropdown -->
-        <div class="btn-group" dropdown>
-          <button type="button" class="btn btn-default">Action</button>
-          <button type="button" class="btn btn-default dropdown-toggle">
-            <span class="caret"></span>
-            <span class="sr-only">Split button!</span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">OpenLayers</a></li>
-            <li><a href="#">Google Maps</a></li>
-            <li><a href="#">Shapefile</a></li>
-            <li class="divider"></li>
-            <li><a href="#">GeoJSON</a></li>
-          </ul>
-        </div>
+       <td class="dropdown">
+        <i class="fa fa-download dropdown-toggle"></i>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="" ng-click="retrieveGeojson(layer.name)">GeoJSON</a></li>
+          <li><a href="#">Shapefile</a></li>
+        </ul>
+      </td>
+      <td>
+        <a href="" ng-click="openPreview(layer.name)">
+          <i class="fa fa-eye"></i>
+        </a>
       </td>
     </tr>
   </tbody>

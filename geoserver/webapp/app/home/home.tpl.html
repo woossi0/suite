@@ -3,7 +3,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6">
-        <div class="panel panel-default" style="padding-left: 20px;">
+        <div class="panel panel-default" style="margin-top: 20px; padding-left: 20px;">
           <div class="panel-body" style="display:inline-block;">
             Workspace:
             <ui-select ng-model="workspace.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 250px; display:inline-block; margin-left: 10px;" ng-change="setSelectedWorkspace(workspace.selected)">
@@ -20,11 +20,6 @@
       <div class="col-sm-12">
         <div><h3 class="page-title">Layers</h3></div>
         <div layerstable></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <map-styler></map-styler>
       </div>
     </div>
   </div>
