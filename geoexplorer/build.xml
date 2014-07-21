@@ -16,6 +16,7 @@
     <!-- resolve dependencies -->
     <antcall target="retrieve">
       <param name="pattern" value="${war.src}/WEB-INF/lib/[artifact]-[revision].[ext]"/>
+      <param name="conf" value="compile"/>
     </antcall>
 
     <copy todir="${war.src}/WEB-INF/app">
@@ -131,6 +132,10 @@
     </target>
 
     <target name="debug" depends="installed" description="Runs app in debug mode">
+      <antcall target="retrieve">
+        <param name="pattern" value="${war.src}/WEB-INF/lib/[artifact]-[revision].[ext]"/>
+        <param name="conf" value="test"/>
+      </antcall>
       <java classname="org.ringojs.tools.launcher.Main" failonerror="true" fork="true">
         <classpath>
           <fileset dir="${war.src}/WEB-INF/lib">
