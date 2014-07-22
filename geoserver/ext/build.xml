@@ -2,11 +2,11 @@
     <import file="../../build/common.xml"/>
 
     <property name="gs-core.ext.list" 
-        value="arcsde,control-flow,css,csw,gdal,jp2k,libjpeg-turbo,oracle,script,sqlserver,wps"/>
+        value="arcsde,control-flow,css,csw,gdal,jp2k,libjpeg-turbo,oracle,sqlserver,wps"/>
     <property name="gs-core.ext.dir" 
         value="../externals/geoserver/src/target/release"/>
 
-    <property name="gs-comm.ext.list" value="geopkg,jdbcconfig,mbtiles"/>
+    <property name="gs-comm.ext.list" value="geopkg,javascript,jdbcconfig,mbtiles,python"/>
     <property name="gs-comm.ext.dir" 
         value="../externals/geoserver/src/community/target/release"/>
 
