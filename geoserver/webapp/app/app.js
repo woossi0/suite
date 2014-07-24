@@ -19,20 +19,13 @@ angular.module('gsApp', [
         })
       .when('/styler', {
           templateUrl: '/home/styler.tpl.html',
-          controller: 'MapStylerController'
+          controller: 'HomeCtrl'
         })
       .otherwise({redirectTo: '/'});
 
   }]).config(function(uiSelectConfig) {
   uiSelectConfig.theme = 'bootstrap';
-})
-.controller('MainCtrl', ['$scope',
-      function($scope) {
-        $scope.selectedWorkspace;
-        $scope.selectedLayer;
-        $scope.layerCollection;
-      }]);
-
+});
 
 
 

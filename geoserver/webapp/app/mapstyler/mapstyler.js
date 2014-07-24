@@ -6,10 +6,7 @@ angular.module('gsApp.mapstyler', [
       '$timeout',
       function($scope, GeoServer, $http, $timeout) {
         $scope.title = 'Maps';
-
-        $scope.layers = $scope.$parent.layers;
-        $scope.layers.selectedLayer = $scope.$parent.selectedLayer;
-        var bugInSelect_layer = $scope.layers.selectedLayer;
+        $scope.layers = [];
 
         $scope.editor_modes = [
           {title: 'SLD', mode: 'xml'},
@@ -73,9 +70,8 @@ angular.module('gsApp.mapstyler', [
         };
 
         $scope.loadLayer = function() {
-          var lyr = $scope.layers.selectedLayer;
+          var lyr = $scope.selectedLayer;
           if (! lyr) {
-            $scope.layers.selectedLayer = bugInSelect_layer;
             return;
           }
           if (! $scope.layersInfo) {
@@ -87,18 +83,8 @@ angular.module('gsApp.mapstyler', [
           if (!$scope.stylesInfo) {
             $scope.stylesInfo = [];
           }
-          bugInSelect_layer = lyr;
           $scope.retrieveStyleForLayer(lyr.name);
         };
-
-        var selectedLayerTimeout;
-
-        $scope.$watch('layers.selectedLayer', function(lyr) {
-          if (selectedLayerTimeout) {
-            $timeout.cancel(selectedLayerTimeout);
-          }
-          selectedLayerTimeout = $timeout($scope.loadLayer, 200);
-        });
 
         // TODO only gets style with the same name as layer
         $scope.retrieveStyleForLayer = function(_layername) {
@@ -109,8 +95,8 @@ angular.module('gsApp.mapstyler', [
               responseType: 'xml'
             })
           .success(function(data) {
-                  $scope.stylesInfo.push(data);
-                });
+                $scope.stylesInfo.push(data);
+              });
           }
           // mapstyler is watching $scope.stylesInfo when request returns
         };

@@ -10,9 +10,9 @@
           <div class="panel-body" style="display:inline-block;">
             Selected Layer:
             <span  class="nullable">
-              <ui-select ng-model="layers.selectedLayer"  theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 250px; display:inline-block; margin-left: 10px;">
+              <ui-select ng-model="selectedLayer" ng-init="loadLayer();" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" style="width: 250px; display:inline-block; margin-left: 10px;">
                 <ui-select-match placeholder="Select a layer...">{{$select.selected.name}}</ui-select-match>
-                <ui-select-choices repeat="layer in layerCollection | filter: $select.search">
+                <ui-select-choices repeat="layer in layerCollection | filter: $select.search" value="layer.name">
                   <span ng-bind-html="layer.name | highlight: $select.search"></span>
                 </ui-select-choices>
               </ui-select>

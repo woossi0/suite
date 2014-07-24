@@ -7,6 +7,11 @@ angular.module('gsApp.mapstyler.directives', [
         templateUrl:
             '/mapstyler/mapstyler.tpl.html',
         replace: true,
+        scope: {
+          selectedWorkspace: '=selectedWorkspace',
+          selectedLayer: '=selectedLayer',
+          layerCollection: '=layerCollection'
+        },
         controller: 'MapStylerController'
       };
     });
