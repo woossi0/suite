@@ -12,6 +12,7 @@
 # serve to show the default value.
 
 import sys, os, string
+sys.path.append('../../../build'); from build_properties import *
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -46,9 +47,9 @@ copyright = u'CC BY-SA 3.0, Postgis.net'
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = '2.1.3'
+version = pg_version
 # The full version, including alpha/beta/rc tags.
-release = '2.1.3'
+release = version
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:

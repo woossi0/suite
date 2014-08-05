@@ -12,6 +12,7 @@
 # serve to show the default value.
 
 import sys, os, string
+sys.path.append('../../../build'); from build_properties import *
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -45,12 +46,8 @@ copyright = u'CC BY 3.0'
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = '2.5.1'
-# The full version, including alpha/beta/rc tags.
-release = '2.5-SNAPSHOT'
-# Users don't need to see the "SNAPSHOT" notation when it's there
-if release.find('SNAPSHOT') != -1:
-   release = '2.5.x'
+version = gs_version_short
+release = gs_version
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
