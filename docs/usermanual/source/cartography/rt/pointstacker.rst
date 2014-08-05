@@ -6,7 +6,7 @@ Point Stacker
 
 The Point Stacker rendering transformation is a **Vector-to-Vector** transformation which displays a dataset of points with those points that occur close together aggregated into a single point. This produces a more readable map in situations when there are many close points to display. As the stacking is performed dynamically, it can be used to visualize changing data, and does not incur a performance overhead even when applied to very large datasets.
 
-The stacked view is created by configuring a layer with an SLD style which invokes the PointStacker rendering transformation. 
+The stacked view is created by configuring a layer with an SLD style which invokes the PointStacker rendering transformation.
 
 .. figure:: img/pointstacker-volcanoes.png
 
@@ -24,27 +24,28 @@ The transformation is specified with a ``<ogc:Function name="gs:PointStacker">``
 
 The transformation parameters are as follows. The order of parameters is not significant.
 
+.. tabularcolumns:: |p{3cm}|p{1.5cm}|p{10.5cm}|
 .. list-table::
-   :widths: 25 10 65 
-   :header-rows: 1   
+   :widths: 25 10 65
+   :header-rows: 1
 
    * - Name
      - Required?
      - Description
    * - ``data``
      - Yes
-     - Input FeatureCollection containing the features to map  
-   * - ``cellSize``     
-     - No   
+     - Input FeatureCollection containing the features to map
+   * - ``cellSize``
+     - No
      - Size of the cells in which to aggregate points (in pixels)   Default = 1
-   * - ``outputBBOX``     
-     - Yes    
+   * - ``outputBBOX``
+     - Yes
      - Georeferenced bounding box of the output
-   * - ``outputWidth``     
-     - Yes   
+   * - ``outputWidth``
+     - Yes
      - Output image width
-   * - ``outputHeight``     
-     - Yes   
+   * - ``outputHeight``
+     - Yes
      - Output image height
 
 The transformation has required parameters which specify the input data extent and the output image dimensions. The values of these parameters are obtained from environment variables accessed via the function ``<ogc:Function name="env">``. The environment variable values are determined from the WMS request which initiated the rendering process. The parameters and corresponding environment variables are:
@@ -59,30 +60,31 @@ Input
 The PointStacker rendering transformation can be applied to datasets containing features with **vector** geometry. The geometry may be of any type. Point geometries are used directly, while non-point geometry types are converted to points using the centroid of the geometry. The dataset is supplied in the ``data`` parameter.
 
 
-Output 
+Output
 ------
 
 The output of the transformation is a **vector** featuretype containing point features. Each feature has the following attributes:
 
+.. tabularcolumns:: |p{4cm}|p{1.5cm}|p{9.5cm}|
 .. list-table::
-   :widths: 20 15 65 
-   :header-rows: 1   
+   :widths: 20 15 65
+   :header-rows: 1
 
    * - Name
      - Type
      - Description
    * - ``geom``
      - Point
-     - Point geometry representing the group of input features  
+     - Point geometry representing the group of input features
    * - ``count``
      - Integer
-     - Count of all input features represented by this point  
+     - Count of all input features represented by this point
    * - ``countUnique``
      - Integer
-     - Count of all different input points represented by this point  
+     - Count of all different input points represented by this point
 
 
-The output can be styled as required using a ``<PointSymbolizer>``. 
+The output can be styled as required using a ``<PointSymbolizer>``.
 
 Example
 -------
@@ -91,13 +93,13 @@ The map image above shows point stacking applied to a dataset of world volcanoes
 
 .. code-block:: xml
    :linenos:
-   
+
      <?xml version="1.0" encoding="ISO-8859-1"?>
-     <StyledLayerDescriptor version="1.0.0" 
-      xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" 
-      xmlns="http://www.opengis.net/sld" 
-      xmlns:ogc="http://www.opengis.net/ogc" 
-      xmlns:xlink="http://www.w3.org/1999/xlink" 
+     <StyledLayerDescriptor version="1.0.0"
+      xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
+      xmlns="http://www.opengis.net/sld"
+      xmlns:ogc="http://www.opengis.net/ogc"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
        <NamedLayer>
          <Name>vol_stacked_point</Name>
@@ -189,7 +191,7 @@ The map image above shows point stacking applied to a dataset of world volcanoes
                    <CssParameter name="font-family">Arial</CssParameter>
                    <CssParameter name="font-size">12</CssParameter>
                    <CssParameter name="font-weight">bold</CssParameter>
-                 </Font> 
+                 </Font>
                  <LabelPlacement>
                    <PointPlacement>
                    <AnchorPoint>
@@ -200,10 +202,10 @@ The map image above shows point stacking applied to a dataset of world volcanoes
                  </LabelPlacement>
                  <Halo>
                    <Radius>2</Radius>
-                   <Fill> 
-                     <CssParameter name="fill">#AA0000</CssParameter> 
-                     <CssParameter name="fill-opacity">0.9</CssParameter> 
-                   </Fill> 
+                   <Fill>
+                     <CssParameter name="fill">#AA0000</CssParameter>
+                     <CssParameter name="fill-opacity">0.9</CssParameter>
+                   </Fill>
                  </Halo>
                  <Fill>
                    <CssParameter name="fill">#FFFFFF</CssParameter>
@@ -239,7 +241,7 @@ The map image above shows point stacking applied to a dataset of world volcanoes
                    <CssParameter name="font-family">Arial</CssParameter>
                    <CssParameter name="font-size">12</CssParameter>
                    <CssParameter name="font-weight">bold</CssParameter>
-                 </Font> 
+                 </Font>
                  <LabelPlacement>
                    <PointPlacement>
                      <AnchorPoint>
@@ -250,10 +252,10 @@ The map image above shows point stacking applied to a dataset of world volcanoes
                  </LabelPlacement>
                  <Halo>
                     <Radius>2</Radius>
-                    <Fill> 
-                      <CssParameter name="fill">#AA0000</CssParameter> 
-                      <CssParameter name="fill-opacity">0.9</CssParameter> 
-                    </Fill> 
+                    <Fill>
+                      <CssParameter name="fill">#AA0000</CssParameter>
+                      <CssParameter name="fill-opacity">0.9</CssParameter>
+                    </Fill>
                  </Halo>
                  <Fill>
                    <CssParameter name="fill">#FFFFFF</CssParameter>
@@ -265,10 +267,10 @@ The map image above shows point stacking applied to a dataset of world volcanoes
          </UserStyle>
        </NamedLayer>
      </StyledLayerDescriptor>
-     
+
 In this SLD **lines 15-43** define the Point Stacker rendering transformation,
 providing values for the transformation parameters which are appropriate for the input dataset. **Line 18** specifies the input dataset parameter name. **Line 22** specifies a cell size of 30 to aggregate the points by. **Lines 24-42** define the output parameters, which are obtained from internal environment variables set during rendering, as described above.
 
-**Lines 44-169** define styling rules which are applied to the transformation 
+**Lines 44-169** define styling rules which are applied to the transformation
 output to produce the rendered layer. **Lines 44-64** define a rule for depicting a single (unstacked) point using a red triangle symbol. **Lines 65-119** define a rule for depicting a stacked point which has a count in the range 2 to 9. The points are styled as dark red circles of size 14 pixels, with a label showing the count inside them. **Lines 120-169**  define a rule for depicting a stacked point which has a count of 10 or greater. The points are styled as dark red circles of size 22 pixels, with a label that includes the point count.
 

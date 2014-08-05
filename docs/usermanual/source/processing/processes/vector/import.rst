@@ -19,6 +19,7 @@ Inputs and outputs
 Inputs
 ~~~~~~
 
+.. tabularcolumns:: |p{2.5cm}|p{6cm}|p{4.5cm}|p{2cm}|
 .. list-table::
    :header-rows: 1
 
@@ -71,9 +72,9 @@ Outputs
 Usage notes
 -----------
 
-* Some of the GeoServer catalog parameters may be specified in addition to the feature collection. For example, the required workspace name, store name, :term:`CRS`, and CRS handling policy can be included as input. If these parameters are omitted, the server defaults will be used. 
+* Some of the GeoServer catalog parameters may be specified in addition to the feature collection. For example, the required workspace name, store name, :term:`CRS`, and CRS handling policy can be included as input. If these parameters are omitted, the server defaults will be used.
 
-* The name of the layer can also be specified with the input, but if the name is omitted the layer name will be set to the name contained in the feature collection. 
+* The name of the layer can also be specified with the input, but if the name is omitted the layer name will be set to the name contained in the feature collection.
 
 * The name of an existing style can be specified, but if the style is omitted a default style will be chosen based on the geometry in the feature collection.
 
@@ -89,11 +90,11 @@ The ``gs:Import`` process is useful for automatically incorporating results from
 
 Input parameters for ``gs:Transform``:
 
-* ``features``: ``medford:bikelanes``   
-* ``transform``: ``the_geom=the_geom; street_name=streetname; length = length(the_geom)`` 
+* ``features``: ``medford:bikelanes``
+* ``transform``: ``the_geom=the_geom; street_name=streetname; length = length(the_geom)``
 
 Input parameters for ``gs:Import``:
-  
+
 * ``features``: output from ``gs:Transform``
 * ``workspace``: ``medford``
 * ``store``: [blank]

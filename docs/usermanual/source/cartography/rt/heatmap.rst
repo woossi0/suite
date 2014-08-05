@@ -6,7 +6,7 @@ Heatmap
 
 The Heatmap rendering transformation is a **Vector-to-Raster** transformation which displays a dataset as a heatmap surface (also known as a "density surface").  The heatmap surface is generated dynamically, so it can be used to visualize dynamic data.  It can be applied to very large datasets with good performance.
 
-The heatmap view is created by configuring a layer with an SLD style which invokes the Heatmap rendering transformation.  
+The heatmap view is created by configuring a layer with an SLD style which invokes the Heatmap rendering transformation.
 
 .. figure:: img/heatmap_urban_us_east.png
 
@@ -17,37 +17,38 @@ Usage
 
 As with all rendering transformations, the transformation is invoked by adding a ``<Transformation>`` element to a ``<FeatureTypeStyle>`` in an SLD style. The SLD can then be applied to any layer which is backed by a suitable dataset (featuretype).  The dataset may have a weight attribute, whose name is supplied to the process via the ``weightAttr`` process parameter.
 
-The transformation is specified with a ``<ogc:Function name="gs:Heatmap">`` element, with arguments which supply the transformation parameters.   
+The transformation is specified with a ``<ogc:Function name="gs:Heatmap">`` element, with arguments which supply the transformation parameters.
 The arguments are specified using the special function ``<ogc:Function name='parameter'>``.  Each function has as arguments:
 
 * an ``<ogc:Literal>`` giving the name of the parameter
-* one or more literals containing the value(s) of the parameter. 
+* one or more literals containing the value(s) of the parameter.
 
 The transformation parameters are as follows.  The order of parameters is not significant.
 
+.. tabularcolumns:: |p{4cm}|p{1.5cm}|p{9.5cm}|
 .. list-table::
-   :widths: 25 10 65 
+   :widths: 40, 15, 45
    :header-rows: 1
-   
+
    * - Name
      - Required?
      - Description
    * - ``data``
      - Yes
      - Input FeatureCollection containing the features to map.
-   * - ``radiusPixels``	
+   * - ``radiusPixels``
      - Yes
      - Radius of the density kernel (in pixels).
-   * - ``weightAttr``	
+   * - ``weightAttr``
      - No
      - Name of the weight attribute. (default = 1)
-   * - ``pixelsPerCell``	
+   * - ``pixelsPerCell``
      - No
      - Resolution of the computed grid. Larger values improve performance, but may degrade appearance if too large. (default = 1)
-   * - ``outputBBOX``	
+   * - ``outputBBOX``
      - Yes
      - Georeferenced bounding box of the output.
-   * - ``outputWidth``	
+   * - ``outputWidth``
      - Yes
      - Output image width.
    * - ``outputHeight``
@@ -66,10 +67,10 @@ Input
 
 The Heatmap rendering transformation is applied to an input dataset containing features with **vector** geometry.  The geometry may be of any type.  Point geometries are used directly, while non-point geometry types are converted to points using the centroid of the geometry.  The dataset is supplied in the ``data`` parameter.
 
-Optionally, features can be weighted by supplying an weight attribute name using the ``weightAttr`` parameter.  The value of the attribute is used to weight the influence of each point feature.  
+Optionally, features can be weighted by supplying an weight attribute name using the ``weightAttr`` parameter.  The value of the attribute is used to weight the influence of each point feature.
 
 
-Output 
+Output
 ------
 
 The output of the transformation is a single-band **raster**.  Each pixel has a floating-point value in the range [0..1] measuring the density of the pixel relative to the rest of the surface.  The raster can be styled using a ``<RasterSymbolizer>``.
@@ -83,13 +84,13 @@ The heatmap surface in the map image above is produced by the following SLD.  (T
 
 .. code-block:: xml
    :linenos:
-   
+
       <?xml version="1.0" encoding="ISO-8859-1"?>
-      <StyledLayerDescriptor version="1.0.0" 
-          xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" 
-          xmlns="http://www.opengis.net/sld" 
-          xmlns:ogc="http://www.opengis.net/ogc" 
-          xmlns:xlink="http://www.w3.org/1999/xlink" 
+      <StyledLayerDescriptor version="1.0.0"
+          xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
+          xmlns="http://www.opengis.net/sld"
+          xmlns:ogc="http://www.opengis.net/ogc"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <NamedLayer>
           <Name>Heatmap</Name>
@@ -155,13 +156,13 @@ The heatmap surface in the map image above is produced by the following SLD.  (T
           </UserStyle>
         </NamedLayer>
        </StyledLayerDescriptor>
-       
+
 In the SLD **lines 14-53** define the Heatmap rendering transformation,
 giving values for the transformation parameters which are appropriate for the input dataset.
 **Line 17** specifies the input dataset parameter name.
 **Line 21** specifies the dataset attribute which provides a weighting for the input points.
 **Line 27** specifies a kernel density radius of 100 pixels.
-**Line 32** defines the resolution of computation to be 10 pixels per cell, 
+**Line 32** defines the resolution of computation to be 10 pixels per cell,
 which provides efficient rendering time while still providing output of reasonable visual quality.
 **Lines 34-52** define the output parameters, which are
 obtained from internal environment variables set during rendering, as described above.
@@ -171,7 +172,7 @@ obtained from internal environment variables set during rendering, as described 
 **Line 58** specifies an overall opacity of 0.6 for the rendered layer.
 **Lines 59-65** define a color map with which to symbolize the output raster.
 The color map uses a **type** of ``ramp``, which produces a smooth
-transition between colors. 
+transition between colors.
 **Line 60-61** specifies that raster values of 0.02 or less should be displayed with a fully transparent color of white,
 which makes areas where there no influence from data points invisible.
 

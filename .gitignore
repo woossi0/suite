@@ -1,5 +1,9 @@
 # general stuff
 .DS_Store
+*.pyc
+
+# build override files
+local.properties
 
 # Maven artifacts
 target/

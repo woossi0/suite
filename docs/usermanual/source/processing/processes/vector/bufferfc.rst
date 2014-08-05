@@ -25,6 +25,7 @@ Inputs and outputs
 Inputs
 ~~~~~~
 
+.. tabularcolumns:: |p{3cm}|p{5cm}|p{4cm}|p{3cm}|
 .. list-table::
    :header-rows: 1
 
@@ -79,7 +80,7 @@ As the input feature collection uses geographic coordinates (EPSG:4326), the dis
 Input parameters:
 
 * ``features``: ``medford:firestations``
-* ``distance``: 0.024 
+* ``distance``: 0.024
 * ``attributeName``: [blank]
 
 :download:`Download complete XML request <xml/bufferfcexample.xml>`

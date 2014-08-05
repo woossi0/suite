@@ -21,6 +21,7 @@ Inputs and outputs
 Inputs
 ~~~~~~
 
+.. tabularcolumns:: |p{3cm}|p{4cm}|p{4cm}|p{4cm}|
 .. list-table::
    :header-rows: 1
 
@@ -29,7 +30,7 @@ Inputs
      - Type
      - Usage
    * - ``first feature collection``
-     - First feature collection 
+     - First feature collection
      - :ref:`SimpleFeatureCollection <processing.processes.formats.fcin>`
      - Required
    * - ``second feature collection``

@@ -341,8 +341,9 @@ Once the script is in place and activated, the next step is to test it. Use the 
 
    Or, in a more compact representation:
 
+   .. tabularcolumns:: |p{3cm}|p{3cm}|p{4.5cm}|p{4.5cm}|
    .. list-table::
-      :widths: 10 10 40 40 
+      :widths: 10 10 40 40
       :header-rows: 1
 
       * - X

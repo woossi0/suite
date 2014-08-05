@@ -11,14 +11,20 @@ The following process will detail how to set up an initial cluster. The specific
 
 .. note:: This setup assumes that a load balancer (such as `HAProxy <http://haproxy.1wt.eu/>`_ will be employed in front of GeoServer. The details of the configuration of the load balancer are beyond the scope of this documentation.
 
+
 Database setup
 --------------
 
 .. warning:: Setting up a database for the data directory is a **one-way process**. It is not currently possible to export the configuration back to a file-based data directory.
 
+The following databases are supported for containing the data directory:
+
+* PostgreSQL
+* H2
+
 To set up the shared database that will contain the data directory:
 
-#. Create a database, as well as a role able to create tables in that database. PostgreSQL, Oracle, MySQL, SQL Server, and H2 are all supported.
+#. Create a database, as well as a role able to create tables in that database.
 
 #. Install GeoServer, if it is not already installed, but make sure it is not running. The data directory associated with this instance will be the one that is ingested into the database.
 

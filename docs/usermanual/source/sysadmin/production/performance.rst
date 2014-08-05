@@ -29,7 +29,6 @@ Certain JVM operating characteristics can be tuned to optimize performance when 
   
 * ``-server`` forces the use of the Java HotSpot Server VM
 * ``-Xms2048m -Xmx2048m`` sets the JVM to use 2048 megabytes (2 GB) of memory for the heap, and allocates it all on startup (the heap size should be adjusted to fit the actual memory available)
-* ``-XX:+UseParallelOldGC -XX:+UseParallelGC`` enables multi-threaded garbage collection, which improves performance if more than two cores are present
 * ``-XX:NewRatio=2`` tunes the JVM for handling a large number of short-lived objects
 * ``-XX:+AggressiveOpts`` enables experimental optimizations that will be defaults in future versions of the JVM
   

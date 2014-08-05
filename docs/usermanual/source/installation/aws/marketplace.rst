@@ -22,6 +22,7 @@ Instance options
 
 Beyond the pricing plans, there are also three instance sizes. This determination can affect the price as well. The instance sizes are detailed below:
 
+.. tabularcolumns:: |p{3cm}|p{4cm}|p{4cm}|p{4cm}|
 .. list-table::
    :header-rows: 1
    :stub-columns: 1
@@ -62,7 +63,7 @@ Purchasing
 
 .. warning:: You need to have an Amazon Web Services (AWS) account with EC2 enabled in order to use OpenGeo Suite for AWS. Amazon has `detailed instructions on how to sign up for AWS/EC2 <http://aws.amazon.com/documentation/ec2/>`_.
 
-#. Navigate to http://aws.amazon.com and log in by clicking :guilabel:`My Account / Console` and then :guilabel:`My account`. 
+#. Navigate to http://aws.amazon.com and log in by clicking :guilabel:`My Account / Console` and then :guilabel:`My account`.
 
    .. figure:: img/signin.png
 
@@ -115,7 +116,7 @@ Purchasing
 
       Security Group box
 
-#. **Key Pair**. In order to be able to connect to your instance via SSH, you will need to select a saved key pair. 
+#. **Key Pair**. In order to be able to connect to your instance via SSH, you will need to select a saved key pair.
 
    .. figure:: img/settings-keypairblank.png
 

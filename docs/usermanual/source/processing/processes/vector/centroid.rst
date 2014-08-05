@@ -12,7 +12,7 @@ The `centroid <http://en.wikipedia.org/wiki/Centroid>`_ of a geometry is defined
 
 .. note:: The centroid point does not necessarily lie within the geometry, for example the centroid of a C-shaped polygon lies outside the polygon.
 
-.. figure:: img/centroid.png 
+.. figure:: img/centroid.png
 
    *gs:Centroid*
 
@@ -27,10 +27,11 @@ Inputs and outputs
 Inputs
 ~~~~~~
 
+.. tabularcolumns:: |p{2.5cm}|p{3.5cm}|p{3cm}|p{3cm}|
 .. list-table::
    :header-rows: 1
    :widths: 25 35 20 20
-   
+
    * - Name
      - Description
      - Type
@@ -60,19 +61,19 @@ Usage notes
 
 Examples
 --------
- 
+
 
 Finding the centroids of the polygons in the ``medford:zoning`` layer:
 
   - ``features``: ``medford:zoning``
 
   .. figure:: img/centroid-med.png
-  
+
      *Centroids of medford:zoning polygons*
 
 
 Related processes
 -----------------
 
-* Centroid calculation is also available with the `gs:Transform <processing.processes.vector.transform>`_ process, using the ``centroid(geom)`` function. 
+* Centroid calculation is also available with the `gs:Transform <processing.processes.vector.transform>`_ process, using the ``centroid(geom)`` function.
 * If a point guaranteed to lie within the input geometry is required, use the ``interiorPoint(geom)`` function with the ``gs:Transform`` process.

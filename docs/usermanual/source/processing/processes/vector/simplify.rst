@@ -24,6 +24,7 @@ Inputs and outputs
 Inputs
 ~~~~~~
 
+.. tabularcolumns:: |p{3.5cm}|p{5cm}|p{4cm}|p{2.5cm}|
 .. list-table::
    :header-rows: 1
 
@@ -93,7 +94,7 @@ Input parameters:
 
    *gs:Simplify example parameters*
 
-The process is then repeated using a ``distance`` value of 0.005. 
+The process is then repeated using a ``distance`` value of 0.005.
 
 The following illustration shows the different outputs. The original features are represented by the black lines, the first process output with a ``distance`` value of 0.002 is represented by the red lines, and the second process output with a ``distance`` value of 0.005 is represented by the blue lines.
 

@@ -3,7 +3,7 @@
 New installation
 ================
 
-.. note:: 
+.. note::
 
    If upgrading from a previous **major** version see the :ref:`Upgrade <installation.windows.upgrade>` section. If upgrading from a previous **minor** version, please continue below.
 
@@ -56,7 +56,7 @@ Installation
 
       Component selection
 
-   See :ref:`installation.windows.install.components` for more details. 
+   See :ref:`installation.windows.install.components` for more details.
 
 #. Click :guilabel:`Install` to perform the installation.
 
@@ -88,6 +88,7 @@ Components
 
 The following is a list of components available in the **Components** page of the installer.
 
+.. tabularcolumns:: |p{4cm}|p{11cm}|
 .. list-table::
    :widths: 20 80
    :stub-columns: 1
@@ -139,7 +140,7 @@ PostGIS Add-ons
    :class: table-leftwise
 
    * - PointCloud
-     - PostgreSQL LIDAR extension. 
+     - PostgreSQL LIDAR extension.
 
 GeoServer Add-ons
 ^^^^^^^^^^^^^^^^^
@@ -158,7 +159,7 @@ GeoServer Add-ons
    * - CSW
      - Catalogue Service for Web (CSW) support.
    * - Clustering
-     - Clustering plug-ins. 
+     - Clustering plug-ins.
 
 Uninstallation
 --------------

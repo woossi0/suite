@@ -23,6 +23,7 @@ Inputs and outputs
 Inputs
 ~~~~~~
 
+.. tabularcolumns:: |p{3cm}|p{5cm}|p{4cm}|p{3cm}|
 .. list-table::
    :header-rows: 1
 
@@ -69,7 +70,7 @@ Clipping by rectangle
 The following example clips the ``world:borders`` feature collection to an rectangle that covers the continental part of the United States. The clipping geometry is manually entered as a WKT string.
 
 Input parameters:
-  
+
 * ``features``: ``world:borders``
 * ``clip``: ``POLYGON((-125 25, -67 25, -67 50, -125 50, -125 25))``
 
@@ -95,11 +96,11 @@ Since the ``gs:Clip`` process takes a ``Geometry`` object as input and not a fea
 .. note:: This is an example of a "chained" process, where the output of one process is used as the input of another process.
 
 Input parameters for ``gs:CollectGeometries``:
-  
-* ``features``: ``medford:citylimits`` 
+
+* ``features``: ``medford:citylimits``
 
 Input parameters for ``gs:Clip``:
-  
+
 * ``features``: ``medford:streets``
 * ``clip``: output from ``gs:CollectGeometries`` process
 
