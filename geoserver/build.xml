@@ -1,7 +1,7 @@
 <project name="geoserver" default="build">
   <import file="../build/common.xml"/>
 
-  <property name="geoserver.modules" value="externals,data_dir,ext,app"/>
+  <property name="geoserver.modules" value="externals,data_dir,ext,webapp"/>
 
   <target name="build" description="Builds project">
     <for list="${geoserver.modules}" param="mod">
