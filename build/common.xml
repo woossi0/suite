@@ -183,6 +183,30 @@ Common build targets.
         <symlink resource="${artifact_dir}/${artifact_file}" 
           link="${artifact_dir}/suite-${name}-${suite.build_name}.zip" 
           overwrite="true" failonerror="false"/>
+
+        <!--
+         clean up old artifacts for non-release builds
+        -->
+        <if>
+          <not>
+            <equals arg1="${suite.build_cat}" arg2="release"/>
+          </not>
+          <then>
+            <sort id="all_artifacts">
+              <fileset dir="${artifact_dir}" includes="suite-${name}-*.zip"/>
+              <date/>
+            </sort>
+            <last id="new_artifacts" count="6">
+              <resources refid="all_artifacts"/>
+            </last>
+            <delete>
+              <difference>
+                <resources refid="all_artifacts"/>
+                <resources refid="new_artifacts"/>
+              </difference>
+            </delete>
+          </then>
+        </if>
     </target>
 
   <!-- 
