@@ -40,6 +40,8 @@
    </target>
 
    <target name="build-gwc" unless="skip.gwc" description="Build GeoWebCache"> 
+     <propertyregex property="gwc.branch" input="${gwc.version}"
+       regexp="(\d\.\d).*" select="\1.x"/>
      <exec executable="git" dir="${gwc.dir}" failonerror="false" outputproperty="gwc.rev">
        <arg line="rev-parse HEAD"/>
      </exec>
