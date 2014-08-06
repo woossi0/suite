@@ -6,6 +6,7 @@ angular.module('gsApp', [
   'gsApp.service',
   'gsApp.home',
   'gsApp.topnav',
+  'gsApp.sidenav',
   'gsApp.layerstable',
   'gsApp.mapviewer',
   'gsApp.mapstyler'
