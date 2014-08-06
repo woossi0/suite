@@ -48,7 +48,11 @@
       <artifactId>gs-importer-rest</artifactId>
       <version>${gs.version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.opengeo</groupId>
+      <artifactId>gs-ysld</artifactId>
+      <version>${gs.version}</version>
+    </dependency>
     <dependency>
       <groupId>xmlunit</groupId>
       <artifactId>xmlunit</artifactId>
