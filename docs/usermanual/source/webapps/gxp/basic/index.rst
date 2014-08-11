@@ -107,15 +107,14 @@ The viewer configuration defines two layer sources, a WMS-C (cacheable WMS) sour
 Proxying GeoServer
 ------------------
 
-A GeoServer instance will not be accessible by default unless you add the ``-g`` option to the ``debug`` command. This will proxy a remote GeoServer, or just one running on a different port. If you have a GeoServer instance running locally on port 8080, use the following command::
+By default, your application will proxy a GeoServer to the relative path of :file:`/geoserver` if one is found at ``http://localhost:8080/geoserver``. Otherwise, a GeoServer instance will not be accessible by default unless you add the ``-g`` option to the ``debug`` command. This will proxy a remote GeoServer, or just one running on a different port. If you have a GeoServer instance running locally on port 7000, use the following command::
 
-  suite-sdk debug -g http://localhost:8080/geoserver /path/to/myviewer
+  suite-sdk debug -g http://localhost:7000/geoserver /path/to/myviewer
 
 To proxy a remote GeoServer, simply replace the URL with the location of the remote GeoServer instance::
 
   suite-sdk debug -g http://demo.opengeo.org/geoserver /path/to/myviewer
 
-.. note::  Pressing ``Ctrl-C`` in the terminal will shut down the server and allow the new command to be issued.
 
 The commands above will allow GeoServer to be accessible to the application at the relative path of :file:`/geoserver`.
 
@@ -123,3 +122,4 @@ The commands above will allow GeoServer to be accessible to the application at t
 
    Application with a GeoServer proxy showing usa:states layer
 
+.. note::  Pressing ``Ctrl-C`` in the terminal will shut down the server and allow the new command to be issued.

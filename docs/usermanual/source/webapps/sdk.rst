@@ -76,19 +76,19 @@ Accessing GeoServer while testing
 
 Applications built with Boundless SDK are designed to be deployed in the same application server as OpenGeo Suite. So these applications will expect to have GeoServer accessible at the relative URL of :file:`/geoserver`.
 
-While testing locally, you will likely have to set up a proxy to a remote GeoServer to make it look as if it were available locally as well. To do this, provide the ``-g <URL>`` option::
+While testing locally, you may need to set up a proxy to a remote GeoServer to make it look as if it were available locally as well. To do this, provide the ``-g <URL>`` option::
 
-  suite-sdk debug -g http://example.com:8080/geoserver path/to/myapp 
+  suite-sdk debug -g http://example.com/geoserver path/to/myapp 
 
-This will make the GeoServer located at ``http://example.com:8080/geoserver`` available locally to your application at the relative URL of ``http://localhost:9080/geoserver``.
+This will make the GeoServer located at ``http://example.com/geoserver`` available locally to your application at the relative URL of ``http://localhost:9080/geoserver``.
+
+.. note:: 
+
+   **New in version 4.1**: Since GeoServer is commonly located at ``http://localhost:8080/geoserver``, if the ``-g`` option is not provided, the SDK will automatically check that location to see if a GeoServer is present. If a GeoServer is found, it will be automatically proxied to http://localhost:9080/geoserver.
 
 .. note::
 
-   The port and proxy options can be used together. For example, you could debug your application on port 8000 while accessing a local GeoServer running on port 8080::
-
-     suite-sdk debug -l 8000 -g http://localhost:8080/geoserver path/to/myapp 
-
-   This would make your application available at ``http://localhost:8000/`` while making GeoServer available on the same port at ``http://localhost:8000/geoserver``.
+   The port and proxy options can both be used in the same command.
 
 The testing server and proxy are suitable for debugging purposes only. Use the ``suite-sdk deploy`` command to prepare your application for production.
 
