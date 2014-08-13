@@ -17,6 +17,20 @@
         <foreach list="${gs-core.ext.list}" target="unpack-core-ext" param="ext"/>
         <foreach list="${gs-comm.ext.list}" target="unpack-comm-ext" param="ext"/>
         <foreach list="${gs-exts.ext.list}" target="unpack-ext" param="ext"/>
+
+        <antcall target="unpack-ogr"/>
+    </target>
+
+    <target name="unpack-ogr">
+        <!-- copy the ogr jars into the gdal ext directory-->
+        <copy todir="target/gdal" flatten="true">
+            <fileset dir="../externals/geotools/modules/plugin/ogr">
+                <include name="**/gt-ogr-core-*.jar"/>
+                <include name="**/gt-ogr-jni-*.jar"/>
+                <exclude name="**/*-sources.jar"/>
+                <exclude name="**/*-tests.jar"/>
+            </fileset>
+        </copy>
     </target>
 
     <target name="clean" depends="destroy" description="Clean project"/>
