@@ -14,6 +14,9 @@ The individual applications shipped as part of the WAR bundle are:
 
 As PostGIS is not a web application, it is not included in this bundle. If you want to use PostGIS as part of your OpenGeo Suite installation, you should use the packages available for your operating system, and install only the PostGIS component.
 
+QGIS is also not included. Boundless has installers for :ref:`Windows <installation.windows.qgis>` and :ref:`OS X <installation.mac.qgis>`. To use QGIS with Linux, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
+
+
 Installing an application server
 --------------------------------
 

@@ -13,7 +13,7 @@ The primary OpenGeo Suite installer has the most components, so the bulk of this
    :maxdepth: 1
 
    install
+   qgis
    upgrade
    uninstall
    misc
-   qgis

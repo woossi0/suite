@@ -9,6 +9,8 @@ This section describes how to install OpenGeo Suite on Red Hat-based Linux distr
 * CentOS 5 and 6
 * RHEL 5 and 6
 
+.. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with a Red Hat system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
+
 System requirements
 -------------------
 
