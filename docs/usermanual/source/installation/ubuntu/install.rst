@@ -10,6 +10,8 @@ This section describes how to install OpenGeo Suite on Ubuntu Linux. These instr
 
 Do not use these instructions if upgrading from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**). Instead, see the :ref:`Upgrade <installation.ubuntu.upgrade>` section.
 
+.. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with an Ubuntu system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
+
 System requirements
 -------------------
 
