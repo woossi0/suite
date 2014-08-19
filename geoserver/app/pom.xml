@@ -6,7 +6,7 @@
   <groupId>org.opengeo.geoserver</groupId>
   <artifactId>web-app</artifactId>
   <packaging>war</packaging>
-  <version>4.1-SNAPSHOT</version>
+  <version>4.1.1</version>
   <name>OpenGeo Suite GeoServer Web App</name>
 
   <properties>
