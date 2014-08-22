@@ -75,7 +75,7 @@ To allow this:
 
    .. code-block:: console
 
-      sudo service postgresql restart  
+      sudo service postgresql-9.3 restart  
 
 #. To test your connection using :command:`psql`, run the following command:
 
