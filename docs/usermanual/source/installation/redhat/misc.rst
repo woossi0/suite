@@ -49,7 +49,7 @@ To start/stop/restart the PostgreSQL service:
 Service port configuration
 --------------------------
 
-The Jetty and PostgreSQL services run on ports **8080** and **5432** respectively. These ports can often conflict with existing services on the systemk, in which case the ports must be changed. 
+The Tomcat and PostgreSQL services run on ports **8080** and **5432** respectively. These ports can often conflict with existing services on the systemk, in which case the ports must be changed. 
 
 Changing the Tomcat port
 ^^^^^^^^^^^^^^^^^^^^^^^^

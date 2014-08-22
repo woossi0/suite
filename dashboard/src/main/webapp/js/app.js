@@ -1,6 +1,4 @@
 // In case of static HTML, serve static info:
-var SUITE_VERSION = 4.1;
-var RELEASE_DATE = "June 19, 2014";
 
 function onLoad() {
   var active_tab = $('#home');
@@ -78,7 +76,7 @@ function onLoad() {
 
   // Add version info to all version spans
   var proj_version = $('.version').html();
-  proj_version = SUITE_VERSION;
+  proj_version = '@suite_version@';
   $('.version').html(proj_version);
 
   // Add version to all docs links
@@ -99,7 +97,7 @@ function onLoad() {
   if ($('.date').html() == " built on ${build.prettydate}") {
     $('.date').hide();
   }
-  $('.release_date').html(RELEASE_DATE);
+  $('.release_date').html('@build_shortdate@');
 
   // Initialize popovers
   $("#data-tip").popover();

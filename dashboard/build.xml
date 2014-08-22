@@ -10,6 +10,7 @@
         <copy todir="${war.dir}">
           <fileset dir="${war.src}">
             <include name="**/*.html"/>
+            <include name="**/*.js"/>
           </fileset>
           <filterset>
             <filtersfile file="target/version.ini"/>
@@ -18,6 +19,7 @@
         <copy todir="${war.dir}">
           <fileset dir="${war.src}">
             <exclude name="**/*.html"/>
+            <exclude name="**/*.js"/>
           </fileset>
         </copy>
         <copy todir="${war.dir}" file="target/version.ini"/>
