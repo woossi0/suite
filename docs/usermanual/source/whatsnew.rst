@@ -5,7 +5,15 @@ What's new in |version|
 
 Each new version of OpenGeo Suite includes numerous fixes and component upgrades.
 
-In addition, OpenGeo Suite |version| has been updated with all-new features, including:
+|version|
+---------
+
+OpenGeo Suite |version| is a maintenance release, which includes numerous fixes and component upgrades.
+
+4.1
+---
+
+OpenGeo Suite 4.1 has been updated with all-new features, including:
 
 **QGIS now a part of OpenGeo Suite**
 
