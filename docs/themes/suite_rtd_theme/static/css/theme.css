@@ -2925,8 +2925,8 @@ input, select, textarea {
 }
 
 .wy-control-group .wy-form-full {
-  display: block;
   float: left;
+  display: block;
   margin-right: 2.35765%;
   width: 100%;
   margin-right: 0;
@@ -2936,8 +2936,8 @@ input, select, textarea {
 }
 
 .wy-control-group .wy-form-halves {
-  display: block;
   float: left;
+  display: block;
   margin-right: 2.35765%;
   width: 48.82117%;
 }
@@ -2952,8 +2952,8 @@ input, select, textarea {
 }
 
 .wy-control-group .wy-form-thirds {
-  display: block;
   float: left;
+  display: block;
   margin-right: 2.35765%;
   width: 31.76157%;
 }

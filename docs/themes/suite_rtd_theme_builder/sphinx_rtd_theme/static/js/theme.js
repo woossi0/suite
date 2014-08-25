@@ -32,6 +32,23 @@ $( document ).ready(function() {
         evt.stopPropagation();
     });
 
+    // fix anchor tag offsets due to fixed header
+    var header_height = $('#header').height();
+
+    // Case 1 - same page anchor
+    $("[href^='#']").not("[href~='#']").mouseup(function(evt){
+        setTimeout(function(){
+            window.scrollBy(0, -header_height);
+        }, 100);
+    });
+    // Case 2 - different page anchor
+    var hash = window.location.hash;
+    if (hash) {
+        setTimeout(function(){
+            window.scrollBy(0, -header_height);
+        }, 100);
+    }
+
 });
 
 window.SphinxRtdTheme = (function (jquery) {
