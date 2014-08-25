@@ -44,7 +44,7 @@ project = u'OpenGeo Suite'
 manual = u'User Manual'
 copyright = u'2014 Boundless'
 
-version = suite_version_short
+version = suite_version
 release = suite_version
 
 
