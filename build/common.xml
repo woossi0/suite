@@ -12,13 +12,18 @@ Common build targets.
       <isset property="env.BUILD_NAME"/>
     </condition>
 
-    <!-- load relative build.properties first to override any settings -->
+    <!-- first load settings defined by system property -->
+    <property file="${build.settings}"/>
+
+    <!-- next load module relative settings -->
     <property file="local.properties"/>
     <property file="build.properties"/>
 
     <!-- in order to load properties in this directory we need to store the 
          path to this file, so that build.properties can be resolved -->
     <dirname property="common.basedir" file="${ant.file.common}"/>
+
+    <!-- finally load settings defined in build directory -->
     <property file="${common.basedir}/local.properties"/>
     <property file="${common.basedir}/build.properties"/>
 
