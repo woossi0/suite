@@ -102,6 +102,33 @@ The following is a list of components available in the **Components** page of th
      - Tile caching server.
    * - GeoExplorer
      - Map viewing and editing application.
+   * - Recipes
+     - Code samples for building map applications.
+
+GeoServer Extensions
+^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 20 80
+   :stub-columns: 1
+   :class: table-leftwise
+
+   * - Mapmeter
+     - Mapmeter monitoring service.
+   * - CSS Styling
+     - CSS map styling support.
+   * - WPS
+     - Web Processing Service (WPS) support.
+   * - MongoDB
+     - MongoDB database support.
+   * - GeoPackage
+     - GeoPackage data source support.   
+   * - CSW
+     - Catalogue Service for Web (CSW) support.
+   * - Clustering
+     - Clustering plug-ins.
+   * - GDAL Image Formats
+     - Additional raster formats support as part of GDAL integration.
 
 Client Tools
 ^^^^^^^^^^^^
@@ -112,11 +139,11 @@ Client Tools
    :class: table-leftwise
 
    * - PostGIS
-     - PostGIS data loading utilities.
+     - PostGIS command line data loading utilities.
    * - pgAdmin
      - Graphical PostGIS/PostgreSQL database manager.
    * - GDAL/OGR
-     - Spatial data manipulation library.
+     - Spatial data manipulation utilities.
 
 Dev Tools
 ^^^^^^^^^
@@ -130,36 +157,6 @@ Dev Tools
      - Toolkit for building web map applications.
    * - GeoScript
      - Scripting extension for GeoServer.
-
-PostGIS Add-ons
-^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 20 80
-   :stub-columns: 1
-   :class: table-leftwise
-
-   * - PointCloud
-     - PostgreSQL LIDAR extension.
-
-GeoServer Add-ons
-^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 20 80
-   :stub-columns: 1
-   :class: table-leftwise
-
-   * - Mapmeter
-     - `Mapmeter <http://mapmeter.com>`_ monitoring service.
-   * - CSS Styling
-     - CSS map styling support.
-   * - WPS
-     - Web Processing Service (WPS) support.
-   * - CSW
-     - Catalogue Service for Web (CSW) support.
-   * - Clustering
-     - Clustering plug-ins.
 
 Uninstallation
 --------------
