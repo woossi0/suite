@@ -10,6 +10,7 @@ Enables building the suite_rtd_theme from SASS and bower components.
 Quickstart
 -----------
 
+* bundle install 
 * npm install
 * grunt
 * copy all contents from the sphinx_rtd_theme subdirectory to ../suite_rtd_theme
