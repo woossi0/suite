@@ -145,7 +145,8 @@
 
   {%- block footer %} {% endblock %}
 
-  {% if not embedded %}
+  {%- block scripts %}
+   {% if not embedded %}
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
@@ -160,7 +161,8 @@
       <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
     {%- endfor %}
 
-  {% endif %}
+   {% endif %}
+  {% endblock %}
 
   {% if not READTHEDOCS %}
     <script type="text/javascript" src="{{ pathto('_static/js/theme.js', 1) }}"></script>
