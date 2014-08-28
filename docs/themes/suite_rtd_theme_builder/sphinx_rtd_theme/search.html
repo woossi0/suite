@@ -10,15 +10,6 @@
 {%- extends "layout.html" %}
 {% set title = _('Search') %}
 {% set script_files = script_files + ['_static/searchtools.js'] %}
-{% block footer %}
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("{{ pathto('searchindex.js', 1) }}"); });
-  </script>
-  {# this is used when loading the search index using $.ajax fails,
-     such as on Chrome for documents on localhost #}
-  <script type="text/javascript" id="searchindexloader"></script>
-  {{ super() }}
-{% endblock %}
 {% block main %}
   <noscript>
   <div id="fallback" class="admonition warning">
@@ -28,6 +19,15 @@
     </p>
   </div>
   </noscript>
+{% block scripts %}
+  {{ super() }}
+  <script type="text/javascript">
+    jQuery(function() { Search.loadIndex("{{ pathto('searchindex.js', 1) }}"); });
+  </script>
+  {# this is used when loading the search index using $.ajax fails,
+     such as on Chrome for documents on localhost #}
+  <script type="text/javascript" id="searchindexloader"></script>
+{% endblock %}
 
   {% if search_performed %}
     <h2>{{ _('Search Results') }}</h2>
