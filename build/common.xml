@@ -63,6 +63,15 @@ Common build targets.
 
         <!-- initialize git branch, first grab from GIT_BRANCH variable, and 
              if not set fall back to rev-parse -->
+        <if>
+          <isset property="env.GIT_BRANCH"/>
+          <then>
+            <!-- hack to strip off origin prefix -->
+            <propertyregex property="suite.build_branch"
+              input="${env.GIT_BRANCH}" regexp=".*/(.*)" select="\1"/>
+          </then>
+        </if>
+
         <condition property="suite.build_branch" value="${env.GIT_BRANCH}">
           <isset property="env.GIT_BRANCH"/>
         </condition>
