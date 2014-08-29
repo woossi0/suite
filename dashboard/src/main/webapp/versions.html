@@ -42,9 +42,80 @@
           <h2>Recent Releases</h2>
           <p class="well upgrade-note">If you're upgrading from a previous version, be sure to read the instructions on <a href="http://suite.opengeo.org/opengeo-docs/installation/index.html#upgrading" target="_blank">Upgrading OpenGeo Suite</a> and backup your data beforehand.</p>
           <div class="panel-group" id="release-accordion">
-            <h3 class="release-no">4.1 <small>Released June 26, 2014</small></h3>
+                        <h3 class="release-no">4.1.1 <small style="margin-left: 25px;">Released September 2, 2014</small></h3>
             <h4 style="margin-left: 16px;">
               <a href="/opengeo-docs/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
+            </h4>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#release-accordion" href="#collapseZero">
+                        <span class="accordion-icon"></span><span class="doc-text">Release Notes</span>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseZero" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>This maintenance release includes installer and upgrade bug fixes.</p>
+                    <h4>OpenGeo Suite changes:</h4>
+                    <ul>
+                      <li>Bug fixes in installers and when upgrading packages for various platforms (Linux, Windows, OS X affected)</li>
+                      <li>Documentation bug fixes</li>
+                      <li>Upgraded to geos 3.4.2</li>
+                      <li>Postgres Pointcloud is now baked into the Windows install (instead of a checkbox)</li>
+                      <li>PostGIS libproj grid shift file locations updated on OS X and Windows</li>
+                      <li>Fixed gdal package availability in python and removed bridj bindings (use JNI)</li>
+                    </ul>
+                    <p>This maintenance release also includes the following <strong>Component</strong> upgrades:</p>
+                    <h4>GeoServer 2.5.2+</h4>
+                    <ul style="margin-bottom: 25px;">
+                      <li>Fix for rapid concurrent REST API calls to datastores</li>
+                      <li>JDBCConfig logging initialization fix</li>
+                      <li>Validation of MetadataLink URL changes via REST API</li>
+                      <li>GetFeatureInfo engine fixes for unfilled polygons and dashed lines</li>
+                      <li>Configuration issue fix style edits affecting other styles</li>
+                      <li>DBMS connection leak in some WFS GetFeature with bounds enabled</li>
+                      <li>Fix for WPS as a workspace-specific service and activity-reporting during asynchronous requests</li>
+                      <li>Ability to restrict output formats supported by WMS GetMap and GetFeatureInfo</li>
+                      <li>More docs on how to setup JNDI connection pools</li>
+                      <span style="line-height: 24px;">[Reference: <a href="http://blog.geoserver.org/2014/07/23/geoserver-2-5-2-release/" style="color: black;">GeoServer release notes</a>]</span>
+                    </ul>
+                    <h4>GeoWebCache 1.5.3+</h4>
+                    <ul style="margin-bottom: 25px;">
+                      <li>Styles from non-global workspace virtual services (WMS) can now be used by Embedded GWC</li>
+                      <li>Layer name field in DiscQuota DB updated to 128 chars</li>
+                      <li>Fix for NioLock failing to release its memory lock</li>
+                      <li>Fixed support for STYLE parameter in WMTS</li>
+                      <li>Fixed unescaped XML characters in capabilities documents</li>
+                      <li>Exception thrown when calling getCoverageIntersections on a GridSubset</li>
+                      <li>Fix for unrecognized element gwcConfig on startup</li>
+                      <span style="line-height: 24px;">[Reference: <a href="https://github.com/GeoWebCache/geowebcache/blob/master/RELEASE_NOTES.txt" style="color: black;">GWC release notes</a>]</span>
+                    </ul>
+                    <h4>GeoTools 11.2</h4>
+                    <ul>
+                      <li>Image mosaic fixes regarding performance, granule harvesting, and heterogeneous mosaic management</li>
+                      <li>Fixes in XML encoding, in GML and WPS land</li>
+                      <li>Upgraded imageio-ext dependency to 1.1.10</li>
+                      <li>Improvements in Grib and NetCDF formats</li>
+                      <span style="line-height: 24px;">[Reference: <a href="http://geotoolsnews.blogspot.com/2014/07/geotools-112-released.html" style="color: black;">GeoTools release notes</a>]</span>
+                    </ul>
+                    <br/>
+                    <p><strong>Components included:</strong></p>
+                    <ul>
+                      <li>GeoServer 2.5.2+, rev c7886eb2</li>
+                      <li>GeoWebCache 1.5.3+, rev 9a50eaa</li>
+                      <li>GeoTools 11.2, rev 6cc70bb</li>
+                      <li>PostgreSQL 9.3.4</li>
+                      <li>PostGIS 2.1.3</li>
+                      <li>OpenLayers 3.0PRE, rev 7d9e13f3</li>
+                      <li>QGIS 2.2</li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            <h3 class="release-no">4.1 <small>Released June 26, 2014</small></h3>
+            <h4 style="margin-left: 16px;">
+              <a href="/docs/4.1/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
             </h4>
             <div class="panel panel-default">
                 <div class="panel-heading">
