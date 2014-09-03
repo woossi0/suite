@@ -1,0 +1,318 @@
+/**
+ * The App-wide styles
+ * app.less
+ */
+
+@import "variables.less";
+
+@import "../bower_components/bootstrap/less/bootstrap.less";
+@import "assets/angular-grid/ng-grid.css";
+@import "assets/angular-ui-select/dist/select.min.css";
+@import "assets/codemirror/lib/codemirror.css";
+@import "assets/codemirror/addon/hint/show-hint.css";
+@import 'assets/font-awesome/css/font-awesome.css';
+@import 'assets/icomoon/style.css';
+@import 'assets/open-sans-fontface/open-sans.css';
+@import 'assets/spectrum/spectrum.css';
+@import (less) "../vendor/openlayers/ol.css";
+
+body {
+  font-family: @ff-primary;
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+h2 {
+  font-size: 2em;
+}
+h4 {
+  font-size: 1.5em;
+}
+
+a:focus, a:active,
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+  border: 0;
+  outline : 0;
+}
+
+.container-fluid {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.btn:hover, .btn:focus {
+ outline: 0px !important;
+ -webkit-appearance: none;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.dropdown-menu {
+  margin-top: 0;
+  border-radius: 0;
+  background-color: #efefef;
+  color: #000;
+  box-shadow: 0 3px 6px rgba(200, 200, 200,.175);
+  li > a {
+    padding-left: 5px;
+  }
+}
+
+ li.divider {
+  height: 1px;
+  margin: 5px 0 5px 5px;
+  overflow: hidden;
+  background-color: #dcdcdc;
+  clear: both;
+}
+
+/* Navigation */
+
+#wrapper {
+  border: 0;
+  padding-left: @sidebar_max;
+  .transition(all 0.5s ease);
+  background-color: @sidebar-bg;
+  z-index: -1 !important;
+}
+
+#wrapper.toggled {
+  padding-left: @sidebar_min;
+}
+
+#wrapper.fullWidth {
+  padding-left: 0 !important;
+}
+
+#page-content-wrapper {
+  background-color: @white;
+  margin-top: 51px;
+  width: 100%;
+  z-index: 10 !important;
+
+
+  h3.section-title, h3.page-title {
+    background-color: #fafbfc;
+    border-bottom: 1px solid #cfdbe2;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    vertical-align: middle;
+    margin: 0 -25px 15px -25px;
+    padding: 10px 10px 10px 15px;
+  }
+}
+
+.icon-lg {
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+
+/* Custom Tooltip Style */
+
+@tooltip-arrow-outer-width:  @popover-arrow-width + 1;
+@tooltip-arrow-outer-color:  rgba(0,0,0,.25);
+@tooltip-arrow-color: rgba(0,0,0,.25);
+@popover-bg: #fefefe;
+
+// Tooltip
+// --------------------------------------------------
+.tooltip.in { .opacity(100); }
+
+.tooltip-inner {
+    background-color: @popover-bg;
+    color:@gray;
+    max-width: 350px;
+}
+.tooltip .arrow {
+    border-width: 11px;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: @zindex-popover;
+  display: none;
+  max-width: 276px;
+  padding: 1px;
+  text-align: left; // Reset given new insertion method
+  background-color: @popover-bg;
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+
+  // Overrides for proper insertion
+  white-space: normal;
+
+  // Offset the popover to account for the popover arrow
+  &.top     { margin-top: -10px; }
+  &.right   { margin-left: 10px; }
+  &.bottom  { margin-top: 10px; }
+  &.left    { margin-left: -10px; }
+
+}
+
+.tooltip-inner {
+  margin: 0; // reset heading margin
+  padding: 8px 14px;
+  font-size: @font-size-base * 0.9;
+  font-weight: normal;
+  line-height: 1.6em;
+  background-color: @popover-bg;
+  border-bottom: 1px solid darken(@popover-title-bg, 5%);
+  border-radius: 5px 5px 0 0;
+
+  &:empty {
+    display: none;
+  }
+}
+// Arrows
+//
+// .arrow is outer, .arrow:after is inner
+
+.tooltip .tooltip-arrow,
+.tooltip .tooltip-arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.tooltip .tooltip-arrow {
+  border-width: @tooltip-arrow-outer-width;
+}
+.tooltip .tooltip-arrow:after {
+  border-width: 10px;
+  content: "";
+}
+
+.tooltip {
+  &.top .tooltip-arrow {
+    left: 50%;
+    margin-left: -@tooltip-arrow-outer-width;
+    border-bottom-width: 0;
+    border-top-color: #999; // IE8 fallback
+    border-top-color: @popover-arrow-outer-color;
+    bottom: -@tooltip-arrow-outer-width;
+    &:after {
+      bottom: 1px;
+      margin-left: -10px;
+      border-bottom-width: 0;
+      border-top-color: #fff;
+      content: " ";
+    }
+  }
+  &.right .tooltip-arrow {
+    top: 50%;
+    left: -@tooltip-arrow-outer-width;
+    margin-top: -@tooltip-arrow-outer-width;
+    border-left-width: @tooltip-arrow-outer-width;
+    border-right-color: #999; // IE8 fallback
+    border-right-color: @popover-arrow-outer-color;
+    &:after {
+      left: 1px;
+      top: -10px;
+      border-left-width: 0;
+      border-right-color: #fff;
+      content: " ";
+    }
+  }
+  &.bottom .tooltip-arrow {
+    left: 50%;
+    margin-left: -@tooltip-arrow-outer-width;
+    border-width: @tooltip-arrow-outer-width;
+    margin-top: -@tooltip-arrow-outer-width;
+    border-bottom-color: #999; // IE8 fallback
+    border-bottom-color: @tooltip-arrow-outer-color;
+    top: -@tooltip-arrow-outer-width;
+    &:after {
+      top: 1px;
+      margin-left: -10px;
+      border-top-width:  0;
+      border-bottom-color: #fff;
+      content: " ";
+    }
+  }
+  &.left .tooltip-arrow {
+    top: 50%;
+    right: -11px;
+    margin-top: -11px;
+    border-left-color: #999; // IE8 fallback
+    border-left-color: @tooltip-arrow-outer-color;
+    border-right-width: 0;
+    &:after {
+      right: 1px;
+      bottom: -10px;
+      border-right-width: 0;
+      border-left-color: #fff;
+      content: " ";
+    }
+  }
+}
+
+
+/* Submenus for bootstrap dropdowns
+   http://stackoverflow.com/questions/18023493/bootstrap-3-dropdown-sub-menu-missing
+*/
+
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top:0;
+    left:100%;
+    margin-top:-6px;
+    margin-left:-1px;
+    -webkit-border-radius:0 6px 6px 6px;
+    -moz-border-radius:0 6px 6px 6px;
+    border-radius:0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display:block;
+}
+.dropdown-submenu>a:after {
+    display:block;
+    content:" ";
+    float:right;
+    width:0;
+    height:0;
+    border-color:transparent;
+    border-style:solid;
+    border-width:5px 0 5px 5px;
+    border-left-color:#cccccc;
+    margin-top:5px;
+    margin-right:-10px;
+}
+.dropdown-submenu:hover>a:after {
+    border-left-color:#ffffff;
+}
+.dropdown-submenu.pull-left {
+    float:none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left:-100%;
+    margin-left:10px;
+    -webkit-border-radius:6px 0 6px 6px;
+    -moz-border-radius:6px 0 6px 6px;
+    border-radius:6px 0 6px 6px;
+}

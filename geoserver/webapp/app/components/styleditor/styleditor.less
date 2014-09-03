@@ -1,0 +1,59 @@
+/* styleditor.less */
+
+@import "../../variables.less";
+
+.style-editor {
+  .CodeMirror {
+    height: 100%;
+    font-family: @ff-code;
+    font-size: 14px;
+  }
+
+  .CodeMirror-gutter.markers {
+    width: 15px;
+  }
+
+  .CodeMirror-gutter-wrapper i {
+    cursor: pointer;
+  }
+}
+
+.style-toolbar {
+  background-color: @almost-black;
+  > ul {
+    margin-bottom: 0px;
+    margin-left: 0px;
+    > li {
+        color: @light-gray;
+        text-align: center;
+        padding: 10px 20px;
+
+        span {
+          display: block;
+        }
+
+        &:hover {
+          color: @dark-gray;
+          background-color: @light-gray;
+          cursor: pointer;
+        }
+    }
+  }
+
+  .dropdown-menu {
+    li {
+      a {
+        color: @dark-gray;
+      }
+
+      &:not(active) {
+
+        a:hover {
+          background-color: @light-gray;
+          color: @monacoblue;
+        }
+
+      }
+    }
+  }
+}
