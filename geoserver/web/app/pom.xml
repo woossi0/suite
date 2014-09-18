@@ -22,7 +22,7 @@
     </dependency>
     <dependency>
       <groupId>org.geoserver.web</groupId>
-      <artifactId>web-security</artifactId>
+      <artifactId>web-sec-ldap</artifactId>
     </dependency>
 
     <!-- extension modules -->
