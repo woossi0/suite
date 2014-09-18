@@ -76,6 +76,18 @@
       <artifactId>jetty-plus</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <!-- baked in trimble stuff -->
+    <dependency>
+      <groupId>org.opengeo.geoserver</groupId>
+      <artifactId>cluster</artifactId>
+      <version>${gs.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.community.geoserver</groupId>
+      <artifactId>jdbcconfig</artifactId>
+      <version>${gs.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
