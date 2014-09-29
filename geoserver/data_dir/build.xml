@@ -27,12 +27,13 @@
       <param name="name" value="data-dir"/>
       <param name="dir" value="target"/>
       <param name="includes" value="**/*"/>
+      <param name="excludes" value="*-data-dir-*.zip"/>
     </antcall>
   </target>
 
   <target name="publish"
    description="publish to geoserver/data-dir">
-    <antcall target="assemble-artifact">
+    <antcall target="publish-artifact">
       <param name="name" value="data-dir"/>
       <param name="path" value="geoserver${file.separator}data-dir"/>
     </antcall>
