@@ -27,7 +27,7 @@ The following packages are considered "meta" packages that only depend on other 
      - Dependencies
    * - ``opengeo``
      - Top level package, installs everything
-     - ``opengeo-server`` ``opengeo-server``
+     - ``opengeo-server`` ``opengeo-clientr``
    * - ``opengeo-server``
      - All server packages
      - ``postgis21-postgresql93`` ``geoserver`` ``geowebcache`` ``geoexplorer`` ``opengeo-dashboard`` ``opengeo-docs`` ``opengeo-tomcat``
