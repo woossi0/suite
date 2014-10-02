@@ -1,4 +1,4 @@
-<project name="wps-gui" default="build">
+<project name="wps-gui-buil" default="build">
 
     <import file="../build/common.xml"/>
     <import file="external/wps-gui/build.xml"/>
@@ -14,7 +14,7 @@
 
     <target name="assemble"  description="Assemble project artifact">
       <antcall target="assemble-artifact">
-        <param name="dir" value="external/wps-gui/build"/>
+        <param name="dir" value="build"/>
         <param name="includes" value="wps-gui.war"/>
       </antcall>
     </target>
