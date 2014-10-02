@@ -1,0 +1,22 @@
+<project name="wps-gui" default="build">
+
+    <import file="../build/common.xml"/>
+
+    <target name="build" depends="init"  description="Build project">
+     <exec executable="ant" dir="external/wps-gui" failonerror="false">
+       <arg line="war"/>
+    </exec>
+   </target>
+   
+    <target name="clean" depends="destroy"  description="Clean project"/>
+
+    <target name="assemble"  description="Assemble project artifact">
+      <antcall target="assemble-artifact">
+        <param name="dir" value="external/wps-gui/build"/>
+        <param name="includes" value="wps-gui.war"/>
+      </antcall>
+    </target>
+
+    <target name="publish" depends="publish-artifact"/>
+
+</project>
