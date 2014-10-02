@@ -1,4 +1,4 @@
-<project name="wps-gui-buil" default="build">
+<project name="wps-gui" default="build">
 
     <import file="../build/common.xml"/>
     <import file="external/wps-gui/build.xml"/>
