@@ -1,11 +1,13 @@
 <project name="wps-gui" default="build">
 
     <import file="../build/common.xml"/>
+    <import file="external/wps-gui/build.xml"/>
 
     <target name="build" depends="init"  description="Build project">
-     <exec executable="ant" dir="external/wps-gui" failonerror="false">
+     <!--<exec executable="ant" dir="external/wps-gui" failonerror="false">
        <arg line="war"/>
-    </exec>
+    </exec>-->
+    <antcall target="war"/>
    </target>
    
     <target name="clean" depends="destroy"  description="Clean project"/>
