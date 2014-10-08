@@ -1,0 +1,22 @@
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :stub-columns: 1
+   :widths: 20 10 50 20
+
+   * - Property
+     - Required?
+     - Description
+     - Default value
+   * - ``fill-color``
+     - No
+     - Color of inside of features.
+     - ``808080`` (gray)
+   * - ``fill-opacity``
+     - No
+     - Opacity of feature fill. Valid values are a decimal value between ``0`` (completely transparent) and ``1`` (completely opaque).
+     - ``1``
+   * - ``fill-graphic``
+     - No
+     - A design to be used for the fill of the feature. Can either be a mark (common shape) or a URL that points to a graphic. SEE SOMETHING ELSE.
+     - None

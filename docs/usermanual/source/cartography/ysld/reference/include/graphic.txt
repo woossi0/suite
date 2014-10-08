@@ -1,0 +1,3 @@
+The syntax for adding a graphic (as noted above by ``<graphic_options>``) is as follows:
+
+.. warning:: ADD GRAPHIC INFORMATION HERE.
