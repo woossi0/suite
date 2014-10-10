@@ -221,3 +221,33 @@ Citation
 Here I am making a citation [1]_
 
 .. [1] This is the citation I made, let's make this extremely long so that we can tell that it doesn't follow the normal responsive table stuff.
+
+
+
+List-Tables
+============
+
+.. tabularcolumns:: |p{4cm}|p{11cm}|
+.. list-table::
+   :class: non-responsive
+   :widths: 20 80
+   :header-rows: 1
+
+
+   * - Option
+     - Description
+   * - ``proxy``
+     - Sets the proxy to use in order to bypass the Same Origin Policy when accessing remote resources through JavaScript. Only needed when external resources (as in, from outside the OpenGeo Suite instance that your app lives in) are used. Will be set as ``OpenLayers.ProxyHost``.
+   * - ``portalItems``
+     - The items to add to the portal, in addition to the map panel that the viewer will create automatically.
+   * - ``portalConfig``
+     - Configuration object for the wrapping container (usually an ``Ext.Viewport``) of the viewer
+   * - ``tools``
+     - A set of tools that you want to use in the application, such as measure tools or a layer tree
+   * - ``mapItems``
+     - Any items to be added to the map panel, such as a zoom slider
+   * - ``sources``
+     - Configuration of layer sources available to the viewer, such as MapQuest or a WMS server
+   * - ``map``
+     - The configuration for the actual map part of the viewer, such as projection, layers, center and zoom
+

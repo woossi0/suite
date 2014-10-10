@@ -2739,6 +2739,10 @@ button[disabled] {
   display: inline-block;
 }
 
+.wy-dropdown-active .wy-dropdown-menu {
+  display: block;
+}
+
 .wy-dropdown-menu {
   position: absolute;
   left: 0;
@@ -2875,7 +2879,7 @@ legend {
 label {
   display: block;
   margin: 0 0 0.3125em 0;
-  color: #999999;
+  color: #333333;
   font-size: 90%;
 }
 
@@ -3135,9 +3139,11 @@ select[disabled], textarea[disabled], input[readonly], select[readonly], textare
 
 .wy-input-prefix, .wy-input-suffix {
   white-space: nowrap;
+  padding: 6px;
 }
 .wy-input-prefix .wy-input-context, .wy-input-suffix .wy-input-context {
-  padding: 6px;
+  line-height: 27px;
+  padding: 0 8px;
   display: inline-block;
   font-size: 80%;
   background-color: #f3f6f6;
@@ -3417,6 +3423,7 @@ select[disabled], textarea[disabled], input[readonly], select[readonly], textare
 a {
   color: #2980b9;
   text-decoration: none;
+  cursor: pointer;
 }
 a:hover {
   color: #3091d1;
@@ -5264,6 +5271,12 @@ nav.stickynav {
   font-size: 100%;
   padding: 13px 15px 8px;
   background: #115068;
+}
+
+/* Non-responsive tables (Default is responsive */
+.wy-table-responsive table.non-responsive td,
+.wy-table-responsive table.non-responsive th {
+  white-space: normal !important;
 }
 
 footer {
