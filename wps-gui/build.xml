@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wps-gui" default="help" basedir=".">
+
+  <import file="../build/common.xml"/>
+
+  <property name="wps-gui.dir" location="externals/wps-gui"/>
+
+  <target name="build" depends="init" 
+    description="Build project">
+
+    <!-- resolve dependencies -->
+    <antcall target="build">
+      <param name="buildfile" value="${wps-gui.dir}/build.xml"/>
+    </antcall>
+  </target>
+
+  <target name="clean" depends="destroy"
+    description="Clean project">
+  </target>
+
+  <target name="assemble" description="Assemble project artifact">
+    <antcall target="assemble-artifact">
+      <param name="dir" value="build"/>
+      <param name="includes" value="wps-gui.war"/>
+    </antcall>
+  </target>
+
+  <target name="publish" description="Publish project artifact"
+    depends="publish-artifact"/>
+
+</project>
+
