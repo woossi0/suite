@@ -3,7 +3,7 @@
    <import file="../../build/common.xml"/>
 
    <target name="build" description="Build all projects"
-      depends="init, build-gt, build-gwc, build-geoscript-js, build-geoscript-py, build-gs, build-gs-exts">
+      depends="init, build-gt, build-gwc, build-geoscript-js, build-geoscript-py, build-gs, build-gs-exts, build-marlin-renderer">
    </target>
 
    <target name="clean"/>
