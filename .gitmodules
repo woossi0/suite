@@ -37,3 +37,6 @@
 [submodule "geoserver/data_dir/externals/suite-data"]
 	path = geoserver/data_dir/externals/suite-data
 	url = https://github.com/boundlessgeo/suite-data.git
+[submodule "geoserver/externals/marlin-renderer"]
+	path = geoserver/externals/marlin-renderer
+	url = https://github.com/bourgesl/marlin-renderer.git

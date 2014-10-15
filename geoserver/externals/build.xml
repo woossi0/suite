@@ -82,5 +82,12 @@
         <param name="goals" value="clean install"/>
      </antcall>
    </target>
-
+   <target name="build-marlin-renderer" unless="skip.marlin-renderer"
+      description="Build Marlin Renderer"> 
+     <antcall target="mvn">
+        <param name="dir" value="${marlin-renderer.dir}"/>
+        <param name="flags" value="-DskipTests"/>
+        <param name="goals" value="clean install"/>
+     </antcall>
+   </target>
 </project>
