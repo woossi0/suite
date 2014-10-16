@@ -36,8 +36,8 @@ Common build targets.
     <!--
       Help task. 
     -->
-    <target name="help" description="Print help">
-      <exec executable="ant">
+    <target name="help" description="Print help" depends="init-ant">
+      <exec executable="${ant.exe}">
         <arg value="-p"/>
       </exec>
     </target>
@@ -88,6 +88,15 @@ Common build targets.
         </if>
     </target>
 
+      <!--
+     Initializes ant executable.
+     -->
+    <target name="init-ant">
+      <condition property="ant.exe" value="ant.bat" else="ant">
+        <os family="windows"></os>
+      </condition>
+    </target>
+
     <!-- 
     Initializes maven executable.
     -->
@@ -123,7 +132,7 @@ Common build targets.
     <!-- 
     Initialization task. Every build file should call this.
     -->
-    <target name="init" depends="init-buildinfo"/>
+    <target name="init" depends="init-buildinfo,init-ant"/>
 
     <!-- 
     Ivy dependency retrieval task.
