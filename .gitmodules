@@ -12,7 +12,7 @@
 	url = git://github.com/boundlessgeo/geoserver-exts.git
 [submodule "geoserver/externals/geoscript/py"]
 	path = geoserver/externals/geoscript/py
-	url = git://github.com/jdeolive/geoscript-py.git
+	url = git://github.com/geoscript/geoscript-py.git
 [submodule "geoserver/externals/geoscript/js"]
 	path = geoserver/externals/geoscript/js
 	url = git://github.com/jdeolive/geoscript-js.git
