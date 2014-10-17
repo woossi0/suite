@@ -224,15 +224,13 @@ Here I am making a citation [1]_
 
 
 
-List-Tables
-============
+**Matching symbolizers and geometries**
 
 .. tabularcolumns:: |p{4cm}|p{11cm}|
 .. list-table::
    :class: non-responsive
    :widths: 20 80
    :header-rows: 1
-
 
    * - Option
      - Description
