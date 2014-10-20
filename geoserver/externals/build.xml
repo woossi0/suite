@@ -3,7 +3,7 @@
    <import file="../../build/common.xml"/>
 
    <target name="build" description="Build all projects"
-      depends="init, build-gt, build-gwc, build-geoscript-js, build-geoscript-py, build-gs, build-gs-exts, build-marlin-renderer">
+      depends="init, build-gt, build-gwc, build-geoscript-js, build-geoscript-py, build-gs, build-gs-exts">
    </target>
 
    <target name="clean"/>
@@ -79,14 +79,6 @@
      <antcall target="mvn">
         <param name="dir" value="${geoscript-py.dir}"/>
         <param name="flags" value="-DskipTests -Dgt.version=${gt.version} ${geoscript-py.flags}"/>
-        <param name="goals" value="clean install"/>
-     </antcall>
-   </target>
-   <target name="build-marlin-renderer" unless="skip.marlin-renderer"
-      description="Build Marlin Renderer"> 
-     <antcall target="mvn">
-        <param name="dir" value="${marlin-renderer.dir}"/>
-        <param name="flags" value="-DskipTests"/>
         <param name="goals" value="clean install"/>
      </antcall>
    </target>

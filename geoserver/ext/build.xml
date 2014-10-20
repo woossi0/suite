@@ -17,7 +17,8 @@
         <foreach list="${gs-core.ext.list}" target="unpack-core-ext" param="ext"/>
         <foreach list="${gs-comm.ext.list}" target="unpack-comm-ext" param="ext"/>
         <foreach list="${gs-exts.ext.list}" target="unpack-ext" param="ext"/>
-
+        
+        <antcall target="retrieve"/>
         <antcall target="unpack-ogr"/>
         <antcall target="assemble-marlin"/>
     </target>
@@ -35,10 +36,12 @@
     </target>
     
     <target name="assemble-marlin">
-        <!-- copy the ogr jars into the gdal ext directory-->
         <copy todir="target/marlin" flatten="true">
-            <fileset dir="../externals/marlin-renderer/target">
-                <include name="**/marlin-*.jar"/>
+            <fileset dir="lib">
+                <include name="marlin-*.jar"/>
+            </fileset>
+            <fileset dir="target">
+              <include name="version.ini"/>
             </fileset>
         </copy>
     </target>
