@@ -13,7 +13,7 @@ As YSLD is heavily modeled on `YAML <http://yaml.org>`_, it may be useful to ref
    structure
    featurestyles
    rules
-   symbolizers
+   symbolizers/index
    scale
    filters
    functions
