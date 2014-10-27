@@ -14,7 +14,7 @@ As YSLD is heavily modeled on `YAML <http://yaml.org>`_, it may be useful to ref
    featurestyles
    rules
    symbolizers/index
-   scale
+   scalezoom
    filters
    functions
    transforms
