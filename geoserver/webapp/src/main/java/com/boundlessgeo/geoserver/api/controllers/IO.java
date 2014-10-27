@@ -3,35 +3,45 @@
  */
 package com.boundlessgeo.geoserver.api.controllers;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.boundlessgeo.geoserver.Proj;
 import org.apache.commons.httpclient.util.DateUtil;
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.geoserver.catalog.CoverageInfo;
+import org.geoserver.catalog.CoverageStoreInfo;
+import org.geoserver.catalog.DataStoreInfo;
 import org.geoserver.catalog.FeatureTypeInfo;
 import org.geoserver.catalog.Info;
+import org.geoserver.catalog.LayerGroupInfo;
 import org.geoserver.catalog.LayerInfo;
 import org.geoserver.catalog.NamespaceInfo;
+import org.geoserver.catalog.PublishedInfo;
 import org.geoserver.catalog.ResourceInfo;
+import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.WMSLayerInfo;
+import org.geoserver.catalog.WMSStoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.wms.WMSInfo;
+import org.geotools.data.DataAccessFactory;
+import org.geotools.data.DataAccessFactory.Param;
 import org.geotools.data.Parameter;
 import org.geotools.feature.FeatureTypes;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.filter.visitor.DuplicatingFilterVisitor;
-import org.geotools.gce.geotiff.GeoTiffFormat;
 import org.geotools.geometry.jts.Geometries;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.CRS;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.resources.coverage.FeatureUtilities;
 import org.geotools.util.logging.Logging;
 import org.ocpsoft.pretty.time.PrettyTime;
@@ -45,12 +55,15 @@ import org.opengis.feature.type.PropertyDescriptor;
 import org.opengis.feature.type.PropertyType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.expression.PropertyName;
+import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.crs.ProjectedCRS;
+import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.GenericName;
 
+import com.boundlessgeo.geoserver.Proj;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.google.common.base.Throwables;
@@ -62,6 +75,104 @@ import com.vividsolutions.jts.geom.Geometry;
  * Helper for encoding/decoding objects to/from JSON.
  */
 public class IO {
+
+    static public enum Type {FILE,DATABASE,WEB,GENERIC;
+        static Type of( DataAccessFactory format){
+            Set<String> params = new HashSet<String>();
+            for (Param info : format.getParametersInfo()) {
+                params.add(info.getName());
+            }
+            if (params.contains("dbtype")) {
+                return Type.DATABASE;
+            }
+            if (params.contains("directory") || params.contains("file")) {
+                return Type.FILE;
+            }
+            if (params.contains("wms")
+                    || params.contains("WFSDataStoreFactory:GET_CAPABILITIES_URL")) {
+                return Type.WEB;
+            }
+            if( params.contains("url") ){
+                return Type.FILE;
+            }
+            return Type.GENERIC;
+        }
+        static Type of( StoreInfo store ){
+            if( store instanceof CoverageStoreInfo){
+                String url = ((CoverageStoreInfo)store).getURL();
+                if( url.startsWith("file")){
+                    return Type.FILE;
+                }
+                else if( url.startsWith("http") ||
+                         url.startsWith("https") ||
+                         url.startsWith("ftp") ||
+                         url.startsWith("sftp")){
+                    return Type.WEB;
+                }
+            }
+            Map<String, Serializable> params = store.getConnectionParameters();
+            if( params.containsKey("dbtype")){
+                return Type.DATABASE;
+            }
+            if( store instanceof WMSStoreInfo){
+                return Type.WEB;
+            }
+            if( params.keySet().contains("directory") ||
+                params.keySet().contains("file") ){
+                
+                return Type.FILE;
+            }
+            for( Object value : params.values()){
+                if( value == null ) continue;
+                if( value instanceof File ||
+                    (value instanceof String && ((String)value).startsWith("file:")) ||
+                    (value instanceof URL && ((URL)value).getProtocol().equals("file"))){
+                    return Type.FILE;
+                }
+                if( (value instanceof String && ((String)value).startsWith("http:")) ||
+                    (value instanceof URL && ((URL)value).getProtocol().equals("http"))){
+                    return Type.WEB;
+                }
+                if( value instanceof String && ((String)value).startsWith("jdbc:")){
+                    return Type.DATABASE;
+                }
+            }
+            return Type.GENERIC;
+        }
+    }
+
+    static public enum Kind {RASTER,VECTOR,SERVICE,RESOURCE;
+        public String toString() {
+            return name().toLowerCase();
+        }
+        static Kind of( String resource ){
+            return valueOf(resource.toUpperCase());
+        }
+        static Kind of( ResourceInfo resource ){
+            if( resource instanceof CoverageInfo){
+                return Kind.RASTER;
+            }
+            else if( resource instanceof FeatureTypeInfo){
+                return Kind.VECTOR;
+            }
+            else if(resource instanceof WMSLayerInfo){
+                return Kind.SERVICE;
+            }
+            return Kind.RESOURCE;
+        }
+        static Kind of( StoreInfo store ){
+            if( store instanceof CoverageStoreInfo){
+                return Kind.RASTER;
+            }
+            else if( store instanceof DataStoreInfo){
+                return Kind.VECTOR;
+            }
+            else if(store instanceof WMSStoreInfo){
+                return Kind.SERVICE;
+            }
+            return Kind.RESOURCE;
+        }
+    }
 
     static Logger LOG = Logging.getLogger(IO.class);
 
@@ -200,7 +311,35 @@ public class IO {
         obj.put("default", isDefault);
         return obj;
     }
-
+    
+    public static JSONObj layer(JSONObj obj, PublishedInfo layer) {
+        if( layer == null ){
+            return obj;
+        }
+        if( layer instanceof LayerInfo){
+            return layer( obj, (LayerInfo) layer );
+        }
+        else if ( layer instanceof LayerGroupInfo ){
+            return layer( obj, (LayerGroupInfo) layer );
+        }
+        else {
+            return obj;
+        }
+    }
+    
+    public static JSONObj layer(JSONObj obj, LayerGroupInfo layer) {
+        String wsName = layer.getWorkspace().getName();
+        obj.put("name", layer.getName())
+           .put("workspace", wsName)
+           .put("title", layer.getTitle() )
+           .put("description", layer.getAbstract() )
+           .put("type", layer.getMode().toString() );
+        
+        proj(obj.putObject("proj"), layer.getBounds().getCoordinateReferenceSystem(), null);
+        bbox(obj.putObject("bbox"), layer);
+        
+        return obj;
+    }
     /**
      * Encodes a layer within the specified object.
      *
@@ -209,17 +348,20 @@ public class IO {
     @SuppressWarnings("unchecked")
     public static JSONObj layer(JSONObj obj, LayerInfo layer) {
         String wsName = layer.getResource().getNamespace().getPrefix();
-
         ResourceInfo r = layer.getResource();
+        Kind kind = IO.Kind.of(r); //IO.type(r);
+        
         obj.put("name", layer.getName())
                 .put("workspace", wsName)
                 .put("title", layer.getTitle() != null ? layer.getTitle() : r.getTitle())
                 .put("description", layer.getAbstract() != null ? layer.getAbstract() : r.getAbstract())
-                .put("type", type(r));
+                .put("type", kind.toString());
         
         JSONArr keywords = new JSONArr();
         keywords.raw().addAll( r.keywordValues() );
         obj.put("keywords", keywords);
+        proj(obj.putObject("proj"), r.getCRS(), r.getSRS());
+        bbox( obj.putObject("bbox"), r );
         
         if (r instanceof FeatureTypeInfo) {
             FeatureTypeInfo ft = (FeatureTypeInfo) r;
@@ -239,10 +381,6 @@ public class IO {
         else if( r instanceof WMSInfo) {
             obj.put("geometry", "layer");
         }
-
-        proj(obj.putObject("proj"), r.getCRS(), r.getSRS());
-        bbox( obj.putObject("bbox"), r );
-
         return metadata(obj, layer);
     }
 
@@ -269,6 +407,21 @@ public class IO {
         @SuppressWarnings("unchecked")
         Geometries geomType = Geometries.getForBinding((Class<? extends Geometry>) gd.getType().getBinding());
         return geomType.getName();
+    }
+    
+    public static JSONObj bbox( JSONObj bbox, LayerGroupInfo l ){
+        ReferencedEnvelope bounds = l.getBounds();
+        if (bounds != null) {
+            bounds(bbox.putObject("native"), bounds );
+            
+            try {
+                ReferencedEnvelope latLonBounds = bounds.transform(DefaultGeographicCRS.WGS84, true);
+                bounds(bbox.putObject("lonlat"), latLonBounds);
+            } catch (TransformException e) {
+            } catch (FactoryException e) {
+            }
+        }
+        return bbox;
     }
     
     public static JSONObj bbox( JSONObj bbox, ResourceInfo r ){
@@ -418,17 +571,16 @@ public class IO {
         return obj.put("timestamp", timestamp).put("pretty", PRETTY_TIME.format(date));
     }
 
+    /** Metadata: created and modified */
     static JSONObj metadata(JSONObj obj, Info i) {
-        Date date = Metadata.created(i);
-        if (date != null) {
-            date(obj.putObject("created"), date);
+        Date created = Metadata.created(i);
+        if (created != null) {
+            date(obj.putObject("created"), created);
         }
-
-        date = Metadata.modified(i);
-        if (date != null) {
-            date(obj.putObject("modified"), date);
+        Date modified = Metadata.modified(i);
+        if (modified != null) {
+            date(obj.putObject("modified"), modified);
         }
-
         return obj;
     }
 
@@ -440,11 +592,21 @@ public class IO {
                 if (message == null && t.getMessage() != null) {
                     message = t.getMessage();
                 }
-                cause.add(t.toString());
+                StringBuilder trace = new StringBuilder();
+                for( StackTraceElement e : t.getStackTrace()){
+                    trace.append( e.toString()).append('\n');
+                }
+                cause.addObject()
+                    .put("exception", t.getClass().getSimpleName())
+                    .put("message", t.getMessage())
+                    .put("trace",trace.toString());
+            }
+            if (message == null) {
+                message = error.getClass().getSimpleName();
             }
             json.put("message", message != null ? message : error.toString())
                 .put("cause", cause)
-                .put("trace", Throwables.getStackTraceAsString(error));
+                .put("trace",Throwables.getStackTraceAsString(error));
         }
         return json;
     }

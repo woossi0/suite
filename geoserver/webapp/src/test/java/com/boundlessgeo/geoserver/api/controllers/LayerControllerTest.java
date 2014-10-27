@@ -117,6 +117,7 @@ public class LayerControllerTest {
         });
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testGet() throws Exception {
         GeoServer gs = MockGeoServer.get().catalog()
@@ -196,6 +197,7 @@ public class LayerControllerTest {
         assertEquals("title: raw", result.getResponse().getContentAsString());
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testPutStyle() throws Exception {
         MockGeoServer.get().catalog()
@@ -241,6 +243,7 @@ public class LayerControllerTest {
 
         JSONObj obj = JSONWrapper.read(result.getResponse().getContentAsString()).toObject();
         assertNotNull(obj.get("message"));
+        assertNotNull(obj.get("cause"));
         assertNotNull(obj.get("trace"));
 
         JSONArr arr = obj.array("errors");
@@ -251,6 +254,7 @@ public class LayerControllerTest {
         assertNotNull(arr.object(0).get("column"));
     }
 
+    @SuppressWarnings("unused")
     @Test
     public void testDelete() throws Exception {
         GeoServer gs = MockGeoServer.get().catalog()
