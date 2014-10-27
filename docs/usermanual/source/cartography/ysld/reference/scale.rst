@@ -1,21 +1,21 @@
 .. _cartography.ysld.reference.scale:
 
-Scale
-=====
+Scale and zoom
+==============
 
-It is common for different style :ref:`rules <cartography.ysld.reference.scale>` to be applied at different zoom levels on a web map. 
+It is common for different :ref:`style rules <cartography.ysld.reference.rules>` to be applied at different zoom levels on a web map. 
 
 For example, on a roads layer, you would not not want to display every single road when viewing the whole world. Or perhaps, you may wish to styles the same features differently depending on the zoom level; for example: a cities layer styled using points at low zoom levels (when "zoomed out") and with city borders at higher zoom levels ("zoomed in").
 
-YSLD includes a directive that allows rules to be applied depending on the scale.
+YSLD includes a directive that allows rules to be applied depending on the the scale or zoom level. You can specify the raw scale levels in rules or, alternately, you can define zoom levels and specify those in rules.
 
-Syntax
-------
+Scale syntax
+------------
 
 The syntax for using a scale conditional parameter in a rule is::
 
-  rule:
-    ...
+  rules:
+  - ...
     scale: (<min>,<max>)
     ...
 
@@ -33,11 +33,11 @@ where:
      - Default value
    * - ``min``
      - No
-     - The minimum scale for which the rule will be applied. Value is a number.
+     - The minimum scale (inclusive) for which the rule will be applied. Value is a number.
      - ``0``
    * - ``max``
      - No
-     - The minimum scale for which the rule will be applied. Value is a number.
+     - The minimum scale (exclusive) for which the rule will be applied. Value is a number.
      - ``infinite``
 
 .. note:: It is not possible to use an expression for the scale min and max values. Values must be explicit numbers.
@@ -52,7 +52,56 @@ will make the rule apply for any zoom level that includes scales lower than the 
 
 will make the rule apply for any zoom level that includes scales higher than the ``min`` scale (so from zoom level 0 to a certain zoom level).
 
-If the scale parameter is omitted entirely, then the rule will apply at all zoom levels.
+If the scale parameter is omitted entirely, then the rule will apply at all scales.
+
+Scale example
+~~~~~~~~~~~~~
+
+Three rules, all at different scales::
+
+  rule:
+  - name: high_zoom
+    scale: (,100000)
+    symbolizers:
+    - line:
+        stroke-width: 3
+        stroke-color: 0165cd
+  - name: medium_zoom
+    scale: (100000,200000)
+    symbolizers:
+    - line:
+        stroke-width: 2
+        stroke-color: 0165cd
+  - name: low_zoom
+    scale: (200000,)
+    symbolizers:
+    - line:
+        stroke-width: 1
+        stroke-color: 0165cd
+
+This example will display lines with stroke width of 3 at scales less than 100,000, a stroke width of 2 at scales between 100,000 and 200,000, and a stroke width of 1 at scales greater than 200,000. The following sample scales would apply to the following rules:
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Scale
+     - Rule
+   * - ``50000``
+     - ``low_zoom``
+   * - ``100000``
+     - ``medium_zoom``
+   * - ``150000``
+     - ``medium_zoom``
+   * - ``200000``
+     - ``high_zoom``
+   * - ``300000``
+     - ``high_zoom``
+
+Note the edge cases: the ``min`` scale is inclusive and the ``max`` scale is exclusive.
+
+
+
 
 
 Scale vs. zoom
