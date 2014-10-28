@@ -204,9 +204,32 @@ Comment blocks do not exist, so each line of a comment will need to be indicated
   #    stroke-color: #ff0000
   #    stroke-width: 3
 
+Wrapping lines
+--------------
 
-Single object syntax
---------------------
+Long lines can be wrapped with the ``|`` character at the end of a line.
+
+So in a situation with a long value::
+
+  - name: shortname
+    title: Longer name
+    abstract: This is a really long abstract that in no way is ever likely to fit on a single line on most people's displays.
+
+This can be altered to look like:
+
+  - name: shortname
+    title: Longer name
+    abstract: This is a really long abstract that in no way |
+              is ever likely to fit on a single line on most |
+              people's displays.
+
+And the resulting value for ``abstract`` will be unchanged.
+
+Wrapped lines can be done inside values, between properties and values, but not in the middle of an expression.
+
+
+Short syntax
+------------
 
 .. warning:: MENTION SINGLE-ELEMENT SHORT SYNTAX
 
