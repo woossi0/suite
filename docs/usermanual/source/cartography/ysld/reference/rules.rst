@@ -13,7 +13,7 @@ A rule is a **collection of styling directives**, primarily consisting of :ref:`
 The types of conditional statements available to rules are:
 
 * :ref:`Filters <cartography.ysld.reference.filters>` for attribute-based rendering
-* :ref:`Scale <cartography.ysld.reference.scale>` for scale-based rendering
+* :ref:`Scale <cartography.ysld.reference.scalezoom>` for scale-based rendering
 
 Rules are contained within :ref:`feature styles <cartography.ysld.reference.featurestyles>`. There is no limit on the number of rules that can be created, and there is no restriction that all rules must be mutually exclusive (as in, some rules may apply to the same features).
 
@@ -50,7 +50,7 @@ where:
      - Default value
    * - ``name``
      - No
-     - Internal reference to the rule. It is recommended that the value be lower case and contain no spaces.
+     - Internal reference to the feature style. It is recommended that the value be **lower case** and contain **no spaces**.
      - Blank
    * - ``title``
      - No
@@ -59,36 +59,38 @@ where:
    * - ``filter``
      - No
      - :ref:`Filter <cartography.ysld.reference.filters>` expression which will need to evaluate to be true for the symbolizer(s) to be applied. Cannot be used with ``else``.
-     - Blank (will apply to all features)
+     - Blank (so rule will apply to all features)
    * - ``else``
      - No
      - Specifies whether the rule will be an "else" rule. An else rule applies when, due to filters, no other rule applies. Options are ``true`` or ``false`` and must be lowercase. Cannot be used with ``filter``.
      - ``false``
    * - ``scale``
      - No
-     - :ref:`Scale <cartography.ysld.reference.scale>` boundaries showing at what scales (related to zoom levels) the rule will be applied.
+     - :ref:`Scale <cartography.ysld.reference.scalezoom>` boundaries showing at what scales (related to zoom levels) the rule will be applied.
      - Visible at all scales
    * - ``symbolizers``
      - Yes
      - Block containing one or more :ref:`symbolizers <cartography.ysld.reference.symbolizers>`. These contain the actual visualization directives. If the filter returns true and the view is with the scale boundaries, these symbolizers will be applied.
      - N/A
 
-.. warning:: NEED CLARIFICATION ON HOW SCALE WORKS WITH ELSE.
 
 Examples
 --------
+
+Else filter
+~~~~~~~~~~~
 
 Using ``filter`` and ``else`` together::
 
   rules:
   - name: small
     title: Small features
-    filter: [type] = 'small'
+    filter: [type] = small
     symbolizers:
     - ...
   - name: large
     title: Large features
-    filter: [type] = 'large'
+    filter: [type] = large
     symbolizers:
     - ...
   - name: else
@@ -96,5 +98,18 @@ Using ``filter`` and ``else`` together::
     else: true
     symbolizers:
     - ...
+
+In the above rule:
+
+* If a feature has a value of "small" in its ``type`` attribute, it will be styled with the "small" rule.
+* If a feature has a value of "large" in its ``type`` attribute, it will be styled with the "large" rule.
+* If a feature has a value of "medium" (or anything else) in its ``type`` attribute, it will be styled with the "else" rule.
+
+Else with scale
+~~~~~~~~~~~~~~~
+
+Using ``filter``, ``else``, and ``scale`` together::
+
+.. warning:: ADD THIS.
 
 .. warning:: NEED MORE EXAMPLES

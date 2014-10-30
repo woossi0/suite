@@ -17,5 +17,5 @@ As YSLD is heavily modeled on `YAML <http://yaml.org>`_, it may be useful to ref
    scalezoom
    filters
    functions
-   transforms
    variables
+   transforms

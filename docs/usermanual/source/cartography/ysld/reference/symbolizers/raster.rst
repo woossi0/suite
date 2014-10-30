@@ -114,8 +114,6 @@ This example shows a color ramp from red to green to blue, with raster band valu
         - (00ff00, 1, 100, green)
         - (0000ff, 1, 200, blue)
 
-.. warning:: NEED TO ADD A # ON EACH COLOR TO WORK
-
 In this example, the grid values will have the following colors applied:
 
 * Less than or equal to 0 will have an output color of **solid red**
@@ -137,8 +135,6 @@ The same example as above, but with the ``color-map`` type set to ``intervals``:
         - (00ff00, 1, 100, green)
         - (0000ff, 1, 200, blue)
 
-.. warning:: NEED TO ADD A # ON EACH COLOR TO WORK
-
 In this example, the grid values will have the following colors applied:
 
 * Less than or equal to 0 will have an output color of **solid red**
@@ -159,8 +155,6 @@ The same example as above, but with the ``color-map`` type set to ``values``::
         - (ff0000, 1, 0, red)
         - (00ff00, 1, 100, green)
         - (0000ff, 1, 200, blue)
-
-.. warning:: NEED TO ADD A # ON EACH COLOR TO WORK
 
 In this example, the grid values will have the following colors applied:
 

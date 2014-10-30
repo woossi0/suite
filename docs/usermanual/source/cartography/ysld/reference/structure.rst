@@ -26,6 +26,7 @@ This would style every polygon feature in a given layer with the given RGB color
 The structure of a typical YSLD file is as follows:
 
 * Variable definitions (if any)
+* Scale grid / zoom levels (if any)
 * Header (name, title, etc.)
 * Feature style(s)
 
@@ -83,6 +84,10 @@ The ``<property>`` is a string denoting the property name, while the ``<value>``
      - Brackets for attribute, quotes for attribute value
      - ``[type] = 'road'``
      - Single or double quotes allowed
+   * - Expression
+     - See description below.
+     - ``[type] = 'road'``
+     - 
 
 .. note::
 
@@ -204,6 +209,8 @@ Comment blocks do not exist, so each line of a comment will need to be indicated
   #    stroke-color: #ff0000
   #    stroke-width: 3
 
+.. note:: Comments are not preserved when converting to SLD.
+
 Wrapping lines
 --------------
 
@@ -215,7 +222,7 @@ So in a situation with a long value::
     title: Longer name
     abstract: This is a really long abstract that in no way is ever likely to fit on a single line on most people's displays.
 
-This can be altered to look like:
+This can be altered to look like::
 
   - name: shortname
     title: Longer name
@@ -223,9 +230,24 @@ This can be altered to look like:
               is ever likely to fit on a single line on most |
               people's displays.
 
-And the resulting value for ``abstract`` will be unchanged.
+.. warning:: THIS DIDN'T WORK.
 
-Wrapped lines can be done inside values, between properties and values, but not in the middle of an expression.
+In both cases, the value for ``abstract`` is unchanged.
+
+Wrapped lines can be done between properties and values as well. So this single line::
+
+  stroke-width: [roadwidth] / 500
+
+Can be altered to look like::
+
+  stroke-width: |
+    [roadwidth] / 500
+
+The only constraint with using wrapped lines is that the subsequent lines need to be indented.
+
+
+
+, but not in the middle of an expression.
 
 
 Short syntax

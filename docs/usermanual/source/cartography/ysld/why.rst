@@ -5,11 +5,13 @@ Advantages of YSLD
 
 There are many reasons to use the YSLD styling markup language over the SLD markup language:
 
-* Easier to read
-* More compact
-* More flexible syntax
-* Contains variables for reusable code
-* Compatible with SLD
+* :ref:`Easier to read <cartography.ysld.why.easier>`
+* :ref:`More compact <cartography.ysld.why.compact>`
+* :ref:`More flexible syntax <cartography.ysld.why.syntax>`
+* :ref:`Contains variables for reusable code <cartography.ysld.why.variables>`
+* :ref:`Compatible with SLD <cartography.ysld.why.compatible>`
+
+.. _cartography.ysld.why.easier:
 
 Easier to read
 --------------
@@ -24,10 +26,11 @@ SLD:
 
 YSLD::
 
-    fill-color: #ff0000
+    fill-color: ff0000
 
 In SLD, the XML-based nature of the content obscures the important aspects of the directive in the middle of the line. With YSLD, the attribute and the value are clearly marked and associated with no extraneous information, making comprehension easier.
 
+.. _cartography.ysld.why.compact:
 
 More compact
 ------------
@@ -67,13 +70,13 @@ YSLD::
         symbols:
         - mark:
             shape: circle
-            fill-color: '#ff0000'
-            stroke-color: '#000000'
+            fill-color: ff0000
+            stroke-color: 000000
             stroke-width: 2
 
-.. warning:: VERIFY SYNTAX
-
 While the SLD comes in at 300 characters, the YSLD equivalent comes in at about half that. Also, by not using an XML-based markup language, the removal of open and close tags make the document to look much simpler and be much more compact. 
+
+.. _cartography.ysld.why.syntax:
 
 More flexible syntax
 --------------------
@@ -106,17 +109,19 @@ YSLD, by contrast, does not require any of the directives to be ordered, so long
 
 For example, the following are both equally valid::
 
-  fill-color: '#ff0000'
-  stroke-color: '#000000'
+  fill-color: ff0000
+  stroke-color: 000000
 
 and::
 
-  stroke-color: '#000000'
-  fill-color: '#ff0000'
+  stroke-color: 000000
+  fill-color: ff0000
 
 
-Reusable code blocks inside files
----------------------------------
+.. _cartography.ysld.why.variables:
+
+Contains variables for reusable code
+------------------------------------
 
 In SLD, if you have content that needs to be reused from rule to rule, you must manually generate the directives for each rule over and over. YSLD eliminates the need for redundant directives by introducing the ability to create :ref:`variables <cartography.ysld.reference.variables>` that can take the place of the same content.
 
@@ -167,11 +172,12 @@ In YSLD, all the directives that occur multiple times can be replaced with a var
 
   define: &variable
     shape: circle
-    fill-color: '#ff0000'
-    stroke-color: '#000000'
+    fill-color: ff0000
+    stroke-color: 000000
 
   rules:
-  - scale (35000,)
+  - name: rule1
+    scale: (35000,)
     symbolizers:
     - point:
         size: 6
@@ -179,7 +185,8 @@ In YSLD, all the directives that occur multiple times can be replaced with a var
         - mark:
             >>: *variable
             stroke-width: 2
-  - scale (,35000)
+  - name: rule2
+    scale: (,35000)
     symbolizers:
     - point:
         size: 8
@@ -188,13 +195,23 @@ In YSLD, all the directives that occur multiple times can be replaced with a var
             >>: *variable
             stroke-width: 3
 
-.. warning:: VERIFY SYNTAX
-
 Note the definition of ``variable`` at the top, and the variable substitution in the line ``>>: *variable``.
+
+.. _cartography.ysld.why.compatible:
 
 Compatible with SLD
 -------------------
 
-In addition to all of these advantage, YSLD maintains compatibility with existing SLD.
+In addition to all of these advantages, YSLD maintains compatibility with existing SLD.
 
-.. warning:: TALK ABOUT CONVERSION.
+.. note::
+
+   While YSLD and SLD are compatible, it is not always possible to convert to SLD and back to YSLD ("round trip") and retrieve the exact same syntax. Specifically the following features will be converted upon conversion to SLD:
+
+   * :ref:`Zoom <cartography.ysld.reference.zoomscale>` parameters will be converted to scale parameters
+   * :ref:`cartography.ysld.reference.variables>` will be evaluated and removed.
+
+   That said, even though the syntax will be different, the outcome will be identical.
+
+
+

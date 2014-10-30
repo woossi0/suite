@@ -46,11 +46,11 @@ where:
 
 Either the ``min`` and ``max`` values can omitted. For example::
 
-  scale: (,max)
+  scale: (,<max>)
 
 will make the rule apply for any zoom level that includes scales lower than the ``max`` scale. Also::
 
-  scale: (min,)
+  scale: (<min>,)
 
 will make the rule apply for any zoom level that includes scales higher than the ``min`` scale.
 
@@ -140,9 +140,9 @@ When a collection of zoom levels is inferred from a list of scales, it is unders
 Zoom syntax
 -----------
 
-In order to use zoom levels, they must be defined globally for the entire style.
+In order to use zoom levels, they must be defined globally for the entire style, above any :ref:`<cartography.ysld.reference.featurestyles>` or :ref:`cartography.ysld.reference.rules`.
 
-The full syntax for using a zoom level parameter in a rule is::
+The full syntax for using a zoom level parameter in a style is::
 
   grid:
     initial-scale: <value>
@@ -191,7 +191,7 @@ Inside a rule, the syntax for using these zoom levels is::
 
   rules:
   - ...
-    zoom: (min, max)
+    zoom: (<min>, <max>)
     ...
 
 where:
@@ -219,11 +219,11 @@ where:
 
 As with scales, either the ``min`` and ``max`` values can omitted. For example::
 
-  zoom: (,max)
+  zoom: (,<max>)
 
 will make the rule apply for any zoom level less than or equal to the ``max`` zoom level. Also::
 
-  zoom: (min,)
+  zoom: (<min>,)
 
 will make the rule apply for any zoom level greater than or equal to the ``min`` zoom level.
 

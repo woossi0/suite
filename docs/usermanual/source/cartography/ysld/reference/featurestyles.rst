@@ -11,6 +11,8 @@ In YSLD, A Feature Style is a block of styling :ref:`Rules <cartography.ysld.ref
 
 .. note:: It is not possible to specify order of individual rules inside a Feature Style. If drawing order of individual rules is important, enclose each rule in a Feature Style.
 
+.. warning:: THIS IS NOT QUITE TRUE. EXPAND THIS SECTION
+
 A Feature Style is a **top-level element** in a YSLD style.
 
 Consider the following style heirarchy:
@@ -31,7 +33,7 @@ In this case, the rules contained inside Feature Style 1 will be processed and t
 Syntax
 ------
 
-The following is the basic syntax of a Feature Style. Note that the contents of the block are not all expanded here.
+The following is the basic syntax of a feature style. Note that the contents of the block are not all expanded here.
 
 ::
 
@@ -51,30 +53,34 @@ where:
    :class: non-responsive
    :header-rows: 1
    :stub-columns: 1
-   :widths: 20 10 70
+   :widths: 20 10 50 20
 
    * - Property
      - Required?
      - Description
+     - Default value
    * - ``name``
      - No
      - Internal reference to the feature style. It is recommended that the value be **lower case** and contain **no spaces**.
+     - Blank
    * - ``title``
      - No
      - Human-readable name of the feature style. Exposed as a name for the group of rules contained in the feature style.
+     - Blank
    * - ``abstract``
      - No
      - Longer description of the Feature Style.
+     - Blank
    * - ``transform``
      - No
      - :ref:`Rendering transformation <cartography.ysld.reference.transforms>` information.
+     - N/A
    * - ``rules``
      - Yes
      - List of styling :ref:`rules <cartography.ysld.reference.rules>`.
+     - N/A
 
 Examples
 --------
 
 .. warning:: SHOW EXAMPLES
-
-.. warning:: MULTI LINE EXAMPLE (WITH |)
