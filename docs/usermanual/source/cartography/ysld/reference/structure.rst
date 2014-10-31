@@ -211,47 +211,37 @@ Comment blocks do not exist, so each line of a comment will need to be indicated
 
 .. note:: Comments are not preserved when converting to SLD.
 
-Wrapping lines
---------------
+.. Wrapped lines
+.. Uncomment this section when the syntax is verified/fixed
 
-Long lines can be wrapped with the ``|`` character at the end of a line.
+.. Long lines can be wrapped with the ``|`` character at the end of a line.
 
-So in a situation with a long value::
+.. So in a situation with a long value::
 
-  - name: shortname
-    title: Longer name
-    abstract: This is a really long abstract that in no way is ever likely to fit on a single line on most people's displays.
+..   - name: shortname
+..     title: Longer name
+..     abstract: This is a really long abstract that in no way is ever likely to fit on a single line on most people's displays.
 
-This can be altered to look like::
+.. This can be altered to look like::
 
-  - name: shortname
-    title: Longer name
-    abstract: This is a really long abstract that in no way |
-              is ever likely to fit on a single line on most |
-              people's displays.
+..   - name: shortname
+..     title: Longer name
+..     abstract: This is a really long abstract that in no way |
+..               is ever likely to fit on a single line on most |
+..               people's displays.
 
-.. warning:: THIS DIDN'T WORK.
+.. .. warning:: THIS DIDN'T WORK.
 
-In both cases, the value for ``abstract`` is unchanged.
+.. In both cases, the value for ``abstract`` is unchanged.
 
-Wrapped lines can be done between properties and values as well. So this single line::
+.. Wrapped lines can be done between properties and values as well. So this single line::
 
-  stroke-width: roadwidth / 500
+..   stroke-width: roadwidth / 500
 
-Can be altered to look like::
+.. Can be altered to look like::
 
-  stroke-width: |
-    roadwidth / 500
+..   stroke-width: |
+..     roadwidth / 500
 
-The only constraint with using wrapped lines is that the subsequent lines need to be indented.
-
-
-
-, but not in the middle of an expression.
-
-
-Short syntax
-------------
-
-.. warning:: MENTION SINGLE-ELEMENT SHORT SYNTAX
+.. The only constraint with using wrapped lines is that the subsequent lines need to be indented.
 
