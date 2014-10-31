@@ -76,7 +76,7 @@ Examples
 Heatmap
 ~~~~~~~
 
-The following uses the :ref:`rt.heatmap` process to convert a point layer to a heatmap raster::
+The following uses the :ref:`cartography.rt.heatmap` process to convert a point layer to a heatmap raster::
 
   title: Heatmap
   feature-styles:
