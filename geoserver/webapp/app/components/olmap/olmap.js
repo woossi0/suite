@@ -6,6 +6,8 @@ angular.module('gsApp.olmap', [])
       function OLMap(mapOpts, element, options) {
         var self = this;
         this.mapOpts = mapOpts;
+        var progress = mapOpts.progress || function() {};
+        var error = mapOpts.error || function() {};
 
         var layerNames  = this.visibleLayerNames().reverse().join(',');
         var mapLayer = new ol.layer.Image({
@@ -13,6 +15,45 @@ angular.module('gsApp.olmap', [])
             url: GeoServer.baseUrl()+'/'+mapOpts.workspace+'/wms',
             params: {'LAYERS': layerNames, 'VERSION': '1.1.1'},
             serverType: 'geoserver',
+            imageLoadFunction: function(image, src) {
+              progress('start');
+              var img = image.getImage();
+              if (typeof window.btoa == 'function') {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', src, true);
+                xhr.responseType = 'arraybuffer';
+                xhr.onload = function(e) {
+                  if (this.status == 200) {
+                    var uInt8Array = new Uint8Array(this.response);
+                    var i = uInt8Array.length;
+                    var binaryString = new Array(i);
+                    while (i--) {
+                      binaryString[i] = String.fromCharCode(uInt8Array[i]);
+                    }
+                    var data = binaryString.join('');
+                    var type = xhr.getResponseHeader('content-type');
+                    if (type.indexOf('image') === 0) {
+                      img.src = 'data:' + type + ';base64,' + window.btoa(data);
+                    } else {
+                      error(data);
+                    }
+                  } else {
+                    error(this.statusText)
+                  }
+                  progress('end');
+                };
+                xhr.send();
+              } else {
+                img.onload = function() {
+                  progress('end');
+                };
+                img.onerror = function() {
+                  progress('end');
+                  error();
+                };
+                img.src = src;
+              }
+            }
           })
         });
 
@@ -116,8 +157,8 @@ angular.module('gsApp.olmap', [])
         }, options || {}));
 
         map.getView().on('change:resolution', function(evt) {
-          var res = evt.target.get('resolution');
-          var units = map.getView().get('projection').getUnits();
+          var res = evt.target.getResolution();
+          var units = map.getView().getProjection().getUnits();
           var dpi = 25.4 / 0.28;
           var mpu = ol.proj.METERS_PER_UNIT[units];
           var scale = Math.round(res * mpu * 39.37 * dpi);
