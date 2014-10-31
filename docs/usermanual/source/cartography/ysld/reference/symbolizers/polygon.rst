@@ -20,9 +20,9 @@ The full syntax of a polygon symbolizer is::
       stroke-linecap: <expression>
       stroke-dasharray: <float list>
       stroke-dashoffset: <expression>
-      stroke-graphic-fill: 
+      stroke-graphic:
         <graphic_options>
-      stroke-graphic-stroke: 
+      stroke-graphic-fill: 
         <graphic_options>
       offset: <expression>
       displacement: <expression>
@@ -57,4 +57,3 @@ where:
      - Specifies which attribute to use as the geometry.
      - First geometry attribute found (often ``geom`` or ``the_geom``)
 
-.. include:: include/graphic.txt

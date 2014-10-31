@@ -13,6 +13,10 @@ The full syntax of a text symbolizer is::
       fill-opacity: <expression>
       fill-graphic: 
         <graphic_options>
+      stroke-graphic: 
+        <graphic_options>
+      stroke-graphic-fill: 
+        <graphic_options>
       label: <expression>
       font-family: <expression>
       font-size: <expression>
@@ -28,6 +32,8 @@ The full syntax of a text symbolizer is::
         radius: <expression>
         fill-color: <color>
         fill-opacity: <expression>
+        fill-graphic:
+          <graphic_options>
       x-allowOverruns: <boolean>
       x-autoWrap: <expression>
       x-conflictResolution: <boolean>
@@ -45,11 +51,6 @@ The full syntax of a text symbolizer is::
       x-partials: <boolean>
       x-polygonAlign: <boolean>
       x-spaceAround: <expression>
-
-
-
-.. warning:: MIGHT NEED TO ADD SOMETHING ABOUT GRAPHIC
-
 
 where:
 
@@ -69,12 +70,22 @@ where:
      - ``808080`` (gray)
    * - ``fill-opacity``
      - No
-     - Opacity of label fill. Valid values are a decimal value between ``0`` (completely transparent) and ``1`` (completely opaque).
+     - Opacity of fill of the label text. Valid values are a decimal value between ``0`` (completely transparent) and ``1`` (completely opaque).
      - ``1``
    * - ``fill-graphic``
      - No
-     - A design to be used for the fill of the label. Can either be a mark (common shape) or a URL that points to a graphic. SEE SOMETHING ELSE.
+     - A design to be used for the fill of the text label. Can either be a mark consisting of a common shape or a URL that points to a graphic. The ``<graphic_options>`` should consist of a mapping containing ``symbols:`` followed by an ``external:`` or ``mark:``, with appropriate parameters.
      - None
+   * - ``stroke-graphic``
+     - No
+     - A design or pattern to be used along the stroke around the label text. the output will always be a linear repeating pattern, and as such is not tied to the value of ``stroke-width``. Can either be a mark consisting of a common shape or a URL that points to a graphic. The ``<graphic_options>`` should consist of a mapping containing ``symbols:`` followed by an ``external:`` or ``mark:``, with appropriate parameters. Cannot be used with ``stroke-graphic-fill``.
+     - N/A
+   * - ``stroke-graphic-fill``
+     - No
+     - A design or pattern to be used for the fill of the stroke around the label text. This area that is to be filled is tied directly to the value of ``stroke-width``. Can either be a mark consisting of a common shape or a URL that points to a graphic. The ``<graphic_options>`` should consist of a mapping containing ``symbols:`` followed by an ``external:`` or ``mark:``, with appropriate parameters as detailed in the :ref:`cartography.ysld.reference.symbolizers.point` section. Cannot be used with ``stroke-graphic``.
+     - N/A
+
+
 
 .. list-table::
    :class: non-responsive

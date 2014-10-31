@@ -3,13 +3,7 @@
 Symbolizers
 ===========
 
-The basic unit of visualization is the symbolizer. There are five types of symbolizer:
-
-* Point
-* Line
-* Polygon
-* Raster
-* Text
+The basic unit of visualization is the symbolizer. There are five types of symbolizers: **Point**, **Line**, **Polygon**, **Raster**, and **Text**.
 
 Symbolizers are contained inside :ref:`rules <cartography.ysld.reference.rules>`. A rule can contain one or many symbolizers. 
 
