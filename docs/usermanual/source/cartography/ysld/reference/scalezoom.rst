@@ -108,6 +108,13 @@ Given the rules above, the following arbirtrary sample scales would map to the r
 
 Note the edge cases, since the ``min`` scale is inclusive and the ``max`` scale is exclusive.
 
+Scientific notation for scales
+------------------------------
+
+To make comprehension easier and to lessen the chance of errors, scale values can be expressed in scientific notation.
+
+So a scale of ``500000000``, which is equal to 5 × 10^8 (8 zeroes), can be replaced by ``5e8``.
+
 Relationship between scale and zoom
 -----------------------------------
 
@@ -240,6 +247,13 @@ Defining zoom levels based on an initial scale::
   grid:
     initial-scale: 6000000
 
+.. note::
+
+   Using scientific notation::
+
+     grid:
+       initial-scale: 6e6
+
 would define zoom levels as follows:
 
 .. list-table::
@@ -346,6 +360,18 @@ Defining zoom levels based on a list of scales::
     - 50000
     - 10000
 
+.. note::
+
+   Using scientific notation::
+
+     grid:
+       scales:
+       - 1e6
+       - 5e5
+       - 1e5
+       - 5e4
+       - 1e4
+
 would define the list of zoom levels explicitly and completely:
 
 .. list-table::
@@ -364,8 +390,6 @@ would define the list of zoom levels explicitly and completely:
      - ``3``
    * - ``10000``
      - ``4``
-
-Any zoom levels higher than those explicitly defined will have a scale set to ``infinite``.
 
 Named gridset
 ~~~~~~~~~~~~~
