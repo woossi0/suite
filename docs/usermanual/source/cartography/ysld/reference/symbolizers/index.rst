@@ -40,10 +40,8 @@ It is common to match the symbolizer with the type of geometries contained in th
      - Outline (stroke) of the polygons
    * - Polygon Symbolizer
      - No display
-     - No display
+     - Will "close" the line and style as a polygon 
      - **Polygons**
-
-.. warning:: VERIFY THIS
 
 .. toctree::
    :maxdepth: 2

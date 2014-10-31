@@ -18,8 +18,6 @@ The full syntax of a raster symbolizer is::
         mode: <normalize|histogram>
         gamma: <expression>
 
-.. warning:: WHAT ABOUT BAND SELECTION?
-
 where:
 
 .. list-table::

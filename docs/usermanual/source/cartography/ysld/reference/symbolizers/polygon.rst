@@ -55,6 +55,6 @@ where:
    * - ``geometry``
      - No
      - Specifies which attribute to use as the geometry.
-     - First geometry attribute found
+     - First geometry attribute found (often ``geom`` or ``the_geom``)
 
 .. include:: include/graphic.txt

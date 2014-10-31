@@ -3,7 +3,7 @@
 Line symbolizer
 ===============
 
-The line symbolizer is used to style linear features. It is in some ways the simplest of the symbolizers because it only contains facilities for the stroke (outline) of a feature, and not the fill (inside) of a feature.
+The line symbolizer is used to style linear features. It is in some ways the simplest of the symbolizers because it only contains facilities for the stroke (outline) of a feature.
 
 The full syntax of a line symbolizer is:
 
@@ -24,8 +24,6 @@ The full syntax of a line symbolizer is:
         <graphic_options>
       offset: <expression>
       geometry: <expression>
-
-.. warning:: VERIFY STROKE-GRAPHIC-?, OFFSET
 
 where:
 
@@ -48,6 +46,6 @@ where:
    * - ``geometry``
      - No
      - Specifies which attribute to use as the geometry.
-     - First geometry attribute found
+     - First geometry attribute found (often ``geom`` or ``the_geom``)
 
 .. include:: include/graphic.txt

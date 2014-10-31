@@ -31,10 +31,7 @@ The following is the basic syntax of a rule. Note that the contents of the block
        else: <boolean>
        scale: (<min>,<max>)
        symbolizers:
-       - <symbolizer>
-           ...
-       - <symbolizer>
-           ...
+       - ...
 
 where:
 
@@ -62,7 +59,7 @@ where:
      - Blank (so rule will apply to all features)
    * - ``else``
      - No
-     - Specifies whether the rule will be an "else" rule. An else rule applies when, due to filters, no other rule applies. Options are ``true`` or ``false`` and must be lowercase. Cannot be used with ``filter``.
+     - Specifies whether the rule will be an "else" rule. An else rule applies when, after scale and filters are applied, no other rule applies. To make an else rule, set this option to ``true``. Cannot be used with ``filter``.
      - ``false``
    * - ``scale``
      - No
@@ -70,7 +67,7 @@ where:
      - Visible at all scales
    * - ``symbolizers``
      - Yes
-     - Block containing one or more :ref:`symbolizers <cartography.ysld.reference.symbolizers>`. These contain the actual visualization directives. If the filter returns true and the view is with the scale boundaries, these symbolizers will be applied.
+     - Block containing one or more :ref:`symbolizers <cartography.ysld.reference.symbolizers>`. These contain the actual visualization directives. If the filter returns true and the view is within the scale boundaries, these symbolizers will be drawn.
      - N/A
 
 
@@ -85,12 +82,12 @@ Using ``filter`` and ``else`` together::
   rules:
   - name: small
     title: Small features
-    filter: [type] = small
+    filter: type = small
     symbolizers:
     - ...
   - name: large
     title: Large features
-    filter: [type] = large
+    filter: type = large
     symbolizers:
     - ...
   - name: else
@@ -99,7 +96,7 @@ Using ``filter`` and ``else`` together::
     symbolizers:
     - ...
 
-In the above rule:
+In the above situation:
 
 * If a feature has a value of "small" in its ``type`` attribute, it will be styled with the "small" rule.
 * If a feature has a value of "large" in its ``type`` attribute, it will be styled with the "large" rule.
@@ -110,6 +107,36 @@ Else with scale
 
 Using ``filter``, ``else``, and ``scale`` together::
 
-.. warning:: ADD THIS.
+  rules:
+  - name: small_zoomin
+    scale: (,10000)
+    title: Small features when zoomed in
+    filter: type = small
+    symbolizers:
+    - ...
+  - name: small_zoomout
+    scale: (10000,)
+    title: Small features when zoomed out
+    filter: type = small
+    symbolizers:
+    - ...
+  - name: else_zoomin
+    scale: (,10000)
+    title: All other features when zoomed in
+    else: true
+    symbolizers:
+    - ...
+  - name: else_zoomout
+    scale: (10000,)
+    title: All other features when zoomed out
+    else: true
+    symbolizers:
+    - ...
 
-.. warning:: NEED MORE EXAMPLES
+In the above situation:
+
+* If a feature has a value of "small" in its ``type`` attribute, and the map is a scale level less than 10,000, it will be styled with the "small_zoomin" rule.
+* If a feature has a value of anything else other than "small" in its ``type`` attribute, and the map is a scale level less than 10,000, it will be styled with the "else_zoomin" rule.
+* If a feature has a value of "small" in its ``type`` attribute, and the map is a scale level greater than 10,000, it will be styled with the "small_zoomout" rule.
+* If a feature has a value of anything else other than "small" in its ``type`` attribute, and the map is a scale level greater than 10,000, it will be styled with the "else_zoomout" rule.
+

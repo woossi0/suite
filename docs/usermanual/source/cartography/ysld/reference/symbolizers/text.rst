@@ -88,27 +88,27 @@ where:
      - Default value
    * - ``label``
      - Yes
-     - The text to display. Often taken from an attribute (``[attribute]``) but any valid expression that constructs a string will do.
+     - Text to display. Often taken from an attribute but any valid expression that constructs a string will do.
      - N/A
    * - ``font-family``
      - No
-     - The type of font to be used for the label. Options are system dependent; the full list of fonts available can be found via the GeoServer Server Status page.
+     - Type of font to be used for the label. Options are system dependent; the full list of fonts available can be found via the GeoServer Server Status page.
      - ``serif``
    * - ``font-size``
      - No
-     - The size of the font.
+     - Size of the font.
      - ``10``
    * - ``font-style``
      - No
-     - The style of the font. Options are ``normal``, ``italic``, and ``oblique``.
+     - Style of the font. Options are ``normal``, ``italic``, and ``oblique``.
      - ``normal``
    * - ``font-weight``
      - No
-     - The weight of the font. Options are ``normal`` and ``bold``.
+     - Weight of the font. Options are ``normal`` and ``bold``.
      - ``normal``
    * - ``placement``
      - No
-     - The family of options that determine where the label is to be drawn relative to its feature
+     - Family of options that determine where the label is to be drawn relative to its feature
      - N/A
    * - ``type``
      - No
@@ -116,17 +116,17 @@ where:
      - ``point``
    * - ``offset``
      - No
-     - Value (in pixels) for moving the drawn line relative to the location of the feature. A positie value will shift the label in the direction of its top, while a negative value will shift the label in the direction of its bottom. (In SLD, this is known as "PerpendicularOffset") Only valid for when ``type`` is set to ``line``.
+     - Value (in pixels) for moving the drawn label relative to the location of the feature. A positive value will shift the label in the direction of its top, while a negative value will shift the label in the direction of its bottom. Only valid for when ``type`` is set to ``line``.
      - ``0``
-   * - ``anchor`` VERIFY
+   * - ``anchor``
      - No
-     - Specify the center of the symbol relative to the feature location. Value is an ``(x,y)`` tuple with decimal values from 0-1, with ``(0,0)`` meaning that the symbol is anchored to the top left, and ``(1,1)`` meaning anchored to bottom right. Only valid for when ``type`` is set to ``point``.
-     - ``(0,0.5)``
+     - Specify the center of the symbol relative to the feature location. Value is an ``(x,y)`` tuple with decimal values from 0-1, with ``(0,0)`` meaning that the symbol is anchored to the top left, and ``(1,1)`` meaning anchored to bottom right. 
+     - ``(0.5,0.5)``
    * - ``displacement``
      - No
      - Specifies a distance (in pixels) to which to move the label relative to the feature. Value is an ``(x,y)`` tuple with values expressed in pixels, so (10,5) will displace the label 10 pixels to the right and 5 pixels up. Only valid for when ``type`` is set to ``point``.
      - ``(0,0)``
-   * - ``rotation`` DID NOT WORK
+   * - ``rotation``
      - No
      - Value (in degrees) or rotation of the label. Larger values increase counter-clockwise rotation. A value of ``180`` will make the label upside-down. Only valid for when ``type`` is set to ``point``.
      - ``0`` 
@@ -136,11 +136,11 @@ where:
      - No halo
    * - ``radius``
      - No
-     - The size (in pixels) of the halo
+     - Size (in pixels) of the halo
      - ``1``
    * - ``fill-color``
      - No
-     - The color of the halo
+     - Color of the halo
      - ``808080``
    * - ``fill-opacity``
      - No
@@ -164,10 +164,10 @@ The following properties are equivalent to SLD "vendor options".
      - No
      - Allows labels on lines to move slightly beyond the beginning or end of the line.
      - ``true``
-   * - ``x-autoWrap`` DIDN'T WORK
+   * - ``x-autoWrap``
      - No
      - The number of pixels beyond which a label will be wrapped over multiple lines. Cannot use with ``x-followLine``.
-     - ``0``
+     - 0
    * - ``x-conflictResolution``
      - No 
      - Enables conflict resolution, meaning no two labels will be allowed to overlap. Without conflict resolution, symbolizers can overlap with other labels.
@@ -183,11 +183,11 @@ The following properties are equivalent to SLD "vendor options".
    * - ``x-goodnessOfFit``
      - No
      - Percentage (expressed as a decimal between 0-1) of the label that must fit inside the geometry to permit the label to be drawn. Works only on polygon features.
-     - ``0.5``
+     - 0.5
    * - ``x-graphic-margin``
      - No
      - Number of pixels between the stretched graphic and the text. Only applies when ``x-graphic-resize`` is set to ``stretch``.
-     - ???
+     - 0
    * - ``x-graphic-resize``
      - No
      - Allows for stretching the graphic underneath a label to fit the label size. Options are ``none``, ``stretch`` or ``proportional``. Used in conjunction with ``x-graphic-margin``..
@@ -199,23 +199,23 @@ The following properties are equivalent to SLD "vendor options".
    * - ``x-labelAllGroup``
      - No
      - Used in conjunction with ``x-group``. When ``true`` all items in a group are labeled. When ``false``, only the largest geometry in the group is labeled. Valid for lines only.
-     - ???
+     - ``false``
    * - ``x-repeat``
      - No
      - Desired distance (in pixels) between labels drawn on a group. If zero, only one label will be drawn. Used in conjunction with ``x-group``. Valid for lines only.
-     - ???
+     - 0
    * - ``maxAngleDelta``
      - No
      - Maximum allowed angle (in degrees) between two characters in a curved label. Used in conjunction with ``x-followLine``. Values higher than ``30`` may cause loss of legibility of the label.
-     - ???
+     - 22.5
    * - ``x-maxDisplacement``
      - No
      - Distance (in pixels) a label can be displaced from its natural position in an attempt to eliminate conflict with other labels.
-     - ``0``
+     - 0
    * - ``x-minGroupDistance``
      - No
-     - Minimum distance between two labels in the same label group. Used in conjunction with ``displacement`` or ``repeat`` to avoid having two labels too close to each other
-     - ???
+     - Minimum distance (in pixels) between two labels in the same label group. Used in conjunction with ``displacement`` or ``repeat`` to avoid having two labels too close to each other
+     - No minimum distance
    * - ``x-partials``
      - No
      - Will display partial labels (truncated on the border of the display area).
@@ -227,5 +227,4 @@ The following properties are equivalent to SLD "vendor options".
    * - ``x-spaceAround``
      - No
      - Minimum distance (in pixels) between two labels.
-     - ``0``
-
+     - 0

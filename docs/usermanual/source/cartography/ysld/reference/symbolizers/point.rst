@@ -37,11 +37,6 @@ The full syntax of a point symbolizer is::
       rotation: <expression>
       geometry: <expression>
 
-
-
-
-.. warning:: VERIFY THIS
-
 where:
 
 .. include:: include/stroke.txt
@@ -58,6 +53,22 @@ where:
      - Required?
      - Description
      - Default value
+   * - ``external``
+     - No
+     - Specifies an image to use to style the point.
+     - N/A
+   * - ``url``
+     - Yes
+     - Location of the image. Can either be a URL or a file path location (relative to the path where the style file is saved)
+     - N/A
+   * - ``format``
+     - Yes
+     - Format of the image. Must be a valid MIME type (such as ``image/png`` for PNG, ``image/jpeg`` for JPG, ``image/svg+xml`` for SVG) 
+     - N/A
+   * - ``mark``
+     - No
+     - Specifies a regular shape to use to style the point.
+     - N/A
    * - ``shape``
      - No
      - Shape of the mark. Options are ``square``, ``circle``, ``triangle``, ``cross``, ``x``, and ``star``. 
@@ -85,9 +96,6 @@ where:
    * - ``geometry``
      - No
      - Specifies which attribute to use as the geometry.
-     - First geometry attribute found
-
-.. warning:: VERIFY OTHER SHAPES, ANCHOR, DISPLACEMENT
-
+     - First geometry attribute found (often ``geom`` or ``the_geom``)
 
 .. include:: include/graphic.txt

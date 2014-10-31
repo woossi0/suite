@@ -81,12 +81,12 @@ The ``<property>`` is a string denoting the property name, while the ``<value>``
      - ``(0,15000)``
      - Entries in the the tuple may be left blank to mean unbounded (such as ``(,15000)``)
    * - :ref:`Filter <cartography.ysld.reference.filters>`
-     - Brackets for attribute, quotes for attribute value
-     - ``[type] = 'road'``
+     - Quotes for attribute values
+     - ``type = 'road'``
      - Single or double quotes allowed
    * - Expression
      - See description below.
-     - ``[type] = 'road'``
+     - ``type = 'road'``
      - 
 
 .. note::
@@ -103,7 +103,7 @@ Expressions
 Throughout the reference guide, there are references to values that are denoted by ``<expression>``. An **expression** is a flexible term meaning that the value can be one of the following kinds of objects:
 
 * Literal (scalar or string)
-* Attribute (usually denoted by ``[attribute]``)
+* Attribute name
 * :ref:`Function <cartography.ysld.reference.functions>`
 
 If using a function, it must evaluate to match the type expected by the property.
@@ -236,12 +236,12 @@ In both cases, the value for ``abstract`` is unchanged.
 
 Wrapped lines can be done between properties and values as well. So this single line::
 
-  stroke-width: [roadwidth] / 500
+  stroke-width: roadwidth / 500
 
 Can be altered to look like::
 
   stroke-width: |
-    [roadwidth] / 500
+    roadwidth / 500
 
 The only constraint with using wrapped lines is that the subsequent lines need to be indented.
 

@@ -7,13 +7,9 @@ Filters are predicates that allow rules to be applied selectively.
 
 A filter can take a great many different forms.
 
-.. note:: A scale is a type of filter, but is :ref:`discussed separately <cartography.ysld.reference.scale>`.
+.. note:: A scale is a type of filter, but is :ref:`discussed separately <cartography.ysld.reference.scalezoom>`.
 
 .. note:: For more information, please see the `GeoTools CQL documentation <http://docs.geotools.org/stable/userguide/library/cql/ecql.html>`_ and `GeoServer CQL tutorial <../../../geoserver/tutorials/cql/cql_tutorial.html>`_.
-
-.. warning:: TEST INTERNAL LINK
-
-.. warning:: WHAT ABOUT ELSE?
 
 Syntax
 ------
@@ -38,13 +34,12 @@ CQL is written using a familiar text-based syntax with strong similarities to SQ
 
 The following are all standard filter constructions:
 
-
 Object comparison
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 This filter will test to see if a comparison to an attribute is true. It has the following form::
 
-  [<object>] <operator> <value>
+  <attribute> <operator> <value>
 
 where:
 
@@ -58,17 +53,17 @@ where:
      - Required?
      - Description
      - Default value
-   * - ``<object>``
+   * - ``<attribute>``
      - Yes
-     - That to which something is going to be compared. Typically an attribute (``[name]``). Must be encased in brackets.
+     - That to which something is going to be compared.
      - N/A
    * - ``<operator>``
      - Yes
-     - Method of comparison. Valid operators are ``=``, ``<``, ``>``, ``<=``, ``>=``, ``LIKE``, ``ILIKE``, ``BETWEEN``, ``IS NULL``, ``IN``, ``EXISTS``, ``NOT``, OTHERS?
+     - Method of comparison. Valid operators are ``=``, ``<``, ``>``, ``<=``, ``>=``, ``LIKE``, ``ILIKE``, ``BETWEEN``, ``IS NULL``, and ``IN``. ``NOT`` can be added to invert the comparison.
      - N/A
    * - ``<value>``
      - Yes
-     - That which the ``<object>`` is being compared to. Must be a static value such as a string or scalar, though it can also be an expression that evaluates to a static value. Cannot be another attribute. Can include mathematical operators such as ``+``, ``-``, ``*``, ``/``.
+     - That which the ``<attribute>`` is being compared to. Must be a static value such as a string or scalar, though it can also be an expression that evaluates to a static value. Cannot be another attribute. Can include mathematical operators such as ``+``, ``-``, ``*``, ``/``.
      - N/A
 
 The following is a desription of all available operators:
@@ -82,7 +77,7 @@ The following is a desription of all available operators:
    * - Operator
      - Description
    * - ``=``
-     - Equals (TEXT OR VALUE?)
+     - Equals
    * - ``<``
      - Less than (non-inclusive)
    * - ``>``
@@ -92,36 +87,25 @@ The following is a desription of all available operators:
    * - ``>=``
      - Greater than or equal to (inclusive)
    * - ``LIKE``
-     - Fuzzy matching. Add SOME CHARACTER to permit wildcards (DETAILS) %
+     - Fuzzy matching for strings and other non-numeric attributes. Add ``%`` for multi-character wildcards, and ``_`` for single-character wilcards. 
    * - ``ILIKE``
      - Case-insensitive version of ``LIKE``
    * - ``BETWEEN``
-     - Allows for a true case to be when a given object has a value that is between two given values
+     - Tests if a value that is between two given values.
    * - ``IS NULL``
-     - For testing against a ``NULL`` (not zero) value. (DIFFERENCE?) 
+     - For testing against a ``NULL`` value.
    * - ``IN``
-     - Used when specifying a list. Object must be contained in the list for the statement to be true.
-   * - ``EXISTS``
-     - ???
-   * - ANYTHING ELSE?
-     - ???
-
-.. warning:: BETTER WORD THAN OBJECT?
-
+     - Used when specifying a list. Must be contained in the list for the statement to be true.
 
 Spatial filters
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
-Filters can be spatial as well. Any valid spatial construction in WKT (Well Known Text) can be used. Common spatial filters include ``INTERSECTS``, ``DISJOINT``, ``CONTAINS``, ``WITHIN``, ``TOUCHES``, ``CROSSES``, ``EQUALS``, ``DWITHIN``, and ``BBOX``. For more details about these spatial filters and their syntax, please see the `ECQL reference <../../../geoserver/filter/ecql_reference.html>`_
-
-.. warning:: FULL LIST OF SPATIAL OPERATORS?
-
-
+Filters can be spatial in nature. Any valid spatial construction in `WKT (Well Known Text) <http://en.wikipedia.org/wiki/Well-known_text>`_ can be used. Spatial filters include ``INTERSECTS``, ``DISJOINT``, ``CONTAINS``, ``WITHIN``, ``TOUCHES``, ``CROSSES``, ``EQUALS``, ``DWITHIN``, and ``BBOX``. For more details about these spatial filters and their syntax, please see the `GeoServer ECQL reference <../../../geoserver/filter/ecql_reference.html>`_ or `uDig CQL reference <http://udig.github.io/docs/user/concepts/Constraint%20Query%20Language.html>`_.
 
 Compound statements
-^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~
 
-The filter can be a combination of statements. This is especially common when testing if the value of an attribute is greater than one value but less than another.
+The filter can be a combination of statements. A common case is testing if the value of an attribute is greater than one value but less than another.
 
 The syntax for creating compound statements is to use standard Boolean notation use as ``AND``, ``OR``, along with relevant parentheses.
 
@@ -135,14 +119,9 @@ A filter where either statement would need to be true would be::
 
 Larger filters can be built up in this way::
 
-  filter: (<statement1> OR <statement2>) AND <statement3>
+  filter: (<statement1> OR <statement2>) AND <statement3> OR <statement4>
 
-In these examples, every ``<statement>`` is a valid filter.
+In these examples, every ``statement`` is a valid filter.
 
-
-.. warning:: WHICH TAKES PRECEDENCE, AND OR OR?   HAPPENS LEFT TO RIGHT
-
-
-
-.. warning:: http://udig.github.io/docs/user/concepts/Constraint%20Query%20Language.html
+In terms of precendence, ``AND`` conjunctions take precendence over ``OR`` conjunctions unless modified by parentheses. So, in the last example above, ``(<statement1> OR <statement2>)`` will be evaluated first, followed by the result of that ``AND <statement3>``, and finally the result of that ``OR <statement4>``
 

@@ -140,7 +140,7 @@ When a collection of zoom levels is inferred from a list of scales, it is unders
 Zoom syntax
 -----------
 
-In order to use zoom levels, they must be defined globally for the entire style, above any :ref:`<cartography.ysld.reference.featurestyles>` or :ref:`cartography.ysld.reference.rules`.
+In order to use zoom levels, they must be defined globally for the entire style, above any :ref:`cartography.ysld.reference.featurestyles` or :ref:`cartography.ysld.reference.rules`.
 
 The full syntax for using a zoom level parameter in a style is::
 
