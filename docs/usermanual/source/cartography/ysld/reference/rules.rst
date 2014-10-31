@@ -70,6 +70,25 @@ where:
      - Block containing one or more :ref:`symbolizers <cartography.ysld.reference.symbolizers>`. These contain the actual visualization directives. If the filter returns true and the view is within the scale boundaries, these symbolizers will be drawn.
      - N/A
 
+Short syntax
+------------
+
+When a style has a single rule inside a single feature style, it is possible to omit the syntax for both and start at the first parameter inside.
+
+So the following two complete styles are equivalent::
+
+  feature-styles:
+  - rules:
+    - symbolizers:
+      - line:
+          stroke-color: 000000
+          stroke-width: 2
+
+::
+
+  line:
+    stroke-color: 000000
+    stroke-width: 2
 
 Examples
 --------

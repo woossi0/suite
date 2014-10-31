@@ -33,18 +33,18 @@ The order of feature styles is significant, and also the order of rules inside f
 
 Rules inside a feature style are all applied to each feature at once. After all of the rules in a feature style have been applied to each feature, the next feature style will start again, applying rules to each feature.
 
-In this way, **using multiple feature styles is a way of specifying Z-order**. It is also sometimes known as an additional style layer or "inner style layer".
+In this way, **using multiple feature styles is a way of specifying z-order**. The style from each feature style is also sometimes known as an additional style layer or "inner style layer".
 
 Consider the same style heirarchy as above. Given a layer that contains three features, the rules will be applied in the following order:
 
-* Rule 1a is applied to the first feature, followed by rule 1b
-* Rule 1a is applied to the second feature, followed by rule 1b
-* Rule 1a is applied to the third feature, followed by rule 1b
-* Rule 2a is applied to the first feature, followed by rule 2b and then rule 2c
-* Rule 2a is applied to the second feature, followed by rule 2b and then rule 2c
-* Rule 2a is applied to the third feature, followed by rule 2b and then rule 2c
+#. Rule 1a is applied to the first feature, followed by rule 1b
+#. Rule 1a is applied to the second feature, followed by rule 1b
+#. Rule 1a is applied to the third feature, followed by rule 1b
+#. Rule 2a is applied to the first feature, followed by rule 2b and then rule 2c
+#. Rule 2a is applied to the second feature, followed by rule 2b and then rule 2c
+#. Rule 2a is applied to the third feature, followed by rule 2b and then rule 2c
 
-**If you need a rule to apply on top of other rules, use a second feature style.** The most useful case for this is for road casing, which is the common process of applying an inner line style and an outer (thicker) line style. In order to ensure that the inner lines always "connect", they would need to be applied "on top" of the outer lines, so you would use a second feature style.
+**If you need a rule to apply on top of other rules, use a second feature style.** A useful case for this is for lines representing bridges or overpasses. In order to ensure that the bridge lines always display on "top" of other lines (which in a display that includes, they would need to be applied using a second feature style.
 
 .. warning:: FIGURES DEFINITELY NEEDED HERE 
 
@@ -63,7 +63,6 @@ The following is the basic syntax of a feature style. Note that the contents of 
        ...
      rules:
      - ...
-
 
 where:
 
@@ -98,3 +97,72 @@ where:
      - List of styling :ref:`rules <cartography.ysld.reference.rules>`.
      - N/A
 
+Short syntax
+------------
+
+When a style has a single feature style, it is possible to omit the syntax for the feature style and start at the first parameter inside.
+
+So the following two complete styles are equivalent::
+
+  feature-styles:
+  - rules:
+    - name: rule1
+      scale: (,50000)
+      symbolizers:
+      - line:
+          stroke-color: 000000
+          stroke-width: 2
+    - name: rule2
+      scale: (50000,)
+      symbolizers:
+      - line:
+          stroke-color: 000000
+          stroke-width: 1
+
+::
+
+  rules:
+  - name: rule1
+    scale: (,50000)
+    symbolizers:
+    - line:
+        stroke-color: 000000
+        stroke-width: 2
+  - name: rule2
+    scale: (50000,)
+    symbolizers:
+    - line:
+        stroke-color: 000000
+        stroke-width: 1
+
+Examples
+--------
+
+Road casing
+~~~~~~~~~~~
+
+This example shows how a smaller line can be drawn on top of a larger line, creating the effect of lines being drawn with a "border"::
+
+  feature-styles:
+  - name: outer
+    title: Outer line
+    rules:
+    - name: outer_rule
+      symbolizers:
+      - line:
+          stroke-color: 808080
+          stroke-width: 8
+  - name: inner
+    title: Inner line
+    rules:
+    - name: inner_rule
+      symbolizers:
+      - line:
+          stroke-color: 44ff88
+          stroke-width: 6
+
+In order to draw the inner lines always on top of the outer lines, the rule in encased in its own feature style. When drawn, the outer line has a width of 8 pixels and the inner line has a width of 6 pixels, so the line "border" is 1 pixel (on each side).
+
+.. figure:: img/fs_roadcasing.png
+
+   Example showing road casing
