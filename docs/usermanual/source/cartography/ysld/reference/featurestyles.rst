@@ -5,7 +5,7 @@ Feature Styles
 
 In YSLD, A Feature Style is a block of styling :ref:`Rules <cartography.ysld.reference.rules>`.
 
-.. warning:: FIGURE NEEDED
+.. todo:: FIGURE NEEDED
 
 **The purpose of a Feature Style is to specify drawing order.** The first Feature Style will always have its rules applied first, while the second Feature Style will be processed after that, etc.
 
@@ -46,7 +46,7 @@ Consider the same style heirarchy as above. Given a layer that contains three fe
 
 **If you need a rule to apply on top of other rules, use a second feature style.** A useful case for this is for lines representing bridges or overpasses. In order to ensure that the bridge lines always display on "top" of other lines (which in a display that includes, they would need to be applied using a second feature style.
 
-.. warning:: FIGURES DEFINITELY NEEDED HERE 
+.. todo:: FIGURES DEFINITELY NEEDED HERE 
 
 Syntax
 ------

@@ -8,7 +8,7 @@ A rule is a **collection of styling directives**, primarily consisting of :ref:`
 * **If a conditional statement exists** in a rule, then the styling directives will only be carried out **if the conditional returns true**. Otherwise, the rule will be skipped.
 * **If no conditional statement exists** in a rule, then the styling directive will **always be carried out**.
 
-.. warning:: FIGURE NEEDED
+.. todo:: FIGURE NEEDED
 
 The types of conditional statements available to rules are:
 

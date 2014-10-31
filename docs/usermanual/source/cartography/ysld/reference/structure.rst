@@ -38,7 +38,7 @@ Regarding feature styles and their content:
 
 **The basic unit of a style is the symbolizer.** This contains the actual visualization for individual features.
 
-.. warning:: FIGURE NEEDED
+.. todo:: FIGURE NEEDED
 
 
 Property syntax

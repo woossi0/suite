@@ -15,7 +15,7 @@ Symbolizers are contained inside :ref:`rules <cartography.ysld.reference.rules>`
 
 .. note:: The most common use case for multiple symbolizers is a geometry (point/line/polygon) symbolizer to draw the features, plus a text symbolizer for labeling these features.
 
-.. warning:: ADD FIGURE
+.. todo:: ADD FIGURE
 
 It is common to match the symbolizer with the type of geometries contained in the layer, but this is not required. The following table illustrates what will happen when a geometry symbolizer is matched up with another type of geometry.
 
