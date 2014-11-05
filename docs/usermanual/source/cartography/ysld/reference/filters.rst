@@ -97,6 +97,8 @@ The following is a desription of all available operators:
    * - ``IN``
      - Used when specifying a list. Must be contained in the list for the statement to be true.
 
+.. note:: These operators are not case sensitive, but are shown here in all caps for legibility and consistency.
+
 Spatial filters
 ~~~~~~~~~~~~~~~
 
@@ -125,4 +127,119 @@ In these examples, every ``statement`` is a valid filter.
 
 In terms of precendence, ``AND`` conjunctions take precendence over ``OR`` conjunctions unless modified by parentheses. So, in the last example above, ``(<statement1> OR <statement2>)`` will be evaluated first, followed by the result of that ``AND <statement3>``, and finally the result of that ``OR <statement4>``
 
-.. todo:: ADD EXAMPLES
+
+Examples
+--------
+
+**Filter size based on an attribute**
+
+Filters are used to style different features of a layer based on certain conditions. The ``ILIKE`` operator is used to compare two strings (ignoring case) to see if they are similar. When using ``LIKE`` or ``ILIKE``, the ``%`` character matches any number of letters (So ``%hwy`` matches any streetname ending in ``hwy``). This example uses filters to distinguish between Highways, Roads, and other streets, and draw them using different colors and sizes::
+
+  feature-styles:
+  - rules:
+    - filter: ${streetname ILIKE '%hwy'}
+        symbolizers:
+        - line:
+            stroke-color: 007799
+            stroke-width: 8
+    - filter: ${streetname ILIKE '%rd'}
+        symbolizers:
+        - line:
+            stroke-color: 00aa00
+            stroke-width: 4
+    - else: true
+        symbolizers:
+        - line:
+            stroke-color: black
+            stroke-width: 2
+
+.. figure:: img/filters_roadtypes.png
+
+   Filter based on road types 
+
+**Filter color based on attribute value**
+
+Filters can also be used to color a map based on attributes of the data. The following example uses the ``YEARBLT`` attribute to color different lots based on the year they were built. The ``else`` rule applies only if no other filter rule applies
+
+.. note:: The Recode :ref:`function <cartography.ysld.reference.functions>` can perform the same functionality in a more compact syntax.
+
+::
+
+  name: Year Built Filter
+  feature-styles:
+  - rules:
+    - filter: ${YEARBLT > 2000}
+      symbolizers:
+      - polygon:
+          stroke-color: 000000
+          stroke-width: 0.5
+          fill-color: 00ff00
+    - filter: ${YEARBLT > 1990 AND YEARBLT < 2000}
+      symbolizers:
+      - polygon:
+          stroke-color: 000000
+          stroke-width: 0.5
+          fill-color: 22dd00
+    - filter: ${YEARBLT > 1980 AND YEARBLT < 1990}
+      symbolizers:
+      - polygon:
+          stroke-color: 000000
+          stroke-width: 0.5
+          fill-color: 44bb00
+    - filter: ${YEARBLT > 1970 AND YEARBLT < 1980}
+      symbolizers:
+      - polygon:
+          stroke-color: 000000
+          stroke-width: 0.5
+          fill-color: 668800
+    - else: true
+      symbolizers:
+      - polygon:
+          stroke-color: 000000
+          stroke-width: 0.5
+          fill-color: dd4400
+
+.. figure:: img/filters_categories.png
+
+   Fitler based on attribute value
+
+**Filter by bounding box**
+
+Spatial filters can be used to filter a layer based on its geometry. The ``bbox`` filter can be used to select features that are contained within a bounding box. This example colors polygons orange within the bounding box, and blue outside the bounding box::
+
+  name: Spatial Filter
+  feature-styles:
+  - name: name
+    rules:
+    - filter: bbox(the_geom, -122.9, 42.36, -122.85, 42.28)
+      symbolizers:
+      - polygon:
+           fill-color: 99cc00
+    - else: true
+      symbolizers:
+      - polygon:
+           fill-color: 0099cc
+
+.. figure:: img/filters_bbox.png
+
+   Detail of ``bbox`` filter
+
+**Filter by arbitrary geometries**
+
+Spatial filters can also be used to compare layer geometries against arbitrary geometries, not just bounding boxes. In this example, the ``within`` filter is used to select all buildings inside a triangular region defined using Well-Known Text (WKT) and color them green. All other features are colored blue::
+
+  feature-styles:
+  - name: name
+    rules:
+    - filter: within(the_geom, POLYGON ((-122.9075 42.3625, -122.8225 42.3625, -122.8268 42.2803, -122.9075 42.3625)))
+      symbolizers:
+      - polygon:
+          fill-color: 00cc00
+    - else: true
+      symbolizers:
+      - polygon:
+          fill-color: 0099cc
+
+.. figure:: img/filters_within.png
+
+   Filter using ``within`` 
