@@ -237,7 +237,7 @@ The following properties are equivalent to SLD "vendor options".
      - ``false``
    * - ``x-spaceAround``
      - No
-     - Minimum distance (in pixels) between two labels.
+     - Minimum distance (in pixels) between two labels. A negative value specifies the maximum overlap between two labels.
      - 0
 
 .. todo:: ADD EXAMPLES
