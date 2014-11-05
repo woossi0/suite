@@ -50,11 +50,11 @@ This is equivalent to creating multiple rules with similar filters::
 
 **Categorize**: Categories are defined using minimum and maximum ranges, and attribute values are sorted into the appropriate category::
 
-  categorize(attribute,value1,category1,value2,category2,value3,category3,...)
+  categorize(attribute,category0,value1,category1,value2,category2,...,belongsTo)
 
-.. todo:: ARE THESE VALUES MIN OR MAX? INCLUSIVE OR EXCLUSIVE? ORDERED? TEST THESE.
+This would create a situation where the ``attribute`` value, if less than ``value1`` will be given the result of ``category0``; if between ``value1`` and ``value2``, will be given the result of ``category1``;  if between ``value2`` and ``value3``, will be given the result of ``category2``, etc. Values must be in ascending order.
 
-This would create a situation where the ``attribute`` value, if less than ``value1`` will be given the result of ``category1``; if between ``value1`` and ``value2``, will be given the result of ``category2``;  if between ``value2`` and ``value3``, will be given the result of ``category3``, etc.
+The ``belongsTo`` argument is optional, and can be either ``succeeding`` or ``preceding``. It defines which interval to use when the lookup value equals the ``attribute`` value. If the ``attribute`` value is equal to ``value1`` and ``suceeding`` is used, then the result will be ``category1``. If ``preceding`` is used then the result will be ``category0``. The default is ``succeeding``.
 
 This is equivalent to creating the following multiple rules::
 
@@ -62,24 +62,28 @@ This is equivalent to creating the following multiple rules::
   - ...
     filter: ${attribute < value1}
     - ...
-      <property>: category1
+      <property>: category0
   - ...
     filter: ${attribute >= value1 AND attribute < value2}
     - ...
-      <property>: category2
+      <property>: category1
   - ...
-    filter: ${attribute >= value2 AND attribute < value3}
+    filter: ${attribute >= value2}
     - ...
-      <property>: category3
+      <property>: category2
 
 
 **Interpolate**: Used to smoothly theme quantitative data by calculating a styling property based on an attribute value. This is similar to Categorize, except that the values are continuous and not discrete::
 
-  interpolate(attribute,value1,entry1,value2,entry2,...)
+  interpolate(attribute,value1,entry1,value2,entry2,...,mode,method)
 
 .. todo:: ARE THESE VALUES MIN OR MAX? INCLUSIVE OR EXCLUSIVE? ORDERED? TEST THESE.
 
-This would create a situation where the ``attribute`` value, if equal to ``value1`` will be given the result of ``entry1``; if halfway between ``value1`` and ``value2`` will be given a result of halfway in between ``entry1`` and ``entry2``; if three-quarts between ``value1`` and ``value2`` will be given a result of three-quarters in between ``entry1`` and ``entry2``, etc.
+This would create a situation where the ``attribute`` value, if equal to ``value1`` will be given the result of ``entry1``; if halfway between ``value1`` and ``value2`` will be given a result of halfway in between ``entry1`` and ``entry2``; if three-quarters between ``value1`` and ``value2`` will be given a result of three-quarters in between ``entry1`` and ``entry2``, etc.
+
+The ``mode`` argument is optional, and can be either ``linear``, ``cosine``, or ``cubic``. It defines the interpolation algorithm to use, and defaults to ``linear``.
+
+The ``method`` argument is optional, and can be either ``numeric`` or ``color``. It determines whether ``entry1``, ``entry2``, ... are numbers or colors, and defaults to ``numeric``.
 
 There is no equivalent to this function in vector styling. The closest to this in raster styling is the color ramp.
 
