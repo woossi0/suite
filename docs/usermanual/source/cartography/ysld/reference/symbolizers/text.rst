@@ -74,7 +74,7 @@ where:
      - ``1``
    * - ``fill-graphic``
      - No
-     - A design to be used for the fill of the text label. Can either be a mark consisting of a common shape or a URL that points to a graphic. The ``<graphic_options>`` should consist of a mapping containing ``symbols:`` followed by an ``external:`` or ``mark:``, with appropriate parameters.
+     - A design to be used for the fill of the text label. Can either be a mark consisting of a common shape or a URL that points to a graphic. The ``<graphic_options>`` should consist of a mapping containing ``symbols:`` followed by an ``external:`` or ``mark:``, with appropriate parameters as detailed in the :ref:`cartography.ysld.reference.symbolizers.point` section.
      - None
    * - ``stroke-graphic``
      - No
@@ -239,3 +239,5 @@ The following properties are equivalent to SLD "vendor options".
      - No
      - Minimum distance (in pixels) between two labels.
      - 0
+
+.. todo:: ADD EXAMPLES

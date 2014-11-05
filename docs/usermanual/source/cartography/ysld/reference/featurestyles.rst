@@ -11,7 +11,7 @@ In YSLD, A Feature Style is a block of styling :ref:`Rules <cartography.ysld.ref
 
 A Feature Style is a **top-level element** in a YSLD style.
 
-Consider the following style heirarchy:
+Consider the following heirarchy:
 
 * Feature Style 1
 
@@ -35,7 +35,7 @@ Rules inside a feature style are all applied to each feature at once. After all 
 
 In this way, **using multiple feature styles is a way of specifying z-order**. The style from each feature style is also sometimes known as an additional style layer or "inner style layer".
 
-Consider the same style heirarchy as above. Given a layer that contains three features, the rules will be applied in the following order:
+Consider the same heirarchy as above. Given a layer that contains three features, the rules will be applied in the following order:
 
 #. Rule 1a is applied to the first feature, followed by rule 1b
 #. Rule 1a is applied to the second feature, followed by rule 1b
@@ -86,7 +86,7 @@ where:
      - Blank
    * - ``abstract``
      - No
-     - Longer description of the Feature Style.
+     - Longer description of the feature style.
      - Blank
    * - ``transform``
      - No
@@ -102,7 +102,7 @@ Short syntax
 
 When a style has a single feature style, it is possible to omit the syntax for the feature style and start at the first parameter inside.
 
-So the following two complete styles are equivalent::
+So the following complete styles are both equivalent::
 
   feature-styles:
   - rules:

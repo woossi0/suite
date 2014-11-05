@@ -18,7 +18,7 @@ The basic syntax of a filter is::
 
   rules:
     ...
-    filter: <expression>
+    filter: ${<expression>}
     ...
 
 where ``<expression>`` is any valid CQL/ECQL filter.
@@ -39,7 +39,7 @@ Object comparison
 
 This filter will test to see if a comparison to an attribute is true. It has the following form::
 
-  <attribute> <operator> <value>
+  ${<attribute> <operator> <value>}
 
 where:
 
@@ -111,17 +111,18 @@ The syntax for creating compound statements is to use standard Boolean notation 
 
 For example, a filter where both statements need to be true would be::
 
-  filter: <statement1> AND <statement2>
+  filter: ${<statement1> AND <statement2>}
 
 A filter where either statement would need to be true would be::
 
-  filter: <statement1> OR <statement2>
+  filter: ${<statement1> OR <statement2>}
 
 Larger filters can be built up in this way::
 
-  filter: (<statement1> OR <statement2>) AND <statement3> OR <statement4>
+  filter: ${(<statement1> OR <statement2>) AND <statement3> OR <statement4>}
 
 In these examples, every ``statement`` is a valid filter.
 
 In terms of precendence, ``AND`` conjunctions take precendence over ``OR`` conjunctions unless modified by parentheses. So, in the last example above, ``(<statement1> OR <statement2>)`` will be evaluated first, followed by the result of that ``AND <statement3>``, and finally the result of that ``OR <statement4>``
 
+.. todo:: ADD EXAMPLES

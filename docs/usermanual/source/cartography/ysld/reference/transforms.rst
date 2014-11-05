@@ -49,7 +49,6 @@ The values in the ``params`` options typically include values, strings, or attri
 
 * ``width: 10``
 * ``source: attribute``
-* ``edgeCase: 'left'`` 
 
 However, it can be useful with a transformation to include environment parameters that concern the position and size of the map when it is rendered. For example, the following are common reserved environment parameters:
 
@@ -86,9 +85,9 @@ The following uses the :ref:`cartography.rt.heatmap` process to convert a point 
         weightAttr: pop2000
         radiusPixels: 100
         pixelsPerCell: 10
-        outputBBOX: env('wms_bbox')
-        outputWidth: env('wms_width')
-        outputHeight: env('wms_height')
+        outputBBOX: ${env('wms_bbox')}
+        outputWidth: ${env('wms_width')}
+        outputHeight: ${env('wms_height')}
     rules:
     - symbolizers:
       - raster:

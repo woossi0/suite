@@ -49,7 +49,7 @@ SLD:
            <Mark>
              <WellKnownName>circle</WellKnownName>
              <Fill>
-               <CssParameter name="fill">#FF0000</CssParameter>
+               <CssParameter name="fill">#ff0000</CssParameter>
              </Fill>
              <Stroke>
                <CssParameter name="stroke">#000000</CssParameter>
@@ -136,7 +136,7 @@ For example, in SLD, multiple rules must share much of the same content:
            <Mark>
              <WellKnownName>circle</WellKnownName>
              <Fill>
-               <CssParameter name="fill">#FF0000</CssParameter>
+               <CssParameter name="fill">#ff0000</CssParameter>
              </Fill>
              <Stroke>
                <CssParameter name="stroke">#000000</CssParameter>
@@ -154,7 +154,7 @@ For example, in SLD, multiple rules must share much of the same content:
            <Mark>
              <WellKnownName>circle</WellKnownName>
              <Fill>
-               <CssParameter name="fill">#FF0000</CssParameter>
+               <CssParameter name="fill">#ff0000</CssParameter>
              </Fill>
              <Stroke>
                <CssParameter name="stroke">#000000</CssParameter>
@@ -183,7 +183,7 @@ In YSLD, all the directives that occur multiple times can be replaced with a var
         size: 6
         symbols:
         - mark:
-            >>: *variable
+            <<: *variable
             stroke-width: 2
   - name: rule2
     scale: (,35000)
@@ -192,26 +192,23 @@ In YSLD, all the directives that occur multiple times can be replaced with a var
         size: 8
         symbols:
         - mark:
-            >>: *variable
+            <<: *variable
             stroke-width: 3
 
-Note the definition of ``variable`` at the top, and the variable substitution in the line ``>>: *variable``.
+Note the definition of ``variable`` at the top, and the variable substitution in the line ``<<: *variable``.
 
 .. _cartography.ysld.why.compatible:
 
 Compatible with SLD
 -------------------
 
-In addition to all of these advantages, YSLD maintains compatibility with existing SLD.
+In addition to all of these advantages, YSLD maintains compatibility with existing SLD and can be converted directly.
 
 .. note::
 
    While YSLD and SLD are compatible, it is not always possible to convert to SLD and back to YSLD ("round trip") and retrieve the exact same syntax. Specifically the following features will be converted upon conversion to SLD:
 
    * :ref:`Zoom <cartography.ysld.reference.zoomscale>` parameters will be converted to scale parameters
-   * :ref:`cartography.ysld.reference.variables>` will be evaluated and removed.
+   * :ref:`cartography.ysld.reference.variables` will be evaluated and removed.
 
-   That said, even though the syntax will be different, the outcome will be identical.
-
-
-
+   That said, even though the syntax will be different when converted back to YSLD, the output will be identical.

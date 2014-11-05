@@ -106,14 +106,14 @@ Given the rules above, the following arbirtrary sample scales would map to the r
    * - ``300000``
      - ``high_scale``
 
-Note the edge cases, since the ``min`` scale is inclusive and the ``max`` scale is exclusive.
+Note the edge cases, since the ``min`` value is inclusive and the ``max`` value is exclusive.
 
 Scientific notation for scales
 ------------------------------
 
 To make comprehension easier and to lessen the chance of errors, scale values can be expressed in scientific notation.
 
-So a scale of ``500000000``, which is equal to 5 × 10^8 (8 zeroes), can be replaced by ``5e8``.
+So a scale of ``500000000``, which is equal to 5 × 10^8 (a 5 with eight zeros), can be replaced by ``5e8``.
 
 Relationship between scale and zoom
 -----------------------------------
@@ -179,7 +179,7 @@ where:
      - N/A
    * - ``initial-level``
      - No
-     - Modifies the ``initial-scale`` value to apply to a differnet zoom level from 0.
+     - Modifies the ``initial-scale`` value to apply to a different zoom level from 0.
      - ``0``
    * - ``ratio``
      - No
@@ -234,7 +234,7 @@ will make the rule apply for any zoom level less than or equal to the ``max`` zo
 
 will make the rule apply for any zoom level greater than or equal to the ``min`` zoom level.
 
-The ``scale`` and ``zoom`` parameters should not be used together (but if used, the ``scale`` takes priority over ``zoom``).
+The ``scale`` and ``zoom`` parameters should not be used together in a rule (but if used, the ``scale`` takes priority over ``zoom``).
 
 Zoom examples
 -------------
@@ -398,7 +398,7 @@ Given the existing named gridset of ``EPSG:3857``::
 
   name: EPSG:3857
 
-This defines zoom levels as the following (below rounded to the nearest whole number):
+This defines zoom levels as the following (rounded to the nearest whole number below):
 
 .. list-table::
    :header-rows: 1

@@ -56,7 +56,7 @@ where:
    * - ``filter``
      - No
      - :ref:`Filter <cartography.ysld.reference.filters>` expression which will need to evaluate to be true for the symbolizer(s) to be applied. Cannot be used with ``else``.
-     - Blank (so rule will apply to all features)
+     - Blank (meaning that the rule will apply to all features)
    * - ``else``
      - No
      - Specifies whether the rule will be an "else" rule. An else rule applies when, after scale and filters are applied, no other rule applies. To make an else rule, set this option to ``true``. Cannot be used with ``filter``.
@@ -75,7 +75,7 @@ Short syntax
 
 When a style has a single rule inside a single feature style, it is possible to omit the syntax for both and start at the first parameter inside.
 
-So the following two complete styles are equivalent::
+So the following complete styles are equivalent::
 
   feature-styles:
   - rules:

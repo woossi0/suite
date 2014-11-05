@@ -8,7 +8,7 @@ This section will detail the usage and syntax of the YSLD markup language.
 As YSLD is heavily modeled on `YAML <http://yaml.org>`_, it may be useful to refer to the `YAML specification <http://yaml.org/spec/1.2/spec.html>`_ for basic syntax.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    structure
    featurestyles

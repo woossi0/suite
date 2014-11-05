@@ -12,7 +12,7 @@ Syntax
 
 Functions aren't a parameter to itself, but instead are used as a part of the values of a parameter, or indeed in any expression. So the syntax is very general, for example::
 
-  <parameter>: <function>
+  <parameter>: ${<function>}
 
 Functions are evaluated at rendering time, so the output is passed as the parameter value and then rendered accordingly.
 
@@ -36,15 +36,15 @@ This is equivalent to creating multiple rules with similar filters::
 
   rules:
   - ...
-    filter: [attribute] = value1
+    filter: ${attribute = value1}
     - ...
       <property>: result1
   - ...
-    filter: [attribute] = value2
+    filter: ${attribute = value2}
     - ...
       <property>: result2
   - ...
-    filter: [attribute] = value3
+    filter: ${attribute = value3}
     - ...
       <property>: result3
 
@@ -60,15 +60,15 @@ This is equivalent to creating the following multiple rules::
 
   rules:
   - ...
-    filter: [attribute] < value1
+    filter: ${attribute < value1}
     - ...
       <property>: category1
   - ...
-    filter: [attribute] >= value1 AND [attribute] < value2
+    filter: ${attribute >= value1 AND attribute < value2}
     - ...
       <property>: category2
   - ...
-    filter: [attribute] >= value2 AND [attribute] < value3
+    filter: ${attribute >= value2 AND attribute < value3}
     - ...
       <property>: category3
 
@@ -111,7 +111,7 @@ The ``offset(geom, x, y)`` function takes a geometry and two values, and displac
   feature-styles:
   - name: shadow
     rules:
-    - symbolizers:  
+    - symbolizers:
       - polygon:
           stroke-width: 0.0
           fill-color: 000000
@@ -119,10 +119,10 @@ The ``offset(geom, x, y)`` function takes a geometry and two values, and displac
           geometry: ${offset(geom, 0.0001, -0.0001)}
   - name: fill
     rules:
-    - symbolizers:  
+    - symbolizers:
       - polygon:
         stroke-width: 0.0
-        fill-color: 00ffff 
+        fill-color: 00ffff
 
 .. figure:: img/functions_dropshadow.png
 
@@ -181,7 +181,7 @@ The ``atan2(x, y)`` function calculates the arctangent of (y/x) and so is able t
   point:
     symbols:
     - mark:
-        shape: triangle     
+        shape: triangle
     rotation: ${toDegrees(atan2(getX(startPoint(the_geom))-getX(endPoint(the_geom)),getY(startPoint(the_geom))-getY(endPoint(the_geom))))}
 
 See also:
@@ -238,28 +238,26 @@ See also:
 
 
 
-
-
-
-
-A list of fill values based on discrete attribute values (using Recode)::
-
-  fill: recode(color,1,ff0000,2,00ff00,3,0000ff,4,000000)
-  stroke: 808080
-
-The above symbolizer contents will color features differently, dependent on the value of the attribute ``color``. If the value is ``1``, the ``fill`` will be ``ff0000``; if the value is ``2``, the ``fill`` will be ``00ff00``, and so forth. In all cases, though, the stroke will be ``808080``.
-
-A list of fills based on attribute values (using Categorize)::
-
-  fill: categorize(option,0,ff0000,10,00ff00,20,0000ff,100,000000)
-  stroke: 808080
-
-The abolve symbolizer content will color features differently, dependent on the value of the attribute ``option``. If the value is SOMETHING...
-
-A gradient of fills based on attribute values (using Interpolate)::
-
-  fill: interpolate(color,0,ff0000,30,00ff00,60,0000ff,255,000000)
-  stroke: 808080
-
-The abolve symbolizer content will color features differently, dependent on the value of the attribute ``option``. If the value is SOMETHING...
+.. Taking this out for now until better tested
+..
+.. A list of fill values based on discrete attribute values (using Recode)::
+.. 
+..   fill: recode(color,1,ff0000,2,00ff00,3,0000ff,4,000000)
+..   stroke: 808080
+.. 
+.. The above symbolizer contents will color features differently, dependent on the value of the attribute ``color``. If the value is ``1``, the ``fill`` will be ``ff0000``; if the value is ``2``, the ``fill`` will be ``00ff00``, and so forth. In all cases, though, the stroke will be ``808080``.
+.. 
+.. A list of fills based on attribute values (using Categorize)::
+.. 
+..   fill: categorize(option,0,ff0000,10,00ff00,20,0000ff,100,000000)
+..   stroke: 808080
+.. 
+.. The above symbolizer content will color features differently, dependent on the value of the attribute ``option``. If the value is SOMETHING...
+.. 
+.. A gradient of fills based on attribute values (using Interpolate)::
+.. 
+..   fill: interpolate(color,0,ff0000,30,00ff00,60,0000ff,255,000000)
+..   stroke: 808080
+.. 
+.. The above symbolizer content will color features differently, dependent on the value of the attribute ``option``. If the value is SOMETHING...
 

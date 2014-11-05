@@ -94,13 +94,11 @@ Name a color::
 
 Reusable text string::
 
-  define: &ruleprefix "My rule #"
+  define: &rulename "This is my rule"
 
 ::
 
-  title: *ruleprefix "1"
-
-.. warning:: CORRECT?
+  title: *rulename
 
 Stroke style::
 
@@ -112,5 +110,5 @@ Stroke style::
 ::
 
   polygon:
-    >>: *strokestyle
+    <<: *strokestyle
 

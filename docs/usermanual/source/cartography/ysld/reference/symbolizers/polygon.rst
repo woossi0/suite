@@ -3,7 +3,7 @@
 Polygon symbolizer
 ==================
 
-The polygon symbolizer styles polygon (2-dimensional) features. It contains facilities for the stroke (outline) of a feature, as well as the fill (inside) of a feature. 
+The polygon symbolizer styles polygon (2-dimensional) features. It contains facilities for the stroke (outline) of a feature as well as the fill (inside) of a feature. 
 
 The full syntax of a polygon symbolizer is::
 
@@ -57,3 +57,4 @@ where:
      - Specifies which attribute to use as the geometry.
      - First geometry attribute found (often ``geom`` or ``the_geom``)
 
+.. todo:: ADD EXAMPLES

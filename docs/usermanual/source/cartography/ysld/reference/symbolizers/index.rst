@@ -7,7 +7,7 @@ The basic unit of visualization is the symbolizer. There are five types of symbo
 
 Symbolizers are contained inside :ref:`rules <cartography.ysld.reference.rules>`. A rule can contain one or many symbolizers. 
 
-.. note:: The most common use case for multiple symbolizers is a geometry (point/line/polygon) symbolizer to draw the features, plus a text symbolizer for labeling these features.
+.. note:: The most common use case for multiple symbolizers is a geometry (point/line/polygon) symbolizer to draw the features plus a text symbolizer for labeling these features.
 
 .. todo:: ADD FIGURE
 
@@ -38,7 +38,7 @@ It is common to match the symbolizer with the type of geometries contained in th
      - **Polygons**
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    line
    polygon

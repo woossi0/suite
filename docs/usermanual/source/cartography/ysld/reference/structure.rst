@@ -70,32 +70,20 @@ The ``<property>`` is a string denoting the property name, while the ``<value>``
      - Quotes allowed as well
    * - Text
      - Quotes
-     - ``'Title'``
-     - Spaces, colons, and other special characters are allowed
+     - ``Title``
+     - Spaces, colons, and other special characters are allowed. If value is amiguous, use single quotes.
    * - Color
-     - Six-digits (hex) / rgb(r,g,b) (Decimal)
+     - Six-digits (for hex) / rgb(r,g,b) (for decimal)
      - ``808080`` / ``rgb(255,0,255)``
-     - Used when specifying RGB colors. For hex: ``rrggbb`` or ``'#rrggbb'`` is allowed. For decimal: ``rgb(rrr,ggg,bbb)`` with each ordinate having a value from 0 to 255.
+     - Used when specifying RGB colors. For hex, use ``rrggbb`` with each two character pair having a value from ``00`` to ``ff``. For decimal, use ``rgb(rrr,ggg,bbb)`` with each ordinate having a value from ``0`` to ``255``.
    * - Tuple
      - Parentheses
      - ``(0,15000)``
-     - Entries in the the tuple may be left blank to mean unbounded (such as ``(,15000)``)
-   * - :ref:`Filter <cartography.ysld.reference.filters>`
-     - Quotes for attribute values
-     - ``type = 'road'``
-     - Single or double quotes allowed
-   * - Expression
-     - See description below.
-     - ``type = 'road'``
-     - 
-
-.. note::
-
-   Regarding the use of quotation marks:
-
-   Quotes are only required when the first character of the value is ambiguous. For example, when the first character of the value is a ``#``, quotes are required, as it could signify an RGB color value or be a string.
-
-   When quotes are used, either single or double quotes are allowed.
+     - Entries in the the tuple may be left blank to denote being unbounded (such as ``(,15000)``)
+   * - :ref:`Filter <cartography.ysld.reference.filters>` or other expression
+     - ${<expression>}
+     - ``${type = road}``
+     - If attribute name is ambiguous, encase in brackets (``${[type] = road}``). If value is ambiguous, use single quotes (``${type = 'road'}``).
 
 Expressions
 -----------
@@ -149,7 +137,7 @@ It is sometimes not obvious whether an object should be a list (and use dashes) 
      - List
    * - :ref:`Rule <cartography.ysld.reference.rules>`
      - List
-   * - :ref:`Symbolizer <cartography.ysld.reference.symbolizers>` block
+   * - :ref:`Symbolizer <cartography.ysld.reference.symbolizers>`
      - List
    * - Individual symbolizers (contents)
      - Mapping
@@ -194,19 +182,19 @@ Comments are allowed in YSLD, both for descriptive reasons and to remove certain
 
   # This is a line symbolizer
   - line:
-      stroke-color: #000000
+      stroke-color: 000000
       stroke-width: 2
-      #stroke-width: 3
+  #   stroke-width: 3
 
 The above would display the lines with width of ``2``; the line showing a width of ``3`` is commented out.
 
 Comment blocks do not exist, so each line of a comment will need to be indicated as such::
 
   - line:
-      stroke-color: #000000
+      stroke-color: 000000
       stroke-width: 2
   #- line:
-  #    stroke-color: #ff0000
+  #    stroke-color: ff0000
   #    stroke-width: 3
 
 .. note:: Comments are not preserved when converting to SLD.
