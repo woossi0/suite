@@ -27,6 +27,7 @@ The full syntax of a line symbolizer is:
         <graphic_options>
       offset: <expression>
       geometry: <expression>
+      x-labelObstacle: <boolean>
 
 where:
 
@@ -50,6 +51,8 @@ where:
      - No
      - Specifies which attribute to use as the geometry.
      - First geometry attribute found (often ``geom`` or ``the_geom``)
+
+.. include:: include/misc.txt
 
 Examples
 --------

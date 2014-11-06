@@ -39,6 +39,7 @@ The full syntax of a point symbolizer is::
       opacity: <expression>
       rotation: <expression>
       geometry: <expression>
+      x-labelObstacle: <boolean>
 
 where:
 
@@ -100,6 +101,8 @@ where:
      - No
      - Specifies which attribute to use as the geometry.
      - First geometry attribute found (often ``geom`` or ``the_geom``)
+
+.. include:: include/misc.txt
 
 Examples
 --------
