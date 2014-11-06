@@ -80,7 +80,7 @@
         }
       }
     </style>
-    <script src="src/ol3/ol-whitespace.js"></script>
+    <script src="src/ol3/ol-debug.js"></script>
     <script src="src/jquery/jquery.js"></script>
     <script src="src/bootstrap/js/bootstrap.js"></script>
     <script src="src/bootbox/bootbox.js"></script>
@@ -98,7 +98,7 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="map.getView().getView2D().fitExtent(vector.getSource().getExtent(), map.getSize()); return false;"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
+          <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="map.getView().fitExtent(vector.getSource().getExtent(), map.getSize()); return false;"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
           <li><a href="#" id="draw-btn" class="" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="drawFeature(); return false;"><i class="fa fa-edit"></i>&nbsp;&nbsp;Draw Feature</a></li>
           <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="deleteFeature(); return false;"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete Feature</a></li>
         </ul>

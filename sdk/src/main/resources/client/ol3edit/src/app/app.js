@@ -107,7 +107,7 @@ var map = new ol.Map({
     vector
   ],
   // initial center and zoom of the map's view
-  view: new ol.View2D({
+  view: new ol.View({
     center: center,
     zoom: zoom
   })
