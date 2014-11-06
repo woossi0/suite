@@ -81,24 +81,24 @@ app.LayersControl.prototype.setMap = function(map) {
       var item = document.createElement('li');
       if (this.groups[group] && this.groups[group].exclusive === true) {
         $('<input />', {type: 'radio', name: group, value: title, checked:
-          layer.get('visible')}).
+          layer.getVisible()}).
           change([map, layer, group], function(evt) {
             var map = evt.data[0];
             var layers = map.getLayers().getArray();
             for (var i=0, ii=layers.length; i<ii; ++i) {
               if (layers[i].get("group") == evt.data[2]) {
-                layers[i].set('visible', false);
+                layers[i].setVisible(false);
               }
             }
             var layer = evt.data[1];
-            layer.set('visible', $(this).is(':checked'));
+            layer.setVisible($(this).is(':checked'));
           }).appendTo(item);
         $('<span />').html(title).appendTo(item);
         this.containers[group].appendChild(item);
       } else {
-        $('<input />', {type: 'checkbox', checked: layer.get('visible')}).
+        $('<input />', {type: 'checkbox', checked: layer.getVisible()}).
           change(layer, function(evt) {
-            evt.data.set('visible', $(this).is(':checked'));
+            evt.data.setVisible($(this).is(':checked'));
           }).appendTo(item);
         $('<span />').html(title).appendTo(item);
         if (this.containers[group]) {

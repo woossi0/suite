@@ -107,7 +107,7 @@ app.FeatureTable.prototype.handleRowClick = function(evt) {
   delete me.select_._silent;
   var geomExtent = feature.getGeometry().getExtent();
   var extent = ol.extent.buffer(geomExtent, (ol.extent.getWidth(geomExtent)+ol.extent.getHeight(geomExtent))/2);
-  me.map_.getView().getView2D().fitExtent(extent, me.map_.getSize());
+  me.map_.getView().fitExtent(extent, me.map_.getSize());
   $(this).addClass('highlight').siblings().removeClass('highlight');
 };
 

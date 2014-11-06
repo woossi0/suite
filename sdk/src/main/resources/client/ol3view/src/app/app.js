@@ -119,7 +119,7 @@ var map = new ol.Map({
     highlight
   ],
   // initial center and zoom of the map's view
-  view: new ol.View2D({
+  view: new ol.View({
     center: center,
     zoom: zoom
   })
@@ -128,9 +128,9 @@ var map = new ol.Map({
 // register a single click listener on the map and show a popup
 // based on WMS GetFeatureInfo
 map.on('singleclick', function(evt) {
-  var viewResolution = map.getView().getView2D().getResolution();
+  var viewResolution = map.getView().getResolution();
   var url = wmsSource.getGetFeatureInfoUrl(
-      evt.coordinate, viewResolution, map.getView().getView2D().getProjection(),
+      evt.coordinate, viewResolution, map.getView().getProjection(),
       {'INFO_FORMAT': infoFormat});
   if (url) {
     if (infoFormat == 'text/html') {
