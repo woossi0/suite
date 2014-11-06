@@ -3,7 +3,7 @@
 Text symbolizer
 ===============
 
-The text symbolizer styles labels of vector features.
+The text symbolizer styles labels of vector features. Labels can consist of text strings and/or graphics.
 
 Syntax
 ------
@@ -25,18 +25,23 @@ The full syntax of a text symbolizer is::
       font-size: <expression>
       font-style: <expression>
       font-weight: <expression>
-      placement:
-        type: <point|line>
-        offset: <expression>
-        anchor: <tuple>
-        displacement: <tuple>
-        rotation: <expression>
+      placement: <point|line>
+      offset: <expression>
+      anchor: <tuple>
+      displacement: <tuple>
+      rotation: <expression>
       halo:
         radius: <expression>
         fill-color: <color>
         fill-opacity: <expression>
         fill-graphic:
           <graphic_options>
+      graphic:
+        symbols:
+          <graphic_options>
+        size: <expression>
+        opacity: <expression>
+        rotation: <expression>
       x-allowOverruns: <boolean>
       x-autoWrap: <expression>
       x-conflictResolution: <boolean>
@@ -120,10 +125,6 @@ where:
      - ``normal``
    * - ``placement``
      - No
-     - Family of options that determine where the label is to be drawn relative to its feature
-     - N/A
-   * - ``type``
-     - No
      - Determines whether the label is to be drawn derived from a ``point`` or a ``line``.
      - ``point``
    * - ``offset``
@@ -159,6 +160,38 @@ where:
      - Specifies the level of transparency for the halo. Value of ``0`` means entirely transparent, while ``1`` means entirely opaque.
      - ``1``
 
+The following properties allow for a graphic to be displayed in addition to just a label. This is used when drawing "shields" (text overtop of a graphic) such as in road signs.
+
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :stub-columns: 1
+   :widths: 20 10 50 20
+
+   * - Property
+     - Required?
+     - Description
+     - Default value
+   * - ``graphic``
+     - No
+     - Specifies whether a graphic is to be drawn for the label.
+     - N/A (no graphic)
+   * - ``symbols``
+     - No
+     - The details of the graphic. Consists of an ``external:`` or ``mark:`` section, with appropriate parameters as detailed in the :ref:`cartography.ysld.reference.symbolizers.point` section.
+     - N/A
+   * - ``size``
+     - No
+     - Size of the graphic in pixels. If the aspect ratio is not 1:1 (square), will apply to the *height* of the graphic only, with the width scaled proportionally.
+     - ``16``
+   * - ``opacity``
+     - No
+     - Specifies the level of transparency for the graphic. Value of ``0`` means entirely transparent, while ``1`` means entirely opaque.
+     - ``1``
+   * - ``rotation``
+     - No
+     - Value (in degrees) or rotation of the graphic. Larger values increase counter-clockwise rotation. A value of ``180`` will make the graphic upside-down.
+     - ``0``
 
 The following properties are equivalent to SLD "vendor options".
 
