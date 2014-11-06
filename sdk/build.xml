@@ -102,10 +102,10 @@
       depends="init-target,init-git">
     <!-- JD: can't call assemble-artifact because we need to do some
       custom magic to preserve file permissions -->
-    <property name="artifact_file"
+    <property name="sdk_zip"
           value="target/suite-webapp-sdk-${suite.build_rev}.zip"/>
-    <delete file="${artifact_file}"/>
-    <zip destfile="${artifact_file}">
+    <delete file="${sdk_zip}"/>
+    <zip destfile="${sdk_zip}">
         <fileset dir="target" includes="version.ini"/>
         <zipfileset prefix="bin" dir="${sdk.dir}/bin" includes="suite-sdk"
           filemode="755"/>
