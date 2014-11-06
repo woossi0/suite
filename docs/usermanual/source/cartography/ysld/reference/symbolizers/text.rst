@@ -5,6 +5,9 @@ Text symbolizer
 
 The text symbolizer styles labels of vector features.
 
+Syntax
+------
+
 The full syntax of a text symbolizer is::
 
   symbolizers:
@@ -84,8 +87,6 @@ where:
      - No
      - A design or pattern to be used for the fill of the stroke around the label text. This area that is to be filled is tied directly to the value of ``stroke-width``. Can either be a mark consisting of a common shape or a URL that points to a graphic. The ``<graphic_options>`` should consist of a mapping containing ``symbols:`` followed by an ``external:`` or ``mark:``, with appropriate parameters as detailed in the :ref:`cartography.ysld.reference.symbolizers.point` section. Cannot be used with ``stroke-graphic``.
      - N/A
-
-
 
 .. list-table::
    :class: non-responsive
@@ -240,4 +241,153 @@ The following properties are equivalent to SLD "vendor options".
      - Minimum distance (in pixels) between two labels. A negative value specifies the maximum overlap between two labels.
      - 0
 
-.. todo:: ADD EXAMPLES
+Examples
+--------
+
+Basic label
+~~~~~~~~~~~
+
+Text symbolizers are used to draw labels on objects. The label text is usually linked to some attribute of the layer. Font options are available in the ``font-family``, ``font-size``, ``font-style``, and ``font-weight`` properties. The following example draws a label using the ``name`` attribute of the layer, and with a SansSerif font of size 12, gray color, blod and italic::
+
+  feature-styles:
+  - name: name
+    rules:
+    - title: fill-graphic
+      symbolizers:
+      - text:
+          label: ${name}
+          fill-color: 555555
+          font-family: SansSerif
+          font-size: 12
+          font-style: italic
+          font-weight: bold
+
+.. todo:: Add figure
+
+.. This doesn't work at the moment.
+
+.. **Text placement**
+
+.. It can be useful to adjust how labels are placed relative to the geometry. The ``anchor`` and ``displacement`` parameters can be used to alter label placement. The following example modifies the previous example to display the labels anchored at their horizontal center and moved downwards by 10 pixels::
+
+..   feature-styles:
+..   - name: name
+..     rules:
+..     - title: fill-graphic
+..       symbolizers:
+..       - text:
+..           label: ${name}
+..           font-family: SansSerif
+..           font-size: 12
+..           font-style: italic
+..           font-weight: bold
+..           placement:
+..             anchor: (0.5,0)
+..             displacement: (0,-20)
+
+Label with halo
+~~~~~~~~~~~~~~~
+
+Surrounding labels with a halo will allow them to be visible even on complex maps with variouis backgruond features.This can be accomplished using the ``halo`` family of properties. This example surrounds the label in a partially transparent white halo of radius 2::
+
+  feature-styles:
+  - name: name
+    rules:
+    - symbolizers:  
+      - polygon:
+          stroke-width: 1
+          fill-color: 00dd77
+      - text:
+          label: ${name}
+          font-size: 12
+          x-autoWrap: 70
+          x-maxDisplacement: 100
+          halo:
+             radius: 2
+             fill-color: ffffff
+             fill-opacity: 0.8
+          placement:
+             anchor: (0.5, -1)
+
+.. figure:: img/text_halo.png
+
+   Label with halo
+
+Grouped labels
+~~~~~~~~~~~~~~
+
+Grouping and other properties can be used to better control where labels are placed. The ``x-group`` option combines all labels with identical text into a single label. This can be useful to show only a single label for a street rather than having a label on every block of the street. The ``x-goodnesOfFit`` option determines whether or not to draw labels based on how well they fit into the available space. The ``x-maxDisplacement`` option determines the maximum distance a label can be moved to avoid overlaps.
+
+The following example uses ``x-group`` to ensure only one label is drawn for each feature, and sets ``x-goodnesOfFit`` to zero so that labels will be drawn even if they have a poor fit::
+
+  feature-styles:
+  - name: name
+    rules:
+    - title: fill-graphic
+      symbolizers:
+      - text:
+          label: ${name}
+          fill-color: '555555'
+          font-family: SansSerif
+          font-size: 12
+          font-style: italic
+          font-weight: bold
+          x-group: true
+          x-goodnessOfFit: 0.0
+          x-maxDisplacement: 400
+
+.. todo:: Add figure
+
+Labels following lines
+~~~~~~~~~~~~~~~~~~~~~~
+
+In order to have a label follow a line (and not be drawn tangent to a line), the ``x-followLine`` option can be set. Other properties can be used in conjunction with this to achieve the best visual result. The following example has street names following the line of the street, with a maximum angle of 90 degrees, repeating every 150 pixels::
+
+  feature-styles:
+  - rules:
+    - symbolizers:
+      - line:
+          stroke-color: ededff
+          stroke-width: 10
+      - text:
+          label: name
+          x-followLine: true
+          x-maxAngleDelta: 90
+          x-maxDisplacement: 400
+          x-repeat: 150
+
+.. figure:: img/text_follow.png
+
+   Labels following lines
+
+Labels accounting for obstacles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``x-labelObstacle`` option is used to mark a different symbolizer as an obstacle that labels should avoid. Note that this will function across layers. The following example draws labels and points on a line geometry, and sets it so the labels avoid the points:
+
+.. note:: Be careful when marking line or polygon geometries as label obstacles, as the avoidance algorithm uses the bounding box of the feature.
+
+::
+
+  feature-styles:
+  - rules:
+    - symbolizers:
+        - line:
+            stroke-color: 00bbdd
+            stroke-width: 10
+  - rules:
+    - symbolizers:
+        - point:
+            geometry: ${vertices(the_geom)}
+            x-labelObstacle: true
+            symbols:
+            - mark:
+                shape: circle
+                stroke-color: 000000
+                fill-color: 007777
+        - text:
+            label: ${streetname}
+            x-maxDisplacement: 400
+            x-followLine: true
+
+.. todo:: Add figure

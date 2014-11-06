@@ -5,6 +5,9 @@ Polygon symbolizer
 
 The polygon symbolizer styles polygon (2-dimensional) features. It contains facilities for the stroke (outline) of a feature as well as the fill (inside) of a feature. 
 
+Syntax
+------
+
 The full syntax of a polygon symbolizer is::
 
   symbolizers:
@@ -57,4 +60,86 @@ where:
      - Specifies which attribute to use as the geometry.
      - First geometry attribute found (often ``geom`` or ``the_geom``)
 
-.. todo:: ADD EXAMPLES
+Examples
+--------
+
+Basic polygon
+~~~~~~~~~~~~~
+
+Polygon symbolizers have both a stroke and a fill, similar to marks for point symbolizers. The following example draws a polygon symbolizer with a red fill and black stroke with beveled line joins for the stroke::
+
+  feature-styles:
+  - name: name
+    rules:
+    - title: fill-graphic
+      symbolizers:  
+      - polygon:
+          fill-color: ff0000
+          fill-opacity: 0.9
+          stroke-color: 000000
+          stroke-width: 8
+          stroke-opacity: 1
+          stroke-linejoin: bevel
+
+.. todo:: Add figure
+
+Fill with graphic
+~~~~~~~~~~~~~~~~~
+
+The ``fill-graphic`` property is used to fill a geometry with a repeating graphic. This can be a mark or an external image. The ``x-graphic-margin`` option can be used to specify top, right, bottom, and left margins around the graphic used in the fill. This example uses two sets of repeating squares with different offset values to draw a checkerboard pattern::
+
+  name: checkers
+  feature-styles:
+  - name: name
+    rules:
+    - title: fill-graphic
+      symbolizers:  
+      - polygon:
+          stroke-width: 1
+          fill-graphic:
+            symbols:
+            - mark:
+                shape: square
+                fill-color: 000000
+            size: 8
+          x-graphic-margin: 16 16 0 0
+      - polygon:
+          stroke-width: 1
+          fill-graphic:
+            symbols:
+            - mark:
+                shape: square
+                fill-color: 000000
+            size: 8
+          x-graphic-margin: 0 0 16 16
+
+.. todo:: Add figure
+
+Randomized graphic fill
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Normally, the graphic used for the ``fill-graphic`` property is tiled. Alternatively, one can scatter this image randomly across the fill area using the ``x-random`` option and associated other options. This could be used to create a speckled pattern, as in the following example::  
+
+  name: speckles
+  feature-styles:
+  - name: name
+    rules:
+    - title: fill-graphic
+      symbolizers:  
+      - polygon:
+          stroke-width: 1
+          fill-graphic:
+            symbols:
+              - mark:
+                  shape: circle
+                  fill-color: 000000
+            size: 3
+            x-random: grid
+            x-random-seed: 2
+            x-random-tile-size: 1000
+            x-random-rotation: free
+            x-random-symbol-count: 1000
+
+.. figure:: img/poly_random.png
+
+   Speckled fill

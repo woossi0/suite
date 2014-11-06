@@ -5,6 +5,9 @@ Point symbolizer
 
 The point symbolizer is used to style point features or centroids of non-point features.
 
+Syntax
+------
+
 The full syntax of a point symbolizer is::
 
   symbolizers:
@@ -98,4 +101,51 @@ where:
      - Specifies which attribute to use as the geometry.
      - First geometry attribute found (often ``geom`` or ``the_geom``)
 
-.. todo:: ADD EXAMPLES
+Examples
+--------
+
+Basic point
+~~~~~~~~~~~
+
+A point symbolizer draws a point at the center of any geometry. It is defined by an external image or a symbol, either of which can be sized and rotated. A mark is a pre-defined symbol that can be drawn at the location of a point. Similar to polygons, marks have both a fill and a stroke. This example shows a point symbolizer that draws semi-transparent red squares with black outlines::
+
+  feature-styles:
+  - name: name
+    rules:
+    - title: red point
+      symbolizers:
+      - point:
+          symbols:
+          - mark:
+              shape: square
+              fill-color: ff0000
+              fill-opacity: 0.75
+              stroke-color: 000000
+              stroke-width: 1.5
+              stroke-opacity: 1.0
+          size: 20
+          rotation: 45
+
+.. todo:: Add figure
+
+External image
+~~~~~~~~~~~~~~
+
+Sometimes it may be useful to use an external image to represent certain points. This can be accomplished using the external symbol property, which requires a ``url`` and a ``format``. The ``url`` should be enclosed in single quotes. The ``format`` property is a `MIME type image <http://en.wikipedia.org/wiki/Internet_media_type#Type_image>`_. This example shows a point symbolizer that draws an external image at each point::
+
+  name: point
+  feature-styles:
+  - name: name
+    rules:
+    - symbolizers:
+        point
+          symbols:
+          - external:
+              url: 'image.png'
+                 format: image/png
+          size: 16
+
+.. figure:: img/point_graphic.png
+
+   External image
+

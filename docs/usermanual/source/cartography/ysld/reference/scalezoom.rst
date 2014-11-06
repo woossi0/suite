@@ -87,7 +87,7 @@ This example will display lines with:
 * A stroke width of 2 at scales between 100,000 and 200,000 (``medium_scale``)
 * A stroke width of 1 at scales greater than 200,000 (``high_scale``)
 
-Given the rules above, the following arbirtrary sample scales would map to the rules as follows:
+Given the rules above, the following arbitrary sample scales would map to the rules as follows:
 
 .. list-table::
    :header-rows: 1

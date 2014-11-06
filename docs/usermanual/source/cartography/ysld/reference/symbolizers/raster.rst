@@ -78,6 +78,8 @@ where:
 Examples
 --------
 
+.. todo:: All examples need figures
+
 Enhanced contrast
 ~~~~~~~~~~~~~~~~~
 

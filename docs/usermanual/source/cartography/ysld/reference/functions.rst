@@ -26,7 +26,7 @@ The functions can be broken up loosely into categories such as geometric, math, 
 Theming functions
 ~~~~~~~~~~~~~~~~~
 
-There are three important functions that are often easier to use for theming than using rules, and can vastly simplify your style documents:
+There are three important functions that are often easier to use for theming than using rules, and can vastly simplify your style documents: **Recode**, **Categorize**, and **Interpolate**.
 
 **Recode**: Attribute values are directly mapped to styling properties::
 
@@ -77,8 +77,6 @@ This is equivalent to creating the following multiple rules::
 
   interpolate(attribute,value1,entry1,value2,entry2,...,mode,method)
 
-.. todo:: ARE THESE VALUES MIN OR MAX? INCLUSIVE OR EXCLUSIVE? ORDERED? TEST THESE.
-
 This would create a situation where the ``attribute`` value, if equal to ``value1`` will be given the result of ``entry1``; if halfway between ``value1`` and ``value2`` will be given a result of halfway in between ``entry1`` and ``entry2``; if three-quarters between ``value1`` and ``value2`` will be given a result of three-quarters in between ``entry1`` and ``entry2``, etc.
 
 The ``mode`` argument is optional, and can be either ``linear``, ``cosine``, or ``cubic``. It defines the interpolation algorithm to use, and defaults to ``linear``.
@@ -87,11 +85,31 @@ The ``method`` argument is optional, and can be either ``numeric`` or ``color``.
 
 There is no equivalent to this function in vector styling. The closest to this in raster styling is the color ramp.
 
+The three theming functions can be neatly summarized by this table:
+
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Function
+     - Type of input
+     - Type of output
+   * - Recode
+     - Discrete
+     - Discrete
+   * - Categorize
+     - Continuous
+     - Discrete
+   * - Interpolate
+     - Continuous
+     - Continuous
 
 Examples
 --------
 
-**Display rotated arrows at the endpoint of a line geometry**
+Display rotated arrows at line endpoints
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``startPoint(geom)`` and ``endPoint(geom)`` functions take a geometry as an argument and returns the start and end points of the geometry respectively. The ``startAngle(geom)`` and ``endAngle(geom)`` functions take a geometry as an argument and return the angle of the line terminating at the start and end points of the geometry respectively.  These functions can be used to display an arrow at the end of a line geometry, and rotate it to match the direction of the line::
 
@@ -108,7 +126,8 @@ The ``startPoint(geom)`` and ``endPoint(geom)`` functions take a geometry as an 
    Endpoint arrows
 
 
-**Add a drop shadow**
+Drop shadow
+~~~~~~~~~~~
 
 The ``offset(geom, x, y)`` function takes a geometry and two values, and displaces the geometry by those values in the ``x`` and ``y`` directions. This can be used to create a drop-shadow effect::
 
@@ -132,7 +151,8 @@ The ``offset(geom, x, y)`` function takes a geometry and two values, and displac
 
    Drop shadow
 
-**Add a different-colored outline**
+Different-colored outline
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``buffer(geom, buffer)`` function takes a geometry and a value as arguments, and returns a polygon geometry with a boundary equal to the original geometry plus the value. This can be used to generate an extended outline filled with a different color, for example to style a shoreline::
 
@@ -161,7 +181,8 @@ See also:
 * `minimumdiameter(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
 
 
-**Display vertices of a line**
+Display vertices of a line
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``vertices(geom)`` function takes a geometry and returns a collection of points representing the vertices of the geometry. This can be used to convert a polygon or line geometry into a point geometry::
 
@@ -178,7 +199,8 @@ See also:
 * `boundary(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
 * `centroid(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
 
-**Angle between two points**
+Angle between two points
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``atan2(x, y)`` function calculates the arctangent of (y/x) and so is able to determine the angle (in radians) between two points. This function uses the signs of the x and y values to determine the computed angle, so it is preferable over ``atan()``. The ``getX(point_geom)`` and ``getY(point_geom)`` extracts the ``x`` and ``y`` ordinates from a geometry respectively, while ``toDegrees(value)`` converts from radians to degrees::
 
@@ -199,7 +221,8 @@ See also:
 * `toRadians(value) </../geoserver/filter/function_reference.html#math-functions>`_
 * `pi() </../geoserver/filter/function_reference.html#math-functions>`_
 
-**Scale objects based on a large range of values**
+Scale objects based on a large range of values
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``log(value)`` function returns the natural logarithm of the provided value. Use ``log(value)/log(base)`` to specify a different base.
 
@@ -218,14 +241,16 @@ See also:
 * `sqrt(val) </../geoserver/filter/function_reference.html#math-functions>`_
 
 
-**Combine several strings into one**
+Combine several strings into one
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``Concatenate(string1, string2, ...)`` function takes any number of strings and combines them to form a single string. This can be used to display more than one attribute within a single label::
 
   text:
     label: ${Concatenate(name, ', ', population)}
 
-**Capitalize words**
+Capitalize words
+~~~~~~~~~~~~~~~~
 
 The ``strCapitalize(string)`` function takes a single string and capitalizes the first letter of each word in the string. This could be used to capitalize labels created from lower case text::
 
@@ -236,6 +261,66 @@ See also:
 
 * `strToLowerCase(string) </../geoserver/filter/function_reference.html#string-functions>`_
 * `strToUpperCase(string) </../geoserver/filter/function_reference.html#string-functions>`_
+
+
+
+Color based on discrete values
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In certain cases, theming functions can be used in place of filters to produce similar output much more simply. For example, the Recode function can take an attribute and output a different value based on an attribute value. So instead of various filters, the entire constructions can be done in a single line. For example, this could be used to color different types of buildings::
+
+  feature-styles:
+  - name: name1
+    rules:
+    - symbolizers:
+      - polygon:
+          fill-color: ${recode(zone, 'I-L', '#ff7700', 'I-H', '#bb6600', 'C-H', '#0077bb', 'C-R', '#00bbdd', 'C-C', '#00ddff', '', '#777777')}
+
+In the above example, the attribute is ``zone`` , and then each subsequent pair consists of an attribute value followed by a color.
+
+.. note:: The ``recode`` function, along with ``categorize`` and ``interpolate``, requires that all colors be in the form of ``'#rrggbb'``.
+
+.. todo:: Add figure
+
+Color based on categories
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Categorize function returns a different value depending on which range (category) an attribute value matches. This can also make a style much more simple by reducing the number of filters. This example uses ``categorize`` to color based on certain values of the ``YEARBLT`` attribute::
+
+  feature-styles:
+  - name: name
+    rules:
+    - symbolizers:
+       - polygon:
+          stroke-color: '000000'
+          stroke-width: 0.5
+          fill-color: ${categorize(YEARBLT, '#dd4400', 1950,'#aa4400', 1960,'#886600', 1970,'#668800', 1980,'#44bb00', 1990,'#22dd00',2000,'#00ff00')}
+
+.. note:: The ``categorize`` function, along with ``recode`` and ``interpolate``, requires that all colors be in the form of ``'#rrggbb'``.
+
+Choropleth map
+~~~~~~~~~~~~~~
+
+The ``interpolate`` function can be used to create a continuous set of values by interpolating between attribute values. This can be used to create a choropleth map which shows different colors for regions based on some continuous attribute such as area or population::
+
+  feature-styles:
+  - name: name
+    rules:
+    - title: fill-graphic
+      symbolizers:  
+      - polygon:
+          stroke-width: 1
+          fill-color: ${interpolate(area, 0.0, '#ff0000', 5e5,'#00ff00', 'color')}
+
+.. todo:: Add figure
+
+.. note:: The ``interpolate`` function, along with ``recode`` and ``categorize``, requires that all colors be in the form of ``'#rrggbb'``.
+
+
+
+
+
+
 
 
 
