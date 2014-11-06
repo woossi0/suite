@@ -98,10 +98,19 @@
     description="Clean project">
   </target>
 
-  <target name="assemble" description="Assemble project artifact">
-    <antcall target="assemble-artifact">
-      <param name="dir" value="${sdk.dir}"/>
-    </antcall>
+  <target name="assemble" description="Assemble project artifact"
+      depends="init-target,init-git">
+    <!-- JD: can't call assemble-artifact because we need to do some
+      custom magic to preserve file permissions -->
+    <property name="artifact_file"
+          value="target/suite-webapp-sdk-${suite.build_rev}.zip"/>
+    <delete file="${artifact_file}"/>
+    <zip destfile="${artifact_file}">
+        <fileset dir="target" includes="version.ini"/>
+        <zipfileset prefix="bin" dir="${sdk.dir}/bin" includes="suite-sdk"
+          filemode="755"/>
+        <fileset dir="${sdk.dir}" includes="**/*" excludes="bin/suite-sdk"/>
+    </zip>
   </target>
 
   <target name="publish" description="Publish project artifact"
