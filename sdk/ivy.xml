@@ -12,7 +12,6 @@
 
       <exclude artifact="junit"/>
       <exclude artifact="jdbc-api"/>
-      <exclude artifact="servlet-api"/>
       <exclude org="org.mortbay.jetty"/>
 
       <override org="org.eclipse.jetty" rev="${jetty.version}"/>
