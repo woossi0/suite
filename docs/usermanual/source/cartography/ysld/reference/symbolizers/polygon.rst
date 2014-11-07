@@ -84,7 +84,7 @@ Polygon symbolizers have both a stroke and a fill, similar to marks for point sy
           stroke-opacity: 1
           stroke-linejoin: bevel
 
-.. todo:: Add figure
+.. figure:: img/polygon_basic.png
 
 Fill with graphic
 ~~~~~~~~~~~~~~~~~
@@ -116,7 +116,9 @@ The ``fill-graphic`` property is used to fill a geometry with a repeating graphi
             size: 8
           x-graphic-margin: 0 0 16 16
 
-.. todo:: Add figure
+.. figure:: img/polygon_checkers.png
+
+   Checkered fill
 
 Randomized graphic fill
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -143,6 +145,6 @@ Normally, the graphic used for the ``fill-graphic`` property is tiled. Alternati
             x-random-rotation: free
             x-random-symbol-count: 1000
 
-.. figure:: img/poly_random.png
+.. figure:: img/polygon_random.png
 
-   Speckled fill
+   Randomized graphic fill

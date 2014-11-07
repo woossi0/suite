@@ -73,7 +73,9 @@ This example draws lines with transparent black lines with rounded ends and shar
           stroke-linejoin: mitre
           stroke-linecap: round
 
-.. todo:: Add figure
+.. figure:: img/line_basic.png
+
+   Basic line with styled ends
 
 Railroad pattern
 ~~~~~~~~~~~~~~~~
@@ -112,4 +114,10 @@ The units for ``stroke-width``, ``size``, and other similar attributes default t
           stroke-color: 000000
           stroke-width: '8 m'
 
-.. todo:: Add figure
+.. figure:: img/line_uomsmall.png
+
+   Line width measured in meters (zoomed out)
+
+.. figure:: img/line_uombig.png
+
+   Line width measured in meters (zoomed in)

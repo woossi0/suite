@@ -110,7 +110,7 @@ Examples
 Basic point
 ~~~~~~~~~~~
 
-A point symbolizer draws a point at the center of any geometry. It is defined by an external image or a symbol, either of which can be sized and rotated. A mark is a pre-defined symbol that can be drawn at the location of a point. Similar to polygons, marks have both a fill and a stroke. This example shows a point symbolizer that draws semi-transparent red squares with black outlines::
+A point symbolizer draws a point at the center of any geometry. It is defined by an external image or a symbol, either of which can be sized and rotated. A mark is a pre-defined symbol that can be drawn at the location of a point. Similar to polygons, marks have both a fill and a stroke. This example shows a point symbolizer that draws semi-transparent red diamonds with black outlines::
 
   feature-styles:
   - name: name
@@ -125,11 +125,13 @@ A point symbolizer draws a point at the center of any geometry. It is defined by
               fill-opacity: 0.75
               stroke-color: 000000
               stroke-width: 1.5
-              stroke-opacity: 1.0
+              stroke-opacity: 1
           size: 20
           rotation: 45
 
-.. todo:: Add figure
+.. figure:: img/point_basic.png
+
+   Basic point
 
 External image
 ~~~~~~~~~~~~~~

@@ -295,9 +295,11 @@ Text symbolizers are used to draw labels on objects. The label text is usually l
           font-style: italic
           font-weight: bold
 
-.. todo:: Add figure
+.. figure:: img/text_basic.png
 
-.. This doesn't work at the moment.
+   Basic label
+
+.. This didn't work at one point, but may work now.
 
 .. **Text placement**
 
@@ -314,9 +316,8 @@ Text symbolizers are used to draw labels on objects. The label text is usually l
 ..           font-size: 12
 ..           font-style: italic
 ..           font-weight: bold
-..           placement:
-..             anchor: (0.5,0)
-..             displacement: (0,-20)
+..           anchor: (0.5,0)
+..           displacement: (0,-20)
 
 Label with halo
 ~~~~~~~~~~~~~~~
@@ -369,7 +370,9 @@ The following example uses ``x-group`` to ensure only one label is drawn for eac
           x-goodnessOfFit: 0.0
           x-maxDisplacement: 400
 
-.. todo:: Add figure
+.. figure:: img/text_group.png
+
+   Grouped labels
 
 Labels following lines
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -393,14 +396,10 @@ In order to have a label follow a line (and not be drawn tangent to a line), the
 
    Labels following lines
 
-Labels accounting for obstacles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Labels avoiding obstacles
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``x-labelObstacle`` option is used to mark a different symbolizer as an obstacle that labels should avoid. Note that this will function across layers. The following example draws labels and points on a line geometry, and sets it so the labels avoid the points:
-
-.. note:: Be careful when marking line or polygon geometries as label obstacles, as the avoidance algorithm uses the bounding box of the feature.
-
-::
+The ``x-labelObstacle`` option is used to mark a different symbolizer as an obstacle that labels should avoid. This ex example draws labels and points on a line geometry, and also uses a point symbolizer to draw the vertices of the lines as points. It is those points which are set to be treated as obstacles to be avoided::
 
   feature-styles:
   - rules:
@@ -423,4 +422,6 @@ The ``x-labelObstacle`` option is used to mark a different symbolizer as an obst
             x-maxDisplacement: 400
             x-followLine: true
 
-.. todo:: Add figure
+.. figure:: img/text_labelobstacle.png
+
+   Labels avoiding obstacles
