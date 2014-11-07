@@ -21,9 +21,11 @@ var zoom = 3;
 // =========================================================================
 
 // override the axis orientation for WMS GetFeatureInfo
-ol.proj.addProjection(
-    new ol.proj.EPSG4326('http://www.opengis.net/gml/srs/epsg.xml#4326', 'enu')
-);
+var proj = new ol.proj.Projection({
+  code: 'http://www.opengis.net/gml/srs/epsg.xml#4326',
+  axis: 'enu'
+});
+ol.proj.addEquivalentProjections([ol.proj.get('EPSG:4326'), proj]);
 
 // create a GML format to read WMS GetFeatureInfo response
 var format = new ol.format.GML({featureNS: featureNS, featureType: featureType});
