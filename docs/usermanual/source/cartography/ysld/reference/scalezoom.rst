@@ -11,6 +11,8 @@ For example, on a roads layer, you would not not want to display every single ro
 
 YSLD allows rules to be applied depending on the the scale or zoom level. You can specify by scale, or you can define zoom levels in terms of scales and specify by zoom level.
 
+.. warning:: Be aware that scales for a layer (where a style is applied) may interact differently when the layer is contained in a map, if the map has a different coordinate reference system from the layer.
+
 Scale syntax
 ------------
 
@@ -134,32 +136,44 @@ For example, if you have a situation where a zoom level 0 corresponds to a scale
 
 Also be aware of the inverse relationship between scale and zoom; **as the zoom level increases, the scale decreases.**
 
-When styling web maps, typically the choice of zoom levels (and therefore scales) are set in advance. Because of this, **it can be more useful to define style rules as being dependent on the zoom level instead of the scale level**.
+.. **NOTE: Content below commented out because of the problem of styles, layers, and maps having conflicting information (especially when CRSs don't match.)**
 
-With YSLD, there is a lot of flexibility in terms of specifying zoom levels. You can:
+.. When styling web maps, typically the choice of zoom levels (and therefore scales) are set in advance. Because of this, **it can be more useful to define style rules as being dependent on the zoom level instead of the scale level**.
 
-* Specify an initial scale, and have it calculate all subsequent scale levels.
-* Specify a list of scales, and have each correspond to a list of zoom levels.
-* Specify a name for a common gridset, and have all the scales and zoom levels be automatically defined.
+.. With YSLD, there is a lot of flexibility in terms of specifying zoom levels. You can:
 
-When a collection of zoom levels is inferred from a list of scales, it is understood that the scale level is actually the "middle" of the scale range. 
+.. * Specify an initial scale, and have it calculate all subsequent scale levels.
+.. * Specify a list of scales, and have each correspond to a list of zoom levels.
+.. * Specify a name for a common gridset, and have all the scales and zoom levels be automatically defined.
+
+.. When a collection of zoom levels is inferred from a list of scales, it is understood that the scale level is actually the "middle" of the scale range. 
 
 Zoom syntax
 -----------
+
+In certain limited cases, it can be more useful to specify scales by way of zoom levels for predefined gridsets. The gridsets allowed are:
+
+* ``EPSG:4326`` (Mercator)
+* ``EPSG:3857`` (Web Mercator)
+* Any valid GeoWebCache gridset 
 
 In order to use zoom levels, they must be defined globally for the entire style, above any :ref:`cartography.ysld.reference.featurestyles` or :ref:`cartography.ysld.reference.rules`.
 
 The full syntax for using a zoom level parameter in a style is::
 
   grid:
-    initial-scale: <value>
-    initial-level: <integer>
-    ratio: <integer>
-    scales:
-    - <value>
-    - <value>
-    - ...
     name: <string>
+
+..  grid:
+..    initial-scale: <value>
+..    initial-level: <integer>
+..    ratio: <integer>
+..    scales:
+..    - <value>
+..    - <value>
+..    - ...
+..    name: <string>
+
 
 where:
 
@@ -173,26 +187,31 @@ where:
      - Required?
      - Description
      - Default value
-   * - ``initial-scale``
-     - No
-     - Specifies the scale to be used for a specific zoom level, which is by default zoom level 0. Cannot be used with ``scales`` or ``name``.
-     - N/A
-   * - ``initial-level``
-     - No
-     - Modifies the ``initial-scale`` value to apply to a different zoom level from 0.
-     - ``0``
-   * - ``ratio``
-     - No
-     - Specifies the multiplier value between scales in adjacent zoom levels. A value of ``2`` means that each increase in zoom level will indicate a change of scale by a factor of 1/2.
-     - ``2``
-   * - ``scales``
-     - No
-     - A list of ordered discrete scale values. Typically the first value is defined to be zoom level 0, unless ``initial-level`` is used. This is most often used for zoom levels that are not regular scale multiples of each other. Can't be used with ``initial-scale`` or ``name``.
-     - N/A
    * - ``name``
      - No
-     - A name of an existing commonly-used spatial reference system in GeoServer. Can also be a name of a GeoWebCache gridset. Options are ``EPSG:4326`` or ``EPSG:3857``, or any defined gridset name in GeoWebCache. If a duplicate name exists, the GeoWebCache gridset will take priority. Can't be used with ``initial-scale`` or ``scales``.
+     - A name of an existing commonly-used spatial reference system in GeoServer. Can also be a name of a GeoWebCache gridset. Options are ``EPSG:4326`` or ``EPSG:3857``, or any defined gridset name in GeoWebCache.
      - N/A
+
+..    * - ``name``
+..      - No
+..      - A name of an existing commonly-used spatial reference system in GeoServer. Can also be a name of a GeoWebCache gridset. Options are ``EPSG:4326`` or ``EPSG:3857``, or any defined gridset name in GeoWebCache. If a duplicate name exists, the GeoWebCache gridset will take priority. Can't be used with ``initial-scale`` or ``scales``.
+..      - N/A
+..    * - ``initial-scale``
+..      - No
+..      - Specifies the scale to be used for a specific zoom level, which is by default zoom level 0. Cannot be used with ``scales`` or ``name``.
+..      - N/A
+..    * - ``initial-level``
+..      - No
+..      - Modifies the ``initial-scale`` value to apply to a different zoom level from 0.
+..      - ``0``
+..    * - ``ratio``
+..      - No
+..      - Specifies the multiplier value between scales in adjacent zoom levels. A value of ``2`` means that each increase in zoom level will indicate a change of scale by a factor of 1/2.
+..      - ``2``
+..    * - ``scales``
+..      - No
+..      - A list of ordered discrete scale values. Typically the first value is defined to be zoom level 0, unless ``initial-level`` is used. This is most often used for zoom levels that are not regular scale multiples of each other. Can't be used with ``initial-scale`` or ``name``.
+..      - N/A
 
 Inside a rule, the syntax for using these zoom levels is::
 
@@ -239,157 +258,155 @@ The ``scale`` and ``zoom`` parameters should not be used together in a rule (but
 Zoom examples
 -------------
 
-Initial scale
-~~~~~~~~~~~~~
+.. **Initial scale**
 
-Defining zoom levels based on an initial scale::
+.. Defining zoom levels based on an initial scale::
 
-  grid:
-    initial-scale: 6000000
+..   grid:
+..     initial-scale: 6000000
 
-.. note::
+.. .. note::
 
-   Using scientific notation::
+..    Using scientific notation::
 
-     grid:
-       initial-scale: 6e6
+..      grid:
+..        initial-scale: 6e6
 
-would define zoom levels as follows:
+.. would define zoom levels as follows:
 
-.. list-table::
-   :header-rows: 1
-   :stub-columns: 1
+.. .. list-table::
+..    :header-rows: 1
+..    :stub-columns: 1
 
-   * - Scale
-     - Zoom level
-   * - ``6000000``
-     - ``0``
-   * - ``3000000``
-     - ``1``
-   * - ``1500000``
-     - ``2``
-   * - ``750000``
-     - ``3``
-   * - ``<previous_scale> / 2``
-     - ``<previous_zoom> + 1``
+..    * - Scale
+..      - Zoom level
+..    * - ``6000000``
+..      - ``0``
+..    * - ``3000000``
+..      - ``1``
+..    * - ``1500000``
+..      - ``2``
+..    * - ``750000``
+..      - ``3``
+..    * - ``<previous_scale> / 2``
+..      - ``<previous_zoom> + 1``
 
-One could define the following three rules::
+.. One could define the following three rules::
 
-  rules:
-  - name: low_zoom
-    zoom: (0,2)
-    symbolizers:
-    - line:
-        stroke-width: 1
-        stroke-color: 0165cd       
-  - name: medium_zoom
-    zoom: (3,5)
-    symbolizers:
-    - line:
-        stroke-width: 2
-        stroke-color: 0165cd       
-  - name: high_zoom
-    zoom: (6,)
-    symbolizers:
-    - line:
-        stroke-width: 3
-        stroke-color: 0165cd       
+..   rules:
+..   - name: low_zoom
+..     zoom: (0,2)
+..     symbolizers:
+..     - line:
+..         stroke-width: 1
+..         stroke-color: 0165cd       
+..   - name: medium_zoom
+..     zoom: (3,5)
+..     symbolizers:
+..     - line:
+..         stroke-width: 2
+..         stroke-color: 0165cd       
+..   - name: high_zoom
+..     zoom: (6,)
+..     symbolizers:
+..     - line:
+..         stroke-width: 3
+..         stroke-color: 0165cd
 
-This example will display lines with:
+.. This example will display lines with:
 
-* A stroke width of 1 at zoom levels 0-2 (``low_zoom``)
-* A stroke width of 2 at zoom levels 3-5 (``medium_zoom``)
-* A stroke width of 3 at zoom levels 6 and greater (``high_zoom``)
+.. * A stroke width of 1 at zoom levels 0-2 (``low_zoom``)
+.. * A stroke width of 2 at zoom levels 3-5 (``medium_zoom``)
+.. * A stroke width of 3 at zoom levels 6 and greater (``high_zoom``)
 
-Adding the ``initial-level`` parameter would change the definitions of the zoom levels::
+.. Adding the ``initial-level`` parameter would change the definitions of the zoom levels::
 
-  grid:
-    initial-scale: 6000000
-    initial-level: 2
+..   grid:
+..     initial-scale: 6000000
+..     initial-level: 2
 
-.. list-table::
-   :header-rows: 1
-   :stub-columns: 1
+.. .. list-table::
+..    :header-rows: 1
+..    :stub-columns: 1
 
-   * - Scale
-     - Zoom level
-   * - ``24000000``
-     - ``0``
-   * - ``12000000``
-     - ``1``
-   * - ``6000000``
-     - ``2``
-   * - ``3000000``
-     - ``3``
-   * - ``<previous_scale> / 2``
-     - ``<previous_zoom> + 1``
+..    * - Scale
+..      - Zoom level
+..    * - ``24000000``
+..      - ``0``
+..    * - ``12000000``
+..      - ``1``
+..    * - ``6000000``
+..      - ``2``
+..    * - ``3000000``
+..      - ``3``
+..    * - ``<previous_scale> / 2``
+..      - ``<previous_zoom> + 1``
+ 
+.. Setting the ratio would adjust the multiplier between scales in adjacent zoom levels::
 
-Setting the ratio would adjust the multiplier between scales in adjacent zoom levels::
+..   grid:
+..     initial-scale: 6000000
+..     ratio: 4
 
-  grid:
-    initial-scale: 6000000
-    ratio: 4
+.. .. list-table::
+..    :header-rows: 1
+..    :stub-columns: 1
 
-.. list-table::
-   :header-rows: 1
-   :stub-columns: 1
+..    * - Scale
+..      - Zoom level
+..    * - ``6000000``
+..      - ``0``
+..    * - ``1500000``
+..      - ``1``
+..    * - ``375000``
+..      - ``2``
+..    * - ``93750``
+..      - ``3``
+..    * - ``<previous_scale> / 4``
+..      - ``<previous_zoom> + 1``
 
-   * - Scale
-     - Zoom level
-   * - ``6000000``
-     - ``0``
-   * - ``1500000``
-     - ``1``
-   * - ``375000``
-     - ``2``
-   * - ``93750``
-     - ``3``
-   * - ``<previous_scale> / 4``
-     - ``<previous_zoom> + 1``
+.. **List of scales**
 
-List of scales
-~~~~~~~~~~~~~~
+.. Defining zoom levels based on a list of scales::
 
-Defining zoom levels based on a list of scales::
+..   grid:
+..     scales:
+..     - 1000000
+..     - 500000
+..     - 100000
+..     - 50000
+..     - 10000
 
-  grid:
-    scales:
-    - 1000000
-    - 500000
-    - 100000
-    - 50000
-    - 10000
+.. .. note::
 
-.. note::
+..    Using scientific notation::
 
-   Using scientific notation::
+..      grid:
+..        scales:
+..        - 1e6
+..        - 5e5
+..        - 1e5
+..        - 5e4
+..        - 1e4
 
-     grid:
-       scales:
-       - 1e6
-       - 5e5
-       - 1e5
-       - 5e4
-       - 1e4
+.. would define the list of zoom levels explicitly and completely:
 
-would define the list of zoom levels explicitly and completely:
+.. .. list-table::
+..    :header-rows: 1
+..    :stub-columns: 1
 
-.. list-table::
-   :header-rows: 1
-   :stub-columns: 1
-
-   * - Scale
-     - Zoom level
-   * - ``1000000``
-     - ``0``
-   * - ``500000``
-     - ``1``
-   * - ``100000``
-     - ``2``
-   * - ``50000``
-     - ``3``
-   * - ``10000``
-     - ``4``
+..    * - Scale
+..      - Zoom level
+..    * - ``1000000``
+..      - ``0``
+..    * - ``500000``
+..      - ``1``
+..    * - ``100000``
+..      - ``2``
+..    * - ``50000``
+..      - ``3``
+..    * - ``10000``
+..      - ``4``
 
 Named gridset
 ~~~~~~~~~~~~~
