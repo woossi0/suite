@@ -9,9 +9,6 @@ This User Manual will help you get the most out of OpenGeo Suite.
 :ref:`whatsnew`
   See what's new in OpenGeo Suite |version|.
 
-:ref:`installation`
-  Install OpenGeo Suite for your platform.
-
 :ref:`intro`
   Get started with OpenGeo Suite.
 
@@ -43,8 +40,7 @@ This User Manual will help you get the most out of OpenGeo Suite.
 
    self
    whatsnew
-   installation/index
-   introduction/index
+   intro/index
    webmaps/index
    cartography/index
    webapps/index
