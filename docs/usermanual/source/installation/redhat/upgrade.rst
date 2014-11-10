@@ -1,9 +1,9 @@
 .. _installation.redhat.upgrade:
 
-Upgrading on Red Hat Linux
-==========================
+Upgrading
+=========
 
-This section describes how to upgrade from a previous **major** version of OpenGeo Suite.
+This section describes how to upgrade from a previous **major** version of OpenGeo Suite on Red Hat-based systems.
 
 If performing a **minor** upgrade, you may proceed with a typical :ref:`install <installation.redhat.install>`. 
 

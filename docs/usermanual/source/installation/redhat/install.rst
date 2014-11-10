@@ -1,7 +1,7 @@
 .. _installation.redhat.install:
 
-New installation on Red Hat Linux 
-=================================
+Installing
+==========
 
 This section describes how to install OpenGeo Suite on Red Hat-based Linux distributions. The following distributions are supported:
 
@@ -21,8 +21,8 @@ OpenGeo Suite for Red Hat has the following system requirements:
 * Browser: Any modern web browser is supported
 * Permissions: Super user privileges are required for installation
 
-Installation
-------------
+Installation process
+--------------------
 
 This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <installation.redhat.packages>` section for details about the possible packages to install.
 

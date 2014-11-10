@@ -1,7 +1,7 @@
 .. _installation.windows.install:
 
-New installation
-================
+Installing
+==========
 
 .. note::
 

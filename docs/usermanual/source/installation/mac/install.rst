@@ -1,7 +1,7 @@
 .. _installation.mac.install:
 
-New installation
-================
+Installing
+==========
 
 .. note:: 
 

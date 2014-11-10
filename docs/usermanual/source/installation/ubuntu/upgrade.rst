@@ -1,11 +1,11 @@
 .. _installation.ubuntu.upgrade:
 
-Upgrading on Ubuntu Linux
-=========================
+Upgrading
+=========
 
 .. warning::
 
-   This section describes how to **upgrade from a previous major version of OpenGeo Suite**. A "major" version upgrade is defined as when the first number in the version changes (for example: from 3.x to 4.y)
+   This section describes how to **upgrade from a previous major version of OpenGeo Suite** on Ubuntu. A "major" version upgrade is defined as when the first number in the version changes (for example: from 3.x to 4.y)
 
    **Do not use these instructions if upgrading on a minor release.** (for example: from 4.x to 4.y). Instead, follow the standard :ref:`new installation process <installation.ubuntu.install>`.
 

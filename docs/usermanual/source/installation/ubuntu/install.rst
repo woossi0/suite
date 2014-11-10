@@ -1,7 +1,7 @@
 .. _installation.ubuntu.install:
 
-Installation on Ubuntu Linux
-============================
+Installing
+==========
 
 This section describes how to install OpenGeo Suite on Ubuntu Linux. These instructions should be followed if:
 
@@ -31,8 +31,8 @@ OpenGeo Suite for Ubuntu has the following system requirements:
 * Browser: Any modern web browser is supported
 * Permissions: Super user privileges are required for installation
 
-Pre-installation
-----------------
+Pre-installation process
+------------------------
 
 This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <installation.ubuntu.packages>` section for details about the possible packages to install.
 
@@ -66,8 +66,8 @@ The commands in this section require root privileges.
 
       echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
-Installation
-------------
+Installation process
+--------------------
 
 #. Update:
 

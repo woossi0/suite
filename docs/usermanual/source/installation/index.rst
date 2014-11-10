@@ -12,7 +12,7 @@ This section describes how to install OpenGeo Suite on your platform. Both new i
 Please choose from the following options:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    windows/index
    mac/index
@@ -20,3 +20,4 @@ Please choose from the following options:
    redhat/index
    war/index
    aws/index
+
