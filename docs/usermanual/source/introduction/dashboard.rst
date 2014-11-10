@@ -11,9 +11,6 @@ The Dashboard is a single interface that allows you to access all components of 
 
 Contained in the dashboard are brief introductions to each of the components of OpenGeo Suite, including links to documentation and common tools.
 
-Getting Started
----------------
-
 The Dashboard contains a Getting Started page, which is designed to show options for common tasks performed with OpenGeo Suite.
 
 .. figure:: img/dashboard_gettingstarted.png
