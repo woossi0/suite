@@ -1,4 +1,4 @@
-﻿.. _installation.gdal:
+﻿.. _dataadmin.gdal:
 
 Enabling GDAL image formats support
 ===================================
@@ -11,9 +11,11 @@ To enable GDAL image formats on OpenGeo Suite for Application Servers, read at t
 
 .. note:: See the :ref:`installation` section for more information on the various ways to install OpenGeo Suite.
 
+Installation
+------------
 
 Ubuntu
-------
+~~~~~~
 
 #. Install the following package from the OpenGeo repository.  (See :ref:`installation.ubuntu.install` for instructions on how to add the OpenGeo repository)::
 
@@ -25,11 +27,11 @@ Ubuntu
 
       service tomcat6 restart
 
-Continue reading at the :ref:`installation.gdal.verify` section.
+Continue reading at the :ref:`dataadmin.gdal.verify` section.
 
 
 CentOS / Red Hat
-----------------
+~~~~~~~~~~~~~~~~
 
 #. Install the following package from the OpenGeo repository.  (See :ref:`installation.redhat.install` for instructions on how to add the OpenGeo repository)::
 
@@ -45,11 +47,11 @@ CentOS / Red Hat
 
       service tomcat6 restart
 
-Continue reading at the :ref:`installation.gdal.verify` section.
+Continue reading at the :ref:`dataadmin.gdal.verify` section.
 
 
 Windows
--------
+~~~~~~~
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/ .
 
@@ -77,10 +79,10 @@ Windows
 
    #. Restart Tomcat.
 
-Continue reading at the :ref:`installation.gdal.verify` section.
+Continue reading at the :ref:`dataadmin.gdal.verify` section.
 
 Mac OS X
---------
+~~~~~~~~
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/
 
@@ -94,13 +96,13 @@ Mac OS X
 
 #. Restart Tomcat
 
-Continue reading at the :ref:`installation.gdal.verify` section.
+Continue reading at the :ref:`dataadmin.gdal.verify` section.
 
 
-.. _installation.gdal.verify:
+.. _dataadmin.gdal.verify:
 
-Verifying installation
-----------------------
+Verification
+------------
 
 #. To verify that the GDAL image formats were enabled properly, navigate to the GeoServer web admin interface and log in with administrator credentials.
 

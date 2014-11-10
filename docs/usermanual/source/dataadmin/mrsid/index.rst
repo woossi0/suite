@@ -1,4 +1,4 @@
-.. _installation.mrsid:
+.. _dataadmin.mrsid:
 
 Enabling MrSID image support
 ============================
@@ -9,10 +9,12 @@ The OpenGeo Suite comes with support for publishing data from many formats suppo
 
 Find the method of installation below and continue there.
 
-.. _installation.mrsid.ubuntu:
+
+Installation
+------------
 
 Ubuntu
-------
+~~~~~~
 
 .. note:: By default, OpenGeo Suite for Applications Servers (WAR bundle) will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of installation, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
 
@@ -26,12 +28,10 @@ MrSID support is provided by a separate package called **gdal-mrsid**.
 
 #. Restart Tomcat.
 
-Continue at the :ref:`installation.mrsid.verify` section.
-
-.. _installation.mrsid.centos:
+Continue at the :ref:`dataadmin.mrsid.verify` section.
 
 CentOS / Red Hat
-----------------
+~~~~~~~~~~~~~~~~
 
 .. note:: By default, the OpenGeo Suite for Application Servers will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of install, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
 
@@ -51,13 +51,8 @@ MrSID support is provided by a separate package called **gdal-mrsid**.
 
 Continue reading at the :ref:`installation.gdal.verify` section.
 
-.. _installation.mrsid.windows:
-
-Windows
--------
-
-Windows Installer
-~~~~~~~~~~~~~~~~~
+Windows (Installer)
+~~~~~~~~~~~~~~~~~~~
 
 MrSID support must be enabled during the installation process.
 
@@ -76,11 +71,11 @@ MrSID support must be enabled during the installation process.
 
 #. Click :guilabel:`Next` and continue the installation process. 
 
-Continue reading at the :ref:`installation.mrsid.verify` section.
+Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 
 
-Windows Application Servers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Windows (Application server)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/ .
 
@@ -95,13 +90,8 @@ Windows Application Servers
 Continue reading at the :ref:`installation.gdal.verify` section.
 
 
-.. _installation.mrsid.mac:
-
-Mac OS X
---------
-
-Mac OS X Installer
-~~~~~~~~~~~~~~~~~~
+Mac OS X (Installer)
+~~~~~~~~~~~~~~~~~~~~
 
 MrSID support is enabled via a separate installation package, available in the OpenGeo Suite bundle. In addition to the standard :file:`OpenGeo Suite Installer.pkg` file, there is also an :file:`OpenGeo Suite Extensions.mpkg` file.
 
@@ -135,12 +125,11 @@ MrSID support is enabled via a separate installation package, available in the O
 
        MrSID support successfully installed
 
-Continue reading at the :ref:`installation.mrsid.verify` section.
+Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 
 
-
-Mac OS X Application Servers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Mac OS X (Application server)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/
 
@@ -153,10 +142,10 @@ Mac OS X Application Servers
 Continue reading at the :ref:`installation.gdal.verify` section.
 
 
-.. _installation.mrsid.verify:
+.. _dataadmin.mrsid.verify:
 
-Verifying installation
-----------------------
+Verification
+------------
 
 #. To verify that the MrSID extension was installed properly, navigate to the GeoServer web admin interface and log in with administrator credentials.
 

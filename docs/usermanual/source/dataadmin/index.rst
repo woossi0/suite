@@ -14,4 +14,6 @@ This section describes some strategies on how to work with your data using OpenG
    pgDBAdmin/index
    pointcloud/index
    mongodb/index
+   gdal/index
+   mrsid/index
    importer/index
