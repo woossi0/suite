@@ -17,12 +17,12 @@ System requirements
 
 The following Ubuntu versions are supported:
 
-* `Lucid Lynx <http://releases.ubuntu.com/lucid/>`_ (10.04 LTS)
 * `Precise Pangolin <http://releases.ubuntu.com/precise/>`_ (12.04 LTS)
+* `Trusty Tahr <http://releases.ubuntu.com/trusty/>`_ (14.04 LTS)
 
 .. warning::
 
-   OpenGeo Suite is not supported on any other versions of Ubuntu (such as 13.04 or later). If running an unsupported installation, dependency conflicts may occur.
+   OpenGeo Suite is not supported on any other versions of Ubuntu. If running an unsupported installation, dependency conflicts may occur.
 
 OpenGeo Suite for Ubuntu has the following system requirements:
 
@@ -50,21 +50,21 @@ The commands in this section require root privileges.
 
    .. code-block:: bash
 
-      wget -qO- http://apt.opengeo.org/gpg.key | apt-key add - 
+      wget -qO- http://apt.boundlessgeo.com/gpg.key | apt-key add - 
 
 #. Add the OpenGeo Suite repository.
 
-   If installing for Precise:
+   If installing on Precise:
 
    .. code-block:: bash
 
-      echo "deb http://apt.opengeo.org/suite/v4/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+      echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
-   If installing for Lucid:
+   If installing on Trusty:
 
    .. code-block:: bash
 
-      echo "deb http://apt.opengeo.org/suite/v4/ubuntu/ lucid main" > /etc/apt/sources.list.d/opengeo.list
+      echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
 Installation
 ------------
@@ -75,7 +75,7 @@ Installation
 
       apt-get update
 
-#. Search for OpenGeo packages:
+#. Search for OpenGeo Suite packages:
 
    .. code-block:: bash
 
@@ -83,7 +83,9 @@ Installation
 
    If the search command does not return any results, the repository was not added properly. Examine the output of the ``apt`` commands for any errors or warnings.
 
-#. You have options on what packages to install.
+#. You have options on what packages to install:
+
+   .. note::  See the :ref:`Packages <installation.ubuntu.packages>` section for details of individual packages.
 
    For server components:
 
@@ -100,8 +102,6 @@ Installation
    For both client and server components:
 
       apt-get install opengeo
-
-   .. note::  See the :ref:`Packages <installation.ubuntu.packages>` section for details of individual packages.
 
 After installation
 ------------------

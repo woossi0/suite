@@ -90,16 +90,14 @@ To change the PostgreSQL port:
 GeoServer Data Directory
 ------------------------
 
-The *GeoServer Data Directory* is the location on the file system where GeoServer
-stores all of its configuration, and optionally data. When working with GeoServer
-it is often necessary to know where this directory is. It is located at 
-:file:`/var/lib/opengeo/geoserver`. 
+The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/lib/opengeo/geoserver`. 
 
-You may wish to change this location to an alternate location, perhaps to use an 
-existing GeoServer configuration. To do so:
+To point GeoServer to an alternate location:
 
 #. Edit the file :file:`/usr/share/opengeo/geoserver/WEB-INF/web.xml`.
+
 #. Search for ``GEOSERVER_DATA_DIR`` and change its value accordingly.
+
 #. Restart Tomcat.
 
 .. _installation.redhat.misc.pgconfig:

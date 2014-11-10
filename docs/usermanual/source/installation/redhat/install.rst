@@ -40,14 +40,14 @@ The commands in this section require root privileges.
 
       [opengeo]
       name=opengeo
-      baseurl=http://yum.opengeo.org/suite/v4/<OS>/$releasever/$basearch
+      baseurl=http://yum.boundlessgeo.com/suite/v45/<OS>/$releasever/$basearch
       enabled=1
       gpgcheck=0
 
    Replace ``<OS>`` with one of "fedora", "centos", or "rhel" based on the 
    distribution.
 
-#. Search for OpenGeo packages:
+#. Search for OpenGeo Suite packages:
 
    .. code-block:: bash
 
@@ -55,13 +55,25 @@ The commands in this section require root privileges.
 
    If the search command does not return any results, the repository was not added properly. Examine the output of the search command for any errors. 
 
-#. Install:
+#. You have options on what packages to install:
+
+   .. note::  See the :ref:`Packages <installation.redhat.packages>` section for details of individual packages.
+
+   For server components:
 
    .. code-block:: bash
 
-      yum install opengeo
+      yum install opengeo-server
 
-   .. note:: The above will install all OpenGeo Suite packages. See the :ref:`Packages <installation.redhat.packages>` section for details of individual packages. 
+   For client components:
+
+   .. code-block:: bash
+
+      yum install opengeo-client
+
+   For both client and server components:
+
+      yum install opengeo
 
 After installation
 ------------------
