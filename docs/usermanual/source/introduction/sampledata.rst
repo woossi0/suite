@@ -7,28 +7,36 @@ OpenGeo Suite comes with some preloaded sample layers that may be viewed and res
 
 .. note:: The sample layers are provided for demonstration purposes only. No assurances are provided with respect to the currency or accuracy of the data.
 
+Included data
+-------------
+
 States
-------
+~~~~~~
 
 A population distribution layer for the United States of America taken from the 2010 Census. See the `U.S. Census Bureau <http://census.gov>`_ for more details.
 
 The :guilabel:`usa:states` layer is in a geographic projection (EPSG:4326) with an approximate spatial extent of ``-179.2, 17.8, -65.2, 71.4`` (west, south, east, north).
 
 Countries
----------
+~~~~~~~~~
 
 A world wide country layer taken from the Natural Earth `1:50m cultural <http://www.naturalearthdata.com/downloads/50m-cultural-vectors/>`_ vector dataset.
 
 The :guilabel:`opengeo:countries` layer is in a geographic projection (EPSG:4326) with a full world extent.
 
+Available data
+--------------
+
+The following data is available as separate downloads:
+
 .. _intro.sampledata.medford:
 
 Medford
--------
+~~~~~~~
 
 The city of Medford, in the United States state of Oregon, has generously shared some of their public domain municipal data.
 
-.. note:: This data does not ship with OpenGeo Suite by default. To install the data download `medford.zip <http://data.opengeo.org/medford.zip>`_ and unpack it into the root of the GeoServer data directory.
+.. note:: To install the data download `medford.zip <http://data.opengeo.org/medford.zip>`_ and unpack it into the root of the GeoServer data directory.
 
 The following layers are available in the Medford dataset:
 
@@ -115,11 +123,11 @@ The Medford layers are in a geographic projection (EPSG:4326) with an approximat
 .. _intro.sampledata.world:
 
 World
------
+~~~~~
 
 A variety of world wide datasets compiled from a number of sources.
 
-.. note::  This data does not ship with OpenGeo Suite by default. To install the data download `world.zip <http://data.opengeo.org/world.zip>`_ and unpack it into the root of the GeoServer data directory.
+.. note:: To install the data download `world.zip <http://data.opengeo.org/world.zip>`_ and unpack it into the root of the GeoServer data directory.
 
 .. note:: The world data bundle contains styles that require the GeoServer WPS extensions.
 
@@ -160,16 +168,11 @@ The :guilabel:`world:cities` layer was derived from public domain data obtained 
 For further information, please refer to the :file:`Readme.txt` file included with the data.
 
 Base Maps
----------
+~~~~~~~~~
 
 GeoExplorer provides a link to the MapQuest OpenStreetMap (OSM) web service, providing a general map of the world as a base map.
 
 .. figure:: ../webmaps/easypublish/img/load_geoexplorer.png
 
    OSM world map in GeoExplorer
-
-Layer preview
--------------
-
-You can use GeoExplorer to view any of the sample layers. You can launch GeoExplorer from the :ref:`intro.dashboard`. For more information on viewing and adding layers to GeoExplorer, see the :ref:`webmaps.basic` tutorial or the `GeoExplorer documentation <../geoexplorer/>`_.
 
