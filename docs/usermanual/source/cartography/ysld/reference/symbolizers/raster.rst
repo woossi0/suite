@@ -10,6 +10,11 @@ The full syntax of a raster symbolizer is::
   symbolizers:
   - raster:
       opacity: <expression>
+      channels:
+        gray: <expression>
+        red: <expression>
+        green: <expression>
+        blue: <expression>
       color-map:
         type: <ramp|interval|values>
         entries:
@@ -34,9 +39,29 @@ where:
      - No
      - Opacity of the entire display. Valid values are a decimal between ``0`` (completely transparent) and ``1`` (completely opaque).
      - ``1``
+   * - ``channels``
+     - No
+     - Selects the band(s) to display and the display method.
+     - N/A
+   * - ``gray``
+     - No
+     - Display a single band as a grayscale image. Value is the band index, starting at ``1``. Cannot be used with ``red``, ``green``, and ``blue``.
+     - ``1``
+   * - ``red``
+     - No
+     - Display three bands as an RGB image. Value is the index of the red band, starting at ``1``. Must be used with ``green``, and ``blue``. Cannot be used with ``gray``.
+     - ``1``
+   * - ``green``
+     - No
+     - Display three bands as an RGB image. Value is the index of the green band, starting at ``1``. Must be used with ``red``, and ``blue``. Cannot be used with ``gray``.
+     - ``2``
+   * - ``blue``
+     - No
+     - Display three bands as an RGB image. Value is the index of the blue band, starting at ``1``. Must be used with ``red``, and ``green``. Cannot be used with ``gray``.
+     - ``3``
    * - ``color-map``
      - No
-     - Creates a mapping of colors to grid values.
+     - Creates a mapping of colors to grid values. Can only be used with a single band.
      - N/A
    * - ``type``
      - No
@@ -79,6 +104,21 @@ Examples
 --------
 
 .. todo:: All examples need figures
+
+Band selection
+~~~~~~~~~~~~~~
+
+This example takes a raster with multiple bands and outbuts band 2 as a grayscale image (This could be used to select a single band in a multi-band image to use with ``color-map``)::
+
+  name: raster
+  feature-styles:
+  - name: name
+    rules:
+    - symbolizers:
+      - raster:
+          opacity: 1.0
+          channels:
+            gray: 2
 
 Enhanced contrast
 ~~~~~~~~~~~~~~~~~
