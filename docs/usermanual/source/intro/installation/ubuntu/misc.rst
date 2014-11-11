@@ -21,7 +21,7 @@ To start/stop/restart the Tomcat service:
 
   .. code-block:: bash
  
-     /etc/init.d/tomcat6 start|stop|restart
+     /etc/init.d/tomcat7 start|stop|restart
 
 Controlling the PostgreSQL service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -38,7 +38,6 @@ To start/stop/restart the PostgreSQL service:
 
          /etc/init.d/postgresql start 9.3 
 
-
 Service port configuration
 --------------------------
 
@@ -49,7 +48,7 @@ Changing the Tomcat port
 
 To change the Tomcat port:
 
-#. Edit the file :file:`/etc/tomcat6/server.xml`. 
+#. Edit the file :file:`/etc/tomcat7/server.xml`. 
 
 #. Search for ``8080`` (around line 71) and change the ``port`` attribute to the desired value.
 

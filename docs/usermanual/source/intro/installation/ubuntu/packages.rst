@@ -76,9 +76,9 @@ The following packages contain the server components of OpenGeo Suite.
    * - ``opengeo-docs``
      - OpenGeo Suite documentation
      -
-   * - ``opengeo-tomcat6``
-     - OpenGeo Suite webapps for Tomcat 6
-     - ``tomcat6``
+   * - ``opengeo-tomcat7``
+     - OpenGeo Suite webapps for Tomcat 7
+     - ``tomcat7``
 
 Client/library packages
 -----------------------
@@ -129,7 +129,7 @@ The following packages add additional functionality to GeoServer. After installi
 
 .. code-block:: console
 
-   sudo service tomcat6 restart
+   sudo service tomcat7 restart
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
