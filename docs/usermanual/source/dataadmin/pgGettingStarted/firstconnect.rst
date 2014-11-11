@@ -58,16 +58,11 @@ To allow this:
 
    .. code-block:: console
 
-      # IPv4 local connections:
-      host    all             all             127.0.0.1/32            ident
-      # IPv6 local connections:
-      host    all             all             ::1/128                 ident
+      local   all             postgres                                peer
 
-#. Change the ``ident`` method to ``trust``.
+#. Change the ``peer`` method to ``md5``.
 
    .. note:: For more information on the various options, please see the `PostgreSQL documentation on pg_hba.conf <http://www.postgresql.org/docs/devel/static/auth-pg-hba-conf.html>`_. 
-
-   .. warning:: Using ``trust`` allows the all local users to connect to the database without a password. This is convenience, but insecure. If you want a little more security, replace ``trust`` with ``md5``, and use the password you set in the previous section to connect.
 
 #. Save and close the file.
 
@@ -75,7 +70,7 @@ To allow this:
 
    .. code-block:: console
 
-      sudo service postgresql-9.3 restart  
+      sudo service postgresql restart  
 
 #. To test your connection using :command:`psql`, run the following command:
 
@@ -91,4 +86,4 @@ To allow this:
 
       Testing the connection in pgAdmin
 
-If you encounter errors, make sure that the ``postgres`` password is set correctly, and that the correct line was edited in :file:`pg_hba.conf`.
+If you encounter errors, make sure that the ``postgres`` password is set correctly, and that the correct line was edited in :file:`pg_hba.conf`, as many look alike.
