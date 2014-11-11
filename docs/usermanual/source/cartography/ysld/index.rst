@@ -12,4 +12,5 @@ This section will discuss using YSLD in OpenGeo Suite.
 
    why
    composer
+   tutorial/index
    reference/index
