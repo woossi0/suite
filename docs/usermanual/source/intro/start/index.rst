@@ -12,7 +12,7 @@ This section describes how to install OpenGeo Suite on your platform. Both new i
 Please choose from the following options:
 
 .. toctree::
-   :hidden:
+   :maxdepth: 2
 
    windows/index
    mac/index
@@ -21,34 +21,3 @@ Please choose from the following options:
    war/index
    aws/index
 
-* :doc:`windows/index` :
-  :doc:`Install <windows/install>` ,
-  :doc:`QGIS <windows/qgis>` ,
-  :doc:`Upgrading <windows/upgrade>` ,
-  :doc:`Uninstall <windows/uninstall>` ,
-  :doc:`Working With <windows/misc>`
-* :doc:`mac/index` :
-  :doc:`Install <mac/install>` ,
-  :doc:`QGIS <mac/qgis>` ,
-  :doc:`Upgrading <mac/upgrade>` ,
-  :doc:`Uninstall <mac/uninstall>` ,
-  :doc:`Working With <mac/misc>`
-* :doc:`ubuntu/index` :
-  :doc:`Install <ubuntu/install>` ,
-  :doc:`Upgrading <ubuntu/upgrade>` ,
-  :doc:`Uninstall <ubuntu/uninstall>` ,
-  :doc:`Working With <ubuntu/misc>`
-* :doc:`redhat/index` :
-  :doc:`Install <redhat/install>` ,
-  :doc:`Upgrading <redhat/upgrade>` ,
-  :doc:`Uninstall <redhat/uninstall>` ,
-  :doc:`Working With <redhat/misc>`
-* :doc:`war/index` :
-  :doc:`Install <war/install>` ,
-  :doc:`Upgrading <war/upgrade>` ,
-  :doc:`Uninstall <war/uninstall>` ,
-  :doc:`Working With <war/misc>`
-* :doc:`aws/index` :
-  :doc:`Markplace <aws/marketplace>` ,
-  :doc:`GoveCloud <aws/govcloud>` ,
-  :doc:`Working With <aws/details>`
