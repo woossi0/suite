@@ -5,7 +5,7 @@ Installing
 
 OpenGeo Suite is compatible with a number of application servers, among them Jetty, JBoss, and WebSphere. One of the most popular platforms is `Apache Tomcat <http://tomcat.apache.org/>`_. Tomcat is available for all operating systems and is a stable and well-tested solution.
 
-Management Console Deploy
+Tomcat Management Console
 -------------------------
 
 The following sections will assume that Tomcat is used, although most of the instructions and recommended strategies will also apply to other application servers with minimal alterations.
@@ -22,6 +22,14 @@ The following sections will assume that Tomcat is used, although most of the ins
          <max-request-size>262144000</max-request-size>
          <file-size-threshold>0</file-size-threshold>
        </multipart-config>
+
+#. OpenGeo Suite requires the use of Java 7 as a minimum.
+
+   * Oracle JDK 7
+   * Open JDK 7
+
+   
+   .. for reference http://docs.geoserver.org/latest/en/user/installation/java.html
 
 #. Increase the memory made available to your application server. Increase both the heap space (used for data) and the PermGen space (used to load web applications).
 
@@ -66,12 +74,20 @@ The following sections will assume that Tomcat is used, although most of the ins
    * geoexplorer
    * geoserver.war
    * geowebcache.war
-   
+
+#. WAR distribution of documentation is not available. Unzip opengeo-docs.zip into the :file:`webapps` folder:
+
+  * opengeo-docs
+
 #. Out of the box geoserver includes a built-in data directory used to manage configuration information.
    
    To facilitate updating, and for application serves that empty out the webapps folder each restart, we will move to an external data directory configuration.
    
-#. Copy the :file:`geoserver/WEB-INF/data` folder to an external location.
+   Copy the :file:`geoserver/WEB-INF/data` folder to an external location:
+   
+   * linux: :file:`/var/lib/opengeo/geoserver`
+   * windows: :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`
+   * osx: :file:`/Users/opengeo/geoserver_data`
 
 #. Locate :file:`geoserver/WEB-INF/web.xml` and change the GEOSERVER_DATA_DIRECTORY configuration to point to the new location.
 
@@ -85,7 +101,6 @@ Web applications are usually deployed by copying the individual WAR files to an 
 The following sections will assume that Tomcat is used, although most of the instructions and recommended strategies will also apply to other application servers with minimal alterations.
 
 #. Stop the application server.
-
 
 #. Increase the memory made available to your application server. Increase both the heap space (used for data) and the PermGen space (used to load web applications).
 
@@ -124,6 +139,20 @@ The following sections will assume that Tomcat is used, although most of the ins
 #. Unzip opengeo-docs.zip into the :file:`webapps` folder:
 
   * opengeo-docs
+
+#. Out of the box geoserver includes a built-in data directory used to manage configuration information.
+   
+   To facilitate updating, and for application serves that empty out the webapps folder each restart, we will move to an external data directory configuration.
+   
+   Copy the :file:`geoserver/WEB-INF/data` folder to an external location:
+   
+   * linux: :file:`/var/lib/opengeo/geoserver`
+   * windows: :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`
+   * osx: :file:`/Users/opengeo/geoserver_data`
+
+#. Locate :file:`geoserver/WEB-INF/web.xml` and change the GEOSERVER_DATA_DIRECTORY configuration to point to the new location.
+
+#. In the same fashion update :file:`geowebcache/WEB_INF/web.xml` to point to a distinct cache location.
 
 Installation strategies
 -----------------------
