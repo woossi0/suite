@@ -14,3 +14,4 @@ This section will discuss using YSLD in OpenGeo Suite.
    composer
    tutorial/index
    reference/index
+   cookbook/index
