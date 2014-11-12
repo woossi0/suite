@@ -12,7 +12,7 @@ The following sections will assume that Tomcat is used, although most of the ins
 
 #. The tomcat manager has an upper limit on the size of WAR files that can be deployed.
    
-   To increase this limit navigate to :file:`$CATALINA_BASE/webapps/manager/WEB-INF\web.xml` and edit the **multipart-config** parameters:
+   To increase this limit navigate to :file:`$CATALINA_BASE/webapps/manager/WEB-INF/web.xml` and edit the **multipart-config** parameters:
    
    .. code-block:: xml
       
@@ -42,7 +42,7 @@ The following sections will assume that Tomcat is used, although most of the ins
      As an alternative you can configure these settings in the Tomcat Properties available in the from the task bar.
      
      * :guilabel:`Java Options`: append :kbd:`-XX:MaxPermSize=128m`
-     * :guilabel:`Maxium memory pool: :kbd:`2014` MB
+     * :guilabel:`Maximum memory pool`: :kbd:`2014 MB`
      
      .. figure:: img/tomcat-windows.png
         
@@ -52,7 +52,7 @@ The following sections will assume that Tomcat is used, although most of the ins
 
    * http://localhost:8080/manager/
    
-#. Locate the :guilabel:`Deploy` heading and click on the :guilabel:`Browse` button to locate the file:`geoserver.war` file.
+#. Locate the :guilabel:`Deploy` heading and click on the :guilabel:`Browse` button to locate the :file:`geoserver.war` file.
 
      .. figure:: img/deploy-browse.png
         
@@ -128,14 +128,14 @@ The following sections will assume that Tomcat is used, although most of the ins
 Installation strategies
 -----------------------
 
-The main benefit of the application server bundle is its flexibility. It is up to you determine the exact deployment that suits our needs. The following describes some common deployment scenarios.
+The main benefit of the application server bundle is its flexibility. It is up to you determine the exact deployment that suits your needs. The following describes some common deployment scenarios.
 
 Sandbox
 ~~~~~~~
 
 If your application server is configured to sandbox web applications, you will need to grant additional permissions allowing GeoServer and GeoWebCache access to both Environmental variables and the File System. These permissions are used to locate the GEOSERVER_DATA_DIRECTORY.
   
-For Tomcat locate the file:`$CATALINA_BASE/conf/catalina.policy` file and add:
+For Tomcat locate the :file:`$CATALINA_BASE/conf/catalina.policy` file and add:
   
 .. code-block:: ini
   

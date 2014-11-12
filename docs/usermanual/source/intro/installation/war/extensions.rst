@@ -5,9 +5,9 @@ Extensions are distributed as individual :file:`zip` files which can be unpacked
 
 Using the WPS extension as an example:
 
-#. Locate your application server :file:`webapps` folder and navigate to :file:`webapps\geoserver\WEB-INF\libs`.
+#. Locate your application server :file:`webapps` folder and navigate to :file:`webapps/geoserver/WEB-INF/lib`.
 
-#. Unzip the :file:`opengeo-extension.zip` and locate the :file"`wps` folder.
+#. Unzip the :file:`opengeo-extension.zip` and locate the :file:`wps` folder.
    
    At the time of writing the wps-extension consisted of the following files.
 
@@ -18,7 +18,7 @@ Using the WPS extension as an example:
    * net.opengis.wps-12-SNAPSHOT.jar
    * serializer-2.7.1.jar
    
-#. Copy these :file:`jar` files into the :file:`webapps\geoserver\WEB-INF\libs` directory.
+#. Copy these :file:`jar` files into the :file:`webapps/geoserver/WEB-INF/lib` directory.
    
    Windows: You may be warned when replacing files that are already present. This is expected as several extensions make use of the same :file:`jar` files resulting in duplication.
   
