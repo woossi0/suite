@@ -1,194 +1,227 @@
 .. _cartography.ysld.tutorial.point:
 
-Point Style
-===========
+Styling a point layer
+=====================
 
-In the layers tab of the Composer, click on the style option for the “ne_10m_admin_0_populated_places” layer to go to the styling page. A simple default style is already associated with this layer.
 The populated places layer is a point layer, so we use a :ref:`point symbolizer <cartography.ysld.reference.symbolizers.point>`.
 
-.. figure:: img/point_default.png
+Viewing the existing style
+--------------------------
 
-   Default point style
+#. In the layers tab of the Composer, click on the style option for the ``ne_10m_admin_0_populated_places`` layer to go to the style edit page. A simple default style is already associated with this layer.
 
-Looking at the styling page, we can see there are a lot of points in this data set, and we probably do not want to draw all of them. We can use the ``ADM0CAP`` attribute to filter points that correspond to capital cities::
+   .. figure:: img/point_default.png
 
-  name: places
-  title: Populated places styler
-  feature-styles:
-  - name: name
-    rules:
-    - filter: ADM0CAP = 1.0
-      symbolizers:
-      - point:
-          size: 6
-          symbols:
-          - mark:
-              shape: square
-              fill-color: ffff00
+      Default point style
 
-Add a text symbolizer referencing the ``NAME`` attribute to display the names of the cities::
+   .. note:: Your default color may vary.
 
-  name: places
-  title: Populated places styler
-  feature-styles:
-  - name: name
-    rules:
-    - filter: ADM0CAP = 1.0
-      symbolizers:
-      - point:
-          size: 6
-          symbols:
-          - mark:
-              shape: square
-              fill-color: ffff00
-      - text:
-          label: ${NAME}
+Adding filters and labels
+-------------------------
 
-This is much better. We now have a reasonably sized set of labeled points.
+There are a lot of points in this data set, and we don't want to draw all of them. 
 
-.. figure:: img/point_simple_label.png
+#. Use the ``ADM0CAP`` attribute to filter points that correspond to capital cities (``ADM0CAP = 1``)::
 
-Point Styling
--------------
+      name: places
+      title: Populated places style
+      feature-styles:
+      - name: name
+        rules:
+        - filter: ${ADM0CAP = 1}
+          symbolizers:
+          - point:
+              size: 6
+              symbols:
+              - mark:
+                  shape: square
+                  fill-color: ffff00
 
-Now, lets do some styling. Point symbolizes are described by symbols, which can either be one of a predefined set of :ref:`marks <cartography.ysld.reference.symbolizers.point>`, or an external image. Marks can be styled just like polygons, with both stroke and fill.
-Under the point symbolizer, set::
+#. Now, just like we did in the previous section, add a text symbolizer referencing the ``NAME`` attribute to display the names of the cities::
 
-        size: 7
-          symbols:
-          - mark:
-              shape: star
-              fill-color: 000000
+      name: places
+      title: Populated places style
+      feature-styles:
+      - name: name
+        rules:
+        - filter: ${ADM0CAP = 1}
+          symbolizers:
+          - point:
+              size: 6
+              symbols:
+              - mark:
+                  shape: square
+                  fill-color: ffff00
+          - text:
+              label: ${NAME}
 
-This draws a black star 7 pixels wide.
-Create a second point symbolizer, and set::
+#. We now have a reasonably sized set of labeled points.
 
-        size: 8
-          symbols:
-          - mark:
-              shape: circle
-              stroke-color: 000000
+   .. figure:: img/point_simple_label.png
 
-This draws the outline of a black circle, 8 pixels wide.
+      Capital cities
 
-Modify the text symbolizer so that it displays labels better:
+Refining the style
+------------------
 
-.. list-table::
-   :class: non-responsive
-   :widths: 40 60 
+Now, lets do some styling. Point symbolizes are described by symbols, which can either be one of a predefined set of :ref:`marks <cartography.ysld.reference.symbolizers.point>`, or an image. Marks can be styled just like polygons, with both stroke and fill.
 
-   * - ``font-weight: bold``
-     - Make the font bold
-   * - ``displacement: (3, 2)``
-     - Adjusts the label so it does not overlap the point symbolizer
-   * - ``x-labelPriority: ${10-LABELRANK}``
-     - Select labels based on priority (This uses the LABELRANK attribute of the places data).
+#. Replace the point symbolizer with the following::
 
-The full YSLD is now::
-
-  name: places
-  title: Populated places styler
-  feature-styles:
-  - name: name
-    rules:
-    - filter: ADM0CAP = 1.0
-      symbolizers:
       - point:
           size: 7
-          symbols:
-          - mark:
-              shape: star
-              fill-color: 000000
+            symbols:
+            - mark:
+                shape: star
+                fill-color: 000000
+
+   This draws a black star 7 pixels in high.
+
+#. Create a second point symbolizer with the following::
+
       - point:
           size: 8
-          symbols:
-          - mark:
-              shape: circle
-              stroke-color: 000000
-      - text:
-          label: ${NAME}
-          font-weight: bold
-          displacement: (3, 2)
-          x-labelPriority: ${10-LABELRANK}
+            symbols:
+            - mark:
+                shape: circle
+                stroke-color: 000000
 
-The layer looks like:
+   This draws the outline of a black circle, 8 pixels in diameter.
 
-.. figure:: img/point_style_label.png
+#. Modify the text symbolizer to improve the display of the labels:
 
-Since this data set contains population attributes, lets scale the size of the points based on population. Use ``log(POP2015)/log(2)`` to get a nice relative scale without to much variation in point size. Replacing our two scale values here, we get::
+   .. list-table::
+      :class: non-responsive
+      :widths: 40 60
+      :header-rows: 1
 
-  name: places
-  title: Populated places styler
-  feature-styles:
-  - name: name
-    rules:
-    - filter: ADM0CAP = 1.0
-      symbolizers:
-      - point:
-          size: ${log(POP2015)/log(2) - 1}
-          symbols:
-          - mark:
-              shape: star
-              fill-color: 000000
-      - point:
-          size: ${log(POP2015)/log(2)}
-          symbols:
-          - mark:
-              shape: circle
-              stroke-color: 000000
-      - text:
-          label: ${NAME}
-          font-weight: bold
-          displacement: (5, 4)
-          x-labelPriority: ${10-LABELRANK}
+      * - Parameter
+        - Description
+      * - ``font-weight: bold``
+        - Make the font bold
+      * - ``displacement: (3, 2)``
+        - Adjusts the label so it does not overlap the point symbolizer
+      * - ``x-labelPriority: ${10-LABELRANK}``
+        - Select labels based on priority (uses the ``LABELRANK`` attribute of the data to determine this).
 
-On the map, we see that different cities now have different sizes:
+#. The full style is now::
 
-.. figure:: img/point_size_label.png
+    name: places
+    title: Populated places style
+    feature-styles:
+    - name: name
+      rules:
+      - filter: ${ADM0CAP = 1}
+        symbolizers:
+        - point:
+            size: 7
+            symbols:
+            - mark:
+                shape: star
+                fill-color: 000000
+        - point:
+            size: 8
+            symbols:
+            - mark:
+                shape: circle
+                stroke-color: 000000
+        - text:
+            label: ${NAME}
+            font-weight: bold
+            displacement: (3, 2)
+            x-labelPriority: ${10-LABELRANK}
 
-So that points show up a bit nicer, let's add some scale filters. So the points are not so crowded when zoomed out, we will only show labels past scale ``50000000``::
+   .. figure:: img/point_style_label.png
 
-  name: places
-  title: Populated places styler
-  feature-styles:
-  - name: name
-    rules:
-    - scale: (100000000, )
-      filter: ADM0CAP = 1.0
-      symbolizers:
-      - point:
-          size: 2
-          symbols:
-          - mark:
-              shape: circle
-              fill-color: 000000
-    - scale: (, 100000000)
-      filter: ADM0CAP = 1.0
-      symbolizers:
-      - point:
-          size: ${log(POP2015)/log(2) - 1}
-          symbols:
-          - mark:
-              shape: star
-              fill-color: 000000
-      - point:
-          size: ${log(POP2015)/log(2)}
-          symbols:
-          - mark:
-              shape: circle
-              stroke-color: 000000
-    - scale: (, 50000000)
-      filter: ADM0CAP = 1.0  
-      symbolizers:
-      - text:
-          label: ${NAME}
-          font-weight: bold
-          displacement: (5, 4)
-          x-labelPriority: ${10-LABELRANK}
+      Capital cities with labels
 
-To show all cities when we are fully zoomed in, we can add some else rules for small scales. Again, we will display the points at higher zoom levels than the labels::
+#. Since this data set contains population attributes, we can scale the size of the points based on population. Use ``log(POP2015)/log(2)`` in the ``size`` parameter to get a relative scale without too much variation in point size::
 
-    - scale: (5000000, 10000000)
+    name: places
+    title: Populated places style
+    feature-styles:
+    - name: name
+      rules:
+      - filter: ${ADM0CAP = 1}
+        symbolizers:
+        - point:
+            size: ${log(POP2015)/log(2) - 1}
+            symbols:
+            - mark:
+                shape: star
+                fill-color: 000000
+        - point:
+            size: ${log(POP2015)/log(2)}
+            symbols:
+            - mark:
+                shape: circle
+                stroke-color: 000000
+        - text:
+            label: ${NAME}
+            font-weight: bold
+            displacement: (5, 4)
+            x-labelPriority: ${10-LABELRANK}
+
+   Note that the star shape is still always set to be 1px smaller than the circle.
+
+   .. figure:: img/point_size_label.png
+
+      Variable symbol sizes
+
+Adding scale
+------------
+
+To improve the display further, we can add scale rules.
+
+#. Split the single rule into three rules:
+
+   #. A 2px black circle for the features when zoomed out past 100000000 (``1e8``).
+   #. The star/circle combo as done in the previous section when zoomed in past 100000000 (``1e8``).
+   #. The labels only when zoomed in past 50000000 (``5e7``).
+
+   This results in the following style::
+
+      name: places
+      title: Populated places style
+      feature-styles:
+      - name: name
+        rules:
+        - scale: (1e8,)
+          filter: ${ADM0CAP = 1}
+          symbolizers:
+          - point:
+              size: 2
+              symbols:
+              - mark:
+                  shape: circle
+                  fill-color: 000000
+        - scale: (,1e8)
+          filter: ${ADM0CAP = 1}
+          symbolizers:
+          - point:
+              size: ${log(POP2015)/log(2) - 1}
+              symbols:
+              - mark:
+                  shape: star
+                  fill-color: 000000
+          - point:
+              size: ${log(POP2015)/log(2)}
+              symbols:
+              - mark:
+                  shape: circle
+                  stroke-color: 000000
+        - scale: (,5e7)
+          filter: ${ADM0CAP = 1}  
+          symbolizers:
+          - text:
+              label: ${NAME}
+              font-weight: bold
+              displacement: (5, 4)
+              x-labelPriority: ${10-LABELRANK}
+
+#. To show all cities when we are fully zoomed in, we can add some ``else`` rules for small scales. As with the capital cities, we will only display the labels when zoomed in (``5e6``), and will only show points with out labels at other scale::
+
+    - scale: (5e6,1e7)
       else: true
       symbolizers:
         - point:
@@ -199,7 +232,7 @@ To show all cities when we are fully zoomed in, we can add some else rules for s
                 stroke-color: 000000
                 fill-color: 777777
                 fill-opacity: 0.5
-    - scale: (, 5000000)
+    - scale: (,5e6)
       else: true
       symbolizers:
         - point:
@@ -212,18 +245,23 @@ To show all cities when we are fully zoomed in, we can add some else rules for s
                 fill-opacity: 0.5
         - text:
             label: ${NAME}
-            displacement: (5, 4)
+            displacement: (5,4)
             x-labelPriority: ${10-LABELRANK}
 
-The full YSLD is now::
+#. Add these two rules to the existing rules.
+
+Final style
+-----------
+
+The full style is now::
 
   name: places
-  title: Populated places styler
+  title: Populated places style
   feature-styles:
   - name: name
     rules:
-    - scale: (100000000, )
-      filter: ADM0CAP = 1.0
+    - scale: (1e8,)
+      filter: ${ADM0CAP = 1}
       symbolizers:
       - point:
           size: 2
@@ -231,8 +269,8 @@ The full YSLD is now::
           - mark:
               shape: circle
               fill-color: 000000
-    - scale: (, 100000000)
-      filter: ADM0CAP = 1.0
+    - scale: (,1e8)
+      filter: ${ADM0CAP = 1}
       symbolizers:
       - point:
           size: ${log(POP2015)/log(2) - 1}
@@ -246,15 +284,15 @@ The full YSLD is now::
           - mark:
               shape: circle
               stroke-color: 000000
-    - scale: (, 50000000)
-      filter: ADM0CAP = 1.0  
+    - scale: (,5e7)
+      filter: ${ADM0CAP = 1}  
       symbolizers:
       - text:
           label: ${NAME}
           font-weight: bold
           displacement: (5, 4)
           x-labelPriority: ${10-LABELRANK}
-    - scale: (5000000, 10000000)
+    - scale: (5e6,1e7)
       else: true
       symbolizers:
         - point:
@@ -265,7 +303,7 @@ The full YSLD is now::
                 stroke-color: 000000
                 fill-color: 777777
                 fill-opacity: 0.5
-    - scale: (, 5000000)
+    - scale: (,5e6)
       else: true
       symbolizers:
         - point:
@@ -285,6 +323,16 @@ After these modifications, we have a much nicer display at different zoom levels
 
 .. figure:: img/point_zoom_2.png
 
+   Cities (zoomed out)
+
 .. figure:: img/point_zoom_3.png
 
+   Cities (intermediate zoom)
+
 .. figure:: img/point_zoom_5.png
+
+   Cities (zoomed in)
+
+.. note:: :download:`Download the final point style <files/ysldtut_point.ysld>`
+
+Continue on to :ref:`cartography.ysld.tutorial.raster`.
