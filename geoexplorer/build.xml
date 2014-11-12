@@ -127,7 +127,7 @@
     <condition property="war.src.exists">
       <available file="${war.src}" type="dir"/>
     </condition>
-    <fail message="App not yet built.  Run `mvn clean install` first." 
+    <fail message="App not yet built.  Run `ant build` first." 
       unless="war.src.exists"/>
     </target>
 
