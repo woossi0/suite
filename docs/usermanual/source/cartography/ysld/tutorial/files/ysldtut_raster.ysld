@@ -1,0 +1,14 @@
+name: raster
+feature-styles:
+- name: name
+  rules:
+  - symbolizers:
+    - raster:
+        opacity: 1
+        color-map:
+          type: intervals
+          entries:
+          - (0043c8, 1, 8080, ocean)
+          - (4b4422, 1, 10000, low)
+          - (857b54, 1, 20000, mid)
+          - (d9d1a8, 1, 60000, high)
