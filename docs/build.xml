@@ -49,6 +49,7 @@
                 </if>
             </sequential>
         </for>
+        <jar destfile="target/opengeo-docs.war" basedir="${doc.dir}"/>
         <antcall target="assemble-artifact">
             <param name="dir" value="target"/>
             <param name="includes" value="opengeo-docs/**/*"/>
@@ -68,6 +69,11 @@
             <param name="dir" value="install/windows/target/latex/"/>
             <param name="includes" value="README*.pdf"/>
         </antcall>
+        <antcall target="assemble-artifact">
+            <param name="name" value="opengeo-docs-war"/>
+            <param name="dir" value="target"/>
+            <param name="includes" value="opengeo-docs.war"/>
+        </antcall>
     </target>
 
     <target name="publish" depends="init">
@@ -82,6 +88,10 @@
         </antcall>
         <antcall target="publish-artifact">
             <param name="name" value="win-readme"/>
+            <param name="path" value="docs"/>
+        </antcall>
+        <antcall target="publish-artifact">
+            <param name="name" value="opengeo-docs-war"/>
             <param name="path" value="docs"/>
         </antcall>
     </target>
