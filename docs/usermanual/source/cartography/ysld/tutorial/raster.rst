@@ -57,6 +57,8 @@ Creating a color map
 
 The ``color-map`` attribute can be used to convert any single band of data into a colored image based on the band values.
 
+#. Since ``contrast-enhancement`` cannot be used with ``color-map``, remove it from the style.
+
 #. Add a color map with the following intervals:
 
    .. list-table::
@@ -71,17 +73,13 @@ The ``color-map`` attribute can be used to convert any single band of data into 
       * - ``00c819``
         - Between ``8080`` and ``100000``
 
-::
+   ::
 
           color-map:
             type: intervals
             entries:
             - (0043c8, 1, 8080, blue)
             - (00c819, 1, 100000, green)
-
-#. Since ``contrast-enhancement`` cannot be used with ``color-map``, remove it from the style.
-
-#. The layer now looks like this:
 
    .. figure:: img/raster_dem_interval.png
 
