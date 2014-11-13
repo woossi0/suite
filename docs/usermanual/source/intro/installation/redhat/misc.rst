@@ -87,6 +87,81 @@ To change the PostgreSQL port:
 
        service postgresql-9.3 restart
 
+Working with Tomcat
+-------------------
+
+Changing the Tomcat Java
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you wish to use the Oracle Java 7 JRE (rather than the OpenJDK 7 installed by default):
+
+#. Download and install Oracle Java 7 JRE.
+
+#. Edit the /etc/default/tomcat7
+   
+   Update the JAVA_HOME environment variable.
+
+Use Suite Packages with custom Tomcat
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Suite packages can be used to manage the contents :file:`/usr/share/opengeo` components while making use of your own Tomcat Application Server. This is an alternative to deploying suite using web archives into the :file:`webapps` directory.
+
+#. Install suite packages
+
+#. Stop your Tomcat service
+
+#. Navigate to :file:`/etc/tomcat7/Catalina/localhost/`
+
+#. Create the :file:`geoserver.xml` with the following content:
+   
+   .. code-block:: xml
+   
+      <Context displayName="geoserver"
+               docBase="/usr/share/opengeo/geoserver"
+               path="/geoserver"/>
+
+#. Create the :file:`geowebcache.xml` with the following content:
+   
+   .. code-block:: xml
+   
+      <Context displayName="geowebcache"
+               docBase="/usr/share/opengeo/geowebcache"
+               path="/geowebcache"/>
+
+#. Create the :file:`dashboard.xml` with the following content:
+   
+   .. code-block:: xml
+   
+      <Context displayName="dashboard"
+               docBase="/usr/share/opengeo/dashboard"
+               path="/dashboard"/>
+
+#. Create the :file:`geoexplorer.xml` with the following content:
+   
+   .. code-block:: xml
+   
+      <Context displayName="geoexplorer"
+               docBase="/usr/share/opengeo/geoexplorer"
+               path="/geoexplorer"/>
+
+#. Create the :file:`docs.xml` with the following content:
+   
+   .. code-block:: xml
+   
+      <Context displayName="docs"
+               docBase="/usr/share/opengeo/docs"
+               path="/docs"/>
+
+#. Create the :file:`recipes.xml` with the following content:
+   
+   .. code-block:: xml
+   
+      <Context displayName="docs"
+               docBase="/usr/share/opengeo/recipes"
+               path="/recipes"/>
+               
+#. Restart Tomcat
+
 GeoServer Data Directory
 ------------------------
 
