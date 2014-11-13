@@ -319,10 +319,34 @@ Text symbolizers are used to draw labels on objects. The label text is usually l
 ..           anchor: (0.5,0)
 ..           displacement: (0,-20)
 
+
+Label with wrap
+~~~~~~~~~~~~~~~
+
+Wrapping long labels can improve how well they fit on maps. This can be accomplished using the ``x-autoWrap`` property. This example wraps lines longer than 70 pixels::
+
+  feature-styles:
+  - name: name
+    rules:
+    - symbolizers:
+      - polygon:
+          stroke-width: 1
+          fill-color: 00dd77
+      - text:
+          label: ${name}
+          font-size: 12
+          x-autoWrap: 70
+          x-maxDisplacement: 100
+          anchor: (0.5, -1)
+
+.. figure:: img/text_wrap.png
+
+   Label with wrap
+
 Label with halo
 ~~~~~~~~~~~~~~~
 
-Surrounding labels with a halo will allow them to be visible even on complex maps with variouis backgruond features.This can be accomplished using the ``halo`` family of properties. This example surrounds the label in a partially transparent white halo of radius 2::
+Surrounding labels with a halo will allow them to be visible even on complex maps with various background features. This can be accomplished using the ``halo`` family of properties. This example surrounds the label in a partially transparent white halo of radius 2::
 
   feature-styles:
   - name: name
@@ -340,8 +364,7 @@ Surrounding labels with a halo will allow them to be visible even on complex map
              radius: 2
              fill-color: ffffff
              fill-opacity: 0.8
-          placement:
-             anchor: (0.5, -1)
+          anchor: (0.5, -1)
 
 .. figure:: img/text_halo.png
 
