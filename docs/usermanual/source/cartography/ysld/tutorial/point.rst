@@ -70,10 +70,10 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
 
       - point:
           size: 7
-            symbols:
-            - mark:
-                shape: star
-                fill-color: 000000
+          symbols:
+          - mark:
+              shape: star
+              fill-color: 000000
 
    This draws a black star 7 pixels in high.
 
@@ -81,10 +81,10 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
 
       - point:
           size: 8
-            symbols:
-            - mark:
-                shape: circle
-                stroke-color: 000000
+          symbols:
+          - mark:
+              shape: circle
+              stroke-color: 000000
 
    This draws the outline of a black circle, 8 pixels in diameter.
 
