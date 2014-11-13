@@ -28,7 +28,7 @@ An upgrade to Suite 4.5 can be performed in place.
    * dashboard.war
    * opengeo-docs
 
-#. Unzip into composer.zip into the existing :file:`webapps/geoserver` folder
+#. Unzip composer.zip into the existing :file:`webapps/geoserver` folder
 
 #. Restart Tomcat
 
