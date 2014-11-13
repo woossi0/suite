@@ -58,7 +58,7 @@ If we zoom in, we want to see all the roads, not just those included in our filt
             stroke-color: 000000
             stroke-width: 1
       - scale: (2000000,8000000)
-        filter: $[scalerank < 8}
+        filter: ${scalerank < 8}
         symbolizers:
         - line:
             stroke-color: 000000
