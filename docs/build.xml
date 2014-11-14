@@ -1,4 +1,4 @@
-<project name="docs" default="help">
+<project name="docs" default="build">
 
     <import file="../build/common.xml"/>
 

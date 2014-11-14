@@ -1,14 +1,111 @@
-<project name="doc.usermanual" default="build">
+<project name="doc.usermanual" default="build-html">
 
     <import file="../common.xml"/>
 
+     <target name="stage-basic">
+       <!-- process source into target/basic -->
+       <copy todir="${basedir}/basic">
+          <fileset dir="source">
+            <exclude name="**/*-enterprise.rst"/>
+            <exclude name="**/*-basic.rst"/>
+          </fileset>
+       </copy>
+       <copy todir="${basedir}/basic">
+          <fileset dir="source"/>
+          <globmapper from="*-basic.rst" to="*.rst"/>
+       </copy>
+     </target>
+     
+     <target name="stage-enterprise">
+       <!-- process source into target/enterprise -->
+       <copy todir="${basedir}/enterprise">
+          <fileset dir="source">
+            <exclude name="**/*-enterprise.rst"/>
+            <exclude name="**/*-basic.rst"/>
+          </fileset>
+       </copy>
+       <copy todir="${basedir}/enterprise">
+          <fileset dir="source"/>
+          <globmapper from="*-enterprise.rst" to="*.rst"/>
+       </copy>
+     </target>
+     
+     <target name="basic" depends="stage-basic"
+       description="Build basic docs">
+       <antcall target="sphinx">
+         <param name="dir" value="${basedir}/basic"/>
+         <param name="outdir" value="${basedir}/target/html/basic"/>
+         <param name="flags" value="-t basic"/>
+       </antcall>
+     </target>
+
+     <target name="enterprise" depends="stage-enterprise"
+       description="Build enterprise docs">
+       <antcall target="sphinx">
+         <param name="dir" value="${basedir}/enterprise"/>
+         <param name="outdir" value="${basedir}/target/html/enterprise"/>
+         <param name="flags" value="-t enterprise"/>
+       </antcall>
+     </target>
+     
+     <target name="build-html" depends="basic,enterprise"
+       description="Build html docs">
+     </target>
+
+     <target name="build-text" depends="stage-basic,stage-enterprise"
+       description="Build text docs">
+       <antcall target="sphinx">
+         <param name="dir" value="${basedir}/basic"/>
+         <param name="outdir" value="${basedir}/target/text/basic"/>
+         <param name="builder" value="text"/>
+         <param name="flags" value="-t basic"/>
+       </antcall>
+       <antcall target="sphinx">
+         <param name="dir" value="${basedir}/enterprise"/>
+         <param name="outdir" value="${basedir}/target/text/enterprise"/>
+         <param name="builder" value="text"/>
+         <param name="flags" value="-t enterprise"/>
+       </antcall>
+     </target>
+  
+     <target name="build-pdf" depends="check-pdf,stage-basic,stage-enterprise"
+       description="Build pdf docs">
+       <if>
+           <equals arg1="${pdflatex.isPresent}" arg2="true"/>
+           <then>
+             <sequential>
+               <antcall target="sphinx">
+                 <param name="dir" value="${basedir}/basic"/>
+                 <param name="outdir" value="${basedir}/target/latex/basic"/>
+                 <param name="builder" value="latex"/>
+                 <param name="flags" value="-t basic"/>
+               </antcall>
+               <exec executable="make" failonerror="true" dir="target/latex/basic">
+                 <arg line="all-pdf"/>
+               </exec>
+               <antcall target="sphinx">
+                 <param name="dir" value="${basedir}/enterprise"/>
+                 <param name="outdir" value="${basedir}/target/latex/enterprise"/>
+                 <param name="builder" value="latex"/>
+                 <param name="flags" value="-t enterprise"/>
+               </antcall>
+               <exec executable="make" failonerror="true" dir="target/latex/enterprise">
+                 <arg line="all-pdf"/>
+               </exec>
+             </sequential>
+           </then>
+           <else>
+               <echo message="No PDF generated because pdflatex is not on PATH.  This may make installer assembly fail."/>
+           </else>
+       </if>
+     </target>
+  
     <target name="build" depends="init">
         <antcall target="build-html">
-<!--          <param name="flags" value="-t=enterprise"/>-->
         </antcall>
         <antcall target="build-pdf"/>
     </target>
 
     <target name="clean" depends="destroy"/>
-
+  
 </project>

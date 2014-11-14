@@ -15,81 +15,26 @@ ALLSPHINXOPTS   = -d build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  html      to make standalone HTML files"
-	@echo "  dirhtml   to make HTML files named index.html in directories"
-	@echo "  pickle    to make pickle files"
-	@echo "  json      to make JSON files"
-	@echo "  htmlhelp  to make HTML files and a HTML help project"
-	@echo "  qthelp    to make HTML files and a qthelp project"
-	@echo "  latex     to make LaTeX files, you can set PAPER=a4 or PAPER=letter"
-	@echo "  text      to make plain text files" 
-	@echo "  changes   to make an overview of all changed/added/deprecated items"
-	@echo "  linkcheck to check all external links for integrity"
-	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
+	@echo "  basic      Basic standalone HTML Files"
+	@echo "  enterprise Enterprise standalone HTML files"
+	@echo "  latex      Basic LaTeX files, you can set PAPER=a4 or PAPER=letter"
 
 clean:
 	-rm -rf build/*
 
-html:
-	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
+basic:
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) -t basic build/basic
 	@echo
-	@echo "Build finished. The HTML pages are in build/html."
+	@echo "Basic build finished. The HTML pages are in build/html."
 
-dirhtml:
-	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) build/dirhtml
+basic:
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) -t enterprise build/enterprise
 	@echo
-	@echo "Build finished. The HTML pages are in build/dirhtml."
-
-pickle:
-	$(SPHINXBUILD) -b pickle $(ALLSPHINXOPTS) build/pickle
-	@echo
-	@echo "Build finished; now you can process the pickle files."
-
-json:
-	$(SPHINXBUILD) -b json $(ALLSPHINXOPTS) build/json
-	@echo
-	@echo "Build finished; now you can process the JSON files."
-
-htmlhelp:
-	$(SPHINXBUILD) -b htmlhelp $(ALLSPHINXOPTS) build/htmlhelp
-	@echo
-	@echo "Build finished; now you can run HTML Help Workshop with the" \
-	      ".hhp project file in build/htmlhelp."
-
-qthelp:
-	$(SPHINXBUILD) -b qthelp $(ALLSPHINXOPTS) build/qthelp
-	@echo
-	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
-	      ".qhcp project file in build/qthelp, like this:"
-	@echo "# qcollectiongenerator build/qthelp/OpenGeoSuiteInstallation.qhcp"
-	@echo "To view the help file:"
-	@echo "# assistant -collectionFile build/qthelp/OpenGeoSuiteInstallation.qhc"
+	@echo "Enterprise build finished. The HTML pages are in build/enterprise."
 
 latex:
-	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) build/latex
+	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) -t basic build/latex
 	@echo
-	@echo "Build finished; the LaTeX files are in build/latex."
+	@echo "Basic build finished; the LaTeX files are in build/latex."
 	@echo "Run \`make all-pdf' or \`make all-ps' in that directory to" \
 	      "run these through (pdf)latex."
-
-text:
-	$(SPHINXBUILD) -b text $(ALLSPHINXOPTS) build/text
-	@echo
-	@echo "Build finished. The text files are in build/text."
-
-changes:
-	$(SPHINXBUILD) -b changes $(ALLSPHINXOPTS) build/changes
-	@echo
-	@echo "The overview file is in build/changes."
-
-linkcheck:
-	$(SPHINXBUILD) -b linkcheck $(ALLSPHINXOPTS) build/linkcheck
-	@echo
-	@echo "Link check complete; look for any errors in the above output " \
-	      "or in build/linkcheck/output.txt."
-
-doctest:
-	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) build/doctest
-	@echo "Testing of doctests in the sources finished, look at the " \
-	      "results in build/doctest/output.txt."
-

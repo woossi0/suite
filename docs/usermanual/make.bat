@@ -33,89 +33,25 @@ if "%1" == "clean" (
 	goto end
 )
 
-if "%1" == "html" (
-	%SPHINXBUILD% -b html %ALLSPHINXOPTS% build/html
+if "%1" == "basic" (
+	%SPHINXBUILD% -b html %ALLSPHINXOPTS% -t basic build/basic
 	echo.
-	echo.Build finished. The HTML pages are in build/html.
+	echo.Enterprise build finished. The HTML pages are in build/basic.
 	goto end
 )
 
-if "%1" == "dirhtml" (
-	%SPHINXBUILD% -b dirhtml %ALLSPHINXOPTS% build/dirhtml
+if "%1" == "enterprise" (
+	%SPHINXBUILD% -b html %ALLSPHINXOPTS% -t enterprise build/enterprise
 	echo.
-	echo.Build finished. The HTML pages are in build/dirhtml.
-	goto end
-)
-
-if "%1" == "pickle" (
-	%SPHINXBUILD% -b pickle %ALLSPHINXOPTS% build/pickle
-	echo.
-	echo.Build finished; now you can process the pickle files.
-	goto end
-)
-
-if "%1" == "json" (
-	%SPHINXBUILD% -b json %ALLSPHINXOPTS% build/json
-	echo.
-	echo.Build finished; now you can process the JSON files.
-	goto end
-)
-
-if "%1" == "htmlhelp" (
-	%SPHINXBUILD% -b htmlhelp %ALLSPHINXOPTS% build/htmlhelp
-	echo.
-	echo.Build finished; now you can run HTML Help Workshop with the ^
-.hhp project file in build/htmlhelp.
-	goto end
-)
-
-if "%1" == "qthelp" (
-	%SPHINXBUILD% -b qthelp %ALLSPHINXOPTS% build/qthelp
-	echo.
-	echo.Build finished; now you can run "qcollectiongenerator" with the ^
-.qhcp project file in build/qthelp, like this:
-	echo.^> qcollectiongenerator build\qthelp\OpenGeoSuiteInstallation.qhcp
-	echo.To view the help file:
-	echo.^> assistant -collectionFile build\qthelp\OpenGeoSuiteInstallation.ghc
+	echo.Basic build finished. The HTML pages are in build/enterprise.
 	goto end
 )
 
 if "%1" == "latex" (
-	%SPHINXBUILD% -b latex %ALLSPHINXOPTS% build/latex
+	%SPHINXBUILD% -b latex %ALLSPHINXOPTS% -t basic build/latex
 	echo.
-	echo.Build finished; the LaTeX files are in build/latex.
+	echo.Basic build finished; the LaTeX files are in build/latex.
 	goto end
 )
-
-if "%1" == "text" (
-	%SPHINXBUILD% -b text %ALLSPHINXOPTS% build/text
-	echo.
-	echo.Build finished. The text files are in build/text.
-	goto end
-)
-
-if "%1" == "changes" (
-	%SPHINXBUILD% -b changes %ALLSPHINXOPTS% build/changes
-	echo.
-	echo.The overview file is in build/changes.
-	goto end
-)
-
-if "%1" == "linkcheck" (
-	%SPHINXBUILD% -b linkcheck %ALLSPHINXOPTS% build/linkcheck
-	echo.
-	echo.Link check complete; look for any errors in the above output ^
-or in build/linkcheck/output.txt.
-	goto end
-)
-
-if "%1" == "doctest" (
-	%SPHINXBUILD% -b doctest %ALLSPHINXOPTS% build/doctest
-	echo.
-	echo.Testing of doctests in the sources finished, look at the ^
-results in build/doctest/output.txt.
-	goto end
-)
-
 
 :end
