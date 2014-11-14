@@ -119,10 +119,8 @@
      </target>
   
     <target name="build" depends="init">
-      <sequential>
-        <antcall target="build-html"/>
-        <antcall target="build-pdf"/>
-      </sequential>
+      <antcall target="build-html"/>
+      <antcall target="build-pdf"/>
     </target>
 
     <target name="clean" depends="destroy">
