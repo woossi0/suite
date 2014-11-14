@@ -1,4 +1,4 @@
-<project name="doc.usermanual" default="build-html">
+<project name="doc.usermanual" default="build">
 
     <import file="../common.xml"/>
 
@@ -81,6 +81,16 @@
            <equals arg1="${pdflatex.isPresent}" arg2="true"/>
            <then>
              <sequential>
+               <copy todir="${basedir}/target/latex/basic">
+                 <fileset dir="${basedir}/../themes/suite_rtd_theme/static/img/">
+                 <include name="**/opengeo-logo-only-blue.png"/>
+                 </fileset>
+               </copy>
+               <copy todir="${basedir}/target/latex/enterprise">
+                 <fileset dir="${basedir}/../themes/suite_rtd_theme/static/img/">
+                 <include name="**/opengeo-logo-only-blue.png"/>
+                 </fileset>
+               </copy>
                <antcall target="sphinx">
                  <param name="dir" value="${basedir}/basic"/>
                  <param name="outdir" value="${basedir}/target/latex/basic"/>
@@ -110,9 +120,10 @@
      </target>
   
     <target name="build" depends="init">
-        <antcall target="build-html">
-        </antcall>
+      <sequential>
+        <antcall target="build-html"/>
         <antcall target="build-pdf"/>
+      </sequential>
     </target>
 
     <target name="clean" depends="destroy">

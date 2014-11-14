@@ -55,7 +55,12 @@
             <param name="includes" value="opengeo-docs/**/*"/>
         </antcall>
         <antcall target="assemble-artifact">
-            <param name="name" value="pdfdoc"/>
+            <param name="name" value="pdfdoc-basic"/>
+            <param name="dir" value="usermanual/target/latex"/>
+            <param name="includes" value="*.pdf"/>
+        </antcall>
+        <antcall target="assemble-artifact">
+            <param name="name" value="pdfdoc-enterprise"/>
             <param name="dir" value="usermanual/target/latex"/>
             <param name="includes" value="*.pdf"/>
         </antcall>
