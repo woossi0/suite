@@ -306,7 +306,7 @@ latex_preamble = """
 \\usepackage{fancyhdr}
 \\fancypagestyle{plain}{
     \\fancyhead{}
-    \\fancyhead[L]{\\OLDincludegraphics{../../../themes/suite_rtd_theme/static/img/opengeo-small-logo.png}}
+    \\fancyhead[L]{\\OLDincludegraphics{../../../../themes/suite_rtd_theme/static/img/opengeo-small-logo.png}}
     \\fancyhead[R]{OpenGeo Suite User Manual, Release 4.1}
 }
 \\pagestyle{plain}
