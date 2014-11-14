@@ -18,5 +18,3 @@ Please choose from the following options:
    mac/index
    ubuntu/index
    redhat/index
-   aws/index
-
