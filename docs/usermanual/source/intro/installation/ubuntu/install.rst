@@ -3,12 +3,22 @@
 Installing
 ==========
 
-This section describes how to install OpenGeo Suite on Ubuntu Linux. These instructions should be followed if:
+.. only:: basic
+
+   This section describes how to perform an installation of **OpenGeo Suite** |version| on Ubuntu Linux.
+
+   .. note:: If upgrading to OpenGeo Suite Enterprise from OpenGeo Suite, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
+
+.. only:: enterprise
+
+   This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Ubuntu Linux.
+
+These instructions should be followed if:
 
 * Your system does not have OpenGeo Suite
 * You are upgrading from a **minor version** of OpenGeo Suite (for example: from **4.x** to **4.y**)
 
-Do not use these instructions if upgrading from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**). Instead, see the :ref:`Upgrade <intro.installation.ubuntu.upgrade>` section.
+If upgrading from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**), see the :ref:`intro.installation.ubuntu.update` section.
 
 .. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with an Ubuntu system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
@@ -24,7 +34,7 @@ The following Ubuntu versions are supported:
 
    OpenGeo Suite is not supported on any other versions of Ubuntu. If running an unsupported installation, dependency conflicts may occur.
 
-OpenGeo Suite for Ubuntu has the following system requirements:
+OpenGeo Suite for Ubuntu Linux has the following system requirements:
 
 * Memory: 512MB minimum (1GB recommended)
 * Disk space: 750MB minimum (plus extra space for any loaded data)
@@ -36,7 +46,7 @@ Pre-installation process
 
 This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details about the possible packages to install.
 
-.. warning:: Mixing repositories is not recommended. If you already have a repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
+.. warning:: Mixing repositories with is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
 
 The commands in this section require root privileges. 
 
@@ -46,65 +56,84 @@ The commands in this section require root privileges.
 
       sudo su - 
 
-#. Import the OpenGeo GPG key:
+#. Import the Boundless GPG key:
 
    .. code-block:: bash
 
       wget -qO- http://apt.boundlessgeo.com/gpg.key | apt-key add - 
 
-#. Add the OpenGeo Suite repository.
+.. only:: basic
 
-   If installing on Precise:
+   #. Add the OpenGeo Suite repository.
 
-   .. code-block:: bash
+      * If installing on Precise:
 
-      echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+        .. code-block:: bash
 
-   If installing on Trusty:
+           echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
 
-   .. code-block:: bash
+      * If installing on Trusty:
 
-      echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
+        .. code-block:: bash
+
+           echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
+
+.. only:: enterpise
+
+   #. Add the OpenGeo Suite Enterprise repository. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
+
+      * If installing on Precise:
+
+        .. code-block:: bash
+
+           echo "deb http://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
+
+      * If installing on Trusty:
+
+        .. code-block:: bash
+
+           echo "deb http://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
+
+      .. note: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
 
 Installation process
 --------------------
 
-#. Update:
+#. Update the repository list:
 
    .. code-block:: bash
 
       apt-get update
 
-#. Search for OpenGeo Suite packages:
+#. Search for OpenGeo Suite packages to verify that the repository list is correct. If the command does not return any results, examine the output of the ``apt`` command for any errors or warnings.
 
    .. code-block:: bash
 
       apt-cache search opengeo
 
-   If the search command does not return any results, the repository was not added properly. Examine the output of the ``apt`` commands for any errors or warnings.
-
 #. You have options on what packages to install:
 
    .. note::  See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details of individual packages.
 
-   For server components:
+   * To install typical server components:
 
-   .. code-block:: bash
+     .. code-block:: bash
 
-      apt-get install opengeo-server
+        apt-get install opengeo-server
 
-   For client components:
+   * To install typical client components:
 
-   .. code-block:: bash
+     .. code-block:: bash
 
-      apt-get install opengeo-client
+        apt-get install opengeo-client
 
-   For both client and server components:
+   * To install typical client and server components:
 
-      apt-get install opengeo
+     .. code-block:: bash
+
+        apt-get install opengeo
 
 After installation
 ------------------
 
 Installation is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc`.
-
