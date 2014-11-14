@@ -11,10 +11,14 @@ The full syntax of a raster symbolizer is::
   - raster:
       opacity: <expression>
       channels:
-        gray: <expression>
-        red: <expression>
-        green: <expression>
-        blue: <expression>
+        gray: 
+          <channel_options>
+        red:
+          <channel_options>
+        green:
+          <channel_options>
+        blue:
+          <channel_options>
       color-map:
         type: <ramp|interval|values>
         entries:
@@ -45,19 +49,19 @@ where:
      - N/A
    * - ``gray``
      - No
-     - Display a single band as a grayscale image. Value is the band index, starting at ``1``. Cannot be used with ``red``, ``green``, and ``blue``.
+     - Display a single band as a grayscale image. Cannot be used with ``red``, ``green``, and ``blue``. The ``<channel_options>`` can be the band name or a mapping containing ``name:`` and ``contrast-enhancement:`` (optional).
      - ``1``
    * - ``red``
      - No
-     - Display three bands as an RGB image. Value is the index of the red band, starting at ``1``. Must be used with ``green``, and ``blue``. Cannot be used with ``gray``.
+     - Display three bands as an RGB image. Must be used with ``green``, and ``blue``. Cannot be used with ``gray``. The ``<channel_options>`` can be the band name or a mapping containing ``name:`` and ``contrast-enhancement:`` (optional).
      - ``1``
    * - ``green``
      - No
-     - Display three bands as an RGB image. Value is the index of the green band, starting at ``1``. Must be used with ``red``, and ``blue``. Cannot be used with ``gray``.
+     - Display three bands as an RGB image. Must be used with ``red``, and ``blue``. Cannot be used with ``gray``. The ``<channel_options>`` can be the band name or a mapping containing ``name:`` and ``contrast-enhancement:`` (optional).
      - ``2``
    * - ``blue``
      - No
-     - Display three bands as an RGB image. Value is the index of the blue band, starting at ``1``. Must be used with ``red``, and ``green``. Cannot be used with ``gray``.
+     - Display three bands as an RGB image. Must be used with ``red``, and ``green``. Cannot be used with ``gray``. The ``<channel_options>`` can be the band name or a mapping containing ``name:`` and ``contrast-enhancement:`` (optional). See examples below.
      - ``3``
    * - ``color-map``
      - No
@@ -105,10 +109,38 @@ Examples
 
 .. todo:: All examples need figures
 
+Enhanced contrast
+~~~~~~~~~~~~~~~~~
+
+This example takes a given raster and lightens the output by a factor of 2::
+
+  symbolizers:
+  - raster:
+      contrast-enhancement: 
+        gamma: 0.5
+
+.. figure:: img/raster_brightness.png
+
+   Lightened image
+
+Normalized output
+~~~~~~~~~~~~~~~~~
+
+This example takes a given raster and adjusts the contrast so that the smallest values are darkest and the highest values are lightest::
+
+  symbolizers:
+  - raster:
+      contrast-enhancement: 
+        mode: normalize
+
+.. figure:: img/raster_normalize.png
+
+   Normalized image
+
 Band selection
 ~~~~~~~~~~~~~~
 
-This example takes a raster with multiple bands and outbuts band 2 as a grayscale image (This could be used to select a single band in a multi-band image to use with ``color-map``)::
+This example takes a raster with multiple bands and outputs band 2 as a grayscale image (This could be used to select a single band in a multi-band image to use with ``color-map``)::
 
   name: raster
   feature-styles:
@@ -120,25 +152,36 @@ This example takes a raster with multiple bands and outbuts band 2 as a grayscal
           channels:
             gray: 2
 
-Enhanced contrast
-~~~~~~~~~~~~~~~~~
+.. figure:: img/raster_band_gray.png
 
-This example takes a given raster and lightens the output by a factor of 2::
+   Grayscale band selection
 
-  symbolizers:
-  - raster:
-      contrast-enhancement: 
-        gamma: 0.5
+Band selection with contrast
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Normalized output
-~~~~~~~~~~~~~~~~~
+This example takes an RGB raster, doubles the intensity of the red, and normalizes the green band::
 
-This example takes a given raster and adjusts the contrast so that the smallest values are darkest and the highest values are lightest::
+  name: raster
+  feature-styles:
+  - name: name
+    rules:
+    - symbolizers:
+      - raster:
+          channels:
+            red:
+              name: 1
+              contrast-enhancement:
+                gamma: .5
+            green:
+              name: 2
+              contrast-enhancement:
+                mode: normalize
+            blue:
+              name: 3
+ 
+.. figure:: img/raster_band_contrast.png
 
-  symbolizers:
-  - raster:
-      contrast-enhancement: 
-        mode: normalize
+ Band selection with contrast enhancement            
 
 Color ramp
 ~~~~~~~~~~
@@ -161,6 +204,10 @@ In this example, the grid values will have the following colors applied:
 * Between 100 and 200 will have an output color **interpolated between green and blue**
 * Greater than 200 will have an output color of **solid blue** 
 
+.. figure:: img/raster_map_ramp.png
+
+   Color map with ramp
+
 Color intervals
 ~~~~~~~~~~~~~~~
 
@@ -181,6 +228,10 @@ In this example, the grid values will have the following colors applied:
 * Between 0 and 100 will have an output color of **solid green**
 * Between 100 and 200 will have an output color of **solid blue**
 * Greater than 200 will **not be colored** at all (transparent)
+
+.. figure:: img/raster_map_intervals.png
+
+   Color map with intervals
 
 Color values
 ~~~~~~~~~~~~
@@ -204,3 +255,6 @@ In this example, the grid values will have the following colors applied:
 
 Any other values (even those in between the above values) will not be colored at all.
 
+.. figure:: img/raster_map_values.png
+
+   Color map with values
