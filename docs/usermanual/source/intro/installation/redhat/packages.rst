@@ -122,7 +122,6 @@ The following packages contain the client components of OpenGeo Suite.
      - Cartographic projection library
      -
 
-
 GeoServer extensions
 --------------------
 
@@ -130,43 +129,54 @@ The following packages add additional functionality to GeoServer. After installi
 
 .. code-block:: console
 
-   sudo service tomcat6 restart
+   sudo service tomcat7 restart
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
-.. tabularcolumns:: |p{5cm}|p{7cm}|p{3cm}|
+.. tabularcolumns:: |p{5cm}|p{7cm}|
 .. list-table::
    :header-rows: 1
-   :widths: 20 40 40
-   :class: table-leftwise
+   :widths: 30 70
+   :class: non-responsive
 
    * - Package
      - Description
-     - Dependencies
-   * - ``geoserver-mapmeter``
-     - Mapmeter extension for GeoServer
-     - ``geoserver``
-   * - ``geoserver-cluster``
-     - Clustering extension for GeoServer
-     - ``geoserver``
-   * - ``geoserver-jdbcconfig``
-     - Database catalog and configuration extension for GeoServer
-     - ``geoserver``
-   * - ``geoserver-css``
-     - CSS styling extension for GeoServer
-     - ``geoserver``
    * - ``geoserver-csw``
      - Catalogue Service for Web (CSW) extension for GeoServer
-     - ``geoserver``
-   * - ``geoserver-wps``
-     - Web Processing Service (WPS) extension for GeoServer
-     - ``geoserver``
-   * - ``geoserver-script``
-     - Scripting extension for GeoServer
-     - ``geoserver``
-   * - ``geoserver-mongodb``
-     - MongoDB extension for GeoServer
-     - ``geoserver``
    * - ``geoserver-geopackage``
      - GeoPackage extension for GeoServer
-     - ``geoserver``
+   * - ``geoserver-script``
+     - Scripting extension for GeoServer
+   * - ``geoserver-wps``
+     - Web Processing Service (WPS) extension for GeoServer
+
+.. only:: enterprise
+
+   The following packages are available for OpenGeo Suite Enterprise only:
+
+   .. tabularcolumns:: |p{5cm}|p{7cm}|
+   .. list-table::
+      :header-rows: 1
+      :widths: 30 70
+      :class: non-responsive
+
+      * - Package
+        - Description
+      * - ``geoserver-arcsde``
+        - ArcSDE database extension for GeoServer
+      * - ``geoserver-cluster``
+        - Clustering extension for GeoServer. Use with ``geoserver-jdbcconfig``.
+      * - ``geoserver-css``
+        - CSS styling extension for GeoServer
+      * - ``geoserver-db2``
+        - DB2 database extension for GeoServer
+      * - ``geoserver-jdbcconfig``
+        - Database catalog and configuration extension for GeoServer. Use with ``geoserver-cluster``.
+      * - ``geoserver-mapmeter``
+        - Mapmeter extension for GeoServer
+      * - ``geoserver-mongodb``
+        - MongoDB data format extension for GeoServer
+      * - ``geoserver-oracle``
+        - Oracle database extension for GeoServer
+      * - ``geoserver-sqlserver``
+        - SQL Server database extension for GeoServer
