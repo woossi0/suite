@@ -66,6 +66,9 @@
         <unzip src="${extdir}/geoserver-${gs.version}-${ext}-plugin.zip"
             dest="target/${ext}">
             <patternset>
+                <exclude name="*.txt"/>
+                <exclude name="*.TXT"/>
+                <exclude name="*.ini"/>
 			    <exclude name="gt-arcsde-*.jar"/>
 			    <exclude name="gt-arcsde-*.jar"/>
 			    <exclude name="icu4j-*.jar"/>
