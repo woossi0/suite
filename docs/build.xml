@@ -84,9 +84,14 @@
     <target name="publish" depends="init">
         <antcall target="publish-artifact"/>
         <antcall target="publish-artifact">
-            <param name="name" value="pdfdoc"/>
+            <param name="name" value="pdfdoc-basic"/>
             <param name="path" value="docs"/>
         </antcall>
+        <antcall target="publish-artifact">
+            <param name="name" value="pdfdoc-enterprise"/>
+            <param name="path" value="docs"/>
+        </antcall>
+
         <antcall target="publish-artifact">
             <param name="name" value="osx-readme"/>
             <param name="path" value="docs"/>
