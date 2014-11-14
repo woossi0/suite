@@ -44,13 +44,7 @@ OpenGeo Suite for Ubuntu Linux has the following system requirements:
 Pre-installation process
 ------------------------
 
-.. only:: basic
-
-   This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details about the possible packages to install.
-
-.. only:: enterprise
-
-   This installation will add the OpenGeo Suite package repositories and then install the appropriate packages. See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details about the possible packages to install.
+This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details about the possible packages to install.
 
 .. warning:: Mixing repositories with is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
 
@@ -68,23 +62,25 @@ The commands in this section require root privileges.
 
       wget -qO- http://apt.boundlessgeo.com/gpg.key | apt-key add - 
 
-#. Add the OpenGeo Suite Basic repository.
+.. only:: basic
 
-   * If installing on Precise:
+   #. Add the OpenGeo Suite repository.
 
-     .. code-block:: bash
+      * If installing on Precise:
 
-        echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
+        .. code-block:: bash
 
-   * If installing on Trusty:
+           echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
 
-     .. code-block:: bash
+      * If installing on Trusty:
 
-        echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
+        .. code-block:: bash
+
+           echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
 
 .. only:: enterpise
 
-   #. Add the OpenGeo Suite Enterprise repository. This repository contains all the Enterprise-specific features. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
+   #. Add the OpenGeo Suite Enterprise repository. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
       * If installing on Precise:
 
