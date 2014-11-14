@@ -9,6 +9,7 @@
             <exclude name="**/*-enterprise.rst"/>
             <exclude name="**/*-basic.rst"/>
             <exclude name="intro/composer.rst"/>
+            <exclude name="intro/installation/war/*"/>
           </fileset>
        </copy>
        <copy todir="${basedir}/basic">
