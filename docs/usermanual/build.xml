@@ -8,6 +8,7 @@
           <fileset dir="source">
             <exclude name="**/*-enterprise.rst"/>
             <exclude name="**/*-basic.rst"/>
+            <exclude name="intro/composer.rst"/>
           </fileset>
        </copy>
        <copy todir="${basedir}/basic">
@@ -35,6 +36,7 @@
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/basic"/>
          <param name="outdir" value="${basedir}/target/html/basic"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/basic"/>
          <param name="flags" value="-t basic"/>
        </antcall>
      </target>
@@ -44,6 +46,7 @@
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/enterprise"/>
          <param name="outdir" value="${basedir}/target/html/enterprise"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/enterprise"/>
          <param name="flags" value="-t enterprise"/>
        </antcall>
      </target>
@@ -57,12 +60,14 @@
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/basic"/>
          <param name="outdir" value="${basedir}/target/text/basic"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/basic"/>
          <param name="builder" value="text"/>
          <param name="flags" value="-t basic"/>
        </antcall>
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/enterprise"/>
          <param name="outdir" value="${basedir}/target/text/enterprise"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/enterprise"/>
          <param name="builder" value="text"/>
          <param name="flags" value="-t enterprise"/>
        </antcall>
@@ -77,6 +82,7 @@
                <antcall target="sphinx">
                  <param name="dir" value="${basedir}/basic"/>
                  <param name="outdir" value="${basedir}/target/latex/basic"/>
+                 <param name="doctrees" value="${basedir}/target/doctrees/basic"/>
                  <param name="builder" value="latex"/>
                  <param name="flags" value="-t basic"/>
                </antcall>
@@ -86,6 +92,7 @@
                <antcall target="sphinx">
                  <param name="dir" value="${basedir}/enterprise"/>
                  <param name="outdir" value="${basedir}/target/latex/enterprise"/>
+                 <param name="doctrees" value="${basedir}/target/doctrees/enterprise"/>
                  <param name="builder" value="latex"/>
                  <param name="flags" value="-t enterprise"/>
                </antcall>
@@ -106,6 +113,10 @@
         <antcall target="build-pdf"/>
     </target>
 
-    <target name="clean" depends="destroy"/>
+    <target name="clean" depends="destroy">
+       <delete dir="target"/>
+       <delete dir="basic"/>
+       <delete dir="enterprise"/>
+    </target>
   
 </project>
