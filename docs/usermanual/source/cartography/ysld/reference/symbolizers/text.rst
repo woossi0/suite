@@ -249,7 +249,7 @@ The following properties are equivalent to SLD "vendor options".
      - No
      - Desired distance (in pixels) between labels drawn on a group. If zero, only one label will be drawn. Used in conjunction with ``x-group``. Valid for lines only.
      - 0
-   * - ``maxAngleDelta``
+   * - ``x-maxAngleDelta``
      - No
      - Maximum allowed angle (in degrees) between two characters in a curved label. Used in conjunction with ``x-followLine``. Values higher than ``30`` may cause loss of legibility of the label.
      - 22.5
