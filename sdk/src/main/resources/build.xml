@@ -218,7 +218,9 @@
         </copy>
         <copy todir="${app.build}">
             <fileset dir="${app.fullpath}">
-                <include name="*"/>
+                <include name="**/*"/>
+                <exclude name="src/**/*"/>
+                <exclude name="buildjs.cfg"/>
             </fileset>
         </copy>
         <!-- replace debug versions with production versions -->
