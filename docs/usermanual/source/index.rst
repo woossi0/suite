@@ -6,11 +6,11 @@ OpenGeo Suite User Manual
 
 .. only:: basic
 
-   This User Manual will help you get the most out of OpenGeo Suite Basic.
+   This User Manual will help you get the most out of OpenGeo Suite.
 
 .. only:: enterprise
     
-   This User Manual will help you get the most out of OpenGeo Suite Enterprise.
+   This User Manual will help you get the most out of **OpenGeo Suite Enterprise**.
 
 .. only:: (not basic) and (not enterprise )
 

@@ -3,4 +3,85 @@
 A tour of Composer
 ==================
 
-TBD
+This section will introduce the Composer interface.
+
+The Composer interface consists of two main sections:
+
+* :ref:`Configuration <webmaps.composer.configuration>` 
+* :ref:`Style/View <webmaps.composer.styleview>`
+
+The Configuration pages regard the composition of maps, the availability of layers, and the data that comprises them. The Styling pages provide an interface for viewing and styling layers and maps, with the view updating in real-time.
+
+Login
+-----
+
+Because of the ability to make low-level configuration changes to GeoServer, **access to Composer is only granted to users with administrative rights to GeoServer**.
+
+.. figure:: img/login.png
+
+   Login page for Composer
+
+Enter an administrative user name and password and click :guilabel:`Login` to access Composer. When you first log in, you will be in the Configuration section.
+
+Home page / Recent
+------------------
+
+This page is shown when first logging in to Composer. It contains a list of recently accessed resources (if any), and also includes a three-step section on :guilabel:`Getting Started with Composer`.
+
+.. figure:: img/home.png
+
+   Home page showing Getting Started with Composer
+
+.. note:: See the :ref:`webmaps.composer.tutorial` for more details on the Composer workflow.
+
+Toolbar
+-------
+
+When logged in, the top of the application will always contain three links:
+
+* **Home**, by clicking the :guilabel:`Composer` logo
+* **Help**, to bring up this documentation
+* **User settings**, with links to the GeoServer Admin interface and to logout
+
+Navigation panel
+----------------
+
+All Configuration pages contain the same Navigation panel on the left side of the screen. This panel contains the following options:
+
+* :guilabel:`New` menu: Creates a new project workspace.
+* :guilabel:`Project Workspaces`: Lists all project workspaces available on the server. If the screen size is small, or if the list of project workspaces is large, a :guilabel:`More` link will appear, which will take you to the :guilabel:`All Project Workspaces` page.
+
+   * Within each project workspace listing, there are individual links to view the list of that project workspace's :guilabel:`Maps`, :guilabel:`Layers`, and :guilabel:`Data`.
+
+* :guilabel:`All Maps`: Lists all maps in all project workspaces.
+* :guilabel:`All Layers`: Lists all published layers
+* :guilabel:`Recent`: Shows all recently accessed resources.
+
+.. figure:: img/navpanel.png
+
+   Navigation panel
+
+The Navigation panel can be collapsed and expanded by clicking the arrow at the top of the panel. While collapsed, all of the functionality is still available.
+
+Terminology
+-----------
+
+In order to make map-making easier for those new to the tools, some of the terms used in Composer may be different from what you are used to. The following table may make using Composer easier:
+
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Term
+     - Description
+     - GeoServer equivalent
+   * - Project Workspace
+     - A container for layers and maps. All work in Composer happens inside a given project workspace
+     - Workspace (or namespace)
+   * - Maps
+     - A collection of one or more (styled) layers to be viewed simultaneously. The purpose of Composer is to make the creation of these easier.
+     - Layer groups
+   * - Layers
+     - A collection of geospatial features, all from a common source
+     - Layers
