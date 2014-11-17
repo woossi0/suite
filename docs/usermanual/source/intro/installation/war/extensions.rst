@@ -1,9 +1,47 @@
 .. _intro.installation.war.extensions:
 
-Installing extensions
-=====================
+Extensions
+==========
 
-GeoServer :ref:`extensions <intro.extensions>` are distributed as a separate archive. Each extension is contained in a directory inside the archive. Files contained in these directories can be manually extracted.
+GeoServer :ref:`extensions <intro.extensions>` are distributed as a separate archive. Each extension is contained in a directory inside the archive. Files contained in these directories can be manually extracted and installed.
+
+.. tabularcolumns:: |p{5cm}|p{7cm}|
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+   :class: non-responsive
+
+   * - Directory
+     - Description
+   * - ``arcsde``
+     - ArcSDE middleware extension for GeoServer
+   * - ``cluster``
+     - Clustering extension for GeoServer. Use with ``jdbcconfig``.
+   * - ``css``
+     - CSS styling extension for GeoServer
+   * - ``csw``
+     - Catalogue Service for Web (CSW) extension for GeoServer
+   * - ``db2``
+     - DB2 database extension for GeoServer
+   * - ``geopkg``
+     - GeoPackage extension for GeoServer
+   * - ``jdbcconfig``
+     - Database catalog and configuration extension for GeoServer. Use with ``cluster``.
+   * - ``mapmeter``
+     - Mapmeter extension for GeoServer
+   * - ``mongodb``
+     - MongoDB data format extension for GeoServer
+   * - ``oracle``
+     - Oracle database extension for GeoServer
+   * - ``scripting``
+     - Scripting extension for GeoServer
+   * - ``sqlserver``
+     - SQL Server database extension for GeoServer
+   * - ``wps``
+     - Web Processing Service (WPS) extension for GeoServer
+
+Installation
+------------
 
 To install an extension:
 
