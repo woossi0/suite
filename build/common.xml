@@ -11,6 +11,9 @@ Common build targets.
     <condition property="suite.build_name" value="${env.BUILD_NAME}">
       <isset property="env.BUILD_NAME"/>
     </condition>
+    <condition property="suite.build_profile" value="${env.BUILD_PROFILE}">
+      <isset property="env.BUILD_PROFILE"/>
+    </condition>
 
     <!-- first load settings defined by system property -->
     <property file="${build.settings}"/>
@@ -127,6 +130,8 @@ Common build targets.
           file="target/version.ini" append="true"/>
       <echo message="build_prettydate=${suite.build_prettydate}${line.separator}" 
             file="target/version.ini" append="true"/>
+      <echo message="build_profile=${suite.build_profile}${line.separator}" 
+          file="target/version.ini" append="true"/>
     </target>
 
     <!-- 
