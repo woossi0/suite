@@ -69,10 +69,6 @@
                 <exclude name="*.txt"/>
                 <exclude name="*.TXT"/>
                 <exclude name="*.ini"/>
-			    <exclude name="gt-arcsde-*.jar"/>
-			    <exclude name="gt-arcsde-*.jar"/>
-			    <exclude name="icu4j-*.jar"/>
-			    <exclude name="jsqlparser-*.jar"/>
 			    <exclude name="imageio-ext-geocore-*.jar"/>
 			    <exclude name="gt-geopkg-12-*.jar"/>
 			    <exclude name="sqlite-jdbc-*.jar"/>
@@ -82,7 +78,6 @@
 			    <exclude name="gt-process-raster-*.jar"/>
 			    <exclude name="gt-xsd-kml-*.jar"/>
 			    <exclude name="json-simple-*.jar"/>
-			    <exclude name="gt-jdbc-oracle-*.jar"/>
 			    <exclude name="imageio-ext-imagereadmt-*.jar"/>
 			    <exclude name="gt-process-geometry-*.jar"/>
 			</patternset>
