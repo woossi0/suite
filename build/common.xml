@@ -179,8 +179,15 @@ Common build targets.
         <property name="includes" value="**/*"/>
         <property name="excludes" value=""/>
 
+        <condition property="artifact_suffix"
+          value="-${suite.build_profile}" else="">
+          <not>
+            <equals arg1="${suite.build_profile}" arg2="basic"/>
+          </not>
+        </condition>
+
         <property name="artifact_file" 
-            value="target/suite-${name}-${suite.build_rev}.zip"/>
+            value="target/suite-${name}-${suite.build_rev}${artifact_suffix}.zip"/>
 
         <delete file="${artifact_file}"/>
         <zip destfile="${artifact_file}">
@@ -201,15 +208,22 @@ Common build targets.
         <property name="name" value="${ant.project.name}"/>
         <property name="path" value="${name}"/>
 
+        <condition property="artifact_suffix"
+          value="-${suite.build_profile}" else="">
+          <not>
+            <equals arg1="${suite.build_profile}" arg2="basic"/>
+          </not>
+        </condition>
+
         <property name="artifact_dir" 
           value="${suite.build_root}/${suite.build_branch}/${suite.build_cat}/${path}"/>
         <property name="artifact_file" 
-            value="suite-${name}-${suite.build_rev}.zip"/>
+            value="suite-${name}-${suite.build_rev}${artifact_suffix}.zip"/>
 
         <mkdir dir="${artifact_dir}"/>
         <copy file="target/${artifact_file}" todir="${artifact_dir}" overwrite="true"/>  
         <symlink resource="${artifact_dir}/${artifact_file}" 
-          link="${artifact_dir}/suite-${name}-${suite.build_name}.zip" 
+          link="${artifact_dir}/suite-${name}-${suite.build_name}${artifact_suffix}.zip" 
           overwrite="true" failonerror="false"/>
 
         <!--
