@@ -165,6 +165,12 @@
         <copy todir="${app.build}/src/ol3">
             <fileset dir="${app.fullpath}/src/ol3"/>
         </copy>
+        <!-- copy ol3-cesium resources -->
+        <copy todir="${app.build}/src/ol3-cesium">
+            <fileset dir="${app.fullpath}/src/ol3-cesium">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
     </target>
 
     <target name="copy-openlayers" if="use.openlayers">
