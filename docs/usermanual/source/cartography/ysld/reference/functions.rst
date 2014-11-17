@@ -113,14 +113,20 @@ Display rotated arrows at line endpoints
 
 The ``startPoint(geom)`` and ``endPoint(geom)`` functions take a geometry as an argument and returns the start and end points of the geometry respectively. The ``startAngle(geom)`` and ``endAngle(geom)`` functions take a geometry as an argument and return the angle of the line terminating at the start and end points of the geometry respectively.  These functions can be used to display an arrow at the end of a line geometry, and rotate it to match the direction of the line::
 
-  point:
-    geometry: ${endPoint(geom)}
-    rotation: ${endAngle(geom)+90}
-    size: 10
-    symbols:
-    - mark:
-        shape: triangle
-
+  feature-styles:
+  - rules:
+    - symbolizers:
+        - line:
+            stroke-width: 1
+        - point:
+            geometry: ${endPoint(geom)}
+            rotation: ${endAngle(geom)}
+            size: 24
+            symbols:
+            - mark:
+                shape: 'shape://carrow'
+                fill-color: 000000
+ 
 .. figure:: img/functions_arrows.png
 
    Endpoint arrows
