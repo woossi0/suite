@@ -21,13 +21,13 @@
      
      <target name="stage-enterprise">
        <!-- process source into target/enterprise -->
-       <copy todir="${basedir}/enterprise">
+       <copy todir="${basedir}/ee">
           <fileset dir="source">
             <exclude name="**/*-enterprise.rst"/>
             <exclude name="**/*-basic.rst"/>
           </fileset>
        </copy>
-       <copy todir="${basedir}/enterprise">
+       <copy todir="${basedir}/ee">
           <fileset dir="source"/>
           <globmapper from="*-enterprise.rst" to="*.rst"/>
        </copy>
@@ -46,9 +46,9 @@
      <target name="enterprise" depends="stage-enterprise"
        description="Build enterprise docs">
        <antcall target="sphinx">
-         <param name="dir" value="${basedir}/enterprise"/>
-         <param name="outdir" value="${basedir}/target/html/enterprise"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/enterprise"/>
+         <param name="dir" value="${basedir}/ee"/>
+         <param name="outdir" value="${basedir}/target/html/ee"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
          <param name="flags" value="-t enterprise"/>
        </antcall>
      </target>
@@ -67,9 +67,9 @@
          <param name="flags" value="-t basic"/>
        </antcall>
        <antcall target="sphinx">
-         <param name="dir" value="${basedir}/enterprise"/>
-         <param name="outdir" value="${basedir}/target/text/enterprise"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/enterprise"/>
+         <param name="dir" value="${basedir}/ee"/>
+         <param name="outdir" value="${basedir}/target/text/ee"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
          <param name="builder" value="text"/>
          <param name="flags" value="-t enterprise"/>
        </antcall>
@@ -86,7 +86,7 @@
                  <include name="**/opengeo-logo-only-blue.png"/>
                  </fileset>
                </copy>
-               <copy todir="${basedir}/target/latex/enterprise">
+               <copy todir="${basedir}/target/latex/ee">
                  <fileset dir="${basedir}/../themes/suite_rtd_theme/static/img/">
                  <include name="**/opengeo-logo-only-blue.png"/>
                  </fileset>
@@ -102,13 +102,13 @@
                  <arg line="all-pdf"/>
                </exec>
                <antcall target="sphinx">
-                 <param name="dir" value="${basedir}/enterprise"/>
-                 <param name="outdir" value="${basedir}/target/latex/enterprise"/>
-                 <param name="doctrees" value="${basedir}/target/doctrees/enterprise"/>
+                 <param name="dir" value="${basedir}/ee"/>
+                 <param name="outdir" value="${basedir}/target/latex/ee"/>
+                 <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
                  <param name="builder" value="latex"/>
                  <param name="flags" value="-t enterprise"/>
                </antcall>
-               <exec executable="make" failonerror="true" dir="target/latex/enterprise">
+               <exec executable="make" failonerror="true" dir="target/latex/ee">
                  <arg line="all-pdf"/>
                </exec>
              </sequential>
@@ -127,7 +127,7 @@
     <target name="clean" depends="destroy">
        <delete dir="target"/>
        <delete dir="basic"/>
-       <delete dir="enterprise"/>
+       <delete dir="ee"/>
     </target>
   
 </project>
