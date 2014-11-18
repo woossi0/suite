@@ -276,15 +276,24 @@ Color based on discrete values
 In certain cases, theming functions can be used in place of filters to produce similar output much more simply. For example, the Recode function can take an attribute and output a different value based on an attribute value. So instead of various filters, the entire constructions can be done in a single line. For example, this could be used to color different types of buildings::
 
   feature-styles:
-  - name: name1
+  - name: name
     rules:
     - symbolizers:
       - polygon:
-          fill-color: ${recode(zone, 'I-L', '#FF7700', 'I-H', '#BB6600', 'C-H', '#0077BB', 'C-R', '#00BBDD', 'C-C', '#00DDFF', '', '#777777')}
+          fill-color: > 
+            ${recode(zone, 
+            'I-L', '#FF7700', 
+            'I-H', '#BB6600', 
+            'C-H', '#0077BB', 
+            'C-R', '#00BBDD', 
+            'C-C', '#00DDFF', 
+            '', '#777777')}
 
 In the above example, the attribute is ``zone`` , and then each subsequent pair consists of an attribute value followed by a color.
 
 .. note:: The ``recode`` function, along with ``categorize`` and ``interpolate``, requires that all colors be in the form of ``'#rrggbb'``.
+
+.. note:: The ``>`` character allows the function to span multiple lines.
 
 .. todo:: Add figure
 
@@ -300,9 +309,18 @@ The Categorize function returns a different value depending on which range (cate
        - polygon:
           stroke-color: '000000'
           stroke-width: 0.5
-          fill-color: ${categorize(YEARBLT, '#DD4400', 1950,'#AA4400', 1960,'#886600', 1970,'#668800', 1980,'#44BB00', 1990,'#22DD00',2000,'#00FF00')}
+          fill-color: > 
+            ${categorize(YEARBLT, '#DD4400', 
+            1950,'#AA4400',
+            1960,'#886600',
+            1970,'#668800',
+            1980,'#44BB00',
+            1990,'#22DD00',
+            2000,'#00FF00')}
 
 .. note:: The ``categorize`` function, along with ``recode`` and ``interpolate``, requires that all colors be in the form of ``'#rrggbb'``.
+
+.. note:: The ``>`` character allows the function to span multiple lines.
 
 Choropleth map
 ~~~~~~~~~~~~~~
