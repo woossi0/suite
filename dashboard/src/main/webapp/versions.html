@@ -14,23 +14,24 @@
   <body>
     <div class="container-full">
       <div class="navbar navbar-static navbar-inverse" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand"></a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a class="homelink tablink" href="index.html">Dashboard</a></li>
-            <li><a id="gslink" class="tablink" href="index.html#gettingstarted">Getting Started</a></li>
-            <li class="active"><a id="_documentationlink" class="tablink" href="/opengeo-docs/">Documentation</a></li>
-            <li class="hidden-xs"><h5 class="text-center version-info"><span class="version"></span></h5></li>
-          </ul>
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"></a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a class="homelink tablink" href="index.html">Dashboard</a></li>
+              <li><a id="gslink" class="tablink" href="index.html#gettingstarted">Getting Started</a></li>
+              <li class="active"><a id="_documentationlink" class="tablink" href="/opengeo-docs/">Documentation</a></li>
+              <li class="hidden-xs"><h5 class="text-center version-info"><span class="version"></span></h5></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -42,7 +43,50 @@
           <h2>Recent Releases</h2>
           <p class="well upgrade-note">If you're upgrading from a previous version, be sure to read the instructions on <a href="http://suite.opengeo.org/opengeo-docs/installation/index.html#upgrading" target="_blank">Upgrading OpenGeo Suite</a> and backup your data beforehand.</p>
           <div class="panel-group" id="release-accordion">
-                        <h3 class="release-no">4.1.1 <small style="margin-left: 25px;">Released September 2, 2014</small></h3>
+            <h3 class="release-no">4.5 <small style="margin-left: 25px;">Released December 4, 2014</small></h3>
+            <h4 style="margin-left: 16px;">
+              <a href="/opengeo-docs/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
+            </h4>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#release-accordion" href="#collapseZero">
+                        <span class="accordion-icon"></span><span class="doc-text">Release Notes</span>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseZero" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <h4>OpenGeo Suite changes:</h4>
+                    <ul>
+                      <li>OpenLayers 3 - Cesium</li>
+                    </ul>
+                    <p>This release also includes the following <strong>Component</strong> upgrades:</p>
+                    <h4>GeoServer 2.x</h4>
+                    <ul style="margin-bottom: 25px;">
+                      <li></li>
+                      <span style="line-height: 24px;">[Reference: <a href="http://blog.geoserver.org/2014/07/23/geoserver-2-5-2-release/" style="color: black;">GeoServer release notes</a>]</span>
+                    </ul>
+                    <h4>GeoWebCache 1.5.x</h4>
+                    <ul style="margin-bottom: 25px;">
+                      <li></li>
+                      <span style="line-height: 24px;">[Reference: <a href="https://github.com/GeoWebCache/geowebcache/blob/master/RELEASE_NOTES.txt" style="color: black;">GWC release notes</a>]</span>
+                    </ul>
+                    <h4>GeoTools 11.2</h4>
+                    <ul>
+                      <li></li>
+                      <span style="line-height: 24px;">[Reference: <a href="http://geotoolsnews.blogspot.com/2014/07/geotools-112-released.html" style="color: black;">GeoTools release notes</a>]</span>
+                    </ul>
+                    <br/>
+                    <p><strong>Components included:</strong></p>
+                    <ul>
+                      <li></li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            <!-- 4.1.1 Release -->
+            <h3 class="release-no">4.1.1 <small style="margin-left: 25px;">Released September 2, 2014</small></h3>
             <h4 style="margin-left: 16px;">
               <a href="/opengeo-docs/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
             </h4>
@@ -113,6 +157,7 @@
                   </div>
                 </div>
             </div>
+            <!-- 4.1 Release -->
             <h3 class="release-no">4.1 <small>Released June 26, 2014</small></h3>
             <h4 style="margin-left: 16px;">
               <a href="/docs/4.1/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
@@ -209,6 +254,7 @@
                   </div>
                 </div>
             </div>
+            <!-- 4.0.2 Release -->
             <h3 class="release-no">4.0.2 <small style="margin-left: 15px;">Released January 23, 2014</small></h3>
             <h4 style="margin-left: 16px;">
               <a href="http://suite.opengeo.org/docs/4.0.2/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
@@ -251,6 +297,7 @@
                   </div>
                 </div>
             </div>
+            <!-- 4.0 Release -->
             <h3 class="release-no">4.0 <small>Released November 05, 2013</small></h3>
             <h4 style="margin-left: 16px;">
               <a href="http://suite.opengeo.org/docs/4.0/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>

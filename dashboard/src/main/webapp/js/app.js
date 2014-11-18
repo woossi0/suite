@@ -84,6 +84,8 @@ function onLoad() {
   if (build_profile==='ee') {
     var header = $('#header-tag');
     header.addClass('navbar-ee');
+    var docs_link = $('#_documentationlink');
+    docs_link.attr('href', '/opengeo-docs/enterprise/');
     $('.build_profile').show();
   } else {
     $('.build_profile').hide();
