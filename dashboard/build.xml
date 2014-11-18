@@ -54,6 +54,13 @@
       </antcall>
     </target>
 
-    <target name="publish" depends="publish-artifact"/>
+    <target name="publish" depends="init">
+      <antcall target="publish-artifact">
+        <param name="suite.build_profile" value="basic"/>
+      </antcall>
+      <antcall target="publish-artifact">
+        <param name="suite.build_profile" value="ee"/>
+      </antcall>
+    </target>
 
 </project>
