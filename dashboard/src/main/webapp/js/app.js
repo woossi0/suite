@@ -82,7 +82,8 @@ function onLoad() {
   // Add version info to all version spans
   var build_profile = '@build_profile@';
   if (build_profile==='ee') {
-    $('#header-tag').html('Enterprise');
+    var header = $('#header-tag');
+    header.addClass('navbar-ee');
     $('.build_profile').show();
   } else {
     $('.build_profile').hide();

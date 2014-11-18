@@ -140,9 +140,9 @@ a:focus, a:active {
   height: 40px;
 }
 
-#header-tag {
-  display: inline-block;
-  margin-left: 5px;
+.navbar-brand.navbar-ee {
+  background: #28728d url(../img/opengeo-logo-ee.png) no-repeat left center;
+  width: 501px;
 }
 
 .build_profile {
@@ -727,6 +727,24 @@ footer div.boundless-logo:hover {
   }
 }
 
+@media screen and (max-width: 972px) {
+  .navbar-brand.navbar-ee {
+    background: #28728d url(../img/opengeo-logo-ee@small.png) no-repeat left center;
+    width: 242px;
+    height: 32px;
+    margin-top: 1%;
+  }
+}
+@media (max-width: 972px) and (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+  .navbar-brand.navbar-ee {
+    background: #28728d url(../img/opengeo-logo-ee@small@2x.png) no-repeat left center;
+    width: 242px;
+    height: 32px;
+    margin-top: 8px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .navbar-brand {
     background: #28728d url(../img/opengeo-logo@small.png) no-repeat left center;
@@ -734,15 +752,6 @@ footer div.boundless-logo:hover {
     height: 32px;
     margin: 6px 0;
     padding-left: 0;
-  }
-  media
-  (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi) {
-    .navbar-brand {
-      background: #28728d url(../img/opengeo-logo@small@2x.png) no-repeat left center;
-      width: 241px;
-      height: 32px;
-    }
   }
 
   .navbar-inverse .navbar-collapse {
@@ -836,7 +845,21 @@ footer div.boundless-logo:hover {
     padding: 0 15px;
   }
 
-} /* end max-width: 768px */
+}
+
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+  .navbar-brand {
+    background: #28728d url(../img/opengeo-logo@small@2x.png) no-repeat left center;
+    width: 241px;
+    height: 32px;
+    margin-top: 8px;
+  }
+}
+
+
+
+/* end max-width: 768px */
 
 @media screen and (min-width: 768px) {
   .hidden-xs {
