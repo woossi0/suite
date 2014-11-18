@@ -90,10 +90,10 @@ The following uses the :ref:`cartography.rt.heatmap` process to convert a point 
           color-map:
             type: ramp
             entries:
-            - (ffffff,0,0.0,nodata)
-            - (4444ff,1,0.1,nodata)
-            - (ff0000,1,0.5,values)
-            - (ffff00,1,1.0,values)
+            - ('#FFFFFF',0,0.0,nodata)
+            - ('#4444FF',1,0.1,nodata)
+            - ('#FF0000',1,0.5,values)
+            - ('#FFFF00',1,1.0,values)
 
 
 Point Stacker

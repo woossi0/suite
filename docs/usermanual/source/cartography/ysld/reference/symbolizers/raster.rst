@@ -193,9 +193,9 @@ This example shows a color ramp from red to green to blue, with raster band valu
       color-map:
         type: ramp
         entries:
-        - (ff0000, 1, 0, red)
-        - (00ff00, 1, 100, green)
-        - (0000ff, 1, 200, blue)
+        - ('#FF0000', 1, 0, red)
+        - ('#00FF00', 1, 100, green)
+        - ('#0000FF', 1, 200, blue)
 
 In this example, the grid values will have the following colors applied:
 
@@ -218,9 +218,9 @@ The same example as above, but with the ``color-map`` type set to ``intervals``:
       color-map:
         type: intervals
         entries:
-        - (ff0000, 1, 0, red)
-        - (00ff00, 1, 100, green)
-        - (0000ff, 1, 200, blue)
+        - ('#FF0000', 1, 0, red)
+        - ('#00FF00', 1, 100, green)
+        - ('#0000FF', 1, 200, blue)
 
 In this example, the grid values will have the following colors applied:
 
@@ -243,9 +243,9 @@ The same example as above, but with the ``color-map`` type set to ``values``::
       color-map:
         type: values
         entries:
-        - (ff0000, 1, 0, red)
-        - (00ff00, 1, 100, green)
-        - (0000ff, 1, 200, blue)
+        - ('#FF0000', 1, 0, red)
+        - ('#00FF00', 1, 100, green)
+        - ('#0000FF', 1, 200, blue)
 
 In this example, the grid values will have the following colors applied:
 
