@@ -140,6 +140,15 @@ a:focus, a:active {
   height: 40px;
 }
 
+#header-tag {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.build_profile {
+  display: none;
+}
+
 .nav-light {
   font-weight: 300;
 }

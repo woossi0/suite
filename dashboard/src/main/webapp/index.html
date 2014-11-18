@@ -13,23 +13,26 @@
   <body onload="onLoad()">
     <div class="container-full">
       <div class="navbar navbar-static navbar-inverse" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand"></a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a class="homelink tablink" href="">Dashboard</a></li>
-            <li><a id="gslink" class="tablink" href="">Getting Started</a></li>
-            <li><a id="_documentationlink" class="tablink" href="versions.html">Documentation</a></li>
-            <li class="hidden-xs"><h5 class="text-center version-info"><span class="version"></span></h5></li>
-          </ul>
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div>
+              <a class="navbar-brand"></a> <span class="build_profile" id="header-tag"></span>
+            </div>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a class="homelink tablink" href="">Dashboard</a></li>
+              <li><a id="gslink" class="tablink" href="">Getting Started</a></li>
+              <li><a id="_documentationlink" class="tablink" href="versions.html">Documentation</a></li>
+              <li class="hidden-xs"><h5 class="text-center version-info"><span class="version"></span></h5></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -38,8 +41,31 @@
     <div class="container">
 
       <div class="tab-content main">
-
         <div class="tab-pane active" id="home">
+          <div class="row build_profile">
+            <div class="col-md-6">
+              <div class="dash-tier">New in Suite 4.5 for Enterprise</div>
+              <div class="dash-component">
+                <h3>Composer</h3>
+                <div class="btn-group btn-group-justified" style="max-width: 70%;">
+                  <div class="btn-group half">
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/geoserver/composer">Get Started <span class="fa fa-arrow-circle-right"></span></a>
+                  </div>
+                  <div class="btn-group half">
+                    <a type="button" class="btn btn-default btn-sm quicklink" href="/opengeo-docs/enterprise/cartography/ysld/composer.html">Docs</a>
+                  </div>
+                </div>
+                <p>
+                  Style and create Maps easily in Composer, using YSLD,<br/>
+                  a compact version of GeoServer's SLD markup language.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <img class="img-responsive" src="img/composer.png" style="margin: 10px auto;" />
+            </div>
+          </div>
+          <hr class="build_profile" />
           <div class="row">
             <div class="col-md-4">
               <div class="dash-tier">Database</div>
