@@ -15,48 +15,83 @@ The heatmap view is created by configuring a layer with an SLD style which invok
 Usage
 -----
 
-As with all rendering transformations, the transformation is invoked by adding a ``<Transformation>`` element to a ``<FeatureTypeStyle>`` in an SLD style. The SLD can then be applied to any layer which is backed by a suitable dataset (featuretype).  The dataset may have a weight attribute, whose name is supplied to the process via the ``weightAttr`` process parameter.
+As with all rendering transformations, the transformation is invoked by adding a ransform to a feature type style. The style can then be applied to any layer which is backed by a suitable dataset (featuretype).  The dataset may have a weight attribute, whose name is supplied to the process via the ``weightAttr`` process parameter.
 
-The transformation is specified with a ``<ogc:Function name="gs:Heatmap">`` element, with arguments which supply the transformation parameters.
-The arguments are specified using the special function ``<ogc:Function name='parameter'>``.  Each function has as arguments:
+.. only:: basic
 
-* an ``<ogc:Literal>`` giving the name of the parameter
-* one or more literals containing the value(s) of the parameter.
+   The transformation is specified with a ``<ogc:Function name="gs:Heatmap">`` element, with arguments which supply the transformation parameters.
 
-The transformation parameters are as follows.  The order of parameters is not significant.
+   The transformation parameters are as follows.  The order of parameters is not significant.
 
-.. tabularcolumns:: |p{4cm}|p{1.5cm}|p{9.5cm}|
-.. list-table::
-   :widths: 40, 15, 45
-   :header-rows: 1
+   .. tabularcolumns:: |p{4cm}|p{1.5cm}|p{9.5cm}|
+   .. list-table::
+      :widths: 40, 15, 45
+      :header-rows: 1
 
-   * - Name
-     - Required?
-     - Description
-   * - ``data``
-     - Yes
-     - Input FeatureCollection containing the features to map.
-   * - ``radiusPixels``
-     - Yes
-     - Radius of the density kernel (in pixels).
-   * - ``weightAttr``
-     - No
-     - Name of the weight attribute. (default = 1)
-   * - ``pixelsPerCell``
-     - No
-     - Resolution of the computed grid. Larger values improve performance, but may degrade appearance if too large. (default = 1)
-   * - ``outputBBOX``
-     - Yes
-     - Georeferenced bounding box of the output.
-   * - ``outputWidth``
-     - Yes
-     - Output image width.
-   * - ``outputHeight``
-     - Yes
-     - Output image height.
+      * - Name
+        - Required?
+        - Description
+      * - ``data``
+        - Yes
+        - Input FeatureCollection containing the features to map.
+      * - ``radiusPixels``
+        - Yes
+        - Radius of the density kernel (in pixels).
+      * - ``weightAttr``
+        - No
+        - Name of the weight attribute. (default = 1)
+      * - ``pixelsPerCell``
+        - No
+        - Resolution of the computed grid. Larger values improve performance, but may degrade appearance if too large. (default = 1)
+      * - ``outputBBOX``
+        - Yes
+        - Georeferenced bounding box of the output.
+      * - ``outputWidth``
+        - Yes
+        - Output image width.
+      * - ``outputHeight``
+        - Yes
+        - Output image height.
+   
+   The arguments are specified using the special function ``<ogc:Function name='parameter'>``.  Each function has as arguments:
 
+   * an ``<ogc:Literal>`` giving the name of the parameter
+   * one or more literals containing the value(s) of the parameter.
 
-The transformation has required parameters which specify the input data extent and the output image dimensions.  The values of these parameters are obtained from environment variables accessed via the function ``<ogc:Function name="env">``.  The environment variable values are determined from the WMS request which initiated the rendering process.  The parameters and corresponding environment variables are:
+.. only:: enterprise
+   
+   The transformation is specified with a the function ``gs:Heatmap``, with arguments which supply the transformation parameters.
+   
+   The transformation parameters are as follows.  The order of parameters is not significant.
+
+   .. tabularcolumns:: |p{4cm}|p{1.5cm}|p{9.5cm}|
+   .. list-table::
+      :widths: 40, 15, 45
+      :header-rows: 1
+
+      * - Name
+        - Required?
+        - Description
+      * - ``radiusPixels``
+        - Yes
+        - Radius of the density kernel (in pixels).
+      * - ``weightAttr``
+        - No
+        - Name of the weight attribute. (default = 1)
+      * - ``pixelsPerCell``
+        - No
+        - Resolution of the computed grid. Larger values improve performance, but may degrade appearance if too large. (default = 1)
+      * - ``outputBBOX``
+        - Yes
+        - Georeferenced bounding box of the output.
+      * - ``outputWidth``
+        - Yes
+        - Output image width.
+      * - ``outputHeight``
+        - Yes
+        - Output image height.
+
+The transformation has required parameters which specify the output image dimensions.  The values of these parameters are obtained from environment variables accessed via the function ``env``.  The environment variable values are determined from the WMS request which initiated the rendering process.  The parameters and corresponding environment variables are:
 
 * ``outputBBOX`` uses variable ``wms_bbox`` to obtain the surface extent
 * ``outputWidth`` uses variable ``wms_width`` to obtain the output raster width
@@ -73,108 +108,97 @@ Optionally, features can be weighted by supplying an weight attribute name using
 Output
 ------
 
-The output of the transformation is a single-band **raster**.  Each pixel has a floating-point value in the range [0..1] measuring the density of the pixel relative to the rest of the surface.  The raster can be styled using a ``<RasterSymbolizer>``.
+The output of the transformation is a single-band **raster**.  Each pixel has a floating-point value in the range [0..1] measuring the density of the pixel relative to the rest of the surface.  The generated raster can be styled using a raster symbolizer.
 
-In order for the SLD to be correctly validated, the RasterSymbolizer ``<Geometry>`` element must be present to specify the name of the input geometry attribute (using ``<Geometry><ogc:PropertyName>...</ogc:PropertyName></Geometry>``)
+.. only:: basic
 
-Example
--------
+   In order for the SLD to be correctly validated, the RasterSymbolizer ``<Geometry>`` element must be present to specify the name of the input geometry attribute (using ``<Geometry><ogc:PropertyName>...</ogc:PropertyName></Geometry>``)
 
-The heatmap surface in the map image above is produced by the following SLD.  (The map image also shows the original input data points styled by another SLD, as well as a base map layer.)  You can adapt this SLD to your data with minimal effort by adjusting the parameters.
+.. only:: enterprise
 
-.. code-block:: xml
-   :linenos:
+   In order for the YSLD to be correctly validated, the raster symbolizer ``geometry`` element must be present to specify the name of the input geometry attribute (using ``geometry: ${...}``)
 
-      <?xml version="1.0" encoding="ISO-8859-1"?>
-      <StyledLayerDescriptor version="1.0.0"
-          xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
-          xmlns="http://www.opengis.net/sld"
-          xmlns:ogc="http://www.opengis.net/ogc"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <NamedLayer>
-          <Name>Heatmap</Name>
-          <UserStyle>
-            <Title>Heatmap</Title>
-            <Abstract>A heatmap surface showing population density</Abstract>
-            <FeatureTypeStyle>
-              <Transformation>
-                <ogc:Function name="gs:Heatmap">
-                  <ogc:Function name="parameter">
-                    <ogc:Literal>data</ogc:Literal>
-                  </ogc:Function>
-                  <ogc:Function name="parameter">
-                    <ogc:Literal>weightAttr</ogc:Literal>
-                    <ogc:Literal>pop2000</ogc:Literal>
-                  </ogc:Function>
-                  <ogc:Function name="parameter">
-                    <ogc:Literal>radiusPixels</ogc:Literal>
-                    <ogc:Function name="env">
-                      <ogc:Literal>radius</ogc:Literal>
-                      <ogc:Literal>100</ogc:Literal>
-                    </ogc:Function>
-                  </ogc:Function>
-                  <ogc:Function name="parameter">
-                    <ogc:Literal>pixelsPerCell</ogc:Literal>
-                    <ogc:Literal>10</ogc:Literal>
-                  </ogc:Function>
-                  <ogc:Function name="parameter">
-                    <ogc:Literal>outputBBOX</ogc:Literal>
-                    <ogc:Function name="env">
-                      <ogc:Literal>wms_bbox</ogc:Literal>
-                    </ogc:Function>
-                  </ogc:Function>
-                  <ogc:Function name="parameter">
-                    <ogc:Literal>outputWidth</ogc:Literal>
-                    <ogc:Function name="env">
-                      <ogc:Literal>wms_width</ogc:Literal>
-                    </ogc:Function>
-                  </ogc:Function>
-                  <ogc:Function name="parameter">
-                    <ogc:Literal>outputHeight</ogc:Literal>
-                    <ogc:Function name="env">
-                      <ogc:Literal>wms_height</ogc:Literal>
-                    </ogc:Function>
-                  </ogc:Function>
-                </ogc:Function>
-              </Transformation>
-              <Rule>
-                <RasterSymbolizer>
-                <!-- specify geometry attribute of input to pass validation -->
-                  <Geometry><ogc:PropertyName>the_geom</ogc:PropertyName></Geometry>
-                  <Opacity>0.6</Opacity>
-                  <ColorMap type="ramp" >
-                    <ColorMapEntry color="#FFFFFF" quantity="0" label="nodata" opacity="0"/>
-                    <ColorMapEntry color="#FFFFFF" quantity="0.02" label="nodata" opacity="0"/>
-                    <ColorMapEntry color="#4444FF" quantity=".1" label="nodata"/>
-                    <ColorMapEntry color="#FF0000" quantity=".5" label="values" />
-                    <ColorMapEntry color="#FFFF00" quantity="1.0" label="values" />
-                  </ColorMap>
-                </RasterSymbolizer>
-              </Rule>
-            </FeatureTypeStyle>
-          </UserStyle>
-        </NamedLayer>
-       </StyledLayerDescriptor>
+.. only:: enterprise
 
-In the SLD **lines 14-53** define the Heatmap rendering transformation,
-giving values for the transformation parameters which are appropriate for the input dataset.
-**Line 17** specifies the input dataset parameter name.
-**Line 21** specifies the dataset attribute which provides a weighting for the input points.
-**Line 27** specifies a kernel density radius of 100 pixels.
-**Line 32** defines the resolution of computation to be 10 pixels per cell,
-which provides efficient rendering time while still providing output of reasonable visual quality.
-**Lines 34-52** define the output parameters, which are
-obtained from internal environment variables set during rendering, as described above.
+   YSLD Example
+   ------------
 
-**Lines 55-66** define the symbolizer used to style the raster computed by the transformation.
-**Line 57** defines the geometry property of the input dataset, which is required for SLD validation purposes.
-**Line 58** specifies an overall opacity of 0.6 for the rendered layer.
-**Lines 59-65** define a color map with which to symbolize the output raster.
-The color map uses a **type** of ``ramp``, which produces a smooth
-transition between colors.
-**Line 60-61** specifies that raster values of 0.02 or less should be displayed with a fully transparent color of white,
-which makes areas where there no influence from data points invisible.
+   The heatmap surface in the map image above is produced by the following YSLD.  (The map image also shows the original input data points styled by another style, as well as a base map layer.)  You can adapt this YSLD example to your data with minimal effort by adjusting the parameters.
+
+   .. code-block:: YAML
+      :linenos:
+      :emphasize-lines: 6-11,20-24
+ 
+      title: Heatmap
+      feature-styles:
+      - transform:
+          name: gs:Heatmap
+          params:
+            weightAttr: pop2000
+            radiusPixels: 100
+            pixelsPerCell: 10
+            outputBBOX: ${env('wms_bbox')}
+            outputWidth: ${env('wms_width')}
+            outputHeight: ${env('wms_height')}
+        rules:
+        - symbolizers:
+          - raster:
+              geometry: the_geom
+              opacity: 0.6
+              color-map:
+                type: ramp
+                entries:
+                - (0xffffff,0,0.0,'nodata')
+                - (0x4444ff,0,0.02,'nodata')
+                - (0xff0000,1,0.1,'nodata')
+                - (0xffff00,1,0.5,'values')
+                - (0xffff00,1,1.0,'values')
+
+   The YSLD example defines the Heatmap rendering transformation giving values for the transformation parameters which are appropriate for the input dataset.
+   Parameter **weightAttr** specifies the dataset attribute which provides a weighting for the input points.
+   Parameter **radiusPixels** specifies a kernel density radius of 100 pixels.
+   Parameter **pixelsPerCell** defines the resolution of computation to be 10 pixels per cell,
+   which provides efficient rendering time while still providing output of reasonable visual quality.
+   Parameters **outputBBOX**, **outputWidth**, **outputHeight** define the output parameters, which are
+   obtained from internal environment variables set during rendering, as described above.
+
+   The **raster** symbolizer is used to style the raster generated by the transformation.
+   **geometry** defines the geometry property of the input dataset, which is required for validation purposes.
+   Parameter **opacity** specifies an overall opacity of 0.6 for the rendered layer.
+   Parameter **color-map** define a color map with which to symbolize the output raster.
+
+   The color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The **entries* between 0.0 and 0.02 are displayed with a fully transparent color of white, which makes areas where there no influence from data points invisible.
+
+.. only:: basic
+
+   SLD Example
+   -----------
+
+   The heatmap surface in the map image above is produced by the following :download:`heatmap_example.sld <artifact/heatmap_example.sld>`.  (The map image also shows the original input data points styled by another SLD, as well as a base map layer.)  You can adapt heatmap_example.sld to your data with minimal effort by adjusting the parameters.
+
+   .. literalinclude:: artifact/heatmap_example.sld
+      :linenos:
+      :emphasize-lines: 17,21,27,32,57,58,59-65,60-61
+
+   In the SLD **lines 14-53** define the Heatmap rendering transformation,
+   giving values for the transformation parameters which are appropriate for the input dataset.
+   **Line 17** specifies the input dataset parameter name.
+   **Line 21** specifies the dataset attribute which provides a weighting for the input points.
+   **Line 27** specifies a kernel density radius of 100 pixels.
+   **Line 32** defines the resolution of computation to be 10 pixels per cell,
+   which provides efficient rendering time while still providing output of reasonable visual quality.
+   **Lines 34-52** define the output parameters, which are
+   obtained from internal environment variables set during rendering, as described above.
+
+   **Lines 55-66** define the symbolizer used to style the raster computed by the transformation.
+   **Line 57** defines the geometry property of the input dataset, which is required for SLD validation purposes.
+   **Line 58** specifies an overall opacity of 0.6 for the rendered layer.
+   **Lines 59-65** define a color map with which to symbolize the output raster.
+
+   The color map uses a **type** of ``ramp``, which produces a smooth
+   transition between colors.
+   **Line 60-61** specifies that raster values of 0.02 or less should be displayed with a fully transparent color of white,
+   which makes areas where there no influence from data points invisible.
 
 
 
