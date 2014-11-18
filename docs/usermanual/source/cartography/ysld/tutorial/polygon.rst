@@ -28,9 +28,9 @@ Viewing the existing style
       - title: yellow polygon
         symbolizers:
         - polygon:
-            stroke-color: 000000
+            stroke-color: '#000000'
             stroke-width: 0.5
-            fill-color: ffff00
+            fill-color: '#FFFF00'
 
 Setting basic styling
 ---------------------
@@ -46,11 +46,11 @@ Polygon symbolizers provide options for styling both fill (inside) and stroke (o
 
       * - Parameter
         - Description
-      * - ``fill-color: efefc3``
+      * - ``fill-color: '#EFEFC3'``
         - Change the fill color to a pale brown
       * - ``fill-opacity: 0.5``
         - Make the fill 50% transparent
-      * - ``stroke-color: 777777``
+      * - ``stroke-color: '#777777'``
         - Change the stroke color
       * - ``stroke-dasharray: '4 4'``
         - Use dashed lines of 4px with 4px gaps
@@ -66,10 +66,10 @@ Polygon symbolizers provide options for styling both fill (inside) and stroke (o
         rules:
         - symbolizers:
           - polygon:
-              stroke-color: 777777
+              stroke-color: '#777777'
               stroke-dasharray: '4 4'
               stroke-width: 0.5
-              fill-color: efefc3
+              fill-color: '#EFEFC3'
               fill-opacity: 0.5
 
    And the layer now will look like this:
@@ -93,19 +93,19 @@ Suppose we wish to display different colors for each country. The countries laye
       * - Filter
         - Parameter
       * - ``MAPCOLOR7 = 1``
-        - ``fill-color: ffc3c3``
+        - ``fill-color: '#FFC3C3'``
       * - ``MAPCOLOR7 = 2``
-        - ``fill-color: ffe3c3``
+        - ``fill-color: '#FFE3C3'``
       * - ``MAPCOLOR7 = 3``
-        - ``fill-color: ffffc3``
+        - ``fill-color: '#FFFFC3'``
       * - ``MAPCOLOR7 = 4``
-        - ``fill-color: c3ffe3``
+        - ``fill-color: '#C3FFE3'``
       * - ``MAPCOLOR7 = 5``
-        - ``fill-color: c3ffff``
+        - ``fill-color: '#C3FFFF'``
       * - ``MAPCOLOR7 = 6``
-        - ``fill-color: c3c3ff``
+        - ``fill-color: '#C3C3FF'``
       * - ``MAPCOLOR7 = 7``
-        - ``fill-color: bfc3ff``
+        - ``fill-color: '#BFC3FF'``
 
 #. After adding the filters, the style will look like::
 
@@ -117,58 +117,58 @@ Suppose we wish to display different colors for each country. The countries laye
       - filter: ${MAPCOLOR7 = 1}
         symbolizers:
         - polygon:
-            stroke-color: 777777
+            stroke-color: '#777777'
             stroke-dasharray: '4 4'
             stroke-width: 0.5
-            fill-color: ffc3c3
+            fill-color: '#FFC3C3'
             fill-opacity: 0.5
       - filter: ${MAPCOLOR7 = 2}
         symbolizers:
         - polygon:
-            stroke-color: 777777
+            stroke-color: '#777777'
             stroke-dasharray: '4 4'
             stroke-width: 0.5
-            fill-color: ffe3c3
+            fill-color: '#FFE3C3'
             fill-opacity: 0.5
       - filter: ${MAPCOLOR7 = 3}
         symbolizers:
         - polygon:
-            stroke-color: 777777
+            stroke-color: '#777777'
             stroke-dasharray: '4 4'
             stroke-width: 0.5
-            fill-color: ffffc3
+            fill-color: '#FFFFC3'
             fill-opacity: 0.5
       - filter: ${MAPCOLOR7 = 4}
         symbolizers:
         - polygon:
-            stroke-color: 777777
+            stroke-color: '#777777'
             stroke-dasharray: '4 4'
             stroke-width: 0.5
-            fill-color: c3ffe3
+            fill-color: '#C3FFE3'
             fill-opacity: 0.5
       - filter: ${MAPCOLOR7 = 5}
         symbolizers:
         - polygon:
-            stroke-color: 777777
+            stroke-color: '#777777'
             stroke-dasharray: '4 4'
             stroke-width: 0.5
-            fill-color: c3ffff
+            fill-color: '#C3FFFF'
             fill-opacity: 0.5
       - filter: ${MAPCOLOR7 = 6}
         symbolizers:
         - polygon:
-            stroke-color: 777777
+            stroke-color: '#777777'
             stroke-dasharray: '4 4'
             stroke-width: 0.5
-            fill-color: c3c3ff
+            fill-color: '#C3C3FF'
             fill-opacity: 0.5
       - filter: ${MAPCOLOR7 = 7}
         symbolizers:
         - polygon:
-            stroke-color: 777777
+            stroke-color: '#777777'
             stroke-dasharray: '4 4'
             stroke-width: 0.5
-            fill-color: bfc3ff
+            fill-color: '#BFC3FF'
             fill-opacity: 0.5
 
    .. figure:: img/poly_color.png
@@ -198,7 +198,7 @@ While filters are very useful, the required syntax is quite long, and much of th
       - title: countries
         symbolizers:
         - polygon:
-            stroke-color: 777777
+            stroke-color: '#777777'
             stroke-dasharray: '4 4'
             stroke-width: 0.5
             fill-opacity: 0.5
@@ -221,7 +221,7 @@ Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ys
       - title: countries
         symbolizers:
         - polygon:
-            stroke-color: 777777
+            stroke-color: '#777777'
             stroke-dasharray: '4 4'
             stroke-width: 0.5
             fill-opacity: 0.5
@@ -250,7 +250,7 @@ Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ys
         - Change the font to SansSerif
       * - ``font-weight: bold``
         - Make the font bold
-      * - ``fill-color: 333333``
+      * - ``fill-color: '#333333'``
         - Change the font color to dark gray
 
 #. This gives a much nicer font style, but the label placement is still poor. We can use some additional options to fix this:
@@ -284,7 +284,7 @@ The full style now looks like this::
         - title: countries
           symbolizers:
           - polygon:
-              stroke-color: 777777
+              stroke-color: '#777777'
               stroke-dasharray: '4 4'
               stroke-width: 0.5
               fill-opacity: 0.5
@@ -294,7 +294,7 @@ The full style now looks like this::
               font-size: 14
               font-family: SansSerif
               font-weight: bold
-              fill-color: 333333
+              fill-color: '#333333'
               x-autoWrap: 100
               x-maxDisplacement: 200
               x-goodnessOfFit: 0.8

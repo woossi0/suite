@@ -121,9 +121,9 @@ A point symbolizer draws a point at the center of any geometry. It is defined by
           symbols:
           - mark:
               shape: square
-              fill-color: ff0000
+              fill-color: '#FF0000'
               fill-opacity: 0.75
-              stroke-color: 000000
+              stroke-color: '#000000'
               stroke-width: 1.5
               stroke-opacity: 1
           size: 20

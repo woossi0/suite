@@ -81,13 +81,13 @@ So the following complete styles are equivalent::
   - rules:
     - symbolizers:
       - line:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 2
 
 ::
 
   line:
-    stroke-color: 000000
+    stroke-color: '#000000'
     stroke-width: 2
 
 Examples

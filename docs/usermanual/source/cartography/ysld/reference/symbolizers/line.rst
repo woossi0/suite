@@ -67,7 +67,7 @@ This example draws lines with transparent black lines with rounded ends and shar
   - rules:
     - symbolizers:
       - line:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 8
           stroke-opacity: 0.5
           stroke-linejoin: mitre
@@ -90,10 +90,10 @@ Many maps use a hatched pattern to represent railroads. This can be accomplished
     rules:
     - symbolizers:
       - line:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 1
       - line:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 12
           stroke-dasharray: '1 24'
 
@@ -111,7 +111,7 @@ The units for ``stroke-width``, ``size``, and other similar attributes default t
   - rules:
     - symbolizers:
       - line:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: '8 m'
 
 .. figure:: img/line_uomsmall.png

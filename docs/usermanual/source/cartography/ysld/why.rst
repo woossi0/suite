@@ -26,7 +26,7 @@ SLD:
 
 YSLD::
 
-    fill-color: ff0000
+    fill-color: '#FF0000'
 
 In SLD, the XML-based nature of the content obscures the important aspects of the directive in the middle of the line. With YSLD, the attribute and the value are clearly marked and associated with no extraneous information, making comprehension easier.
 
@@ -70,8 +70,8 @@ YSLD::
         symbols:
         - mark:
             shape: circle
-            fill-color: ff0000
-            stroke-color: 000000
+            fill-color: '#FF0000'
+            stroke-color: '#000000'
             stroke-width: 2
 
 While the SLD comes in at 300 characters, the YSLD equivalent comes in at about half that. Also, by not using an XML-based markup language, the removal of open and close tags make the document to look much simpler and be much more compact. 
@@ -109,13 +109,13 @@ YSLD, by contrast, does not require any of the directives to be ordered, so long
 
 For example, the following are both equally valid::
 
-  fill-color: ff0000
-  stroke-color: 000000
+  fill-color: '#FF0000'
+  stroke-color: '#000000'
 
 and::
 
-  stroke-color: 000000
-  fill-color: ff0000
+  stroke-color: '#000000'
+  fill-color: '#FF0000'
 
 
 .. _cartography.ysld.why.variables:
@@ -172,8 +172,8 @@ In YSLD, all the directives that occur multiple times can be replaced with a var
 
   define: &variable
     shape: circle
-    fill-color: ff0000
-    stroke-color: 000000
+    fill-color: '#FF0000'
+    stroke-color: '#000000'
 
   rules:
   - name: rule1

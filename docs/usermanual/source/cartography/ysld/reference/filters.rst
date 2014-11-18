@@ -140,12 +140,12 @@ Filters are used to style different features of a layer based on certain conditi
     - filter: ${streetname ILIKE '%hwy'}
         symbolizers:
         - line:
-            stroke-color: 007799
+            stroke-color: '#007799'
             stroke-width: 8
     - filter: ${streetname ILIKE '%rd'}
         symbolizers:
         - line:
-            stroke-color: 00aa00
+            stroke-color: '#00AA00'
             stroke-width: 4
     - else: true
         symbolizers:
@@ -171,33 +171,33 @@ Filters can also be used to color a map based on attributes of the data. The fol
     - filter: ${YEARBLT > 2000}
       symbolizers:
       - polygon:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 0.5
-          fill-color: 00ff00
+          fill-color: '#00FF00'
     - filter: ${YEARBLT > 1990 AND YEARBLT < 2000}
       symbolizers:
       - polygon:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 0.5
-          fill-color: 22dd00
+          fill-color: '#22DD00'
     - filter: ${YEARBLT > 1980 AND YEARBLT < 1990}
       symbolizers:
       - polygon:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 0.5
-          fill-color: 44bb00
+          fill-color: '#44BB00'
     - filter: ${YEARBLT > 1970 AND YEARBLT < 1980}
       symbolizers:
       - polygon:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 0.5
-          fill-color: 668800
+          fill-color: '#668800'
     - else: true
       symbolizers:
       - polygon:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 0.5
-          fill-color: dd4400
+          fill-color: '#DD4400'
 
 .. figure:: img/filters_categories.png
 
@@ -214,11 +214,11 @@ Spatial filters can be used to filter a layer based on its geometry. The ``bbox`
     - filter: bbox(the_geom, -122.9, 42.36, -122.85, 42.28)
       symbolizers:
       - polygon:
-           fill-color: 99cc00
+           fill-color: '#99CC00'
     - else: true
       symbolizers:
       - polygon:
-           fill-color: 0099cc
+           fill-color: '#0099CC'
 
 .. figure:: img/filters_bbox.png
 
@@ -234,11 +234,11 @@ Spatial filters can also be used to compare layer geometries against arbitrary g
     - filter: within(the_geom, POLYGON ((-122.9075 42.3625, -122.8225 42.3625, -122.8268 42.2803, -122.9075 42.3625)))
       symbolizers:
       - polygon:
-          fill-color: 00cc00
+          fill-color: '#00CC00'
     - else: true
       symbolizers:
       - polygon:
-          fill-color: 0099cc
+          fill-color: '#0099CC'
 
 .. figure:: img/filters_within.png
 

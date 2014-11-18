@@ -77,9 +77,9 @@ Polygon symbolizers have both a stroke and a fill, similar to marks for point sy
     - title: fill-graphic
       symbolizers:  
       - polygon:
-          fill-color: ff0000
+          fill-color: '#FF0000'
           fill-opacity: 0.9
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 8
           stroke-opacity: 1
           stroke-linejoin: bevel
@@ -103,7 +103,7 @@ The ``fill-graphic`` property is used to fill a geometry with a repeating graphi
             symbols:
             - mark:
                 shape: square
-                fill-color: 000000
+                fill-color: '#000000'
             size: 8
           x-graphic-margin: 16 16 0 0
       - polygon:
@@ -112,7 +112,7 @@ The ``fill-graphic`` property is used to fill a geometry with a repeating graphi
             symbols:
             - mark:
                 shape: square
-                fill-color: 000000
+                fill-color: '#000000'
             size: 8
           x-graphic-margin: 0 0 16 16
 
@@ -137,7 +137,7 @@ Normally, the graphic used for the ``fill-graphic`` property is tiled. Alternati
             symbols:
               - mark:
                   shape: circle
-                  fill-color: 000000
+                  fill-color: '#000000'
             size: 3
             x-random: grid
             x-random-seed: 2

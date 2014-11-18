@@ -110,13 +110,13 @@ So the following complete styles are both equivalent::
       scale: (,50000)
       symbolizers:
       - line:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 2
     - name: rule2
       scale: (50000,)
       symbolizers:
       - line:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 1
 
 ::
@@ -126,13 +126,13 @@ So the following complete styles are both equivalent::
     scale: (,50000)
     symbolizers:
     - line:
-        stroke-color: 000000
+        stroke-color: '#000000'
         stroke-width: 2
   - name: rule2
     scale: (50000,)
     symbolizers:
     - line:
-        stroke-color: 000000
+        stroke-color: '#000000'
         stroke-width: 1
 
 Examples
@@ -150,7 +150,7 @@ This example shows how a smaller line can be drawn on top of a larger line, crea
     - name: outer_rule
       symbolizers:
       - line:
-          stroke-color: 808080
+          stroke-color: '#808080'
           stroke-width: 8
   - name: inner
     title: Inner line
@@ -158,7 +158,7 @@ This example shows how a smaller line can be drawn on top of a larger line, crea
     - name: inner_rule
       symbolizers:
       - line:
-          stroke-color: 44ff88
+          stroke-color: '#44FF88'
           stroke-width: 6
 
 In order to draw the inner lines always on top of the outer lines, the rule in encased in its own feature style. When drawn, the outer line has a width of 8 pixels and the inner line has a width of 6 pixels, so the line "border" is 1 pixel (on each side).

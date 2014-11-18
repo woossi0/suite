@@ -117,11 +117,11 @@ The point stacker transform can be used to combine points that are close togethe
           symbols:
           - mark:
               shape: circle
-              fill-color: ee0000
+              fill-color: '#EE0000'
     - filter: count > 1
       symbolizers:
       - text:
-            fill-color: ffffff
+            fill-color: '#FFFFFF'
             font-family: Arial
             font-size: 10
             font-weight: bold

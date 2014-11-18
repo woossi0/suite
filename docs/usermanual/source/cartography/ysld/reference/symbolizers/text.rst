@@ -289,7 +289,7 @@ Text symbolizers are used to draw labels on objects. The label text is usually l
       symbolizers:
       - text:
           label: ${name}
-          fill-color: 555555
+          fill-color: '#555555'
           font-family: SansSerif
           font-size: 12
           font-style: italic
@@ -331,7 +331,7 @@ Wrapping long labels can improve how well they fit on maps. This can be accompli
     - symbolizers:
       - polygon:
           stroke-width: 1
-          fill-color: 00dd77
+          fill-color: '#00DD77'
       - text:
           label: ${name}
           font-size: 12
@@ -354,7 +354,7 @@ Surrounding labels with a halo will allow them to be visible even on complex map
     - symbolizers:  
       - polygon:
           stroke-width: 1
-          fill-color: 00dd77
+          fill-color: '#00DD77'
       - text:
           label: ${name}
           font-size: 12
@@ -362,7 +362,7 @@ Surrounding labels with a halo will allow them to be visible even on complex map
           x-maxDisplacement: 100
           halo:
              radius: 2
-             fill-color: ffffff
+             fill-color: '#FFFFFF'
              fill-opacity: 0.8
           anchor: (0.5, -1)
 
@@ -406,7 +406,7 @@ In order to have a label follow a line (and not be drawn tangent to a line), the
   - rules:
     - symbolizers:
       - line:
-          stroke-color: ededff
+          stroke-color: '#EDEDFF'
           stroke-width: 10
       - text:
           label: name
@@ -428,7 +428,7 @@ The ``x-labelObstacle`` option is used to mark a different symbolizer as an obst
   - rules:
     - symbolizers:
         - line:
-            stroke-color: 00bbdd
+            stroke-color: '#00BBDD'
             stroke-width: 10
   - rules:
     - symbolizers:
@@ -438,8 +438,8 @@ The ``x-labelObstacle`` option is used to mark a different symbolizer as an obst
             symbols:
             - mark:
                 shape: circle
-                stroke-color: 000000
-                fill-color: 007777
+                stroke-color: '#000000'
+                fill-color: '#007777'
         - text:
             label: ${streetname}
             x-maxDisplacement: 400

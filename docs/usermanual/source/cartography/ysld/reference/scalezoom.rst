@@ -69,19 +69,19 @@ Three rules, all applicable at different scales::
     symbolizers:
     - line:
         stroke-width: 3
-        stroke-color: 0165cd
+        stroke-color: '#0165CD'
   - name: medium_scale
     scale: (100000,200000)
     symbolizers:
     - line:
         stroke-width: 2
-        stroke-color: 0165cd
+        stroke-color: '#0165CD'
   - name: high_scale
     scale: (200000,)
     symbolizers:
     - line:
         stroke-width: 1
-        stroke-color: 0165cd
+        stroke-color: '#0165CD'
 
 This example will display lines with:
 
@@ -299,19 +299,19 @@ Zoom examples
 ..     symbolizers:
 ..     - line:
 ..         stroke-width: 1
-..         stroke-color: 0165cd       
+..         stroke-color: '#0165CD'       
 ..   - name: medium_zoom
 ..     zoom: (3,5)
 ..     symbolizers:
 ..     - line:
 ..         stroke-width: 2
-..         stroke-color: 0165cd       
+..         stroke-color: '#0165CD'       
 ..   - name: high_zoom
 ..     zoom: (6,)
 ..     symbolizers:
 ..     - line:
 ..         stroke-width: 3
-..         stroke-color: 0165cd
+..         stroke-color: '#0165CD'
 
 .. This example will display lines with:
 

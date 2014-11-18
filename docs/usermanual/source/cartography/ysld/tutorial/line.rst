@@ -26,7 +26,7 @@ Viewing the existing style
         - filter: ${scalerank < 4}
           symbolizers:
           - line:
-              stroke-color: 000000
+              stroke-color: '#000000'
               stroke-width: 1
 
    The layer now appears much less cluttered:
@@ -55,18 +55,18 @@ If we zoom in, we want to see all the roads, not just those included in our filt
         filter: ${scalerank < 4}
         symbolizers:
         - line:
-            stroke-color: 000000
+            stroke-color: '#000000'
             stroke-width: 1
       - scale: (2000000,8000000)
         filter: ${scalerank < 8}
         symbolizers:
         - line:
-            stroke-color: 000000
+            stroke-color: '#000000'
             stroke-width: 1
       - scale: (,2000000)
         symbolizers:
         - line:
-            stroke-color: 000000
+            stroke-color: '#000000'
             stroke-width: 1
 
    .. note:: You can replace the scale values with scientific notation if you'd like: ``8e6`` for ``8000000``, ``2e6`` for ``2000000``.
@@ -83,7 +83,7 @@ On the smaller scales, we want some differentiation between roads based of the f
       filter: ${featurecla = 'Ferry'}
       symbolizers:
       - line:
-          stroke-color: 00ccff
+          stroke-color: '#00CCFF'
 
 #. Further modify this rule to use a dashed line. Add the following at the bottom, at the same indentation as the ``stroke-color``::
 
@@ -104,7 +104,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
       filter: ${expressway = 1}
       symbolizers:
       - line:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 6
           stroke-linecap: round
 
@@ -117,7 +117,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
         filter: ${expressway = 1}
         symbolizers:
         - line:
-            stroke-color: ffcc00
+            stroke-color: '#FFCC00'
             stroke-width: 4
             stroke-linecap: round
 
@@ -136,7 +136,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
         filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
         symbolizers:
         - line:
-            stroke-color: 333333
+            stroke-color: '#333333'
             stroke-width: 1
 
 Using ``else`` to account for all other features
@@ -153,7 +153,7 @@ To accomplish this, we can make an ``else`` rule. This means that it will only a
       else: true
       symbolizers:
       - line:
-          stroke-color: 777777
+          stroke-color: '#777777'
           stroke-width: 0.5
 
 Final style
@@ -170,14 +170,14 @@ After all these changes, the final style should look like this::
       filter: ${scalerank < 4}
       symbolizers:
       - line:
-          stroke-color: 333333
+          stroke-color: '#333333'
           stroke-width: 0.5
     - name: expressway
       scale: (,8000000)
       filter: ${expressway = 1}
       symbolizers:
       - line:
-          stroke-color: 000000
+          stroke-color: '#000000'
           stroke-width: 6
           stroke-linecap: round
     - name: ferry
@@ -185,7 +185,7 @@ After all these changes, the final style should look like this::
       filter: ${featurecla = 'Ferry'}
       symbolizers:
       - line:
-          stroke-color: 00ccff
+          stroke-color: '#00CCFF'
           stroke-width: 2
           stroke-dasharray: '4 6'
     - name: roads
@@ -193,14 +193,14 @@ After all these changes, the final style should look like this::
       filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
       symbolizers:
       - line:
-          stroke-color: 333333
+          stroke-color: '#333333'
           stroke-width: 1
     - name: else
       scale: (,2000000)
       else: true
       symbolizers:
       - line:
-          stroke-color: 777777
+          stroke-color: '#777777'
           stroke-width: 0.5
   - name: inner
     rules:
@@ -209,7 +209,7 @@ After all these changes, the final style should look like this::
       filter: ${expressway = 1}
       symbolizers:
       - line:
-          stroke-color: ffcc00
+          stroke-color: '#FFCC00'
           stroke-width: 4
           stroke-linecap: round
 

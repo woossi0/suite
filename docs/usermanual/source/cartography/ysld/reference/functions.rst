@@ -125,7 +125,7 @@ The ``startPoint(geom)`` and ``endPoint(geom)`` functions take a geometry as an 
             symbols:
             - mark:
                 shape: 'shape://carrow'
-                fill-color: 000000
+                fill-color: '#000000'
  
 .. figure:: img/functions_arrows.png
 
@@ -143,7 +143,7 @@ The ``offset(geom, x, y)`` function takes a geometry and two values, and displac
     - symbolizers:
       - polygon:
           stroke-width: 0.0
-          fill-color: 000000
+          fill-color: '#000000'
           fill-opacity: 0.75
           geometry: ${offset(geom, 0.0001, -0.0001)}
   - name: fill
@@ -151,7 +151,7 @@ The ``offset(geom, x, y)`` function takes a geometry and two values, and displac
     - symbolizers:
       - polygon:
         stroke-width: 0.0
-        fill-color: 00ffff
+        fill-color: '#00FFFF'
 
 .. figure:: img/functions_dropshadow.png
 
@@ -166,12 +166,12 @@ The ``buffer(geom, buffer)`` function takes a geometry and a value as arguments,
   - name: shoreline
     rules:
     - polygon:
-        fill-color: 00bbff
+        fill-color: '#00BBFF'
         geometry: ${buffer(geom, 0.00025)}
   - name: land
     rules:
     - polygon:
-        fill-color: 00dd00
+        fill-color: '#00DD00'
 
 .. figure:: img/functions_buffer.png
 

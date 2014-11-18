@@ -35,7 +35,7 @@ There are a lot of points in this data set, and we don't want to draw all of the
               symbols:
               - mark:
                   shape: square
-                  fill-color: ffff00
+                  fill-color: '#FFFF00'
 
 #. Now, just like we did in the previous section, add a text symbolizer referencing the ``NAME`` attribute to display the names of the cities::
 
@@ -51,7 +51,7 @@ There are a lot of points in this data set, and we don't want to draw all of the
               symbols:
               - mark:
                   shape: square
-                  fill-color: ffff00
+                  fill-color: '#FFFF00'
           - text:
               label: ${NAME}
 
@@ -73,7 +73,7 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
           symbols:
           - mark:
               shape: star
-              fill-color: 000000
+              fill-color: '#000000'
 
    This draws a black star 7 pixels in high.
 
@@ -84,7 +84,7 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
           symbols:
           - mark:
               shape: circle
-              stroke-color: 000000
+              stroke-color: '#000000'
 
    This draws the outline of a black circle, 8 pixels in diameter.
 
@@ -118,13 +118,13 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
             symbols:
             - mark:
                 shape: star
-                fill-color: 000000
+                fill-color: '#000000'
         - point:
             size: 8
             symbols:
             - mark:
                 shape: circle
-                stroke-color: 000000
+                stroke-color: '#000000'
         - text:
             label: ${NAME}
             font-weight: bold
@@ -149,13 +149,13 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
             symbols:
             - mark:
                 shape: star
-                fill-color: 000000
+                fill-color: '#000000'
         - point:
             size: ${log(POP2015)/log(2)}
             symbols:
             - mark:
                 shape: circle
-                stroke-color: 000000
+                stroke-color: '#000000'
         - text:
             label: ${NAME}
             font-weight: bold
@@ -194,7 +194,7 @@ To improve the display further, we can add scale rules.
               symbols:
               - mark:
                   shape: circle
-                  fill-color: 000000
+                  fill-color: '#000000'
         - scale: (,1e8)
           filter: ${ADM0CAP = 1}
           symbolizers:
@@ -203,13 +203,13 @@ To improve the display further, we can add scale rules.
               symbols:
               - mark:
                   shape: star
-                  fill-color: 000000
+                  fill-color: '#000000'
           - point:
               size: ${log(POP2015)/log(2)}
               symbols:
               - mark:
                   shape: circle
-                  stroke-color: 000000
+                  stroke-color: '#000000'
         - scale: (,5e7)
           filter: ${ADM0CAP = 1}  
           symbolizers:
@@ -229,8 +229,8 @@ To improve the display further, we can add scale rules.
             symbols:
             - mark:
                 shape: circle
-                stroke-color: 000000
-                fill-color: 777777
+                stroke-color: '#000000'
+                fill-color: '#777777'
                 fill-opacity: 0.5
     - scale: (,5e6)
       else: true
@@ -240,8 +240,8 @@ To improve the display further, we can add scale rules.
             symbols:
             - mark:
                 shape: circle
-                stroke-color: 000000
-                fill-color: 777777
+                stroke-color: '#000000'
+                fill-color: '#777777'
                 fill-opacity: 0.5
         - text:
             label: ${NAME}
@@ -268,7 +268,7 @@ The full style is now::
           symbols:
           - mark:
               shape: circle
-              fill-color: 000000
+              fill-color: '#000000'
     - scale: (,1e8)
       filter: ${ADM0CAP = 1}
       symbolizers:
@@ -277,13 +277,13 @@ The full style is now::
           symbols:
           - mark:
               shape: star
-              fill-color: 000000
+              fill-color: '#000000'
       - point:
           size: ${log(POP2015)/log(2)}
           symbols:
           - mark:
               shape: circle
-              stroke-color: 000000
+              stroke-color: '#000000'
     - scale: (,5e7)
       filter: ${ADM0CAP = 1}  
       symbolizers:
@@ -300,8 +300,8 @@ The full style is now::
             symbols:
             - mark:
                 shape: circle
-                stroke-color: 000000
-                fill-color: 777777
+                stroke-color: '#000000'
+                fill-color: '#777777'
                 fill-opacity: 0.5
     - scale: (,5e6)
       else: true
@@ -311,8 +311,8 @@ The full style is now::
             symbols:
             - mark:
                 shape: circle
-                stroke-color: 000000
-                fill-color: 777777
+                stroke-color: '#000000'
+                fill-color: '#777777'
                 fill-opacity: 0.5
         - text:
             label: ${NAME}

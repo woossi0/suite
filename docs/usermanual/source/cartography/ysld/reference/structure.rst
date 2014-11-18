@@ -14,9 +14,9 @@ Here is a simple example of a YSLD style containing a single rule inside a singl
        title: Every feature will be styled this way
        symbolizers:
        - polygon:
-           fill-color: 808080
+           fill-color: '#808080'
            fill-opacity: 0.5
-           stroke-color: 000000
+           stroke-color: '#000000'
            stroke-opacity: 0.75
 
 This would style every polygon feature in a given layer with the given RGB color codes (a medium gray for a fill and black for the outline), with the given opacities for both fill and stroke being given in decimals indicating percentage (so 0.5 is 50% opaque).
@@ -120,8 +120,8 @@ For example, a :ref:`symbolizer <cartography.ysld.reference.symbolizers>` block 
 The ``point:`` and ``text:`` objects (the individual symbolizers themselves) are mappings, and as such, the contents do not require dashes, only indents::
 
   - polygon:
-      stroke-color: 808080
-      fill-color: ff0000
+      stroke-color: '#808080'
+      fill-color: '#FF0000'
 
 The dash next to ``polygon`` means that the item itself is contained in a list, not that it contains a list. And **the placement of the dash is at the same level of indentation as the list title.**
 
@@ -156,9 +156,9 @@ For example, the polygon symbolizer, since it is a mapping, contains certain par
 In this example, the following markup is **correct**::
 
        - polygon:
-           fill-color: 808080
+           fill-color: '#808080'
            fill-opacity: 0.5
-           stroke-color: 000000
+           stroke-color: '#000000'
            stroke-opacity: 0.75
 
 The parameters inside the polygon (symbolizer) are indented, meaning that they are referencing the symbolizer and are not "outside it."
@@ -166,9 +166,9 @@ The parameters inside the polygon (symbolizer) are indented, meaning that they a
 Compare to the following **incorrect** markup::
 
        - polygon:
-         fill-color: 808080
+         fill-color: '#808080'
          fill-opacity: 0.5
-         stroke-color: 000000
+         stroke-color: '#000000'
          stroke-opacity: 0.75
 
 The parameters that are relevant to the polygon block here need to be contained inside that block. Without the parameters being indented, they are at the same "level" as the polygon block, and so will not be interpreted correctly.
@@ -182,7 +182,7 @@ Comments are allowed in YSLD, both for descriptive reasons and to remove certain
 
   # This is a line symbolizer
   - line:
-      stroke-color: 000000
+      stroke-color: '#000000'
       stroke-width: 2
   #   stroke-width: 3
 
@@ -191,10 +191,10 @@ The above would display the lines with width of ``2``; the line showing a width 
 Comment blocks do not exist, so each line of a comment will need to be indicated as such::
 
   - line:
-      stroke-color: 000000
+      stroke-color: '#000000'
       stroke-width: 2
   #- line:
-  #    stroke-color: ff0000
+  #    stroke-color: '#FF0000'
   #    stroke-width: 3
 
 .. note:: Comments are not preserved when converting to SLD.
