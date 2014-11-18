@@ -182,7 +182,7 @@ While filters are very useful, the required syntax is quite long, and much of th
 
 #. Using the style from before we added the filters, change the ``fill-color`` to::
 
-     fill-color: ${recode(MAPCOLOR7, 1, '#ffc3c3', 2, '#ffe3c3', 3, '#ffffc3', 4, '#c3ffe3', 5, '#c3ffff', 6, '#c3c3ff', 7, '#bfc3ff')} 
+     fill-color: ${recode(MAPCOLOR7, 1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3', 5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')} 
 
    This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function. If ``MAPCOLOR7 = 1``, set to ``ffc3c3``, if ``MAPCOLOR7 = 2`` set to ``ffe3c3``, etc.
 
@@ -202,7 +202,7 @@ While filters are very useful, the required syntax is quite long, and much of th
             stroke-dasharray: '4 4'
             stroke-width: 0.5
             fill-opacity: 0.5
-            fill-color: ${recode(MAPCOLOR7, 1.0, '#ffc3c3', 2.0, '#ffe3c3', 3.0, '#ffffc3', 4.0, '#c3ffe3', 5.0, '#c3ffff', 6.0, '#c3c3ff', 7.0, '#bfc3ff')}
+            fill-color: ${recode(MAPCOLOR7, 1.0, '#FFC3C3', 2.0, '#FFE3C3', 3.0, '#FFFFC3', 4.0, '#C3FFE3', 5.0, '#C3FFFF', 6.0, '#C3C3FF', 7.0, '#BFC3FF')}
 
    It should be noted that this will produce the *exact same output* as in the previous section.
 
@@ -225,7 +225,7 @@ Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ys
             stroke-dasharray: '4 4'
             stroke-width: 0.5
             fill-opacity: 0.5
-            fill-color: ${recode(MAPCOLOR7, 1, '#ffc3c3', 2, '#ffe3c3', 3, '#ffffc3', 4, '#c3ffe3', 5, '#c3ffff', 6, '#c3c3ff', 7, '#bfc3ff')}
+            fill-color: ${recode(MAPCOLOR7, 1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3', 5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')}
         - text:
             label: ${NAME}
 
@@ -288,7 +288,7 @@ The full style now looks like this::
               stroke-dasharray: '4 4'
               stroke-width: 0.5
               fill-opacity: 0.5
-              fill-color: ${recode(MAPCOLOR7, 1, '#ffc3c3', 2, '#ffe3c3', 3, '#ffffc3', 4, '#c3ffe3', 5, '#c3ffff', 6, '#c3c3ff', 7, '#bfc3ff')}
+              fill-color: ${recode(MAPCOLOR7, 1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3', 5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')}
           - text:
               label: ${strToUpperCase(NAME)}
               font-size: 14

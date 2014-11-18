@@ -280,7 +280,7 @@ In certain cases, theming functions can be used in place of filters to produce s
     rules:
     - symbolizers:
       - polygon:
-          fill-color: ${recode(zone, 'I-L', '#ff7700', 'I-H', '#bb6600', 'C-H', '#0077bb', 'C-R', '#00bbdd', 'C-C', '#00ddff', '', '#777777')}
+          fill-color: ${recode(zone, 'I-L', '#FF7700', 'I-H', '#BB6600', 'C-H', '#0077BB', 'C-R', '#00BBDD', 'C-C', '#00DDFF', '', '#777777')}
 
 In the above example, the attribute is ``zone`` , and then each subsequent pair consists of an attribute value followed by a color.
 
@@ -300,7 +300,7 @@ The Categorize function returns a different value depending on which range (cate
        - polygon:
           stroke-color: '000000'
           stroke-width: 0.5
-          fill-color: ${categorize(YEARBLT, '#dd4400', 1950,'#aa4400', 1960,'#886600', 1970,'#668800', 1980,'#44bb00', 1990,'#22dd00',2000,'#00ff00')}
+          fill-color: ${categorize(YEARBLT, '#DD4400', 1950,'#AA4400', 1960,'#886600', 1970,'#668800', 1980,'#44BB00', 1990,'#22DD00',2000,'#00FF00')}
 
 .. note:: The ``categorize`` function, along with ``recode`` and ``interpolate``, requires that all colors be in the form of ``'#rrggbb'``.
 
@@ -316,7 +316,7 @@ The ``interpolate`` function can be used to create a continuous set of values by
       symbolizers:  
       - polygon:
           stroke-width: 1
-          fill-color: ${interpolate(area, 0.0, '#ff0000', 5e5,'#00ff00', 'color')}
+          fill-color: ${interpolate(area, 0.0, '#FF0000', 5e5,'#00FF00', 'color')}
 
 .. todo:: Add figure
 
