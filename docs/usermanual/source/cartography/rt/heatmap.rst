@@ -148,11 +148,11 @@ The output of the transformation is a single-band **raster**.  Each pixel has a 
               color-map:
                 type: ramp
                 entries:
-                - (0xffffff,0,0.0,'nodata')
-                - (0x4444ff,0,0.02,'nodata')
-                - (0xff0000,1,0.1,'nodata')
-                - (0xffff00,1,0.5,'values')
-                - (0xffff00,1,1.0,'values')
+                - ('#FFFFFF',0,0.0,'nodata')
+                - ('#4444FF',0,0.02,'nodata')
+                - ('#FF0000',1,0.1,'nodata')
+                - ('#FFFF00',1,0.5,'values')
+                - ('#FFFF00',1,1.0,'values')
 
    The YSLD example defines the Heatmap rendering transformation giving values for the transformation parameters which are appropriate for the input dataset.
    Parameter **weightAttr** specifies the dataset attribute which provides a weighting for the input points.
