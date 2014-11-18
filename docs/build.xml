@@ -57,6 +57,15 @@
             <param name="includes" value="opengeo-docs/**/*"/>
         </antcall>
 
+        <delete file="target/opengeo-docs.war"/>
+        <jar destfile="target/opengeo-docs.war" basedir="${doc.dir}"/>
+
+        <antcall target="assemble-artifact">
+            <param name="name" value="opengeo-docs-war"/>
+            <param name="dir" value="target"/>
+            <param name="includes" value="opengeo-docs.war"/>
+        </antcall>
+
         <if>
             <equals arg1="${pdflatex.isPresent}" arg2="true"/>
             <then>
@@ -86,6 +95,10 @@
 
     <target name="publish" depends="init">
         <antcall target="publish-artifact"/>
+        <antcall target="publish-artifact">
+          <param name="name" value="opengeo-docs-war"/>
+          <param name="path" value="docs"/>
+        </antcall>
         <if>
           <equals arg1="${pdflatex.isPresent}" arg2="true"/>
           <then>
