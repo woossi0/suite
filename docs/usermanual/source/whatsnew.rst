@@ -7,30 +7,42 @@ Each new version of OpenGeo Suite includes numerous fixes and component upgrades
 
 In addition, OpenGeo Suite |version| has been updated with all-new features, including:
 
-**QGIS now a part of OpenGeo Suite**
+.. only:: enterprise
 
-QGIS, the popular open-source desktop software, has been added to the collection of components that comprise OpenGeo Suite.
+   **Composer**
 
-**OpenGeo Suite Explorer for QGIS**
+   We are very happy to introduce Composer as a fast, efficient and interactive approach to mapping.
 
-The `OpenGeo Suite Explorer plugin for QGIS <qgis>`_ allows users to upload their layers and styles directly into PostGIS and GeoServer, creating a seamless link between desktop and server.
+   Composer is included as a beta for our enterprise customers and is tightly integrated with our GeoServer engine for map publication.
 
-**New Boundless SDK templates**
+**OpenLayers 3**
 
-There are now two new templates for use with the :ref:`Boundless SDK <webapps.sdk>`, both including the new OpenLayers 3. They include a viewing application as well as an editing application. The original template, "gxp", is still available as well.
+The latest OpenLayers3 is included, offering amazing new visualisation options for modern browsers.
 
-**Better Mapmeter integration**
+If you are new to OpenLayers 3 be sure to check out the :ref:`Boundless SDK <webapps.sdk>` templates offering a viewing application as well as an editing application.
 
-This version brings tighter integration with :ref:`Mapmeter <sysadmin.mapmeter>`, the cloud-based service that allows you to monitor and analyze your GeoServer deployments in real-time.
+**Java 7**
 
-**GeoPackage support**
+Java 7 is now required for OpenGeo Suite on all platforms. OpenGeo Suite is tested with both Oracle JRE and OpenJDK.
 
-OpenGeo Suite now supports loading data saved in the new :ref:`GeoPackage format <intro.extensions.geopackage>` into GeoServer.
+**GeoServer**
 
-**MongoDB support**
+The latest GeoServer 2.6 is included with key benefits for our OpenGeo Suite customers.
 
-OpenGeo Suite now supports loading data from :ref:`MongoDB <intro.extensions.mongodb>` into GeoServer.
+* New graphic options including wind barbs and custom WKT graphics
 
-**Enterprise only: Auto-deployment on Amazon Web Services and VMware**
+* Oracle SDO users can now enjoy curve support
 
-OpenGeo Suite Enterprise clients only: scale your OpenGeo Suite deployment with scripts available to enable :ref:`automatic clustering on AWS <sysadmin.clustering.autoaws>` and :ref:`local virtual machines <sysadmin.clustering.autovm>`.
+* Coverage views to dynamically recombine bands into a multi-band coverage
+
+* pluggable style support is used to integrate the CSS extension with GeoServer style editing
+
+.. only:: enterprise
+
+   * pluggable style support is used to integrate new new YSLD styles used by Composer
+
+* Easily define an image mosaic "no data" using a vector footprint
+
+* All new implementation of WFS Cascade
+
+If you are installing OpenGeo Suite for the first time please be aware new installations are configured to support WFS Basic functionality by default. If you wish to open up your data for read-write WFS-T can be turned on during initial configuration. 
