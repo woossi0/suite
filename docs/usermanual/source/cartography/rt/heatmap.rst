@@ -6,11 +6,13 @@ Heatmap
 
 The Heatmap rendering transformation is a **Vector-to-Raster** transformation which displays a dataset as a heatmap surface (also known as a "density surface").  The heatmap surface is generated dynamically, so it can be used to visualize dynamic data.  It can be applied to very large datasets with good performance.
 
-The heatmap view is created by configuring a layer with an SLD style which invokes the Heatmap rendering transformation.
+The heatmap view is created by configuring a layer with a style which invokes the Heatmap rendering transformation.
 
 .. figure:: img/heatmap_urban_us_east.png
 
    *Heatmap rendering transformation*
+
+The map image shows the heatmap transformation, the original input data points (styled by another style), as well as a base map layer.
 
 Usage
 -----
@@ -93,10 +95,57 @@ As with all rendering transformations, the transformation is invoked by adding a
 
 The transformation has required parameters which specify the output image dimensions.  The values of these parameters are obtained from environment variables accessed via the function ``env``.  The environment variable values are determined from the WMS request which initiated the rendering process.  The parameters and corresponding environment variables are:
 
-* ``outputBBOX`` uses variable ``wms_bbox`` to obtain the surface extent
-* ``outputWidth`` uses variable ``wms_width`` to obtain the output raster width
-* ``outputHeight`` uses variable ``wms_height`` to obtain the output raster height
+* ``outputBBOX`` use env variable ``wms_bbox`` to obtain the surface extent
+   
+   .. only:: basic
+   
+      .. code-block:: xml
+   
+         <ogc:Function name="parameter">
+           <ogc:Literal>outputBBOX</ogc:Literal>
+           <ogc:Function name="env"><ogc:Literal>wms_bbox</ogc:Literal></ogc:Function>
+         </ogc:Function>
 
+   .. only:: enterprise
+   
+      .. code-block:: yaml
+   
+         outputBBOX: ${env(wms_bbox)}
+        
+* ``outputWidth`` use env variable ``wms_width`` to obtain the output raster width
+
+   .. only:: basic
+   
+      .. code-block:: xml
+   
+         <ogc:Function name="parameter">
+           <ogc:Literal>outputWidth</ogc:Literal>
+           <ogc:Function name="env"><ogc:Literal>wms_width</ogc:Literal></ogc:Function>
+         </ogc:Function>
+
+   .. only:: enterprise
+   
+      .. code-block:: yaml
+   
+         outputWidth: ${env(wms_width)}
+
+* ``outputHeight`` use env variable ``wms_height`` to obtain the output raster height
+
+   .. only:: basic
+   
+      .. code-block:: xml
+   
+         <ogc:Function name="parameter">
+           <ogc:Literal>outputHeight</ogc:Literal>
+           <ogc:Function name="env"><ogc:Literal>wms_height</ogc:Literal></ogc:Function>
+         </ogc:Function>
+
+   .. only:: enterprise
+   
+      .. code-block:: yaml
+   
+         outputHeight: ${env(wms_height)}
+         
 Input
 -----
 
@@ -123,7 +172,7 @@ The output of the transformation is a single-band **raster**.  Each pixel has a 
    YSLD Example
    ------------
 
-   The heatmap surface in the map image above is produced by the following YSLD.  (The map image also shows the original input data points styled by another style, as well as a base map layer.)  You can adapt this YSLD example to your data with minimal effort by adjusting the parameters.
+   The heatmap surface in the map image above is produced by the following YSLD. You can adapt this YSLD example to your data with minimal effort by adjusting the parameters.
 
    .. code-block:: YAML
       :linenos:
@@ -174,7 +223,7 @@ The output of the transformation is a single-band **raster**.  Each pixel has a 
    SLD Example
    -----------
 
-   The heatmap surface in the map image above is produced by the following :download:`heatmap_example.sld <artifact/heatmap_example.sld>`.  (The map image also shows the original input data points styled by another SLD, as well as a base map layer.)  You can adapt heatmap_example.sld to your data with minimal effort by adjusting the parameters.
+   The heatmap surface in the map image above is produced by the following :download:`heatmap_example.sld <artifact/heatmap_example.sld>`. You can adapt heatmap_example.sld to your data with minimal effort by adjusting the parameters.
 
    .. literalinclude:: artifact/heatmap_example.sld
       :linenos:
