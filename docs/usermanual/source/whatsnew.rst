@@ -17,7 +17,7 @@ In addition, OpenGeo Suite |version| has been updated with all-new features, inc
 
 **OpenLayers 3**
 
-The latest OpenLayers3 is included, offering amazing new visualisation options for modern browsers.
+The latest OpenLayers3 is included, offering amazing new visualisation options for modern browsers including ol3-cesium globe support.
 
 If you are new to OpenLayers 3 be sure to check out the :ref:`Boundless SDK <webapps.sdk>` templates offering a viewing application as well as an editing application.
 
