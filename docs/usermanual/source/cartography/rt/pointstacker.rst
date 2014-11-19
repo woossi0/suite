@@ -162,7 +162,7 @@ The output of the transformation is a **vector** featuretype containing point fe
      - Count of all different input points represented by this point
 
 
-The output can be styled as required using a ``<PointSymbolizer>``.
+The output can be styled as required using a point symbolizer.
 
 .. only:: basic
    
@@ -190,7 +190,7 @@ The output can be styled as required using a ``<PointSymbolizer>``.
 
    .. code-block:: yaml
       :linenos:
-      :emphasize-lines: 9-12,14,24,48
+      :emphasize-lines: 9-12,14,24,47
 
       name: Default Styler
       title: Stacked Point
@@ -201,69 +201,66 @@ The output can be styled as required using a ``<PointSymbolizer>``.
           name: gs:PointStacker
           params:
             cellSize: 30
-            outputBBOX: env('wms_bbox')
-            outputWidth: env('wms_width')
-            outputHeight: env('wms_height')
-          rules:
-          - name: rule1
-            title: Volcano
-            filter: count <= '1'
-            symbolizers:
-            - point:
-                size: 8
-                symbols:
-                - mark:
-                    shape: triangle
-                    fill-color: FF0000
-          - name: rule29
-            title: 2-9 Volcanoes
-            filter: count BETWEEN '2' AND '9'
-            symbolizers:
-            - point:
-                size: 14
-                symbols:
-                - mark:
-                    shape: circle
-                    fill-color: AA0000
-            - text:
-                label: count
-                fill-color: FFFFFF
-                halo:
-                  fill-color: AA0000
-                  fill-opacity: 0.9
-                  radius: 2
-                font-family: Arial
-                font-size: 12
-                font-style: normal
-                font-weight: bold
-                placement:
-                  type: point
-                  anchor: (0.5,0.8)
-          - name: rule10
-            title: 10 Volcanoes
-            filter: count > '9'
-            symbolizers:
-            - point:
-                size: 22
-                symbols:
-                - mark:
-                    shape: circle
-                    fill-color: AA0000
-            - text:
-                label: count
-                fill-color: FFFFFF
-                halo:
-                  fill-color: AA0000
-                  fill-opacity: 0.9
-                  radius: 2
-                font-family: Arial
-                font-size: 12
-                font-style: normal
-                font-weight: bold
-                placement:
-                  type: point
-                  anchor: (0.5,0.8)
-
+            outputBBOX: ${env('wms_bbox')}
+            outputWidth: ${env('wms_width')}
+            outputHeight: ${env('wms_height')}
+        rules:
+        - name: rule1
+          title: Volcano
+          filter: count <= '1'
+          symbolizers:
+          - point:
+              size: 8
+              symbols:
+              - mark:
+                  shape: triangle
+                  fill-color: '#FF0000'
+        - name: rule29
+          title: 2-9 Volcanoes
+          filter: count BETWEEN '2' AND '9'
+          symbolizers:
+          - point:
+              size: 14
+              symbols:
+              - mark:
+                  shape: circle
+                  fill-color: '#AA0000'
+          - text:
+              label: ${count}
+              fill-color: '#FFFFFF'
+              halo:
+                fill-color: '#AA0000'
+                fill-opacity: 0.9
+                radius: 2
+              font-family: Arial
+              font-size: 12
+              font-style: normal
+              font-weight: bold
+              placement: point
+              anchor: (0.5,0.8)
+        - name: rule10
+          title: 10 Volcanoes
+          filter: count > '9'
+          symbolizers:
+          - point:
+              size: 22
+              symbols:
+              - mark:
+                  shape: circle
+                  fill-color: '#AA0000'
+          - text:
+              label: ${count}
+              fill-color: '#FFFFFF'
+              halo:
+                fill-color: '#AA0000'
+                fill-opacity: 0.9
+                radius: 2
+              font-family: Arial
+              font-size: 12
+              font-style: normal
+              font-weight: bold
+              placement: point
+              anchor: (0.5,0.8)
 
    This style defines the Point Stacker rendering transformation,
    providing values for the transformation parameters which are appropriate for the input dataset. Parameter **cellSize** specifies a cell size of 30 to aggregate the points by. The output parameters **outputBBOX**, **outputWith** and **outputHeight**, are obtained from internal environment variables set during rendering, as described above.
