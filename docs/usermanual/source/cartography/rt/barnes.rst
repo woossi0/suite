@@ -240,7 +240,7 @@ The output of the transformation is a single-band **raster**.  Each pixel has a 
    The map image above shows a temperature surface interpolated across a set of data points with a attribute giving the maximum daily temperature on a given day. The surface layer in the image is produced by the following style. You can adapt this style to your own data by adjusting the transformation parameters, and by choosing a color map definition that provides an appropriate styling.
 
 
-   .. code-block:: YAML
+   .. code-block:: yaml
       :linenos:
       :emphasize-lines: 7,9-19,23-24,28-29
 

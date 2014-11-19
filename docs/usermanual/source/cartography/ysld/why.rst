@@ -208,7 +208,7 @@ In addition to all of these advantages, YSLD maintains compatibility with existi
 
    While YSLD and SLD are compatible, it is not always possible to convert to SLD and back to YSLD ("round trip") and retrieve the exact same syntax. Specifically the following features will be converted upon conversion to SLD:
 
-   * :ref:`Zoom <cartography.ysld.reference.zoomscale>` parameters will be converted to scale parameters
+   * :ref:`Zoom <cartography.ysld.reference.scalezoom>` parameters will be converted to scale parameters
    * :ref:`cartography.ysld.reference.variables` will be evaluated and removed.
 
    That said, even though the syntax will be different when converted back to YSLD, the output will be identical.

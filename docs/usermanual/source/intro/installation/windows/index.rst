@@ -14,6 +14,6 @@ The primary OpenGeo Suite installer has the most components, so the bulk of this
 
    install
    qgis
-   upgrade
+   update
    uninstall
    misc

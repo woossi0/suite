@@ -1,20 +1,20 @@
-.. _intro.installation.windows.upgrade:
+.. _intro.installation.windows.update:
 
-Upgrading
+Updating
 =========
 
-This section describes how to upgrade from a previous **major** version of OpenGeo Suite.
+This section describes how to update from a previous **major** version of OpenGeo Suite.
 
-If performing a **minor** upgrade, you may proceed with a typical :ref:`install <intro.installation.windows.install>`. 
+If performing a **minor** update, you may proceed with a typical :ref:`install <intro.installation.windows.install>`. 
 
-.. note:: A "major" version upgrade is from version 3.x to 4.y. A "minor" version upgrade is from 4.x to 4.y.
+.. note:: A "major" version update is from version 3.x to 4.y. A "minor" version update is from 4.x to 4.y.
 
-.. warning:: This upgrade is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
+.. warning:: This update is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
 
 Back up PostGIS databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The first step of the upgrade process is to back up your existing PostGIS data. 
+The first step of the update process is to back up your existing PostGIS data. 
 
 #. Ensure the old (3.x) version of OpenGeo Suite is running.
  
@@ -30,7 +30,7 @@ The first step of the upgrade process is to back up your existing PostGIS data.
 
       set PATH=%PATH%;C:\Program Files\OpenGeo\OpenGeo Suite\pgsql\9.1\bin
 
-#. To backup, a specialized PostGIS upgrade utility is used. `Download this utility <http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip>`_, and extract the archive to a temporary directory. To avoid permissions issues, it is best to put this directory on your desktop or in your home directory. By default, the backup files created from using this script will be saved into this directory.
+#. To backup, a specialized PostGIS update utility is used. `Download this utility <http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip>`_, and extract the archive to a temporary directory. To avoid permissions issues, it is best to put this directory on your desktop or in your home directory. By default, the backup files created from using this script will be saved into this directory.
 
 #. Run the backup command:
 
@@ -92,7 +92,7 @@ Restore PostGIS databases
 
    If you receive an error re-run the installer and install the PostGIS client tools, as described in the previous section.
 
-#. Restore your PostGIS data by running the upgrade utility again with the "restore" argument:
+#. Restore your PostGIS data by running the update utility again with the "restore" argument:
 
    .. code-block:: console
 

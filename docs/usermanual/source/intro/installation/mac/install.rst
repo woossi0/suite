@@ -5,7 +5,7 @@ Installing
 
 .. note:: 
 
-   If upgrading from a previous **major** version see the :ref:`Upgrade <intro.installation.mac.upgrade>` section. If upgrading from a previous **minor** version, please continue below.
+   If upgrading from a previous **major** version see the :ref:`Update <intro.installation.mac.update>` section. If updating from a previous **minor** version, please continue below.
 
 Prerequisites
 -------------

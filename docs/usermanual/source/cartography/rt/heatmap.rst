@@ -174,7 +174,7 @@ The output of the transformation is a single-band **raster**.  Each pixel has a 
 
    The heatmap surface in the map image above is produced by the following YSLD. You can adapt this YSLD example to your data with minimal effort by adjusting the parameters.
 
-   .. code-block:: YAML
+   .. code-block:: yaml
       :linenos:
       :emphasize-lines: 6-11,20-24
  

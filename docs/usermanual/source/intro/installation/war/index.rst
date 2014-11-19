@@ -28,7 +28,6 @@ An additional :ref:`extensions <intro.installation.war.extensions>` download is 
    strategies
    extensions
    update
-   upgrade
    uninstall
 
 

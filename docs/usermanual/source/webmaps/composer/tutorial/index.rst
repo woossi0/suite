@@ -16,7 +16,7 @@ Data used
 
 While any data can be substituted when following along with this tutorial, the following data will specifically be shown, all from the `Natural Earth dataset <http://www.naturalearthdata.com/>`_:
 
-.. include:: ../../../cartography/ysld/tutorial/files/data.txt
+.. include:: /cartography/ysld/tutorial/files/data.txt
 
 .. _webmaps.composer.tutorial.workspace:
 
