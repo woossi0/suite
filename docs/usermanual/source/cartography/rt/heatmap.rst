@@ -216,7 +216,7 @@ The output of the transformation is a single-band **raster**.  Each pixel has a 
    Parameter **opacity** specifies an overall opacity of 0.6 for the rendered layer.
    Parameter **color-map** define a color map with which to symbolize the output raster.
 
-   The color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The **entries* between 0.0 and 0.02 are displayed with a fully transparent color of white, which makes areas where there no influence from data points invisible.
+   The color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The **entries** between 0.0 and 0.02 are displayed with a fully transparent color of white, which makes areas where there no influence from data points invisible.
 
 .. only:: basic
 

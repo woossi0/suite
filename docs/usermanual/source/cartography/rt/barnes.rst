@@ -204,6 +204,7 @@ The transformation has required parameters which specify the output image dimens
       .. code-block:: yaml
    
          outputHeight: ${env(wms_height)}
+
 Input
 -----
 
