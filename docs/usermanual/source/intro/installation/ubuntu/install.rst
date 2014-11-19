@@ -62,39 +62,39 @@ The commands in this section require root privileges.
 
       wget -qO- http://apt.boundlessgeo.com/gpg.key | apt-key add - 
 
-.. only:: basic
+#. Add the OpenGeo Suite repository.
 
-   #. Add the OpenGeo Suite repository.
+   .. only:: basic
 
-      * If installing on Precise:
+         * If installing on Precise:
 
-        .. code-block:: bash
+           .. code-block:: bash
 
-           echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
+              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
 
-      * If installing on Trusty:
+         * If installing on Trusty:
 
-        .. code-block:: bash
+           .. code-block:: bash
 
-           echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
+              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
 
-.. only:: enterpise
+   .. only:: enterprise
 
-   #. Add the OpenGeo Suite Enterprise repository. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
+      Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
-      * If installing on Precise:
+         * If installing on Precise:
 
-        .. code-block:: bash
+           .. code-block:: bash
 
-           echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
+              echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
 
-      * If installing on Trusty:
+         * If installing on Trusty:
 
-        .. code-block:: bash
+           .. code-block:: bash
 
-           echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
+              echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
 
-      .. note: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
+         .. note: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
 
 Installation process
 --------------------
