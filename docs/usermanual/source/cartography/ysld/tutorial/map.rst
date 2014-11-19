@@ -12,7 +12,7 @@ In the Composer, create a new map with the four layers styled in the following o
 * ``ne_10m_admin_0_countries`` (polygon layer)
 * ``16_bit_dem_large`` (raster layer)
 
-.. todo:: Link to info or show here.
+.. note:: See the section on :ref:`webmaps.composer.tutorial.map` for details.
 
 This will produce a map that looks like the following at various zoom levels:
 
@@ -28,4 +28,4 @@ This will produce a map that looks like the following at various zoom levels:
 
    Map at city scale
 
-For more information, please see the :ref:`cartography.ysld.reference`.
+For more information on YSLD, please see the :ref:`cartography.ysld.reference`.
