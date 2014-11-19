@@ -13,6 +13,5 @@ This section will guide you through the basic functionality of OpenGeo Suite, in
    dashboard
    composer
    extensions
-   recipes
    sampledata
    moreinfo

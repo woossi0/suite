@@ -8,6 +8,7 @@
           <fileset dir="source">
             <exclude name="**/*-enterprise.rst"/>
             <exclude name="**/*-basic.rst"/>
+            <exclude name="intro/recipes.rst"/>
             <exclude name="intro/composer.rst"/>
             <exclude name="intro/installation/aws/**"/>
             <exclude name="intro/installation/war/**"/>
@@ -26,6 +27,7 @@
           <fileset dir="source">
             <exclude name="**/*-enterprise.rst"/>
             <exclude name="**/*-basic.rst"/>
+            <exclude name="intro/recipes.rst"/>
           </fileset>
        </copy>
        <copy todir="${basedir}/ee">

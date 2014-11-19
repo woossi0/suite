@@ -12,6 +12,5 @@ This section will guide you through the basic functionality of OpenGeo Suite, in
    installation/index
    dashboard
    extensions
-   recipes
    sampledata
    moreinfo
