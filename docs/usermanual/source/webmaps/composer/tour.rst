@@ -8,9 +8,9 @@ This section will introduce the Composer interface.
 The Composer interface consists of two main sections:
 
 * :ref:`Configuration <webmaps.composer.configuration>` 
-* :ref:`Style/View <webmaps.composer.styleview>`
+* :ref:`Style Editor <webmaps.composer.styleview>`
 
-The Configuration pages regard the composition of maps, the availability of layers, and the data that comprises them. The Styling pages provide an interface for viewing and styling layers and maps, with the view updating in real-time.
+The Configuration pages regard the composition of maps, the availability of layers, and the data that comprises them. The Style Editor page provides an interface for viewing and styling layers and maps, with the view updating in real-time.
 
 Login
 -----

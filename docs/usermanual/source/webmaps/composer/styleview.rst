@@ -5,10 +5,10 @@ Viewing and styling maps and layers
 
 Once layers and maps have been published and created, the next step is to view and style them appropriately. Composer makes this easy by offering a single editing environment where layers can be viewed, styles edited, and the view refreshed, all without leaving the page.
 
-Accessing the style editor
+Accessing the Style Editor
 --------------------------
 
-The Style/View pages can be accessed for a single layer or for a map.
+The Style Editor can be accessed for a single layer or for a map.
 
 To view a single layer, select the layer in the appropriate :ref:`webmaps.composer.configuration` page and then click :guilabel:`Style`.
 
@@ -25,7 +25,7 @@ To view a map, navigate to the map in the appropriate :ref:`webmaps.composer.con
 Style Editor
 ------------
 
-The style editor is mostly the same whether styling a layer or a map. The only difference is the existence of the layer list in the middle of the screen.
+The Style Editor is mostly the same whether styling a layer or a map. The only difference is the existence of the layer list in the middle of the screen.
 
 .. figure:: img/mapstylepage.png
 
