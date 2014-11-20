@@ -28,8 +28,8 @@ System requirements
 The following distributions are supported:
 
 * Fedora 18 and 19
-* CentOS 5 and 6
-* RHEL 5 and 6
+* CentOS 6
+* RHEL 6
 
 OpenGeo Suite for Red Hat has the following system requirements:
 
