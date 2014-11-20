@@ -11,38 +11,54 @@ In addition, OpenGeo Suite |version| has been updated with all-new features, inc
 
    **Composer**
 
-   We are very happy to introduce Composer as a fast, efficient and interactive approach to mapping.
+   :ref:`Composer <webmaps.composer>` is a new integrated tool for easily making maps and styling layers in GeoServer. It includes the all-new :ref:`YSLD <cartography.ysld>` markup language which vastly simplifies map styling.
 
-   Composer is included as a beta for our enterprise customers and is tightly integrated with our GeoServer engine for map publication.
+   Composer is available for OpenGeo Suite Enterprise only.
 
 **OpenLayers 3**
 
-The latest OpenLayers3 is included, offering amazing new visualisation options for modern browsers including ol3-cesium globe support.
+The latest version of OpenLayers 3 is included, offering new visualization options for modern browsers including `integration with Cesium <http://openlayers.org/ol3-cesium/>`_ for visualizing data on the globe.
 
-If you are new to OpenLayers 3 be sure to check out the :ref:`Boundless SDK <webapps.sdk>` templates offering a viewing application as well as an editing application.
+If you are new to OpenLayers 3 be sure to check out the :ref:`Boundless SDK <webapps.sdk>`, which has web application templates that utilize OpenLayers 3.
 
 **Java 7**
 
 Java 7 is now required for OpenGeo Suite on all platforms. OpenGeo Suite is tested with both Oracle JRE and OpenJDK.
 
-**GeoServer**
+**GeoServer 2.6**
 
-The latest GeoServer 2.6 is included with key benefits for our OpenGeo Suite customers.
+The latest branch of GeoServer, version 2.6, is included. This contains the following improvements.
 
-* New graphic options including wind barbs and custom WKT graphics
+.. only:: basic
 
-* Oracle SDO users can now enjoy curve support
+   * New graphic options including "windbarbs" and custom WKT graphics
 
-* Coverage views to dynamically recombine bands into a multi-band coverage
+   * Oracle SDO users can now enjoy support for curves
 
-* pluggable style support is used to integrate the CSS extension with GeoServer style editing
+   * Coverage views to dynamically recombine bands into a multi-band coverage
+
+   * Can now define an image mosaic "no data" area using a vector footprint
+
+   * All new implementation of cascading (external) WFS data store 
+
+   * WFS Transactions (WFS-T, for read-write actions) now turned off by default for improved security.
+
+   * CSS styles may now be managed in the GeoServer admin interface like any other style
 
 .. only:: enterprise
 
-   * pluggable style support is used to integrate new new YSLD styles used by Composer
+   * New graphic options including "windbarbs" and custom WKT graphics
 
-* Easily define an image mosaic "no data" using a vector footprint
+   * Oracle SDO users can now enjoy support for curves
 
-* All new implementation of WFS Cascade
+   * Coverage views to dynamically recombine bands into a multi-band coverage
 
-If you are installing OpenGeo Suite for the first time please be aware new installations are configured to support WFS Basic functionality by default. If you wish to open up your data for read-write WFS-T can be turned on during initial configuration. 
+   * Can now define an image mosaic "no data" area using a vector footprint
+
+   * All new implementation of cascading (external) WFS data store 
+
+   * WFS Transactions (WFS-T, for read-write actions) now turned off by default for improved security.
+
+   * CSS styles may now be managed in the GeoServer admin interface like any other style
+
+   * :ref:`YSLD <cartography.ysld>` styles—those used by :ref:`Composer <webmaps.composer>`—may also be managed in the GeoServer admin interface like any other style.
