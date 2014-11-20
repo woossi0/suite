@@ -24,9 +24,11 @@ SLD:
 
    <CssParameter name="fill">#ff0000</CssParameter>
 
-YSLD::
+YSLD:
 
-    fill-color: '#FF0000'
+.. code-block:: yaml
+
+   fill-color: '#FF0000'
 
 In SLD, the XML-based nature of the content obscures the important aspects of the directive in the middle of the line. With YSLD, the attribute and the value are clearly marked and associated with no extraneous information, making comprehension easier.
 
@@ -61,18 +63,20 @@ SLD:
        </PointSymbolizer>
      </Rule>
 
-YSLD::
+YSLD:
 
-  rules:
-  - symbolizers:
-    - point:
-        size: 8
-        symbols:
-        - mark:
-            shape: circle
-            fill-color: '#FF0000'
-            stroke-color: '#000000'
-            stroke-width: 2
+.. code-block:: yaml
+
+   rules:
+   - symbolizers:
+     - point:
+         size: 8
+         symbols:
+         - mark:
+             shape: circle
+             fill-color: '#FF0000'
+             stroke-color: '#000000'
+             stroke-width: 2
 
 While the SLD comes in at 300 characters, the YSLD equivalent comes in at about half that. Also, by not using an XML-based markup language, the removal of open and close tags make the document to look much simpler and be much more compact. 
 
@@ -128,16 +132,19 @@ while this is invalid:
 
 YSLD, by contrast, does not require any of the directives to be ordered, so long as they are contained in the proper block.
 
-For example, the following are both equally valid::
+For example, the following are both equally valid:
 
-  fill-color: '#FF0000'
-  stroke-color: '#000000'
+.. code-block:: yaml
 
-and::
+   fill-color: '#FF0000'
+   stroke-color: '#000000'
 
-  stroke-color: '#000000'
-  fill-color: '#FF0000'
+and:
 
+.. code-block:: yaml
+
+   stroke-color: '#000000'
+   fill-color: '#FF0000'
 
 .. _cartography.ysld.why.variables:
 
@@ -189,32 +196,32 @@ For example, in SLD, multiple rules must share much of the same content:
 
 In YSLD, all the directives that occur multiple times can be replaced with a variable:
 
-::
+.. code-block:: yaml
 
-  define: &variable
-    shape: circle
-    fill-color: '#FF0000'
-    stroke-color: '#000000'
+   define: &variable
+     shape: circle
+     fill-color: '#FF0000'
+     stroke-color: '#000000'
 
-  rules:
-  - name: rule1
-    scale: (35000,)
-    symbolizers:
-    - point:
-        size: 6
-        symbols:
-        - mark:
-            <<: *variable
-            stroke-width: 2
-  - name: rule2
-    scale: (,35000)
-    symbolizers:
-    - point:
-        size: 8
-        symbols:
-        - mark:
-            <<: *variable
-            stroke-width: 3
+   rules:
+   - name: rule1
+     scale: (35000,)
+     symbolizers:
+     - point:
+         size: 6
+         symbols:
+         - mark:
+             <<: *variable
+             stroke-width: 2
+   - name: rule2
+     scale: (,35000)
+     symbolizers:
+     - point:
+         size: 8
+         symbols:
+         - mark:
+             <<: *variable
+             stroke-width: 3
 
 Note the definition of ``variable`` at the top, and the variable substitution in the line ``<<: *variable``.
 
