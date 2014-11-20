@@ -19,7 +19,7 @@ To view a layer's style in Composer:
 
 #. Click the Layers link in the tree, or click the Layers tab in the main window. This will bring up the list of layers.
 
-   .. figure:: ../../webmaps/composer/img/layerstab.png
+   .. figure:: img/layerstab.png
 
       All layers in the project workspace
 
@@ -27,13 +27,13 @@ To view a layer's style in Composer:
 
    .. note:: If the list of layers is large, it can be sorted by name or by last modification, and can also filtered via string.
 
-   .. figure:: ../../webmaps/composer/img/layerstylelink.png
+   .. figure:: img/layerstylelink.png
 
       Link to open the Style Editor
 
 #. This will bring up the Style Editor page for this layer. The left panel will show the current view of the layer, while the right panel will show the current style. The style can be edited and the view refreshed all from this interface.
 
-.. figure:: ../../webmaps/composer/img/layerstylepage.png
+.. figure:: img/layerstylepage.png
 
    A layer viewed in Composer
 
