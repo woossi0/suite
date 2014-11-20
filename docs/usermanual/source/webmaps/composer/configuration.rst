@@ -16,11 +16,11 @@ This page, accessible from the navigation panel by clicking :guilabel:`Project W
 
    All Project Workspaces
 
-In the box at the top of the page, the list of project workspaces can be sorted by name or by last modification, and can also be filtered via string.
+The box at the top of the page provides options to sort the list of project workspaces by name or by last modification, and to filter which project workspaces are displayed based on a string.
 
-For each workspace, links are avilable for the following functions:
+For each workspace, links are available for the following functions:
 
-* :guilabel:`Open`, for viewing the maps an layers in the project workspace
+* :guilabel:`Open`, for viewing the maps and layers in the project workspace
 * :guilabel:`Settings`, for changing the project workspace name and settings
 * :guilabel:`Info`, for showing the number of maps, layers, and stores associated with the project workspace
 
@@ -32,7 +32,7 @@ On a project workspace settings page, the following options are available:
 * :guilabel:`Name`, for changing the project workspace name
 * :guilabel:`Namespace URI`, for changing the namespace URI. This is a string that uniquely identifies the namespace to GeoServer. It must be in the form of a URL, but need not resolve to an actual web location
 * :guilabel:`Default`, for specifying if this project workspace is the default. If a project is not specified in a GeoServer request, the default project workspace will be assumed.
-* :guilabel:`Delete Workspace`, which will remove not only the project workspace, but **all of the contents of that project workspace**.
+* :guilabel:`Delete Workspace`, which will remove the project workspace, and **all of the contents of that project workspace**.
 
 After making changes, click :guilabel:`Save Changes`.
 
@@ -61,7 +61,7 @@ This page contains three tabs which show the following:
 
       Accessing project workspace tabs from the navigation panel
 
-At the top, three buttons that persist regardless of the active tab:
+At the top, three buttons persist regardless of the active tab:
 
 * :guilabel:`New Map`, which creates a :ref:`new map <webmaps.composer.configuration.newmap>` from new or existing layers
 * :guilabel:`Add Data`, which brings up a dialog for :ref:`loading new data <webmaps.composer.configuration.adddata>` to be published as layers
@@ -70,13 +70,13 @@ At the top, three buttons that persist regardless of the active tab:
 Maps tab
 ~~~~~~~~
 
-The Maps tab shows the list of all maps created in the project workspace.
+The Maps tab lists of all maps created in the project workspace.
 
-In the box at the top of the page, the list of maps can be sorted by name or by last modification, and can also be filtered via string.
+The box at the top of the page provides options to sort the list of maps by name or by last modification, and to filter which maps are displayed based on a string.
 
-For each map, there is a small preview of the map, which when clicked will open the map for :ref:`styling and viewing <webmaps.composer.styleview>`. There are also details about the map, such as the number of layers, the spatial reference system used in the map, and how recently the map was modified.
+For each map, there is a small preview of the map, which will open the map for :ref:`styling and viewing <webmaps.composer.styleview>` when clicked. Details about the map are displayed beside the preview, including the number of layers, the spatial reference system used in the map, and how recently the map was modified.
 
-Two other links, notated with icons, are available. The link icon brings up a traditional GeoServer Layer Preview of the map. The gear icon brings up the :guilabel:`Map Settings` page, which allows details about the map to be entered:
+Two other links are found below the map details. The link icon brings up a traditional GeoServer Layer Preview of the map. The gear icon brings up the :guilabel:`Map Settings` page, which allows details about the map to be entered:
 
 * :guilabel:`Map Name`, for the name of the map used in URLs
 * :guilabel:`Title`, for the human-readable name of the map
@@ -90,11 +90,11 @@ Two other links, notated with icons, are available. The link icon brings up a tr
 Layers tab
 ~~~~~~~~~~
 
-The Layers tab shows all of the layers that are contained in this project workspace.
+The Layers tab shows all of the layers contained in this project workspace.
 
-As with the Maps tab, the list of layers can be sorted by name or by last modification, and can also be filtered via string.
+As with the Maps tab, the list of layers can be sorted by name or by last modification, and can also be filtered using a string.
 
-Layers can be added to a map in this page by clicking them, selecting a map in the :guilabel:`Select a map` dialog, and then clicking the :guilabel:`Add to Map` button.
+Layers listed on this page can be added to a map by clicking them, selecting a map in the :guilabel:`Select a map` dialog, and then clicking the :guilabel:`Add to Map` button.
 
 .. figure:: img/layerstab.png
 
@@ -112,13 +112,13 @@ There are also three links associated with each layer:
 * :guilabel:`Settings`, for configuring details about the layer
 * :guilabel:`Copy`, for duplicating the layer (publishing again)
 
-The details for the layer (from the :guilabel:`Settings` link) allows you to set the layer name, title, spatial reference system, a description. There is also a direct link to the GeoServer Admin Edit Layer section, and the ability to unpublish the layer if desired.
+The layer details popup (from the :guilabel:`Settings` link) allows you to set the layer name, title, spatial reference system, and description. There is also a direct link to the GeoServer Admin Edit Layer section, and an option to unpublish the layer if desired.
 
 .. figure:: img/layersettings.png
 
    Layer Settings
 
-The :guilabel:`Copy` link brings up a very similar dialog to the Layer Settings, with the outcome being a new layer published in GeoServer.
+The :guilabel:`Copy` link brings up a very similar dialog to the Layer Settings, used to publish a copy of the layer as a new layer in GeoServer.
 
 .. figure:: img/copylayer.png
 
@@ -133,18 +133,18 @@ The Data tab shows information about the underlying data sources for the project
 
    Data tab
 
-As with the Maps and Layers tabs, the list of data sources can be sorted by name or by last modification, and can also be filtered via string.
+As with the Maps and Layers tabs, the list of data sources can be sorted by name or by last modification, and can also be filtered using a string.
 
 Each data source listed can be :guilabel:`Enabled` or :guilabel:`Disabled` by clicking the appropriate button. There is also the option to :guilabel:`Delete` the data source, in which case all associated layers will also be deleted (and all those layers removed from associated maps). 
 
-In certain data sources, one or more resources may be available, and these are shown on the right side. (For example, a PostGIS database may have multiple spatial tables, all of which can be published as layers). Each resource will be indicated as either :guilabel:`Published` or :guilabel:`Unpublished`. Clicking this indicator will show the layer associated with this resource (if any).
+In certain data sources, one or more resources may be available, and these are shown on the right side. (For example, a PostGIS database may have multiple spatial tables, all of which can be published as layers). Each resource will be indicated as either :guilabel:`Published` or :guilabel:`Unpublished`. Clicking this indicator will show the layers associated with this resource (if any).
 
 .. _webmaps.composer.configuration.adddata:
 
 Add Data
 --------
 
-The :guilabel:`Add Data` wizard allows new data sources to be added (uploaded) to GeoServer, from which new layers ca nbe published.
+The :guilabel:`Add Data` wizard allows new data sources to be added (uploaded) to GeoServer, from which new layers can be published.
 
 Selecting a source
 ~~~~~~~~~~~~~~~~~~
@@ -169,7 +169,7 @@ Clicking :guilabel:`Details` will show the resources contained in the upload (an
 
    Options for a newly uploaded layer 
 
-**Databases** may also be connected to GeoServer. You can connect to an :guilabel:`H2`, :guilabel:`PostGIS`, or :guilabel:`GeoPackage`.
+**Databases** may also be connected to GeoServer. You can connect to an :guilabel:`H2`, :guilabel:`PostGIS`, or :guilabel:`GeoPackage` database.
 
 .. figure:: img/importdatadb.png
 
@@ -207,7 +207,7 @@ Clicking :guilabel:`Add Layers` will allow the layers to be selected for inclusi
 
    Adding layers to new map
 
-Once layers have been selected, the map can be created via the :guilabel:`Create Map with Selected` button. The map will be created an listed in the Maps tab of the project workspace.
+Once layers have been selected, the map can be created via the :guilabel:`Create Map with Selected` button. The map will be created and listed in the Maps tab of the project workspace.
 
 
 

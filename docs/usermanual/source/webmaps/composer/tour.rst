@@ -66,7 +66,7 @@ The Navigation panel can be collapsed and expanded by clicking the arrow at the 
 Terminology
 -----------
 
-In order to make map-making easier for those new to the tools, some of the terms used in Composer may be different from what you are used to. The following table may make using Composer easier:
+In order to simplify map-making for those new to the tools, some of the terms used in Composer may be different from what you are used to. The following table may make using Composer easier:
 
 .. list-table::
    :class: non-responsive
@@ -80,7 +80,7 @@ In order to make map-making easier for those new to the tools, some of the terms
      - A container for layers and maps. All work in Composer happens inside a given project workspace
      - Workspace (or namespace)
    * - Maps
-     - A collection of one or more (styled) layers to be viewed simultaneously. The purpose of Composer is to make the creation of these easier.
+     - A collection of one or more (styled) layers to be viewed simultaneously. Composer is intended to make map creation easier.
      - Layer groups
    * - Layers
      - A collection of geospatial features, all from a common source
