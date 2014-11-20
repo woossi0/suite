@@ -78,6 +78,78 @@ While the SLD comes in at 300 characters, the YSLD equivalent comes in at about 
 
 .. _cartography.ysld.why.syntax:
 
+Even more compact
+-----------------
+
+SLD is a formally structured document designed to configure a set of WMS Layers. This produced a document with additional XML trappings that are not required when styling a single layer in isolation.
+
+.. code-block:: xml
+
+   <?xml version="1.0" encoding="ISO-8859-1"?>
+   <StyledLayerDescriptor version="1.0.0" 
+       xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd" 
+       xmlns="http://www.opengis.net/sld" 
+       xmlns:ogc="http://www.opengis.net/ogc" 
+       xmlns:xlink="http://www.w3.org/1999/xlink" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+     <NamedLayer>
+       <Name>Default Point</Name>
+       <UserStyle>
+         <Title>A boring default style</Title>
+         <Abstract>A sample style that just prints out a purple square</Abstract>
+         <FeatureTypeStyle>
+           <Rule>
+             <Name>Rule 1</Name>
+             <Title>RedSquare</Title>
+             <Abstract>A red fill with an 11 pixel size</Abstract>
+             <PointSymbolizer>
+               <Graphic>
+                 <Mark>
+                   <WellKnownName>square</WellKnownName>
+                   <Fill>
+                     <CssParameter name="fill">#FF0000</CssParameter>
+                   </Fill>
+                 </Mark>
+                 <Size>6</Size>
+               </Graphic>
+             </PointSymbolizer>
+           </Rule>
+           </FeatureTypeStyle>
+       </UserStyle>
+     </NamedLayer>
+   </StyledLayerDescriptor>
+
+YSLD does not require a representation of StyledLayerDescriptor, NamedLayer and UserStyle.
+
+.. code-block:: yaml
+  
+   feature-styles:
+   - name: name
+     rules:
+     - name: Rule 1
+       title: RedSquare
+       abstract: A red fill with an 11 pixel size
+       symbolizers:
+       - point:
+           size: 6
+           symbols:
+           - mark:
+               shape: square
+               fill-color: '#FF0000'
+
+Continuing with this idea YSLD does not require feature-styles or rules if you are only interested in defining a single symbolizer:
+
+.. code-block:: yaml
+  
+   point:
+     size: 6
+     symbols:
+     - mark:
+         shape: square
+         fill-color: '#FF0000'
+
+
+
 More flexible syntax
 --------------------
 
@@ -199,16 +271,15 @@ Note the definition of ``variable`` at the top, and the variable substitution in
 
 .. _cartography.ysld.why.compatible:
 
-Compatible with SLD
--------------------
+Direct match with SLD
+---------------------
 
-In addition to all of these advantages, YSLD maintains compatibility with existing SLD and can be converted directly.
+In addition to all of these advantages, YSLD directly aligns with SLD concepts. This allows existing SLD files to be converted into YSLD representation.
 
 .. note::
 
-   While YSLD and SLD are compatible, it is not always possible to convert to SLD and back to YSLD ("round trip") and retrieve the exact same syntax. Specifically the following features will be converted upon conversion to SLD:
+   While YSLD and SLD share the core concepts, several YSLD features are modified during use.
 
-   * :ref:`Zoom <cartography.ysld.reference.scalezoom>` parameters will be converted to scale parameters
-   * :ref:`cartography.ysld.reference.variables` will be evaluated and removed.
-
-   That said, even though the syntax will be different when converted back to YSLD, the output will be identical.
+   * Comments are removed
+   * :ref:`Zoom <cartography.ysld.reference.scalezoom>` parameters are converted to scale parameters
+   * :ref:`cartography.ysld.reference.variables` are evaluated
