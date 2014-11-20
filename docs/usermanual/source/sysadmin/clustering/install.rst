@@ -29,19 +29,19 @@ Linux
 
 The clustering extension is available in a collection of two separate packages::
 
-  geoserver-jdbc
+  geoserver-jdbcconfig
   geoserver-cluster
 
 To install the clustering extension, use the package manager.
 
 Red Hat / CentOS / Fedora::
 
-  yum install geoserver-jdbc
+  yum install geoserver-jdbcconfig
   yum install geoserver-cluster
 
 Ubuntu::
 
-  apt-get install geoserver-jdbc
+  apt-get install geoserver-jdbcconfig
   apt-get install geoserver-cluster
 
 A restart of GeoServer is not required.
