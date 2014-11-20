@@ -3,13 +3,7 @@
 Installing Boundless SDK
 ========================
 
-To create an application with Boundless SDK, you will need:
-
-* Boundless SDK installed. See the next section for installation details.
-
-* A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_. A standard Java Runtime Environment (JRE) is not sufficient.
-
-* `Apache Ant <http://ant.apache.org>`_ installed and on the ``PATH``. To verify this, execute the command ``ant -version`` from a command prompt.
+There are two ways to install Boundless SDK: as part of OpenGeo Suite and standalone.
 
 Installation with OpenGeo Suite
 -------------------------------
@@ -66,16 +60,23 @@ Standalone installation
 
 Boundless SDK can also be installed on a machine that does not have OpenGeo Suite.
 
+.. note::
+
+   If installing standalone, the following extra software will need to be installed and configured:
+
+   * A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_. A standard Java Runtime Environment (JRE) is not sufficient.
+   * `Apache Ant <http://ant.apache.org>`_ installed and on the ``PATH``. To verify this, execute the command ``ant -version`` from a command prompt.
+
 #. Download Boundless SDK from http://boundlessgeo.com/solutions/solutions-software/software/, making sure to match the version of the SDK with the version of OpenGeo Suite.
 
 #. Extract the archive to a suitable location on the file system.
 
-#. Add the SDK :file:`bin` directory on the ``PATH``.
+#. Add the SDK :file:`bin` directory to the ``PATH``.
 
 To verify the SDK is installed properly, execute the command ``suite-sdk`` from a command prompt.
 
 Troubleshooting
----------------
+~~~~~~~~~~~~~~~
 
 If you receive the following error when running ``suite-sdk``::
 
