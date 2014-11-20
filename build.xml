@@ -1,7 +1,7 @@
 <project name="suite" default="build">
   <import file="build/common.xml"/>
 
-  <property name="modules.list" value="geoserver,geowebcache,geoexplorer,dashboard,jetty,docs,apps,recipes,sdk"/>
+  <property name="modules.list" value="geoserver,geowebcache,geoexplorer,dashboard,jetty,docs,apps,sdk"/>
 
   <target name="build" description="Builds project">
     <for list="${modules.list}" param="mod">
