@@ -76,12 +76,9 @@ YSLD::
 
 While the SLD comes in at 300 characters, the YSLD equivalent comes in at about half that. Also, by not using an XML-based markup language, the removal of open and close tags make the document to look much simpler and be much more compact. 
 
-.. _cartography.ysld.why.syntax:
+In addition, SLD is a formally structured document designed to configure a set of WMS layers. This produces a document with additional XML that is not required when styling a single layer in isolation.
 
-Even more compact
------------------
-
-SLD is a formally structured document designed to configure a set of WMS Layers. This produced a document with additional XML trappings that are not required when styling a single layer in isolation.
+The following are the headers in a typical SLD:
 
 .. code-block:: xml
 
@@ -97,57 +94,9 @@ SLD is a formally structured document designed to configure a set of WMS Layers.
        <UserStyle>
          <Title>A boring default style</Title>
          <Abstract>A sample style that just prints out a purple square</Abstract>
-         <FeatureTypeStyle>
-           <Rule>
-             <Name>Rule 1</Name>
-             <Title>RedSquare</Title>
-             <Abstract>A red fill with an 11 pixel size</Abstract>
-             <PointSymbolizer>
-               <Graphic>
-                 <Mark>
-                   <WellKnownName>square</WellKnownName>
-                   <Fill>
-                     <CssParameter name="fill">#FF0000</CssParameter>
-                   </Fill>
-                 </Mark>
-                 <Size>6</Size>
-               </Graphic>
-             </PointSymbolizer>
-           </Rule>
-           </FeatureTypeStyle>
-       </UserStyle>
-     </NamedLayer>
-   </StyledLayerDescriptor>
+   ...
 
-YSLD does not require a representation of StyledLayerDescriptor, NamedLayer and UserStyle.
-
-.. code-block:: yaml
-  
-   feature-styles:
-   - name: name
-     rules:
-     - name: Rule 1
-       title: RedSquare
-       abstract: A red fill with an 11 pixel size
-       symbolizers:
-       - point:
-           size: 6
-           symbols:
-           - mark:
-               shape: square
-               fill-color: '#FF0000'
-
-Continuing with this idea YSLD does not require feature-styles or rules if you are only interested in defining a single symbolizer:
-
-.. code-block:: yaml
-  
-   point:
-     size: 6
-     symbols:
-     - mark:
-         shape: square
-         fill-color: '#FF0000'
-
+YSLD does not require a representation of StyledLayerDescriptor, NamedLayer and UserStyle, so all of the above are unnecessary when compared with YSLD.
 
 
 More flexible syntax
