@@ -29,7 +29,6 @@
           <fileset dir="source">
             <exclude name="**/*-enterprise.rst"/>
             <exclude name="**/*-basic.rst"/>
-            <exclude name="**/upgrade.rst"/>
           </fileset>
        </copy>
        <copy todir="${basedir}/ee">
