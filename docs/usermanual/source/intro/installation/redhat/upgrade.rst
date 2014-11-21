@@ -69,10 +69,10 @@ To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will 
 
      .. code-block:: bash
 
-        yum update opengeo-webapp-sdk
+        yum install opengeo-webapp-sdk
 
    * To update a GeoServer extension such as :ref:`WPS <processing>`:
 
-        yum update geoserver-wps
+        yum install geoserver-wps
 
 The upgrade is now complete. Please see the section on :ref:`intro.installation.redhat.misc`.

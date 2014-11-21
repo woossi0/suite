@@ -73,10 +73,10 @@ To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will 
 
      .. code-block:: bash
 
-        apt-get update opengeo-webapp-sdk
+        apt-get install opengeo-webapp-sdk
 
    * To update a GeoServer extension such as :ref:`WPS <processing>`:
 
-        apt-get update geoserver-wps
+        apt-get install geoserver-wps
 
 The upgrade is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc`.
