@@ -18,19 +18,23 @@ Viewing the existing style
 
    Observe that the default style draws a colored polygon with a black border for every country.
 
-#. The default style will look something like this::
-
-    name: Default Styler
-    title: A yellow polygon style
-    feature-styles:
-    - name: name
-      rules:
-      - title: yellow polygon
-        symbolizers:
-        - polygon:
-            stroke-color: '#000000'
-            stroke-width: 0.5
-            fill-color: '#FFFF00'
+#. The default style will look something like this:
+   
+   .. code-block:: yaml
+   
+      name: Default Styler
+      title: A boring default style
+      abstract: A sample style that just prints out a green line
+      feature-styles:
+      - name: name
+        rules:
+        - name: Rule 1
+          title: Green Line
+          abstract: A green line with a 2 pixel width
+          symbolizers:
+          - line:
+              stroke-color: '#0000FF'
+              stroke-width: 1
 
 Setting basic styling
 ---------------------
@@ -57,10 +61,14 @@ Polygon symbolizers provide options for styling both fill (inside) and stroke (o
       * - ``stroke-width: 0.5``
         - Use a line width of 0.5 px
 
-#. The complete style after these changes will be::
+#. The complete style after these changes will be:
 
+   .. code-block:: yaml
+      :emphasize-lines: 1-3,7-13
+      
       name: countries
-      title: Simple countries style
+      title: Countries style
+      abstract: countries of the world
       feature-styles:
       - name: name
         rules:
@@ -107,69 +115,73 @@ Suppose we wish to display different colors for each country. The countries laye
       * - ``MAPCOLOR7 = 7``
         - ``fill-color: '#BFC3FF'``
 
-#. After adding the filters, the style will look like::
+#. After adding the filters, the style will look like:
+   
+   .. code-block:: yaml
+      :emphasize-lines: 7-62
 
-    name: countries
-    title: Simple countries style
-    feature-styles:
-    - name: name
-      rules:
-      - filter: ${MAPCOLOR7 = 1}
-        symbolizers:
-        - polygon:
-            stroke-color: '#777777'
-            stroke-dasharray: '4 4'
-            stroke-width: 0.5
-            fill-color: '#FFC3C3'
-            fill-opacity: 0.5
-      - filter: ${MAPCOLOR7 = 2}
-        symbolizers:
-        - polygon:
-            stroke-color: '#777777'
-            stroke-dasharray: '4 4'
-            stroke-width: 0.5
-            fill-color: '#FFE3C3'
-            fill-opacity: 0.5
-      - filter: ${MAPCOLOR7 = 3}
-        symbolizers:
-        - polygon:
-            stroke-color: '#777777'
-            stroke-dasharray: '4 4'
-            stroke-width: 0.5
-            fill-color: '#FFFFC3'
-            fill-opacity: 0.5
-      - filter: ${MAPCOLOR7 = 4}
-        symbolizers:
-        - polygon:
-            stroke-color: '#777777'
-            stroke-dasharray: '4 4'
-            stroke-width: 0.5
-            fill-color: '#C3FFE3'
-            fill-opacity: 0.5
-      - filter: ${MAPCOLOR7 = 5}
-        symbolizers:
-        - polygon:
-            stroke-color: '#777777'
-            stroke-dasharray: '4 4'
-            stroke-width: 0.5
-            fill-color: '#C3FFFF'
-            fill-opacity: 0.5
-      - filter: ${MAPCOLOR7 = 6}
-        symbolizers:
-        - polygon:
-            stroke-color: '#777777'
-            stroke-dasharray: '4 4'
-            stroke-width: 0.5
-            fill-color: '#C3C3FF'
-            fill-opacity: 0.5
-      - filter: ${MAPCOLOR7 = 7}
-        symbolizers:
-        - polygon:
-            stroke-color: '#777777'
-            stroke-dasharray: '4 4'
-            stroke-width: 0.5
-            fill-color: '#BFC3FF'
-            fill-opacity: 0.5
+       name: countries
+       title: Countries style
+       abstract: countries of the world
+       feature-styles:
+       - name: name
+         rules:
+         - filter: ${MAPCOLOR7 = 1}
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: '#FFC3C3'
+               fill-opacity: 0.5
+         - filter: ${MAPCOLOR7 = 2}
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: '#FFE3C3'
+               fill-opacity: 0.5
+         - filter: ${MAPCOLOR7 = 3}
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: '#FFFFC3'
+               fill-opacity: 0.5
+         - filter: ${MAPCOLOR7 = 4}
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: '#C3FFE3'
+               fill-opacity: 0.5
+         - filter: ${MAPCOLOR7 = 5}
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: '#C3FFFF'
+               fill-opacity: 0.5
+         - filter: ${MAPCOLOR7 = 6}
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: '#C3C3FF'
+               fill-opacity: 0.5
+         - filter: ${MAPCOLOR7 = 7}
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: '#BFC3FF'
+               fill-opacity: 0.5
 
    .. figure:: img/poly_color.png
 
@@ -180,29 +192,62 @@ Compacting thematic styles with transformation functions
 
 While filters are very useful, the required syntax is quite long, and much of the content is redundant. The exact same functionality can be accomplished much more concisely using the :ref:`recode function <cartography.ysld.reference.functions>`.
 
-#. Using the style from before we added the filters, change the ``fill-color`` to::
+#. Replace the rules with our origional (before we added the filters):
+   
+   .. code-block:: yaml
+      :emphasize-lines: 3-8
+      
+        rules:
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: '#EFEFC3'
+               fill-opacity: 0.5
 
-     fill-color: ${recode(MAPCOLOR7, 1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3', 5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')} 
+#. Change the ``fill-color`` to the following CQL expression:
+   
+   .. code-block:: yaml
+      :emphasize-lines: 7-11
+      
+        rules:
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: ${
+                   recode(MAPCOLOR7,
+                     1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
+                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
+                 }
+               fill-opacity: 0.5
 
    This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function. If ``MAPCOLOR7 = 1``, set to ``ffc3c3``, if ``MAPCOLOR7 = 2`` set to ``ffe3c3``, etc.
 
-   .. note:: The ``recode`` function requires a ``#`` prefix before the color codes.
+#. The style now looks much simpler:
+   
+   .. code-block:: yaml
 
-#. The style now looks much simpler::
-
-    name: countries
-    title: Simple countries style
-    feature-styles:
-    - name: name
-      rules:
-      - title: countries
-        symbolizers:
-        - polygon:
-            stroke-color: '#777777'
-            stroke-dasharray: '4 4'
-            stroke-width: 0.5
-            fill-opacity: 0.5
-            fill-color: ${recode(MAPCOLOR7, 1.0, '#FFC3C3', 2.0, '#FFE3C3', 3.0, '#FFFFC3', 4.0, '#C3FFE3', 5.0, '#C3FFFF', 6.0, '#C3C3FF', 7.0, '#BFC3FF')}
+      name: countries
+      title: Countries style
+      abstract: countries of the world
+      feature-styles:
+       - name: name
+         rules:
+         - title: countries
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: ${
+                   recode(MAPCOLOR7,
+                     1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
+                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
+                 }
+               fill-opacity: 0.5
 
    It should be noted that this will produce the *exact same output* as in the previous section.
 
@@ -211,23 +256,30 @@ Adding labels
 
 Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ysld.reference.symbolizers.text>`. Typically you will want to use some data attribute as the label text, usually a name.
 
-#. Add a text symbolizer with a basic label using the ``NAME`` attribute::
-
-    name: countries
-    title: Simple countries style
-    feature-styles:
-    - name: name
-      rules:
-      - title: countries
-        symbolizers:
-        - polygon:
-            stroke-color: '#777777'
-            stroke-dasharray: '4 4'
-            stroke-width: 0.5
-            fill-opacity: 0.5
-            fill-color: ${recode(MAPCOLOR7, 1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3', 5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')}
-        - text:
-            label: ${NAME}
+#. Add a text symbolizer with a basic label using the ``NAME`` attribute:
+   
+   .. code-block:: yaml
+   
+      name: countries
+      title: Countries style
+      abstract: countries of the world
+      feature-styles:
+       - name: name
+         rules:
+         - title: countries
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: ${
+                   recode(MAPCOLOR7,
+                     1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
+                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
+                 }
+               fill-opacity: 0.5
+           - text:
+               label: ${NAME}
 
 #. After this change, the map will look like:
 
@@ -276,20 +328,27 @@ Final style
 
 The full style now looks like this::
 
+   .. code-block:: yaml
+   
       name: countries
-      title: Simple countries style
+      title: Countries style
+      abstract: countries of the world
       feature-styles:
-      - name: name
-        rules:
-        - title: countries
-          symbolizers:
-          - polygon:
-              stroke-color: '#777777'
-              stroke-dasharray: '4 4'
-              stroke-width: 0.5
-              fill-opacity: 0.5
-              fill-color: ${recode(MAPCOLOR7, 1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3', 5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')}
-          - text:
+       - name: name
+         rules:
+         - title: countries
+           symbolizers:
+           - polygon:
+               stroke-color: '#777777'
+               stroke-dasharray: '4 4'
+               stroke-width: 0.5
+               fill-color: ${
+                   recode(MAPCOLOR7,
+                     1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
+                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
+                 }
+               fill-opacity: 0.5
+           - text:
               label: ${strToUpperCase(NAME)}
               font-size: 14
               font-family: SansSerif
