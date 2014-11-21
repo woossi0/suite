@@ -183,6 +183,8 @@ Once selected, connection-specific details can be input.
 
 Click :guilabel:`Connect` to test the connection to the database. If successful, you will have the option of selecting resources to be added to GeoServer and published as layers. These layers can be added to a new or existing map, just like above.
 
+.. note:: If you encounter difficulties during import, check that the projection is correct, as this is typically the cause of errors.
+
 .. _webmaps.composer.configuration.newmap:
 
 New Map
