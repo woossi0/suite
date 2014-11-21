@@ -99,7 +99,6 @@ With the project workspace created, we're now ready to load data.
 
    * **Name**: :kbd:`roads` 
    * **Title**: :kbd:`Roads`
-   * **Projection**: :kbd:`EPSG:4326`
 
    .. todo:: ADD FIGURE
 
@@ -117,19 +116,16 @@ With the project workspace created, we're now ready to load data.
 
      * **Name**: :kbd:`countries` 
      * **Title**: :kbd:`Countries`
-     * **Projection**: :kbd:`EPSG:4326`
 
    * :guilabel:`ne_10m_populated_places`
 
      * **Name**: :kbd:`places` 
      * **Title**: :kbd:`Populated places`
-     * **Projection**: :kbd:`EPSG:4326`
 
    * :guilabel:`16_bit_dem_large`
 
      * **Name**: :kbd:`dem` 
      * **Title**: :kbd:`DEM`
-     * **Projection**: :kbd:`EPSG:4326`
 
    .. figure:: img/updatednames.png
 
