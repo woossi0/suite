@@ -3,13 +3,25 @@
 Upgrading to OpenGeo Suite Enterprise
 =====================================
 
-This section describes how to upgrade OpenGeo Suite to OpenGeo Suite Enterprise.
+This section describes how to upgrade OpenGeo Suite to OpenGeo Suite Enterprise on Ubuntu.
 
 .. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ for information on how to purchase OpenGeo Suite Enterprise.
 
-On Ubuntu, the additional functionality available through OpenGeo Suite Enterprise can be enabled by adding packages from a separate repository.
+To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will be preserved.
 
-#. Make sure that your current instance is up-to-date. Please see the section on :ref:`updating <intro.installation.ubuntu.update>` OpenGeo Suite.
+#. Change to the ``root`` user:
+
+   .. code-block:: bash
+
+      sudo su - 
+
+#. Uninstall OpenGeo Suite. For example, if the package you installed was ``opengeo-server``:
+
+   .. code-block:: bash
+
+      apt-get remove opengeo-server
+
+#. Remove the OpenGeo Suite repository entry, which is typically inside ``/etc/apt/sources.list.d/opengeo.list`` or ``/etc/apt/sources.list``.
 
 #. Add the OpenGeo Suite Enterprise repository. This repository contains all the Enterprise-specific features. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
@@ -33,4 +45,26 @@ On Ubuntu, the additional functionality available through OpenGeo Suite Enterpri
 
       apt-get update
 
-.. todo:: Need information on the new packages to install
+#. Now install the appropriate OpenGeo Suite packages. You have options on what packages to install:
+
+   .. note::  See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details of individual packages.
+
+   * To install typical server components:
+
+     .. code-block:: bash
+
+        apt-get install opengeo-server
+
+   * To install typical client components:
+
+     .. code-block:: bash
+
+        apt-get install opengeo-client
+
+   * To install typical client and server components:
+
+     .. code-block:: bash
+
+        apt-get install opengeo
+
+Installation is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc`.
