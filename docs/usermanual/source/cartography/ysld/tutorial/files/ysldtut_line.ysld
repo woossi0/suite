@@ -3,18 +3,19 @@ title: Simple road style
 feature-styles:
 - name: roads
   rules:
-  - scale: (8000000,)
+  - name: big
+    scale: (8000000,)
     filter: ${scalerank < 4}
     symbolizers:
     - line:
-        stroke-color: 333333
+        stroke-color: '#333333'
         stroke-width: 0.5
   - name: expressway
     scale: (,8000000)
     filter: ${expressway = 1}
     symbolizers:
     - line:
-        stroke-color: 000000
+        stroke-color: '#000000'
         stroke-width: 6
         stroke-linecap: round
   - name: ferry
@@ -22,22 +23,22 @@ feature-styles:
     filter: ${featurecla = 'Ferry'}
     symbolizers:
     - line:
-        stroke-color: 00ccff
+        stroke-color: '#00CCFF'
         stroke-width: 2
         stroke-dasharray: '4 6'
-  - name: roads
+  - name: medium
     scale: ( ,8000000)
     filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
     symbolizers:
     - line:
-        stroke-color: 333333
+        stroke-color: '#333333'
         stroke-width: 1
-  - name: else
+  - name: small
     scale: (,2000000)
     else: true
     symbolizers:
     - line:
-        stroke-color: 777777
+        stroke-color: '#777777'
         stroke-width: 0.5
 - name: inner
   rules:
@@ -46,6 +47,6 @@ feature-styles:
     filter: ${expressway = 1}
     symbolizers:
     - line:
-        stroke-color: ffcc00
+        stroke-color: "#FFCC00"
         stroke-width: 4
         stroke-linecap: round

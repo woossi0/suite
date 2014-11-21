@@ -19,18 +19,19 @@ Viewing the existing style
 #. We can immediately see that there are far more roads than we need on this layer. Fortunately, the road data contains a ``scalerank`` attribute to help determine the importance of different roads. Add a :ref:`filter <cartography.ysld.reference.filters>` to only show roads with ``scalerank < 4``. Then our style looks like:
 
    .. code-block:: yaml
-      :emphasize-lines: 6
+      :emphasize-lines: 6,10-11
 
-         name: roads
-         title: Simple road style
-         feature-styles:
-         - name: name
-           rules:
-           - filter: ${scalerank < 4}
-             symbolizers:
-             - line:
-                 stroke-color: '#000000'
-                 stroke-width: 1
+      name: roads
+      title: Simple road style
+      feature-styles:
+      - name: roads
+        rules:
+        - name: big
+          filter: ${scalerank < 4}
+          symbolizers:
+          - line:
+              stroke-color: '#333333'
+              stroke-width: 0.5
 
    The layer now appears much less cluttered:
 
@@ -61,23 +62,26 @@ If we zoom in, we want to see all the roads, not just those included in our filt
       feature-styles:
       - name: name
         rules:
-        - scale: (8000000,)
+        - name: big
+          scale: (8000000,)
           filter: ${scalerank < 4}
           symbolizers:
           - line:
-              stroke-color: '#000000'
-              stroke-width: 1
-        - scale: (2000000,8000000)
+              stroke-color: '#333333'
+              stroke-width: 0.5
+        - name: medium
+          scale: (2000000,8000000)
           filter: ${scalerank < 8}
           symbolizers:
           - line:
-              stroke-color: '#000000'
+              stroke-color: '#333333'
               stroke-width: 1
-        - scale: (,2000000)
+        - name: small
+          scale: (,2000000)
           symbolizers:
           - line:
-              stroke-color: '#000000'
-              stroke-width: 1
+              stroke-color: '#777777'
+              stroke-width: 0.5
 
    .. note:: You can replace the scale values with scientific notation if you'd like: ``8e6`` for ``8000000``, ``2e6`` for ``2000000``.
 
@@ -92,22 +96,19 @@ On the smaller scales, we want some differentiation between roads based of the f
       :emphasize-lines: 19-24
       
         rules:
-        - scale: (8000000,)
+        - name: big
+          scale: (8000000,)
           filter: ${scalerank < 4}
           symbolizers:
           - line:
-              stroke-color: '#000000'
-              stroke-width: 1
-        - scale: (2000000,8000000)
+              stroke-color: '#333333'
+              stroke-width: 0.5
+        - name: medium
+          scale: (2000000,8000000)
           filter: ${scalerank < 8}
           symbolizers:
           - line:
-              stroke-color: '#000000'
-              stroke-width: 1
-        - scale: (,2000000)
-          symbolizers:
-          - line:
-              stroke-color: '#000000'
+              stroke-color: '#333333'
               stroke-width: 1
         - name: ferry
           scale: (,8000000)
@@ -115,6 +116,12 @@ On the smaller scales, we want some differentiation between roads based of the f
           symbolizers:
           - line:
               stroke-color: '#00CCFF'
+        - name: small
+          scale: (,2000000)
+          symbolizers:
+          - line:
+              stroke-color: '#777777'
+              stroke-width: 0.5
 
 #. Further modify this rule to use a dashed line. Add the following at the bottom, at the same indentation as the ``stroke-color``:
 
@@ -130,7 +137,11 @@ On the smaller scales, we want some differentiation between roads based of the f
               stroke-width: 2
               stroke-dasharray: '4 6'
 
-.. todo:: Figure?
+#. After adding the ferry rule, this is the view when zoomed in:
+
+   .. figure:: img/line_ferry.png
+
+      Ferry rule and other styles
 
 Adding road casing
 ------------------
@@ -164,14 +175,12 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
    .. code-block:: yaml
       :emphasize-lines: 9-18
 
-          - name: expressway
-            scale: (,8000000)
-            filter: ${expressway = 1}
-            symbolizers:
-            - line:
-                stroke-color: '#000000'
-                stroke-width: 6
-                stroke-linecap: round
+        - name: small
+          scale: (,2000000)
+          symbolizers:
+          - line:
+              stroke-color: '#777777'
+              stroke-width: 0.5
       - name: inner
         rules:
         - name: expressway
@@ -191,18 +200,18 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
 
       Road casing and other styles
 
-#. Now that we have these rules for special types of roads, we want to make sure our basic rule does not also draw lines for these special roads. We can add a filter to the rule to exclude these from the rule (``<>`` means "not equal to"):
+#. Now that we have these rules for special types of roads, we want to make sure our medium rule does not also draw lines for these special roads. We can add a filter to the rule to exclude these from the rule (``<>`` means "not equal to"):
 
    .. code-block:: yaml
       :emphasize-lines: 3
 
-     - name: roads
-        scale: (,8000000)
-        filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
-        symbolizers:
-        - line:
-            stroke-color: '#333333'
-            stroke-width: 1
+        - name: medium
+          scale: (2000000,8000000)
+          filter:  ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
+          symbolizers:
+          - line:
+              stroke-color: '#333333'
+              stroke-width: 1
 
 Using ``else`` to account for all other features
 ------------------------------------------------
@@ -211,26 +220,31 @@ When we added the above rules, we made them apply for all zoom levels below ``80
 
 To accomplish this, we can make an ``else`` rule. This means that it will only apply if no other filter is true. This way, when we zoom in, we eventually see all the roads, without drawing over our special styles for ferries and expressways,
 
-#. Add the following rule:
+#. Change the scale of the medium rule:
 
    .. code-block:: yaml
-      :emphasize-lines: 8-14
+      :emphasize-lines: 2
 
-        - name: roads
+        - name: medium
           scale: ( ,8000000)
           filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
           symbolizers:
           - line:
               stroke-color: '#333333'
               stroke-width: 1
-        - name: else
+
+#. Modify the small rule with an ``else``:
+
+   .. code-block:: yaml
+      :emphasize-lines: 3
+
+        - name: small
           scale: (,2000000)
           else: true
           symbolizers:
           - line:
               stroke-color: '#777777'
               stroke-width: 0.5
-      - name: inner
 
 Final style
 -----------
