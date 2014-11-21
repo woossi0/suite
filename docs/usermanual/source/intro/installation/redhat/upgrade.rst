@@ -43,7 +43,7 @@ To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will 
 
 #. Now install the appropriate OpenGeo Suite packages. You have options on what packages to install:
 
-   .. note::  See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details of individual packages.
+   .. note:: See the :ref:`Packages <intro.installation.redhat.packages>` section for details of individual packages.
 
    * To install typical server components:
 
@@ -63,4 +63,16 @@ To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will 
 
         yum install opengeo
 
-Installation is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc`.
+#. If you installed any additional packages originally, you can update them now. For example:
+
+   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+
+     .. code-block:: bash
+
+        yum update opengeo-webapp-sdk
+
+   * To update a GeoServer extension such as :ref:`WPS <processing>`:
+
+        yum update geoserver-wps
+
+The upgrade is now complete. Please see the section on :ref:`intro.installation.redhat.misc`.
