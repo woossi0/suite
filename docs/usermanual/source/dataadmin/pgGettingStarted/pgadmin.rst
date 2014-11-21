@@ -40,14 +40,13 @@ On Linux pgAdmin can be launched from the terminal with the ``pgadmin3`` command
 Working with pgAdmin
 --------------------
 
-As part of the installation of the OpenGeo Suite, you should have one pre-configured PostGIS server, localhost:5432, listed in the pgAdmin :guilabel:`Object browser`. 
+Depending on how you installed OpenGeo Suite, you may already have one pre-configured PostGIS server, ``localhost:5432``, listed in the pgAdmin :guilabel:`Object browser`.
 
 .. figure:: img/pgadmin_postgissrv.png
 
    PostGIS server in pgAdmin
 
 If you don't have an entry for PostGIS listed, add a new server connection manually. Click :menuselection:`File --> Add Server` and complete the :guilabel:`New Server Registation` dialog box to register a new server. Ensure the Host is set to **localhost** and Port is **5432** (unless you have configured PostgreSQL for a different port). 
-
 
 .. figure:: img/pgadmin_connectwindows.png
 
