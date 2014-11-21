@@ -23,7 +23,9 @@ var zoom = 3;
 
 // this is the callback function that will get called when the features are in
 var loadFeatures = function(response) {
-  vectorSource.addFeatures(vectorSource.readFeatures(response));
+  vectorSource.addFeatures(vectorSource.readFeatures(response, {
+    dataProjection: srsName
+  }));
 };
 
 // create a WFS BBOX loader helper

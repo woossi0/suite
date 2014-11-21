@@ -130,7 +130,17 @@ app.TransactionHandler.prototype.onDrawEnd = function(evt) {
     contentType: 'text/xml',
     success: function(data) {
       var result = this.format_.readTransactionResponse(data);
-      feature.setId(result.insertIds[0]);
+      var insertId = result.insertIds[0];
+      if (insertId == 'new0') {
+        bootbox.alert('The feature was saved, but further edits/deletions ' +
+            'will fail until the app is reloaded.<br><br>' +
+            'This is because the layer is backed by a non transaction ' +
+            'capable data store (e.g. Shapefile), which is discouraged for ' +
+            'editable layers. Use a transaction capable data store like ' +
+            'PostGIS instead.');
+      } else {
+        feature.setId(insertId);
+      }
       this.map_.removeInteraction(this.draw_);
       this.hasDraw_ = false;
     },
