@@ -116,6 +116,18 @@ Installation process
 
         yum install opengeo
 
+#. If you are performing a **minor update**, update any other additional See the :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
+
+   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+
+     .. code-block:: bash
+
+        yum install opengeo-webapp-sdk
+
+   * To update a GeoServer extension such as :ref:`WPS <processing>`:
+
+        yum install geoserver-wps
+
 After installation
 ------------------
 

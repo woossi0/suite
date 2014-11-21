@@ -133,6 +133,19 @@ Installation process
 
         apt-get install opengeo
 
+#. If you are performing a **minor update**, update any other additional See the :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example:
+
+   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+
+     .. code-block:: bash
+
+        apt-get install opengeo-webapp-sdk
+
+   * To update a GeoServer extension such as :ref:`WPS <processing>`:
+
+        apt-get install geoserver-wps
+
+
 After installation
 ------------------
 
