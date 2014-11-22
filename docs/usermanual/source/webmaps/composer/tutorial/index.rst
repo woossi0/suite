@@ -122,7 +122,7 @@ With the project workspace created, we're now ready to load data.
      * **Name**: :kbd:`places` 
      * **Title**: :kbd:`Populated places`
 
-   * :guilabel:`16_bit_dem_large`
+   * :guilabel:`dem_large`
 
      * **Name**: :kbd:`dem` 
      * **Title**: :kbd:`DEM`
