@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OpenGeo Suite Dashboard</title>
+    <title>OpenGeo Suite Dashboard - Releases</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="shortcut icon" href="img/favicon.ico"/>
@@ -11,8 +11,8 @@
     <link href="css/versions.css" rel="stylesheet" media="screen">
 
   </head>
-  <body>
-    <div class="container-full">
+  <body onload="onLoad()">
+    <div class="container-fluid">
       <div class="navbar navbar-static navbar-inverse" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -28,7 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li><a class="homelink tablink" href="index.html">Dashboard</a></li>
               <li><a id="gslink" class="tablink" href="index.html#gettingstarted">Getting Started</a></li>
-              <li class="active"><a id="_documentationlink" class="tablink" href="/opengeo-docs/">Documentation</a></li>
+              <li class="active"><a id="_documentationlink" class="tablink">Documentation</a></li>
               <li class="hidden-xs"><h5 class="text-center version-info"><span class="version"></span></h5></li>
             </ul>
           </div>
@@ -50,37 +50,50 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#release-accordion" href="#collapseZero">
+                        <a data-toggle="collapse" data-parent="#release-accordion" href="#collapseNegativeOne">
                         <span class="accordion-icon"></span><span class="doc-text">Release Notes</span>
                         </a>
                     </h4>
                 </div>
-                <div id="collapseZero" class="panel-collapse collapse">
+                <div id="collapseNegativeOne" class="panel-collapse collapse">
                   <div class="panel-body">
                     <h4>OpenGeo Suite changes:</h4>
                     <ul>
-                      <li>OpenLayers 3 - Cesium</li>
+                      <li>OpenLayers 3 - Cesium added</li>
+                      <li>Composer beta for styling maps (Enterprise editions only)</li>
+                      <li>GeoServer Admin in Firefox bug fix</li>
                     </ul>
                     <p>This release also includes the following <strong>Component</strong> upgrades:</p>
-                    <h4>GeoServer 2.x</h4>
+                    <h4>GeoServer 2.6.1</h4>
                     <ul style="margin-bottom: 25px;">
-                      <li></li>
-                      <span style="line-height: 24px;">[Reference: <a href="http://blog.geoserver.org/2014/07/23/geoserver-2-5-2-release/" style="color: black;">GeoServer release notes</a>]</span>
+                      <span style="line-height: 24px;">[Reference: <a href="http://jira.codehaus.org/secure/ReleaseNote.jspa?projectId=10311&version=20651" style="color: black;">GeoServer release notes</a>]</span>
                     </ul>
-                    <h4>GeoWebCache 1.5.x</h4>
+                    <h4>GeoWebCache 1.6</h4>
                     <ul style="margin-bottom: 25px;">
-                      <li></li>
-                      <span style="line-height: 24px;">[Reference: <a href="https://github.com/GeoWebCache/geowebcache/blob/master/RELEASE_NOTES.txt" style="color: black;">GWC release notes</a>]</span>
+                      <span style="line-height: 24px;">[Reference: <a href="https://github.com/GeoWebCache/geowebcache/blob/1.6.x/RELEASE_NOTES.txt" style="color: black;">GWC release notes</a>]</span>
                     </ul>
-                    <h4>GeoTools 11.2</h4>
+                    <h4>GeoTools 12</h4>
                     <ul>
-                      <li></li>
-                      <span style="line-height: 24px;">[Reference: <a href="http://geotoolsnews.blogspot.com/2014/07/geotools-112-released.html" style="color: black;">GeoTools release notes</a>]</span>
+                      <span style="line-height: 24px;">[Reference: <a href="http://geotoolsnews.blogspot.com/2014/10/geotools-120-released.html" style="color: black;">GeoTools release notes</a>]</span>
+                    </ul>
+                    <h4>PostGIS 2.1.4</h4>
+                    <ul>
+                      <span style="line-height: 24px;">[Reference: <a href="http://postgis.net/2014/09/10/postgis-2.1.4" style="color: black;">PostGIS release notes</a>]</span>
+                    </ul>
+                    <h4>PostgreSQL 9.3.5</h4>
+                    <ul>
+                      <span style="line-height: 24px;">[Reference: <a href="http://www.postgresql.org/docs/9.3/static/release-9-3-5.html" style="color: black;">PostgreSQL release notes</a>]</span>
                     </ul>
                     <br/>
                     <p><strong>Components included:</strong></p>
                     <ul>
-                      <li></li>
+                      <li>GeoServer 2.6.1, rev a12e54e</li>
+                      <li>GeoWebCache 1.6, rev 476ab3e</li>
+                      <li>GeoTools 12, rev ea2b82b</li>
+                      <li>PostgreSQL 9.3.5</li>
+                      <li>PostGIS 2.1.4</li>
+                      <li>OpenLayers 3</li>
+                      <li>QGIS (A future update with 2.6 will be released separately.)</li>
                     </ul>
                   </div>
                 </div>
@@ -88,7 +101,7 @@
             <!-- 4.1.1 Release -->
             <h3 class="release-no">4.1.1 <small style="margin-left: 25px;">Released September 2, 2014</small></h3>
             <h4 style="margin-left: 16px;">
-              <a href="/opengeo-docs/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
+              <a href="http://suite.opengeo.org/docs/4.1.1/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
             </h4>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -133,7 +146,7 @@
                       <li>Fixed unescaped XML characters in capabilities documents</li>
                       <li>Exception thrown when calling getCoverageIntersections on a GridSubset</li>
                       <li>Fix for unrecognized element gwcConfig on startup</li>
-                      <span style="line-height: 24px;">[Reference: <a href="https://github.com/GeoWebCache/geowebcache/blob/master/RELEASE_NOTES.txt" style="color: black;">GWC release notes</a>]</span>
+                      <span style="line-height: 24px;">[Reference: <a href="https://github.com/GeoWebCache/geowebcache/blob/1.5.x/RELEASE_NOTES.txt" style="color: black;">GWC release notes</a>]</span>
                     </ul>
                     <h4>GeoTools 11.2</h4>
                     <ul>
@@ -160,7 +173,7 @@
             <!-- 4.1 Release -->
             <h3 class="release-no">4.1 <small>Released June 26, 2014</small></h3>
             <h4 style="margin-left: 16px;">
-              <a href="/docs/4.1/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
+              <a href="http://suite.opengeo.org/docs/4.1/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
             </h4>
             <div class="panel panel-default">
                 <div class="panel-heading">

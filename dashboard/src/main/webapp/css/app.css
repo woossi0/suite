@@ -264,6 +264,9 @@ h5.version-info {
 .navbar-inverse .navbar-nav>.active>a:focus {
   background-color: #f3f6f6;
   color: #28728D;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .navbar-inverse .navbar-collapse {
