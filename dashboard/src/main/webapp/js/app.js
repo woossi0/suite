@@ -61,7 +61,7 @@ function onLoad() {
     setUpTabsForIndex('.homelink');
     setUpTabsForIndex('.aboutlink');
     var docs_link = $('#_documentationlink');
-    docs_link.attr('href', 'versions.html');
+    docs_link.attr('href', '/opengeo-docs/');
   }
 
   $('.nav a').click(function(e) {
