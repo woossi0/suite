@@ -13,6 +13,4 @@ This section describes some strategies on how to work with your data using OpenG
    pgAdvanced/index
    pgDBAdmin/index
    pointcloud/index
-   mongodb/index
-   gdal/index
    importer/index

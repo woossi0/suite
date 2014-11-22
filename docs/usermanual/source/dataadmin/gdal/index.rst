@@ -3,13 +3,11 @@
 Enabling GDAL image formats support
 ===================================
 
+.. note:: This document only concerns the extra image formats that can be made available in GeoServer via GDAL. The GDAL binaries, such as :command:`gdalinfo` are installed separately.
+
 The OpenGeo Suite comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL).  These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
 
-GDAL image formats are enabled by default when using the Windows installer, Mac OS X installer, or Linux packages.  Extra configuration is required only if using **OpenGeo Suite for Application Servers** (WAR bundle).
-
-To enable GDAL image formats on OpenGeo Suite for Application Servers, read at the correct target operating system below.
-
-.. note:: See the :ref:`installation` section for more information on the various ways to install OpenGeo Suite.
+.. note:: See the :ref:`intro.installation` section for more information on the various ways to install OpenGeo Suite.
 
 Installation
 ------------
@@ -17,41 +15,46 @@ Installation
 Ubuntu
 ~~~~~~
 
-#. Install the following package from the OpenGeo repository.  (See :ref:`installation.ubuntu.install` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the Boundless repository.  (See :ref:`intro.installation.ubuntu.install` for instructions on how to add the OpenGeo repository):
 
-      apt-get install gdal
+   .. code-block:: console
 
-   .. note::  You must run this command as root or use :command:`sudo`.
+      apt-get install geoserver-gdal
 
-#. Once the package is installed, restart Tomcat to allow the changes to take effect::
+   .. note:: You must run this command as root or use :command:`sudo`.
 
-      service tomcat6 restart
+#. Once the package is installed, restart Tomcat to allow the changes to take effect:
+
+   .. code-block:: console
+
+      service tomcat7 restart
 
 Continue reading at the :ref:`dataadmin.gdal.verify` section.
-
 
 CentOS / Red Hat
 ~~~~~~~~~~~~~~~~
 
-#. Install the following package from the OpenGeo repository.  (See :ref:`installation.redhat.install` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the Boundless repository.  (See :ref:`intro.installation.redhat.install` for instructions on how to add the Boundless repository):
 
-      yum install gdal
+   .. code-block:: console
+
+      yum install geoserver-gdal
 
    .. note::  You must run this command as root or use :command:`sudo`.
 
-#. Copy :file:`/usr/lib/gdal.jar` (:file:`/usr/lib64/gdal.jar` on 64-bit installs) to :file:`/usr/share/tomcat6/webapps/geoserver/WEB-INF/lib/gdal-1.8.1.jar`.
+#. Once the package is installed, restart Tomcat to allow the changes to take effect:
 
-   .. note:: You may need to replace ``tomcat6`` with ``tomcat5`` in the above path depending on the server configuration.
+   .. code-block:: console
 
-#. Once the package is installed, restart Tomcat to allow the changes to take effect::
-
-      service tomcat6 restart
+      service tomcat7 restart
 
 Continue reading at the :ref:`dataadmin.gdal.verify` section.
 
 
 Windows
 ~~~~~~~
+
+.. note:: GDAL image formats are enabled by default when using the Windows installer, Mac OS X installer, or Linux packages. Extra configuration is required only if using **OpenGeo Suite for Application Servers** (WAR bundle).
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/ .
 
@@ -83,6 +86,8 @@ Continue reading at the :ref:`dataadmin.gdal.verify` section.
 
 Mac OS X
 ~~~~~~~~
+
+.. note:: GDAL image formats are enabled by default when using the Windows installer, Mac OS X installer, or Linux packages. Extra configuration is required only if using **OpenGeo Suite for Application Servers** (WAR bundle).
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/
 
