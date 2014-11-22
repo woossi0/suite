@@ -5,7 +5,7 @@ function onLoad() {
   var previous_link;
 
   // set up link navigation
-  function setUpTabs (tab_button) {
+  function setUpTabsForIndex (tab_button) {
     $(tab_button).click(function(e) {
       e.preventDefault();
       active_tab.hide();
@@ -29,9 +29,40 @@ function onLoad() {
 
   }
 
-  setUpTabs('#gslink');
-  setUpTabs('.homelink');
-  setUpTabs('.aboutlink');
+  function setUpTabsForVersions(tab_button) {
+    $(tab_button).click(function(e) {
+      e.preventDefault();
+      switch (tab_button) {
+        case '#gslink':
+          active_tab = '#gettingstarted';
+          break;
+        case '.homelink':
+          active_tab = ' ';
+          break;
+        case '.aboutlink':
+          active_tab = '#about';
+          break;
+        default:
+          active_tab = null;
+      }
+      if (active_tab) {
+        window.location.href = 'index.html' + active_tab;
+      }
+    });
+  }
+
+  var pagetitle = $(document).find("title").text();
+  if (pagetitle.indexOf('Releases') > -1) {
+    setUpTabsForVersions('#gslink');
+    setUpTabsForVersions('.homelink');
+    setUpTabsForVersions('.aboutlink');
+  } else {
+    setUpTabsForIndex('#gslink');
+    setUpTabsForIndex('.homelink');
+    setUpTabsForIndex('.aboutlink');
+    var docs_link = $('#_documentationlink');
+    docs_link.attr('href', 'versions.html');
+  }
 
   $('.nav a').click(function(e) {
     if ($(this).attr("id") !== '_documentationlink') {
@@ -84,8 +115,6 @@ function onLoad() {
   if (build_profile==='ee') {
     var header = $('#header-tag');
     header.addClass('navbar-ee');
-    var docs_link = $('#_documentationlink');
-    docs_link.attr('href', '/opengeo-docs/enterprise/');
     $('.build_profile').show();
   } else {
     $('.build_profile').hide();
