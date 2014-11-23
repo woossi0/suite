@@ -86,7 +86,11 @@
       {% include "component_headers.html" %}
     {% else %}
       <div id="header" class="selfclear">
-        <div class="suite_logo"><a href="{{ pathto('index') }}">{{ shorttitle }}</a> </div>
+        {% if build_profile == 'ee' %}
+          <div class="suite_ee_logo"><a href="{{ pathto('index') }}">{{ shorttitle }}</a> </div>
+        {% else %}
+          <div class="suite_logo"><a href="{{ pathto('index') }}">{{ shorttitle }}</a> </div>
+        {% endif %}
         <div class="version_info">{{ version }}</div>
         <a class="powered_by" href="http://boundlessgeo.com" target="_blank"> </a>
       </div>
