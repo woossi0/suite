@@ -143,7 +143,27 @@ a:focus, a:active {
 .navbar-brand.navbar-ee {
   background: #28728d url(../img/opengeo-logo-ee.png) no-repeat left center;
   width: 501px;
+  height: 40px;
 }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+  .navbar-brand {
+    background-image: url(../img/opengeo-logo@2x.png);
+    background-size: 304px 40px;
+    background-repeat: no-repeat;
+    width: 304px;
+    height: 40px;
+  }
+  .navbar-brand.navbar-ee {
+    background-image: url(../img/opengeo-logo-ee@2x.png);
+    width: 501px;
+    height: 40px;
+    background-size: 501px 40px;
+    background-repeat: no-repeat;
+  }
+}
+
 
 .build_profile {
   display: none;
@@ -449,6 +469,19 @@ a.dash-component {
   width: 49%;
 }
 
+.btn-group.btn-group-justified.btn-group-composer {
+  max-width: 70%;
+}
+
+@media screen and (max-width: 420px) {
+  .btn-group.btn-group-justified.btn-group-composer {
+    max-width: 100%;
+  }
+  .dash-component.dash-composer {
+    padding-left: 20px;
+  }
+}
+
 .btn-default.quicklink {
   color: #28728D !important;
 }
@@ -732,28 +765,34 @@ footer div.boundless-logo:hover {
 
 @media screen and (max-width: 972px) {
   .navbar-brand.navbar-ee {
-    background: #28728d url(../img/opengeo-logo-ee@small.png) no-repeat left center;
+    background: #28728d url(../img/opengeo-logo-ee-small.png) no-repeat left center;
     width: 242px;
     height: 32px;
     margin-top: 1%;
   }
 }
+
 @media (max-width: 972px) and (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi) {
+       (min-resolution: 192dpi) {
   .navbar-brand.navbar-ee {
-    background: #28728d url(../img/opengeo-logo-ee@small@2x.png) no-repeat left center;
+    background-image: url(../img/opengeo-logo-ee-small@2x.png);
     width: 242px;
     height: 32px;
     margin-top: 8px;
+    margin-left: -5px;
+    background-size: 242px 32px;
+    background-repeat: no-repeat;
   }
 }
 
+
+
 @media screen and (max-width: 768px) {
   .navbar-brand {
-    background: #28728d url(../img/opengeo-logo@small.png) no-repeat left center;
-    width: 241px;
+    background: #28728d url(../img/opengeo-logo-small.png) no-repeat left center;
+    width: 242px;
     height: 32px;
-    margin: 6px 0;
+    margin: 6px 0 0 -10px;
     padding-left: 0;
   }
 
@@ -851,15 +890,17 @@ footer div.boundless-logo:hover {
 }
 
 @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi) {
+       (min-resolution: 192dpi) {
   .navbar-brand {
-    background: #28728d url(../img/opengeo-logo@small@2x.png) no-repeat left center;
+    background-image: url(../img/opengeo-logo-small@2x.png);
+    background-size: 241px 32px;
+    background-repeat: no-repeat;
     width: 241px;
     height: 32px;
     margin-top: 8px;
+    margin-left: -10px;
   }
 }
-
 
 
 /* end max-width: 768px */
