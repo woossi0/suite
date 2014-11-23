@@ -110,7 +110,7 @@
                  <param name="outdir" value="${basedir}/target/latex/ee"/>
                  <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
                  <param name="builder" value="latex"/>
-                 <param name="flags" value="-t enterprise"/>
+                 <param name="flags" value="-t enterprise -A build_profile=ee"/>
                </antcall>
                <exec executable="make" failonerror="true" dir="target/latex/ee">
                  <arg line="all-pdf"/>
