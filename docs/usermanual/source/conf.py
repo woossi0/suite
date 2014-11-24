@@ -15,8 +15,10 @@ import sys, os, string
 sys.path.append('../../../build'); from build_properties import *
 
 if tags.has('enterprise'):
+    build_profile='ee'
     print "enterprise documentation build";
 else:
+    build_profile='basic'
     print "documentation build";
 
 
@@ -127,12 +129,7 @@ html_theme_path =  ['../../themes',]
 # "<project> v<release> documentation".
 #html_title = project
 
-if tags.has('enterprise'):
-    html_title = project + " Enterprise " + release + " " + manual
-else:
-    html_title = project + " " + release + " " + manual
-
-
+html_title = project + " " + release + " " + manual
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 html_short_title = project + " " + manual

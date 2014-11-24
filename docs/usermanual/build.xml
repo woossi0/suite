@@ -47,7 +47,7 @@
        </antcall>
      </target>
 
-     <target name="enterprise" depends="stage-enterprise"
+     <target name="ee" depends="stage-enterprise"
        description="Build enterprise docs">
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/ee"/>
@@ -57,7 +57,7 @@
        </antcall>
      </target>
      
-     <target name="build-html" depends="basic,enterprise"
+     <target name="build-html" depends="basic,ee"
        description="Build html docs">
      </target>
 
