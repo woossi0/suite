@@ -176,22 +176,10 @@ Because our final purpose for this layer is to display it along with other layer
 Final style
 -----------
 
-The final style looks like::
+The final style looks like:
 
-  name: raster
-  feature-styles:
-  - name: name
-    rules:
-    - symbolizers:
-      - raster:
-          opacity: 1
-          color-map:
-            type: intervals
-            entries:
-            - ('#0043C8', 1, 8080, ocean)
-            - ('#4B4422', 1, 10000, low)
-            - ('#857B54', 1, 20000, mid)
-            - ('#D9D1A8', 1, 60000, high)
+.. literalinclude:: files/ysldtut_raster.ysld
+   :language: yaml
 
 .. figure:: img/raster_dem_brownscale.png
 

@@ -326,38 +326,10 @@ Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ys
 Final style
 -----------
 
-The full style now looks like this::
+The full style now looks like this:
 
-   .. code-block:: yaml
-   
-      name: countries
-      title: Countries style
-      abstract: countries of the world
-      feature-styles:
-       - name: name
-         rules:
-         - title: countries
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: ${
-                   recode(MAPCOLOR7,
-                     1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
-                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
-                 }
-               fill-opacity: 0.5
-           - text:
-              label: ${strToUpperCase(NAME)}
-              font-size: 14
-              font-family: SansSerif
-              font-weight: bold
-              fill-color: '#333333'
-              x-autoWrap: 100
-              x-maxDisplacement: 200
-              x-goodnessOfFit: 0.8
-              x-labelPriority: ${10-LABELRANK}
+.. literalinclude:: files/ysldtut_poly.ysld
+   :language: yaml
 
 With these additions, the labels now appear much clearer:
 

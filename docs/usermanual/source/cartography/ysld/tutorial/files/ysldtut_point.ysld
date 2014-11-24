@@ -11,7 +11,7 @@ feature-styles:
         symbols:
         - mark:
             shape: circle
-            fill-color: 000000
+            fill-color: '#000000'
   - scale: (,1e8)
     filter: ${ADM0CAP = 1}
     symbolizers:
@@ -20,13 +20,13 @@ feature-styles:
         symbols:
         - mark:
             shape: star
-            fill-color: 000000
+            fill-color: '#000000'
     - point:
         size: ${log(POP2015)/log(2)}
         symbols:
         - mark:
             shape: circle
-            stroke-color: 000000
+            stroke-color: '#000000'
   - scale: (,5e7)
     filter: ${ADM0CAP = 1}  
     symbolizers:
@@ -43,8 +43,8 @@ feature-styles:
           symbols:
           - mark:
               shape: circle
-              stroke-color: 000000
-              fill-color: 777777
+              stroke-color: '#000000'
+              fill-color: '#777777'
               fill-opacity: 0.5
   - scale: (,5e6)
     else: true
@@ -54,8 +54,8 @@ feature-styles:
           symbols:
           - mark:
               shape: circle
-              stroke-color: 000000
-              fill-color: 777777
+              stroke-color: '#000000'
+              fill-color: '#777777'
               fill-opacity: 0.5
       - text:
           label: ${NAME}

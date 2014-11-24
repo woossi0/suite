@@ -8,7 +8,7 @@ feature-styles:
         color-map:
           type: intervals
           entries:
-          - (0043c8, 1, 8080, ocean)
-          - (4b4422, 1, 10000, low)
-          - (857b54, 1, 20000, mid)
-          - (d9d1a8, 1, 60000, high)
+          - ('#0043C8', 1, 8080, ocean)
+          - ('#4B4422', 1, 10000, low)
+          - ('#857B54', 1, 20000, mid)
+          - ('#D9D1A8', 1, 60000, high)

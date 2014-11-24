@@ -253,71 +253,10 @@ To improve the display further, we can add scale rules.
 Final style
 -----------
 
-The full style is now::
+The full style is now:
 
-  name: places
-  title: Populated places style
-  feature-styles:
-  - name: name
-    rules:
-    - scale: (1e8,)
-      filter: ${ADM0CAP = 1}
-      symbolizers:
-      - point:
-          size: 2
-          symbols:
-          - mark:
-              shape: circle
-              fill-color: '#000000'
-    - scale: (,1e8)
-      filter: ${ADM0CAP = 1}
-      symbolizers:
-      - point:
-          size: ${log(POP2015)/log(2) - 1}
-          symbols:
-          - mark:
-              shape: star
-              fill-color: '#000000'
-      - point:
-          size: ${log(POP2015)/log(2)}
-          symbols:
-          - mark:
-              shape: circle
-              stroke-color: '#000000'
-    - scale: (,5e7)
-      filter: ${ADM0CAP = 1}  
-      symbolizers:
-      - text:
-          label: ${NAME}
-          font-weight: bold
-          displacement: (5, 4)
-          x-labelPriority: ${10-LABELRANK}
-    - scale: (5e6,1e7)
-      else: true
-      symbolizers:
-        - point:
-            size: ${log(POP2015)/log(2)-1}
-            symbols:
-            - mark:
-                shape: circle
-                stroke-color: '#000000'
-                fill-color: '#777777'
-                fill-opacity: 0.5
-    - scale: (,5e6)
-      else: true
-      symbolizers:
-        - point:
-            size: ${log(POP2015)/log(2)-1}
-            symbols:
-            - mark:
-                shape: circle
-                stroke-color: '#000000'
-                fill-color: '#777777'
-                fill-opacity: 0.5
-        - text:
-            label: ${NAME}
-            displacement: (5, 4)
-            x-labelPriority: ${10-LABELRANK}
+.. literalinclude:: files/ysldtut_point.ysld
+   :language: yaml
 
 After these modifications, we have a much nicer display at different zoom levels:
 
