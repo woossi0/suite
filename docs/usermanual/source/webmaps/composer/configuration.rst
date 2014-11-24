@@ -169,19 +169,21 @@ Clicking :guilabel:`Details` will show the resources contained in the upload (an
 
    Options for a newly uploaded layer 
 
-**Databases** may also be connected to GeoServer. You can connect to an :guilabel:`H2`, :guilabel:`PostGIS`, or :guilabel:`GeoPackage` database.
+**Databases** may also be connected to GeoServer.
+
+.. note:: This feature is currently in development. Please use the :ref:`dataadmin.importer` for loading database tables into GeoServer.
 
 .. figure:: img/importdatadb.png
 
    Import data from databases dialog
 
-Once selected, connection-specific details can be input.
+.. Once selected, connection-specific details can be input.
 
-.. figure:: img/importdatapg.png
+.. .. figure:: img/importdatapg.png
 
-   Import data from PostGIS
+..    Import data from PostGIS
 
-Click :guilabel:`Connect` to test the connection to the database. If successful, you will have the option of selecting resources to be added to GeoServer and published as layers. These layers can be added to a new or existing map, just like above.
+.. Click :guilabel:`Connect` to test the connection to the database. If successful, you will have the option of selecting resources to be added to GeoServer and published as layers. These layers can be added to a new or existing map, just like above.
 
 .. note:: If you encounter difficulties during import, check that the projection is correct, as this is typically the cause of errors.
 
