@@ -94,6 +94,12 @@ Installation process
 
       yum search opengeo
 
+#. If you are updating and have an old version of the OpenGeo Suite Tomcat package, run the following command to remove it:
+
+   .. code-block:: bash
+
+      rpm -e tomcat6 tomcat6-lib tomcat6-el-2.1-api tomcat6-servlet-2.5-api tomcat6-jsp-2.1-api opengeo-tomcat-4.1
+
 #. You have options on what packages to install:
 
    .. note::  See the :ref:`Packages <intro.installation.redhat.packages>` section for details of individual packages.

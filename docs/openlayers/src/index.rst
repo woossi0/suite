@@ -15,6 +15,6 @@ OpenLayers is a JavaScript library for displaying or editing geospatial data in 
 Building web applications with OpenLayers
 -----------------------------------------
 
-Use the `Boundless SDK <../webapps/sdk>`_ to build complete web applications using OpenLayers 3 and GeoServer.
+Use the `Boundless SDK <../webapps/>`_ to build complete web applications using OpenLayers 3 and GeoServer.
 
 You can also find and download the pure OpenLayers API at http://www.openlayers.org.

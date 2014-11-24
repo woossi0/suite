@@ -150,12 +150,8 @@ app.TransactionHandler.prototype.onDrawEnd = function(evt) {
       if (result) {
         var insertId = result.insertIds[0];
         if (insertId == 'new0') {
-          bootbox.alert('The feature was saved, but further edits/deletions ' +
-              'will fail until the app is reloaded.<br><br>' +
-              'This is because the layer is backed by a non transaction ' +
-              'capable data store (e.g. Shapefile), which is discouraged for ' +
-              'editable layers. Use a transaction capable data store like ' +
-              'PostGIS instead.');
+          // reload data if we're dealing with a shapefile store
+          this.source_.clear();
         } else {
           feature.setId(insertId);
         }
