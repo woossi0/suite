@@ -12,7 +12,7 @@ var url = '/geoserver/wfs?';
 var featurePrefix = 'usa';
 var featureType = 'states';
 var featureNS = 'http://census.gov';
-var srsName = 'EPSG:900913';
+var srsName = 'EPSG:3857';
 var geometryName = 'the_geom';
 var geometryType = 'MultiPolygon';
 var fields = ['STATE_NAME', 'STATE_ABBR'];
@@ -23,9 +23,7 @@ var zoom = 3;
 
 // this is the callback function that will get called when the features are in
 var loadFeatures = function(response) {
-  vectorSource.addFeatures(vectorSource.readFeatures(response, {
-    dataProjection: srsName
-  }));
+  vectorSource.addFeatures(vectorSource.readFeatures(response));
 };
 
 // create a WFS BBOX loader helper
@@ -39,7 +37,10 @@ var BBOXLoader = new app.WFSBBOXLoader({
 
 // create a source to fetch the WFS features using a BBOX loader
 var vectorSource = new ol.source.ServerVector({
-  format: new ol.format.GeoJSON({geometryName: geometryName}),
+  format: new ol.format.GeoJSON({
+    defaultDataProjection: srsName,
+    geometryName: geometryName
+  }),
   loader: $.proxy(BBOXLoader.load, BBOXLoader),
   strategy: ol.loadingstrategy.createTile(new ol.tilegrid.XYZ({
     maxZoom: 19
@@ -221,5 +222,3 @@ $(document).ready(function() {
   }).resize(); // call on first load
 
 });
-
-
