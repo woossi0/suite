@@ -53,7 +53,7 @@
          <param name="dir" value="${basedir}/ee"/>
          <param name="outdir" value="${basedir}/target/html/ee"/>
          <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
-         <param name="flags" value="-t enterprise -A build_profile=ee"/>
+         <param name="flags" value="-A build_profile=ee -t enterprise"/>
        </antcall>
      </target>
      
@@ -75,7 +75,7 @@
          <param name="outdir" value="${basedir}/target/text/ee"/>
          <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
          <param name="builder" value="text"/>
-         <param name="flags" value="-t enterprise -A build_profile=ee"/>
+         <param name="flags" value="-A build_profile=ee -t enterprise"/>
        </antcall>
      </target>
   
@@ -110,7 +110,7 @@
                  <param name="outdir" value="${basedir}/target/latex/ee"/>
                  <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
                  <param name="builder" value="latex"/>
-                 <param name="flags" value="-t enterprise -A build_profile=ee"/>
+                 <param name="flags" value="-A build_profile=ee -t enterprise"/>
                </antcall>
                <exec executable="make" failonerror="true" dir="target/latex/ee">
                  <arg line="all-pdf"/>
