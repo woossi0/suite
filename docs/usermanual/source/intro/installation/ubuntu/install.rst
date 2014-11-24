@@ -30,10 +30,6 @@ The following Ubuntu versions are supported:
 * `Precise Pangolin <http://releases.ubuntu.com/precise/>`_ (12.04 LTS)
 * `Trusty Tahr <http://releases.ubuntu.com/trusty/>`_ (14.04 LTS)
 
-.. warning::
-
-   OpenGeo Suite is not supported on any other versions of Ubuntu. If running an unsupported installation, dependency conflicts may occur.
-
 OpenGeo Suite for Ubuntu Linux has the following system requirements:
 
 * Memory: 512MB minimum (1GB recommended)
@@ -110,6 +106,12 @@ Installation process
    .. code-block:: bash
 
       apt-cache search opengeo
+
+#. If you are updating and have an old version of the OpenGeo Suite Tomcat package, run the following command to update to Tomcat 7:
+
+   .. code-block:: bash
+
+      apt-get install opengeo-tomcat6- opengeo-tomcat7
 
 #. You have options on what packages to install:
 
