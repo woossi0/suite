@@ -27,6 +27,8 @@ The first step in making a map with Composer is to create a project workspace. T
 
 #. First, log in to Composer with your administrator credentials.
 
+   .. note:: The default GeoServer administrator credentials are ``admin`` / ``geoserver``.
+
    .. figure:: img/composerblank.png
 
       Fresh installation

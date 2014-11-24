@@ -23,6 +23,8 @@ Because of the ability to make low-level configuration changes to GeoServer, **a
 
 Enter an administrative user name and password and click :guilabel:`Login` to access Composer. When you first log in, you will be in the Configuration section.
 
+.. note:: The default GeoServer administrator credentials are ``admin`` / ``geoserver``.
+
 Home page / Recent
 ------------------
 
