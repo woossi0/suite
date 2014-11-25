@@ -21,7 +21,9 @@ To start/stop/restart the Tomcat service:
 
   .. code-block:: bash
  
-     sudo service tomcat7 start|stop|restart|try-restart|force-restart|status
+     sudo service tomcat7 start|stop|restart
+
+Other options in addition to the above are ``try-restart``, ``force-restart``, and ``status``.
 
 Controlling the PostgreSQL service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -30,13 +32,15 @@ To start/stop/restart the PostgreSQL service:
 
   .. code-block:: bash
  
-     sudo service postgresql start|stop|restart|reload|force-reload|status
+     sudo service postgresql start|stop|restart
+
+Other options in addition to the above are ``reload``, ``force-reload``, and ``status``.
 
   .. note:: If you have multiple versions of PostgresSQL installed you can specify which version to control with a third argument. For example:
 
      .. code-block:: bash
 
-         /etc/init.d/postgresql start 9.3 
+         sudo service postgresql start 9.3 
 
 Service port configuration
 --------------------------
@@ -75,9 +79,7 @@ If you wish to use the Oracle Java 7 JRE (rather than the OpenJDK 7 installed by
 
 #. Download and install Oracle Java 7 JRE.
 
-#. Edit the /etc/default/tomcat7
-   
-   Update the JAVA_HOME environment variable.
+#. Open :file:`/etc/default/tomcat7` and update the JAVA_HOME environment variable.
 
 Use Suite Packages with custom Tomcat
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
