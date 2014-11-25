@@ -5127,6 +5127,13 @@ div[class^='highlight'] pre {
   width: 100px;
   margin: 1.3em 1em 0 0;
 }
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
+  #header .powered_by {
+  background: url("../img/powered-by-boundless.png") no-repeat;
+  background-size: 100px 30px;
+  width: 100px;
+  height: 30px;
+}
 @media screen and (max-width: 768px) {
   #header .powered_by {
     display: none;
