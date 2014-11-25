@@ -7,19 +7,13 @@ This section describes how to upgrade OpenGeo Suite to OpenGeo Suite Enterprise 
 
 .. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ for information on how to purchase OpenGeo Suite Enterprise.
 
-To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will be preserved.
+#. To upgrade, you must first :ref:`uninstall <intro.installation.ubuntu.uninstall>` your current version of OpenGeo Suite. Your data and settings will be preserved.
 
 #. Change to the ``root`` user:
 
    .. code-block:: bash
 
       sudo su - 
-
-#. Uninstall OpenGeo Suite. For example, if the package you installed was ``opengeo-server``:
-
-   .. code-block:: bash
-
-      apt-get remove opengeo-server
 
 #. Remove the OpenGeo Suite repository entry, which is typically inside ``/etc/apt/sources.list.d/opengeo.list`` or ``/etc/apt/sources.list``.
 

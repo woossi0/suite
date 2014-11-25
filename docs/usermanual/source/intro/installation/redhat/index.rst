@@ -18,6 +18,9 @@ Please select the option that best matches your system:
 :ref:`intro.installation.redhat.upgrade`
   For upgrading to OpenGeo Suite Enterprise
 
+:ref:`intro.installation.redhat.uninstall`
+  For removing OpenGeo Suite packages
+
 :ref:`intro.installation.redhat.misc`
   Useful information about the installation
 
@@ -30,5 +33,6 @@ Please select the option that best matches your system:
    install
    update
    upgrade
+   uninstall
    misc
    packages

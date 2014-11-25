@@ -16,11 +16,13 @@ Installing
 These instructions should be followed if:
 
 * Your system does not have OpenGeo Suite
-* You are upgrading from a **minor version** of OpenGeo Suite (for example: from **4.x** to **4.y**)
+* You are updating from a **minor version** of OpenGeo Suite (for example: from **4.x** to **4.y**)
 
-If upgrading from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**), see the :ref:`intro.installation.redhat.update` section.
+These instructions should **not** be followed if:
 
-.. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with an Red Hat system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
+* You are updating from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**). In which case, see the :ref:`intro.installation.redhat.update` section.
+
+.. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with a Red Hat system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
 System requirements
 -------------------

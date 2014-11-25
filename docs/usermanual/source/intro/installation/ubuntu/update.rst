@@ -7,9 +7,9 @@ This section will show how to update OpenGeo Suite.
 
 .. warning::
 
-   This section specifically describes how to **update from a previous major version of OpenGeo Suite** on Ubuntu. A "major" version update is defined as when the first number in the version changes (for example: from 3.x to 4.y)
+   This section describes how to update from a previous **major version** of OpenGeo Suite on Red Hat. A "major" version update is defined as when the first number in the version changes (for example: from 3.x to 4.y)
 
-   **Do not use these instructions if updating on a minor release.** (for example: from 4.x to 4.y). Instead, follow the standard :ref:`new installation process <intro.installation.ubuntu.install>`.
+   If updating on a minor release, (for example: from 4.x to 4.y). please follow the standard :ref:`new installation process <intro.installation.ubuntu.install>`.
 
 .. warning:: This update is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
 

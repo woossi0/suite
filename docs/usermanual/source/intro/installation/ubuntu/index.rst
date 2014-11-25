@@ -18,6 +18,9 @@ Please select the option that best matches your system:
 :ref:`intro.installation.ubuntu.upgrade`
   For upgrading to OpenGeo Suite Enterprise
 
+:ref:`intro.installation.ubuntu.uninstall`
+  For removing OpenGeo Suite packages
+
 :ref:`intro.installation.ubuntu.misc`
   Useful information about the installation
 
@@ -30,5 +33,6 @@ Please select the option that best matches your system:
    install
    update
    upgrade
+   uninstall
    misc
    packages

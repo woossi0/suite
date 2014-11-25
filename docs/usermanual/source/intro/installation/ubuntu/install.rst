@@ -18,7 +18,9 @@ These instructions should be followed if:
 * Your system does not have OpenGeo Suite
 * You are updating from a **minor version** of OpenGeo Suite (for example: from **4.x** to **4.y**)
 
-If updating from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**), see the :ref:`intro.installation.ubuntu.update` section.
+These instructions should **not** be followed if:
+
+* You are updating from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**). In which case, see the :ref:`intro.installation.ubuntu.update` section.
 
 .. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with an Ubuntu system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
@@ -144,6 +146,8 @@ Installation process
         apt-get install opengeo-webapp-sdk
 
    * To update a GeoServer extension such as :ref:`WPS <processing>`:
+
+     .. code-block:: bash
 
         apt-get install geoserver-wps
 
