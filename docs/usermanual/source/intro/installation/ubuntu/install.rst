@@ -135,7 +135,7 @@ Installation process
 
         apt-get install opengeo
 
-#. If you are performing a **minor update**, update any other additional See the :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example:
+#. If you are performing a **minor update**, update any other additional :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example:
 
    * To update the :ref:`Boundless SDK <webapps.sdk>`:
 
