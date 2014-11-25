@@ -21,7 +21,7 @@ To start/stop/restart the Tomcat service:
 
   .. code-block:: bash
  
-     /etc/init.d/tomcat7 start|stop|restart
+     sudo service tomcat7 start|stop|restart|try-restart|force-restart|status
 
 Controlling the PostgreSQL service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -30,7 +30,7 @@ To start/stop/restart the PostgreSQL service:
 
   .. code-block:: bash
  
-     /etc/init.d/postgresql start|stop|restart
+     sudo service postgresql start|stop|restart|reload|force-reload|status
 
   .. note:: If you have multiple versions of PostgresSQL installed you can specify which version to control with a third argument. For example:
 
