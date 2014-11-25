@@ -2,25 +2,30 @@
 
 Installing
 ==========
-
+   
 .. only:: basic
 
    This section describes how to perform an installation of **OpenGeo Suite** |version| on Ubuntu Linux.
-
-   .. note:: If upgrading to OpenGeo Suite Enterprise from OpenGeo Suite, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
 
 .. only:: enterprise
 
    This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Ubuntu Linux.
 
-These instructions should be followed if:
+.. note:: Clean Install
 
-* Your system does not have OpenGeo Suite
-* You are updating from a **minor version** of OpenGeo Suite (for example: from **4.x** to **4.y**)
+   These instructions should be followed if your system does not have OpenGeo Suite installed.
 
-These instructions should **not** be followed if:
+.. note:: Update from OpenGeo Suite 4.1.1
 
-* You are updating from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**). In which case, see the :ref:`intro.installation.ubuntu.update` section.
+   These instructions should be followed when updating from a **minor version** of OpenGeo Suite. For example updating from OpenGeo Suite 4.1.1 to |version|.
+
+.. warning:: Upgrading to OpenGeo Suite Enterprise
+
+   If upgrading to OpenGeo Suite Enterprise from OpenGeo Suite, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
+      
+.. warning:: Updating from OpenGeo Suite 3.1
+
+   These instructions should **not** be followed when updating from a previous **major version** of OpenGeo Suite. To update from OpenGeo Suite 3.1 see the :ref:`intro.installation.ubuntu.update` section.
 
 .. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with an Ubuntu system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 

@@ -10,10 +10,10 @@ This document describes how to manage installaton of OpenGeo Suite for Ubuntu Li
 Please select the option that best matches your system:
 
 :ref:`intro.installation.ubuntu.install`
-  For new installations and minor version updates
+  For new installations and minor version updates. To update from OpenGeo Suite 4.1.1 start here.
 
 :ref:`intro.installation.ubuntu.update`
-  For major version updates
+  For major version updates. To update from OpenGeo Suite 3.1 start here.
 
 :ref:`intro.installation.ubuntu.upgrade`
   For upgrading to OpenGeo Suite Enterprise
