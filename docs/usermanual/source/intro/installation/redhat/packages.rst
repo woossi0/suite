@@ -149,8 +149,6 @@ For more information, please see the section on :ref:`GeoServer extensions <intr
         - Catalogue Service for Web (CSW) extension for GeoServer
       * - ``geoserver-geopackage``
         - GeoPackage extension for GeoServer
-      * - ``geoserver-script``
-        - Scripting extension for GeoServer
       * - ``geoserver-wps``
         - Web Processing Service (WPS) extension for GeoServer
 
