@@ -143,9 +143,9 @@ The ``color-map`` attribute can be used to convert any single band of data into 
 Simplifying the style
 ---------------------
 
-Because our final purpose for this layer is to display it along with other layers, a simpler, less colorful style would be easier to read.
+Because our final purpose for this layer is to display it along with other layers, a less colorful style would be easier to read.
 
-#. Create a ``color-map`` with intervals denoting ocean, and three elevations:
+#. Create a ``color-map`` with entries denoting ocean, and four elevations:
 
    .. list-table::
       :class: non-responsive
@@ -154,8 +154,10 @@ Because our final purpose for this layer is to display it along with other layer
 
       * - Color
         - Value
-      * - ``0043c8`` (ocean)
+      * - ``'#0043c8'`` (ocean)
         - Less than ``8080``
+      * - ``'#3A3519'`` (shore)
+        - Between ``8080`` and ``8100``
       * - ``4b4422`` (low elevation)
         - Between ``8080`` and ``10000``
       * - ``857b54`` (mid elevation)
@@ -166,9 +168,10 @@ Because our final purpose for this layer is to display it along with other layer
 ::
 
           color-map:
-            type: intervals
+            type: ramp
             entries:
             - ('#0043C8', 1, 8080, ocean)
+            - ('#3A3519', 1, 8100, shore)
             - ('#4B4422', 1, 10000, low)
             - ('#857B54', 1, 20000, mid)
             - ('#D9D1A8', 1, 60000, high)
