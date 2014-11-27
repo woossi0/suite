@@ -198,12 +198,12 @@ In both cases, the value for ``abstract`` is unchanged.
 
 Wrapped lines can be done between properties and values as well. So this single line::
 
-  stroke-width: roadwidth / 500
+  stroke-width: ${roadwidth / 500}
 
 Can be altered to look like::
 
    stroke-width:
-     roadwidth / 500
+     ${roadwidth / 500}
 
 The only constraint with using wrapped lines is that the subsequent lines need to be indented.
 
