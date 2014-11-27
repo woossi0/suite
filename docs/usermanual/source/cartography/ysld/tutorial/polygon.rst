@@ -113,7 +113,7 @@ Suppose we wish to display different colors for each country. The countries laye
       * - ``MAPCOLOR7 = 6``
         - ``fill-color: '#C3C3FF'``
       * - ``MAPCOLOR7 = 7``
-        - ``fill-color: '#BFC3FF'``
+        - ``fill-color: '#FFC3FF'``
 
 #. After adding the filters, the style will look like:
    
@@ -180,7 +180,7 @@ Suppose we wish to display different colors for each country. The countries laye
                stroke-color: '#777777'
                stroke-dasharray: '4 4'
                stroke-width: 0.5
-               fill-color: '#BFC3FF'
+               fill-color: '#FFC3FF'
                fill-opacity: 0.5
 
    .. figure:: img/poly_color.png
@@ -220,7 +220,7 @@ While filters are very useful, the required syntax is quite long, and much of th
                fill-color: ${
                    recode(MAPCOLOR7,
                      1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
-                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
+                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#FFC3FF')
                  }
                fill-opacity: 0.5
 
@@ -245,7 +245,7 @@ While filters are very useful, the required syntax is quite long, and much of th
                fill-color: ${
                    recode(MAPCOLOR7,
                      1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
-                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
+                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#FFC3FF')
                  }
                fill-opacity: 0.5
 
@@ -275,7 +275,7 @@ Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ys
                fill-color: ${
                    recode(MAPCOLOR7,
                      1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
-                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
+                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#FFC3FF')
                  }
                fill-opacity: 0.5
            - text:
