@@ -293,8 +293,6 @@ In certain cases, theming functions can be used in place of filters to produce s
 
 In the above example, the attribute is ``zone`` , and then each subsequent pair consists of an attribute value followed by a color.
 
-.. note:: The ``recode`` function, along with ``categorize`` and ``interpolate``, requires that all colors be in the form of ``'#rrggbb'``.
-
 .. figure:: img/functions_recode.png
 
    Recode Function
@@ -320,8 +318,6 @@ The Categorize function returns a different value depending on which range (cate
             1990,'#22DD00',
             2000,'#00FF00')}
 
-.. note:: The ``categorize`` function, along with ``recode`` and ``interpolate``, requires that all colors be in the form of ``'#rrggbb'``.
-
 .. figure:: img/filters_categories.png
 
    Categorize Function
@@ -343,5 +339,3 @@ The ``interpolate`` function can be used to create a continuous set of values by
 .. figure:: img/functions_choropleth.png
 
    Choropleth Map
-
-.. note:: The ``interpolate`` function, along with ``recode`` and ``categorize``, requires that all colors be in the form of ``'#rrggbb'``.
