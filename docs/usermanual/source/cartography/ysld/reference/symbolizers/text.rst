@@ -52,6 +52,7 @@ The full syntax of a text symbolizer is::
       x-graphic-resize: <none|proportional|stretch>
       x-group: <boolean>
       x-labelAllGroup: <boolean>
+      x-labelPriority: <expression>
       x-repeat: <expression>
       x-maxAngleDelta: <expression>
       x-maxDisplacement: <expression>
@@ -245,6 +246,10 @@ The following properties are equivalent to SLD "vendor options".
      - No
      - Used in conjunction with ``x-group``. When ``true`` all items in a group are labeled. When ``false``, only the largest geometry in the group is labeled. Valid for lines only.
      - ``false``
+   * - ``x-labelPriority``
+     - No
+     - The priority used when choosing which labels to display during conflict resolution. Higher priority values take precedence over lower priority values. 
+     - 1000
    * - ``x-repeat``
      - No
      - Desired distance (in pixels) between labels drawn on a group. If zero, only one label will be drawn. Used in conjunction with ``x-group``. Valid for lines only.
