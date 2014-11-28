@@ -29,5 +29,5 @@ An additional :ref:`extensions <intro.installation.war.extensions>` download is 
    extensions
    update
    uninstall
-
+   misc
 
