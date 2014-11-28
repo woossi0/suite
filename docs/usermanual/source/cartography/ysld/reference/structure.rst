@@ -149,7 +149,7 @@ It is sometimes not obvious whether an object should be a list (and use dashes) 
 Indentation
 -----------
 
-Indentation is very important in YSLD. All directives must be indented to its proper place to ensure proper hierarchy. **Improper indentation will cause a styled to be rendered incorrectly, or not at all.**
+Indentation is very important in YSLD. All directives must be indented to its proper place to ensure proper hierarchy. **Improper indentation will cause a style to be rendered incorrectly, or not at all.**
 
 For example, the polygon symbolizer, since it is a mapping, contains certain parameters inside it, such as the color of the fill and stroke. These must be indented such that they are "inside" the polygon block.
 
@@ -175,6 +175,38 @@ The parameters that are relevant to the polygon block here need to be contained 
 
 .. note:: For more details on symbolizer syntax, please see the section on :ref:`symbolizers <cartography.ysld.reference.symbolizers>`.
 
+Wrapped lines
+-------------
+
+Long lines can be wrapped by indenting each subsequent line in the text block. New line characters will be converted to spaces, so each line should not end with a space.
+
+So in a situation with a long value::
+
+   - name: shortname
+     title: Longer name
+     abstract: This is a really long abstract that in no way is ever likely to fit on a single line on most people's displays.
+
+This can be altered to look like::
+
+   - name: shortname
+     title: Longer name
+     abstract: This is a really long abstract that in no way
+               is ever likely to fit on a single line on most
+               people's displays.
+
+In both cases, the value for ``abstract`` is unchanged.
+
+Wrapped lines can be done between properties and values as well. So this single line::
+
+  stroke-width: ${roadwidth / 500}
+
+Can be altered to look like::
+
+   stroke-width:
+     ${roadwidth / 500}
+
+The only constraint with using wrapped lines is that the subsequent lines need to be indented.
+
 Comments
 --------
 
@@ -199,37 +231,5 @@ Comment blocks do not exist, so each line of a comment will need to be indicated
 
 .. note:: Comments are not preserved when converting to SLD.
 
-.. Wrapped lines
-.. Uncomment this section when the syntax is verified/fixed
 
-.. Long lines can be wrapped with the ``|`` character at the end of a line.
-
-.. So in a situation with a long value::
-
-..   - name: shortname
-..     title: Longer name
-..     abstract: This is a really long abstract that in no way is ever likely to fit on a single line on most people's displays.
-
-.. This can be altered to look like::
-
-..   - name: shortname
-..     title: Longer name
-..     abstract: This is a really long abstract that in no way |
-..               is ever likely to fit on a single line on most |
-..               people's displays.
-
-.. .. warning:: THIS DIDN'T WORK.
-
-.. In both cases, the value for ``abstract`` is unchanged.
-
-.. Wrapped lines can be done between properties and values as well. So this single line::
-
-..   stroke-width: roadwidth / 500
-
-.. Can be altered to look like::
-
-..   stroke-width: |
-..     roadwidth / 500
-
-.. The only constraint with using wrapped lines is that the subsequent lines need to be indented.
 

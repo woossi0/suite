@@ -35,7 +35,7 @@ There are a lot of points in this data set, and we don't want to draw all of the
               symbols:
               - mark:
                   shape: square
-                  fill-color: '#FFFF00'
+                  fill-color: '#FFCC00'
 
 #. Now, just like we did in the previous section, add a text symbolizer referencing the ``NAME`` attribute to display the names of the cities::
 
@@ -51,7 +51,7 @@ There are a lot of points in this data set, and we don't want to draw all of the
               symbols:
               - mark:
                   shape: square
-                  fill-color: '#FFFF00'
+                  fill-color: '#FFCC00'
           - text:
               label: ${NAME}
 
@@ -135,7 +135,7 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
 
       Capital cities with labels
 
-#. Since this data set contains population attributes, we can scale the size of the points based on population. Use ``log(POP2015)/log(2)`` in the ``size`` parameter to get a relative scale without too much variation in point size::
+#. Since this data set contains population attributes, we can scale the size of the points based on population. Use ``${log(POP_MAX)/log(4)}`` in the ``size`` parameter to get a relative scale without too much variation in point size::
 
     name: places
     title: Populated places style
@@ -145,13 +145,13 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
       - filter: ${ADM0CAP = 1}
         symbolizers:
         - point:
-            size: ${log(POP2015)/log(2) - 1}
+            size: ${log(POP_MAX)/log(4)}
             symbols:
             - mark:
                 shape: star
                 fill-color: '#000000'
         - point:
-            size: ${log(POP2015)/log(2)}
+            size: ${log(POP_MAX)/log(4)+1}
             symbols:
             - mark:
                 shape: circle
@@ -162,7 +162,7 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
             displacement: (5, 4)
             x-labelPriority: ${10-LABELRANK}
 
-   Note that the star shape is still always set to be 1px smaller than the circle.
+   Note that the circle shape is still set to be 1px larger than the star.
 
    .. figure:: img/point_size_label.png
 
@@ -175,7 +175,7 @@ To improve the display further, we can add scale rules.
 
 #. Split the single rule into three rules:
 
-   #. A 2px black circle for the features when zoomed out past 100000000 (``1e8``).
+   #. A 3px black circle for the features when zoomed out past 100000000 (``1e8``).
    #. The star/circle combo as done in the previous section when zoomed in past 100000000 (``1e8``).
    #. The labels only when zoomed in past 50000000 (``5e7``).
 
@@ -190,7 +190,7 @@ To improve the display further, we can add scale rules.
           filter: ${ADM0CAP = 1}
           symbolizers:
           - point:
-              size: 2
+              size: 3
               symbols:
               - mark:
                   shape: circle
@@ -199,13 +199,13 @@ To improve the display further, we can add scale rules.
           filter: ${ADM0CAP = 1}
           symbolizers:
           - point:
-              size: ${log(POP2015)/log(2) - 1}
+              size: ${log(POP_MAX)/log(4)}
               symbols:
               - mark:
                   shape: star
                   fill-color: '#000000'
           - point:
-              size: ${log(POP2015)/log(2)}
+              size: ${log(POP_MAX)/log(4)+1}
               symbols:
               - mark:
                   shape: circle
@@ -225,7 +225,7 @@ To improve the display further, we can add scale rules.
       else: true
       symbolizers:
         - point:
-            size: ${log(POP2015)/log(2)-1}
+            size: ${log(POP_MAX)/log(4)}
             symbols:
             - mark:
                 shape: circle
@@ -236,7 +236,7 @@ To improve the display further, we can add scale rules.
       else: true
       symbolizers:
         - point:
-            size: ${log(POP2015)/log(2)-1}
+            size: ${log(POP_MAX)/log(4)+1}
             symbols:
             - mark:
                 shape: circle
