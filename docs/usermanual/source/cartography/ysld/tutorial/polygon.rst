@@ -35,9 +35,9 @@ Viewing the existing style
 Name and Title
 --------------
 
-The feature style and individual elements within the style can be given optional ``name`` and ``title`` parameters. ``name`` is an internal reference to the style element and is not intended to be displayed. It should be **lower case** and contain **no spaces**. ``title`` is a human-redable description of a style element, and will be displayed by certain client appliations. For example, the ``title`` of rules will be displayed in the legend of a map :ref:`published using GeoExplorer <webmaps.basic.publish>`.
+The feature style and individual elements within the style can be given ``name`` and ``title`` parameters. ``name`` is a machine reference to the style element and is not intended to be displayed. It should be **lower case** and contain **no spaces**. ``title`` is a human-readable description of a style element, and will be displayed by client appliations. 
 
-#. Modify the name and title elements in the default style to be more usefull:
+#. Modify the name and title elements in the default style:
 
    .. code-block:: yaml
       :emphasize-lines: 1-3, 7
@@ -146,7 +146,12 @@ Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ys
 
       Basic labels
 
-#. The default labeling parameters are not ideal, but a number of styling options are available. Add the following attributes to the text symbolizer:
+Styling labels
+--------------
+
+The default labeling parameters are not ideal, but a number of styling options are available. 
+
+#. Add the following attributes to the text symbolizer:
 
    .. list-table::
       :class: non-responsive
@@ -166,7 +171,9 @@ Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ys
       * - ``fill-color: '#333333'``
         - Change the font color to dark gray
 
-#. This gives a much nicer font style, but the label placement is still poor. We can use some additional options to fix this:
+   This gives a much nicer font style, but the label placement is still poor. 
+
+#. Add some additional options to fix this:
 
    .. list-table::
       :class: non-responsive
@@ -443,7 +450,7 @@ While filters are very useful, the required syntax is quite long, and much of th
                  }
                fill-opacity: 0.5
 
-   This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function. If ``MAPCOLOR7 = 1``, set to ``ffc3c3``, if ``MAPCOLOR7 = 2`` set to ``ffe3c3``, etc.
+   This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function. If ``MAPCOLOR7 = 1``, set to ``'#FFC3C3'``, if ``MAPCOLOR7 = 2`` set to ``'#FFE3E3``, etc.
 
    It should be noted that this will produce the *exact same output* as in the previous section.
 
