@@ -142,6 +142,8 @@ Suite packages can be used to manage the contents :file:`/usr/share/opengeo` com
                
 #. Restart Tomcat
 
+.. _intro.installation.ubuntu.misc.geoserver:
+
 Working with GeoServer
 ----------------------
 
@@ -164,8 +166,6 @@ To point GeoServer to an alternate location:
        </context-param> 
 
 #. Restart Tomcat.
-
-.. _intro.installation.ubuntu.misc.compatability:
 
 Compatibility Settings
 ^^^^^^^^^^^^^^^^^^^^^^

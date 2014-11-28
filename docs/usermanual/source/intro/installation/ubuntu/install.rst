@@ -15,10 +15,9 @@ Installing
 
    If upgrading to OpenGeo Suite Enterprise from OpenGeo Suite, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
 
-.. warning:: Updating from OpenGeo Suite 3.1
+.. warning:: Updating from OpenGeo Suite 4.1.1
 
    These instructions should **not** be followed when updating from a previous **minor version** of OpenGeo Suite. To update from OpenGeo Suite 4.1.1 see the :ref:`intro.installation.ubuntu.quick` section.
-
       
 .. warning:: Updating from OpenGeo Suite 3.1
 
