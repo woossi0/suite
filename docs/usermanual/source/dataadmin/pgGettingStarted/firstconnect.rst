@@ -54,15 +54,23 @@ To allow this:
 
 #. As a super user, open :file:`/etc/postgresql/9.3/main/pg_hba.conf` (Ubuntu) or :file:`/var/lib/pgsql/9.3/data/pg_hba.conf` (Red Hat) in a text editor.
 
-#. Scroll down to the line that describes local network. It may look like this:
+#. Scroll down to the line that describes local socket connections. It may look like this:
 
    .. code-block:: console
 
-      local   all             postgres                                peer
+      local   all             all                                      peer
 
 #. Change the ``peer`` method to ``md5``.
 
    .. note:: For more information on the various options, please see the `PostgreSQL documentation on pg_hba.conf <http://www.postgresql.org/docs/devel/static/auth-pg-hba-conf.html>`_. 
+
+#. To allow connections using pgAdmin, find the line that describes local loopback connections over IPv6:
+
+   .. code-block:: console
+
+      host    all             all             ::1/128                 ident
+
+#. Change the ``ident`` method to ``md5``.
 
 #. Save and close the file.
 
