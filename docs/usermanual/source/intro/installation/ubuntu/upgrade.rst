@@ -73,4 +73,7 @@ This section describes how to upgrade OpenGeo Suite to OpenGeo Suite Enterprise 
 
         apt-get install geoserver-wps
 
+After Upgrade
+-------------
+
 The upgrade is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc`.

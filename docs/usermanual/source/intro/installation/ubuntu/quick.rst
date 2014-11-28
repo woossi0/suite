@@ -1,30 +1,25 @@
-.. _intro.installation.ubuntu.install:
+.. _intro.installation.ubuntu.quick:
 
-Installing
-==========
+Minor Update
+============
    
 .. only:: basic
 
-   This section describes how to perform an installation of **OpenGeo Suite** |version| on Ubuntu Linux. These instructions should be followed if your system does not have OpenGeo Suite installed.
+   This section describes how to perform minor a minor update from OpenGeoSuite 4.1.1 to **OpenGeo Suite** |version| on Ubuntu Linux. This procedure should be followed when updating from a **minor** version of OpenGeo Suite.
 
 .. only:: enterprise
 
-   This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Ubuntu Linux. These instructions should be followed if your system does not have OpenGeo Suite installed.
+   This section describes how to perform minor update from OpenGeoSuite 4.1.1 to **OpenGeo Suite Enterprise** |version| on Ubuntu Linux. This procedure should be followed when updating from a **minor** version of OpenGeo Suite.
 
 .. warning:: Upgrading to OpenGeo Suite Enterprise
 
-   If upgrading to OpenGeo Suite Enterprise from OpenGeo Suite, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
-
-.. warning:: Updating from OpenGeo Suite 3.1
-
-   These instructions should **not** be followed when updating from a previous **minor version** of OpenGeo Suite. To update from OpenGeo Suite 4.1.1 see the :ref:`intro.installation.ubuntu.quick` section.
-
+   If upgrading to OpenGeo Suite Enterprise |version| from OpenGeo Suite |version|, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
       
 .. warning:: Updating from OpenGeo Suite 3.1
 
    These instructions should **not** be followed when updating from a previous **major version** of OpenGeo Suite. To update from OpenGeo Suite 3.1 see the :ref:`intro.installation.ubuntu.update` section.
 
-.. note:: While QGIS is part of OpenGeo Suite it is not currently bundled as a package by Boundless. To use QGIS with an Ubuntu system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
+.. note:: While QGIS is part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with an Ubuntu system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
 System requirements
 -------------------
@@ -111,6 +106,12 @@ Installation process
 
       apt-cache search opengeo
 
+#. Run the following command to update to Tomcat 7:
+
+   .. code-block:: bash
+
+      apt-get install opengeo-tomcat6- opengeo-tomcat7
+
 #. You have options on what packages to install:
 
    .. note::  See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details of individual packages.
@@ -133,7 +134,21 @@ Installation process
 
         apt-get install opengeo
 
-After installation
-------------------
+#. Update any other additional :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example:
 
-Installation is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc`.
+   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+
+     .. code-block:: bash
+
+        apt-get install opengeo-webapp-sdk
+
+   * To update a GeoServer extension such as :ref:`WPS <processing>`:
+
+     .. code-block:: bash
+
+        apt-get install geoserver-wps
+
+After Update
+------------
+
+Installation is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc` for for common tasks and additional configuration and compatibility settings.

@@ -1,7 +1,7 @@
 .. _intro.installation.ubuntu.update:
 
-Updating
-========
+Major Update
+============
 
 This section will show how to update OpenGeo Suite.
 
@@ -179,3 +179,8 @@ The default GeoServer data directory location for OpenGeo Suite is located at :f
    .. code-block:: bash
 
       service tomcat7 start
+
+After Update
+------------
+
+Installation is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc` for for common tasks and additional configuration and compatibility settings.
