@@ -1,28 +1,24 @@
-.. _intro.installation.redhat.install:
+.. _intro.installation.redhat.quick:
 
-Installing
-==========
+Minor Update
+============
 
 .. only:: basic
 
-   This section describes how to perform an installation of **OpenGeo Suite** |version| on Red hat-based Linux distributions. These instructions should be followed if your system does not have OpenGeo Suite installed.
+   This section describes how to perform minor a minor update from OpenGeoSuite 4.1.1 to **OpenGeo Suite** |version| on Red Hat-based Linux distributions. This procedure should be followed when updating from a **minor** version of OpenGeo Suite.
 
 .. only:: enterprise
 
-   This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Red hat-based Linux distributions. These instructions should be followed if your system does not have OpenGeo Suite installed.
-
+   This section describes how to perform minor update from OpenGeoSuite 4.1.1 to **OpenGeo Suite Enterprise** |version| on Red Hat-based Linux distributions. This procedure should be followed when updating from a **minor** version of OpenGeo Suite.
+   
 .. warning:: Upgrading to OpenGeo Suite Enterprise
 
-   If upgrading to OpenGeo Suite Enterprise from OpenGeo Suite, please see the section on :ref:`intro.installation.redhat.upgrade`.
-
-.. warning:: Updating from OpenGeo Suite 4.1.1
-
-   These instructions should **not** be followed when updating from a previous **minor version** of OpenGeo Suite. To update from OpenGeo Suite 4.1.1 see the :ref:`intro.installation.redhat.quick` section.
+   If upgrading to OpenGeo Suite Enterprise |version| from OpenGeo Suite, please see the section on :ref:`intro.installation.redhat.upgrade`.
       
 .. warning:: Updating from OpenGeo Suite 3.1
 
    These instructions should **not** be followed when updating from a previous **major version** of OpenGeo Suite. To update from OpenGeo Suite 3.1 see the :ref:`intro.installation.redhat.update` section.
-
+   
 .. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with a Red Hat system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
 System requirements
@@ -50,7 +46,7 @@ Pre-installation process
 
 .. only:: enterprise
 
-   This installation will add the OpenGeo Suite package repositories and then install the appropriate packages. See the :ref:`Packages <intro.installation.redhat.packages>` section for details about the possible packages to install.
+   This installation will add the OpenGeo Suite Enterprise package repositories and then install the appropriate packages. See the :ref:`Packages <intro.installation.redhat.packages>` section for details about the possible packages to install.
 
 .. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
 
@@ -97,6 +93,12 @@ Installation process
 
       yum search opengeo
 
+#. Run the following command to remove the previous OpenGeo Suite Tomcat package:
+
+   .. code-block:: bash
+
+      rpm -e tomcat6 tomcat6-lib tomcat6-el-2.1-api tomcat6-servlet-2.5-api tomcat6-jsp-2.1-api opengeo-tomcat-4.1
+
 #. You have options on what packages to install:
 
    .. note::  See the :ref:`Packages <intro.installation.redhat.packages>` section for details of individual packages.
@@ -119,7 +121,19 @@ Installation process
 
         yum install opengeo
 
-After installation
-------------------
+#. Be sure to update any all additional See the :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
 
-Installation is now complete. Please see the section on :ref:`intro.installation.redhat.misc` for for common tasks and additional configuration and compatibility settings.
+   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+
+     .. code-block:: bash
+
+        yum install opengeo-webapp-sdk
+
+   * To update a GeoServer extension such as :ref:`WPS <processing>`:
+
+        yum install geoserver-wps
+
+After update
+------------
+
+Update is now complete. Please see the section on :ref:`intro.installation.redhat.misc` for for common tasks and additional configuration and compatibility settings.

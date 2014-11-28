@@ -12,9 +12,12 @@ Please select the option that best matches your system:
 :ref:`intro.installation.redhat.install`
   For new installations and minor version updates
 
-:ref:`intro.installation.redhat.update`
-  For major version updates
+:ref:`intro.installation.redhat.quick`  
+  For minor version updates. To update from OpenGeo Suite 4.1.1 start here.
 
+:ref:`intro.installation.redhat.update`
+  For major version updates. To update from OpenGeo Suite 3.1 start here.
+  
 :ref:`intro.installation.redhat.upgrade`
   For upgrading to OpenGeo Suite Enterprise
 
@@ -31,6 +34,7 @@ Please select the option that best matches your system:
    :hidden:
 
    install
+   quick
    update
    upgrade
    uninstall
