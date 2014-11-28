@@ -179,10 +179,10 @@ To adjust GeoServer compatibility settings:
    .. code-block:: bash
       
       -Dorg.geotoools.render.lite.scale.unitCompensation=true
-       
-   This setting will be the default in future versions of OpenGeo Suite.
    
-#. GeoJSON crs information is now supported.
+#. GeoServer GeoJSON output from WFS and WMS is now provided in x/y/z order as required by the specification.
+
+   In addition GeoJSON crs information is now supported:
    
    .. code-block:: json
 
@@ -195,29 +195,25 @@ To adjust GeoServer compatibility settings:
    
    .. warning:: Clients such as OL3 may need additional configuration to support this longer URN representation.
    
-   Previous representation:
-   
-   .. code-block:: json
-   
-      "crs": {
-         "type": "EPSG",
-         "properties": {
-            "code": "4326"
-         }
-      }
+   .. note:: To restore the previous ``crs`` representation add the following context parameter to  :file:`/usr/share/opengeo/geoserver/WEB-INF/web.xml`:
 
-   Optional: to restore the previous representation add the following context parameter to  :file:`/usr/share/opengeo/geoserver/WEB-INF/web.xml`:
-
-   .. code-block:: xml
+      .. code-block:: xml
       
-       <context-param>
-           <param-name>GEOSERVER_GEOJSON_LEGACY_CRS</param-name>
-           <param-value>true</param-value>
-       </context-param>
+          <context-param>
+              <param-name>GEOSERVER_GEOJSON_LEGACY_CRS</param-name>
+              <param-value>true</param-value>
+          </context-param>
 
-   .. note:: GeoServer GeoJSON output from WFS and WMS is now provided in x/y/z order as required by the specification.
+      Previous representation:
    
-      Please be advised this may effect the functionality of existing clients including OL2.
+      .. code-block:: json
+   
+         "crs": {
+            "type": "EPSG",
+            "properties": {
+               "code": "4326"
+            }
+         }
 
 #. Restart Tomcat::
    
