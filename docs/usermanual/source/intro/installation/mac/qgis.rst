@@ -7,6 +7,8 @@ This section will describe how to install QGIS on Mac OS X.
 
 Unlike all of the other components of OpenGeo Suite which can be installed from a single installer package, QGIS is broken out into its own package and must be installed separately.
 
+.. warning:: If you have the `QGIS community version <https://www.qgis.org/en/site/index.html>`_, uninstall it and remove ``/Libraries/Frameworks/GDAL.frameworks`` from your ``PATH`` variable. The QGIS community version for Mac OS X depends on GDAL frameworks which conflict with GeoWebCache for Application Servers.
+
 Prerequisites
 -------------
 
