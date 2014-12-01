@@ -6,13 +6,32 @@ Working with OpenGeo Suite Web Archives
 Working with JNDI
 -----------------
 
-Applications such as GeoServer are in position to work with database connection pools set up by your application server.
+Applications such as GeoServer are in position to work with database connection pools set up by your application server. The Java Naming and Directory Interface (JNDI) can be used to create a connection pool for a JDBC data source. The instructions to set up a JNDI connection pool in Tomcat, using a PostgreSQL data source follow: 
 
-* Remove JDBC Driver from geoserver/WEB-INF/lib folder and copy to application server.
-* Register the connection pool with your application server Java Naming and Directory Interface (JNDI)
-* When adding a the Vector Store in GeoServer select the JNDI option. Fill in the **jndiReferenceName** used by the application server
+#. Copy the JDBC Driver for your database to :file:`TOMCAT_HOME/lib`. The JDBC driver can often be found on the website of your DBMS provider, or in the installed version of your database. 
 
-For more information see the GeoServer users manual.
+   The PostgreSQL JDBC Driver can be found at the `PostgreSQL web site <http://jdbc.postgresql.org/>`_ or in the :file:`geoserver/WEB-INF/lib` directory.
+
+#. Remove the JDBC Driver from the :file:`geoserver/WEB-INF/lib` folder. It should be named :file:`postgresql-X.X-XXX.jdbc3.jar`. 
+
+#. Register the connection pool with the Tomcat Java Naming and Directory Interface (JNDI). This is done by adding a ``<Resource\>`` entry to the :file:`TOMCAT_HOME/conf/context.xml` configuration file. For more information about the possible parameters and their values refer to the `DBCP documentation <http://commons.apache.org/dbcp/configuration.html>`_. 
+   
+   For a PosgreSQL database named ``test``, with a username and password of ``admin`` the configuration is:
+
+   .. code-block:: xml
+
+      <Context>
+       ...
+        <Resource name="jdbc/postgres" auth="Container" type="javax.sql.DataSource"
+                  driverClassName="org.postgresql.Driver"
+                  url="jdbc:postgresql://localhost:5432/test"
+                  username="admin" password="admin"
+                  maxActive="20" maxIdle="10" maxWait="-1"/>
+      </Context>
+
+#. When adding a the Vector Store in GeoServer select the JNDI option. Fill in the **jndiReferenceName** used by the application server and **schema** used by the database. The **jndiReferenceName** will be ``java:comp/env/`` followed by the Resource ``name`` specified in the Tomcat JNDI configuration (Using the PostgreSQL configuration above, this would be ``java:comp/env/jdbc/postgres``).
+
+For more information, including how to configure JNDI for Oracle and SQL Server data sources, see the `GeoServer user manual </geoserver/tutorials/tomcat-jndi/tomcat-jndi.html>`_.
 
 Working with GeoServer
 ----------------------
