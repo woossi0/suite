@@ -29,7 +29,7 @@ Services can also be controlled from the Windows :guilabel:`Services` dialog ava
 Service port configuration
 --------------------------
 
-The Jetty and PostgreSQL services run on ports **8080** and **5432** respectively. These ports can often conflict with existing services on the systemk, in which case the ports must be changed. 
+The Jetty and PostgreSQL services run on ports **8080** and **5432** respectively. These ports can often conflict with existing services on the system, in which case the ports must be changed. 
 
 Changing the Jetty port
 ^^^^^^^^^^^^^^^^^^^^^^^
