@@ -1,23 +1,15 @@
-.. _intro.installation.windows.install:
+.. _intro.installation.windows.minorupdate:
 
-Installing
-==========
-
-.. todo:: Screenshots will need to be updated.
-
-.. only:: basic
-
-   This section describes how to perform a new installation of **OpenGeo Suite** |version| on Ubuntu Linux. These instructions should only be followed if your system does not have OpenGeo Suite installed.
-
-.. only:: enterprise
-
-   This section describes how to perform a new installation of **OpenGeo Suite Enterprise** |version| on Ubuntu Linux. These instructions should be only followed if your system does not have OpenGeo Suite installed.
+Updating a minor version
+========================
+   
+This section describes how to perform a minor update from OpenGeo Suite 4.x to |version| on Ubuntu Linux.
 
 .. note::
 
-   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.windows.upgrade`.
-   * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.windows.minorupdate` section.
-   * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.windows.majorupdate` section.
+   * For new installations, please see the section on :ref:`intro.installation.ubuntu.install`.
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
+   * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.ubuntu.majorupdate` section.
 
 .. include:: include/sysreq.txt
 
@@ -33,6 +25,10 @@ Installation
    .. figure:: img/welcome.png
 
       Welcome screen
+
+#. The installer will recognize that an existing version of OpenGeo Suite on the system, and will warn you about the update.
+
+   .. todo:: Add figure
 
 #. Read the **License Agreement** then click :guilabel:`I Agree`.
 
@@ -78,7 +74,7 @@ Installation
 
       OpenGeo Suite successfully installed
 
-After installation
-------------------
+After update
+------------
 
-Installation is now complete. Please see the section on :ref:`intro.installation.windows.postinstall` to continue.
+The update is now complete. Please see the section on :ref:`intro.installation.windows.postinstall` to continue.

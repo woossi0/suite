@@ -9,7 +9,7 @@ This document describes how to uninstall OpenGeo Suite for Windows.
 
 #. Navigate to :menuselection:`Start Menu --> Programs --> OpenGeo Suite --> Uninstall`.
 
-   .. note:: Uninstallation is also available via the standard Windows program removal workflow. (**Add/Remove Programs** for Windows XP, **Programs and Features** for Windows 7, Vista etc.)
+   .. note:: Uninstallation is also available via the standard Windows program removal workflow (**Programs and Features** Control Panel entry for Windows 7/Vista.)
 
 #. Click :guilabel:`Uninstall` to start the uninstallation process.
 
@@ -17,7 +17,7 @@ This document describes how to uninstall OpenGeo Suite for Windows.
 
       Ready to uninstall OpenGeo Suite
 
-#. Uninstalling will not delete your settings and data. Should you wish to delete this directory, you will need to do it manually. The uninstallation process will display the location of your settings directory.
+#. Uninstalling will not delete your settings and data. Should you wish to delete this directory, you will need to do it manually. The uninstallation process will display the location of your settings directory. By default, this directory is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo`.
 
    .. figure:: img/undatadir.png
 
