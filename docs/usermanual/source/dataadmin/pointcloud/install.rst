@@ -8,21 +8,21 @@ The Point Cloud extension is available as a part of OpenGeo Suite.
 Windows
 -------
 
-During the installation process, on the :guilabel:`Components` page, expand the :guilabel:`PostGIS Add-ons` tree and select :guilabel:`Point Cloud`.
+The Point Cloud extension is already installed by default on Windows when PostGIS is installed. No further configuration is necessary.
 
-Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
+Continue below at :ref:`dataadmin.pointcloud.install.activate`.
 
 OS X
 ----
 
-The Point Cloud extension is already installed by default on OS X. No further configuration is necessary.
+The Point Cloud extension is already installed by default on OS X when PostGIS is installed. No further configuration is necessary.
 
 Continue below at :ref:`dataadmin.pointcloud.install.activate`.
 
 Ubuntu Linux
 ------------
 
-A package for Ubuntu Linux is available called ``postgresql-9.3-pointcloud``. It can be installed via standard package management, assuming the OpenGeo Suite repository has been added. (See the :ref:`Ubuntu installation page <installation.ubuntu.install>` for more information.)
+A package for Ubuntu Linux is available called ``postgresql-9.3-pointcloud``. It can be installed via standard package management, assuming the OpenGeo Suite repository has been added. (See the :ref:`Ubuntu installation page <intro.installation.ubuntu.install>` for more information.)
 
 .. code-block:: console
 
@@ -34,7 +34,7 @@ Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
 Red Hat-based Linux
 -------------------
 
-A package for Red Hat-based Linux distributions such as RHEL, CentOS, and Fedora is available, called ``pointcloud-postgresql93``. It can be installed via standard package management, assuming the OpenGeo Suite repository has been added. (See the :ref:`Red Hat installation page <installation.redhat.install>` for more information.)
+A package for Red Hat-based Linux distributions such as RHEL, CentOS, and Fedora is available, called ``pointcloud-postgresql93``. It can be installed via standard package management, assuming the OpenGeo Suite repository has been added. (See the :ref:`Red Hat installation page <intro.installation.redhat.install>` for more information.)
   
 .. code-block:: console
 
