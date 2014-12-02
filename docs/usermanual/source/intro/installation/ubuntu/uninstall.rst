@@ -3,9 +3,9 @@
 Uninstalling
 ============
 
-Uninstalling OpenGeo Suite is usually the recommended first step before :ref:`updating <intro.installation.ubuntu.update>` to a new version or :ref:`upgrading <intro.installation.ubuntu.upgrade>` to OpenGeo Suite Enterprise.
+Uninstalling OpenGeo Suite is usually the recommended first step before :ref:`updating <intro.installation.ubuntu.majorupdate>` to a new major version or :ref:`upgrading <intro.installation.ubuntu.upgrade>` to OpenGeo Suite Enterprise.
 
-The following commands will uninstall OpenGeo Suite. In all cases, the data directory at ``/var/lib/opengeo/geoserver`` will not be removed.
+The following procedure will uninstall OpenGeo Suite. In all cases, the data directory at ``/var/lib/opengeo/geoserver`` will not be removed.
 
 .. note:: These commands should be run as root.
 

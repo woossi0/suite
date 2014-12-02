@@ -1,40 +1,19 @@
-.. _intro.installation.ubuntu.quick:
+.. _intro.installation.ubuntu.minorupdate:
 
-Minor Update
-============
+Updating a minor version
+========================
    
-.. only:: basic
+This section describes how to perform a minor update from OpenGeo Suite 4.x to |version| on Ubuntu Linux.
 
-   This section describes how to perform minor a minor update from OpenGeoSuite 4.1.1 to **OpenGeo Suite** |version| on Ubuntu Linux. This procedure should be followed when updating from a **minor** version of OpenGeo Suite.
+.. note::
 
-.. only:: enterprise
-
-   This section describes how to perform minor update from OpenGeoSuite 4.1.1 to **OpenGeo Suite Enterprise** |version| on Ubuntu Linux. This procedure should be followed when updating from a **minor** version of OpenGeo Suite.
-
-.. warning:: Upgrading to OpenGeo Suite Enterprise
-
-   If upgrading to OpenGeo Suite Enterprise |version| from OpenGeo Suite |version|, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
-      
-.. warning:: Updating from OpenGeo Suite 3.1
-
-   These instructions should **not** be followed when updating from a previous **major version** of OpenGeo Suite. To update from OpenGeo Suite 3.1 see the :ref:`intro.installation.ubuntu.update` section.
+   * For new installations, please see the section on :ref:`intro.installation.ubuntu.install`.
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
+   * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.ubuntu.majorupdate` section.
 
 .. note:: While QGIS is part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with an Ubuntu system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
-System requirements
--------------------
-
-The following Ubuntu versions are supported:
-
-* `Precise Pangolin <http://releases.ubuntu.com/precise/>`_ (12.04 LTS)
-* `Trusty Tahr <http://releases.ubuntu.com/trusty/>`_ (14.04 LTS)
-
-OpenGeo Suite for Ubuntu Linux has the following system requirements:
-
-* Memory: 512MB minimum (1GB recommended)
-* Disk space: 750MB minimum (plus extra space for any loaded data)
-* Browser: Any modern web browser is supported
-* Permissions: Super user privileges are required for installation
+.. include:: include/sysreq.txt
 
 Pre-installation process
 ------------------------
@@ -65,13 +44,13 @@ The commands in this section require root privileges.
 
            .. code-block:: bash
 
-              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
 
          * If installing on Trusty:
 
            .. code-block:: bash
 
-              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
+              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
 
    .. only:: enterprise
 
@@ -89,7 +68,7 @@ The commands in this section require root privileges.
 
               echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
 
-         .. note: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
+         .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
 
 Installation process
 --------------------
@@ -148,7 +127,7 @@ Installation process
 
         apt-get install geoserver-wps
 
-After Update
+After update
 ------------
 
-Installation is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc` for for common tasks and additional configuration and compatibility settings.
+The update is now complete. Please see the section on :ref:`intro.installation.ubuntu.postinstall` to continue.

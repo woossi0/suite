@@ -5,13 +5,13 @@ Ubuntu Linux packages
 
 OpenGeo Suite for Ubuntu is broken up into a number of discrete packages. This section describes all of the available packages.
 
-The packages are managed through the standard package management system for Ubuntu called `APT <https://help.ubuntu.com/community/AptGet/Howto>`_. All packages can be installed with the following command::
+The packages are managed through the standard package management system for Ubuntu called `apt <https://help.ubuntu.com/community/AptGet/Howto>`_. All packages can be installed with the following command::
 
   sudo apt-get install <package>
 
 where ``<package>`` is any one of the package names listed below.
 
-Top level packages
+Top-level packages
 ------------------
 
 The following packages are considered "meta" packages that only depend on other upstream packages, and contain no libraries or binaries themselves.
@@ -41,7 +41,7 @@ The following packages are considered "meta" packages that only depend on other 
 Server packages
 ---------------
 
-The following packages contain the server components of OpenGeo Suite.
+The following packages contain the server components of OpenGeo Suite. These packages are installed via the ``opengeo-server`` meta-package.
 
 .. tabularcolumns:: |p{3cm}|p{6cm}|p{6cm}|
 .. list-table::
@@ -83,7 +83,7 @@ The following packages contain the server components of OpenGeo Suite.
 Client/library packages
 -----------------------
 
-The following packages contain the client components of OpenGeo Suite.
+The following packages contain the client components of OpenGeo Suite. These packages are installed via the ``opengeo-clinet`` metapackage.
 
 .. tabularcolumns:: |p{3cm}|p{6cm}|p{6cm}|
 .. list-table::

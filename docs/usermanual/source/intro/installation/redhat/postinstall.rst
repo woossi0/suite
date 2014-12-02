@@ -1,12 +1,12 @@
-.. _intro.installation.ubuntu.misc:
+.. _intro.installation.redhat.postinstall:
 
-Working with OpenGeo Suite for Ubuntu Linux
-===========================================
+After installation: Working with OpenGeo Suite for Red Hat Linux
+================================================================
 
-This document contains information about various tasks specific to OpenGeo Suite for Ubuntu Linux.
+This document contains information about various tasks specific to OpenGeo Suite for Ubuntu Linux. For more details, please see the :ref:`sysadmin` section.
 
-Starting and stopping OpenGeo services
---------------------------------------
+Starting and stopping OpenGeo Suite services
+--------------------------------------------
 
 OpenGeo Suite is comprised of two main services:
 
@@ -21,26 +21,28 @@ To start/stop/restart the Tomcat service:
 
   .. code-block:: bash
  
-     sudo service tomcat7 start|stop|restart
+     service tomcat start|stop|restart
 
-Other options in addition to the above are ``try-restart``, ``force-restart``, and ``status``.
+.. note:: Depending on the distribution and version the service name may be one of "tomcat", "tomcat5", or "tomcat6". Use the :command:`service` command to determine which one is installed:
+
+  .. code-block:: bash
+
+     service --status-all | grep tomcat
 
 Controlling the PostgreSQL service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before PostgreSQL service can be started it must first be initialized:
+
+  .. code-block:: bash
+
+     service postgresql-9.3 initdb
 
 To start/stop/restart the PostgreSQL service:
 
   .. code-block:: bash
  
-     sudo service postgresql start|stop|restart
-
-Other options in addition to the above are ``reload``, ``force-reload``, and ``status``.
-
-  .. note:: If you have multiple versions of PostgresSQL installed you can specify which version to control with a third argument. For example:
-
-     .. code-block:: bash
-
-         sudo service postgresql start 9.3 
+     service postgresql-9.3 start|stop|restart
 
 Service port configuration
 --------------------------
@@ -52,22 +54,36 @@ Changing the Tomcat port
 
 To change the Tomcat port:
 
-#. Edit the file :file:`/etc/tomcat7/server.xml`. 
+#. Edit the file :file:`/etc/tomcat/server.xml`. 
 
-#. Search for ``8080`` (around line 71) and change the ``port`` attribute to the desired value.
+   .. note:: Depending on the distribution and version replace "tomcat" with "tomcat5" or "tomact6" accordingly. Use the :command:`service` command to determine which one is installed:
 
-#. Restart Tomcat. 
+      .. code-block:: bash
+
+         service --status-all | grep tomcat
+
+#. Search for "8080" (around line 75) and change the ``port`` attribute to the desired value.
+
+#. Restart tomcat. 
+
+   .. code-block:: bash
+
+        service tomcat restart
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To change the PostgreSQL port:
 
-#. Edit the file :file:`/etc/postgresql/9.3/main/postgresql.conf`.
+#. Edit the file :file:`/var/lib/pgsql/9.3/data/postgresql.conf`.
 
-#. Search or the ``port`` property (around line 63) and change it to the desired value.
+#. Search or the ``port`` property (around line 63), uncomment and change it to the desired value.
 
 #. Restart PostgreSQL.
+
+   .. code-block:: bash
+
+       service postgresql-9.3 restart
 
 Working with Tomcat
 -------------------
@@ -79,18 +95,18 @@ If you wish to use the Oracle Java 7 JRE (rather than the OpenJDK 7 installed by
 
 #. Download and install Oracle Java 7 JRE.
 
-#. Open :file:`/etc/default/tomcat7` and update the JAVA_HOME environment variable.
+#. Open :file:`/etc/default/tomcat7` and update the ``JAVA_HOME`` environment variable.
 
-Use Suite Packages with custom Tomcat
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using OpenGeo Suite with custom Tomcat
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Suite packages can be used to manage the contents :file:`/usr/share/opengeo` components while making use of your own Tomcat Application Server. This is an alternative to deploying suite using web archives into the :file:`webapps` directory.
+OpenGeo Suite packages can be used to manage the contents :file:`/usr/share/opengeo` components while making use of your own Tomcat application server.
 
-#. Install suite packages
+#. Install OpenGeo Suite.
 
-#. Stop your Tomcat service
+#. Stop your Tomcat service.
 
-#. Navigate to :file:`/etc/tomcat7/Catalina/localhost/`
+#. Navigate to :file:`/etc/tomcat7/Catalina/localhost/`.
 
 #. Create the :file:`geoserver.xml` with the following content:
    
@@ -132,17 +148,9 @@ Suite packages can be used to manage the contents :file:`/usr/share/opengeo` com
                docBase="/usr/share/opengeo/docs"
                path="/docs"/>
 
-#. Create the :file:`recipes.xml` with the following content:
-   
-   .. code-block:: xml
-   
-      <Context displayName="docs"
-               docBase="/usr/share/opengeo/recipes"
-               path="/recipes"/>
-               
-#. Restart Tomcat
+#. Restart Tomcat.
 
-.. _intro.installation.ubuntu.misc.geoserver:
+.. _intro.installation.redhat.postinstall.geoserver:
 
 Working with GeoServer
 ----------------------
@@ -162,27 +170,30 @@ To point GeoServer to an alternate location:
       
        <context-param>
           <param-name>GEOSERVER_DATA_DIR</param-name>
-           <param-value>/var/lib/opengeo/geoserver</param-value>
+           <param-value>/path/to/new/data_dir</param-value>
        </context-param> 
 
 #. Restart Tomcat.
 
-Compatibility Settings
-^^^^^^^^^^^^^^^^^^^^^^
+Enabling spatial reference systems with Imperial units
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To adjust GeoServer compatibility settings:
+A fix is available for spatial reference systems measured in Imperial units (feet). This setting is recommended for all users, and strongly recommended for those working with **US State Plane** projections measured in feet.
 
-#. A fix is available for spatial reference systems measured in imperial units. This setting is recommended for all users, and strongly recommended for those working with US State Plane projections measured in feet.
+To enable this fix:
 
-   To enable this fix add the following parameter to :file:`/etc/tomcat7/server.xml`:
+#. Add the following parameter to :file:`/etc/tomcat7/server.xml`:
    
    .. code-block:: bash
       
       -Dorg.geotoools.render.lite.scale.unitCompensation=true
-   
-#. GeoServer GeoJSON output from WFS and WMS is now provided in x/y/z order as required by the specification.
 
-   In addition GeoJSON crs information is now supported:
+#. Restart Tomcat.
+
+Update GeoJSON output
+^^^^^^^^^^^^^^^^^^^^^  
+ 
+GeoServer GeoJSON output is now provided in x/y/z order as required by the specification. In addition, the ``crs``  output has changed to support full URN representation of spatial refernce systems:
    
    .. code-block:: json
 
@@ -192,20 +203,11 @@ To adjust GeoServer compatibility settings:
             "name": "urn:ogc:def:crs:EPSG::4326"
          }
       }
-   
-   .. warning:: Clients such as OL3 may need additional configuration to support this longer URN representation.
-   
-   .. note:: To restore the previous ``crs`` representation add the following context parameter to  :file:`/usr/share/opengeo/geoserver/WEB-INF/web.xml`:
 
-      .. code-block:: xml
-      
-          <context-param>
-              <param-name>GEOSERVER_GEOJSON_LEGACY_CRS</param-name>
-              <param-value>true</param-value>
-          </context-param>
+.. note::
 
-      Previous representation:
-   
+   Previously, the output was:
+
       .. code-block:: json
    
          "crs": {
@@ -214,17 +216,25 @@ To adjust GeoServer compatibility settings:
                "code": "4326"
             }
          }
-
-#. Restart Tomcat::
    
-      sudo service tomcat7 restart
+To restore the previous ``crs`` representation for compatibility reasons (espcially when working with OpenLayers 3):
 
-.. _intro.installation.ubuntu.misc.pgconfig:
+#. Add the following context parameter to  :file:`/usr/share/opengeo/geoserver/WEB-INF/web.xml`:
 
-PostgreSQL Configuration
+   .. code-block:: xml
+      
+       <context-param>
+           <param-name>GEOSERVER_GEOJSON_LEGACY_CRS</param-name>
+           <param-value>true</param-value>
+       </context-param>
+
+#. Restart Tomcat.
+
+.. _intro.installation.redhat.postinstall.pgconfig:
+
+PostgreSQL configuration
 ------------------------
 
 PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located at :file:`/etc/postgresql/9.3/main/postgresql.conf`. 
 
-You will want to ensure you can connect to the database, and that you have a user to 
-work with. Please see the section on :ref:`dataadmin.pgGettingStarted.firstconnect`.
+You will want to ensure that you can connect to the database. Please see the section on :ref:`dataadmin.pgGettingStarted.firstconnect` to set this up.

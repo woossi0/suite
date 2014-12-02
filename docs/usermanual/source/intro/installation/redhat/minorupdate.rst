@@ -1,23 +1,17 @@
-.. _intro.installation.redhat.install:
+.. _intro.installation.redhat.minorupdate:
 
-Installing
-==========
+Updating a minor version
+========================
 
-.. only:: basic
-
-   This section describes how to perform an installation of **OpenGeo Suite** |version| on Red hat-based Linux distributions. These instructions should be followed if your system does not have OpenGeo Suite installed.
-
-.. only:: enterprise
-
-   This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Red Hat-based Linux distributions. These instructions should be followed if your system does not have OpenGeo Suite installed.
+This section describes how to perform a minor update from OpenGeo Suite 4.x to |version| on Red Hat-based Linux distributions.
 
 .. note::
 
+   * For new installations, please see the section on :ref:`intro.installation.redhat.install`.
    * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.redhat.upgrade`.
-   * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.redhat.minorupdate` section.
    * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.redhat.majorupdate` section.
 
-.. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with a Red Hat system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
+.. note:: While QGIS is part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with a Red Hat system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
 .. include:: include/sysreq.txt
 
@@ -73,6 +67,12 @@ Installation process
 
       yum search opengeo
 
+#. Run the following command to remove the previous OpenGeo Suite Tomcat package:
+
+   .. code-block:: bash
+
+      rpm -e tomcat6 tomcat6-lib tomcat6-el-2.1-api tomcat6-servlet-2.5-api tomcat6-jsp-2.1-api opengeo-tomcat-4.1
+
 #. You have options on what packages to install:
 
    .. note::  See the :ref:`Packages <intro.installation.redhat.packages>` section for details of individual packages.
@@ -95,7 +95,19 @@ Installation process
 
         yum install opengeo
 
-After installation
-------------------
+#. Be sure to update any all additional See the :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
 
-Installation is now complete. Please see the section on :ref:`intro.installation.redhat.postinstall` to continue.
+   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+
+     .. code-block:: bash
+
+        yum install opengeo-webapp-sdk
+
+   * To update a GeoServer extension such as :ref:`WPS <processing>`:
+
+        yum install geoserver-wps
+
+After update
+------------
+
+The update is now complete. Please see the section on :ref:`intro.installation.redhat.postinstall` to continue.

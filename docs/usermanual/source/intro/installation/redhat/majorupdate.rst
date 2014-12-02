@@ -1,11 +1,15 @@
-.. _intro.installation.redhat.update:
+.. _intro.installation.redhat.majorupdate:
 
-Major Update
-============
+Updating a major version
+========================
 
-This section will show how to update OpenGeo Suite 3.1 to |version| on a Red Hat Linux distribution. This procedure should be used to update from a previous **major version** of OpenGeo Suite. A "major" version update is defined as when the first number in the version changes (for example: from 3.1 to |version|).
+This section will show how to update OpenGeo Suite 3.x to |version| on a Red Hat-based Linux distribution.
 
-.. warning:: If updating on a minor release, (for example: from 4.1.1 to |version|). please follow the standard :ref:`new installation process <intro.installation.redhat.quick>`.
+.. note::
+
+   * For new installations, please see the section on :ref:`intro.installation.redhat.install`.
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.redhat.upgrade`.
+   * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.redhat.minorupdate` section.
 
 .. warning:: This update is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
 
@@ -88,23 +92,13 @@ Uninstall old version
 
 You may now uninstall the old version of OpenGeo Suite.
 
-The package(s) to remove depend on what was installed. For example, if the full package ``opengeo`` was used, run the following command:
-
-.. code-block:: bash
-
-   yum remove opengeo
-
-Alternately, if just the server components (``opengeo-server``) were installed, run the following command:
-
-.. code-block:: bash
-
-   yum remove opengeo-server
+The package(s) to remove depend on what was installed. Please see the section on :ref:`intro.installation.redhat.uninstall` for details.
 
 .. note:: If unsure, run the following command to see the relevant list of packages:
 
    .. code-block:: bash
 
-      dpkg --get-selections | grep opengeo 
+      rpm -qa | grep opengeo
 
 Install new version
 ~~~~~~~~~~~~~~~~~~~
@@ -170,7 +164,7 @@ The default GeoServer data directory location for OpenGeo Suite is located at :f
 
       service tomcat7 start
 
-After Update
+After update
 ------------
 
-Update is now complete. Please see the section on :ref:`intro.installation.redhat.misc` for for common tasks and additional configuration and compatibility settings.
+Update is now complete. Please see the section on :ref:`intro.installation.redhat.postinstall` to continue.
