@@ -102,34 +102,56 @@ The following is a list of components available in the **Components** page of th
      - Tile caching server.
    * - GeoExplorer
      - Map viewing and editing application.
-   * - Recipes
-     - Code samples for building map applications.
 
 GeoServer Extensions
 ^^^^^^^^^^^^^^^^^^^^
 
-.. list-table::
-   :widths: 20 80
-   :stub-columns: 1
-   :class: table-leftwise
+.. only:: basic
 
-   * - Mapmeter
-     - Mapmeter monitoring service.
-   * - CSS Styling
-     - CSS map styling support.
-   * - WPS
-     - Web Processing Service (WPS) support.
-   * - MongoDB
-     - MongoDB database support.
-   * - GeoPackage
-     - GeoPackage data source support.   
-   * - CSW
-     - Catalogue Service for Web (CSW) support.
-   * - Clustering
-     - Clustering plug-ins.
-   * - GDAL Image Formats
-     - Additional raster formats support as part of GDAL integration.
+	.. list-table::
+	   :widths: 20 80
+	   :stub-columns: 1
+	   :class: table-leftwise
+	   
+	   * - WPS
+	     - Web Processing Service (WPS) support.
+	   * - GeoPackage
+	     - GeoPackage data source support.
+	   * - CSW
+	     - Catalogue Service for Web (CSW) support.
+		 
+.. only:: enterprise
 
+	.. list-table::
+	   :widths: 20 80
+	   :stub-columns: 1
+	   :class: table-leftwise
+	   
+	   * - WPS
+	     - Web Processing Service (WPS) support.
+	   * - GeoPackage
+	     - GeoPackage data source support.
+	   * - CSW
+	     - Catalogue Service for Web (CSW) support.
+	   * - Mapmeter
+	     - Mapmeter monitoring service.
+	   * - CSS Styling
+	     - CSS map styling support.
+	   * - MongoDB
+	     - MongoDB database support.
+	   * - Clustering
+	     - Clustering plug-ins.
+	   * - GDAL Image Formats
+	     - Additional raster formats support as part of GDAL integration.
+	   * - Oracle
+	     - Oracle database support.
+	   * - ArcSDE
+	     - ArcSDE database support.
+	   * - DB2
+	     - DB2 database support.
+	   * - SQL Server
+	     - SQL Server database support.
+		 
 Client Tools
 ^^^^^^^^^^^^
 
