@@ -460,7 +460,7 @@ Road Shields
 The ``graphic`` option is used to dispay a symbol behind a label. A common use for this is to display "highway shields" behind road numbers. This example uses a circle ``shape`` to draw state shields, and an ``external`` image to draw interstate shields, then draws road names on top. The ``x-graphic-resize`` and ``x-graphic-margin`` options are used to resize the graphics to fit the label text::
 
   feature-styles:
-  - name: name
+  - name: state
     rules:
     - filter: ${level ilike 'State'}
       symbolizers:
@@ -483,8 +483,8 @@ The ``graphic`` option is used to dispay a symbol behind a label. A common use f
                 shape: circle
                 fill-color: white
                 stroke-color: black 
-          
-  - rules:
+  - name: interstate
+    rules:
     - filter: ${level ilike 'Interstate'}
       symbolizers:
       - line:
