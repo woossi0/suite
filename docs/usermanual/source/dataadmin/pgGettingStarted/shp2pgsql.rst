@@ -4,6 +4,8 @@
 Loading data into PostGIS from the Command Line
 ===============================================
 
+Depending on how OpenGeo Suite was installed pgAdmin and/or shp2pgsql may or may not have been installed. See the :ref:`intro.installation` section for installation instructions.
+
 PostGIS includes the ``shp2pgsql`` tool for converting shapefiles into database tables. This section describes how to use this tool to load a single or multiple shapefiles.
 
 
@@ -34,7 +36,9 @@ Loading data
 
    .. code-block:: console
 
-      psql -c "SELECT PostGIS_Version()"
+      psql -U postgres -d <DBNAME> -c "SELECT postgis_version()"
+
+      Where <DBNAME> is replaced by the database name, eg. opengeo
 
    .. code-block:: console
 
@@ -50,7 +54,7 @@ Loading data
 
    .. code-block:: console
 
-      shp2pgsql -I -s <SRID> <PATH/TO/SHAPEFILE> <SCHEMA>.<DBTABLE> | psql -d <DATABASE>
+      shp2pgsql -I -s <SRID> <PATH/TO/SHAPEFILE> <SCHEMA>.<DBTABLE> | psql -U postgres -d <DBNAME>
 
    The command parameters are:
 
@@ -63,7 +67,7 @@ Loading data
 
    .. code-block:: console
 
-      shp2pgsql -I -s 4269 C:\MyData\roads\roads.shp roads | psql -d MyDatabase
+      shp2pgsql -I -s 4269 C:\MyData\roads\roads.shp roads | psql -U postgres -d <DBNAME>
 
    The ``-I`` option will create a spatial index after the table is created. This is strongly recommended for improved performance. For more information about shp2pgsql command options, please refer to the `Using the Loader <http://postgis.refractions.net/documentation/manual-2.0/using_postgis_dbmanagement.html#id2853463>`_ section of the PostGIS Documentation.
 
@@ -78,13 +82,13 @@ Loading data
 
    .. code-block:: console
 
-      psql -d <DATABASE> -f SHAPEFILE.sql
+      psql -U postgres -d <DBNAME> -f SHAPEFILE.sql
 
-The shapefile has now been imported as a table in your PostGIS database. You can verify this by either using pgAdmin to view the list of tables, or by executing the following query at the command line:
+The shapefile has now been imported as a table in your PostGIS database and the last line in your browser's console should say COMMIT. You can verify this by either using pgAdmin to view the list of tables, or by executing the following query at the command line:
 
 .. code-block:: console
 
-   psql -U <USERNAME> -d <DATABASE> -c "\d"
+   psql -U <USERNAME> -d <DBNAME> -c "\d"
 
 .. note::
 
@@ -138,8 +142,5 @@ Create a shell script file, for example :file:`loadfiles.sh`, in the same direct
 
    for f in *.sql
    do
-       psql -d <DATABASE> -f $f
+       psql -d <DBNAME> -f $f
    done
-
-
-
