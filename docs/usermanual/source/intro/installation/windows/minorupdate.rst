@@ -3,7 +3,7 @@
 Updating a minor version
 ========================
    
-This section describes how to perform a minor update from OpenGeo Suite 4.x to |version| on Ubuntu Linux.
+This section describes how to perform a minor update from OpenGeo Suite 4.x to |version| on Windows.
 
 .. note::
 
