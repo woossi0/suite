@@ -4,9 +4,9 @@
 Loading data into PostGIS from the Command Line
 ===============================================
 
-Depending on how OpenGeo Suite was installed pgAdmin and/or shp2pgsql may or may not have been installed. See the :ref:`intro.installation` section for installation instructions.
+PostGIS includes the ``shp2pgsql`` tool for converting a single or multiple shapefiles into database tables.
 
-PostGIS includes the ``shp2pgsql`` tool for converting shapefiles into database tables. This section describes how to use this tool to load a single or multiple shapefiles.
+This section uses the command line utility ``shp2pgsql`` and optionally the graphical utility ``pgAdmin``. These tools may not be automatically present, depending on the type of installation of OpenGeo Suite. Please see the :ref:`intro.installation` section for information on how to install these tools for your platform.
 
 
 How It Works
@@ -38,7 +38,7 @@ Loading data
 
       psql -U postgres -d <DBNAME> -c "SELECT postgis_version()"
 
-      Where <DBNAME> is replaced by the database name, eg. opengeo
+      Where ``<DBNAME>`` is replaced by the database name, for example opengeo
 
    .. code-block:: console
 
@@ -84,7 +84,7 @@ Loading data
 
       psql -U postgres -d <DBNAME> -f SHAPEFILE.sql
 
-The shapefile has now been imported as a table in your PostGIS database and the last line in your browser's console should say COMMIT. You can verify this by either using pgAdmin to view the list of tables, or by executing the following query at the command line:
+The shapefile has now been imported as a table in your PostGIS database and the last line in your console should say ``COMMIT``. You can verify this by either using pgAdmin to view the list of tables, or by executing the following query at the command line:
 
 .. code-block:: console
 
