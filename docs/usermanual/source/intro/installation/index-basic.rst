@@ -3,7 +3,7 @@
 Installation
 ============
 
-This section describes how to install OpenGeo Suite on your platform. Both new installations and upgrades are covered in the sections below.
+This section describes how to install OpenGeo Suite on your platform. Both new installations and updates are covered in the sections below.
 
 .. note::
 
@@ -12,7 +12,7 @@ This section describes how to install OpenGeo Suite on your platform. Both new i
 Please choose from the following options:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    windows/index
    mac/index

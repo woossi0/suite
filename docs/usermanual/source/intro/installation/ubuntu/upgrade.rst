@@ -3,11 +3,11 @@
 Upgrading to OpenGeo Suite Enterprise
 =====================================
 
-This section describes how to upgrade OpenGeo Suite to OpenGeo Suite Enterprise on Ubuntu.
+This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterprise** on Ubuntu.
 
 .. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ for information on how to purchase OpenGeo Suite Enterprise.
 
-To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will be preserved.
+#. To upgrade, you must first :ref:`uninstall <intro.installation.ubuntu.uninstall>` your current version of OpenGeo Suite. Your data and settings will be preserved.
 
 #. Change to the ``root`` user:
 
@@ -15,27 +15,21 @@ To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will 
 
       sudo su - 
 
-#. Uninstall OpenGeo Suite. For example, if the package you installed was ``opengeo-server``:
+#. Remove the OpenGeo Suite repository entry, which is typically inside ``/etc/apt/sources.list.d/opengeo.list`` or ``/etc/apt/sources.list``. Open the file and delete the line or lines that refer to OpenGeo Suite.
 
-   .. code-block:: bash
-
-      apt-get remove opengeo-server
-
-#. Remove the OpenGeo Suite repository entry, which is typically inside ``/etc/apt/sources.list.d/opengeo.list`` or ``/etc/apt/sources.list``.
-
-#. Add the OpenGeo Suite Enterprise repository. This repository contains all the Enterprise-specific features. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
+#. Add the OpenGeo Suite Enterprise repository. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
    * If installing on Precise:
 
      .. code-block:: bash
 
-        echo "deb http://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
    * If installing on Trusty:
 
      .. code-block:: bash
 
-        echo "deb http://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
+        echo "deb http://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
    .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
 
@@ -79,4 +73,7 @@ To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will 
 
         apt-get install geoserver-wps
 
-The upgrade is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc`.
+After upgrade
+-------------
+
+The upgrade is now complete. Please see the section on :ref:`intro.installation.ubuntu.postinstall` to continue.

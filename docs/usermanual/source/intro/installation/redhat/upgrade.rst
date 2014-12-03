@@ -3,23 +3,17 @@
 Upgrading to OpenGeo Suite Enterprise
 =====================================
 
-This section describes how to upgrade OpenGeo Suite to OpenGeo Suite Enterprise on Red Hat-based systems.
+This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterprise** on Red Hat-based systems.
 
 .. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ for information on how to purchase OpenGeo Suite Enterprise.
 
-To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will be preserved.
+#. To upgrade, you must first :ref:`uninstall <intro.installation.redhat.uninstall>` your current version of OpenGeo Suite. Your data and settings will be preserved.
 
 #. Change to the ``root`` user:
 
    .. code-block:: bash
 
       sudo su - 
-
-#. Uninstall OpenGeo Suite. For example, if the package you installed was ``opengeo-server``:
-
-   .. code-block:: bash
-
-      yum remove opengeo-server
 
 #. Add the OpenGeo Suite Enterprise repository by replacing the file :file:`/etc/yum.repos.d/OpenGeo.repo` with the following contents::
 
@@ -31,15 +25,13 @@ To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will 
 
    Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase. Also, replace ``<OS>`` with one of ``fedora``, ``centos``, or ``rhel`` based on your distribution.
 
-   .. note: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
+   .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
 
 #. Update the repository list:
 
    .. code-block:: bash
 
       yum update
-
-.. todo:: Need information on the new packages to install
 
 #. Now install the appropriate OpenGeo Suite packages. You have options on what packages to install:
 
@@ -75,4 +67,7 @@ To upgrade, you must first uninstall OpenGeo Suite. Your data and settings will 
 
         yum install geoserver-wps
 
-The upgrade is now complete. Please see the section on :ref:`intro.installation.redhat.misc`.
+After upgrade
+-------------
+
+The upgrade is now complete. Please see the section on :ref:`intro.installation.redhat.postinstall` to continue.

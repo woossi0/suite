@@ -214,7 +214,9 @@ The ``atan2(x, y)`` function calculates the arctangent of (y/x) and so is able t
     symbols:
     - mark:
         shape: triangle
-    rotation: ${toDegrees(atan2(getX(startPoint(the_geom))-getX(endPoint(the_geom)),getY(startPoint(the_geom))-getY(endPoint(the_geom))))}
+    rotation: ${toDegrees(atan2(
+      getX(startPoint(the_geom))-getX(endPoint(the_geom)),
+      getY(startPoint(the_geom))-getY(endPoint(the_geom))))}
 
 See also:
 
@@ -280,7 +282,7 @@ In certain cases, theming functions can be used in place of filters to produce s
     rules:
     - symbolizers:
       - polygon:
-          fill-color: > 
+          fill-color: 
             ${recode(zone, 
             'I-L', '#FF7700', 
             'I-H', '#BB6600', 
@@ -291,11 +293,9 @@ In certain cases, theming functions can be used in place of filters to produce s
 
 In the above example, the attribute is ``zone`` , and then each subsequent pair consists of an attribute value followed by a color.
 
-.. note:: The ``recode`` function, along with ``categorize`` and ``interpolate``, requires that all colors be in the form of ``'#rrggbb'``.
+.. figure:: img/functions_recode.png
 
-.. note:: The ``>`` character allows the function to span multiple lines.
-
-.. todo:: Add figure
+   Recode Function
 
 Color based on categories
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -309,7 +309,7 @@ The Categorize function returns a different value depending on which range (cate
        - polygon:
           stroke-color: '000000'
           stroke-width: 0.5
-          fill-color: > 
+          fill-color:
             ${categorize(YEARBLT, '#DD4400', 
             1950,'#AA4400',
             1960,'#886600',
@@ -318,9 +318,9 @@ The Categorize function returns a different value depending on which range (cate
             1990,'#22DD00',
             2000,'#00FF00')}
 
-.. note:: The ``categorize`` function, along with ``recode`` and ``interpolate``, requires that all colors be in the form of ``'#rrggbb'``.
+.. figure:: img/filters_categories.png
 
-.. note:: The ``>`` character allows the function to span multiple lines.
+   Categorize Function
 
 Choropleth map
 ~~~~~~~~~~~~~~
@@ -334,43 +334,8 @@ The ``interpolate`` function can be used to create a continuous set of values by
       symbolizers:  
       - polygon:
           stroke-width: 1
-          fill-color: ${interpolate(area, 0.0, '#FF0000', 5e5,'#00FF00', 'color')}
+          fill-color: ${interpolate(PERSONS, 0.0, '#00FF00', 1e7,'#FF0000', 'color')}
 
-.. todo:: Add figure
+.. figure:: img/functions_choropleth.png
 
-.. note:: The ``interpolate`` function, along with ``recode`` and ``categorize``, requires that all colors be in the form of ``'#rrggbb'``.
-
-
-
-
-
-
-
-
-
-
-
-
-.. Taking this out for now until better tested
-..
-.. A list of fill values based on discrete attribute values (using Recode)::
-.. 
-..   fill: recode(color,1,ff0000,2,00ff00,3,0000ff,4,000000)
-..   stroke: 808080
-.. 
-.. The above symbolizer contents will color features differently, dependent on the value of the attribute ``color``. If the value is ``1``, the ``fill`` will be ``ff0000``; if the value is ``2``, the ``fill`` will be ``00ff00``, and so forth. In all cases, though, the stroke will be ``808080``.
-.. 
-.. A list of fills based on attribute values (using Categorize)::
-.. 
-..   fill: categorize(option,0,ff0000,10,00ff00,20,0000ff,100,000000)
-..   stroke: 808080
-.. 
-.. The above symbolizer content will color features differently, dependent on the value of the attribute ``option``. If the value is SOMETHING...
-.. 
-.. A gradient of fills based on attribute values (using Interpolate)::
-.. 
-..   fill: interpolate(color,0,ff0000,30,00ff00,60,0000ff,255,000000)
-..   stroke: 808080
-.. 
-.. The above symbolizer content will color features differently, dependent on the value of the attribute ``option``. If the value is SOMETHING...
-
+   Choropleth Map

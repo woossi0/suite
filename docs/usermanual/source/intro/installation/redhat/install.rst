@@ -5,51 +5,28 @@ Installing
 
 .. only:: basic
 
-   This section describes how to perform an installation of **OpenGeo Suite** |version| on Red Hat-based Linux distributions.
-
-   .. note:: If upgrading to OpenGeo Suite Enterprise from OpenGeo Suite, please see the section on :ref:`intro.installation.redhat.upgrade`.
+   This section describes how to perform an installation of **OpenGeo Suite** |version| on Red hat-based Linux distributions. These instructions should be followed if your system does not have OpenGeo Suite installed.
 
 .. only:: enterprise
 
-   This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Red Hat-based Linux distributions.
+   This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Red Hat-based Linux distributions. These instructions should be followed if your system does not have OpenGeo Suite installed.
 
-These instructions should be followed if:
+.. note::
 
-* Your system does not have OpenGeo Suite
-* You are upgrading from a **minor version** of OpenGeo Suite (for example: from **4.x** to **4.y**)
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.redhat.upgrade`.
+   * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.redhat.minorupdate` section.
+   * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.redhat.majorupdate` section.
 
-If upgrading from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**), see the :ref:`intro.installation.redhat.update` section.
+.. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with a Red Hat system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
-.. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with an Red Hat system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
-
-System requirements
--------------------
-
-The following distributions are supported:
-
-* Fedora 18 and 19
-* CentOS 6
-* RHEL 6
-
-OpenGeo Suite for Red Hat has the following system requirements:
-
-* Memory: 512MB minimum (1GB recommended)
-* Disk space: 750MB minimum (plus extra space for any loaded data)
-* Browser: Any modern web browser is supported
-* Permissions: Super user privileges are required for installation
+.. include:: include/sysreq.txt
 
 Pre-installation process
 ------------------------
 
-.. only:: basic
+This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <intro.installation.redhat.packages>` section for details about the possible packages to install.
 
-   This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <intro.installation.redhat.packages>` section for details about the possible packages to install.
-
-.. only:: enterprise
-
-   This installation will add the OpenGeo Suite package repositories and then install the appropriate packages. See the :ref:`Packages <intro.installation.redhat.packages>` section for details about the possible packages to install.
-
-.. warning:: Mixing repositories with is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
+.. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
 
 The commands in this section require root privileges. 
 
@@ -59,9 +36,11 @@ The commands in this section require root privileges.
 
       sudo su - 
 
-.. only:: basic
+#. Add the OpenGeo Suite repository by creating the file :file:`/etc/yum.repos.d/OpenGeo.repo` with the following contents:
 
-   #. Add the OpenGeo Suite repository by creating the file :file:`/etc/yum.repos.d/OpenGeo.repo` with the following contents::
+   .. only:: basic
+
+      ::
 
         [opengeo]
         name=opengeo
@@ -71,9 +50,9 @@ The commands in this section require root privileges.
 
       Make sure to replace ``<OS>`` with one of ``fedora``, ``centos``, or ``rhel`` based on your distribution.
 
-.. only:: enterprise
+   .. only:: enterprise
 
-   #. Add the OpenGeo Suite Enterprise repository by creating the file :file:`/etc/yum.repos.d/OpenGeo.repo` with the following contents::
+      ::
 
         [opengeo]
         name=opengeo
@@ -83,7 +62,7 @@ The commands in this section require root privileges.
 
       Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase. Also, replace ``<OS>`` with one of ``fedora``, ``centos``, or ``rhel`` based on your distribution.
 
-      .. note: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
+      .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
 
 Installation process
 --------------------
@@ -93,12 +72,6 @@ Installation process
    .. code-block:: bash
 
       yum search opengeo
-
-#. If you are updating and have an old version of the OpenGeo Suite Tomcat package, run the following command to remove it:
-
-   .. code-block:: bash
-
-      rpm -e tomcat6 tomcat6-lib tomcat6-el-2.1-api tomcat6-servlet-2.5-api tomcat6-jsp-2.1-api opengeo-tomcat-4.1
 
 #. You have options on what packages to install:
 
@@ -122,19 +95,7 @@ Installation process
 
         yum install opengeo
 
-#. If you are performing a **minor update**, update any other additional See the :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
-
-   * To update the :ref:`Boundless SDK <webapps.sdk>`:
-
-     .. code-block:: bash
-
-        yum install opengeo-webapp-sdk
-
-   * To update a GeoServer extension such as :ref:`WPS <processing>`:
-
-        yum install geoserver-wps
-
 After installation
 ------------------
 
-Installation is now complete. Please see the section on :ref:`intro.installation.redhat.misc`.
+Installation is now complete. Please see the section on :ref:`intro.installation.redhat.postinstall` to continue.

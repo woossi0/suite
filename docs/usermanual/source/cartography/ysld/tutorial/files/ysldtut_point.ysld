@@ -7,7 +7,7 @@ feature-styles:
     filter: ${ADM0CAP = 1}
     symbolizers:
     - point:
-        size: 2
+        size: 3
         symbols:
         - mark:
             shape: circle
@@ -16,13 +16,13 @@ feature-styles:
     filter: ${ADM0CAP = 1}
     symbolizers:
     - point:
-        size: ${log(POP2015)/log(2) - 1}
+        size: ${log(POP_MAX)/log(4)}
         symbols:
         - mark:
             shape: star
             fill-color: '#000000'
     - point:
-        size: ${log(POP2015)/log(2)}
+        size: ${log(POP_MAX)/log(4)+1}
         symbols:
         - mark:
             shape: circle
@@ -39,7 +39,7 @@ feature-styles:
     else: true
     symbolizers:
       - point:
-          size: ${log(POP2015)/log(2)-1}
+          size: ${log(POP_MAX)/log(4)}
           symbols:
           - mark:
               shape: circle
@@ -50,7 +50,7 @@ feature-styles:
     else: true
     symbolizers:
       - point:
-          size: ${log(POP2015)/log(2)-1}
+          size: ${log(POP_MAX)/log(4)+1}
           symbols:
           - mark:
               shape: circle

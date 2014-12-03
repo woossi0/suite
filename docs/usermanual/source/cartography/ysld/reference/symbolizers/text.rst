@@ -52,6 +52,7 @@ The full syntax of a text symbolizer is::
       x-graphic-resize: <none|proportional|stretch>
       x-group: <boolean>
       x-labelAllGroup: <boolean>
+      x-labelPriority: <expression>
       x-repeat: <expression>
       x-maxAngleDelta: <expression>
       x-maxDisplacement: <expression>
@@ -231,7 +232,7 @@ The following properties are equivalent to SLD "vendor options".
      - 0.5
    * - ``x-graphic-margin``
      - No
-     - Number of pixels between the stretched graphic and the text. Only applies when ``x-graphic-resize`` is set to ``stretch``.
+     - Number of pixels between the stretched graphic and the text. Only applies when ``x-graphic-resize`` is set to ``stretch`` or ``proportional``.
      - 0
    * - ``x-graphic-resize``
      - No
@@ -245,6 +246,10 @@ The following properties are equivalent to SLD "vendor options".
      - No
      - Used in conjunction with ``x-group``. When ``true`` all items in a group are labeled. When ``false``, only the largest geometry in the group is labeled. Valid for lines only.
      - ``false``
+   * - ``x-labelPriority``
+     - No
+     - The priority used when choosing which labels to display during conflict resolution. Higher priority values take precedence over lower priority values. 
+     - 1000
    * - ``x-repeat``
      - No
      - Desired distance (in pixels) between labels drawn on a group. If zero, only one label will be drawn. Used in conjunction with ``x-group``. Valid for lines only.
@@ -422,7 +427,7 @@ In order to have a label follow a line (and not be drawn tangent to a line), the
 Labels avoiding obstacles
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``x-labelObstacle`` option is used to mark a different symbolizer as an obstacle that labels should avoid. This ex example draws labels and points on a line geometry, and also uses a point symbolizer to draw the vertices of the lines as points. It is those points which are set to be treated as obstacles to be avoided::
+The ``x-labelObstacle`` option is used to mark a different symbolizer as an obstacle that labels should avoid. This example draws labels and points on a line geometry, and also uses a point symbolizer to draw the vertices of the lines as points. It is those points which are set to be treated as obstacles to be avoided::
 
   feature-styles:
   - rules:
@@ -448,3 +453,59 @@ The ``x-labelObstacle`` option is used to mark a different symbolizer as an obst
 .. figure:: img/text_labelobstacle.png
 
    Labels avoiding obstacles
+
+Road Shields
+~~~~~~~~~~~~
+
+The ``graphic`` option is used to dispay a symbol behind a label. A common use for this is to display "highway shields" behind road numbers. This example uses a circle ``shape`` to draw state shields, and an ``external`` image to draw interstate shields, then draws road names on top. The ``x-graphic-resize`` and ``x-graphic-margin`` options are used to resize the graphics to fit the label text::
+
+  feature-styles:
+  - name: state
+    rules:
+    - filter: ${level ilike 'State'}
+      symbolizers:
+      - line:
+          stroke-color: '#AAEE00'
+          stroke-width: 4
+          stroke-linecap: round
+      - text:
+          label: ${name}
+          anchor: (0.5, 0.5)
+          fill-color: black
+          font-family: SansSerif
+          font-weight: bold
+          font-size: 8
+          x-graphic-resize: stretch
+          x-graphic-margin: 6
+          graphic:
+            symbols:
+            - mark: 
+                shape: circle
+                fill-color: white
+                stroke-color: black 
+  - name: interstate
+    rules:
+    - filter: ${level ilike 'Interstate'}
+      symbolizers:
+      - line:
+          stroke-color: '#99CC00'
+          stroke-width: 6
+          stroke-linecap: round
+      - text:
+          label: ${name}
+          anchor: (0.5, 0.5)
+          fill-color: white
+          font-family: SansSerif
+          font-weight: bold
+          font-size: 8
+          x-graphic-resize: stretch
+          x-graphic-margin: 6
+          graphic:
+            symbols:
+            - external:
+                url: interstate.png
+                format: image/png
+
+.. figure:: img/text_roadshields.png
+
+   Road Shields

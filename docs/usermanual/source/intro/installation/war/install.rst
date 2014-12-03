@@ -55,11 +55,11 @@ Linux / OS X:
 
 #. Create a :file:`$CATALINA_BASE/bin/setenv.sh` file if it doesn't already exist.
 
-#. Add the following line:
+#. Add the following line. ``#!/bin/sh`` should appear at the top of the file:
 
    .. code-block:: sh
 
-      export CATALINA_OPTS = "-Xmx1024m -XX:MaxPermSize=128m"
+      export CATALINA_OPTS="-Xmx1024m -XX:MaxPermSize=128m"
 
 #. Save and close the file.
 
@@ -73,7 +73,7 @@ Windows:
 
    .. code-block:: sh
 
-      set CATALINA_OPTS = "-Xmx1024m -XX:MaxPermSize=128m"
+      set CATALINA_OPTS="-Xmx1024m -XX:MaxPermSize=128m"
 
 #. Save and close the file. 
 

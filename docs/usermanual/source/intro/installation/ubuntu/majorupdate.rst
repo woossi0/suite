@@ -1,15 +1,15 @@
-.. _intro.installation.redhat.update:
+.. _intro.installation.ubuntu.majorupdate:
 
-Updating
-========
+Updating a major version
+========================
 
-This section will show how to update OpenGeo Suite.
+This section will show how to update OpenGeo Suite 3.x to |version| on Ubuntu Linux.
 
-.. warning::
+.. note::
 
-   This section specifically describes how to **update from a previous major version of OpenGeo Suite** on Red Hat. A "major" version update is defined as when the first number in the version changes (for example: from 3.x to 4.y)
-
-   **Do not use these instructions if updating on a minor release.** (for example: from 4.x to 4.y). Instead, follow the standard :ref:`new installation process <intro.installation.redhat.install>`.
+   * For new installations, please see the section on :ref:`intro.installation.ubuntu.install`.
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
+   * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.ubuntu.minorupdate` section.
 
 .. warning:: This update is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
 
@@ -30,7 +30,7 @@ The first step of the update process is to back up your existing PostGIS data.
 
    .. code-block:: bash
 
-      service postgresql-9.3 start
+      service postgresql start
 
 #. Change to the ``postgres`` user:
 
@@ -38,11 +38,11 @@ The first step of the update process is to back up your existing PostGIS data.
 
       su - postgres
 
-#. To backup a PostGIS update utility is used. `Download <http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip>`_  the archive and extract it to a temporary directory. By default, the backup files created from using this script will be saved into this same directory:
+#. To backup PostGIS a separate utility is used. `Download <http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip>`_  the archive and extract it to a temporary directory. By default, the backup files created from using this script will be saved into this same directory:
 
    .. code-block:: console
 
-      mkdir /tmp/opengeo_backup/pg_backup
+      mkdir -p /tmp/opengeo_backup/pg_backup
       cd /tmp/opengeo_backup/pg_backup
       wget http://repo.opengeo.org/suite/releases/pgupgrade/postgis_upgrade-4.0.zip
       unzip postgis_upgrade-4.0.zip
@@ -85,24 +85,14 @@ The next step is to back up the GeoServer data directory, located at :file:`/var
 
    .. code-block:: bash
 
-      cp -r /usr/share/opengeo-suite-data/geoserver_data /tmp/opengeo_backup
+      cp -r /var/lib/opengeo/geoserver /tmp/opengeo_backup
 
 Uninstall old version
 ~~~~~~~~~~~~~~~~~~~~~
 
 You may now uninstall the old version of OpenGeo Suite.
 
-The package(s) to remove depend on what was installed. For example, if the full package ``opengeo`` was used, run the following command:
-
-.. code-block:: bash
-
-   yum remove opengeo
-
-Alternately, if just the server components (``opengeo-server``) were installed, run the following command:
-
-.. code-block:: bash
-
-   yum remove opengeo-server
+The package(s) to remove depend on what was installed. Please see the section on :ref:`intro.installation.ubuntu.uninstall` for details.
 
 .. note:: If unsure, run the following command to see the relevant list of packages:
 
@@ -113,7 +103,7 @@ Alternately, if just the server components (``opengeo-server``) were installed, 
 Install new version
 ~~~~~~~~~~~~~~~~~~~
 
-You may now install the new version of OpenGeo Suite. See the :ref:`new installation <intro.installation.redhat.install>` section for details.
+You may now install the new version of OpenGeo Suite. See the :ref:`new installation <intro.installation.ubuntu.install>` section for details.
 
 Restore PostGIS databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -122,7 +112,7 @@ Restore PostGIS databases
 
    .. code-block:: bash
 
-      service postgresql-9.3 start
+      service postgresql start
 
 #. Change to the ``postgres`` user:
 
@@ -130,7 +120,7 @@ Restore PostGIS databases
  
        su - postgres
 
-#. Restore your PostGIS data by running the update utility again with the "restore" argument:
+#. Restore your PostGIS data by running the utility again with the "restore" argument:
 
    .. code-block:: console
 
@@ -144,13 +134,19 @@ Restore GeoServer data directory
 
 The default GeoServer data directory location for OpenGeo Suite is located at :file:`/var/lib/opengeo/geoserver`. 
 
+#. Go back to the root account:
+
+   .. code-block:: bash
+
+      exit
+   
 #. Stop the Tomcat service:
 
    .. code-block:: bash
 
       service tomcat7 stop
 
-#. Rename the new default data directory.
+#. Rename the new default data directory:
 
    .. code-block:: bash
 
@@ -160,7 +156,7 @@ The default GeoServer data directory location for OpenGeo Suite is located at :f
 
    .. code-block:: console
 
-      cp -r /tmp/opengeo_backup/geoserver_data /var/lib/opengeo/geoserver
+      cp -r /tmp/opengeo_backup/geoserver /var/lib/opengeo/geoserver
 
 #. Ensure proper permissions on the restored copy:
 
@@ -173,3 +169,8 @@ The default GeoServer data directory location for OpenGeo Suite is located at :f
    .. code-block:: bash
 
       service tomcat7 start
+
+After update
+------------
+
+Update is now complete. Please see the section on :ref:`intro.installation.ubuntu.postinstall` to continue.

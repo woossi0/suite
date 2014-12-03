@@ -11,7 +11,7 @@ The packages use the standard `RPM format <http://www.rpm.org/>`_ used in Red Ha
 
 where ``<package>`` is any one of the package names listed below.
 
-Top level packages
+Top-level packages
 ------------------
 
 The following packages are considered "meta" packages that only depend on other upstream packages, and contain no libraries or binaries themselves.
@@ -41,7 +41,7 @@ The following packages are considered "meta" packages that only depend on other 
 Server packages
 ---------------
 
-The following packages contain the server components of OpenGeo Suite.
+The following packages contain the server components of OpenGeo Suite. These packages are installed via the ``opengeo-server`` meta-package.
 
 .. tabularcolumns:: |p{5cm}|p{4cm}|p{6cm}|
 .. list-table::
@@ -83,7 +83,7 @@ The following packages contain the server components of OpenGeo Suite.
 Client/library packages
 -----------------------
 
-The following packages contain the client components of OpenGeo Suite.
+The following packages contain the client components of OpenGeo Suite. These packages are installed via the ``opengeo-clinet`` metapackage.
 
 .. tabularcolumns:: |p{3cm}|p{5cm}|p{7cm}|
 .. list-table::
@@ -149,8 +149,6 @@ For more information, please see the section on :ref:`GeoServer extensions <intr
         - Catalogue Service for Web (CSW) extension for GeoServer
       * - ``geoserver-geopackage``
         - GeoPackage extension for GeoServer
-      * - ``geoserver-script``
-        - Scripting extension for GeoServer
       * - ``geoserver-wps``
         - Web Processing Service (WPS) extension for GeoServer
 

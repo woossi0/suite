@@ -18,8 +18,8 @@ The following pages will demonstrate how to style each of these layers to compos
 .. toctree::
    :maxdepth: 1
 
-   line
    polygon
+   line
    point
    raster
    map

@@ -11,7 +11,7 @@ There are a number of front-end tools available for connecting to, and working w
 Launching pgAdmin
 -----------------
 
-Depending on how OpenGeo Suite was installed pgAdmin may or may not have been installed. See the :ref:`installation` section for installation instructions. Once installed follow the instructions below for your platform. 
+Depending on how OpenGeo Suite was installed pgAdmin may or may not have been installed. See the :ref:`intro.installation` section for installation instructions. Once installed follow the instructions below for your platform. 
 
 Windows
 ^^^^^^^

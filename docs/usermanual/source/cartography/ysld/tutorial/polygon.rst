@@ -16,55 +16,83 @@ Viewing the existing style
 
    .. note:: Your default color may vary.
 
-   Observe that the default style draws a colored polygon with a black border for every country.
-
 #. The default style will look something like this:
    
    .. code-block:: yaml
    
       name: Default Styler
-      title: A boring default style
-      abstract: A sample style that just prints out a green line
+      title: A yellow polygon style
       feature-styles:
       - name: name
         rules:
-        - name: Rule 1
-          title: Green Line
-          abstract: A green line with a 2 pixel width
+        - title: yellow polygon
           symbolizers:
-          - line:
-              stroke-color: '#0000FF'
-              stroke-width: 1
+          - polygon:
+              stroke-color: '#000000'
+              stroke-width: 0.5
+              fill-color: '#FFFF00'
+
+Name and Title
+--------------
+
+The feature style and individual elements within the style can be given ``name`` and ``title`` parameters. ``name`` is a machine reference to the style element and is not intended to be displayed. It should be **lower case** and contain **no spaces**. ``title`` is a human-readable description of a style element, and will be displayed by client appliations. 
+
+#. Modify the name and title elements in the default style:
+
+   .. code-block:: yaml
+      :emphasize-lines: 1-3, 7
+      
+      name: countries
+      title: Countries style
+      abstract: countries of the world
+      feature-styles:
+      - name: name
+        rules:
+        - title: Countries
+          symbolizers:
+          - polygon:
+              stroke-color: '#000000'
+              stroke-width: 0.5
+              fill-color: '#FFFF00'
+
 
 Setting basic styling
 ---------------------
 
 Polygon symbolizers provide options for styling both fill (inside) and stroke (outline) of features.
 
-#. Modify the default style to create a nicer display using the following additional parameters:
+#. Stroke styling is defined primarily by``stroke-width``, ``stroke-color``, and ``stroke-opacity``. Change the style to use a 0.5 px grey stroke:
 
-   .. list-table::
-      :class: non-responsive
-      :widths: 40 60 
-      :header-rows: 1
+.. code-block:: yaml
+      :emphasize-lines: 5-6
+    
+      rules:
+      - title: Countries 
+        symbolizers:
+          polygon:
+            stroke-color: '#777777'
+            stroke-width: 0.5
 
-      * - Parameter
-        - Description
-      * - ``fill-color: '#EFEFC3'``
-        - Change the fill color to a pale brown
-      * - ``fill-opacity: 0.5``
-        - Make the fill 50% transparent
-      * - ``stroke-color: '#777777'``
-        - Change the stroke color
-      * - ``stroke-dasharray: '4 4'``
-        - Use dashed lines of 4px with 4px gaps
-      * - ``stroke-width: 0.5``
-        - Use a line width of 0.5 px
+#. Fill styling is defined primairly by ``fill-color`` and ``fill-opacity``. Change the style to use a 50% transparent brown fill:
+
+.. code-block:: yaml
+      :emphasize-lines: 7-8
+    
+      rules:
+      - title: Countries 
+        symbolizers:
+          polygon:
+            stroke-color: '#777777'
+            stroke-width: 0.5
+            fill-color: '#EFEFC3'
+            fill-opacity: 0.5
+
+#. Additional styling options are available for both stroke and fill, and can be found in the :ref:`symbolizer reference <cartography.ysld.reference.symbolizers>`. Use ``stroke-dasharray`` to change the line style to a dashed line of 4px with 4px gaps.
 
 #. The complete style after these changes will be:
 
    .. code-block:: yaml
-      :emphasize-lines: 1-3,7-13
+      :emphasize-lines: 11
       
       name: countries
       title: Countries style
@@ -75,8 +103,8 @@ Polygon symbolizers provide options for styling both fill (inside) and stroke (o
         - symbolizers:
           - polygon:
               stroke-color: '#777777'
-              stroke-dasharray: '4 4'
               stroke-width: 0.5
+              stroke-dasharray: '4 4'
               fill-color: '#EFEFC3'
               fill-opacity: 0.5
 
@@ -85,6 +113,118 @@ Polygon symbolizers provide options for styling both fill (inside) and stroke (o
    .. figure:: img/poly_basic.png
 
       Basic styled polygons
+
+Adding labels
+-------------
+
+Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ysld.reference.symbolizers.text>`. Typically you will want to use some data attribute as the label text, usually a name.
+
+#. Add a text symbolizer with a basic label using the ``NAME`` attribute:
+   
+   .. code-block:: yaml
+      :emphasize-lines: 14-15
+   
+      name: countries
+      title: Countries style
+      abstract: countries of the world
+      feature-styles:
+      - name: name
+        rules:
+        - symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-width: 0.5
+              stroke-dasharray: '4 4'
+              fill-color: '#EFEFC3'
+              fill-opacity: 0.5
+          - text:
+              label: ${NAME}
+
+#. After this change, the map will look like:
+
+   .. figure:: img/poly_label_basic.png
+
+      Basic labels
+
+Styling labels
+--------------
+
+The default labeling parameters are not ideal, but a number of styling options are available. 
+
+#. Add the following attributes to the text symbolizer:
+
+   .. list-table::
+      :class: non-responsive
+      :widths: 40 60 
+      :header-rows: 1
+
+      * - Parameter
+        - Description
+      * - ``label: ${strToUpperCase(NAME)}``
+        - Change the label text to uppercase
+      * - ``font-size: 14``
+        - Change the font size to 14
+      * - ``font-family: SansSerif``
+        - Change the font to SansSerif
+      * - ``font-weight: bold``
+        - Make the font bold
+      * - ``fill-color: '#333333'``
+        - Change the font color to dark gray
+
+   This gives a much nicer font style, but the label placement is still poor. 
+
+#. Add some additional options to fix this:
+
+   .. list-table::
+      :class: non-responsive
+      :widths: 40 60 
+      :header-rows: 1
+
+      * - Parameter
+        - Description
+      * - ``x-autoWrap: 100``
+        - Wrap any labels wider than 100 pixels
+      * - ``x-maxDisplacement: 200``
+        - Allow labels to shift up to 200 pixels to maintain best placement
+      * - ``x-goodnessOfFit: 0.8``
+        - Only show labels with 0.8 or better fit
+      * - ``x-labelPriority: ${10-LABELRANK}``
+        - Select labels based on priority (uses the ``LABELRANK`` attribute of the data to determine this).
+
+With the label styling, the style now looks like this:
+
+   .. code-block:: yaml
+      :emphasize-lines: 16-23
+   
+      name: countries
+      title: Countries style
+      abstract: countries of the world
+      feature-styles:
+      - name: name
+        rules:
+        - symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-width: 0.5
+              stroke-dasharray: '4 4'
+              fill-color: '#EFEFC3'
+              fill-opacity: 0.5
+          - text:
+              label: ${strToUpperCase(NAME)}
+              font-size: 14
+              font-family: SansSerif
+              font-weight: bold
+              fill-color: '#333333'
+              x-autoWrap: 100
+              x-maxDisplacement: 200
+              x-goodnessOfFit: 0.8
+              x-labelPriority: ${10-LABELRANK}
+
+With these additions, the labels now appear much clearer:
+
+     .. figure:: img/poly_label_styled.png
+
+        Styled labels
 
 Adding filters
 --------------
@@ -113,7 +253,7 @@ Suppose we wish to display different colors for each country. The countries laye
       * - ``MAPCOLOR7 = 6``
         - ``fill-color: '#C3C3FF'``
       * - ``MAPCOLOR7 = 7``
-        - ``fill-color: '#BFC3FF'``
+        - ``fill-color: '#FFC3FF'``
 
 #. After adding the filters, the style will look like:
    
@@ -180,12 +320,98 @@ Suppose we wish to display different colors for each country. The countries laye
                stroke-color: '#777777'
                stroke-dasharray: '4 4'
                stroke-width: 0.5
-               fill-color: '#BFC3FF'
+               fill-color: '#FFC3FF'
                fill-opacity: 0.5
+         - symbolizers:
+           - text:
+               label: ${strToUpperCase(NAME)}
+               font-size: 14
+               font-family: SansSerif
+               font-weight: bold
+               fill-color: '#333333'
+               x-autoWrap: 100
+               x-maxDisplacement: 200
+               x-goodnessOfFit: 0.8
+               x-labelPriority: ${10-LABELRANK}
 
-   .. figure:: img/poly_color.png
+   .. figure:: img/poly_label_color.png
 
       Adjacent countries will not have the same color
+
+Reducing redundant content using variables
+--------------------------------------------
+
+Much of the styling content in each of the filters used above is repeated. This repeated content can be reduced using :ref:`variables <cartography.ysld.reference.variables>`.
+
+#. Add a directive block named ``polystyle`` to the beginning of the style:
+   
+   .. code-block:: yaml
+
+      define: &polystyle
+         stroke-color: '#777777'
+         stroke-dasharray: '4 4'
+         stroke-width: 0.5
+         fill-opacity: 0.5
+
+#. For each of the seven filter rules, remove every property except ``fill-color`` and add ``<<: *polystyle``. This will copy all the properties defined in our variable block to each of the rules. The style will now look like:
+
+   .. code-block:: yaml
+      :emphasize-lines: 1-5, 15, 20, 25, 30, 35, 40, 45
+ 
+      define: &polystyle
+        stroke-color: '#777777'
+        stroke-dasharray: '4 4'
+        stroke-width: 0.5
+        fill-opacity: 0.5
+      name: countries
+      title: Countries style
+      abstract: countries of the world
+      feature-styles:
+      - name: name
+        rules:
+        - filter: ${MAPCOLOR7 = 1}
+          symbolizers:
+          - polygon:
+              <<: *polystyle
+              fill-color: '#FFC3C3'
+        - filter: ${MAPCOLOR7 = 2}
+          symbolizers:
+          - polygon:
+              <<: *polystyle
+              fill-color: '#FFE3C3'
+        - filter: ${MAPCOLOR7 = 3}
+          symbolizers:
+          - polygon:
+              <<: *polystyle
+              fill-color: '#FFFFC3'
+        - filter: ${MAPCOLOR7 = 4}
+          symbolizers:
+          - polygon:
+              <<: *polystyle
+              fill-color: '#C3FFE3'
+        - filter: ${MAPCOLOR7 = 5}
+          symbolizers:
+          - polygon:
+              <<: *polystyle
+              fill-color: '#C3FFFF'
+       - filter: ${MAPCOLOR7 = 6}
+          symbolizers:
+          - polygon:
+              <<: *polystyle
+              fill-color: '#C3C3FF'
+        - filter: ${MAPCOLOR7 = 7}
+          symbolizers:
+          - polygon:
+              <<: *polystyle
+              fill-color: '#FFC3FF'
+        - symbolizers:
+          - text:
+              label: ${strToUpperCase(NAME)}
+              font-size: 14
+              font-family: SansSerif
+              font-weight: bold
+              fill-color: '#333333'
+              x-autoWrap: 100
 
 Compacting thematic styles with transformation functions
 --------------------------------------------------------
@@ -220,108 +446,13 @@ While filters are very useful, the required syntax is quite long, and much of th
                fill-color: ${
                    recode(MAPCOLOR7,
                      1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
-                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
+                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#FFC3FF')
                  }
                fill-opacity: 0.5
 
-   This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function. If ``MAPCOLOR7 = 1``, set to ``ffc3c3``, if ``MAPCOLOR7 = 2`` set to ``ffe3c3``, etc.
-
-#. The style now looks much simpler:
-   
-   .. code-block:: yaml
-
-      name: countries
-      title: Countries style
-      abstract: countries of the world
-      feature-styles:
-       - name: name
-         rules:
-         - title: countries
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: ${
-                   recode(MAPCOLOR7,
-                     1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
-                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
-                 }
-               fill-opacity: 0.5
+   This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function. If ``MAPCOLOR7 = 1``, set to ``'#FFC3C3'``, if ``MAPCOLOR7 = 2`` set to ``'#FFE3E3``, etc.
 
    It should be noted that this will produce the *exact same output* as in the previous section.
-
-Adding labels
--------------
-
-Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ysld.reference.symbolizers.text>`. Typically you will want to use some data attribute as the label text, usually a name.
-
-#. Add a text symbolizer with a basic label using the ``NAME`` attribute:
-   
-   .. code-block:: yaml
-   
-      name: countries
-      title: Countries style
-      abstract: countries of the world
-      feature-styles:
-       - name: name
-         rules:
-         - title: countries
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: ${
-                   recode(MAPCOLOR7,
-                     1, '#FFC3C3', 2, '#FFE3C3', 3, '#FFFFC3', 4, '#C3FFE3',
-                     5, '#C3FFFF', 6, '#C3C3FF', 7, '#BFC3FF')
-                 }
-               fill-opacity: 0.5
-           - text:
-               label: ${NAME}
-
-#. After this change, the map will look like:
-
-   .. figure:: img/poly_label_basic.png
-
-#. The default labeling parameters are not ideal, but a number of styling options are available. Add the following attributes to the text symbolizer:
-
-   .. list-table::
-      :class: non-responsive
-      :widths: 40 60 
-      :header-rows: 1
-
-      * - Parameter
-        - Description
-      * - ``label: ${strToUpperCase(NAME)}``
-        - Change the label text to uppercase
-      * - ``font-size: 14``
-        - Change the font size to 14
-      * - ``font-family: SansSerif``
-        - Change the font to SansSerif
-      * - ``font-weight: bold``
-        - Make the font bold
-      * - ``fill-color: '#333333'``
-        - Change the font color to dark gray
-
-#. This gives a much nicer font style, but the label placement is still poor. We can use some additional options to fix this:
-
-   .. list-table::
-      :class: non-responsive
-      :widths: 40 60 
-      :header-rows: 1
-
-      * - Parameter
-        - Description
-      * - ``x-autoWrap: 100``
-        - Wrap any labels wider than 100 pixels
-      * - ``x-maxDisplacement: 200``
-        - Allow labels to shift up to 200 pixels to maintain best placement
-      * - ``x-goodnessOfFit: 0.8``
-        - Only show labels with 0.8 or better fit
-      * - ``x-labelPriority: ${10-LABELRANK}``
-        - Select labels based on priority (uses the ``LABELRANK`` attribute of the data to determine this).
 
 Final style
 -----------
@@ -331,12 +462,6 @@ The full style now looks like this:
 .. literalinclude:: files/ysldtut_poly.ysld
    :language: yaml
 
-With these additions, the labels now appear much clearer:
-
-.. figure:: img/poly_label_options.png
-
-   Completed countries style
-
 .. note:: :download:`Download the final polygon style <files/ysldtut_poly.ysld>`
 
-Continue on to :ref:`cartography.ysld.tutorial.point`.
+Continue on to :ref:`cartography.ysld.tutorial.line`.

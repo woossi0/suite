@@ -2,40 +2,24 @@
 
 Installing
 ==========
-
+   
 .. only:: basic
 
-   This section describes how to perform an installation of **OpenGeo Suite** |version| on Ubuntu Linux.
-
-   .. note:: If upgrading to OpenGeo Suite Enterprise from OpenGeo Suite, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
+   This section describes how to perform an installation of **OpenGeo Suite** |version| on Ubuntu Linux. These instructions should only be followed if your system does not have OpenGeo Suite installed.
 
 .. only:: enterprise
 
-   This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Ubuntu Linux.
+   This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Ubuntu Linux. These instructions should be only followed if your system does not have OpenGeo Suite installed.
 
-These instructions should be followed if:
+.. note::
 
-* Your system does not have OpenGeo Suite
-* You are updating from a **minor version** of OpenGeo Suite (for example: from **4.x** to **4.y**)
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
+   * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.ubuntu.minorupdate` section.
+   * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.ubuntu.majorupdate` section.
 
-If updating from a previous **major version** of OpenGeo Suite (for example: from **3.x** to **4.y**), see the :ref:`intro.installation.ubuntu.update` section.
+.. note:: While QGIS is part of OpenGeo Suite it is not currently bundled as a package by Boundless. To use QGIS with an Ubuntu system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
-.. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with an Ubuntu system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
-
-System requirements
--------------------
-
-The following Ubuntu versions are supported:
-
-* `Precise Pangolin <http://releases.ubuntu.com/precise/>`_ (12.04 LTS)
-* `Trusty Tahr <http://releases.ubuntu.com/trusty/>`_ (14.04 LTS)
-
-OpenGeo Suite for Ubuntu Linux has the following system requirements:
-
-* Memory: 512MB minimum (1GB recommended)
-* Disk space: 750MB minimum (plus extra space for any loaded data)
-* Browser: Any modern web browser is supported
-* Permissions: Super user privileges are required for installation
+.. include:: include/sysreq.txt
 
 Pre-installation process
 ------------------------
@@ -66,13 +50,13 @@ The commands in this section require root privileges.
 
            .. code-block:: bash
 
-              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
+              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
          * If installing on Trusty:
 
            .. code-block:: bash
 
-              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
+              echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
    .. only:: enterprise
 
@@ -90,7 +74,7 @@ The commands in this section require root privileges.
 
               echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
 
-         .. note: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
+         .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
 
 Installation process
 --------------------
@@ -106,12 +90,6 @@ Installation process
    .. code-block:: bash
 
       apt-cache search opengeo
-
-#. If you are updating and have an old version of the OpenGeo Suite Tomcat package, run the following command to update to Tomcat 7:
-
-   .. code-block:: bash
-
-      apt-get install opengeo-tomcat6- opengeo-tomcat7
 
 #. You have options on what packages to install:
 
@@ -135,20 +113,7 @@ Installation process
 
         apt-get install opengeo
 
-#. If you are performing a **minor update**, update any other additional See the :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example:
-
-   * To update the :ref:`Boundless SDK <webapps.sdk>`:
-
-     .. code-block:: bash
-
-        apt-get install opengeo-webapp-sdk
-
-   * To update a GeoServer extension such as :ref:`WPS <processing>`:
-
-        apt-get install geoserver-wps
-
-
 After installation
 ------------------
 
-Installation is now complete. Please see the section on :ref:`intro.installation.ubuntu.misc`.
+Installation is now complete. Please see the section on :ref:`intro.installation.ubuntu.postinstall` to continue.

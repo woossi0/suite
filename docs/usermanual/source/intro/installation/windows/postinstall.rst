@@ -1,7 +1,7 @@
-.. _intro.installation.windows.misc:
+.. _intro.installation.windows.postinstall:
 
-Working with OpenGeo Suite for Windows
-======================================
+After installation: Working with OpenGeo Suite for Windows
+==========================================================
 
 This document contains information about various tasks specific to OpenGeo Suite for Windows. 
 
@@ -20,16 +20,16 @@ OpenGeo Suite is comprised of two services:
 
 The services can be started and stopped directly from the Start Menu by navigating to :menuselection:`All Programs --> OpenGeo Suite` and using the :guilabel:`Start` and :guilabel:`Stop` short cuts. They must be run with Adminstrator rights.
 
-   .. figure:: img/startstop_services.png
+.. figure:: img/startstop_services.png
 
-      Starting and stopping OpenGeo services
+   Starting and stopping OpenGeo Suite services
 
 Services can also be controlled from the Windows :guilabel:`Services` dialog available by navigating to :menuselection:`Administrative Tools --> Services` from the Windows :guilabel:`Control Panel`.
 
 Service port configuration
 --------------------------
 
-The Jetty and PostgreSQL services run on ports **8080** and **5432** respectively. These ports can often conflict with existing services on the systemk, in which case the ports must be changed. 
+The Jetty and PostgreSQL services run on ports **8080** and **5432** respectively. These ports can often conflict with existing services on the system, in which case the ports must be changed. 
 
 Changing the Jetty port
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -77,7 +77,7 @@ To point GeoServer to an alternate location:
 
 .. note:: You may have to restart Windows itself for the environment variable change to be picked up.
 
-.. _intro.installation.windows.misc.pgconfig:
+.. _intro.installation.windows.postinstall.pgconfig:
 
 PostgreSQL Configuration
 ------------------------

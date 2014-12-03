@@ -13,7 +13,7 @@ Boundless SDK is easiest to install as part of OpenGeo Suite.
 Windows
 ~~~~~~~
 
-Boundless SDK is included in OpenGeo Suite for Windows as an optional component. During the :ref:`installation.windows` process, on the :guilabel:`Components` page, expand the :guilabel:`Dev Tools` tree and select :guilabel:`Boundless SDK`.
+Boundless SDK is included in OpenGeo Suite for Windows as an optional component. During the :ref:`intro.installation.windows` process, on the :guilabel:`Components` page, expand the :guilabel:`Dev Tools` tree and select :guilabel:`Boundless SDK`.
 
 .. todo:: Figure
 

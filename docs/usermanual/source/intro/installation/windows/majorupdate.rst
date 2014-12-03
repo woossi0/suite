@@ -1,18 +1,22 @@
-.. _intro.installation.windows.update:
+.. _intro.installation.windows.majorupdate:
 
-Updating
-=========
+Updating a major version
+========================
 
-This section describes how to update from a previous **major** version of OpenGeo Suite.
+This section will show how to update OpenGeo Suite 3.x to |version| on Windows.
 
-If performing a **minor** update, you may proceed with a typical :ref:`install <intro.installation.windows.install>`. 
+.. note::
 
-.. note:: A "major" version update is from version 3.x to 4.y. A "minor" version update is from 4.x to 4.y.
+   * For new installations, please see the section on :ref:`intro.installation.windows.install`.
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.windows.upgrade`.
+   * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.windows.minorupdate` section.
 
 .. warning:: This update is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
 
+.. include:: include/sysreq.txt
+
 Back up PostGIS databases
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 The first step of the update process is to back up your existing PostGIS data. 
 
@@ -48,39 +52,32 @@ The first step of the update process is to back up your existing PostGIS data.
 #. The PostGIS data backup process is complete. You may now shut down OpenGeo Suite 3.x.
 
 Back up GeoServer data directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
-Uninstalling OpenGeo Suite 3.x will not remove any of the GeoServer 
-configuration so there is no need to make a back up. It can be copied into the
-correct location during restore.
+Uninstalling OpenGeo Suite 3.x will not remove any of the GeoServer configuration so there is no need to make a back up. It can be copied into the correct location during restore.
 
-For OpenGeo Suite 3.x and earlier the default the data directory is located at 
-:file:`<user_home_directory>\\.opengeo\\data_dir`.
+For OpenGeo Suite 3.x and earlier the default the data directory is located at :file:`<user_home_directory>\\.opengeo\\data_dir`.
 
-For OpenGeo Suite 4.x and above the default data directory is located at 
-:file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`. 
+For OpenGeo Suite 4.x and above the default data directory is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`. 
 
-Uninstall old Suite
-~~~~~~~~~~~~~~~~~~~
+Uninstall old version
+---------------------
 
-The next step of the process is to uninstall OpenGeo Suite 3.x. The uninstaller
-can be run directly from the Windows Start Menu.
+The next step of the process is to :ref:`uninstall the existing OpenGeo Suite <intro.installation.windows.uninstall>`. The uninstaller can be run directly from the Windows Start Menu.
 
-Install new Suite
-~~~~~~~~~~~~~~~~~
+Install new version
+-------------------
 
-You are now ready to install the new version of OpenGeo Suite. To do so follow
-the instructions in the :ref:`intro.installation.windows` section.
+You are now ready to install the new version of OpenGeo Suite. To do so follow the instructions in the :ref:`intro.installation.windows.install` section.
 
-In order to run the PostGIS restore script you must select the PostGIS client 
-tools as part of the new install. 
+In order to run the PostGIS restore script you must select the PostGIS client tools as part of the new install. 
 
 .. figure:: img/pg_client_tools.png
 
    Installing PostGIS client tools
 
 Restore PostGIS databases
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 #. Ensure the OpenGeo PostgreSQL service is running.
 
@@ -101,7 +98,7 @@ Restore PostGIS databases
 #. Your databases and roles will be restored. You can verify that the databases were created and data restored by running ``psql -l`` on the command line.
 
 Restore GeoServer data directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 #. Stop the OpenGeo Jetty service if it is running.
 
@@ -114,3 +111,7 @@ Restore GeoServer data directory
 
 #. Restart the OpenGeo Jetty service. 
 
+After update
+------------
+
+The update is now complete. Please see the section on :ref:`intro.installation.windows.postinstall` to continue.

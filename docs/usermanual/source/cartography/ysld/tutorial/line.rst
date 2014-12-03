@@ -270,4 +270,4 @@ The resulting map shows different levels of road detail at different zoom levels
 
 .. note:: :download:`Download the final line style <files/ysldtut_line.ysld>`
 
-Continue on to :ref:`cartography.ysld.tutorial.polygon`.
+Continue on to :ref:`cartography.ysld.tutorial.point`.

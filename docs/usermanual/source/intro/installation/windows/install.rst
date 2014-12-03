@@ -3,21 +3,23 @@
 Installing
 ==========
 
+.. todo:: Screenshots will need to be updated.
+
+.. only:: basic
+
+   This section describes how to perform a new installation of **OpenGeo Suite** |version| on Ubuntu Linux. These instructions should only be followed if your system does not have OpenGeo Suite installed.
+
+.. only:: enterprise
+
+   This section describes how to perform a new installation of **OpenGeo Suite Enterprise** |version| on Ubuntu Linux. These instructions should be only followed if your system does not have OpenGeo Suite installed.
+
 .. note::
 
-   If updating from a previous **major** version see the :ref:`Upgrade <intro.installation.windows.update>` section. If updating from a previous **minor** version, please continue below.
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.windows.upgrade`.
+   * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.windows.minorupdate` section.
+   * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.windows.majorupdate` section.
 
-Prerequisites
--------------
-
-OpenGeo Suite has the following system requirements:
-
-* **Operating System**: Windows Vista, 7 or 8, or Windows Server 2003 or higher
-* **Memory**: 1GB minimum (2GB recommended)
-* **Disk space**: 600MB minimum (plus extra space for data)
-* **Browser**: Any modern web browser is supported
-* **Permissions**: Administrative rights
-* **Software**: .NET Framework 4 (`Download <http://www.microsoft.com/en-us/download/details.aspx?id=17851>`_)
+.. include:: include/sysreq.txt
 
 Installation
 ------------
@@ -36,7 +38,7 @@ Installation
 
    .. figure:: img/license.png
 
-      License Agreement
+      License agreement
 
 #. Select the **Destination folder** where you would like to install OpenGeo Suite, and click :guilabel:`Next`.
 
@@ -56,9 +58,9 @@ Installation
 
       Component selection
 
-   See :ref:`intro.installation.windows.install.components` for more details.
+   .. note:: See :ref:`intro.installation.windows.components` for more details.
 
-#. Click :guilabel:`Install` to perform the intro.installation.
+#. Click :guilabel:`Install` to perform the installation.
 
    .. figure:: img/ready.png
 
@@ -79,89 +81,4 @@ Installation
 After installation
 ------------------
 
-Installation is now complete. After installation, please see the section on :ref:`intro.installation.windows.misc`.
-
-.. _intro.installation.windows.install.components:
-
-Components
-----------
-
-The following is a list of components available in the **Components** page of the installer.
-
-.. tabularcolumns:: |p{4cm}|p{11cm}|
-.. list-table::
-   :widths: 20 80
-   :stub-columns: 1
-   :class: table-leftwise
-
-   * - PostGIS
-     - The PostgreSQL/PostGIS spatial database.
-   * - GeoServer
-     - Server implementing OGC compliant map and feature services.
-   * - GeoWebCache
-     - Tile caching server.
-   * - GeoExplorer
-     - Map viewing and editing application.
-   * - Recipes
-     - Code samples for building map applications.
-
-GeoServer Extensions
-^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 20 80
-   :stub-columns: 1
-   :class: table-leftwise
-
-   * - Mapmeter
-     - Mapmeter monitoring service.
-   * - CSS Styling
-     - CSS map styling support.
-   * - WPS
-     - Web Processing Service (WPS) support.
-   * - MongoDB
-     - MongoDB database support.
-   * - GeoPackage
-     - GeoPackage data source support.   
-   * - CSW
-     - Catalogue Service for Web (CSW) support.
-   * - Clustering
-     - Clustering plug-ins.
-   * - GDAL Image Formats
-     - Additional raster formats support as part of GDAL integration.
-
-Client Tools
-^^^^^^^^^^^^
-
-.. list-table::
-   :widths: 20 80
-   :stub-columns: 1
-   :class: table-leftwise
-
-   * - PostGIS
-     - PostGIS command line data loading utilities.
-   * - pgAdmin
-     - Graphical PostGIS/PostgreSQL database manager.
-   * - GDAL/OGR
-     - Spatial data manipulation utilities.
-
-Dev Tools
-^^^^^^^^^
-
-.. list-table::
-   :widths: 20 80
-   :stub-columns: 1
-   :class: table-leftwise
-
-   * - Boundless SDK
-     - Toolkit for building web map applications.
-   * - GeoScript
-     - Scripting extension for GeoServer.
-
-Uninstallation
---------------
-
-To uninstall OpenGeo Suite run the uninstaller from the start menu. See
-the :ref:`intro.installation.windows.uninstall` section for more details.
-
-
+Installation is now complete. Please see the section on :ref:`intro.installation.windows.postinstall` to continue.
