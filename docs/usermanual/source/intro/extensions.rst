@@ -134,7 +134,7 @@ For more information about CSW in GeoServer, please see the `GeoServer CSW docum
    Oracle
    ------
 
-   The Oracle extension adds the ability for GeoServer to publish data from Oracle Spatial databases. Once this extension is added, GeoServer will show Oracle as one of its available data sources when adding a new vector store.
+   The :ref:`Oracle extension <dataadmin.oracle>` adds the ability for GeoServer to publish data from Oracle Spatial databases. Once this extension is added, GeoServer will show Oracle as one of its available data sources when adding a new vector store.
 
 .. _intro.extensions.pointcloud:
 
