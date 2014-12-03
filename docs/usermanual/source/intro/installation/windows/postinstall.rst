@@ -22,7 +22,7 @@ The services can be started and stopped directly from the Start Menu by navigati
 
 .. figure:: img/startstop_services.png
 
-   Starting and stopping OpenGeo services
+   Starting and stopping OpenGeo Suite services
 
 Services can also be controlled from the Windows :guilabel:`Services` dialog available by navigating to :menuselection:`Administrative Tools --> Services` from the Windows :guilabel:`Control Panel`.
 

@@ -5,7 +5,11 @@ Uninstallation
 
 This document describes how to uninstall OpenGeo Suite for Windows. 
 
-#. Shutdown all OpenGeo Services by navigating to :menuselection:`Start Menu --> All Programs --> OpenGeo Suite` and using the :guilabel:`Stop` shortcuts. Alternately, services can be stopped from the Windows :guilabel:`Services` dialog, and stopping both the **OpenGeo Jetty** and **OpenGeo PostgreSQL** services. 
+#. Shutdown all OpenGeo Suite services by navigating to :menuselection:`Start Menu --> All Programs --> OpenGeo Suite` and using the :guilabel:`Stop` shortcuts. Alternately, services can be stopped from the Windows :guilabel:`Services` dialog, and stopping both the **OpenGeo Jetty** and **OpenGeo PostgreSQL** services.
+
+   .. figure:: img/startstop_services.png
+
+      Starting and stopping OpenGeo Suite services
 
 #. Navigate to :menuselection:`Start Menu --> Programs --> OpenGeo Suite --> Uninstall`.
 

@@ -54,30 +54,23 @@ The first step of the update process is to back up your existing PostGIS data.
 Back up GeoServer data directory
 --------------------------------
 
-Uninstalling OpenGeo Suite 3.x will not remove any of the GeoServer 
-configuration so there is no need to make a back up. It can be copied into the
-correct location during restore.
+Uninstalling OpenGeo Suite 3.x will not remove any of the GeoServer configuration so there is no need to make a back up. It can be copied into the correct location during restore.
 
-For OpenGeo Suite 3.x and earlier the default the data directory is located at 
-:file:`<user_home_directory>\\.opengeo\\data_dir`.
+For OpenGeo Suite 3.x and earlier the default the data directory is located at :file:`<user_home_directory>\\.opengeo\\data_dir`.
 
-For OpenGeo Suite 4.x and above the default data directory is located at 
-:file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`. 
+For OpenGeo Suite 4.x and above the default data directory is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`. 
 
 Uninstall old version
 ---------------------
 
-The next step of the process is to uninstall OpenGeo Suite 3.x. The uninstaller
-can be run directly from the Windows Start Menu.
+The next step of the process is to :ref:`uninstall the existing OpenGeo Suite <intro.installation.windows.uninstall>`. The uninstaller can be run directly from the Windows Start Menu.
 
 Install new version
 -------------------
 
-You are now ready to install the new version of OpenGeo Suite. To do so follow
-the instructions in the :ref:`intro.installation.windows.install` section.
+You are now ready to install the new version of OpenGeo Suite. To do so follow the instructions in the :ref:`intro.installation.windows.install` section.
 
-In order to run the PostGIS restore script you must select the PostGIS client 
-tools as part of the new install. 
+In order to run the PostGIS restore script you must select the PostGIS client tools as part of the new install. 
 
 .. figure:: img/pg_client_tools.png
 
