@@ -22,6 +22,8 @@ For users of OpenGeo Suite for Application Servers, please `contact Boundless <h
    ------
 
    The ArcSDE extension adds the ability for GeoServer to publish data from ArcSDE sources. Once this extension is added, GeoServer will show ArcSDE as one of its available data sources when adding a new vector or raster store.
+
+   Please visit: <http://downloads2.esri.com/support/downloads/ao_/SP1_downloads/ArcSDE_sp1_readme.html> for more information.
    
 .. only:: enterprise
 
