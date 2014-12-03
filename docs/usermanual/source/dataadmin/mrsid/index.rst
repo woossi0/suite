@@ -16,13 +16,13 @@ Installation
 Ubuntu
 ~~~~~~
 
-.. note:: By default, OpenGeo Suite for Applications Servers (WAR bundle) will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of installation, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
+.. note:: By default, OpenGeo Suite for Applications Servers (WAR bundle) will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of installation, please see the section on :ref:`dataadmin.gdal`. This section assumes that the GDAL image formats are already enabled.
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
-#. Install the following package from the OpenGeo repository. (See :ref:`installation.ubuntu.install` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository. (See :ref:`intro.installation.ubuntu.install` for instructions on how to add the OpenGeo repository)::
 
-      # apt-get install gdal-mrsid
+      apt-get install gdal-mrsid
 
    .. note::  You must run these commands as root or use :command:`sudo`.
 
@@ -33,13 +33,13 @@ Continue at the :ref:`dataadmin.mrsid.verify` section.
 CentOS / Red Hat
 ~~~~~~~~~~~~~~~~
 
-.. note:: By default, the OpenGeo Suite for Application Servers will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of install, please see the section on :ref:`installation.gdal`. This section assumes that the GDAL image formats are already enabled.
+.. note:: By default, the OpenGeo Suite for Application Servers will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of install, please see the section on :ref:`dataadmin.gdal`. This section assumes that the GDAL image formats are already enabled.
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
-#. Install the following package from the OpenGeo repository. (See :ref:`installation.redhat.install` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository. (See :ref:`intro.installation.redhat.install` for instructions on how to add the OpenGeo repository)::
 
-      # yum install gdal-mrsid
+      yum install gdal-mrsid
 
    .. note::  You must run this command as root or use :command:`sudo`.
 
@@ -49,7 +49,7 @@ MrSID support is provided by a separate package called **gdal-mrsid**.
 
 #. Restart Tomcat.
 
-Continue reading at the :ref:`installation.gdal.verify` section.
+Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 
 Windows (Installer)
 ~~~~~~~~~~~~~~~~~~~
@@ -68,7 +68,6 @@ MrSID support must be enabled during the installation process.
       
       Enabling the MrSID extension
 
-
 #. Click :guilabel:`Next` and continue the installation process. 
 
 Continue reading at the :ref:`dataadmin.mrsid.verify` section.
@@ -83,11 +82,11 @@ Windows (Application server)
 
    .. note:: This file requires 32-bit Java/Tomcat.
 
-#. Extract the contents of this archive to the location where the GDAL libraries were extracted (see :ref:`installation.gdal`).
+#. Extract the contents of this archive to the location where the GDAL libraries were extracted (see :ref:`dataadmin.gdal`).
 
 #. Restart Tomcat.
 
-Continue reading at the :ref:`installation.gdal.verify` section.
+Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 
 
 Mac OS X (Installer)
@@ -139,7 +138,7 @@ Mac OS X (Application server)
 
 #. Restart Tomcat.
 
-Continue reading at the :ref:`installation.gdal.verify` section.
+Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 
 
 .. _dataadmin.mrsid.verify:

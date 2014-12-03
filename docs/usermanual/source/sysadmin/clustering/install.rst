@@ -3,7 +3,7 @@
 Installing the clustering extension
 ===================================
 
-The clustering extension is not installed by default in :ref:`installations <installation>` of OpenGeo Suite. It must be installed separately and then later :ref:`enabled <sysadmin.clustering.setup>`.
+The clustering extension is not installed by default in :ref:`installations <intro.installation>` of OpenGeo Suite. It must be installed separately and then later :ref:`enabled <sysadmin.clustering.setup>`.
 
 .. note:: Prior to installation of the clustering extension, it is important to ensure that you have set up an external data directory, located in a shared location that all GeoServer instances will be able to access.
 
@@ -13,7 +13,7 @@ Install
 Windows
 ~~~~~~~
 
-The clustering extension is set to be installed on the :guilabel:`Components` page of the :ref:`installer wizard <installation.windows>`. Expand the :guilabel:`GeoServer Extensions` by clicking the plus, and then check the box next to :guilabel:`Clustering`.
+The clustering extension is set to be installed on the :guilabel:`Components` page of the :ref:`installer wizard <intro.installation.windows>`. Expand the :guilabel:`GeoServer Extensions` by clicking the plus, and then check the box next to :guilabel:`Clustering`.
 
 If OpenGeo Suite was installed without the clustering extension, first stop the OpenGeo Jetty service, then run the installer again, and at the :guilabel:`Components` page of the installer wizard, uncheck all other components aside from :guilabel:`Clustering`, and then continue with the install.
 
