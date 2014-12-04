@@ -14,9 +14,7 @@ For best performance, use the **Oracle (Sun) Java HotSpot Virtual Machine (JVM)*
 
 The performance optimizations available for each JVM release change. If you are experienced with application server tuning please keep in mind that OpenGeo Suite handles an unusual workload that includes requests with heavy resource use.
 
-.. note:: Oracle's `Java SE 6 Performance White Paper <http://www.oracle.com/technetwork/java/6-performance-137236.html>`_ describes the JVM improvements that were introduced in Java SE 6 (specifically see `Section 2.3 - Ergonomics in the 6.0 Virtual Machine <http://www.oracle.com/technetwork/java/6-performance-137236.html#2.3>`_).
-   
-   Oracle Java 7 provides very detailed memory management and performance tuning options that can be tuned for specific workloads. For details see `Java HotSpot VM Options <http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html>`_. As an example    Oracle's `Garbage-First Collector <http://docs.oracle.com/javase/7/docs/technotes/guides/vm/G1.html>`_ should be considered for installations working with 6GB or lager heap space.
+.. note:: Oracle Java 7 provides very detailed memory management and performance tuning options that can be tuned for specific workloads. For details see `Java HotSpot VM Options <http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html>`_. Oracle's `Java SE 6 Performance White Paper <http://www.oracle.com/technetwork/java/6-performance-137236.html>`_ describes the JVM improvements that were introduced in Java SE 6 (specifically see `Section 2.3 - Ergonomics in the 6.0 Virtual Machine <http://www.oracle.com/technetwork/java/6-performance-137236.html#2.3>`_). Java 7 has introduced Oracle's `Garbage-First Collector <http://docs.oracle.com/javase/7/docs/technotes/guides/vm/G1.html>`_ should be considered for installations working with 6GB or lager heap space. Java 8 introduces `Metaspace <https://blogs.oracle.com/poonam/entry/about_g1_garbage_collector_permanent>`_ as a replacement for the ``PermGen`` settings used to manage application size.
    
 .. note:: For more information, please see the section on :ref:`sysadmin.jvm.setting`.
 
@@ -40,7 +38,7 @@ Certain JVM operating characteristics can be tuned to optimize performance when 
 * ``-Xms2048m -Xmx2048m`` sets the JVM to use 2048 megabytes (2 GB) of memory for the heap, and allocates it all on startup (the heap size should be adjusted to fit the actual memory available)
 * ``-XX:NewRatio=2`` tunes the JVM for handling a large number of short-lived objects
   
-The method of setting these parameters is container-specific.  For example, in OpenGeo Suite tomcat7 service, they are configured by defining them in the ``OPENGEO_OPTS`` variable in a ``setenv`` script file located in the installation ``bin`` directory. In OpenGeo Suite jetty service they are configured in :file:`C:\\Program Files (x86)\\Boundless\\OpenGeo\\jetty\\start.ini`.
+The method of setting these parameters is container-specific.  For example, in OpenGeo Suite the service :file:`tomcat7`, parameters are configured by defining them in the ``OPENGEO_OPTS`` variable in a ``setenv`` script file located in the installation ``bin`` directory. In ``OpenGeo Jetty`` service they are configured in :file:`C:\\Program Files (x86)\\Boundless\\OpenGeo\\jetty\\start.ini`.
 
 JAI and JAI Image I/O
 ---------------------
@@ -68,14 +66,15 @@ The JAI and JAI Image I/O APIs provide both Java and native code implementations
 
    OpenGeo Suite Enterprise provides an optional native code extension providing you the best possible performance.
 
-.. note:: JDK and JAI Performance Comparison
+JDK and JAI Performance Comparison
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   The following figure compares the performance of GeoServer running on the Oracle (Sun) JDK and OpenJDK, with and without JAI native code enabled. The test uses random map requests for TIGER roads data at 1:3M scale, styled with a simple black line. The results demonstrate that using the Oracle JDK with the JAI native code implementation provides the best overall performance by a significant margin.
+The following figure compares the performance of GeoServer running on the Oracle (Sun) JDK and OpenJDK, with and without JAI native code enabled. The test uses random map requests for TIGER roads data at 1:3M scale, styled with a simple black line. The results demonstrate that using the Oracle JDK with the JAI native code implementation provides the best overall performance by a significant margin.
 
-   .. figure:: img/performance_comparison.png
-      :align: center
+.. figure:: img/performance_comparison.png
+   :align: center
 
-      *Performance comparison*
+   *Performance comparison*
 
 Data Optimization
 -----------------

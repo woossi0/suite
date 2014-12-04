@@ -10,27 +10,27 @@ Specifically, we recommend using **Oracle JRE 6**. Even though it isn't the late
 Determining the current Java version
 ------------------------------------
 
-You may wish the verify the version of Java you have.
+You may wish the verify the version of Java you are currently using.
 
-Windows and OSX
-^^^^^^^^^^^^^^^
+Windows and OS X
+^^^^^^^^^^^^^^^^
 
 OpenGeo Suite installers bundle the Oracle Java 7 in its package, so there is no need to do anything here.
 
 All other systems
 ^^^^^^^^^^^^^^^^^
 
-Linux systems often have both Java 6 and Java 7 installed. OpenGeo Suite tomcat7 service is configured to start up with Java 7.
-
 To confirm the version of Java used:
 
 #. Log in to the GeoServer Admin interface
-#. Navigate to the Navigate to the Server Status Page page
-#. Confirm the **JVM Version** is Java 7 or higher.
+#. Navigate to the **Server Status** page
+#. Confirm the **JVM Version** is listed as Java 7 or higher.
      
    .. figure:: img/jvm-version.png
       
-      JVM Version
+      JVM Version showing OpenJDK 7
+
+.. note:: Linux systems often have both Java 6 and Java 7 installed. OpenGeo Suite installs the service ``tomcat7`` and modifies the service configuration to ensure OpenJDK 7 is used.
 
 Changing to the Oracle JRE
 --------------------------
@@ -39,7 +39,9 @@ Linux
 ^^^^^
 
 #. First, download the Oracle JRE. In your browser, navigate to http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html . This is Oracle's download page for JRE 7.
-
+   
+   .. note:: You may evaluate the latest Java virtual machine for use in your organisation. We conservatively recommend the use of Java 7. For additional details please see our section on :ref:`sysadmin.production.performance`.
+   
 #. Click the radio box to accept the license agreement and then click the download link that matches your system.::
 
      jre-7u71-linux-x64.tar.gz
@@ -60,7 +62,7 @@ Linux
 
    .. code-block:: console
 
-      sudo mv jre1.6.0_45 /usr/lib/jvm
+      sudo mv jre1.7.0_71 /usr/lib/jvm
 
 #. *(Optional)* Change your ``JAVA_HOME`` environment variable to point to this new directory:
 
@@ -68,7 +70,7 @@ Linux
 
       export $JAVA_HOME=/usr/lib/jvm/jre1.7.0_71
       
-#. Make sure that your application server (Jetty, Tomcat, etc.) is using this new Java. (It may be reading the ``JAVA_HOME`` environment variable, but not necessarily.) 
+#. Ensure your application server (Jetty, Tomcat, etc.) is using this new Java. Many application servers will pick up the system ``JAVA_HOME`` environment variable or require that their service definition be modified.
 
 #. If using OpenGeo Suite packages (or using Tomcat) open :file:`/etc/default/tomcat7` in a text editor (or equivalent for your system). Scroll down to the end of the file where the ``JAVA_HOME`` variable is set. Add the line:
 
@@ -85,13 +87,13 @@ Linux
 
    .. figure:: img/serverstatus.png
 
-      Server Status showing Oracle JRE 
+      JVM Version showing Oracle JRE on Linux
 
 #. On the line named :guilabel:`JVM Version`, you should see the Oracle JRE. (For historical reasons, it will be shown as "Java HotSpot.")
 
 .. note:: Read more about :ref:`running OpenGeo Suite in Production <sysadmin.production>`.
 
-Windows Application Servers
+Windows application servers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note:: As mentioned above, OpenGeo Suite for Windows automatically includes the appropriate JRE. No action is needed.
@@ -106,15 +108,18 @@ If running OpenGeo Suite for Application Servers on a Windows system:
 
 #. Use the installer (or manual directions) to update Java.
    
-   .. warning:: When installing a new Java Runtime Environment from Oracle pay careful attention to the  installation wizard. Oracle has a habit of including unwanted extras such as a toolbar for **Ask.com**.
+   .. warning:: When installing a new Java Runtime Environment from Oracle pay careful attention to the  installation wizard. Oracle has a habit of including unwanted extras such as JavaFX and browser toolbars.
 
 #. *(Optional)* Change your ``JAVA_HOME`` environment variable to point to this new directory. From the **System** control panel select **Advanced System Settings**. From the **System Properties** dialog navigate to the **Advanced Tab** and click **Environment Variables**. Define a System Variable by clicking **New** and filling in:
    
-   ========== ===================================================
-   Variable   Value 
-   ========== ===================================================
-   JAVA_HOME  C:\\Program Files\\Java\\jre7
-   ========== ===================================================
+   .. list-table:: New System Variable 
+      :widths: 30 70
+      :header-rows: 1
+
+      * - Variable name
+        - Variable value
+      * - JAVA_HOME
+        - :file:`C:\\Program Files\\Java\\jre7`
 
 #. Make sure that your application server (Jetty, Tomcat, etc.) is using this new Java. It may be reading the ``JAVA_HOME`` environment variable, or you may need to consult your application server documentation.
 
@@ -122,7 +127,7 @@ If running OpenGeo Suite for Application Servers on a Windows system:
 
    .. figure:: img/jvm-version-windows.png
       
-      Server Status showing Oracle JRE 
+      JVM Version showing Oracle JRE on Windows
 
 #. On the line named :guilabel:`JVM Version`, you should see the Oracle JRE. (For historical reasons, it will be shown as "Java HotSpot.")
 
