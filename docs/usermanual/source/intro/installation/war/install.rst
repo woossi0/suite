@@ -145,7 +145,7 @@ By default, GeoWebCache stores the cache and cache configuration information in 
    * **Windows**: :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geowebcache`
    * **OS X**: :file:`/Users/opengeo/geowebcache_data`
 
-   You may also wish to `edit the GeoWebCache configuration </geowebcache/configuration/layers/howto.html>`_.
+   You may also wish to `edit the GeoWebCache configuration </opengeo-docs/geowebcache/configuration/layers/howto.html>`_.
 
 #. Open :file:`geowebcache/WEB-INF/web.xml` in a text editor.
 
