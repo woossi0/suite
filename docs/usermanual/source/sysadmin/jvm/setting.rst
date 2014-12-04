@@ -10,83 +10,125 @@ Specifically, we recommend using **Oracle JRE 6**. Even though it isn't the late
 Determining the current Java version
 ------------------------------------
 
-You may wish the verify the version of Java you have.
+You may wish the verify the version of Java you are currently using.
 
-Windows
-^^^^^^^
+Windows and OS X
+^^^^^^^^^^^^^^^^
 
-OpenGeo Suite for Windows bundles the Oracle JRE in its package, so there is no need to do anything here.
+OpenGeo Suite installers bundle the Oracle Java 7 in its package, so there is no need to do anything here.
 
 All other systems
 ^^^^^^^^^^^^^^^^^
 
-For all other systems, run this command::
+To confirm the version of Java used:
 
-  java -version
+#. Log in to the GeoServer Admin interface
+#. Navigate to the **Server Status** page
+#. Confirm the **JVM Version** is listed as Java 7 or higher.
+     
+   .. figure:: img/jvm-version.png
+      
+      JVM Version showing OpenJDK 7
 
-You should see something like this::
-
-  java version "1.6.0_32"
-  Java(TM) SE Runtime Environment (build 1.6.0_32-b05)
-  Java HotSpot(TM) 64-Bit Server VM (build 20.7-b02, mixed mode)
-
-The above example is running the Oracle JVM version 6 (1.6). If your output says "IBM", "OpenJDK", or anything like that, it is not running the Oracle JVM.
-
-If you receive an error that Java is not on the path, you may wish to look at the ``JAVA_HOME`` environment variable.
-
-.. note:: On OS X, you can use the ``/usr/libexec/java_home`` tool to determine the current path to Java. See the `Mac Developer Library <https://developer.apple.com/library/mac/qa/qa1170/_index.html>`_ for more information.
+.. note:: Linux systems often have both Java 6 and Java 7 installed. OpenGeo Suite installs the service ``tomcat7`` and modifies the service configuration to ensure OpenJDK 7 is used.
 
 Changing to the Oracle JRE
 --------------------------
 
-Windows
-^^^^^^^
+Linux  
+^^^^^
 
-As mentioned above, OpenGeo Suite for Windows automatically includes the appropriate JRE. No action is needed.
+#. First, download the Oracle JRE. In your browser, navigate to http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html . This is Oracle's download page for JRE 7.
+   
+   .. note:: You may evaluate the latest Java virtual machine for use in your organisation. We conservatively recommend the use of Java 7. For additional details please see our section on :ref:`sysadmin.production.performance`.
+   
+#. Click the radio box to accept the license agreement and then click the download link that matches your system.::
 
-If running OpenGeo Suite for Application Servers on a Windows system, see below.
+     jre-7u71-linux-x64.tar.gz
 
-All other systems
-^^^^^^^^^^^^^^^^^
+#. Extract the download file contents to your temporary directory or your desktop.
 
-#. First, download the Oracle JRE. In your browser, navigate to http://www.oracle.com/technetwork/java/javase/downloads/jre6downloads-1902815.html. This is Oracle's download page for JRE 6.
+#. In a terminal, change to that directory and confirm the directory contents:
 
-#. Click the radio box to accept the license agreement and then click the download link that matches your system. Save it to your temporary directory or your desktop.
+   .. code-block:: bash
+     
+      $ ls jre1.7.0_71
+      bin        man      THIRDPARTYLICENSEREADME-JAVAFX.txt
+      COPYRIGHT  plugin   THIRDPARTYLICENSEREADME.txt
+      lib        README   Welcome.html
+      LICENSE    release
 
-#. In a terminal, change to that directory and run the file. For example:
+#. Move this directory to :file:`/usr/lib/jvm` (or wherever you'd like to place your JRE):
 
    .. code-block:: console
 
-      ./jre-6u45-linux-x64.bin
-
-#. A :file:`jre1.6.0_45` directory will be created. Move this directory to :file:`/usr/lib/jvm` (or wherever you'd like to place your JRE):
-
-   .. code-block:: console
-
-      sudo mv jre1.6.0_45 /usr/lib/jvm
+      sudo mv jre1.7.0_71 /usr/lib/jvm
 
 #. *(Optional)* Change your ``JAVA_HOME`` environment variable to point to this new directory:
 
    .. code-block:: console
 
-      export $JAVA_HOME=/usr/lib/jvm/jre1.6.0_45
+      export $JAVA_HOME=/usr/lib/jvm/jre1.7.0_71
+      
+#. Ensure your application server (Jetty, Tomcat, etc.) is using this new Java. Many application servers will pick up the system ``JAVA_HOME`` environment variable or require that their service definition be modified.
 
-#. Make sure that your application server (Jetty, Tomcat, etc.) is using this new Java. (It may be reading the ``JAVA_HOME`` environment variable, but not necessarily.) If using Tomcat, open :file:`/etc/default/tomcat6` in a text editor (or equivalent for your system):
+#. If using OpenGeo Suite packages (or using Tomcat) open :file:`/etc/default/tomcat7` in a text editor (or equivalent for your system). Scroll down to the end of the file where the ``JAVA_HOME`` variable is set. Add the line:
 
-#. Scroll down to the setting of the ``JAVA_HOME`` variable. Add the line:
+   .. code-block:: bash
+      :emphasize-lines: 3
 
-   .. code-block:: console
+      OPENGEO_OPTS="-Djava.awt.headless=true -Xms256m -Xmx768m -Xrs -XX:PerfDataSamplingInterval=500 -XX:MaxPermSize=256m -Dorg.geotools.referencing.forceXY=true -DGEOEXPLORER_DATA=/var/lib/opengeo/geoexplorer"
+      JAVA_OPTS="$JAVA_OPTS $OPENGEO_OPTS"
+      JAVA_HOME=/usr/lib/jvm/jre1.7.0_71
 
-      JAVA_HOME=/usr/lib/jvm/jre1.6.0_45
+   Save and close the file. Restart Tomcat. 
 
-#. Save and close the file. Restart Tomcat. 
-
-#. If you didn't change the default JVM for your system, you'll need to ensure that the application server is using the correct Java. You can verify this in GeoServer by navigating to the Server Status page.
+#. OpenGeo Suite should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
 
    .. figure:: img/serverstatus.png
 
-      Server Status showing Oracle JRE
+      JVM Version showing Oracle JRE on Linux
 
-#. On the line named :guilabel:`JVM Version`, you should see the Oracle JRE. (For historical reasons, it will be shown as "Sun Microsystems.")
+#. On the line named :guilabel:`JVM Version`, you should see the Oracle JRE. (For historical reasons, it will be shown as "Java HotSpot.")
+
+.. note:: Read more about :ref:`running OpenGeo Suite in Production <sysadmin.production>`.
+
+Windows application servers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: As mentioned above, OpenGeo Suite for Windows automatically includes the appropriate JRE. No action is needed.
+
+If running OpenGeo Suite for Application Servers on a Windows system:
+
+#. First, download the Oracle JRE. In your browser, navigate to http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html . This is Oracle's download page for JRE 7.
+
+#. Click the radio box to accept the license agreement and then click the download link that matches your system.::
+
+     jre-7u71-windows-x64.exe
+
+#. Use the installer (or manual directions) to update Java.
+   
+   .. warning:: When installing a new Java Runtime Environment from Oracle pay careful attention to the  installation wizard. Oracle has a habit of including unwanted extras such as JavaFX and browser toolbars.
+
+#. *(Optional)* Change your ``JAVA_HOME`` environment variable to point to this new directory. From the **System** control panel select **Advanced System Settings**. From the **System Properties** dialog navigate to the **Advanced Tab** and click **Environment Variables**. Define a System Variable by clicking **New** and filling in:
+   
+   .. list-table:: New System Variable 
+      :widths: 30 70
+      :header-rows: 1
+
+      * - Variable name
+        - Variable value
+      * - JAVA_HOME
+        - :file:`C:\\Program Files\\Java\\jre7`
+
+#. Make sure that your application server (Jetty, Tomcat, etc.) is using this new Java. It may be reading the ``JAVA_HOME`` environment variable, or you may need to consult your application server documentation.
+
+#. OpenGeo Suite should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
+
+   .. figure:: img/jvm-version-windows.png
+      
+      JVM Version showing Oracle JRE on Windows
+
+#. On the line named :guilabel:`JVM Version`, you should see the Oracle JRE. (For historical reasons, it will be shown as "Java HotSpot.")
 
 .. note:: Read more about :ref:`running OpenGeo Suite in Production <sysadmin.production>`.

@@ -117,7 +117,7 @@ For deploying using Tomcat Management Console:
 Externalizing the GeoServer data directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GeoServer includes a built-in data directory used to manage configuration information. To facilitate updating and prevent data loss, it is highly recommended to move the data directory to an location external to the application itself.
+GeoServer includes a built-in data directory used to manage configuration information. To facilitate updating and prevent data loss, it is highly recommended to move the data directory to a location external to the application itself.
 
 #. Stop Tomcat (or just GeoServer).
 
@@ -131,7 +131,33 @@ GeoServer includes a built-in data directory used to manage configuration inform
 
 #. Change the ``GEOSERVER_DATA_DIRECTORY`` parameter to point to the new directory location.
 
-   .. note:: For similar reasons, it is recommended to do the same thing with the GeoWebCache cache location. This new location can be set in the :file:`geowebcache/WEB_INF/web.xml` file.
-
 #. Restart Tomcat (or just GeoServer).
 
+Externalizing the GeoWebCache cache directory
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+By default, GeoWebCache stores the cache and cache configuration information in the temporary storage folder of the application server (:file:`$CATALINA_BASE/temp` for Tomcat). To prevent data loss, it is highly recommended to move the data directory to a permanent location external to the application server.
+
+#. Stop Tomcat (or just GeoWebCache).
+
+#. Move the :file:`temp/geowebcache/geowebcache.xml` file to an external location. Here are some suggested locations:
+   
+   * **Linux**: :file:`/var/lib/opengeo/geowebcache`
+   * **Windows**: :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geowebcache`
+   * **OS X**: :file:`/Users/opengeo/geowebcache_data`
+
+   You may also wish to `edit the GeoWebCache configuration </geowebcache/configuration/layers/howto.html>`_.
+
+#. Open :file:`geowebcache/WEB-INF/web.xml` in a text editor.
+
+#. Add the following code:
+
+   .. code-block:: xml
+
+      <context-param>
+        <param-name>GEOWEBCACHE_CACHE_DIR</param-name>
+        <param-value>PATH</param-value>
+      </context-param>
+
+   where ``PATH`` is the location of the new cache directory.
+
+#. Restart Tomcat (or just GeoWebCache).

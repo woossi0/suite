@@ -7,9 +7,9 @@ This section describes how to perform a minor update from OpenGeo Suite 4.x to |
 
 .. note::
 
-   * For new installations, please see the section on :ref:`intro.installation.ubuntu.install`.
-   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.ubuntu.upgrade`.
-   * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.ubuntu.majorupdate` section.
+   * For new installations, please see the section on :ref:`intro.installation.windows.install`.
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.windows.upgrade`.
+   * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.windows.majorupdate` section.
 
 .. include:: include/sysreq.txt
 

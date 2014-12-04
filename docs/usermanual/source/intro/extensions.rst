@@ -7,10 +7,10 @@ OpenGeo Suite comes with a number of optional extensions or "add-ons". These add
 
 These optional components can be selected in different ways depending on your operating system:
 
-* **Windows**: Extensions can be selected during the :ref:`Windows installation process <installation.windows.install.components>` or by rerunning the installer after OpenGeo Suite is installed.
-* **OS X**: Extensions can be added by :ref:`manually copying the extension files <installation.mac.install.extensions>` after OpenGeo Suite is installed.
-* **Ubuntu Linux**: Extensions can be installed via :ref:`packages <installation.ubuntu.packages>`.
-* **Red Hat-based Linux**: Extensions can be installed by via :ref:`packages <installation.redhat.packages>`.
+* **Windows**: Extensions can be selected during the :ref:`Windows installation process <intro.installation.windows.components>` or by rerunning the installer after OpenGeo Suite is installed.
+* **OS X**: Extensions can be added by :ref:`manually copying the extension files <intro.installation.mac.install.extensions>` after OpenGeo Suite is installed.
+* **Ubuntu Linux**: Extensions can be installed via :ref:`packages <intro.installation.ubuntu.packages>`.
+* **Red Hat-based Linux**: Extensions can be installed by via :ref:`packages <intro.installation.redhat.packages>`.
 
 For users of OpenGeo Suite for Application Servers, please `contact Boundless <http://boundlessgeo.com/about-us/contact/>`_ to receive access to the extensions and information on how to install them.
 
@@ -22,6 +22,8 @@ For users of OpenGeo Suite for Application Servers, please `contact Boundless <h
    ------
 
    The ArcSDE extension adds the ability for GeoServer to publish data from ArcSDE sources. Once this extension is added, GeoServer will show ArcSDE as one of its available data sources when adding a new vector or raster store.
+
+   Please visit the `ArcSDE 8.1 Service Pack 1 Readme <http://downloads2.esri.com/support/downloads/ao_/SP1_downloads/ArcSDE_sp1_readme.html>`_ for more information.
    
 .. only:: enterprise
 
@@ -134,7 +136,7 @@ For more information about CSW in GeoServer, please see the `GeoServer CSW docum
    Oracle
    ------
 
-   The Oracle extension adds the ability for GeoServer to publish data from Oracle Spatial databases. Once this extension is added, GeoServer will show Oracle as one of its available data sources when adding a new vector store.
+   The :ref:`Oracle extension <dataadmin.oracle>` adds the ability for GeoServer to publish data from Oracle Spatial databases. Once this extension is added, GeoServer will show Oracle as one of its available data sources when adding a new vector store.
 
 .. _intro.extensions.pointcloud:
 
