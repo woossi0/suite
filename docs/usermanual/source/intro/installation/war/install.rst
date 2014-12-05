@@ -26,16 +26,30 @@ Deploying with Tomcat
 
 This section will show how to deploy the web applications to Tomcat.
 
-Increasing the maximum application size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Tomcat Management Console
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Tomcat Management Console has an upper limit on the size of WAR files that can be deployed. This will need to be changed in order to deploy many of the OpenGeo Suite web applications.
+The use of the `Tomcat Management Console <http://tomcat.apache.org/tomcat-7.0-doc/manager-howto.html>`_ is optional and provides an administrative front end for monitoring Tomcat that can also be used to deploy web applications.
+
+#. The windows installer can be used to both install the Tomcat Management Console and configure an administrative user.
+
+#. Linux users are asked to install the additional `tomcat7-admin` package, and configure the :file:`/var/lib/tomcat7/conf/tomcat-users.xml` file with the following with appropriate username and password:
    
-#. Open the :file:`$CATALINA_BASE/webapps/manager/WEB-INF/web.xml` file in a text editor.
+   .. code-block:: xml
+   
+      <role rolename="admin"/>
+      <role rolename="admin-gui"/>
+      <role rolename="manager-gui"/>
+      <user username="admin" password="password" roles="admin,admin-gui,manager-gui"/>
+
+#. The Tomcat Management Console has an upper limit on the size of WAR files that can be deployed. This will need to be changed in order to deploy many of the OpenGeo Suite web applications.
+   
+#. Open the :file:`webapps/manager/WEB-INF/web.xml` file in a text editor.
 
 #. Edit the ``*multipart-config`` parameters as follows:
    
    .. code-block:: xml
+      :emphasize-lines: 3,4
       
        <multipart-config>
          <!-- 260 MB max -->
@@ -45,6 +59,8 @@ The Tomcat Management Console has an upper limit on the size of WAR files that c
        </multipart-config>
 
 #. Save and close this file.
+
+
 
 Increasing available memory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -92,16 +108,18 @@ Windows:
 
 #. Restart Tomcat.
 
-Deploying applications
-~~~~~~~~~~~~~~~~~~~~~~
+Manual deploy
+~~~~~~~~~~~~~
 
-There are two ways to deploy applcations:
+If you are comfortable working in the Tomcat :file:`webapps` folder, or have not installed the Tomcat Management Console, a manual deploy is recommended.
 
-* Manually
-* Through the `Tomcat Management Console <http://tomcat.apache.org/tomcat-7.0-doc/manager-howto.html>`_.
+#. Shutdown Tomcat
+#. For deploying manually, copying the individual WAR files to the :file:`webapps` directory.
+#. Restart Tomcat, as Tomcat loads each WAR file will be unpacked into a corresponding directory.
 
-For deploying manually, web applications can often deployed by copying the individual WAR files to the :file:`webapps` directory. You may have to restart the container service afterwards.
-
+Tomcat Management Console Deploy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
 For deploying using Tomcat Management Console:
 
 #. Open the Management Console (often available at ``http://localhost:8080/manager/html``).
