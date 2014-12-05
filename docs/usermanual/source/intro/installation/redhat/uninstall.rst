@@ -39,6 +39,7 @@ The following procedure will uninstall OpenGeo Suite. In all cases, the data dir
 
       .. code-block:: bash
 
+         rpm -e --nodeps --noscripts opengeo-tomcat
          yum remove tomcat6
 
 
