@@ -55,7 +55,9 @@
       </fileset>
     </unzip>
     <copy todir="${webappsdir}/geowebcache">
-      <fileset dir="geowebcache/target/war" includes="**/*"/>
+      <fileset dir="geowebcache/target/war" includes="**/*">
+        <exclude name="**/imageio-ext-*.jar"/>
+      </fileset>
     </copy>
     <copy todir="${webappsdir}/geoexplorer">
       <fileset dir="geoexplorer/target/war" includes="**/*"/>

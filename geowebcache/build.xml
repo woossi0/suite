@@ -24,7 +24,7 @@
       <fileset dir="src/main/resources" includes="*.xml"/>
     </copy>
     <jar destfile="${basedir}/target/geowebcache.war" basedir="${war.dir}"
-        includes="**/*"/>
+        includes="**/*" excludes="**/imageio-ext-*.jar"/>
   </target>
 
   <target name="assemble" description="Assemble project artifact">
