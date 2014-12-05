@@ -7,10 +7,21 @@ The following is a list of components available for OpenGeo Suite on Windows. Th
 
 Adding or removing components to OpenGeo Suite can be accomplished by running the installer again and selecting or deselecting the appropriate component.
 
-.. todo:: More details on adding components?
+.. only:: basic
+
+   .. figure:: img/fullcomponents.png
+
+      Full list of available components
+
+.. only:: enterprise
+
+   .. figure:: img/fullcomponents-ent.png
+
+      Full list of available components
 
 Top level
 ---------
+
 .. tabularcolumns:: |p{4cm}|p{11cm}|
 .. list-table::
    :widths: 20 80
@@ -21,10 +32,10 @@ Top level
      - The PostgreSQL/PostGIS spatial database.
    * - GeoServer
      - Server implementing OGC compliant map and feature services.
-   * - GeoWebCache
-     - Tile caching server.
    * - GeoExplorer
      - Map viewing and editing application.
+   * - GeoWebCache
+     - Tile caching server.
 
 GeoServer Extensions
 --------------------
@@ -36,12 +47,12 @@ GeoServer Extensions
      :stub-columns: 1
      :class: table-leftwise
      
-     * - WPS
-       - Web Processing Service (WPS) support.
-     * - GeoPackage
-       - GeoPackage data source support.
      * - CSW
        - Catalogue Service for Web (CSW) support.
+     * - GeoPackage
+       - GeoPackage data source support.
+     * - WPS
+       - :ref:`Web Processing Service (WPS) <processing>` support.
      
 .. only:: enterprise
 
@@ -50,31 +61,33 @@ GeoServer Extensions
      :stub-columns: 1
      :class: table-leftwise
      
-     * - WPS
-       - Web Processing Service (WPS) support.
-     * - GeoPackage
-       - GeoPackage data source support.
-     * - CSW
-       - Catalogue Service for Web (CSW) support.
-     * - Mapmeter
-       - Mapmeter monitoring service.
-     * - CSS Styling
-       - CSS map styling support.
-     * - MongoDB
-       - MongoDB database support.
-     * - Clustering
-       - Clustering plug-ins.
-     * - GDAL Image Formats
-       - Additional raster formats support as part of GDAL integration.
-     * - Oracle
-       - Oracle database support.
      * - ArcSDE
        - ArcSDE database support.
+     * - Clustering
+       - :ref:`Clustering <sysadmin.clustering>` plug-ins.
+     * - CSS Styling
+       - CSS map styling support.
+     * - CSW
+       - Catalogue Service for Web (CSW) support.
      * - DB2
        - DB2 database support.
+     * - GDAL Image Formats
+       - Additional raster formats support as part of GDAL integration.
+     * - GeoPackage
+       - GeoPackage data source support.
+     * - GeoScript
+       - Scripting extension for GeoServer.
+     * - Mapmeter
+       - :ref:`Mapmeter <sysadmin.mapmeter>` monitoring service.
+     * - MongoDB
+       - :ref:`MongoDB <dataadmin.mongodb>` database support.
+     * - Oracle
+       - :ref:`Oracle <dataadmin.oracle>` database support.
      * - SQL Server
        - SQL Server database support.
-     
+     * - WPS
+       - :ref:`Web Processing Service (WPS) <processing>` support.
+
 Client Tools
 ------------
 
@@ -83,12 +96,12 @@ Client Tools
    :stub-columns: 1
    :class: table-leftwise
 
-   * - PostGIS
-     - PostGIS command line data loading utilities.
-   * - pgAdmin
-     - Graphical PostGIS/PostgreSQL database manager.
    * - GDAL/OGR
-     - Spatial data manipulation utilities.
+     - Spatial data manipulation utilities such as ``gdal_translate`` and ``ogr2ogr``.
+   * - pgAdmin
+     - Graphical PostGIS/PostgreSQL database manager. Also includes **pgShapeloader** a graphical utility for loading data into PostGIS
+   * - PostGIS Utilities
+     - PostGIS command line data loading utilities such as ``psql`` and ``shp2pgsql``. 
 
 Dev Tools
 ---------
@@ -97,8 +110,6 @@ Dev Tools
    :widths: 20 80
    :stub-columns: 1
    :class: table-leftwise
-
+	   
    * - Boundless SDK
      - Toolkit for building web map applications.
-   * - GeoScript
-     - Scripting extension for GeoServer.

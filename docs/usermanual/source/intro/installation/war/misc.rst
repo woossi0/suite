@@ -31,7 +31,7 @@ Applications such as GeoServer are in position to work with database connection 
 
 #. When adding a the Vector Store in GeoServer select the JNDI option. Fill in the **jndiReferenceName** used by the application server and **schema** used by the database. The **jndiReferenceName** will be ``java:comp/env/`` followed by the Resource ``name`` specified in the Tomcat JNDI configuration (Using the PostgreSQL configuration above, this would be ``java:comp/env/jdbc/postgres``).
 
-For more information, including how to configure JNDI for Oracle and SQL Server data sources, see the `GeoServer user manual </geoserver/tutorials/tomcat-jndi/tomcat-jndi.html>`_.
+For more information, including how to configure JNDI for Oracle and SQL Server data sources, see the `GeoServer user manual </opengeo-docs/geoserver/tutorials/tomcat-jndi/tomcat-jndi.html>`_.
 
 Working with GeoServer
 ----------------------

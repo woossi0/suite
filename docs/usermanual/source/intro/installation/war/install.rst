@@ -51,6 +51,8 @@ Increasing available memory
 
 OpenGeo Suite requires more memory to be allocated on the application server. Increase both the heap space (used for data) and the PermGen space (used to load web applications).
 
+.. note:: Due to how the PermGen space is managed in Java 7, it is recommended that you restart Tomcat whenever you would restart a web application.
+
 Linux / OS X:
 
 #. Create a :file:`$CATALINA_BASE/bin/setenv.sh` file if it doesn't already exist.
@@ -117,9 +119,9 @@ For deploying using Tomcat Management Console:
 Externalizing the GeoServer data directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GeoServer includes a built-in data directory used to manage configuration information. To facilitate updating and prevent data loss, it is highly recommended to move the data directory to an location external to the application itself.
+GeoServer includes a built-in data directory used to manage configuration information. To facilitate updating and prevent data loss, it is highly recommended to move the data directory to a location external to the application itself.
 
-#. Stop Tomcat (or just GeoServer).
+#. Stop Tomcat.
 
 #. Move the :file:`geoserver/data` directory to an external location. Here are some suggested locations:
    
@@ -131,7 +133,60 @@ GeoServer includes a built-in data directory used to manage configuration inform
 
 #. Change the ``GEOSERVER_DATA_DIRECTORY`` parameter to point to the new directory location.
 
-   .. note:: For similar reasons, it is recommended to do the same thing with the GeoWebCache cache location. This new location can be set in the :file:`geowebcache/WEB_INF/web.xml` file.
+#. Restart Tomcat.
 
-#. Restart Tomcat (or just GeoServer).
+Externalizing the GeoWebCache Configuration and Cache 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+By default, GeoWebCache stores the cache and cache configuration information in the temporary storage folder of the application server (:file:`$CATALINA_BASE/temp` for Tomcat). To prevent data loss, it is highly recommended to move the data directory to a permanent location external to the application server.
+
+#. Stop Tomcat.
+
+#. Move the :file:`geowebcache/geowebcache.xml` file from ``geowebcache`` to an external location. Here are some suggested locations:
+   
+   * **Linux**: :file:`/var/lib/opengeo/geowebcache/geowebcache.xml`
+   * **Windows**: :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geowebcache\\geowebcache.xml`
+   * **OS X**: :file:`/Users/opengeo/geowebcache_data/geowebcache.xml`
+
+#. Open :file:`geowebcache/WEB-INF/geowebcache-core-context.xml` in a text editor and modify the constructor argument with the new location:
+   
+   .. code-block:: xml
+      :emphasize-lines: 5
+      
+      <!-- The location of a static configuration file for GeoWebCache. 
+           By default this lives in WEB-INF/classes/geowebcache.xml -->
+      <bean id="gwcXmlConfig" class="org.geowebcache.config.XMLConfiguration">
+        <constructor-arg ref="gwcAppCtx" />
+        <constructor-arg ref="/var/lib/opengeo/geowebcache" />
+        <!-- By default GWC will look for geowebcache.xml in {GEOWEBCACHE_CACHE_DIR},
+             if not found will look at GEOSEVER_DATA_DIR/gwc/
+             alternatively you can specify an absolute or relative path to a directory
+             by replacing the gwcDefaultStorageFinder constructor argument above by the directory
+             path, like constructor-arg value="/etc/geowebcache"     
+        -->
+        <property name="template" value="/geowebcache.xml">
+          <description>Set the location of the template configuration file to copy over to the
+            cache directory if one doesn't already exist.
+          </description>
+        </property>
+      </bean>
+
+#. You may also wish to edit the :file:`geowebcache.xml` configuration at this time to `include  additional layers </opengeo-docs/geowebcache/configuration/layers/howto.html>`_ .
+
+#. Here are some suggested locations for the cache directory:
+
+   * **Linux**: :file:`/var/cache/geowebcache`
+   * **Windows**: :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geowebcache`
+   * **OS X**: :file:`/Users/opengeo/geowebcache_data`
+
+#. Open :file:`geowebcache/WEB-INF/web.xml` in a text editor and onfigure the ``GEOWEBCACHE_CACHE_DIR`` location. 
+   
+   .. code-block:: xml
+      :emphasize-lines: 3
+      
+      <context-param>
+        <param-name>GEOWEBCACHE_CACHE_DIR</param-name>
+        <param-value>/var/cache/geowebcache</param-value>
+      </context-param>
+
+#. Restart Tomcat.

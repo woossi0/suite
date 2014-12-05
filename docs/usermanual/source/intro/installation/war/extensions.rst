@@ -53,11 +53,7 @@ To install an extension:
 
    .. note:: You may be warned about overwriting existing files. This is okay.
 
-#. Restart GeoServer.
-
-   .. figure:: img/reload.png
-        
-      Reloading GeoServer via the Tomcat Management Console
+#. Restart Tomcat.
 
 #. Confirm that the extension was installed properly. Typically, the feature will be displayed on the GeoServer admin Welcome page, or as an available data source.
 

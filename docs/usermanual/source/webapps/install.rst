@@ -13,42 +13,63 @@ Boundless SDK is easiest to install as part of OpenGeo Suite.
 Windows
 ~~~~~~~
 
-Boundless SDK is included in OpenGeo Suite for Windows as an optional component. During the :ref:`intro.installation.windows` process, on the :guilabel:`Components` page, expand the :guilabel:`Dev Tools` tree and select :guilabel:`Boundless SDK`.
+Boundless SDK is included in OpenGeo Suite for Windows as an optional component.
 
-.. todo:: Figure
+#. A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ will need to be downloaded and installed. The standard Java Runtime Environment (JRE) bundled with OpenGeo Suite is not sufficient. To verify installation execute the command ``javac -version`` from the command prompt.
+
+#. The build utility `Apache Ant <http://ant.apache.org>`_ will need to be downloaded, installed and included on the ``PATH``. To verify this, execute the command ``ant -version`` from a command prompt.
+
+#. During the :ref:`intro.installation.windows` process, on the :guilabel:`Components` page, expand the :guilabel:`Dev Tools` tree and select :guilabel:`Boundless SDK`.
 
 OS X
 ~~~~
 
 Boundless SDK is part of the OS X OpenGeo Suite CLI tools.
 
+#. A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ will need to be downloaded and installed. The standard Java Runtime Environment (JRE) bundled with OpenGeo Suite is not sufficient. To verify installation execute the command ``javac -version`` from the command prompt.
+
+#. The build utility `Apache Ant <http://ant.apache.org>`_ will need to be downloaded, installed and included on the ``PATH``. To verify this, execute the command ``ant -version`` from a command prompt.
+
 #. In the OpenGeo folder, double-click :guilabel:`OpenGeo CLI Tools`.
 
    .. figure:: ../intro/installation/mac/img/apps.png
 
-#. Follow the instllation process to install the CLI tools, including Boundless SDK.
+#. Follow the installation process to install the CLI tools, including Boundless SDK.
 
-#. Add :file:`/usr/local/opengeo/bin` to your ``PATH`` as described in the :ref:`OS X CLI tools installation section <installation.mac.install.cli>`.
+#. Add :file:`/usr/local/opengeo/bin` to your ``PATH`` as described in the :ref:`OS X CLI tools installation section <intro.installation.mac.install.cli>`.
 
 #. To verify installation, type :command:`suite-sdk` on a terminal.
 
 Ubuntu Linux
 ~~~~~~~~~~~~
 
-Boundless SDK is available as an individual package, installed through standard package management. The package is called ``opengeo-webapp-sdk``.
+Boundless SDK is available as an individual package, installed through standard package management.
 
-.. code-block:: console
+#. Install the package is called ``opengeo-webapp-sdk``.
 
-   sudo apt-get install opengeo-webapp-sdk
+   .. code-block:: console
+
+      sudo apt-get install opengeo-webapp-sdk
+
+#. This package depends on 'OpenJDK 7 <http://openjdk.java.net>`_ . To verify this is available, execute the command ``javac -version`` from the command prompt.
+
+#. This package depends on `Apache Ant <http://ant.apache.org>`_ . To verify this is available, execute the command ``ant -version`` from a command prompt.
+
 
 Red Hat-based Linux
 ~~~~~~~~~~~~~~~~~~~
 
-Boundless SDK is available as an individual package, installed through standard package management. The package is called ``opengeo-webapp-sdk``.
+Boundless SDK is available as an individual package, installed through standard package management.
 
-.. code-block:: console
+#. Install the package called ``opengeo-webapp-sdk``.
 
-   sudo yum install opengeo-webapp-sdk
+   .. code-block:: console
+
+      sudo yum install opengeo-webapp-sdk
+   
+#. This package depends on 'OpenJDK 7 <http://openjdk.java.net>`_ . To verify this is available, execute the command ``javac -version`` from the command prompt.
+
+#. This package depends on `Apache Ant <http://ant.apache.org>`_ . To verify this is available, execute the command ``ant -version`` from a command prompt.
 
 Application Servers
 ~~~~~~~~~~~~~~~~~~~
@@ -60,12 +81,9 @@ Standalone installation
 
 Boundless SDK can also be installed on a machine that does not have OpenGeo Suite.
 
-.. note::
+#. A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ will need to be installed and configured. The standard Java Runtime Environment (JRE) is not sufficient. After installation, to verify this is available, execute the command ``javac -version`` from the command prompt.
 
-   If installing standalone, the following extra software will need to be installed and configured:
-
-   * A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_. A standard Java Runtime Environment (JRE) is not sufficient.
-   * `Apache Ant <http://ant.apache.org>`_ installed and on the ``PATH``. To verify this, execute the command ``ant -version`` from a command prompt.
+#. This package depends on `Apache Ant <http://ant.apache.org>`_ . After installation, to verify this is available, execute the command ``ant -version`` from a command prompt.
 
 #. Download Boundless SDK from http://boundlessgeo.com/solutions/solutions-software/software/, making sure to match the version of the SDK with the version of OpenGeo Suite.
 
@@ -73,7 +91,7 @@ Boundless SDK can also be installed on a machine that does not have OpenGeo Suit
 
 #. Add the SDK :file:`bin` directory to the ``PATH``.
 
-To verify the SDK is installed properly, execute the command ``suite-sdk`` from a command prompt.
+#. To verify the SDK is installed properly, execute the command ``suite-sdk`` from a command prompt.
 
 Troubleshooting
 ~~~~~~~~~~~~~~~

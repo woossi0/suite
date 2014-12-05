@@ -16,6 +16,7 @@
             <exclude name="dataadmin/gdal/**"/>
             <exclude name="dataadmin/mongodb/**"/>
             <exclude name="dataadmin/mrsid/**"/>
+            <exclude name="dataadmin/oracle/**"/>
             <exclude name="webmaps/composer/**"/>
           </fileset>
        </copy>

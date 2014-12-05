@@ -13,6 +13,7 @@ This section describes some strategies on how to work with your data using OpenG
    pgAdvanced/index
    pgDBAdmin/index
    pointcloud/index
+   oracle/index
    mongodb/index
    gdal/index
    mrsid/index

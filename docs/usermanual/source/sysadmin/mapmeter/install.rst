@@ -11,14 +11,14 @@ Installation
 Windows
 ~~~~~~~
 
-Mapmeter can be installed during the installation process. When running the installer, on the :ref:`Components <installation.windows.install.components>` page, expand the :guilabel:`GeoServer Extensions` tree and select :guilabel:`Mapmeter`.
+Mapmeter can be installed during the installation process. When running the installer, on the :ref:`Components <intro.installation.windows.components>` page, expand the :guilabel:`GeoServer Extensions` tree and select :guilabel:`Mapmeter`.
 
 .. note:: If you have already installed OpenGeo Suite for Windows, you can always run the installer again to install just the Mapmeter extension. In this case, make sure that no other components are checked aside from Mapmeter.
 
 OS X
 ~~~~
 
-Mapmeter can be installed at any time after OpenGeo Suite is installed. In the OpenGeo folder, there will be a folder called :guilabel:`GeoServer Extensions` which contains a :guilabel:`Mapmeter` folder. Copy the contents of this folder as described in the :ref:`OS X extension installation section <installation.mac.install.extensions>`.
+Mapmeter can be installed at any time after OpenGeo Suite is installed. In the OpenGeo folder, there will be a folder called :guilabel:`GeoServer Extensions` which contains a :guilabel:`Mapmeter` folder. Copy the contents of this folder as described in the :ref:`OS X extension installation section <intro.installation.mac.install.extensions>`.
 
 Ubuntu Linux
 ~~~~~~~~~~~~
