@@ -96,6 +96,12 @@ Installation process
 
         yum install opengeo
 
+  .. note:: If you encounter an error where gdal failed to install, you may need to manually uninstall gdal-filegdb:
+
+      .. code-block:: bash
+
+         yum remove gdal-filegdb
+
 #. Be sure to update any all additional See the :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
 
    * To update the :ref:`Boundless SDK <webapps.sdk>`:
