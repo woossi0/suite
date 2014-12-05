@@ -136,7 +136,8 @@ GeoServer includes a built-in data directory used to manage configuration inform
 #. Restart Tomcat.
 
 Externalizing the GeoWebCache cache directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 By default, GeoWebCache stores the cache and cache configuration information in the temporary storage folder of the application server (:file:`$CATALINA_BASE/temp` for Tomcat). To prevent data loss, it is highly recommended to move the data directory to a permanent location external to the application server.
 
 #. Stop Tomcat.
