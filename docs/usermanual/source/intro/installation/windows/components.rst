@@ -7,8 +7,6 @@ The following is a list of components available for OpenGeo Suite on Windows. Th
 
 Adding or removing components to OpenGeo Suite can be accomplished by running the installer again and selecting or deselecting the appropriate component.
 
-.. todo:: More details on adding components?
-
 Top level
 ---------
 .. tabularcolumns:: |p{4cm}|p{11cm}|
@@ -37,7 +35,7 @@ GeoServer Extensions
      :class: table-leftwise
      
      * - WPS
-       - Web Processing Service (WPS) support.
+       - :ref:`Web Processing Service (WPS) <processing>` support.
      * - GeoPackage
        - GeoPackage data source support.
      * - CSW
@@ -51,23 +49,23 @@ GeoServer Extensions
      :class: table-leftwise
      
      * - WPS
-       - Web Processing Service (WPS) support.
+       - :ref:`Web Processing Service (WPS) <processing>` support.
      * - GeoPackage
        - GeoPackage data source support.
      * - CSW
        - Catalogue Service for Web (CSW) support.
      * - Mapmeter
-       - Mapmeter monitoring service.
+       - :ref:`Mapmeter <sysadmin.mapmeter>` monitoring service.
      * - CSS Styling
        - CSS map styling support.
      * - MongoDB
-       - MongoDB database support.
+       - :ref:`MongoDB <dataadmin.mongodb>` database support.
      * - Clustering
-       - Clustering plug-ins.
+       - :ref:`Clustering <sysadmin.clustering>` plug-ins.
      * - GDAL Image Formats
        - Additional raster formats support as part of GDAL integration.
      * - Oracle
-       - Oracle database support.
+       - :ref:`Oracle <dataadmin.oracle>` database support.
      * - ArcSDE
        - ArcSDE database support.
      * - DB2
@@ -84,11 +82,11 @@ Client Tools
    :class: table-leftwise
 
    * - PostGIS
-     - PostGIS command line data loading utilities.
+     - PostGIS command line data loading utilities such as ``psql`` and ``shp2pgsql``. 
    * - pgAdmin
-     - Graphical PostGIS/PostgreSQL database manager.
+     - Graphical PostGIS/PostgreSQL database manager. Also includes **pgShapeloader** a graphical utility for loading data into PostGIS
    * - GDAL/OGR
-     - Spatial data manipulation utilities.
+     - Spatial data manipulation utilities such as ``gdal_translate`` and ``ogr2ogr``.
 
 Dev Tools
 ---------
@@ -99,6 +97,4 @@ Dev Tools
    :class: table-leftwise
 
    * - Boundless SDK
-     - Toolkit for building web map applications.
-   * - GeoScript
-     - Scripting extension for GeoServer.
+     - Toolkit for :ref:`building complete web applications <webapps>`.
