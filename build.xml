@@ -45,7 +45,6 @@
     <copy todir="${webappsdir}/root">
       <fileset dir="dashboard/target/${suite.build_profile}/war" includes="**/*"/>
     </copy>
-    <echo message="suite-geoserver-${artifact_postfix}.zip"/>
     <unzip dest="geoserver/webapp/target/${suite.build_profile}" overwrite="true">
       <fileset dir="geoserver/webapp/target/" includes="suite-geoserver-${artifact_postfix}.zip"/>
     </unzip>
@@ -70,7 +69,9 @@
     </copy>
     <unzip dest="${webappsdir}/apps" src="apps/target/apps.war"/>
     <copy todir="${bindir}/data_dir">
-      <fileset dir="geoserver/data_dir/target" includes="**/*"/>
+      <fileset dir="geoserver/data_dir/target" includes="**/*">
+        <exclude name="*.zip"/>
+      </fileset>
     </copy>
 
     <antcall target="assemble-artifact">

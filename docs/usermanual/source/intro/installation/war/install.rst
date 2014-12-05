@@ -51,6 +51,8 @@ Increasing available memory
 
 OpenGeo Suite requires more memory to be allocated on the application server. Increase both the heap space (used for data) and the PermGen space (used to load web applications).
 
+.. note:: Due to how the PermGen space is managed in Java 7, it is recommended that you restart Tomcat whenever you would restart a web application.
+
 Linux / OS X:
 
 #. Create a :file:`$CATALINA_BASE/bin/setenv.sh` file if it doesn't already exist.
@@ -119,7 +121,7 @@ Externalizing the GeoServer data directory
 
 GeoServer includes a built-in data directory used to manage configuration information. To facilitate updating and prevent data loss, it is highly recommended to move the data directory to a location external to the application itself.
 
-#. Stop Tomcat (or just GeoServer).
+#. Stop Tomcat.
 
 #. Move the :file:`geoserver/data` directory to an external location. Here are some suggested locations:
    
@@ -131,13 +133,13 @@ GeoServer includes a built-in data directory used to manage configuration inform
 
 #. Change the ``GEOSERVER_DATA_DIRECTORY`` parameter to point to the new directory location.
 
-#. Restart Tomcat (or just GeoServer).
+#. Restart Tomcat.
 
 Externalizing the GeoWebCache cache directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 By default, GeoWebCache stores the cache and cache configuration information in the temporary storage folder of the application server (:file:`$CATALINA_BASE/temp` for Tomcat). To prevent data loss, it is highly recommended to move the data directory to a permanent location external to the application server.
 
-#. Stop Tomcat (or just GeoWebCache).
+#. Stop Tomcat.
 
 #. Move the :file:`temp/geowebcache/geowebcache.xml` file to an external location. Here are some suggested locations:
    
@@ -145,7 +147,7 @@ By default, GeoWebCache stores the cache and cache configuration information in 
    * **Windows**: :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geowebcache`
    * **OS X**: :file:`/Users/opengeo/geowebcache_data`
 
-   You may also wish to `edit the GeoWebCache configuration </geowebcache/configuration/layers/howto.html>`_.
+   You may also wish to `edit the GeoWebCache configuration </opengeo-docs/geowebcache/configuration/layers/howto.html>`_.
 
 #. Open :file:`geowebcache/WEB-INF/web.xml` in a text editor.
 
@@ -160,4 +162,4 @@ By default, GeoWebCache stores the cache and cache configuration information in 
 
    where ``PATH`` is the location of the new cache directory.
 
-#. Restart Tomcat (or just GeoWebCache).
+#. Restart Tomcat.

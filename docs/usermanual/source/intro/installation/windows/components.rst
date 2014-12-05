@@ -91,10 +91,24 @@ Client Tools
 Dev Tools
 ---------
 
-.. list-table::
-   :widths: 20 80
-   :stub-columns: 1
-   :class: table-leftwise
+.. only:: basic
 
-   * - Boundless SDK
-     - Toolkit for :ref:`building complete web applications <webapps>`.
+	.. list-table::
+	   :widths: 20 80
+	   :stub-columns: 1
+	   :class: table-leftwise
+	   
+	   * - Boundless SDK
+	     - Toolkit for building web map applications.
+	
+.. only:: enterprise
+
+	.. list-table::
+	   :widths: 20 80
+	   :stub-columns: 1
+	   :class: table-leftwise
+	   
+	   * - Boundless SDK
+	     - Toolkit for building web map applications.
+	   * - GeoScript
+	     - Scripting extension for GeoServer.
