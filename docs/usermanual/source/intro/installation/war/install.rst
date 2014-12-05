@@ -55,12 +55,14 @@ OpenGeo Suite requires more memory to be allocated on the application server. In
 
 Linux / OS X:
 
-#. Create a :file:`$CATALINA_BASE/bin/setenv.sh` file if it doesn't already exist.
+#. Create a :file:`setenv.sh` file in CATALINA_HOME bin directory if it does not already exist ( :file:`/usr/share/tomcat7/bin/setenv.sh` .)
 
-#. Add the following line. ``#!/bin/sh`` should appear at the top of the file:
+#. Ensure the script includes the following line to set CATALINA_OPTS:
 
    .. code-block:: sh
-
+      :emphasize-lines: 2
+      
+      #!/bin/sh
       export CATALINA_OPTS="-Xmx1024m -XX:MaxPermSize=128m"
 
 #. Save and close the file.
@@ -69,11 +71,11 @@ Linux / OS X:
 
 Windows:
 
-#. Create a :file:`$CATALINA_BASE/bin/setenv.bat` file if it doesn't already exist.
+#. Create a :file:`setenv.bat` file in CATALINA_HOME bin directory if it does not already exist.
 
 #. Add the following line:
 
-   .. code-block:: sh
+   .. code-block:: bat
 
       set CATALINA_OPTS="-Xmx1024m -XX:MaxPermSize=128m"
 
