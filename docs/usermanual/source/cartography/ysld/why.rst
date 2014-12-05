@@ -102,6 +102,7 @@ The following are the headers in a typical SLD:
 
 YSLD does not require a representation of StyledLayerDescriptor, NamedLayer and UserStyle, so all of the above are unnecessary when compared with YSLD.
 
+.. _cartography.ysld.why.syntax:
 
 More flexible syntax
 --------------------

@@ -5,7 +5,7 @@ Upgrading to OpenGeo Suite Enterprise
 
 This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterprise** on Ubuntu.
 
-.. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ for information on how to purchase OpenGeo Suite Enterprise.
+.. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`__ for information on how to purchase OpenGeo Suite Enterprise.
 
 #. To upgrade, you must first :ref:`uninstall <intro.installation.ubuntu.uninstall>` your current version of OpenGeo Suite. Your data and settings will be preserved.
 
@@ -31,7 +31,7 @@ This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterpris
 
         echo "deb http://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
-   .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`_.
+   .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__.
 
 #. Update the repository list:
 
