@@ -30,53 +30,117 @@ Installation
 
 #. At the **Welcome** screen, click :guilabel:`Next`.
 
-   .. figure:: img/welcome.png
+   .. only:: basic
 
-      Welcome screen
+      .. figure:: img/welcome.png
+
+         Welcome screen
+
+   .. only:: enterprise
+
+      .. figure:: img/welcome-ent.png
+
+         Welcome screen
 
 #. Read the **License Agreement** then click :guilabel:`I Agree`.
 
-   .. figure:: img/license.png
+   .. only:: basic
 
-      License agreement
+      .. figure:: img/license.png
+
+         License agreement
+
+   .. only:: enterprise
+
+      .. figure:: img/license-ent.png
+
+         License agreement
 
 #. Select the **Destination folder** where you would like to install OpenGeo Suite, and click :guilabel:`Next`.
 
-   .. figure:: img/directory.png
+   .. only:: basic
 
-      Destination folder for the installation
+      .. figure:: img/directory.png
+
+         Destination folder for the installation
+
+   .. only:: enterprise
+
+      .. figure:: img/directory-ent.png
+
+         Destination folder for the installation
 
 #. Select the name and location of the **Start Menu folder** to be created, and click :guilabel:`Next`.
 
-   .. figure:: img/startmenu.png
+   .. only:: basic
 
-      Start Menu folder to be created
+      .. figure:: img/startmenu.png
+
+         Start Menu folder to be created
+
+   .. only:: enterprise
+
+      .. figure:: img/startmenu-ent.png
+
+         Start Menu folder to be created
 
 #. Select the components you wish to install, and click :guilabel:`Next`.
 
-   .. figure:: img/components.png
+   .. only:: basic
 
-      Component selection
+      .. figure:: img/components.png
 
-   .. note:: See :ref:`intro.installation.windows.components` for more details.
+         Component selection
+
+   .. only:: enterprise
+
+      .. figure:: img/components-ent.png
+
+         Component selection
+
+   .. note:: See :ref:`intro.installation.windows.components` for more details on available components.
 
 #. Click :guilabel:`Install` to perform the installation.
 
-   .. figure:: img/ready.png
+   .. only:: basic
 
-      Ready to install
+      .. figure:: img/ready.png
+
+         Ready to install
+
+   .. only:: enterprise
+
+      .. figure:: img/ready-ent.png
+
+         Ready to install
 
 #. Please wait while the installation proceeds.
 
-   .. figure:: img/install.png
+   .. only:: basic
 
-      Installation
+      .. figure:: img/install.png
+
+         Installation
+
+   .. only:: enterprise
+
+      .. figure:: img/install-ent.png
+
+         Installation
 
 #. After installation, click :guilabel:`Finish`.
 
-   .. figure:: img/finish.png
+   .. only:: basic
 
-      OpenGeo Suite successfully installed
+      .. figure:: img/finish.png
+
+         OpenGeo Suite successfully installed
+
+   .. only:: enterprise
+
+      .. figure:: img/finish.png
+
+         OpenGeo Suite successfully installed
 
 After installation
 ------------------
