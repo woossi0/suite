@@ -19,13 +19,13 @@ This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterpris
 
 #. Add the OpenGeo Suite Enterprise repository. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
-   * If installing on Precise:
+   * If installing on Ubuntu 12:
 
      .. code-block:: bash
 
         echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
-   * If installing on Trusty:
+   * If installing on Ubuntu 14:
 
      .. code-block:: bash
 

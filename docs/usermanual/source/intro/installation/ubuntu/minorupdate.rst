@@ -40,13 +40,13 @@ The commands in this section require root privileges.
 
    .. only:: basic
 
-         * If installing on Precise:
+         * If installing on Ubuntu 12:
 
            .. code-block:: bash
 
               echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
 
-         * If installing on Trusty:
+         * If installing on Ubuntu 14s:
 
            .. code-block:: bash
 
@@ -56,13 +56,13 @@ The commands in this section require root privileges.
 
       Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
-         * If installing on Precise:
+         * If installing on Ubuntu 12:
 
            .. code-block:: bash
 
               echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
 
-         * If installing on Trusty:
+         * If installing on Ubuntu 14:
 
            .. code-block:: bash
 
