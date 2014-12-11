@@ -41,7 +41,7 @@
      </target>
      
      <target name="basic" depends="stage-basic"
-       description="Build basic docs">
+       description="quick build basic docs for local testing">
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/basic"/>
          <param name="outdir" value="${basedir}/target/html/basic"/>
@@ -51,7 +51,7 @@
      </target>
 
      <target name="ee" depends="stage-enterprise"
-       description="Build enterprise docs">
+       description="quick build of enterprise docs for local testing">
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/ee"/>
          <param name="outdir" value="${basedir}/target/html/ee"/>
@@ -60,8 +60,17 @@
        </antcall>
      </target>
      
-     <target name="build-html" depends="basic,ee"
-       description="Build html docs">
+     <target name="build-html" depends="stage-enterprise,stage-basic"
+             description="Build html docs (use -Dsuite.build_profile=basic or ee)">
+       <condition property="flags" value="-t enterprise" else="-t basic">
+         <equals arg1="${suite.build_profile}" arg2="ee"/>
+       </condition>
+       <antcall target="sphinx">
+         <param name="dir" value="${basedir}/ee"/>
+         <param name="outdir" value="${basedir}/target/html/ee"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
+         <param name="flags" value="${flags}"/>
+       </antcall>
      </target>
 
      <target name="build-text" depends="stage-basic,stage-enterprise"
