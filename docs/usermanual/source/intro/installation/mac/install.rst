@@ -3,6 +3,14 @@
 Installing
 ==========
 
+.. only:: basic
+
+   This section describes how to perform a new installation of **OpenGeo Suite** |version| on Mac OS X. These instructions should only be followed if your system does not have OpenGeo Suite installed.
+
+.. only:: enterprise
+
+   This section describes how to perform a new installation of **OpenGeo Suite Enterprise** |version| on Mac OS X. These instructions should be only followed if your system does not have OpenGeo Suite installed.
+
 .. note:: 
 
    If upgrading from a previous **major** version see the :ref:`Update <intro.installation.mac.update>` section. If updating from a previous **minor** version, please continue below.
@@ -14,7 +22,7 @@ OpenGeo Suite has the following system requirements:
 
 * **Operating System**: 10.7 or newer
 * **Memory**: 1GB minimum (2GB recommended)
-* **Disk space**: 600MB minimum (plus extra space for any loaded data)
+* **Disk space**: 1GB minimum (plus extra space for any loaded data)
 * **Browser**: Any modern web browser is supported
 * **Permissions**: Administrative rights
 
@@ -23,9 +31,17 @@ Installation
 
 The Mac installer for OpenGeo Suite is as an image made up several components that are installed separately. 
 
-.. figure:: img/apps.png
+.. only:: basic
 
-   OpenGeo Suite for Mac OS X
+   .. figure:: img/apps-basic.png
+
+      OpenGeo Suite for Mac OS X
+
+.. only:: enterprise
+
+   .. figure:: img/apps-ee.png
+
+      OpenGeo Suite for Mac OS X
 
 PostGIS.app
 ^^^^^^^^^^^
@@ -35,6 +51,16 @@ PostGIS ships as a self-contained application. Start by double-clicking :guilabe
 .. figure:: img/pgwelcome.png
 
    PostGIS Welcome dialog
+
+.. note:: 
+
+   If you get the message "PostGIS can't be opened because it is from an unidentified developer"
+
+   #. Open **System Preferences**
+
+   #. Select **Security & Privacy**
+
+   #. Under **Allow apps downloaded from:** select **Anywhere**
 
 You can check the PostgreSQL server status and perform other tasks from the PostGIS icon in the OS X menu bar.
 
@@ -52,6 +78,16 @@ GeoServer also ships as a self-contained application. Start by double-clicking :
 .. figure:: img/gsstarting.png
 
    GeoServer Welcome dialog
+
+.. note:: 
+
+   If you get the message "GeoServer can't be opened because it is from an unidentified developer"
+
+   #. Open **System Preferences**
+
+   #. Select **Security & Privacy**
+
+   #. Under **Allow apps downloaded from:** select **Anywhere**
 
 .. note:: The GeoServer application runs a Jetty web server that also contains GeoWebCache, GeoExplorer, and the OpenGeo Dashboard.
 
@@ -76,9 +112,17 @@ Extensions to GeoServer are available in a folder called :guilabel:`GeoServer Ex
 
 Double-click to open this folder and you will see individual folders for each extension.
 
-   .. figure:: img/ext_folders.png
+   .. only:: basic
 
-      GeoServer extension folders
+      .. figure:: img/ext_folders-basic.png
+
+         GeoServer extension folders
+
+   .. only:: enterprise
+
+      .. figure:: img/ext_folders-ee.png
+
+         GeoServer extension folders
 
 To install an extension:
 
@@ -117,10 +161,12 @@ CLI tools
 
 The CLI tools package contains all the command line tools for OpenGeo Suite:
 
-* :ref:`Boundless SDK <webapps.sdk>`
+* :ref:`Boundless SDK <webapps.sdk.install>`
 * PostGIS data conversion utilities such as ``shp2pgsql``
 * `GDAL/OGR <http://www.gdal.org/>`_ format translation utilities
 * `PDAL <http://www.pointcloud.org/>`_ tools for working with LIDAR point cloud data
+
+.. note:: Boundless SDK requires that a `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ is installed on your system in order to run.
 
 To install the CLI Tools:
 
