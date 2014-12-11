@@ -17,8 +17,6 @@ Boundless SDK is included in OpenGeo Suite for Windows as an optional component.
 
 #. A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ will need to be downloaded and installed. The standard Java Runtime Environment (JRE) bundled with OpenGeo Suite is not sufficient. To verify installation execute the command ``javac -version`` from the command prompt.
 
-#. The build utility `Apache Ant <http://ant.apache.org>`_ will need to be downloaded, installed and included on the ``PATH``. To verify this, execute the command ``ant -version`` from a command prompt.
-
 #. During the :ref:`intro.installation.windows` process, on the :guilabel:`Components` page, expand the :guilabel:`Dev Tools` tree and select :guilabel:`Boundless SDK`.
 
 OS X
@@ -27,8 +25,6 @@ OS X
 Boundless SDK is part of the OS X OpenGeo Suite CLI tools.
 
 #. A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ will need to be downloaded and installed. The standard Java Runtime Environment (JRE) bundled with OpenGeo Suite is not sufficient. To verify installation execute the command ``javac -version`` from the command prompt.
-
-#. The build utility `Apache Ant <http://ant.apache.org>`_ will need to be downloaded, installed and included on the ``PATH``. To verify this, execute the command ``ant -version`` from a command prompt.
 
 #. In the OpenGeo folder, double-click :guilabel:`OpenGeo CLI Tools`.
 

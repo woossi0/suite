@@ -7,11 +7,11 @@ Installing
 
 .. only:: basic
 
-   This section describes how to perform a new installation of **OpenGeo Suite** |version| on Ubuntu Linux. These instructions should only be followed if your system does not have OpenGeo Suite installed.
+   This section describes how to perform a new installation of **OpenGeo Suite** |version| on Microsoft Windows. These instructions should only be followed if your system does not have OpenGeo Suite installed.
 
 .. only:: enterprise
 
-   This section describes how to perform a new installation of **OpenGeo Suite Enterprise** |version| on Ubuntu Linux. These instructions should be only followed if your system does not have OpenGeo Suite installed.
+   This section describes how to perform a new installation of **OpenGeo Suite Enterprise** |version| on Microsoft Windows. These instructions should be only followed if your system does not have OpenGeo Suite installed.
 
 .. note::
 
