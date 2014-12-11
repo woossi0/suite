@@ -65,10 +65,13 @@
        <condition property="flags" value="-t enterprise" else="-t basic">
          <equals arg1="${suite.build_profile}" arg2="ee"/>
        </condition>
+       <condition property="profile_dir" value="ee" else="basic">
+         <equals arg1="${suite.build_profile}" arg2="ee"/>
+       </condition>
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/ee"/>
-         <param name="outdir" value="${basedir}/target/html/ee"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
+         <param name="outdir" value="${basedir}/target/html/${profile_dir}"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/${profile_dir}"/>
          <param name="flags" value="${flags}"/>
        </antcall>
      </target>
