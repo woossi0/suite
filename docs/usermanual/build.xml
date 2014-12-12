@@ -62,7 +62,7 @@
      
      <target name="build-html" depends="stage-enterprise,stage-basic"
              description="Build html docs (use -Dsuite.build_profile=basic or ee)">
-       <condition property="flags" value="-t enterprise" else="-t basic">
+       <condition property="flags" value="-t enterprise -A build_profile=ee" else="-t basic">
          <equals arg1="${suite.build_profile}" arg2="ee"/>
        </condition>
        <condition property="profile_dir" value="ee" else="basic">
