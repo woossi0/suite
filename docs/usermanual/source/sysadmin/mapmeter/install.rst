@@ -38,6 +38,12 @@ Mapmeter is available as an individual package, installed through standard packa
 
    sudo yum install geoserver-mapmeter
 
+.. note:: If mapmeter fails to function, you may need to edit the file ``${java.home}/lib/security/java.security``. Add or uncomment the line:
+   
+   .. code-block:: bash
+
+      security.provider.10=sun.security.pkcs11.SunPKCS11 ${java.home}/lib/security/nss.cfg 
+
 Application Servers
 ~~~~~~~~~~~~~~~~~~~
 
