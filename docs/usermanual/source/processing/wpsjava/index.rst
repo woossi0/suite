@@ -12,7 +12,7 @@ However, for even more capability, GeoServer can be extended by adding new WPS p
 Overview
 --------
 
-A WPS process is simply a **Java class** that provides an ``execute`` method. The ``execute`` method accepts parameters which correspond to the WPS parameters, and it returns a value which becomes the output of the process. The class also provides metadata to specify the names and descriptions of the process and its parameters.  
+A WPS process is implemented as a Java service provider, allowing GeoServer to discover and publish your custom process. It is a Java class that provides an ``execute`` method. The ``execute`` method accepts parameters which correspond to the WPS parameters, and it returns a value which becomes the output of the process. The class also provides metadata to specify the names and descriptions of the process and its parameters.
 
 .. todo:: An diagram of this would be excellent.  
 
@@ -155,7 +155,7 @@ Implement process functionality
 
 The previous steps created a Java package ``org.example.wps`` in which to implement the custom WPS functionality. Now we will define the class that will contain the spatial processing code.  
 
-#. Create a class called ``PolygonTools``. This class contains two methods: a public class to split a polygon with a line (``splitPolygon(Geometry poly, Geometry line)``) and a private class to polygonize a set of Geometries (``polygonize(Geometry geometry)``). The private class will be called by the public class. The code for the ``PolygonTools`` class is:
+#. Create a class called ``PolygonTools``. This class contains two methods: one to split a polygon with a line (``splitPolygon(Geometry poly, Geometry line)``) and one to polygonize a set of Geometries (``polygonize(Geometry geometry)``). The polygonize method is internal to the process and does not need to be exposed as a public method. The code for the ``PolygonTools`` class is:
 
    .. code-block:: java
   
@@ -214,11 +214,11 @@ The previous steps created a Java package ``org.example.wps`` in which to implem
    Some things to note about the process:
 
    * The ``execute`` method will be called when the WPS request is processed by GeoServer. The method takes two parameters of type ``Geometry``: a polygon to be split and the line doing the splitting.
-   * The ``polygonize`` class is not public because it is internal to the process and need not be exposed.
+   * The ``polygonize`` method is not public because it is internal to the process and need not be exposed.
    * The process will be given a namespace (prefix) of "custom".
    * The full name of the process will be **custom:splitPolygon**.
 
-#. The code contains all of the mechanics necessary to perform the operation, but we can improve the usability and interactivity with GeoServer by adding *annotations*. These will contain descriptions of the process and its inputs and outputs, which will be exposed via the WPS DescribeProcess and GetCapabilites requests. Add the following content right above the definition of the ``splitPolygon`` class:
+#. The code contains all of the mechanics necessary to perform the process. The next step is to use *annotations* to describe this process for publication. These will contain descriptions of the process and its inputs and outputs, which will be exposed via the WPS DescribeProcess and GetCapabilites requests. Add the following content right above the definition of the ``splitPolygon`` class:
 
    .. code-block:: java
 
