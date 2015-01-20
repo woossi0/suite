@@ -75,7 +75,7 @@
        <Opacity>0.8</Opacity>
        <ColorMap type="ramp" >
          <ColorMapEntry color="#FFFFFF" quantity="-990" label="nodata" opacity="0"/>
-         <ColorMapEntry color="#2E4AC9" quantity="-9" label="nodata"/>
+         <ColorMapEntry color="#2E4AC9" quantity="-9" label="values"/>
          <ColorMapEntry color="#41A0FC" quantity="-6" label="values" />
          <ColorMapEntry color="#58CCFB" quantity="-3" label="values" />
          <ColorMapEntry color="#76F9FC" quantity="0" label="values" />
