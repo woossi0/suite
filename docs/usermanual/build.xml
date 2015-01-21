@@ -18,6 +18,7 @@
             <exclude name="dataadmin/mrsid/**"/>
             <exclude name="dataadmin/oracle/**"/>
             <exclude name="webmaps/composer/**"/>
+            <exclude name="sysadmin/clustering/**"/>
             <exclude name="sysadmin/mapmeter/**"/>
           </fileset>
        </copy>
