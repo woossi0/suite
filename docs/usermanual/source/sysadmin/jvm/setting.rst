@@ -5,7 +5,7 @@ Setting the Oracle JVM
 
 We recommend using the Oracle JVM with OpenGeo Suite, as testing has shown that the Oracle JVM is significantly faster than other JVM implementations.
 
-Specifically, we recommend using **Oracle JRE 6**. Even though it isn't the latest version, it is the most well-tested and stable version of the JVM with GeoServer.
+Specifically, we recommend using **Oracle JRE 7**. Even though it isn't the latest version, it is the most well-tested and stable version of the JVM with GeoServer.
 
 Determining the current Java version
 ------------------------------------
