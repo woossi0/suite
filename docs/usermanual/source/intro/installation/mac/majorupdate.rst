@@ -1,15 +1,19 @@
-.. _intro.installation.mac.update:
+.. _intro.installation.mac.majorupdate:
 
-Updating
-========
+Updating a major version
+========================
 
 This section describes how to update from a previous **major** version of OpenGeo Suite.
 
-If performing a **minor** update, you may proceed with a typical :ref:`install <intro.installation.mac.install>`. 
+.. note::
 
-.. note:: A "major" version update is from version 3.x to 4.y. A "minor" version update is from 4.x to 4.y.
+   * For new installations, please see the section on :ref:`intro.installation.mac.install`.
+   * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.mac.upgrade`.
+   * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.mac.minorupdate` section.
 
 .. warning:: This update is **not-backward compatible**. Irreversible changes are made to the data so that they can't be used with versions 3.x and below of OpenGeo Suite.
+
+.. include:: include/sysreq.txt
 
 Back up PostGIS databases
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -18,7 +22,7 @@ The first step of the update process is to back up your existing PostGIS data.
 
 #. Ensure the old (3.x) version of OpenGeo Suite is running.
  
-#. Open up a terminal and Make sure that the PostgreSQL ``bin`` directory is on your path. By default, this is located at :file:`/opt/opengeo/pgsql/9.1/bin`. Use the command ``psql --version`` to verify:
+#. Open up the :guilabel:`Terminal` application and make sure that the PostgreSQL ``bin`` directory is on your path. By default, this is located at :file:`/opt/opengeo/pgsql/9.1/bin`. Use the command ``psql --version`` to verify:
 
    .. code-block:: console
  
@@ -92,3 +96,8 @@ Uninstall old version
 ~~~~~~~~~~~~~~~~~~~~~
 
 You may now uninstall the previous version of OpenGeo Suite. The uninstaller is located at :file:`/Applications/OpenGeo/OpenGeo Suite Uninstaller.app`. 
+
+After update
+------------
+
+The update is now complete. Please see the section on :ref:`intro.installation.mac.postinstall` to continue.
