@@ -24,7 +24,7 @@ Installation
 
       Starting and stopping OpenGeo Suite services
 
-Services can also be controlled from the Windows :guilabel:`Services` dialog available by navigating to :menuselection:`Administrative Tools --> Services` from the Windows :guilabel:`Control Panel`.
+   Services can also be controlled from the Windows :guilabel:`Services` dialog available by navigating to :menuselection:`Administrative Tools --> Services` from the Windows :guilabel:`Control Panel`.
 
 #. Double-click the :file:`OpenGeoSuite.exe` file.
 
