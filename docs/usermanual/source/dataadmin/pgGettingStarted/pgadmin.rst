@@ -25,20 +25,21 @@ On Windows pgAdmin can be launched from the :guilabel:`Start Menu`.
 
    Launching pgAdmin on Windows
 
-Mac
-^^^
+Mac OS X
+^^^^^^^^
 
-On Mac the pgAdmin application is accessible from the installer image under :guilabel:`PostGIS Utilities`.
+On OS X, the pgAdmin application is accessible from the installer image under :guilabel:`PostGIS Utilities`.
 
 .. figure:: img/pgadmin_mac.png
 
-   Launching pgAdmin on Mac
+   Launching pgAdmin on OS X
 
 Linux
 ^^^^^
 
-On Linux pgAdmin can be launched from the terminal with the ``pgadmin3`` command.
+The pgAdmin application is installed via the ``pgadmin3`` package, and can be launched from the terminal with the ``pgadmin3`` command. On systems with graphical interfaces, ``pgAdmin III`` may be available from the Applications menu.
 
+.. note:: Some extra steps need to performed before pgAdmin will be available from both local and remote hosts. Please see the section on :ref:`dataadmin.pgGettingStarted.firstconnect` for configuration information.
 
 Working with pgAdmin
 --------------------
