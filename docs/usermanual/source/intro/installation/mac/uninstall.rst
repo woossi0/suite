@@ -13,7 +13,7 @@ This document describes how to uninstall OpenGeo Suite for Mac OS X.
 
 #. Download the free AppCleaner utility from `FreeMacSoft <http://www.freemacsoft.net/appcleaner/>`_. Extract the file and run it.
 
-#. Drag the :guilabel:`Geoserver`, :guilabel:`Geoserver Extensions`, :guilabel:`PostGIS` and :guilabel:`PostGIS Utilities` applications into the AppCleaner window. Click the :guilabel:`Delete` button.
+#. Drag the :guilabel:`Geoserver`, :guilabel:`GeoServer Extensions`, :guilabel:`PostGIS` and :guilabel:`PostGIS Utilities` applications into the AppCleaner window. Click the :guilabel:`Delete` button.
 
    .. figure:: img/appcleaner.png
 

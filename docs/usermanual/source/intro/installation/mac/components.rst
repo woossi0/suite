@@ -19,7 +19,7 @@ Adding or removing components to OpenGeo Suite can be accomplished by :ref:`inst
 
       OpenGeo Suite Components
 
-Geoserver
+GeoServer
 ---------
 
 .. only:: basic
