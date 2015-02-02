@@ -46,7 +46,7 @@ GeoServer also ships as a self-contained application. Start by double-clicking :
 
 .. note:: The GeoServer application runs a Jetty web server that also contains GeoWebCache, GeoExplorer, and the OpenGeo Dashboard.
 
-You can check the server status and perform other tasks from the GeoServer icon in the OSX menu bar.
+You can check the server status and perform other tasks from the GeoServer icon in the OS X menu bar.
 
 .. figure:: img/gsmenu.png
 
