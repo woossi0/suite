@@ -63,7 +63,7 @@ Polygon symbolizers provide options for styling both fill (inside) and stroke (o
 
 #. Stroke styling is defined primarily by ``stroke-width``, ``stroke-color``, and ``stroke-opacity``. Change the style to use a 0.5 px grey stroke:
 
-.. code-block:: yaml
+   .. code-block:: yaml
       :emphasize-lines: 5-6
     
       rules:
@@ -75,7 +75,7 @@ Polygon symbolizers provide options for styling both fill (inside) and stroke (o
 
 #. Fill styling is defined primairly by ``fill-color`` and ``fill-opacity``. Change the style to use a 50% transparent brown fill:
 
-.. code-block:: yaml
+   .. code-block:: yaml
       :emphasize-lines: 7-8
     
       rules:
@@ -108,7 +108,7 @@ Polygon symbolizers provide options for styling both fill (inside) and stroke (o
               fill-color: '#EFEFC3'
               fill-opacity: 0.5
 
-   And the layer now will look like this:
+#. And the layer now will look like this:
 
    .. figure:: img/poly_basic.png
 
@@ -140,7 +140,7 @@ Labels can be applied to any layer using a :ref:`text symbolizer <cartography.ys
           - text:
               label: ${NAME}
 
-#. After this change, the map will look like:
+#. After this change, the map will look like this:
 
    .. figure:: img/poly_label_basic.png
 
@@ -171,9 +171,7 @@ The default labeling parameters are not ideal, but a number of styling options a
       * - ``fill-color: '#333333'``
         - Change the font color to dark gray
 
-   This gives a much nicer font style, but the label placement is still poor. 
-
-#. Add some additional options to fix this:
+#. The above gives a much nicer font style, but the label placement is still poor. Add some additional options to fix this:
 
    .. list-table::
       :class: non-responsive
@@ -191,7 +189,7 @@ The default labeling parameters are not ideal, but a number of styling options a
       * - ``x-labelPriority: ${10-LABELRANK}``
         - Select labels based on priority (uses the ``LABELRANK`` attribute of the data to determine this).
 
-With the label styling, the style now looks like this:
+#. With the label styling, the style now looks like this:
 
    .. code-block:: yaml
       :emphasize-lines: 16-23
@@ -220,7 +218,7 @@ With the label styling, the style now looks like this:
               x-goodnessOfFit: 0.8
               x-labelPriority: ${10-LABELRANK}
 
-With these additions, the labels now appear much clearer:
+#. With these additions, the labels now appear much clearer:
 
      .. figure:: img/poly_label_styled.png
 
@@ -450,9 +448,9 @@ While filters are very useful, the required syntax is quite long, and much of th
                  }
                fill-opacity: 0.5
 
-   This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function. If ``MAPCOLOR7 = 1``, set to ``'#FFC3C3'``, if ``MAPCOLOR7 = 2`` set to ``'#FFE3E3``, etc.
+This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function: if ``MAPCOLOR7 = 1``, set to ``'#FFC3C3'``, if ``MAPCOLOR7 = 2`` set to ``'#FFE3E3``, etc.
 
-   It should be noted that this will produce the *exact same output* as in the previous section.
+It should be noted that this will produce the *exact same output* as in the previous section.
 
 Final style
 -----------
