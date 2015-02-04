@@ -3,9 +3,9 @@
 How to add startup parameters for GeoServer
 ===========================================
 
-Many configuration settings for GeoServer must be set during the startup process. Startup options have the prefix ``-D`` and are of the form ``OPTION=value``.
+GeoServer allows global configuration settings to be provided as Java system properties for use during the startup process. Java system properties can be supplied on the command line using ``-D`` (and are of the form ``-Dproperty=value`` or ``-D property=value``).
 
-This section shows how to set startup-level configuration settings.
+This section shows how to set the Java system properties used during startup.
 
 Jetty
 -----
@@ -20,7 +20,7 @@ To access the :file:`start.ini` file on OS X, click :guilabel:`Open Webapps` fro
 
    A sample start.ini file
 
-There is a section titled :guilabel:`other geoserver options` where startup options can go, but the specific order is not important. Each option must be on its own line.
+This file contains a mix of JVM parameters (such as memory settings) and system properties. There is a section titled :guilabel:`other geoserver options` where startup options can go, but the specific order is not important. Each option must be on its own line.
 
 For example, to revert to the legacy handling of CRS values in GeoJSON WFS output:
 
