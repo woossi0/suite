@@ -1,16 +1,19 @@
-/* (c) 2014 Boundless, http://boundlessgeo.com
+/* (c) 2014-2014 Boundless, http://boundlessgeo.com
  * This code is licensed under the GPL 2.0 license.
  */
 package com.boundlessgeo.geoserver;
 
+import com.boundlessgeo.geoserver.api.controllers.IO;
 import com.boundlessgeo.geoserver.api.controllers.IconController;
 import com.boundlessgeo.geoserver.api.controllers.ImportController;
 import com.boundlessgeo.geoserver.api.controllers.WorkspaceController;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
 import org.apache.commons.io.IOUtils;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CatalogBuilder;
@@ -22,6 +25,7 @@ import org.geoserver.importer.Importer;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.test.GeoServerSystemTestSupport;
+import org.geotools.referencing.CRS;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
@@ -32,13 +36,18 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import javax.mail.internet.InternetHeaders;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -146,6 +155,92 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         // ensure style in workspace
         StyleInfo s = l.getDefaultStyle();
         assertNotNull(s.getWorkspace());
+        
+        //Try to reimport the same store - should succeed
+        createMultiPartFormContent(request, "form-data; name=\"upload\"; filename=\"point.zip\"", "application/zip",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.shp.zip")));
+        obj = ctrl.importFile("gs", request);
+        
+        assertNotNull(obj.get("id"));
+
+    }
+    
+    @Test
+    public void testImportDb() throws Exception {
+        Catalog catalog = getCatalog();
+        assertNull(catalog.getLayerByName("gs:point"));
+        
+        Importer importer =
+            GeoServerExtensions.bean(Importer.class, applicationContext);
+        ImportController ctrl = new ImportController(getGeoServer(), importer);
+        
+        try (H2TestData data = new H2TestData()) {
+            
+            MockHttpServletRequest request = new MockHttpServletRequest();
+            request.setContextPath("/geoserver");
+            request.setRequestURI("/geoserver/hello");
+            request.setMethod("post");
+            
+            JSONObj obj = data.createConnectionParameters();
+            obj = ctrl.importDb("gs", obj, request);
+            
+            Long id = Long.parseLong(obj.get("id").toString());
+            assertNotNull(id);
+            JSONArr preimport = obj.array("preimport");
+            assertTrue(3 <= preimport.size());
+            assertEquals(0, obj.array("imported").size());
+            assertEquals(0, obj.array("pending").size());
+            assertEquals(0, obj.array("failed").size());
+            assertEquals(0, obj.array("ignored").size());
+            
+            //Choose tables to import
+            List<String> names = Arrays.asList(new String[]{"ft1","ft2","ft3"});
+            JSONArr tasks = new JSONArr();
+            for (JSONObj o : preimport.objects()) {
+                if (names.contains(o.get("name"))) {
+                    tasks.add(new JSONObj().put("task", o.get("task").toString()));
+                    assertEquals("table", o.get("type"));
+                }
+            }
+            assertEquals(3, tasks.size());
+            JSONObj response = new JSONObj();
+            response.put("tasks", tasks);
+            
+            obj = ctrl.update("gs", id, response);
+            
+            assertEquals(0, obj.array("preimport").size());
+            assertEquals(1, obj.array("imported").size());
+            assertEquals(2, obj.array("pending").size());
+            assertEquals(0, obj.array("failed").size());
+            assertEquals(preimport.size()-3, obj.array("ignored").size());
+            
+            obj = ctrl.get("gs",  id);
+            
+            //Set CRS
+            tasks = new JSONArr();
+            for (JSONObj o : obj.array("pending").objects()) {
+                String srs = "EPSG:4326";
+                tasks.add(new JSONObj().put("task", o.get("task").toString())
+                                       .put("proj", IO.proj(new JSONObj(), CRS.decode(srs), srs)));
+            }
+            response = new JSONObj();
+            response.put("tasks", tasks);
+            
+            obj = ctrl.update("gs", id, response);
+            
+            assertEquals(0, obj.array("preimport").size());
+            assertEquals(3, obj.array("imported").size());
+            assertEquals(0, obj.array("pending").size());
+            assertEquals(0, obj.array("failed").size());
+            assertEquals(preimport.size()-3, obj.array("ignored").size());
+            
+            //Try to reimport the same store - should fail and return existing store
+            obj = data.createConnectionParameters();
+            obj = ctrl.importDb("gs", obj, request);
+            
+            assertNotNull(obj.get("store"));
+            assertNull(obj.get("id"));
+        }
     }
 
     @Test
