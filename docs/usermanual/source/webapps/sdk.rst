@@ -137,9 +137,9 @@ To deploy to OpenGeo Suite for Linux (either Ubuntu or any Red Hat-based Linux),
 
 #. Extract :file:`myapp.war` to :file:`/usr/share/opengeo/myapp`.
 
-#. Create a file called :file:`myapp.xml` in :file:`/etc/tomcat6/Catalina/localhost/` with the following content::
+#. Create a file called :file:`myapp.xml` in :file:`/etc/tomcat7/Catalina/localhost/` with the following content::
 
-     <Context displayName="myapp" docBase="/usr/share/opengeo/myapp" path="/myapp">
+     <Context displayName="myapp" docBase="/usr/share/opengeo/myapp" path="/myapp"/>
 
 #. Save this file and restart Tomcat.
 
