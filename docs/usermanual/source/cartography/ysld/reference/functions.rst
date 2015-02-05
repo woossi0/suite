@@ -19,7 +19,7 @@ Functions are evaluated at rendering time, so the output is passed as the parame
 List of functions
 -----------------
 
-A reference list of functions can be found in the `GeoServer User Manual </../geoserver/filter/function_reference.html>`_ and is also available in raw form in the `GeoTools User Manual <http://docs.geotools.org/latest/userguide/library/main/function_list.html>`_.
+A reference list of functions can be found in the `GeoServer User Manual <../../../geoserver/filter/function_reference.html>`_ and is also available in raw form in the `GeoTools User Manual <http://docs.geotools.org/latest/userguide/library/main/function_list.html>`_.
 
 The functions can be broken up loosely into categories such as geometric, math, and string functions.
 
@@ -180,11 +180,11 @@ The ``buffer(geom, buffer)`` function takes a geometry and a value as arguments,
 
 See also:
 
-* `convexHull(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
-* `octagonalEnvelope(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
-* `mincircle(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
-* `minrectangle(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
-* `minimumdiameter(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
+* `convexHull(geom) <../../../geoserver/filter/function_reference.html#geometric-functions>`_
+* `octagonalEnvelope(geom) <../../../geoserver/filter/function_reference.html#geometric-functions>`_
+* `mincircle(geom) <../../../geoserver/filter/function_reference.html#geometric-functions>`_
+* `minrectangle(geom) <../../../geoserver/filter/function_reference.html#geometric-functions>`_
+* `minimumdiameter(geom) <../../../geoserver/filter/function_reference.html#geometric-functions>`_
 
 
 Display vertices of a line
@@ -202,8 +202,8 @@ The ``vertices(geom)`` function takes a geometry and returns a collection of poi
 
 See also:
 
-* `boundary(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
-* `centroid(geom) </../geoserver/filter/function_reference.html#geometric-functions>`_
+* `boundary(geom) <../../../geoserver/filter/function_reference.html#geometric-functions>`_
+* `centroid(geom) <../../../geoserver/filter/function_reference.html#geometric-functions>`_
 
 Angle between two points
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -220,14 +220,14 @@ The ``atan2(x, y)`` function calculates the arctangent of (y/x) and so is able t
 
 See also:
 
-* `sin(value) </../geoserver/filter/function_reference.html#math-functions>`_
-* `cos(value) </../geoserver/filter/function_reference.html#math-functions>`_
-* `tan(value) </../geoserver/filter/function_reference.html#math-functions>`_
-* `asin(value) </../geoserver/filter/function_reference.html#math-functions>`_
-* `acos(value) </../geoserver/filter/function_reference.html#math-functions>`_
-* `atan(value) </../geoserver/filter/function_reference.html#math-functions>`_
-* `toRadians(value) </../geoserver/filter/function_reference.html#math-functions>`_
-* `pi() </../geoserver/filter/function_reference.html#math-functions>`_
+* `sin(value) <../../../geoserver/filter/function_reference.html#math-functions>`_
+* `cos(value) <../../../geoserver/filter/function_reference.html#math-functions>`_
+* `tan(value) <../../../geoserver/filter/function_reference.html#math-functions>`_
+* `asin(value) <../../../geoserver/filter/function_reference.html#math-functions>`_
+* `acos(value) <../../../geoserver/filter/function_reference.html#math-functions>`_
+* `atan(value) <../../../geoserver/filter/function_reference.html#math-functions>`_
+* `toRadians(value) <../../../geoserver/filter/function_reference.html#math-functions>`_
+* `pi() <../../../geoserver/filter/function_reference.html#math-functions>`_
 
 Scale objects based on a large range of values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -244,9 +244,9 @@ For example, specifying ``log(population)/log(2)`` will make the output increase
 
 See also:
 
-* `exp(val) </../geoserver/filter/function_reference.html#math-functions>`_
-* `pow(base,exponent) </../geoserver/filter/function_reference.html#math-functions>`_
-* `sqrt(val) </../geoserver/filter/function_reference.html#math-functions>`_
+* `exp(val) <../../../geoserver/filter/function_reference.html#math-functions>`_
+* `pow(base,exponent) <../../../geoserver/filter/function_reference.html#math-functions>`_
+* `sqrt(val) <../../../geoserver/filter/function_reference.html#math-functions>`_
 
 
 Combine several strings into one
@@ -267,8 +267,8 @@ The ``strCapitalize(string)`` function takes a single string and capitalizes the
 
 See also:
 
-* `strToLowerCase(string) </../geoserver/filter/function_reference.html#string-functions>`_
-* `strToUpperCase(string) </../geoserver/filter/function_reference.html#string-functions>`_
+* `strToLowerCase(string) <../../../geoserver/filter/function_reference.html#string-functions>`_
+* `strToUpperCase(string) <../../../geoserver/filter/function_reference.html#string-functions>`_
 
 
 

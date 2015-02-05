@@ -35,7 +35,7 @@ OS X
 
 The Oracle extension can be added to OpenGeo Suite by copying the contents of the :file:`oracle` extension folder (not the folder itself) to the GeoServer library folder. The GeoServer library folder can be found by selecting :guilabel:`Open Webapps Directory` from the GeoServer menu and then navigating to :file:`geoserver/WEB-INF/lib`.
 
-   .. figure:: /intro/installation/mac/img/ext_webappsmenu.png
+   .. figure:: ../../intro/installation/mac/img/ext_webappsmenu.png
 
       Opening the webapps directory from the GeoServer menu
 
