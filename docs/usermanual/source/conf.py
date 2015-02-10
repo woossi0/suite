@@ -21,6 +21,7 @@ else:
     build_profile='basic'
     print "documentation build";
 
+from datetime import date
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -50,7 +51,7 @@ master_doc = 'index'
 #project = u'OpenGeo Suite User Manual'
 project = u'OpenGeo Suite'
 manual = u'User Manual'
-copyright = u'2014 Boundless'
+copyright = str(date.today().year) + u' Boundless'
 
 version = suite_version
 release = suite_version

@@ -1,5 +1,5 @@
 Boundless SDK
-Copyright (c) 2013-2014 Boundless
+Copyright (c) 2013-2015 Boundless
 All rights reserved.
 
 This file is part of Boundless SDK, is distributed under the GNU GENERAL PUBLIC

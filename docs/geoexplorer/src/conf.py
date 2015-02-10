@@ -14,6 +14,8 @@
 import sys, os, string
 sys.path.append('../../../build'); from build_properties import *
 
+from datetime import date
+
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
 # absolute, like shown here.
@@ -39,7 +41,7 @@ master_doc = 'index'
 
 # General substitutions.
 project = u'GeoExplorer'
-copyright = u'OpenGeo'
+copyright = str(date.today().year) + u' Boundless'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
