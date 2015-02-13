@@ -49,7 +49,7 @@ A restart of GeoServer is not required.
 Application Servers
 ~~~~~~~~~~~~~~~~~~~
 
-For installation when using OpenGeo Suite for Application Servers, please `contact us <http://boundlessgeo.com/about/contact-us/>`_.
+For installation when using OpenGeo Suite for Application Servers, please `contact us <http://boundlessgeo.com/about/contact-us/>`__.
 
 Verification
 ------------

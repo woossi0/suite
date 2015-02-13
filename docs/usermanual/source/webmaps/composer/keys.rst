@@ -77,7 +77,9 @@ When the cursor is on a line that contains a list entry (with the dash) the enti
 
 When the cursor is on a line that is inside a mapping (no dash), then the contents of the *parent* will be folded. In this case, the cursor will move to the parent line from the (now-hidden) original line.
 
-Code that is folded is indicated by a ``↔`` at the end of a line, with a small arrow shown in the margin area to the left of the line. Placing the cursor on this line and pressing **Ctrl-F**/**Cmd-F** will unfold the code. You can also click the ``↔`` icon to unfold the code.
+Code that is folded is indicated by a |doublearrow| at the end of a line, with a small arrow shown in the margin area to the left of the line. Placing the cursor on this line and pressing **Ctrl-F**/**Cmd-F** will unfold the code. You can also click the |doublearrow| icon to unfold the code.
+
+.. |doublearrow| image:: img/keys_doublearrow.png
 
 As another indicator of code folding, the line numbers in the margin will become discontinuous.
 

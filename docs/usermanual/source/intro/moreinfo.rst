@@ -24,4 +24,4 @@ About Boundless
 
 Boundless supports open source communities by employing key developers of PostGIS, GeoServer, and OpenLayers. We are committed to the ideals of open source and aim to bring the best practices of open source software to organizations around the world. 
 
-For more information, visit us at http://boundlessgeo.com or `contact us <http://boundlessgeo.com/about/contact-us>`_.
+For more information, visit us at http://boundlessgeo.com or `contact us <http://boundlessgeo.com/about/contact-us>`__.
