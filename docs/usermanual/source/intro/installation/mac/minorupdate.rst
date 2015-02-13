@@ -39,6 +39,10 @@ Installation
 
 .. include:: include/componentinstall.txt
 
+.. include:: include/extensions.txt
+
+.. include:: include/clitools.txt
+
 After update
 ------------
 

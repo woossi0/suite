@@ -5,7 +5,7 @@ How to set up an OpenGeo Suite cluster on AWS
 
 This page will show how to automatically set up and configure a cluster of servers on Amazon Web Services (AWS).
 
-This script is available to Enterprise clients only. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ to become an Enterprise client.
+This script is available to Enterprise clients only. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`__ to become an Enterprise client.
 
 Prerequisites
 -------------

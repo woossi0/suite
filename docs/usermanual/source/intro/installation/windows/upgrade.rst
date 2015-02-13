@@ -5,7 +5,7 @@ Upgrading to OpenGeo Suite Enterprise
 
 This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterprise** on Windows.
 
-.. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ for information on how to purchase OpenGeo Suite Enterprise.
+.. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`__ for information on how to purchase OpenGeo Suite Enterprise.
 
 .. include:: include/sysreq.txt
 

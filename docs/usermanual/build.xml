@@ -63,18 +63,18 @@
      </target>
      
      <target name="build-html" depends="stage-enterprise,stage-basic"
-             description="Build html docs (use -Dsuite.build_profile=basic or ee)">
-       <condition property="flags" value="-t enterprise -A build_profile=ee" else="-t basic">
-         <equals arg1="${suite.build_profile}" arg2="ee"/>
-       </condition>
-       <condition property="profile_dir" value="ee" else="basic">
-         <equals arg1="${suite.build_profile}" arg2="ee"/>
-       </condition>
+             description="Build html docs">
+       <antcall target="sphinx">
+         <param name="dir" value="${basedir}/basic"/>
+         <param name="outdir" value="${basedir}/target/html/basic"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/basic"/>
+         <param name="flags" value="-t basic"/>
+       </antcall>
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/ee"/>
-         <param name="outdir" value="${basedir}/target/html/${profile_dir}"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/${profile_dir}"/>
-         <param name="flags" value="${flags}"/>
+         <param name="outdir" value="${basedir}/target/html/ee"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
+         <param name="flags" value="-t enterprise -A build_profile=ee"/>
        </antcall>
      </target>
 

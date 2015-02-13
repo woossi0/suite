@@ -38,6 +38,14 @@ The Mac installer for OpenGeo Suite is a disk image made up several :ref:`compon
 
 .. include:: include/componentinstall.txt
 
+.. _intro.installation.mac.install.extensions:
+
+.. include:: include/extensions.txt
+
+.. _intro.installation.mac.install.cli:
+
+.. include:: include/clitools.txt
+
 After installation
 ------------------
 

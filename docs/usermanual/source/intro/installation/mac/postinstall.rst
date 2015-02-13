@@ -63,7 +63,7 @@ To point GeoServer to an alternate location:
 
 #. Close and relaunch ``GeoServer.app``.
 
-.. _intro.installation.mac.misc.pgconfig:
+.. _intro.installation.mac.postinstall.pgconfig:
 
 PostgreSQL Configuration
 ------------------------
