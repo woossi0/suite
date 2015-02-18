@@ -1,7 +1,7 @@
 .. _intro.installation.mac.postinstall:
 
-Working with OpenGeo Suite for Mac OS X
-=======================================
+After installation: Working with OpenGeo Suite for Mac OS X
+===========================================================
 
 This document contains information about various tasks specific to OpenGeo Suite for Mac OS X. 
 

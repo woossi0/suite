@@ -13,6 +13,7 @@ This section will discuss how to manage OpenGeo Suite deployments, including ser
    production/index
    jvm/index
    manager/index
+   jndi/index
    security/index
    wfst/index
    backup

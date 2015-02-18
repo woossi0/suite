@@ -14,7 +14,7 @@ Please select the option that best matches your system:
 :ref:`intro.installation.windows.install`
   For new installations.
 
-:ref:`intro.installation.windows.minorupdate`  
+:ref:`intro.installation.windows.minorupdate`
   For minor version updates. To update from OpenGeo Suite 4.x, start here.
 
 :ref:`intro.installation.windows.majorupdate`
