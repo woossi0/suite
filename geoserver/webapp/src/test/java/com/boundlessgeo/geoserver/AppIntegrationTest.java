@@ -65,18 +65,25 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
     }
 
     @Before
+    public void removeMaps() {
+        removeLayerGroup("sf", "map1");
+        removeLayerGroup("sf", "map2");
+        
+        removeLayerGroup("cgf", "map1");
+        removeLayerGroup("cgf", "map2");
+    }
+    
+    @Before
     public void removeLayers() {
         removeLayer("gs", "foo");
         removeLayer("sf", "foo");
         removeLayer("cdf", "foo");
         
         removeLayer("gs", "point");
-    }
-
-    @Before
-    public void removeMaps() {
-        removeLayerGroup("sf", "map1");
-        removeLayerGroup("sf", "map2");
+        
+        removeLayer("cgf", "renamedLayer");
+        removeLayer("cgf", "Points-map");
+        removeLayer("cgf", "Lines-map");
     }
 
     @Test
@@ -432,6 +439,51 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         return body;
     }
 
+    @Test
+    public void testCopyMapWithLayers() throws Exception {
+        Catalog catalog = getCatalog();
+        CatalogBuilder catalogBuilder = new CatalogBuilder(catalog);
+        
+        LayerInfo points = catalog.getLayerByName("cgf:Points");
+        LayerInfo lines = catalog.getLayerByName("cgf:Lines");
+        
+        LayerGroupInfo map = catalog.getFactory().createLayerGroup();
+        map.setWorkspace(catalog.getWorkspaceByName("cgf"));
+        map.setName("map1");
+        map.getLayers().add(lines);
+        map.getLayers().add(points);
+        map.getStyles().add(null);
+        map.getStyles().add(null);
+        catalogBuilder.calculateLayerGroupBounds(map);
+        catalog.add(map);
+        
+        assertNotNull(catalog.getLayerGroupByName("cgf:map1"));
+        assertNotNull(catalog.getLayerByName("cgf:Points"));
+        assertNotNull(catalog.getLayerByName("cgf:Lines"));
+        assertNull(catalog.getLayerGroupByName("cgf:map2"));
+        assertNull(catalog.getLayerByName("cgf:renamedLayer"));
+        assertNull(catalog.getLayerByName("cgf:Lines-map"));
+        
+
+        JSONObj obj = new JSONObj();
+        obj.put("name", "map2");
+        obj.put("copylayers", true);
+        obj.putArray("layers").addObject()
+            .put("name", "renamedLayer")
+            .putObject("layer")
+                .put("name", "Points")
+                .put("workspace", "cgf");
+        
+
+        com.mockrunner.mock.web.MockHttpServletResponse resp =
+            putAsServletResponse("/app/api/maps/cgf/map1/copy", obj.toString(), MediaType.APPLICATION_JSON_VALUE);
+        assertEquals(200,resp.getStatusCode());
+
+        assertNotNull(catalog.getLayerGroupByName("cgf:map2"));
+        assertNotNull(catalog.getLayerByName("cgf:renamedLayer"));
+        assertNotNull(catalog.getLayerByName("cgf:Lines-map"));
+    }
+    
     @Test
     public void testCreateLayerFromCopy() throws Exception {
         Catalog catalog = getCatalog();
