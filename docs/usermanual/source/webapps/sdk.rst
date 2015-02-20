@@ -123,12 +123,16 @@ Windows
 
 To deploy to OpenGeo Suite for Windows, copy the WAR file to :file:`<OPENGEO_SUITE>\\jetty\\webapps`. For example, if OpenGeo Suite is installed at :file:`C:\\Program Files\\Boundless\\OpenGeo\\`, copy the WAR file to :file:`C:\\Program Files\\Boundless\\OpenGeo\\jetty\\webapps\\`
 
+The WAR file should automatically extract to its own directory, but if it doesn't, you can manually extract the file using a standard "unzip" program such as `7-zip <http://www.7-zip.org/>`_.
+
 OS X
 ~~~~
 
 To deploy to OpenGeo Suite for OS X, copy the WAR file to::
 
   ~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer/jetty/webapps
+
+The WAR file should automatically extract to its own directory, but if it doesn't, you can manually extract the file using a standard "unzip" program such as `iZip <http://www.izip.com/>`_.
 
 Linux
 ~~~~~
