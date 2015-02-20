@@ -11,7 +11,7 @@
    * - ``stroke-color``
      - No
      - Color of line features.
-     - ``000000`` (black)
+     - ``'#000000'`` (black)
    * - ``stroke-width``
      - No
      - Width of line features, measured in pixels.
