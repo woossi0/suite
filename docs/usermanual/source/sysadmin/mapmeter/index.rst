@@ -11,9 +11,7 @@ Whereas administrator utilities are focused on application-agnostic metrics (net
 * Location of source requests
 * Filters by layer, service, IP address, and more
 
-Mapmeter is free for Enterprise clients, but all users are eligible to create a free two-week trial account of Mapmeter.
-
-If you are interested in becoming an Enterprise client, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
+Mapmeter is available for Enterprise clients only. If you are an Enterprise client and don't have access to Mapmeter, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`__.
 
 .. figure:: img/mapmeter.png
 

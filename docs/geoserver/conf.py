@@ -40,7 +40,7 @@ master_doc = 'index'
 # General substitutions.
 project = u'GeoServer'
 manual = u'User Manual'
-copyright = u'CC BY 3.0'
+copyright = u'CC BY-SA 3.0'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
@@ -218,3 +218,25 @@ latex_elements = {
 
 # If false, no module index is generated.
 #latex_use_modindex = True
+
+
+extlinks = { 
+    'wiki': ('https://github.com/geoserver/geoserver/wiki/%s',''),
+    'website': ('http://geoserver.org/%s',''),
+    'user': ('http://localhost:8080/opengeo-docs/geoserver/%s',''),
+    'developer': ('http://docs.geoserver.org/latest/en/developer/%s',''),
+    'geos': ('https://jira.codehaus.org/browse/GEOS-%s','GEOS-'),
+    'geot': ('https://jira.codehaus.org/browse/GEOT-%s','GEOT-')
+}
+
+# Common substitutions
+
+rst_epilog = "\n" \
+ ".. |install_directory_winXP| replace:: :file:`C:\\\\Program Files (x86)\\\\Boundless\\\\OpenGeo\\\\jetty\\\\webapps\\\\geoserver`\n" \
+ ".. |install_directory_win| replace:: :file:`C:\\\\Program Files (x86)\\\\Boundless\\\\OpenGeo\\\\jetty\\\\webapps\\\\geoserver`\n" \
+ ".. |install_directory_linux| replace:: :file:`/usr/share/opengeo/geoserver`\n" \
+ ".. |install_directory_mac| replace:: :file:`/Applications`\n" \
+ ".. |data_directory_winXP| replace:: :file:`%PROGRAMDATA%\\\\Boundless\\\\OpenGeo\\\\geoserver`\n" \
+ ".. |data_directory_win| replace:: :file:`%PROGRAMDATA%\\\\Boundless\\\\OpenGeo\\\\geoserver`\n" \
+ ".. |data_directory_linux| replace:: :file:`/var/lib/opengeo/geoserver`\n" \
+ ".. |data_directory_mac| replace:: :file:`~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer/data_dir`"

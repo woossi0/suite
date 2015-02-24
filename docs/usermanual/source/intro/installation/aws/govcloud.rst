@@ -14,7 +14,7 @@ OpenGeo Suite is available in the GovCloud region.
 Purchasing
 ----------
 
-Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_ for information on purchasing OpenGeo Suite for AWS GovCloud.
+Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`__ for information on purchasing OpenGeo Suite for AWS GovCloud.
 
   .. todo:: Add pricing info here.
 

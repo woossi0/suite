@@ -11,7 +11,7 @@
    * - ``fill-color``
      - No
      - Color of inside of features.
-     - ``808080`` (gray)
+     - ``'#808080'`` (gray)
    * - ``fill-opacity``
      - No
      - Opacity of the fill. Valid values are a decimal value between ``0`` (completely transparent) and ``1`` (completely opaque).

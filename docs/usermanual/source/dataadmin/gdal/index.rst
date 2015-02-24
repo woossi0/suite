@@ -56,17 +56,17 @@ Windows
 
 .. note:: GDAL image formats are enabled by default when using the Windows installer, Mac OS X installer, or Linux packages. Extra configuration is required only if using **OpenGeo Suite for Application Servers** (WAR bundle).
 
-#. Navigate to:  http://data.opengeo.org/gdal_support/ .
+#. Navigate to:  http://data.opengeo.org/gdal_support/.
 
-#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_win_30.zip` for version 3.0).
+#. Download the file with a version number that most closely matches the version of OpenGeo Suite.
 
    .. note:: This file requires 32-bit Java/Tomcat.
 
-#. Extract the file :file:`gdal-1.8.1.jar` from the archive into :file:`<TOMCAT_HOME>\\webapps\\geoserver\\WEB-INF\\lib\\`, where :file:`<TOMCAT_HOME>` is the location where Tomcat is installed (e.g.: :file:`C:\\Program Files\\Tomcat\\`).
+#. Extract the file :file:`gdal-A.B.C.jar` (where A.B.C is a version number) from the archive. Copy into :file:`<TOMCAT_HOME>\\webapps\\geoserver\\WEB-INF\\lib\\`, where :file:`<TOMCAT_HOME>` is the location where Tomcat is installed (such as :file:`C:\\Program Files\\Tomcat\\`).
 
 #. If Tomcat is installed as a service:
 
-   #. Extract the full contents of the archive to <TOMCAT_HOME>\bin\.
+   #. Extract the full contents of the archive to :file:`<TOMCAT_HOME>\\bin\\`.
 
    #. Restart Tomcat.
 
@@ -91,7 +91,7 @@ Mac OS X
 
 #. Navigate to:  http://data.opengeo.org/gdal_support/
 
-#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`gdal_osx_30.zip` for version 3.0).
+#. Download the file with a version number that most closely matches the version of OpenGeo Suite.
 
 #. Extract the contents of the archive into :file:`/usr/local/lib/`.  The path may not exist, so it may need to be created first.
 

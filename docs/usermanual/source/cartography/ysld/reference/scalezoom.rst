@@ -64,7 +64,7 @@ Scale examples
 Three rules, all applicable at different scales::
 
   rule:
-  - name: low_scale
+  - name: large_scale
     scale: (,100000)
     symbolizers:
     - line:
@@ -76,7 +76,7 @@ Three rules, all applicable at different scales::
     - line:
         stroke-width: 2
         stroke-color: '#0165CD'
-  - name: high_scale
+  - name: small_scale
     scale: (200000,)
     symbolizers:
     - line:
@@ -85,9 +85,9 @@ Three rules, all applicable at different scales::
 
 This example will display lines with:
 
-* A stroke width of 3 at scales less than 100,000 (``low_scale``)
+* A stroke width of 3 at scales less than 100,000 (``large_scale``)
 * A stroke width of 2 at scales between 100,000 and 200,000 (``medium_scale``)
-* A stroke width of 1 at scales greater than 200,000 (``high_scale``)
+* A stroke width of 1 at scales greater than 200,000 (``small_scale``)
 
 Given the rules above, the following arbitrary sample scales would map to the rules as follows:
 
@@ -98,15 +98,15 @@ Given the rules above, the following arbitrary sample scales would map to the ru
    * - Scale
      - Rule
    * - ``50000``
-     - ``low_scale``
+     - ``large_scale``
    * - ``100000``
      - ``medium_scale``
    * - ``150000``
      - ``medium_scale``
    * - ``200000``
-     - ``high_scale``
+     - ``small_scale``
    * - ``300000``
-     - ``high_scale``
+     - ``small_scale``
 
 Note the edge cases, since the ``min`` value is inclusive and the ``max`` value is exclusive.
 

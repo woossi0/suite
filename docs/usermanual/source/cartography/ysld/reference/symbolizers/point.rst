@@ -63,7 +63,7 @@ where:
      - N/A
    * - ``url``
      - Yes
-     - Location of the image. Can either be a URL or a file path location (relative to the path where the style file is saved)
+     - Location of the image. Can either be an actual URL or a file path (relative to where the style file is saved in the GeoServer data directory). Should be enclosed in single quotes.
      - N/A
    * - ``format``
      - Yes
@@ -91,7 +91,7 @@ where:
      - ``(0,0)``
    * - ``opacity``
      - No
-     - Specifies the level of transparency. Value of ``0`` means entirely transparent, while ``1`` means entirely opaque. Only affects ``external`` symbols. The opacity of ``mark`` symbols is controled by the ``fill-opacity`` and ``stroke-opacity`` of the mark.
+     - Specifies the level of transparency. Value of ``0`` means entirely transparent, while ``1`` means entirely opaque. Only affects graphics referenced by the ``external`` parameter; the opacity of ``mark`` symbols is controled by the ``fill-opacity`` and ``stroke-opacity`` of the mark.
      - ``1``
    * - ``rotation``
      - No
@@ -133,10 +133,10 @@ A point symbolizer draws a point at the center of any geometry. It is defined by
 
    Basic point
 
-External image
+Point as image
 ~~~~~~~~~~~~~~
 
-Sometimes it may be useful to use an external image to represent certain points. This can be accomplished using the external symbol property, which requires a ``url`` and a ``format``. The ``url`` should be enclosed in single quotes. The ``format`` property is a `MIME type image <http://en.wikipedia.org/wiki/Internet_media_type#Type_image>`_. This example shows a point symbolizer that draws an external image at each point::
+Sometimes it may be useful to use an image to represent certain points. This can be accomplished using the ``external`` symbol property, which requires a ``url`` and a ``format``. The ``url`` should be enclosed in single quotes. The ``format`` property is a `MIME type image <http://en.wikipedia.org/wiki/Internet_media_type#Type_image>`_. This example shows a point symbolizer that draws an image centered on each point::
 
   name: point
   feature-styles:
@@ -146,11 +146,11 @@ Sometimes it may be useful to use an external image to represent certain points.
         point
           symbols:
           - external:
-              url: 'image.png'
-                 format: image/png
+              url: 'geoserver.png'
+              format: image/png
           size: 16
 
 .. figure:: img/point_graphic.png
 
-   External image
+   Point as image
 

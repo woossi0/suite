@@ -21,9 +21,9 @@ angular.module('gsApp.maps.compose', [
     }])
 .controller('MapComposeCtrl',
     ['$scope', '$rootScope', '$state', '$stateParams', '$timeout', '$compile',
-    '$log', 'AppEvent', 'GeoServer', '$modal', '_',
+    '$log', 'AppEvent', 'GeoServer', '$modal', '_', '$window', '$document',
     function($scope, $rootScope, $state, $stateParams, $timeout, $compile,
-      $log, AppEvent, GeoServer, $modal, _) {
+      $log, AppEvent, GeoServer, $modal, _, $window, $document) {
 
       var wsName = $stateParams.workspace;
       $scope.workspace = wsName;
@@ -33,6 +33,96 @@ angular.module('gsApp.maps.compose', [
         hiddenLayers = hiddenLayers.split(',');
       }
       $rootScope.$broadcast(AppEvent.ToggleSidenav);
+
+      $rootScope.$on('$stateChangeStart', function(event){
+        if (!$rootScope.editor.isClean($rootScope.generation)){
+          event.preventDefault();
+          $scope.editorSave('workspace');
+        }
+      });
+
+      $rootScope.$on('$stateChangeSuccess', function(event){
+        //Sometimes the modal backdrop doesn't go away.
+        angular.element($document[0].querySelectorAll('.modal-backdrop'))
+          .css('display', 'none');
+      });
+
+      $scope.editorSave = function(nextWindowType) {
+        //Sometimes the modal backdrop doesn't appear.
+        angular.element($document[0].querySelectorAll('.modal-backdrop'))
+          .css('display', 'block');
+
+        var modalInstance = $modal.open({
+          templateUrl: '/maps/detail/editorsave-modal.tpl.html',
+          scope: $scope,
+          controller: ['$scope', '$window', '$modalInstance', '$state',
+            '$document',
+            function($scope, $window, $modalInstance, $state, $document) {
+              //Check to see if the editor contains any syntax errors, if it
+              //does then we won't show the save button on the modal dialog.
+              $scope.linterIsvalid = $rootScope.editor.getStateAfter().pair;
+
+              $scope.cancel = function() {
+                //Sometimes the modal backdrop doesn't go away.
+                angular.element($document[0].querySelectorAll(
+                  '.modal-backdrop')).css('display', 'none');
+                $modalInstance.dismiss('hide');
+              };
+
+              $scope.saveChanges = function() {
+                $scope.saveStyle();
+                $scope.goToNextWindow();
+              };
+
+              $scope.discardChanges = function() {
+                $rootScope.alerts = [{
+                  type: 'success',
+                  message: 'Editor changes have been discarded.',
+                  fadeout: true
+                }];
+                $scope.undoChanges();
+                $scope.goToNextWindow();
+              };
+
+              $scope.undoChanges = function() {
+                //Undo all of the changes made to the editor.
+                for (var i = $rootScope.generation; i >= 0; i--) {
+                  $rootScope.editor.undo();
+                }
+
+                //If you don't explicitly set the value of the editor to the
+                //current value, the content reverts back to the last typed
+                //entry rather than discarding all of the changes.
+                $rootScope.editor.setValue($rootScope.editor.getValue());
+              };
+
+              $scope.goToNextWindow = function() {
+                if($rootScope.popoverElement) {
+                  $rootScope.popoverElement.remove();
+                }
+                $rootScope.generation = $rootScope.editor.changeGeneration();
+
+                if (nextWindowType == 'layer') {
+                  $scope.selectLayer($scope.gotoLayer);
+                }
+                else
+                {
+                  $scope.viewWorkspace($rootScope.workspace);
+                }
+
+                //Sometimes the modal backdrop doesn't go away.
+                angular.element($document[0].querySelectorAll(
+                  '.modal-backdrop')).css('display', 'none');
+                $scope.gotoLayer = null;
+                $rootScope.worksapce = null;
+                $rootScope.linterError = false;
+                $modalInstance.dismiss('hide');
+              };
+            }],
+          backdrop: 'static',
+          size: 'med'
+        });
+      };
 
       GeoServer.map.get(wsName, name).then(function(result) {
         var map = result.data;
@@ -96,14 +186,20 @@ angular.module('gsApp.maps.compose', [
       $scope.selectLayer = function(layer) {
         var layerState = $scope.layerState;
         var activeLayer = $scope.activeLayer;
+        $scope.gotoLayer = layer;
 
-        if (activeLayer != null) {
-          if (!(activeLayer.name in layerState)) {
-            layerState[activeLayer.name] = {};
-          }
-          layerState[activeLayer.name].style = $scope.style;
+        if (!$rootScope.editor.isClean($rootScope.generation)) {
+          $scope.editorSave('layer');
         }
-        $scope.activeLayer = layer;
+        else {
+          if (activeLayer != null) {
+            if (!(activeLayer.name in layerState)) {
+              layerState[activeLayer.name] = {};
+            }
+            layerState[activeLayer.name].style = $scope.style;
+          }
+          $scope.activeLayer = layer;
+        }
       };
 
       $scope.zoomToLayer = function(layer) {
@@ -157,9 +253,10 @@ angular.module('gsApp.maps.compose', [
               $scope.markers = null;
               $rootScope.alerts = [{
                 type: 'success',
-                message: 'Styled saved.',
+                message: 'Style saved.',
                 fadeout: true
               }];
+              $rootScope.generation = $rootScope.editor.changeGeneration();
               $scope.refreshMap();
             }
             else {
@@ -214,11 +311,19 @@ angular.module('gsApp.maps.compose', [
           }
           $timeout(function() {
             $scope.editor.clearHistory();
-          }, 5000);
+            $rootScope.editor.clearHistory();
+
+            if($rootScope.popoverElement) {
+              $rootScope.popoverElement.remove();
+            }
+
+            $rootScope.editor.clearGutter('markers');
+          }, 250);
         }
       });
 
       $scope.viewWorkspace = function(workspace) {
+        $rootScope.workspace = workspace;
         $state.go('workspace', {workspace: workspace});
       };
 
@@ -293,5 +398,9 @@ angular.module('gsApp.maps.compose', [
       $rootScope.$on(AppEvent.MapBackground, function(scope, color) {
         $scope.mapBackground = {'background': color};
       });
+
+      $scope.onUpdatePanels = function() {
+        $rootScope.$broadcast(AppEvent.SidenavResized); // update map
+      };
 
     }]);

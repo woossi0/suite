@@ -46,20 +46,10 @@ Ubuntu::
 
 A restart of GeoServer is not required.
 
-Application Server
-~~~~~~~~~~~~~~~~~~
+Application Servers
+~~~~~~~~~~~~~~~~~~~
 
-The clustering extension must be downloaded and installed manually when running OpenGeo Suite for Application Servers.
-
-#. Stop the servlet container (or just the GeoServer webapp).
-
-#. Download this archive located at the following URL, replacing ``A.B.c`` with the version of OpenGeo Suite that you are running::
-
-     http://boundlessgeo.com/wp-content/opengeosuite/ext/OpenGeoSuite-A.B.c-extensions.zip
-
-#. Extract the archive. Copy the ``.jar`` files into ``<webapps>/geoserver/WEB-INF/lib``, where ``<webapps>`` is the location of the webapps served by the servlet container (such as Tomcat).
-
-#. Restart the servlet container (or just the GeoServer webapp).
+For installation when using OpenGeo Suite for Application Servers, please `contact us <http://boundlessgeo.com/about/contact-us/>`__.
 
 Verification
 ------------

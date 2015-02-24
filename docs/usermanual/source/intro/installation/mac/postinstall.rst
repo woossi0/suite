@@ -1,14 +1,18 @@
-.. _intro.installation.mac.misc:
+.. _intro.installation.mac.postinstall:
 
-Working with OpenGeo Suite for Mac OS X
-=======================================
+After installation: Working with OpenGeo Suite for Mac OS X
+===========================================================
 
 This document contains information about various tasks specific to OpenGeo Suite for Mac OS X. 
 
 Starting and stopping OpenGeo services
 --------------------------------------
 
-To stop the Jetty (GeoServer) or PostgreSQL (PostGIS) services, just quit the application.
+To stop the Jetty (GeoServer) or PostgreSQL (PostGIS) services, just quit the application from the appropriate icon in the OS X menu bar.
+
+   .. figure:: img/ext_quit.png
+
+      Stopping GeoServer
 
 Service port configuration
 --------------------------
@@ -44,7 +48,7 @@ To change the PostgreSQL port:
 GeoServer Data Directory
 ------------------------
 
-The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at :file:`~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer`. 
+The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at :file:`~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer`. You can also find your data directory by running GeoServer and selecting :guilabel:`Open GeoServer Data Directory` from the GeoServer icon in the OS X menu bar.
 
 To point GeoServer to an alternate location:
 
@@ -59,7 +63,7 @@ To point GeoServer to an alternate location:
 
 #. Close and relaunch ``GeoServer.app``.
 
-.. _intro.installation.mac.misc.pgconfig:
+.. _intro.installation.mac.postinstall.pgconfig:
 
 PostgreSQL Configuration
 ------------------------

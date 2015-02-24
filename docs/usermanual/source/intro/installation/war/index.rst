@@ -21,13 +21,33 @@ An additional :ref:`extensions <intro.installation.war.extensions>` download is 
 
 .. note:: QGIS is also not included. Boundless has installers for :ref:`Windows <intro.installation.windows.qgis>` and :ref:`OS X <intro.installation.mac.qgis>`. To use QGIS with Linux, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
+Please select the option that best matches your system:
+
+:ref:`intro.installation.war.install`
+  For new installations.
+
+:ref:`intro.installation.war.strategies`
+  Methods to ensure optimal deployments.
+
+:ref:`intro.installation.war.update`
+  For all updates. To update from either OpenGeo Suite 3.x or 4.x, start here.
+
+:ref:`intro.installation.war.postinstall`
+  Useful information about the installation.
+
+:ref:`intro.installation.war.extensions`
+  Details about the optional extensions bundle.
+
+:ref:`intro.installation.war.uninstall`
+  For removing OpenGeo Suite.
+
 .. toctree::
-   :maxdepth: 1
+   :hidden:
 
    install
    strategies
-   extensions
    update
+   postinstall
+   extensions
    uninstall
-   misc
 

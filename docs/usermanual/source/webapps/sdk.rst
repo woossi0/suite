@@ -123,12 +123,16 @@ Windows
 
 To deploy to OpenGeo Suite for Windows, copy the WAR file to :file:`<OPENGEO_SUITE>\\jetty\\webapps`. For example, if OpenGeo Suite is installed at :file:`C:\\Program Files\\Boundless\\OpenGeo\\`, copy the WAR file to :file:`C:\\Program Files\\Boundless\\OpenGeo\\jetty\\webapps\\`
 
+The WAR file should automatically extract to its own directory, but if it doesn't, you can manually extract the file using a standard "unzip" program such as `7-zip <http://www.7-zip.org/>`_.
+
 OS X
 ~~~~
 
 To deploy to OpenGeo Suite for OS X, copy the WAR file to::
 
   ~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer/jetty/webapps
+
+The WAR file should automatically extract to its own directory, but if it doesn't, you can manually extract the file using a standard "unzip" program such as `iZip <http://www.izip.com/>`_.
 
 Linux
 ~~~~~
@@ -137,9 +141,9 @@ To deploy to OpenGeo Suite for Linux (either Ubuntu or any Red Hat-based Linux),
 
 #. Extract :file:`myapp.war` to :file:`/usr/share/opengeo/myapp`.
 
-#. Create a file called :file:`myapp.xml` in :file:`/etc/tomcat6/Catalina/localhost/` with the following content::
+#. Create a file called :file:`myapp.xml` in :file:`/etc/tomcat7/Catalina/localhost/` with the following content::
 
-     <Context displayName="myapp" docBase="/usr/share/opengeo/myapp" path="/myapp">
+     <Context displayName="myapp" docBase="/usr/share/opengeo/myapp" path="/myapp"/>
 
 #. Save this file and restart Tomcat.
 

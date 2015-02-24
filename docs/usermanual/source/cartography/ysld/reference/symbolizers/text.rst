@@ -134,8 +134,8 @@ where:
      - ``0``
    * - ``anchor``
      - No
-     - Specify the center of the symbol relative to the feature location. Value is an ``(x,y)`` tuple with decimal values from 0-1, with ``(0,0)`` meaning that the symbol is anchored to the top left, and ``(1,1)`` meaning anchored to bottom right. 
-     - ``(0.5,0.5)``
+     - Specify the center of the symbol relative to the feature location (centroid for lines and polygons). Value is an ``(x,y)`` tuple with decimal values from 0-1, with ``(0,0)`` meaning that the symbol is anchored to the bottom left of the label, and ``(1,1)`` meaning anchored to the top right of the label.
+     - ``(0,0)``
    * - ``displacement``
      - No
      - Specifies a distance (in pixels) to which to move the label relative to the feature. Value is an ``(x,y)`` tuple with values expressed in pixels, so (10,5) will displace the label 10 pixels to the right and 5 pixels up. Only valid for when ``type`` is set to ``point``.

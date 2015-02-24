@@ -18,6 +18,8 @@
             <exclude name="dataadmin/mrsid/**"/>
             <exclude name="dataadmin/oracle/**"/>
             <exclude name="webmaps/composer/**"/>
+            <exclude name="sysadmin/clustering/**"/>
+            <exclude name="sysadmin/mapmeter/**"/>
           </fileset>
        </copy>
        <copy todir="${basedir}/basic">
@@ -41,7 +43,7 @@
      </target>
      
      <target name="basic" depends="stage-basic"
-       description="Build basic docs">
+       description="quick build basic docs for local testing">
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/basic"/>
          <param name="outdir" value="${basedir}/target/html/basic"/>
@@ -51,7 +53,7 @@
      </target>
 
      <target name="ee" depends="stage-enterprise"
-       description="Build enterprise docs">
+       description="quick build of enterprise docs for local testing">
        <antcall target="sphinx">
          <param name="dir" value="${basedir}/ee"/>
          <param name="outdir" value="${basedir}/target/html/ee"/>
@@ -60,8 +62,20 @@
        </antcall>
      </target>
      
-     <target name="build-html" depends="basic,ee"
-       description="Build html docs">
+     <target name="build-html" depends="stage-enterprise,stage-basic"
+             description="Build html docs">
+       <antcall target="sphinx">
+         <param name="dir" value="${basedir}/basic"/>
+         <param name="outdir" value="${basedir}/target/html/basic"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/basic"/>
+         <param name="flags" value="-t basic"/>
+       </antcall>
+       <antcall target="sphinx">
+         <param name="dir" value="${basedir}/ee"/>
+         <param name="outdir" value="${basedir}/target/html/ee"/>
+         <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
+         <param name="flags" value="-t enterprise -A build_profile=ee"/>
+       </antcall>
      </target>
 
      <target name="build-text" depends="stage-basic,stage-enterprise"

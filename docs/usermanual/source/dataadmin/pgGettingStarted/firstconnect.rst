@@ -97,3 +97,52 @@ To allow this:
       Testing the connection in pgAdmin
 
 If you encounter errors, make sure that the ``postgres`` password is set correctly, and that the correct line was edited in :file:`pg_hba.conf`, as many look alike.
+
+Allowing remote connections
+---------------------------
+
+Often the system running ``psql`` will be different from the system running the database. This is especially true if you want to run **pgAdmin** from your system.
+
+In order to allow connections from remote systems, some slightly different configuration will be necessary.
+
+The details are similar to that of allowing local connections, with some slight differences.
+
+#. As a super user, open :file:`/etc/postgresql/9.3/main/pg_hba.conf` (Ubuntu) or :file:`/var/lib/pgsql/9.3/data/pg_hba.conf` (Red Hat) in a text editor.
+
+#. Scroll down to the line that describes local socket connections. It may look like this:
+
+   .. code-block:: console
+
+      local   all             all                                      peer
+
+#. Change to:
+
+   .. code-block:: console
+
+      host    all             all             0.0.0.0/32               trust
+
+   .. warning:: This is a potential security risk, and you may wish to customize this further. For more information on the various options, please see the `PostgreSQL documentation on pg_hba.conf <http://www.postgresql.org/docs/devel/static/auth-pg-hba-conf.html>`_. 
+
+#. Save and close the file.
+
+#. In the same directory, open :file:`postgresql.conf`.
+
+#. Under the section on :guilabel:`Connection Settings`, add or replace the line that starts with ``listen_addresses`` to respond to all requests:
+
+   .. code-block:: console
+
+      listen_addresses = '*'
+
+   .. note:: Make sure the line is uncommented.
+
+#. Save and close the file.
+
+#. Restart PostgreSQL:
+
+   .. code-block:: console
+
+      sudo service postgresql restart  
+
+#. To test your connection using **pgAdmin**, connect to the database at the IP address or host name of the system that hosts the database. Enter the user name ``postgres`` and the password supplied.
+
+   .. note:: Make sure that port 5432 is open on this system.

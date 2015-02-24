@@ -14,6 +14,8 @@
 import sys, os, string
 sys.path.append('../../../../build'); from build_properties import *
 
+from datetime import date
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -41,8 +43,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'OpenGeo Suite Mac OS X Installation'
-copyright = u'2014, Boundless'
+project = u'Installing OpenGeo Suite for Mac OS X'
+copyright = str(date.today().year) + u' Boundless'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

@@ -46,7 +46,7 @@ Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
 Application Servers
 -------------------
 
-For installation when using OpenGeo Suite for Application Servers, please `contact us <http://boundlessgeo.com/about/contact-us/>`_.
+For installation when using OpenGeo Suite for Application Servers, please `contact us <http://boundlessgeo.com/about/contact-us/>`__.
 
 
 .. _dataadmin.pointcloud.install.activate:
