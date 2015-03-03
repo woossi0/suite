@@ -22,6 +22,11 @@ angular.module('gsApp', [
     function($scope, $state, AppEvent, AppSession, $window) {
       $scope.session = AppSession;
 
+      // handle fullscreen mode
+      $scope.$on(AppEvent.ToggleFullscreen, function(e) {
+        $scope.fullscreen = !$scope.fullscreen;
+      });
+
       // handle an un-authorized event and forward to the login page
       $scope.$on(AppEvent.Unauthorized, function(e) {
         //TODO: figure out if session expired, etc...
