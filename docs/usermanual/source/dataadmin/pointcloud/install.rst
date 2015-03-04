@@ -34,7 +34,7 @@ Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
 Red Hat-based Linux
 -------------------
 
-A package for Red Hat-based Linux distributions such as RHEL, CentOS, and Fedora is available, called ``pointcloud-postgresql93``. It can be installed via standard package management, assuming the OpenGeo Suite repository has been added. (See the :ref:`Red Hat installation page <intro.installation.redhat.install>` for more information.)
+A package for Red Hat-based Linux distributions such as RHEL and CentOS is available, called ``pointcloud-postgresql93``. It can be installed via standard package management, assuming the OpenGeo Suite repository has been added. (See the :ref:`Red Hat installation page <intro.installation.redhat.install>` for more information.)
   
 .. code-block:: console
 

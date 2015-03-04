@@ -78,7 +78,7 @@ The following packages contain the server components of OpenGeo Suite. These pac
      -
    * - ``opengeo-tomcat``
      - OpenGeo Suite webapps for Tomcat
-     - ``tomcat`` (Fedora) | ``tomcat6`` (CentOS/RHEL 6) | ``tomcat5`` (CentOS/RHEL 5)
+     - ``tomcat6``
 
 Client/library packages
 -----------------------

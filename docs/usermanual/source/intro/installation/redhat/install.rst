@@ -48,7 +48,7 @@ The commands in this section require root privileges.
         enabled=1
         gpgcheck=0
 
-      Make sure to replace ``<OS>`` with one of ``fedora``, ``centos``, or ``rhel`` based on your distribution.
+      Make sure to replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
 
    .. only:: enterprise
 
@@ -60,7 +60,7 @@ The commands in this section require root privileges.
         enabled=1
         gpgcheck=0
 
-      Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase. Also, replace ``<OS>`` with one of ``fedora``, ``centos``, or ``rhel`` based on your distribution.
+      Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase. Also, replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
 
       .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__.
 

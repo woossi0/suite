@@ -34,7 +34,7 @@ The clustering extension is available in a collection of two separate packages::
 
 To install the clustering extension, use the package manager.
 
-Red Hat / CentOS / Fedora::
+Red Hat / CentOS::
 
   yum install geoserver-jdbcconfig
   yum install geoserver-cluster
