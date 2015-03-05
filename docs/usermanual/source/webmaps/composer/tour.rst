@@ -41,9 +41,11 @@ Toolbar
 
 When logged in, the top of the application will always contain three links:
 
-* **Home**, by clicking the :guilabel:`Composer` logo
+* **Home**, accessible by clicking the :guilabel:`Composer` logo
 * **Help**, to bring up this documentation
 * **User settings**, with links to the GeoServer Admin interface and to logout
+
+.. todo:: Add figure
 
 Navigation panel
 ----------------

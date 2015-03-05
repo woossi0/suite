@@ -20,17 +20,17 @@ The box at the top of the page provides options to sort the list of project work
 
 For each workspace, links are available for the following functions:
 
-* :guilabel:`Open`, for viewing the maps and layers in the project workspace
-* :guilabel:`Settings`, for changing the project workspace name and settings
-* :guilabel:`Info`, for showing the number of maps, layers, and stores associated with the project workspace
+* Clicking the name of the project workspace will :guilabel:`Open` it, allowing the user to view the maps and layers in the project workspace.
+* :guilabel:`Settings`, for changing the project workspace name and settings.
+* :guilabel:`Info`, for showing the number of maps, layers, and stores associated with the project workspace.
 
 Project Workspace Settings
 --------------------------
 
 On a project workspace settings page, the following options are available:
 
-* :guilabel:`Name`, for changing the project workspace name
-* :guilabel:`Namespace URI`, for changing the namespace URI. This is a string that uniquely identifies the namespace to GeoServer. It must be in the form of a URL, but need not resolve to an actual web location
+* :guilabel:`Name`, for changing the project workspace name.
+* :guilabel:`Namespace URI`, for changing the namespace URI. This is a string that uniquely identifies the namespace to GeoServer. It must be in the form of a URL, but need not resolve to an actual web location.
 * :guilabel:`Default`, for specifying if this project workspace is the default. If a project is not specified in a GeoServer request, the default project workspace will be assumed.
 * :guilabel:`Delete Workspace`, which will remove the project workspace, and **all of the contents of that project workspace**.
 
@@ -149,7 +149,7 @@ The :guilabel:`Add Data` wizard allows new data sources to be added (uploaded) t
 Selecting a source
 ~~~~~~~~~~~~~~~~~~
 
-There are two options for the type of data to be added to GeoServer: **Files** and **Databases**.
+There are two options for the type of data that can be added to GeoServer: **Spatial files** and **Databases**.
 
 **Spatial files** such as shapefiles or GeoTIFFs can be added to GeoServer. For multi-file formats such as shapefiles, all files must be inside a single ``.zip`` archive. You can click :guilabel:`Browse` to select the file, or drag and drop the file onto the dialog.
 
@@ -169,21 +169,21 @@ Clicking :guilabel:`Details` will show the resources contained in the upload (an
 
    Options for a newly uploaded layer 
 
-**Databases** may also be connected to GeoServer.
+**Databases** may also be connected to GeoServer. Specifically, the following databases are supported:
 
-.. note:: This feature is currently in development. Please use the :ref:`dataadmin.importer` for loading database tables into GeoServer.
+* PostGIS
+* GeoPackage
+* H2
 
-.. figure:: img/importdatadb.png
+.. figure:: img/importdb.png
 
-   Import data from databases dialog
+   Importing a database
 
-.. Once selected, connection-specific details can be input.
+Click the desired database to bring up a form. You will need to supply connection parameters for the specific database.
 
-.. .. figure:: img/importdatapg.png
+.. todo:: Add screenshots for each database.
 
-..    Import data from PostGIS
-
-.. Click :guilabel:`Connect` to test the connection to the database. If successful, you will have the option of selecting resources to be added to GeoServer and published as layers. These layers can be added to a new or existing map, just like above.
+Once the form is filled out, click :guilabel:`Connect` to test the connection to the database. If successful, you will have the option of selecting resources to be added to GeoServer and published as layers. These layers can be added to a new or existing map, just like above.
 
 .. note:: If you encounter difficulties during import, check that the projection is correct, as this is typically the cause of errors.
 
@@ -212,11 +212,5 @@ Clicking :guilabel:`Add Layers` will allow the layers to be selected for inclusi
    Adding layers to new map
 
 Once layers have been selected, the map can be created via the :guilabel:`Create Map with Selected` button. The map will be created and listed in the Maps tab of the project workspace.
-
-
-
-
-   
-
 
 .. note:: Maps must be contained inside a project workspace, and there must exist layers published in that project workspace before a map can be created.
