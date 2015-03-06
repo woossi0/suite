@@ -36,12 +36,10 @@ angular.module('gsApp.workspaces.layers.import', [])
           '</a>' +
         '</p>';
 
-
       $scope.layer = {
         'title': resource.title,
         'workspace': workspace,
         'type': store.kind.toLowerCase(),
-        'proj': findProj(resource.schema.attributes),
         'resource': {
           'store': store.name,
           'url': store.url,
@@ -50,9 +48,26 @@ angular.module('gsApp.workspaces.layers.import', [])
         }
       };
 
+      // check that we know the resource schema proj
+      GeoServer.datastores.getResource($scope.workspace, store.name,
+        resource.name).then(
+        function(result) {
+          if (result.success) {
+            resource.schema = result.data.schema;
+            $scope.layer.proj = findProj(resource.schema.attributes);
+          } else {
+            $rootScope.alerts = [{
+              type: 'danger',
+              message: 'Could not find projection for ' + resource.name,
+              fadeout: true
+            }];
+          }
+        });
+
       $scope.importAsLayer = function() {
         var layerInfo = $scope.layer;
         $scope.layerAdded = false;
+
         GeoServer.layer.create($scope.workspace, layerInfo).then(
           function(result) {
             if (result.success) {
