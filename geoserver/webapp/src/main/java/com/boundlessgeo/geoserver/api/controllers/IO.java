@@ -776,7 +776,31 @@ public class IO {
     @SuppressWarnings("unchecked")
     private static JSONArr resources(StoreInfo store, JSONArr list, GeoServer geoServer) throws IOException {
         for (String resource : listResources(store)) {
-            resource( list.addObject(), store, resource, geoServer);
+            //resource( list.addObject(), store, resource, geoServer);
+            JSONObj obj = list.addObject().put("name", resource);
+            
+            JSONArr layers = obj.putArray("layers");
+            Catalog cat = geoServer.getCatalog();
+            if (store instanceof CoverageStoreInfo) {
+                // coverage store does not respect native name so we search by id
+                for (CoverageInfo info : cat.getCoveragesByCoverageStore((CoverageStoreInfo) store)) {
+                    layers( info, layers, geoServer );
+                }
+            }
+            else {
+                Filter filter = and(equal("namespace.prefix", store.getWorkspace().getName()),equal("nativeName", resource));
+                try (
+                    CloseableIterator<ResourceInfo> published = cat.list(ResourceInfo.class, filter);
+                ) {
+                    while (published.hasNext()) {
+                        ResourceInfo info = published.next();
+                        if (!info.getStore().getId().equals(store.getId())) {
+                            continue; // native name is not enough, double check store id
+                        }
+                        layers( info, layers, geoServer );
+                    }
+                }
+            }
         }
         return list;
     }
