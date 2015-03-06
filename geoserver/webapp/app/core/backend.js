@@ -1,4 +1,4 @@
-/* 
+/*
  * (c) 2014 Boundless, http://boundlessgeo.com
  */
 /*global $:false */
@@ -151,7 +151,6 @@ angular.module('gsApp.core.backend',[])
               url: apiRoot+'/stores/'+workspace
             });
           },
-
           getDetails: function(workspace, store) {
             return http({
               method: 'GET',
@@ -169,6 +168,12 @@ angular.module('gsApp.core.backend',[])
             return http({
               method: 'DELETE',
               url: apiRoot+'/stores/'+workspace+'/'+store + '?recurse=true'
+            });
+          },
+          getResource: function(workspace, store, resource) {
+            return http({
+              method: 'GET',
+              url: apiRoot+'/stores/'+workspace+'/'+store+'/'+resource
             });
           }
         },
