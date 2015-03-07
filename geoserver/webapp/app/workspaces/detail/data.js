@@ -221,20 +221,45 @@ angular.module('gsApp.workspaces.data', [
         $state.go('workspace.layers', { 'layer': layer });
       };
 
-      $scope.showAttrs = function(layerOrResource, attributes) {
+      $scope.showAttrs = function(layerOrResource) {
+        var attributes;
+        if (layerOrResource.layers.length > 0) {
+          attributes = layerOrResource.layers[0].schema.attributes;
+          $scope.showAttrModal(layerOrResource, attributes);
+        } else {
+          // get resource attributes if not loaded yet
+          GeoServer.datastores.getResource($scope.workspace,
+            $scope.selectedStore.name, layerOrResource.name).then(
+            function(result) {
+              if (result.success && result.data.schema) {
+                attributes = result.data.schema.attributes;
+                $scope.showAttrModal(layerOrResource, attributes);
+              } else {
+                $rootScope.alerts = [{
+                  type: 'danger',
+                  message: 'Could not find attributes for ' +
+                    layerOrResource.name,
+                  fadeout: true
+                }];
+              }
+            });
+        }
+      };
+
+      $scope.showAttrModal = function(layerOrResource, attributes) {
         var modalInstance = $modal.open({
-          templateUrl: '/workspaces/detail/modals/data.attributes.tpl.html',
-          controller: 'WorkspaceAttributesCtrl',
-          size: 'md',
-          resolve: {
-            layerOrResource: function() {
-              return layerOrResource;
-            },
-            attributes: function() {
-              return attributes;
+            templateUrl: '/workspaces/detail/modals/data.attributes.tpl.html',
+            controller: 'WorkspaceAttributesCtrl',
+            size: 'md',
+            resolve: {
+              layerOrResource: function() {
+                return layerOrResource.name;
+              },
+              attributes: function() {
+                return attributes;
+              }
             }
-          }
-        });
+          });
       };
 
       $scope.enableDisableStore = function(store) {
