@@ -12,6 +12,11 @@
 
   <target name="build-client" description="builds client">
     <ant antfile="composer/build.xml" useNativeBasedir="true" />
+    <mkdir dir="${composer.dir}"/>
+    <copy todir="${composer.dir}">
+      <fileset dir="composer/build" includes="**/*"/>
+      <fileset dir="composer/app" includes="LICENSE.txt"/>
+    </copy>
   </target>
 
   <target name="build-server" description="builds and installs server">
