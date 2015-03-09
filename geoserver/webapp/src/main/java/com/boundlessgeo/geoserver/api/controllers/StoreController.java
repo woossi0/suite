@@ -60,7 +60,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         super(geoServer);
     }
 
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.GET)
     public @ResponseBody
     JSONArr list(@PathVariable String wsName, HttpServletRequest req){
         JSONArr arr = new JSONArr();
@@ -71,7 +71,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         return arr;
     }
     
-    @RequestMapping(value = "/{wsName}/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.GET)
     public @ResponseBody
     JSONObj get(@PathVariable String wsName, @PathVariable String name, HttpServletRequest req) {
         StoreInfo store = findStore(wsName, name, geoServer.getCatalog());
@@ -85,7 +85,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         }
     }
 
-    @RequestMapping(value = "/{wsName}/{stName}/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{wsName}/{stName}/{name:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj resource(@PathVariable String wsName, @PathVariable String stName, @PathVariable String name, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();
         StoreInfo store = findStore(wsName, stName, cat );
@@ -96,7 +96,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         return obj;
     }
     
-    @RequestMapping(value = "/{wsName}/{name}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.DELETE)
     public @ResponseBody
     JSONObj delete(@PathVariable String wsName,
                    @PathVariable String name,
@@ -139,7 +139,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    @RequestMapping(value = "/{wsName}/{name}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.POST)
     public @ResponseBody
     JSONObj create(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();
@@ -219,7 +219,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         
         return IO.storeDetails(new JSONObj(), store, req, geoServer);
     }
-    @RequestMapping(value="/{wsName}/{name}", method = RequestMethod.PATCH)
+    @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.PATCH)
     public @ResponseBody JSONObj patch(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();
         StoreInfo store = cat.getStoreByName(wsName, name, StoreInfo.class );
@@ -243,7 +243,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         }
     }
     
-    @RequestMapping(value="/{wsName}/{name}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj put(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();
         StoreInfo store = cat.getStoreByName(wsName, name, StoreInfo.class );
