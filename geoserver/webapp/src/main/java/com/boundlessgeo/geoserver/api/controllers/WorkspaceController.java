@@ -138,7 +138,7 @@ public class WorkspaceController extends ApiController {
         return workspace(new JSONObj(), ws, ns, isDefault);
     }
 
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj get(@PathVariable String wsName) {
         Catalog cat = geoServer.getCatalog();
 
@@ -178,12 +178,12 @@ public class WorkspaceController extends ApiController {
         return cat.count(StoreInfo.class, Predicates.equal("workspace.name", ws.getName()));
     }
 
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.PATCH)
     public @ResponseBody JSONObj patch(@PathVariable String wsName, @RequestBody JSONObj obj) {
         return put(wsName, obj);
     }
 
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.PUT)
     public @ResponseBody JSONObj put(@PathVariable String wsName, @RequestBody JSONObj obj) {
         Catalog cat = geoServer.getCatalog();
 
@@ -217,7 +217,7 @@ public class WorkspaceController extends ApiController {
         return IO.workspace(new JSONObj(), ws, ns, isDefault == Boolean.TRUE);
     }
 
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.DELETE)
     public void delete(@PathVariable String wsName, HttpServletResponse response) {
         Catalog cat = geoServer.getCatalog();
 

@@ -82,7 +82,7 @@ public class IconController extends ApiController {
         super(geoServer);
     }
     
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONArr list(@PathVariable String wsName, HttpServletRequest request) throws IOException {
 
         WorkspaceInfo ws = findWorkspace(wsName, catalog());
@@ -110,7 +110,7 @@ public class IconController extends ApiController {
     }
     
 
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.POST,consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST,consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
     public @ResponseStatus(value=HttpStatus.CREATED)
         @ResponseBody JSONArr create(@PathVariable String wsName,  HttpServletRequest request )
         throws IOException, FileUploadException {

@@ -75,7 +75,7 @@ public class ImportController extends ApiController {
         this.hasher = new Hasher(7);
     }
 
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public @ResponseBody
     JSONObj importFile(@PathVariable String wsName, HttpServletRequest request)
         throws Exception {
@@ -111,7 +111,7 @@ public class ImportController extends ApiController {
         return doImport(imp, ws);
     }
 
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj importDb(@PathVariable String wsName, @RequestBody JSONObj obj, 
             HttpServletRequest request) throws Exception {
         
@@ -297,7 +297,7 @@ public class ImportController extends ApiController {
         return styleName;
     }
 
-    @RequestMapping(value = "/{wsName}/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{wsName}/{id:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj get(@PathVariable String wsName, @PathVariable Long id) throws Exception {
         ImportContext imp = findImport(id);
 
@@ -337,7 +337,7 @@ public class ImportController extends ApiController {
         return result;
     }
 
-    @RequestMapping(value = "/{wsName}/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{wsName}/{id:.+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj update(@PathVariable String wsName, @PathVariable Long id, @RequestBody JSONObj obj)
         throws Exception {
 
