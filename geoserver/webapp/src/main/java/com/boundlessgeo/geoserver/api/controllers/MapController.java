@@ -74,7 +74,7 @@ public class MapController extends ApiController {
         super(geoServer, recentCache);
     }
 
-    @RequestMapping(value = "/{wsName}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
     JSONObj create(@PathVariable String wsName, @RequestBody JSONObj obj, HttpServletRequest req) {
@@ -178,7 +178,7 @@ public class MapController extends ApiController {
         }
     }
 
-    @RequestMapping(value = "/{wsName}/{name}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.DELETE)
     public @ResponseBody
     JSONArr delete(@PathVariable String wsName, @PathVariable String name) {
         Catalog cat = catalog();
@@ -192,7 +192,7 @@ public class MapController extends ApiController {
         return list(wsName, null, null, null, null).array("maps");
     }
     
-    @RequestMapping(value="/{wsName}/{name}", method = RequestMethod.GET)
+    @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj get(@PathVariable String wsName,
                                      @PathVariable String name, HttpServletRequest req) {
         Catalog cat = catalog();
@@ -200,14 +200,14 @@ public class MapController extends ApiController {
         return mapDetails(new JSONObj(), map, wsName, req);
     }
 
-    @RequestMapping(value = "/{wsName}/{name}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.PATCH)
     public @ResponseBody JSONObj patch(@PathVariable String wsName,
                                        @PathVariable String name,
                                        @RequestBody JSONObj obj,HttpServletRequest req) {
         return put(wsName, name, obj,req);
     }
 
-    @RequestMapping(value = "/{wsName}/{name}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.PUT)
     public @ResponseBody JSONObj put(@PathVariable String wsName,
                                      @PathVariable String name, 
                                      @RequestBody JSONObj obj,
@@ -274,7 +274,7 @@ public class MapController extends ApiController {
         return mapDetails(new JSONObj(), map, wsName, req);
     }
     
-    @RequestMapping(value="/{wsName}", method = RequestMethod.GET)
+    @RequestMapping(value="/{wsName:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj list(@PathVariable String wsName,
       @RequestParam(value="page", required=false) Integer page,
       @RequestParam(value="count", required=false, defaultValue=""+DEFAULT_PAGESIZE) Integer count,
@@ -440,7 +440,7 @@ public class MapController extends ApiController {
         return mapLayerList(m,req);
     }
     
-    @RequestMapping(value="/{wsName}/{mpName}/layers/{name}", method = RequestMethod.GET)
+    @RequestMapping(value="/{wsName}/{mpName}/layers/{name:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj mapLayerGet(@PathVariable String wsName,
                                              @PathVariable String mpName,
                                              @PathVariable String name, HttpServletRequest req) {
@@ -469,7 +469,7 @@ public class MapController extends ApiController {
         return arr;
     }
 
-    @RequestMapping(value="/{wsName}/{mapName}/layers/{name}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/{wsName}/{mapName}/layers/{name:.+}", method = RequestMethod.DELETE)
     public @ResponseBody JSONObj mapLayerDelete(@PathVariable String wsName,
                                                 @PathVariable String mapName,
                                                 @PathVariable String name, HttpServletRequest req) {

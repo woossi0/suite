@@ -11,15 +11,19 @@
   </target>
 
   <target name="build-client" description="builds client">
-    <exec executable="npm" failonerror="true">
-       <arg line="install"/>
-    </exec>
-    <mkdir dir="${composer.dir}"/>
-    <copy todir="${composer.dir}">
-      <fileset dir="build" includes="**/*"/>
-      <fileset dir="app" includes="LICENSE.txt"/>
-    </copy>
+    <if>
+      <available file="composer/build.xml"/>
+      <then>
+        <ant antfile="composer/build.xml" useNativeBasedir="true" />
+        <mkdir dir="${composer.dir}"/>
+        <copy todir="${composer.dir}">
+          <fileset dir="composer/build" includes="**/*"/>
+          <fileset dir="composer/app" includes="LICENSE.txt"/>
+        </copy>
+      </then>
+    </if>
   </target>
+
   <target name="build-server" description="builds and installs server">
     <antcall target="mvn">
         <param name="goals" value="install"/>
