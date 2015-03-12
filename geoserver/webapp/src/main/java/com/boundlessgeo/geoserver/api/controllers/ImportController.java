@@ -297,7 +297,7 @@ public class ImportController extends ApiController {
         return styleName;
     }
 
-    @RequestMapping(value = "/{wsName}/{id:.+}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{wsName}/{id:\\d+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj get(@PathVariable String wsName, @PathVariable Long id) throws Exception {
         ImportContext imp = findImport(id);
 
@@ -337,7 +337,7 @@ public class ImportController extends ApiController {
         return result;
     }
 
-    @RequestMapping(value = "/{wsName}/{id:.+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{wsName}/{id:\\d+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj update(@PathVariable String wsName, @PathVariable Long id, @RequestBody JSONObj obj)
         throws Exception {
 
