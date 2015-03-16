@@ -18,9 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
 import com.boundlessgeo.geoserver.util.RecentObjectCache.Ref;
+
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.LayerGroupInfo;
 import org.geoserver.catalog.LayerGroupInfo.Mode;
+import org.geoserver.catalog.CatalogBuilder;
 import org.geoserver.catalog.LayerInfo;
 import org.geoserver.catalog.Predicates;
 import org.geoserver.catalog.PublishedInfo;
@@ -203,7 +205,7 @@ public class MapController extends ApiController {
     @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.PATCH)
     public @ResponseBody JSONObj patch(@PathVariable String wsName,
                                        @PathVariable String name,
-                                       @RequestBody JSONObj obj,HttpServletRequest req) {
+                                       @RequestBody JSONObj obj,HttpServletRequest req) throws Exception {
         return put(wsName, name, obj,req);
     }
 
@@ -211,7 +213,7 @@ public class MapController extends ApiController {
     public @ResponseBody JSONObj put(@PathVariable String wsName,
                                      @PathVariable String name, 
                                      @RequestBody JSONObj obj,
-                                     HttpServletRequest req) {
+                                     HttpServletRequest req) throws Exception {
         Catalog cat = geoServer.getCatalog();
 
         LayerGroupInfo map = findMap(wsName, name, cat);
@@ -226,19 +228,24 @@ public class MapController extends ApiController {
         if(obj.has("description")){
             map.setAbstract(obj.str("description"));
         }
-        if(obj.has("proj")&&obj.has("bbox")){
+        
+        if(obj.has("proj")) {
             CoordinateReferenceSystem crs = DefaultGeographicCRS.WGS84;
-            if( obj.has("proj")){
-                String srs = obj.str("proj");
-                try {
-                    crs = CRS.decode(srs);
-                } catch (FactoryException e) {
-                    LOG.log(Level.FINE, wsName+"."+name+" unrecognized proj:"+srs,e);
-                }
+            
+            String srs = obj.str("proj");
+            try {
+                crs = CRS.decode(srs);
+            } catch (FactoryException e) {
+                LOG.log(Level.FINE, wsName+"."+name+" unrecognized proj:"+srs,e);
             }
-            Envelope envelope = IO.bounds(obj.object("bbox"));
-            ReferencedEnvelope bounds = new ReferencedEnvelope( envelope, crs );
-            map.setBounds(bounds);
+            if (obj.has("bbox")){
+                Envelope envelope = IO.bounds(obj.object("bbox"));
+                ReferencedEnvelope bounds = new ReferencedEnvelope( envelope, crs );
+                
+                map.setBounds(bounds);
+            } else {
+                new CatalogBuilder( cat ).calculateLayerGroupBounds( map, crs );
+            }
         }
         if(obj.has("layers")){
             List<LayerInfo> layers = new ArrayList<LayerInfo>();
