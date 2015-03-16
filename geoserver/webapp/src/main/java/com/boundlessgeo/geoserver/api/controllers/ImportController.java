@@ -429,6 +429,11 @@ public class ImportController extends ApiController {
             if (p.isRequired() && params.get(p.getName()) != null) {
                 requiredParams.put(p.getName(), params.get(p.getName()));
             }
+            
+        }
+        //Special case to support connections to different databases on the same database server
+        if (params.get("database") != null) {
+            requiredParams.put("database", params.get("database"));
         }
         
         if (!store.getConnectionParameters().containsKey("namespace")) {
