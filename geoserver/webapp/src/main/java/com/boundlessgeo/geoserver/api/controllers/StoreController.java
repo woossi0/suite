@@ -4,6 +4,7 @@
 package com.boundlessgeo.geoserver.api.controllers;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -296,6 +297,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
             store.setType(obj.str("type"));
         }
         cat.add(store);
+        Metadata.created(store, new Date());
         
         return IO.storeDetails(new JSONObj(), store, req, geoServer);
     }
@@ -316,6 +318,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         
         boolean refresh = define(store, obj);
         cat.save(store);
+        Metadata.modified(store, new Date());
         if (refresh) {
             resetConnection(store);
         }
@@ -350,6 +353,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         // pending: clear store to defaults
         boolean refresh = define( store, obj );
         cat.save( store );
+        Metadata.modified(store, new Date());
         if (refresh) {
             resetConnection(store);
         }
