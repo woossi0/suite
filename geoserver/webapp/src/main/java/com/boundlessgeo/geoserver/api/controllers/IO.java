@@ -301,6 +301,18 @@ public class IO {
 
         return obj;
     }
+    
+    public static JSONObj bounds(JSONObj obj, org.opengis.geometry.Envelope bbox) {
+        obj.put("west", bbox.getMinimum(0))
+            .put("south", bbox.getMinimum(1))
+            .put("east", bbox.getMaximum(0))
+            .put("north", bbox.getMaximum(1));
+
+        obj.putArray("center").add(bbox.getMedian(0)).add(bbox.getMedian(1));
+
+        return obj;
+        
+    }
 
     /**
      * Decodes a bounding box within the specified object.
@@ -445,6 +457,7 @@ public class IO {
         obj.put("keywords", keywords);
         proj(obj.putObject("proj"), r.getCRS(), r.getSRS());
         bbox( obj.putObject("bbox"), r );
+        IO.bounds(obj.putObject("extent"), CRS.getEnvelope(r.getCRS()));
         
         if (r instanceof FeatureTypeInfo) {
             FeatureTypeInfo ft = (FeatureTypeInfo) r;
@@ -513,11 +526,11 @@ public class IO {
     public static JSONObj bbox( JSONObj bbox, LayerGroupInfo l ){
         ReferencedEnvelope bounds = l.getBounds();
         if (bounds != null) {
-            bounds(bbox.putObject("native"), bounds );
+            bounds(bbox.putObject("native"), (Envelope)bounds );
             
             try {
                 ReferencedEnvelope latLonBounds = bounds.transform(DefaultGeographicCRS.WGS84, true);
-                bounds(bbox.putObject("lonlat"), latLonBounds);
+                bounds(bbox.putObject("lonlat"), (Envelope)latLonBounds);
             } catch (TransformException e) {
             } catch (FactoryException e) {
             }
@@ -527,21 +540,21 @@ public class IO {
     
     public static JSONObj bbox( JSONObj bbox, ResourceInfo r ){
         if (r.getNativeBoundingBox() != null) {
-            bounds(bbox.putObject("native"), r.getNativeBoundingBox());
+            bounds(bbox.putObject("native"), (Envelope)r.getNativeBoundingBox());
         }
         else {
             // check if the crs is geographic, if so use lat lon
             if (r.getCRS() instanceof GeographicCRS && r.getLatLonBoundingBox() != null) {
-                bounds(bbox.putObject("native"), r.getLatLonBoundingBox());
+                bounds(bbox.putObject("native"), (Envelope)r.getLatLonBoundingBox());
             }
         }
 
         if (r.getLatLonBoundingBox() != null) {
-            bounds(bbox.putObject("lonlat"), r.getLatLonBoundingBox());
+            bounds(bbox.putObject("lonlat"), (Envelope)r.getLatLonBoundingBox());
         }
         else {
             if (r.getNativeCRS() instanceof GeographicCRS && r.getLatLonBoundingBox() != null) {
-                bounds(bbox.putObject("lonlat"), r.getLatLonBoundingBox());
+                bounds(bbox.putObject("lonlat"), (Envelope)r.getLatLonBoundingBox());
             }
         }
         return bbox;
@@ -831,7 +844,7 @@ public class IO {
             
             JSONArr keywords = obj.putArray("keywords");
             keywords.raw().addAll( info.getKeywords() );
-            bounds(obj.putObject("bounds"),info.getBounds());
+            bounds(obj.putObject("bounds"),(Envelope)info.getBounds());
             schema(obj.putObject("schema"), schema, false);
         }
         if(store instanceof CoverageStoreInfo){
