@@ -62,10 +62,12 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
     }
 
     @Before
-    public void removeFoo() {
+    public void removeLayers() {
         removeLayer("gs", "foo");
         removeLayer("sf", "foo");
         removeLayer("cdf", "foo");
+        
+        removeLayer("gs", "point");
     }
 
     @Before
@@ -125,7 +127,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
     }
 
     @Test
-    public void testImportFile() throws Exception {
+    public void testImportShapefileAsZip() throws Exception {
         Catalog catalog = getCatalog();
         assertNull(catalog.getLayerByName("gs:point"));
 
@@ -163,6 +165,51 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         
         assertNotNull(obj.get("id"));
 
+    }
+    
+    @Test
+    public void testImportShapefiles() throws Exception {
+        Catalog catalog = getCatalog();
+        assertNull(catalog.getLayerByName("gs:point"));
+
+        Importer importer =
+            GeoServerExtensions.bean(Importer.class, applicationContext);
+        ImportController ctrl = new ImportController(getGeoServer(), importer);
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setContextPath("/geoserver");
+        request.setRequestURI("/geoserver/hello");
+        request.setMethod("post");
+        
+        //Import as separate files
+        MimeMultipart body = initMultiPartFormContent(request);
+
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.dbf\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.dbf")));
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.prj\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.prj")));
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.shp\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.shp")));
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.shz\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.shx")));
+        
+        createMultiPartFormContent(body, request);
+
+
+        JSONObj result = ctrl.importFile("gs", request);
+
+        assertEquals(1, result.array("imported").size());
+        JSONObj obj = result.array("imported").object(0);
+
+        assertEquals("gs", obj.object("layer").str("workspace"));
+        assertEquals("point", obj.object("layer").str("name"));
+
+        LayerInfo l = catalog.getLayerByName("gs:point");
+        assertNotNull(l);
+
+        // ensure style in workspace
+        StyleInfo s = l.getDefaultStyle();
+        assertNotNull(s.getWorkspace());
     }
     
     @Test
@@ -320,6 +367,29 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         body.writeTo(bout);
         request.setContent(bout.toByteArray());
+    }
+    
+    void createMultiPartFormContent(MimeMultipart body, MockHttpServletRequest request) throws Exception {
+        ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        body.writeTo(bout);
+        request.setContent(bout.toByteArray());
+    }
+    
+    MimeMultipart initMultiPartFormContent(MockHttpServletRequest request) throws Exception {
+        MimeMultipart body = new MimeMultipart();
+        request.setContentType(body.getContentType());
+        
+        return body;
+    }
+    
+    MimeMultipart appendMultiPartFormContent(MimeMultipart body, String contentDisposition, String contentType,
+            byte[] content) throws Exception {
+        InternetHeaders headers = new InternetHeaders();
+        headers.setHeader("Content-Disposition", contentDisposition);
+        headers.setHeader("Content-Type", contentType);
+        body.addBodyPart(new MimeBodyPart(headers, content ));
+
+        return body;
     }
 
     @Test
