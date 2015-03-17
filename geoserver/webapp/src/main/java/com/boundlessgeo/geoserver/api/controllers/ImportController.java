@@ -87,7 +87,7 @@ public class ImportController extends ApiController {
         // get the uploaded files
         Iterator<FileItem> files = doFileUpload(request);
         if (!files.hasNext()) {
-            throw new BadRequestException("Request must contain a single file");
+            throw new BadRequestException("Request must contain one or more files");
         }
 
         // create a new temp directory for the uploaded file
@@ -96,9 +96,12 @@ public class ImportController extends ApiController {
             throw new RuntimeException("Unable to create directory for file upload");
         }
 
-        // pass off the uploaded file to the importer
+        // pass off the uploaded file(s) to the importer
         Directory dir = new Directory(uploadDir);
-        dir.accept(files.next());
+        while(files.hasNext()) {
+            //TODO: Validate input?
+            dir.accept(files.next());
+        }
         
         ImportContext imp = importer.createContext(dir, ws);
         
