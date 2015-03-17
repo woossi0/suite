@@ -6,6 +6,7 @@ package com.boundlessgeo.geoserver.api.controllers;
 import static com.boundlessgeo.geoserver.api.controllers.ApiController.DEFAULT_PAGESIZE;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.eq;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,7 +22,6 @@ import java.util.UUID;
 
 import javax.annotation.Nullable;
 import javax.xml.transform.TransformerException;
-
 
 //import org.apache.wicket.util.file.Files;
 import org.geoserver.catalog.Catalog;
@@ -43,6 +43,7 @@ import org.geoserver.catalog.WMSLayerInfo;
 import org.geoserver.catalog.WMSStoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.catalog.impl.CatalogFactoryImpl;
+import org.geoserver.catalog.util.CloseableIterator;
 import org.geoserver.catalog.util.CloseableIteratorAdapter;
 import org.geoserver.config.GeoServer;
 import org.geoserver.platform.GeoServerResourceLoader;
@@ -62,8 +63,10 @@ import org.geotools.styling.SLDTransformer;
 import org.geotools.styling.Style;
 import org.geotools.styling.StyleFactory;
 import org.geotools.util.KVP;
+import org.mockito.ArgumentCaptor;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.opengis.filter.Filter;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 import com.google.common.base.Function;
@@ -248,8 +251,8 @@ public class MockGeoServer {
                             return builder.namespace;
                         }
                     });
-            List<LayerInfo> allLayers = new ArrayList<LayerInfo>();
-            List<LayerGroupInfo> allMaps = new ArrayList<LayerGroupInfo>();
+            final List<LayerInfo> allLayers = new ArrayList<LayerInfo>();
+            final List<LayerGroupInfo> allMaps = new ArrayList<LayerGroupInfo>();
 
             when(catalog.getWorkspaces()).thenReturn(allWorkspaces);
             when(catalog.list(WorkspaceInfo.class, Predicates.acceptAll()))
@@ -319,7 +322,35 @@ public class MockGeoServer {
             when(catalog.getLayerGroups()).thenReturn(allMaps);
             when(catalog.list(LayerGroupInfo.class, Predicates.acceptAll())).thenReturn(
                     new CloseableIteratorAdapter<LayerGroupInfo>(allMaps.iterator()));
+            
+            // Handle arbitrary filtered listings of layers
+            final ArgumentCaptor<Filter> layerPredicate = ArgumentCaptor.forClass(Filter.class);
+            Answer<CloseableIterator<LayerInfo>> layerFilteredAnswer = new Answer<CloseableIterator<LayerInfo>>() {
+                
+                @Override
+                public CloseableIterator<LayerInfo> answer(
+                        InvocationOnMock invocation) throws Throwable {
+                    Filter f = layerPredicate.getValue();
+                    return CloseableIteratorAdapter.filter(allLayers.iterator(),f);
+                }
+                
+            };
+            when(catalog.list(eq(LayerInfo.class), layerPredicate.capture())).thenAnswer(layerFilteredAnswer);
 
+            // Handle arbitrary filtered listings of layer groups
+            final ArgumentCaptor<Filter> layerGroupPredicate = ArgumentCaptor.forClass(Filter.class);
+            Answer<CloseableIterator<LayerGroupInfo>> layerGroupFilteredAnswer = new Answer<CloseableIterator<LayerGroupInfo>>() {
+                
+                @Override
+                public CloseableIterator<LayerGroupInfo> answer(
+                        InvocationOnMock invocation) throws Throwable {
+                    Filter f = layerGroupPredicate.getValue();
+                    return CloseableIteratorAdapter.filter(allMaps.iterator(),f);
+                }
+                
+            };
+            when(catalog.list(eq(LayerGroupInfo.class), layerGroupPredicate.capture())).thenAnswer(layerGroupFilteredAnswer);
+            
             when(geoServer.getCatalog()).thenReturn(catalog);
         }
     }

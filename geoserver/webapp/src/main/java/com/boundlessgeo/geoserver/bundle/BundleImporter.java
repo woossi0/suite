@@ -173,7 +173,7 @@ public class BundleImporter {
                 value = value.toString().replace("%WORKSPACE%", "workspaces/"+workspace.getName());
             }
             if ("namespace".equalsIgnoreCase(e.getKey())) {
-                value = namespace.getName();
+                value = namespace.getURI();
             }
             map.put(e.getKey(), value);
         }
