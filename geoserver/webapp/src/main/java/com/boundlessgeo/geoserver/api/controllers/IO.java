@@ -288,20 +288,6 @@ public class IO {
      *
      * @return The object passed in.
      */
-    public static JSONObj bounds(JSONObj obj, Envelope bbox) {
-        obj.put("west", bbox.getMinX())
-            .put("south", bbox.getMinY())
-            .put("east", bbox.getMaxX())
-            .put("north", bbox.getMaxY());
-
-        if (!bbox.isNull()) {
-            Coordinate center = bbox.centre();
-            obj.putArray("center").add(center.x).add(center.y);
-        }
-
-        return obj;
-    }
-    
     public static JSONObj bounds(JSONObj obj, org.opengis.geometry.Envelope bbox) {
         obj.put("west", bbox.getMinimum(0))
             .put("south", bbox.getMinimum(1))
@@ -311,7 +297,6 @@ public class IO {
         obj.putArray("center").add(bbox.getMedian(0)).add(bbox.getMedian(1));
 
         return obj;
-        
     }
 
     /**
@@ -421,6 +406,7 @@ public class IO {
         
         proj(obj.putObject("proj"), group.getBounds().getCoordinateReferenceSystem(), null);
         bbox(obj.putObject("bbox"), group);
+        bounds(obj.putObject("projectionExtent"), CRS.getEnvelope(group.getBounds().getCoordinateReferenceSystem()));
         
         return obj;
     }
@@ -457,7 +443,7 @@ public class IO {
         obj.put("keywords", keywords);
         proj(obj.putObject("proj"), r.getCRS(), r.getSRS());
         bbox( obj.putObject("bbox"), r );
-        IO.bounds(obj.putObject("extent"), CRS.getEnvelope(r.getCRS()));
+        IO.bounds(obj.putObject("projectionExtent"), CRS.getEnvelope(r.getCRS()));
         
         if (r instanceof FeatureTypeInfo) {
             FeatureTypeInfo ft = (FeatureTypeInfo) r;
@@ -526,11 +512,11 @@ public class IO {
     public static JSONObj bbox( JSONObj bbox, LayerGroupInfo l ){
         ReferencedEnvelope bounds = l.getBounds();
         if (bounds != null) {
-            bounds(bbox.putObject("native"), (Envelope)bounds );
+            bounds(bbox.putObject("native"), bounds );
             
             try {
                 ReferencedEnvelope latLonBounds = bounds.transform(DefaultGeographicCRS.WGS84, true);
-                bounds(bbox.putObject("lonlat"), (Envelope)latLonBounds);
+                bounds(bbox.putObject("lonlat"), latLonBounds);
             } catch (TransformException e) {
             } catch (FactoryException e) {
             }
@@ -540,21 +526,21 @@ public class IO {
     
     public static JSONObj bbox( JSONObj bbox, ResourceInfo r ){
         if (r.getNativeBoundingBox() != null) {
-            bounds(bbox.putObject("native"), (Envelope)r.getNativeBoundingBox());
+            bounds(bbox.putObject("native"), r.getNativeBoundingBox());
         }
         else {
             // check if the crs is geographic, if so use lat lon
             if (r.getCRS() instanceof GeographicCRS && r.getLatLonBoundingBox() != null) {
-                bounds(bbox.putObject("native"), (Envelope)r.getLatLonBoundingBox());
+                bounds(bbox.putObject("native"), r.getLatLonBoundingBox());
             }
         }
 
         if (r.getLatLonBoundingBox() != null) {
-            bounds(bbox.putObject("lonlat"), (Envelope)r.getLatLonBoundingBox());
+            bounds(bbox.putObject("lonlat"), r.getLatLonBoundingBox());
         }
         else {
             if (r.getNativeCRS() instanceof GeographicCRS && r.getLatLonBoundingBox() != null) {
-                bounds(bbox.putObject("lonlat"), (Envelope)r.getLatLonBoundingBox());
+                bounds(bbox.putObject("lonlat"), r.getLatLonBoundingBox());
             }
         }
         return bbox;
@@ -844,7 +830,7 @@ public class IO {
             
             JSONArr keywords = obj.putArray("keywords");
             keywords.raw().addAll( info.getKeywords() );
-            bounds(obj.putObject("bounds"),(Envelope)info.getBounds());
+            bounds(obj.putObject("bounds"),info.getBounds());
             schema(obj.putObject("schema"), schema, false);
         }
         if(store instanceof CoverageStoreInfo){
