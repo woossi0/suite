@@ -97,7 +97,13 @@ If you wish to use the Oracle Java 7 JRE (rather than the OpenJDK 7 installed by
 
 #. Download and install Oracle Java 7 JRE.
 
-#. Open :file:`/etc/default/tomcat7` and update the ``JAVA_HOME`` environment variable.
+#. Open :file:`/etc/sysconfig/tomcat` and update the ``JAVA_HOME`` environment variable.
+
+   .. note:: Make sure the line is uncommented (does not start with ``#``).
+
+#. Save and close the file.
+
+#. Restart Tomcat.
 
 Using OpenGeo Suite with custom Tomcat
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -108,7 +114,7 @@ OpenGeo Suite packages can be used to manage the contents :file:`/usr/share/open
 
 #. Stop your Tomcat service.
 
-#. Navigate to :file:`/etc/tomcat7/Catalina/localhost/`.
+#. Navigate to :file:`/etc/tomcat/Catalina/localhost/`.
 
 #. Create the :file:`geoserver.xml` with the following content:
    
@@ -152,6 +158,19 @@ OpenGeo Suite packages can be used to manage the contents :file:`/usr/share/open
 
 #. Restart Tomcat.
 
+Adding other system parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can add other system or application-specific parameters that will be picked up upon restart.
+
+#. Open :file:`/etc/sysconfig/tomcat` in a text editor.
+
+#. Add the desired parameters to the bottom of the file.
+
+#. Save and close the file.
+
+#. Restart Tomcat.
+
 .. _intro.installation.redhat.postinstall.geoserver:
 
 Working with GeoServer
@@ -184,7 +203,7 @@ A fix is available for spatial reference systems measured in Imperial units (fee
 
 To enable this fix:
 
-#. Add the following parameter to :file:`/etc/tomcat7/server.xml`:
+#. Add the following parameter to :file:`/etc/sysconfig/tomcat`:
    
    .. code-block:: bash
       
@@ -193,9 +212,9 @@ To enable this fix:
 #. Restart Tomcat.
 
 Update GeoJSON output
-^^^^^^^^^^^^^^^^^^^^^  
+^^^^^^^^^^^^^^^^^^^^^
  
-GeoServer GeoJSON output is now provided in x/y/z order as required by the specification. In addition, the ``crs``  output has changed to support full URN representation of spatial refernce systems:
+GeoServer GeoJSON output is now provided in x/y/z order as required by the specification. In addition, the ``crs``  output has changed to support full URN representation of spatial reference systems:
    
    .. code-block:: json
 
@@ -219,7 +238,7 @@ GeoServer GeoJSON output is now provided in x/y/z order as required by the speci
             }
          }
    
-To restore the previous ``crs`` representation for compatibility reasons (espcially when working with OpenLayers 3):
+To restore the previous ``crs`` representation for compatibility reasons (especially when working with OpenLayers 3):
 
 #. Add the following context parameter to  :file:`/usr/share/opengeo/geoserver/WEB-INF/web.xml`:
 
