@@ -40,9 +40,12 @@
   </target>
 
   <target name="clean" depends="destroy">
-    <exec executable="grunt" failonerror="true">
-       <arg line="clean"/>
-    </exec>
+    <if>
+      <available file="composer/build.xml"/>
+      <then>
+        <ant antfile="composer/build.xml" target="clean" useNativeBasedir="true" />
+      </then>
+    </if>
   </target>
 
   <target name="assemble">
