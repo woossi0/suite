@@ -99,7 +99,6 @@ public class ImportController extends ApiController {
         // pass off the uploaded file(s) to the importer
         Directory dir = new Directory(uploadDir);
         while(files.hasNext()) {
-            //TODO: Validate input?
             dir.accept(files.next());
         }
         
@@ -257,6 +256,12 @@ public class ImportController extends ApiController {
         // 2. mark layers as "imported" so we can safely delete styles later
         
         LayerInfo l = t.getLayer();
+        
+        //If the task has no associated layer, it is probably a junk file that won't get imported
+        if (l == null) {
+            return;
+        }
+        
         l.getMetadata().put(Metadata.IMPORTED, new Date());
 
         if (l != null && l.getDefaultStyle() != null) {

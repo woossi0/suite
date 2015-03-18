@@ -190,7 +190,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
                 IOUtils.toByteArray(getClass().getResourceAsStream("point.prj")));
         appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.shp\"", "application/octet-stream",
                 IOUtils.toByteArray(getClass().getResourceAsStream("point.shp")));
-        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.shz\"", "application/octet-stream",
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.shx\"", "application/octet-stream",
                 IOUtils.toByteArray(getClass().getResourceAsStream("point.shx")));
         
         createMultiPartFormContent(body, request);
