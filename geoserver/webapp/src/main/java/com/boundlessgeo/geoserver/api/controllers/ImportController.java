@@ -77,7 +77,13 @@ public class ImportController extends ApiController {
 
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public @ResponseBody
-    JSONObj importFile(@PathVariable String wsName, HttpServletRequest request)
+    JSONObj importFile(@PathVariable String wsName, HttpServletRequest request) throws Exception {
+        return importFile(wsName, null, request);
+    }
+    
+    @RequestMapping(value = "/{wsName:.+}/{storeName:.+}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public @ResponseBody
+    JSONObj importFile(@PathVariable String wsName, @PathVariable String storeName, HttpServletRequest request)
         throws Exception {
 
         // grab the workspace
@@ -103,12 +109,18 @@ public class ImportController extends ApiController {
             dir.accept(files.next());
         }
         
-        ImportContext imp = importer.createContext(dir, ws);
+        ImportContext imp;
+        if (storeName == null) {
+            imp = importer.createContext(dir, ws);
         
-        //Check if this store already exists in the catalog
-        StoreInfo store = findStore(imp, ws);
-        if (store != null) {
-            return (new JSONObj()).put("store", IO.store(new JSONObj(), store, request, geoServer));
+            //Check if this store already exists in the catalog
+            StoreInfo store = findStore(imp, ws);
+            if (store != null) {
+                return (new JSONObj()).put("store", IO.store(new JSONObj(), store, request, geoServer));
+            }
+        } else {
+            StoreInfo store = findStore(wsName, storeName, geoServer.getCatalog());
+            imp = importer.createContext(dir, ws, store);
         }
 
         return doImport(imp, ws);
@@ -116,6 +128,12 @@ public class ImportController extends ApiController {
 
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj importDb(@PathVariable String wsName, @RequestBody JSONObj obj, 
+            HttpServletRequest request) throws Exception {
+        return importDb(wsName, null, obj, request);
+    }
+    
+    @RequestMapping(value = "/{wsName:.+}/{storeName:.+}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody JSONObj importDb(@PathVariable String wsName, @PathVariable String storeName, @RequestBody JSONObj obj, 
             HttpServletRequest request) throws Exception {
         
         // grab the workspace
@@ -125,12 +143,19 @@ public class ImportController extends ApiController {
         // create the import data
         Database db = new Database(hack(obj));
         
-        ImportContext imp = importer.createContext(db, ws);
+        ImportContext imp; 
+        if (storeName == null) {
+            imp = importer.createContext(db, ws);
         
-        //Check if this store already exists in the catalog
-        StoreInfo store = findStore(imp, ws);
-        if (store != null) {
-            return (new JSONObj()).put("store", IO.store(new JSONObj(), store, request, geoServer));
+            //Check if this store already exists in the catalog
+            StoreInfo store = findStore(imp, ws);
+            if (store != null) {
+                return (new JSONObj()).put("store", IO.store(new JSONObj(), store, request, geoServer));
+            }
+            
+        } else {
+            StoreInfo store = findStore(wsName, storeName, geoServer.getCatalog());
+            imp = importer.createContext(db, ws, store);
         }
         
         //Return to requester to allow selection of tables.
