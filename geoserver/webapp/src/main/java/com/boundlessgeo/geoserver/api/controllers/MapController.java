@@ -535,6 +535,7 @@ public class MapController extends ApiController {
         ReferencedEnvelope bounds = map.getBounds();
         IO.proj(obj.putObject("proj"), bounds.getCoordinateReferenceSystem(), null);
         IO.bounds(obj.putObject("bbox"), bounds);
+        IO.bounds(obj.putObject("projectionExtent"), CRS.getEnvelope(bounds.getCoordinateReferenceSystem()));
         obj.put("layer_count", map.getLayers().size());
 
         IO.metadata(obj, map);

@@ -288,16 +288,13 @@ public class IO {
      *
      * @return The object passed in.
      */
-    public static JSONObj bounds(JSONObj obj, Envelope bbox) {
-        obj.put("west", bbox.getMinX())
-            .put("south", bbox.getMinY())
-            .put("east", bbox.getMaxX())
-            .put("north", bbox.getMaxY());
+    public static JSONObj bounds(JSONObj obj, org.opengis.geometry.Envelope bbox) {
+        obj.put("west", bbox.getMinimum(0))
+            .put("south", bbox.getMinimum(1))
+            .put("east", bbox.getMaximum(0))
+            .put("north", bbox.getMaximum(1));
 
-        if (!bbox.isNull()) {
-            Coordinate center = bbox.centre();
-            obj.putArray("center").add(center.x).add(center.y);
-        }
+        obj.putArray("center").add(bbox.getMedian(0)).add(bbox.getMedian(1));
 
         return obj;
     }
@@ -409,6 +406,7 @@ public class IO {
         
         proj(obj.putObject("proj"), group.getBounds().getCoordinateReferenceSystem(), null);
         bbox(obj.putObject("bbox"), group);
+        bounds(obj.putObject("projectionExtent"), CRS.getEnvelope(group.getBounds().getCoordinateReferenceSystem()));
         
         return obj;
     }
@@ -445,6 +443,7 @@ public class IO {
         obj.put("keywords", keywords);
         proj(obj.putObject("proj"), r.getCRS(), r.getSRS());
         bbox( obj.putObject("bbox"), r );
+        IO.bounds(obj.putObject("projectionExtent"), CRS.getEnvelope(r.getCRS()));
         
         if (r instanceof FeatureTypeInfo) {
             FeatureTypeInfo ft = (FeatureTypeInfo) r;
