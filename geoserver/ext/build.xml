@@ -6,11 +6,11 @@
     <property name="gs-core.ext.dir" 
         value="../externals/geoserver/src/target/release"/>
 
-    <property name="gs-comm.ext.list" value="geopkg,javascript,jdbcconfig,mbtiles,python"/>
+    <property name="gs-comm.ext.list" value="geopkg,javascript,jdbcconfig,mbtiles,python,hz-cluster"/>
     <property name="gs-comm.ext.dir" 
         value="../externals/geoserver/src/community/target/release"/>
 
-    <property name="gs-exts.ext.list" value="cluster,gsr,mapmeter,mongodb"/>
+    <property name="gs-exts.ext.list" value="gsr,mapmeter,mongodb"/>
     <property name="gs-exts.ext.dir" value="../externals/geoserver-exts/target/"/>
 
     <target name="build" depends="init" description="Build project">
