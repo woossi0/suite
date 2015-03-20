@@ -289,6 +289,10 @@ public class IO {
      * @return The object passed in.
      */
     public static JSONObj bounds(JSONObj obj, org.opengis.geometry.Envelope bbox) {
+        if (bbox == null) {
+            return obj;
+        }
+        
         obj.put("west", bbox.getMinimum(0))
             .put("south", bbox.getMinimum(1))
             .put("east", bbox.getMaximum(0))

@@ -41,6 +41,7 @@ import org.geotools.util.logging.Logging;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
 import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -79,7 +80,7 @@ public class MapController extends ApiController {
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
-    JSONObj create(@PathVariable String wsName, @RequestBody JSONObj obj, HttpServletRequest req) {
+    JSONObj create(@PathVariable String wsName, @RequestBody JSONObj obj, HttpServletRequest req) throws NoSuchAuthorityCodeException, FactoryException {
         Catalog cat = catalog();
         WorkspaceInfo ws = findWorkspace(wsName, cat);
 
@@ -102,7 +103,7 @@ public class MapController extends ApiController {
         
         Date created = new Date();
 
-        CoordinateReferenceSystem crs = DefaultGeographicCRS.WGS84;
+        CoordinateReferenceSystem crs = CRS.decode("EPSG:4326");
 
         JSONObj proj = obj.object("proj");
         if (proj != null) {
@@ -230,7 +231,7 @@ public class MapController extends ApiController {
         }
         
         if(obj.has("proj")) {
-            CoordinateReferenceSystem crs = DefaultGeographicCRS.WGS84;
+            CoordinateReferenceSystem crs = CRS.decode("EPSG:4326");
             
             String srs = obj.str("proj");
             try {
