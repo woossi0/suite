@@ -555,6 +555,9 @@ public class IO {
             schema.put("name", type.getName().getLocalPart() );
             schema.put("namespace", type.getName().getNamespaceURI() );
             schema.put("simple", type instanceof SimpleFeatureType );
+            if (null != type.getGeometryDescriptor()) {
+                schema.put("defaultGeometry", type.getGeometryDescriptor().getName().getLocalPart());
+            }
             JSONArr attributes = schema.putArray("attributes");
             for( PropertyDescriptor d : type.getDescriptors() ){
                 PropertyType t = d.getType();
@@ -578,7 +581,7 @@ public class IO {
                     .put("type", t.getBinding().getSimpleName() );
                 
                 if( d instanceof GeometryDescriptor){
-                    GeometryDescriptor g = (GeometryDescriptor) d;                    
+                    GeometryDescriptor g = (GeometryDescriptor) d;
                     proj( property.putObject("proj"), g.getCoordinateReferenceSystem(), null );
                 }
 
