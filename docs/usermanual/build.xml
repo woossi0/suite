@@ -1,135 +1,47 @@
 <project name="doc.usermanual" default="build">
 
     <import file="../common.xml"/>
-
-     <target name="stage-basic">
-       <!-- process source into target/basic -->
-       <copy todir="${basedir}/basic">
-          <fileset dir="source">
-            <exclude name="**/*-enterprise.rst"/>
-            <exclude name="**/*-basic.rst"/>
-            <!-- List of files/folders that should be excluded from Basic builds -->
-            <exclude name="intro/composer.rst"/>
-            <exclude name="intro/installation/aws/**"/>
-            <exclude name="intro/installation/war/**"/>
-            <exclude name="cartography/ysld/**"/>
-            <exclude name="dataadmin/gdal/**"/>
-            <exclude name="dataadmin/mongodb/**"/>
-            <exclude name="dataadmin/mrsid/**"/>
-            <exclude name="dataadmin/oracle/**"/>
-            <exclude name="webmaps/composer/**"/>
-            <exclude name="sysadmin/clustering/**"/>
-            <exclude name="sysadmin/mapmeter/**"/>
-          </fileset>
-       </copy>
-       <copy todir="${basedir}/basic">
-          <fileset dir="source"/>
-          <globmapper from="*-basic.rst" to="*.rst"/>
-       </copy>
-     </target>
      
-     <target name="stage-enterprise">
-       <!-- process source into target/enterprise -->
-       <copy todir="${basedir}/ee">
-          <fileset dir="source">
-            <exclude name="**/*-enterprise.rst"/>
-            <exclude name="**/*-basic.rst"/>
-          </fileset>
-       </copy>
-       <copy todir="${basedir}/ee">
-          <fileset dir="source"/>
-          <globmapper from="*-enterprise.rst" to="*.rst"/>
-       </copy>
-     </target>
-     
-     <target name="basic" depends="stage-basic"
-       description="quick build basic docs for local testing">
-       <antcall target="sphinx">
-         <param name="dir" value="${basedir}/basic"/>
-         <param name="outdir" value="${basedir}/target/html/basic"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/basic"/>
-         <param name="flags" value="-t basic"/>
-       </antcall>
-     </target>
-
-     <target name="ee" depends="stage-enterprise"
-       description="quick build of enterprise docs for local testing">
-       <antcall target="sphinx">
-         <param name="dir" value="${basedir}/ee"/>
-         <param name="outdir" value="${basedir}/target/html/ee"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
-         <param name="flags" value="-t enterprise"/>
-       </antcall>
-     </target>
-     
-     <target name="build-html" depends="stage-enterprise,stage-basic"
+     <target name="build-html"
              description="Build html docs">
        <antcall target="sphinx">
-         <param name="dir" value="${basedir}/basic"/>
-         <param name="outdir" value="${basedir}/target/html/basic"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/basic"/>
-         <param name="flags" value="-t basic"/>
-       </antcall>
-       <antcall target="sphinx">
-         <param name="dir" value="${basedir}/ee"/>
-         <param name="outdir" value="${basedir}/target/html/ee"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
-         <param name="flags" value="-t enterprise -A build_profile=ee"/>
+         <param name="dir" value="${basedir}/source"/>
+         <param name="outdir" value="${basedir}/target/html"/>
+         <param name="doctrees" value="${basedir}/target/doctrees"/>
+         <param name="flags" value="-q -j 4 -W"/>
        </antcall>
      </target>
 
-     <target name="build-text" depends="stage-basic,stage-enterprise"
+     <target name="build-text"
        description="Build text docs">
        <antcall target="sphinx">
-         <param name="dir" value="${basedir}/basic"/>
-         <param name="outdir" value="${basedir}/target/text/basic"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/basic"/>
+         <param name="dir" value="${basedir}/source"/>
+         <param name="outdir" value="${basedir}/target/basic"/>
+         <param name="doctrees" value="${basedir}/target/doctrees"/>
          <param name="builder" value="text"/>
-         <param name="flags" value="-t basic"/>
-       </antcall>
-       <antcall target="sphinx">
-         <param name="dir" value="${basedir}/ee"/>
-         <param name="outdir" value="${basedir}/target/text/ee"/>
-         <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
-         <param name="builder" value="text"/>
-         <param name="flags" value="-t enterprise"/>
+         <param name="flags" value="-q -j 4 -W"/>
        </antcall>
      </target>
   
-     <target name="build-pdf" depends="check-pdf,stage-basic,stage-enterprise"
+     <target name="build-pdf" depends="check-pdf"
        description="Build pdf docs">
        <if>
            <equals arg1="${pdflatex.isPresent}" arg2="true"/>
            <then>
              <sequential>
-               <copy todir="${basedir}/target/latex/basic">
-                 <fileset dir="${basedir}/../themes/suite_rtd_theme/static/img/">
-                 <include name="**/opengeo-logo-only-blue.png"/>
-                 </fileset>
-               </copy>
-               <copy todir="${basedir}/target/latex/ee">
+               <copy todir="${basedir}/target/latex">
                  <fileset dir="${basedir}/../themes/suite_rtd_theme/static/img/">
                  <include name="**/opengeo-logo-only-blue.png"/>
                  </fileset>
                </copy>
                <antcall target="sphinx">
-                 <param name="dir" value="${basedir}/basic"/>
-                 <param name="outdir" value="${basedir}/target/latex/basic"/>
-                 <param name="doctrees" value="${basedir}/target/doctrees/basic"/>
+                 <param name="dir" value="${basedir}/source"/>
+                 <param name="outdir" value="${basedir}/target/latex"/>
+                 <param name="doctrees" value="${basedir}/target/doctrees"/>
                  <param name="builder" value="latex"/>
-                 <param name="flags" value="-t basic"/>
+                 <param name="flags" value="-q -j 4 -W"/>
                </antcall>
-               <exec executable="make" failonerror="true" dir="target/latex/basic">
-                 <arg line="all-pdf"/>
-               </exec>
-               <antcall target="sphinx">
-                 <param name="dir" value="${basedir}/ee"/>
-                 <param name="outdir" value="${basedir}/target/latex/ee"/>
-                 <param name="doctrees" value="${basedir}/target/doctrees/ee"/>
-                 <param name="builder" value="latex"/>
-                 <param name="flags" value="-t enterprise -A build_profile=ee"/>
-               </antcall>
-               <exec executable="make" failonerror="true" dir="target/latex/ee">
+               <exec executable="make" failonerror="true" dir="target/latex">
                  <arg line="all-pdf"/>
                </exec>
              </sequential>
@@ -147,8 +59,6 @@
 
     <target name="clean" depends="destroy">
        <delete dir="target"/>
-       <delete dir="basic"/>
-       <delete dir="ee"/>
     </target>
   
 </project>
