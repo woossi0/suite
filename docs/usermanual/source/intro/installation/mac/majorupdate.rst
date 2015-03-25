@@ -52,8 +52,8 @@ The first step of the update process is to back up your existing PostGIS data.
 
 #. The PostGIS data backup process is complete. You may now shut down OpenGeo Suite 3.x.
 
-Install new Suite
-~~~~~~~~~~~~~~~~~
+Install new version
+~~~~~~~~~~~~~~~~~~~
 
 You may now install the new version of OpenGeo Suite. See :ref:`intro.installation.mac.install` for details. In order to run the PostGIS restore script you must install the :guilabel:`OpenGeo Client Tools` package.
 

@@ -14,54 +14,56 @@ These optional components can be selected in different ways depending on your op
 
 For users of OpenGeo Suite for Application Servers, please `contact Boundless <http://boundlessgeo.com/about-us/contact/>`_ to receive access to the extensions and information on how to install them.
 
-.. only:: enterprise
+.. note:: Many of the extensions are only available with `OpenGeo Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_, and will be noted as such. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
 
-   .. _intro.extensions.arcsde:
+.. _intro.extensions.arcsde:
 
-   ArcSDE
-   ------
+ArcSDE
+------
 
-   The ArcSDE extension adds the ability for GeoServer to publish data from ArcSDE sources. Once this extension is added, GeoServer will show ArcSDE as one of its available data sources when adding a new vector or raster store.
+.. note:: OpenGeo Suite Enterprise only.
 
-   Please visit the `ArcSDE 8.1 Service Pack 1 Readme <http://downloads2.esri.com/support/downloads/ao_/SP1_downloads/ArcSDE_sp1_readme.html>`_ for more information.
+The ArcSDE extension adds the ability for GeoServer to publish data from ArcSDE sources. Once this extension is added, GeoServer will show ArcSDE as one of its available data sources when adding a new vector or raster store.
+
+Please visit the `ArcSDE 8.1 Service Pack 1 Readme <http://downloads2.esri.com/support/downloads/ao_/SP1_downloads/ArcSDE_sp1_readme.html>`_ for more information.
    
-.. only:: enterprise
+.. _intro.extensions.clustering:
 
-   .. _intro.extensions.clustering:
+Clustering
+----------
 
-   Clustering
-   ----------
+.. note:: OpenGeo Suite Enterprise only.
 
-   The Clustering extension for GeoServer adds the ability to automatically set up multiple instances of GeoServer that can pool resources.
+The Clustering extension for GeoServer adds the ability to automatically set up multiple instances of GeoServer that can pool resources.
 
-   This extension consists of two parts:
+This extension consists of two parts:
 
-   * Database-backed configuration
-   * Server connection and communication
+* Database-backed configuration
+* Server connection and communication
 
-   .. note::
+.. note::
 
-      On Windows, this extension is known simply as "Clustering". However, on Linux, it is divided into two separate packages, both required:
+   On Windows, this extension is known simply as "Clustering". However, on Linux, it is divided into two separate packages, both required:
 
-      * ``geoserver-jdbcconfig``
-      * ``geoserver-clustering``
+   * ``geoserver-jdbcconfig``
+   * ``geoserver-clustering``
 
-   For more information about Clustering, please see the :ref:`sysadmin.clustering` section.
+For more information about Clustering, please see the :ref:`sysadmin.clustering` section.
 
-   Scripts for setting up clusters either on Amazon Web Services (AWS) or locally-hosted virtual machines are available to OpenGeo Suite Enterprise clients. Please `contact Boundless <http://boundlessgeo.com/about-us/contact/>`_ to access these scripts.
+Scripts for setting up clusters either on Amazon Web Services (AWS) or locally-hosted virtual machines are available to OpenGeo Suite Enterprise clients. Please `contact Boundless <http://boundlessgeo.com/about-us/contact/>`_ to access these scripts.
 
-.. only:: enterprise
+.. _intro.extensions.css:
 
-   .. _intro.extensions.css:
+CSS Styling
+-----------
 
-   CSS Styling
-   -----------
+.. note:: OpenGeo Suite Enterprise only.
 
-   The CSS Styling extension adds functionality to GeoServer to be able to style layers using a syntax that is similar to CSS (Cascading Style Sheets). CSS can be preferable to the standard Styled Layer Descriptor (SLD) styling method, due to the compactness of CSS as well as greater familiarity.
+The CSS Styling extension adds functionality to GeoServer to be able to style layers using a syntax that is similar to CSS (Cascading Style Sheets). CSS can be preferable to the standard Styled Layer Descriptor (SLD) styling method, due to the compactness of CSS as well as greater familiarity.
 
-   For more information about CSS styling in GeoServer, please see the `GeoServer CSS documentation <../geoserver/extensions/css/>`_.
+For more information about CSS styling in GeoServer, please see the `GeoServer CSS documentation <../geoserver/extensions/css/>`_.
 
-   .. warning:: The installation instructions in the GeoServer documentation do not apply to users of OpenGeo Suite. Users of OpenGeo Suite can install the extension following the standard way as indicated above.
+.. warning:: The installation instructions in the GeoServer documentation do not apply to users of OpenGeo Suite. Users of OpenGeo Suite can install the extension following the standard way as indicated above.
 
 .. _intro.extensions.csw:
 
@@ -74,25 +76,25 @@ For more information about CSW in GeoServer, please see the `GeoServer CSW docum
 
 .. warning:: The installation instructions in the GeoServer documentation do not apply to users of OpenGeo Suite. Users of OpenGeo Suite can install the extension in the standard way as indicated above.
 
-.. only:: enterprise
+.. _intro.extensions.db2:
 
-   .. _intro.extensions.db2:
+DB2
+---
 
-   DB2
-   ---
+.. note:: OpenGeo Suite Enterprise only.
 
-   The DB2 extension adds the ability for GeoServer to publish data from DB2 databases. Once this extension is added, GeoServer will show DB2 as one of its available data sources when adding a new vector store.
+The DB2 extension adds the ability for GeoServer to publish data from DB2 databases. Once this extension is added, GeoServer will show DB2 as one of its available data sources when adding a new vector store.
 
-.. only:: enterprise
+.. _intro.extensions.gdal:
 
-   .. _intro.extensions.gdal:
+GDAL Image Formats
+------------------
 
-   GDAL Image Formats
-   ------------------
+.. note:: OpenGeo Suite Enterprise only.
 
-   The GDAL Image Formats extension adds the ability for GeoServer to publish data from extra raster data sources, through the use of `GDAL <http://www.gdal.org/>`_. These formats include, but are not limited to DTED, EHdr, AIG, and ENVIHdr.
+The GDAL Image Formats extension adds the ability for GeoServer to publish data from extra raster data sources, through the use of `GDAL <http://www.gdal.org/>`_. These formats include, but are not limited to DTED, EHdr, AIG, and ENVIHdr.
 
-   The instructions for enabling these formats may require a few additional steps from the standard extension installation instructions as indicated above. Please see the section on :ref:`installing GDAL image formats <dataadmin.gdal>` for more information.
+The instructions for enabling these formats may require a few additional steps from the standard extension installation instructions as indicated above. Please see the section on :ref:`installing GDAL image formats <dataadmin.gdal>` for more information.
 
 .. _intro.extensions.geopackage:
 
@@ -101,62 +103,60 @@ GeoPackage
 
 The GeoPackage extension adds the ability for GeoServer to publish data from `GeoPackage <http://www.geopackage.org/>`_ sources (a data format based on `SQLite <http://www.sqlite.org/>`_). Once this extension is added, GeoServer will show GeoPackage as one of its available data sources when adding a new store.
    
-.. only:: enterprise
+.. _intro.extensions.mapmeter:
 
-   .. _intro.extensions.mapmeter:
+Mapmeter
+--------
 
-   Mapmeter
-   --------
+.. note:: OpenGeo Suite Enterprise only.
 
-   The Mapmeter extension adds the ability to connect to Mapmeter. `Mapmeter <http://boundlessgeo.com/solutions/mapmeter/>`_ is a cloud-based service that allows you to monitor and analyze your geospatial deployments in real-time.
+The Mapmeter extension adds the ability to connect to Mapmeter. `Mapmeter <http://boundlessgeo.com/solutions/mapmeter/>`_ is a cloud-based service that allows you to monitor and analyze your geospatial deployments in real-time.
 
-   Mapmeter is available for OpenGeo Suite Enterprise clients only.
+For more information on using Mapmeter, see the section on :ref:`sysadmin.mapmeter`.
 
-   For more information on using Mapmeter, see the section on :ref:`sysadmin.mapmeter`.
+.. _intro.extensions.mongodb:
 
-.. only:: enterprise
+MongoDB
+-------
 
-   .. _intro.extensions.mongodb:
+.. note:: OpenGeo Suite Enterprise only.
 
-   MongoDB
-   -------
+The MongoDB extension adds the ability for GeoServer to publish data from `MongoDB <http://www.mongodb.org/>`_ sources. Once this extension is added, GeoServer will show MongoDB as one of its available data sources when adding a new store.
 
-   The MongoDB extension adds the ability for GeoServer to publish data from `MongoDB <http://www.mongodb.org/>`_ sources. Once this extension is added, GeoServer will show MongoDB as one of its available data sources when adding a new store.
+For more information on using MongoDB, see the section on :ref:`dataadmin.mongodb`.
 
-   For more information on using MongoDB, see the section on :ref:`dataadmin.mongodb`.
+.. note:: This extension will only work when connecting to MongoDB databases at version 2.4 and above.
 
-   .. note:: This extension will only work when connecting to MongoDB databases at version 2.4 and above.
+.. _intro.extensions.oracle:
 
-.. only:: enterprise
+Oracle
+------
 
-   .. _intro.extensions.oracle:
+.. note:: OpenGeo Suite Enterprise only.
 
-   Oracle
-   ------
+The :ref:`Oracle extension <dataadmin.oracle>` adds the ability for GeoServer to publish data from Oracle Spatial databases. Once this extension is added, GeoServer will show Oracle as one of its available data sources when adding a new vector store.
 
-   The :ref:`Oracle extension <dataadmin.oracle>` adds the ability for GeoServer to publish data from Oracle Spatial databases. Once this extension is added, GeoServer will show Oracle as one of its available data sources when adding a new vector store.
+.. _intro.extensions.script:
 
-.. only:: enterprise
+GeoScript
+---------
 
-   .. _intro.extensions.script:
+.. note:: OpenGeo Suite Enterprise only.
 
-   GeoScript
-   ---------
+The GeoScript extension adds support for the use of Python and JavaScript in GeoServer. Spatial capabilities are added to these dynamic scripting languages allowing the quick generation of custom processes.
 
-   The GeoScript extension adds support for the use of Python and JavaScript in GeoServer. Spatial capabilities are added to these dynamic scripting languages allowing the quick generation of custom processes.
+For more information on scripting in OpenGeo Suite, please see the :ref:`processing.scripting` section.
 
-   For more information on scripting in OpenGeo Suite, please see the :ref:`processing.scripting` section.
+.. _intro.extensions.sqlserver:
 
-.. only:: enterprise
+SQL Server
+----------
 
-   .. _intro.extensions.sqlserver:
+.. note:: OpenGeo Suite Enterprise only.
 
-   SQL Server
-   ----------
+The SQL Server extension adds the ability for GeoServer to publish data from MS SQL Server databases. Once this extension is added, GeoServer will show SQLServer as one of its available data sources when adding a new vector stores.
 
-   The SQL Server extension adds the ability for GeoServer to publish data from MS SQL Server databases. Once this extension is added, GeoServer will show SQLServer as one of its available data sources when adding a new vector stores.
-
-   .. note:: This extension will only work when connecting to SQL Server 2008 and above.
+.. note:: This extension will only work when connecting to SQL Server 2008 and above.
    
 .. _intro.extensions.wps:
 

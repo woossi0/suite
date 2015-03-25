@@ -10,6 +10,8 @@ The clustering extension is not installed by default in :ref:`installations <int
 Install
 -------
 
+.. note:: The Clustering extension is only available with `OpenGeo Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
+
 Windows
 ~~~~~~~
 

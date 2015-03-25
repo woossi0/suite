@@ -7,16 +7,9 @@ Using Tomcat Manager
 
    This section only applies to the following versions of OpenGeo Suite:
 
-   .. only:: basic
-
-      * OpenGeo Suite for Ubuntu Linux
-      * OpenGeo Suite for Red Hat Linux
-
-   .. only:: enterprise
-
-      * OpenGeo Suite for Ubuntu Linux
-      * OpenGeo Suite for Red Hat Linux
-      * OpenGeo Suite for Application Servers (when using **Tomcat**).
+   * OpenGeo Suite for Ubuntu Linux
+   * OpenGeo Suite for Red Hat Linux
+   * OpenGeo Suite for Application Servers (when using **Tomcat**).
 
    OpenGeo Suite for Windows and OS X use `Jetty <http://www.eclipse.org/jetty/>`_, not Tomcat.
 

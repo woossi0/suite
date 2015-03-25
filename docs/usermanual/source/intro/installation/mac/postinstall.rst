@@ -10,9 +10,9 @@ Starting and stopping OpenGeo services
 
 To stop the Jetty (GeoServer) or PostgreSQL (PostGIS) services, just quit the application from the appropriate icon in the OS X menu bar.
 
-   .. figure:: img/ext_quit.png
+.. figure:: img/ext_quit.png
 
-      Stopping GeoServer
+   Stopping GeoServer
 
 Service port configuration
 --------------------------

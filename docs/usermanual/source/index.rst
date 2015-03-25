@@ -1,20 +1,11 @@
 
 OpenGeo Suite is a full geospatial software stack that helps you compose, style, publish, and manage maps and data with ease.
 
-.. only:: basic
+OpenGeo Suite User Manual
+-------------------------
 
-   OpenGeo Suite User Manual
-   -------------------------
+This User Manual will help you get the most out of OpenGeo Suite.
 
-   This User Manual will help you get the most out of OpenGeo Suite.
-
-.. only:: enterprise
-
-   OpenGeo Suite Enterprise User Manual
-   ------------------------------------
-    
-   This User Manual will help you get the most out of **OpenGeo Suite Enterprise**.
-   
 :ref:`whatsnew`
   See what's new in OpenGeo Suite |version|.
 
@@ -47,7 +38,6 @@ OpenGeo Suite is a full geospatial software stack that helps you compose, style,
 .. toctree::
    :hidden:
 
-   self
    whatsnew
    intro/index
    webmaps/index

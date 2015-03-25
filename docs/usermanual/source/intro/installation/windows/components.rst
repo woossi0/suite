@@ -7,109 +7,123 @@ The following is a list of components available for OpenGeo Suite on Windows. Th
 
 Adding or removing components to OpenGeo Suite can be accomplished by running the installer again and selecting or deselecting the appropriate component.
 
-.. only:: basic
+.. note:: The list of available components differs between OpenGeo Suite and OpenGeo Suite Enterprise. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
 
-   .. figure:: img/fullcomponents.png
+.. figure:: img/fullcomponents.png
 
-      Full list of available components
+   Full list of available components (OpenGeo Suite)
 
-.. only:: enterprise
+.. figure:: img/fullcomponents-ent.png
 
-   .. figure:: img/fullcomponents-ent.png
-
-      Full list of available components
+   Full list of available components (OpenGeo Suite Enterprise)
 
 Top level
 ---------
 
-.. tabularcolumns:: |p{4cm}|p{11cm}|
 .. list-table::
-   :widths: 20 80
    :stub-columns: 1
-   :class: table-leftwise
+   :header-rows: 1
+   :class: non-responsive
 
+   * - Component
+     - Description
+     - Availability
    * - PostGIS
      - The PostgreSQL/PostGIS spatial database.
+     - 
    * - GeoServer
      - Server implementing OGC compliant map and feature services.
+     - 
    * - GeoExplorer
      - Map viewing and editing application.
+     - 
    * - GeoWebCache
      - Tile caching server.
+     - 
 
 GeoServer Extensions
 --------------------
 
-.. only:: basic
+.. list-table::
+   :stub-columns: 1
+   :header-rows: 1
+   :class: non-responsive
 
-  .. list-table::
-     :widths: 20 80
-     :stub-columns: 1
-     :class: table-leftwise
-     
-     * - CSW
-       - Catalogue Service for Web (CSW) support.
-     * - GeoPackage
-       - GeoPackage data source support.
-     * - WPS
-       - :ref:`Web Processing Service (WPS) <processing>` support.
-     
-.. only:: enterprise
-
-  .. list-table::
-     :widths: 20 80
-     :stub-columns: 1
-     :class: table-leftwise
-     
-     * - ArcSDE
-       - ArcSDE database support.
-     * - Clustering
-       - :ref:`Clustering <sysadmin.clustering>` plug-ins.
-     * - CSS Styling
-       - CSS map styling support.
-     * - CSW
-       - Catalogue Service for Web (CSW) support.
-     * - DB2
-       - DB2 database support.
-     * - GDAL Image Formats
-       - Additional raster formats support as part of GDAL integration.
-     * - GeoPackage
-       - GeoPackage data source support.
-     * - GeoScript
-       - Scripting extension for GeoServer.
-     * - Mapmeter
-       - :ref:`Mapmeter <sysadmin.mapmeter>` monitoring service.
-     * - MongoDB
-       - :ref:`MongoDB <dataadmin.mongodb>` database support.
-     * - Oracle
-       - :ref:`Oracle <dataadmin.oracle>` database support.
-     * - SQL Server
-       - SQL Server database support.
-     * - WPS
-       - :ref:`Web Processing Service (WPS) <processing>` support.
+   * - Component
+     - Description
+     - Availability
+   * - ArcSDE
+     - ArcSDE database support.
+     - OpenGeo Suite Enterprise only
+   * - Clustering
+     - :ref:`Clustering <sysadmin.clustering>` plug-ins.
+     - OpenGeo Suite Enterprise only
+   * - CSS Styling
+     - CSS map styling support.
+     - OpenGeo Suite Enterprise only
+   * - CSW
+     - Catalogue Service for Web (CSW) support.
+     - 
+   * - DB2
+     - DB2 database support.
+     - OpenGeo Suite Enterprise only
+   * - GDAL Image Formats
+     - Additional raster formats support as part of GDAL integration.
+     - OpenGeo Suite Enterprise only
+   * - GeoPackage
+     - GeoPackage data source support.
+     - 
+   * - GeoScript
+     - Scripting extension for GeoServer.
+     - OpenGeo Suite Enterprise only
+   * - Mapmeter
+     - :ref:`Mapmeter <sysadmin.mapmeter>` monitoring service.
+     - OpenGeo Suite Enterprise only
+   * - MongoDB
+     - :ref:`MongoDB <dataadmin.mongodb>` database support.
+     - OpenGeo Suite Enterprise only
+   * - Oracle
+     - :ref:`Oracle <dataadmin.oracle>` database support.
+     - OpenGeo Suite Enterprise only
+   * - SQL Server
+     - SQL Server database support.
+     - OpenGeo Suite Enterprise only
+   * - WPS
+     - :ref:`Web Processing Service (WPS) <processing>` support.
+     - 
 
 Client Tools
 ------------
 
 .. list-table::
-   :widths: 20 80
    :stub-columns: 1
-   :class: table-leftwise
+   :header-rows: 1
+   :class: non-responsive
 
+   * - Component
+     - Description
+     - Availability
    * - GDAL/OGR
      - Spatial data manipulation utilities such as ``gdal_translate`` and ``ogr2ogr``.
+     - 
    * - pgAdmin
      - Graphical PostGIS/PostgreSQL database manager. Also includes **pgShapeloader** a graphical utility for loading data into PostGIS
+     - 
    * - PostGIS Utilities
      - PostGIS command line data loading utilities such as ``psql`` and ``shp2pgsql``. 
+     - 
 
 Dev Tools
 ---------
 
 .. list-table::
-   :widths: 20 80
    :stub-columns: 1
-   :class: table-leftwise
-	   
+   :header-rows: 1
+   :class: non-responsive
+
+   * - Component
+     - Description
+     - Availability	   
    * - Boundless SDK
      - Toolkit for building web map applications.
+     - 
