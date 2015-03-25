@@ -441,7 +441,7 @@ public class LayerController extends ApiController {
                 dataDir().style(s).delete();
             }
             catch(Exception e) {
-                LOG.log(Level.WARNING, "Unable to default style for layer " + wsName + ":" + layer.getName(), e);
+                LOG.log(Level.WARNING, "Unable to delete style for layer " + wsName + ":" + layer.getName(), e);
             }
         }
     }
