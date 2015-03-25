@@ -5,9 +5,7 @@
      <target name="build-html"
              description="Build html docs">
        <antcall target="sphinx">
-         <param name="dir" value="${basedir}/source"/>
-         <param name="outdir" value="${basedir}/target/html"/>
-         <param name="doctrees" value="${basedir}/target/doctrees"/>
+         <param name="dir" value="source"/>
          <param name="flags" value="-q -j 4 -W"/>
        </antcall>
      </target>
@@ -15,9 +13,7 @@
      <target name="build-text"
        description="Build text docs">
        <antcall target="sphinx">
-         <param name="dir" value="${basedir}/source"/>
-         <param name="outdir" value="${basedir}/target/basic"/>
-         <param name="doctrees" value="${basedir}/target/doctrees"/>
+         <param name="dir" value="source"/>
          <param name="builder" value="text"/>
          <param name="flags" value="-q -j 4 -W"/>
        </antcall>
@@ -35,9 +31,7 @@
                  </fileset>
                </copy>
                <antcall target="sphinx">
-                 <param name="dir" value="${basedir}/source"/>
-                 <param name="outdir" value="${basedir}/target/latex"/>
-                 <param name="doctrees" value="${basedir}/target/doctrees"/>
+                 <param name="dir" value="source"/>
                  <param name="builder" value="latex"/>
                  <param name="flags" value="-q -j 4 -W"/>
                </antcall>

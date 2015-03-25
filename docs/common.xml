@@ -22,6 +22,7 @@
     description="Build html docs">
     <antcall target="sphinx">
       <param name="dir" value="source"/>
+      <param name="flags" value="-q -j 4"/>
     </antcall>
   </target>
 
@@ -30,6 +31,7 @@
     <antcall target="sphinx">
       <param name="dir" value="source"/>
       <param name="builder" value="text"/>
+      <param name="flags" value="-q -j 4"/>
     </antcall>
   </target>
 
@@ -42,6 +44,7 @@
             <antcall target="sphinx">
               <param name="dir" value="source"/>
               <param name="builder" value="latex"/>
+              <param name="flags" value="-q -j 4"/>
             </antcall>
             <exec executable="make" failonerror="true" dir="target/latex">
               <arg line="all-pdf"/>

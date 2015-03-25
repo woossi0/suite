@@ -7,6 +7,7 @@
     <target name="build" depends="init">
         <antcall target="sphinx">
             <param name="dir" value="src"/>
+            <param name="flags" value="-q -j 4"/>
         </antcall>
 
         <get src="http://data.opengeo.org/suite/postgis-docs-${pg.version}.zip" dest="doc.zip" 

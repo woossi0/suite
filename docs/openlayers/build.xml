@@ -9,6 +9,7 @@
         description="Build project">
         <antcall target="sphinx">
             <param name="dir" value="src"/>
+            <param name="flags" value="-q -j 4"/>
         </antcall>
     </target>
 
