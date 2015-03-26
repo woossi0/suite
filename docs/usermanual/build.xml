@@ -1,25 +1,40 @@
 <project name="doc.usermanual" default="build">
 
     <import file="../common.xml"/>
-     
-     <target name="build-html"
+    
+    <target name="get-cores">
+        <property environment="env"/>
+        <condition property="cores.count" value="${env.NUMBER_OF_PROCESSORS}">
+            <os family="windows" />
+        </condition>
+        <exec executable="nproc" outputproperty="cores.count" os="Linux">
+            <arg value="--all"/>
+        </exec>
+        <exec executable="sysctl" outputproperty="cores.count" os="Mac OS X">
+            <arg value="-n"/>
+            <arg value="hw.ncpu"/>
+        </exec>
+        <echo message="Number of cores: ${cores.count}"/>
+    </target>
+
+     <target name="build-html" depends="get-cores"
              description="Build html docs">
        <antcall target="sphinx">
          <param name="dir" value="source"/>
-         <param name="flags" value="-q -j 4 -W"/>
+         <param name="flags" value="-q -j ${cores.count} -W"/>
        </antcall>
      </target>
 
-     <target name="build-text"
+     <target name="build-text" depends="get-cores"
        description="Build text docs">
        <antcall target="sphinx">
          <param name="dir" value="source"/>
          <param name="builder" value="text"/>
-         <param name="flags" value="-q -j 4 -W"/>
+         <param name="flags" value="-q -j ${cores.count} -W"/>
        </antcall>
      </target>
   
-     <target name="build-pdf" depends="check-pdf"
+     <target name="build-pdf" depends="check-pdf,get-cores"
        description="Build pdf docs">
        <if>
            <equals arg1="${pdflatex.isPresent}" arg2="true"/>
@@ -33,7 +48,7 @@
                <antcall target="sphinx">
                  <param name="dir" value="source"/>
                  <param name="builder" value="latex"/>
-                 <param name="flags" value="-q -j 4"/>
+                 <param name="flags" value="-q -j ${cores.count}"/>
                </antcall>
                <exec executable="make" failonerror="true" dir="target/latex">
                  <arg line="all-pdf"/>
