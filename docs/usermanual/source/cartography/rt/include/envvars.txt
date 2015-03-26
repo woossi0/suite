@@ -1,0 +1,45 @@
+Environment variables as values
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It is a common situation that the output image dimensions be determined by the client at rendering time, to allow for variable window sizes.
+
+In these cases, it is possible to read in special environment variables to the rendering transformation.
+
+The three environment variables that will be useful to us here are:
+
+* ``wms_bbox``: WMS request extent
+* ``wms_width``: Width of resulting image
+* ``wms_height``: Height of resulting image
+
+These variables can be used as values respectively for the inputs for the following input parameters for this transformation:
+
+* ``outputBBOX``
+* ``outputWidth``
+* ``outputHeight``
+
+YSLD syntax for employing environment variables:
+
+.. code-block:: yaml
+
+  outputBBOX: ${env(wms_bbox)}
+  outputWidth: ${env(wms_width)}
+  outputHeight: ${env(wms_height)}
+
+SLD syntax for employing environment variables:
+
+.. code-block:: xml
+
+  <ogc:Function name="parameter">
+    <ogc:Literal>outputBBOX</ogc:Literal>
+    <ogc:Function name="env"><ogc:Literal>wms_bbox</ogc:Literal></ogc:Function>
+  </ogc:Function>
+
+  <ogc:Function name="parameter">
+    <ogc:Literal>outputWidth</ogc:Literal>
+    <ogc:Function name="env"><ogc:Literal>wms_width</ogc:Literal></ogc:Function>
+  </ogc:Function>
+
+  <ogc:Function name="parameter">
+    <ogc:Literal>outputHeight</ogc:Literal>
+    <ogc:Function name="env"><ogc:Literal>wms_height</ogc:Literal></ogc:Function>
+  </ogc:Function>
