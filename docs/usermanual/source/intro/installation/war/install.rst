@@ -191,7 +191,7 @@ By default, GeoWebCache stores the cache and cache configuration information in 
         </property>
       </bean>
 
-#. You may also wish to edit the :file:`geowebcache.xml` configuration at this time to `include  additional layers </opengeo-docs/geowebcache/configuration/layers/howto.html>`_ .
+#. You may also wish to edit the :file:`geowebcache.xml` configuration at this time to `include additional layers <../../../geowebcache/configuration/layers/howto.html>`__.
 
 #. Here are some suggested locations for the cache directory:
 

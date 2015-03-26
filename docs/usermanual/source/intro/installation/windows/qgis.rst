@@ -65,7 +65,7 @@ QGIS can be run from shortcut in the Start Menu. After a successful install and 
 
    QGIS interface
 
-For more information about about QGIS, including the OpenGeo Suite Explorer plugin, please see the `QGIS documentation <../../qgis/>`_.
+For more information about about QGIS, including the OpenGeo Suite Explorer plugin, please see the `QGIS documentation <../../../qgis/>`__.
 
 Uninstall
 ---------
