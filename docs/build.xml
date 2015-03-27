@@ -27,7 +27,7 @@
         <delete dir="${doc.dir}"/>
         <mkdir dir="${doc.dir}"/>
         <copy todir="${doc.dir}">
-            <fileset dir="usermanual/target/html/${suite.build_profile}" 
+            <fileset dir="usermanual/target/html/" 
                 includes="**/*"/>
             <fileset dir="target" includes="version.ini"/>
         </copy>
