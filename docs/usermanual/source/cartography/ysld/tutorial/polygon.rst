@@ -35,7 +35,7 @@ Viewing the existing style
 Name and Title
 --------------
 
-The feature style and individual elements within the style can be given ``name`` and ``title`` parameters. ``name`` is a machine reference to the style element and is not intended to be displayed. It should be **lower case** and contain **no spaces**. ``title`` is a human-readable description of a style element, and will be displayed by client appliations. 
+The feature style and individual elements within the style can be given ``name`` and ``title`` parameters. ``name`` is a machine reference to the style element and is not intended to be displayed. It should be **lower case** and contain **no spaces**. ``title`` is a human-readable description of a style element, and will be displayed by client applications. 
 
 #. Modify the name and title elements in the default style:
 
@@ -61,7 +61,7 @@ Setting basic styling
 
 Polygon symbolizers provide options for styling both fill (inside) and stroke (outline) of features.
 
-#. Stroke styling is defined primarily by ``stroke-width``, ``stroke-color``, and ``stroke-opacity``. Change the style to use a 0.5 px grey stroke:
+#. Stroke styling is defined primarily by ``stroke-width``, ``stroke-color``, and ``stroke-opacity``. Change the style to use a 0.5px gray stroke:
 
    .. code-block:: yaml
       :emphasize-lines: 5-6
@@ -73,7 +73,7 @@ Polygon symbolizers provide options for styling both fill (inside) and stroke (o
             stroke-color: '#777777'
             stroke-width: 0.5
 
-#. Fill styling is defined primairly by ``fill-color`` and ``fill-opacity``. Change the style to use a 50% transparent brown fill:
+#. Fill styling is defined primarily by ``fill-color`` and ``fill-opacity``. Change the style to use a 50% transparent brown fill:
 
    .. code-block:: yaml
       :emphasize-lines: 7-8
@@ -416,7 +416,7 @@ Compacting thematic styles with transformation functions
 
 While filters are very useful, the required syntax is quite long, and much of the content is redundant. The exact same functionality can be accomplished much more concisely using the :ref:`recode function <cartography.ysld.reference.functions>`.
 
-#. Replace the rules with our origional (before we added the filters):
+#. Replace the rules with our original (before we added the filters):
    
    .. code-block:: yaml
       :emphasize-lines: 3-8

@@ -2,17 +2,11 @@ name: roads
 title: Simple road style
 feature-styles:
 - name: roads
+  x-firstMatch: true
   rules:
   - name: big
     scale: (8000000,)
     filter: ${scalerank < 4}
-    symbolizers:
-    - line:
-        stroke-color: '#333333'
-        stroke-width: 0.5
-  - name: medium
-    scale: ( ,8000000)
-    filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
     symbolizers:
     - line:
         stroke-color: '#333333'
@@ -33,6 +27,13 @@ feature-styles:
         stroke-color: '#000000'
         stroke-width: 6
         stroke-linecap: round
+  - name: medium
+    scale: (,8000000)
+    filter: ${scalerank < 8}
+    symbolizers:
+    - line:
+        stroke-color: '#333333'
+        stroke-width: 1
   - name: small
     scale: (,2000000)
     else: true
@@ -47,6 +48,6 @@ feature-styles:
     filter: ${expressway = 1}
     symbolizers:
     - line:
-        stroke-color: "#FFCC00"
+        stroke-color: '#FFCC00'
         stroke-width: 4
         stroke-linecap: round

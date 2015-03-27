@@ -63,6 +63,7 @@ The following is the basic syntax of a feature style. Note that the contents of 
        ...
      rules:
      - ...
+     x-firstMatch: <boolean>
 
 where:
 
@@ -96,6 +97,24 @@ where:
      - Yes
      - List of styling :ref:`rules <cartography.ysld.reference.rules>`.
      - N/A
+
+The following properties are equivalent to SLD "vendor options".
+
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :stub-columns: 1
+   :widths: 20 10 50 20
+
+   * - Property
+     - Required?
+     - Description
+     - Default value
+   * - ``x-FirstMatch``
+     - No
+     - Stops rule evaluation after the first match. Can make the rendering more efficient by reducing the number of rules that need to be traversed by features, as well as simplyfing the rule filters.
+     - ``false``
+
 
 Short syntax
 ------------
@@ -166,3 +185,75 @@ In order to draw the inner lines always on top of the outer lines, the rule in e
 .. figure:: img/fs_roadcasing.png
 
    Example showing road casing
+
+
+First match
+~~~~~~~~~~~
+
+Given a style that has many rules with distinct outcomes, it may be advantageous to employ ``x-firstMatch`` so as to improve rendering efficiency and simplify those rules.
+
+This first example shows the standard way of creating rules for a dataset. There are villages, towns, and cities (``type = 'village'``, ``type = 'town'`` or ``type = 'city'``) and they have an ``industry`` which could be either ``fishing`` or other values.
+
+.. note:: In order to simplify this example, the specifics of the point symbolizers have been replaced by :ref:`cartography.ysld.reference.variables`. In a real-world example, these would need to be defined in the YSLD as well.
+
+.. code-block:: yaml
+   :linenos:
+   :emphasize-lines: 15
+
+   feature-styles:
+   - name: without_first_match
+     rules:
+     - name: fishing_town
+       filter: ${type = 'town' AND industry = 'fishing'}
+       symbolizers:
+       - point:
+           <<: *fishingtown
+     - name: fishing_city
+       filter: ${type = 'city' AND industry = 'fishing'}
+       symbolizers:
+       - point:
+           <<: *fishingcity
+     - name: other_towns_cities
+       filter: ${type IN ('town', 'city') AND industry <> 'fishing'}
+       symbolizers:
+       - point:
+           <<: *othertownscities
+     - name: other
+       else: true
+       symbolizers:
+       - point:
+           <<: *allotherplaces
+
+
+Using the ``x-firstMatch: true`` parameter, the style is simplified:
+
+.. code-block:: yaml
+   :linenos:
+   :emphasize-lines: 3,16
+
+   feature-styles:
+   - name: with_first_match
+     x-firstMatch: true
+     rules:
+     - name: fishing_town
+       filter: ${type = 'town' AND industry = 'fishing'}
+       symbolizers:
+       - point:
+           <<: *fishingtown
+     - name: fishing_city
+       filter: ${type = 'city' AND industry = 'fishing'}
+       symbolizers:
+       - point:
+           <<: *fishingcity
+     - name: other_towns_cities
+       filter: ${type IN ('town', 'city')}
+       symbolizers:
+       - point:
+           <<: *othertownscities
+     - name: other
+       else: true
+       symbolizers:
+       - point:
+           <<: *allotherplaces
+
+Specifically, the third rule no longer needs the extra ``AND industry <> 'fishing'``, because the previous two rules imply that any features remaining by this rule have that condition.

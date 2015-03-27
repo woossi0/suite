@@ -19,7 +19,7 @@ Viewing the existing style
 #. We can immediately see that there are far more roads than we need on this layer. Fortunately, the road data contains a ``scalerank`` attribute to help determine the importance of different roads. Add a :ref:`filter <cartography.ysld.reference.filters>` to only show roads with ``scalerank < 4``. Then our style looks like:
 
    .. code-block:: yaml
-      :emphasize-lines: 6,10-11
+      :emphasize-lines: 7
 
       name: roads
       title: Simple road style
@@ -31,7 +31,7 @@ Viewing the existing style
           symbolizers:
           - line:
               stroke-color: '#333333'
-              stroke-width: 0.5
+              stroke-width: 1
 
    The layer now appears much less cluttered:
 
@@ -55,7 +55,7 @@ If we zoom in, we want to see all the roads, not just those included in our filt
       YAML requires that the rules form a list with the same amount of indentation as shown below. To adjust indentation select a block of text and use TAB (or Shift-TAB) as appropriate.
 
    .. code-block:: yaml
-      :emphasize-lines: 6,12-22
+      :emphasize-lines: 13-25
       
       name: roads
       title: Simple road style
@@ -68,7 +68,7 @@ If we zoom in, we want to see all the roads, not just those included in our filt
           symbolizers:
           - line:
               stroke-color: '#333333'
-              stroke-width: 0.5
+              stroke-width: 1
         - name: medium
           scale: (2000000,8000000)
           filter: ${scalerank < 8}
@@ -93,7 +93,7 @@ On the smaller scales, we want some differentiation between roads based of the f
 #. Add a new rule for roads that have attribute ``featurecla = 'Ferry'``, and draw these roads with a blue line:
 
    .. code-block:: yaml
-      :emphasize-lines: 19-24
+      :emphasize-lines: 16-21
       
         rules:
         - name: big
@@ -102,7 +102,7 @@ On the smaller scales, we want some differentiation between roads based of the f
           symbolizers:
           - line:
               stroke-color: '#333333'
-              stroke-width: 0.5
+              stroke-width: 1
         - name: medium
           scale: (2000000,8000000)
           filter: ${scalerank < 8}
@@ -148,7 +148,7 @@ Adding road casing
 
 Line symbolizers only have a stroke, so you cannot normally draw an outline around a line. This effect can be simulated by drawing two line symbolizers of different widths, one on top of the other.
 
-#. Add a new rule to draw expressways (``expressway = 1``) using 6px-wide black lines with round ends. This will be our outline:
+#. Add a new rule to draw expressways (``expressway = 1``) using 6px black lines with round ends. This will be our outline:
 
    .. code-block:: yaml
       :emphasize-lines: 9-16
@@ -173,7 +173,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
 #. In order to ensure the inner line is drawn last, it must be in a separate :ref:`feature style <cartography.ysld.reference.featurestyles>`. At the bottom of our YSLD, we add a new feature style which contains a rule to draw expressways using 4px orange lines with round ends:
 
    .. code-block:: yaml
-      :emphasize-lines: 9-18
+      :emphasize-lines: 7-18
 
         - name: small
           scale: (,2000000)
@@ -207,7 +207,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
 
         - name: medium
           scale: (2000000,8000000)
-          filter:  ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
+          filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
           symbolizers:
           - line:
               stroke-color: '#333333'
@@ -226,7 +226,7 @@ To accomplish this, we can make an ``else`` rule. This means that it will only a
       :emphasize-lines: 2
 
         - name: medium
-          scale: ( ,8000000)
+          scale: (,8000000)
           filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
           symbolizers:
           - line:
@@ -245,6 +245,74 @@ To accomplish this, we can make an ``else`` rule. This means that it will only a
           - line:
               stroke-color: '#777777'
               stroke-width: 0.5
+
+Using ``firstMatch`` to simplify rule conditions
+------------------------------------------------
+
+The medium rule has a compound filter condition.
+
+   .. code-block:: yaml
+
+      filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
+
+However, if we reorder the rules and employ the ``x-firstMatch`` parameter, we can simplify this condition and also improve the efficiency of the rendering. Specifically, if we make sure that the medium rule is right after the ferry and expressway rules, then we will no longer need to check for the inverse of those conditions, because those will be the only features remaining.
+
+#. Move the medium rule to after the ferry and expressway rules.
+
+   .. code-block:: yaml
+      :emphasize-lines: 17-23
+
+        - name: ferry
+          scale: (,8000000)
+          filter: ${featurecla = 'Ferry'}
+          symbolizers:
+          - line:
+              stroke-color: '#00CCFF'
+              stroke-width: 2
+              stroke-dasharray: '4 6'
+        - name: expressway
+          scale: (,8000000)
+          filter: ${expressway = 1}
+          symbolizers:
+          - line:
+              stroke-color: '#000000'
+              stroke-width: 6
+              stroke-linecap: round
+        - name: medium
+          scale: (,8000000)
+          filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
+          symbolizers:
+          - line:
+              stroke-color: '#333333'
+              stroke-width: 1
+
+#. Add the ``x-firstMatch: true`` parameter to the top of the feature style that includes these rules (right under ``name: roads``):
+
+   .. code-block:: yaml
+      :emphasize-lines: 5
+
+      name: roads
+      title: Simple road style
+      feature-styles:
+      - name: roads
+        x-firstMatch: true
+        rules:
+        - name: big
+
+#. Now remove the unnecessary conditions on the medium rule:
+
+   .. code-block:: yaml
+      :emphasize-lines: 3
+
+        - name: medium
+          scale: (,8000000)
+          filter: ${scalerank < 8}
+          symbolizers:
+          - line:
+              stroke-color: '#333333'
+              stroke-width: 1
+
+There should be no difference in the display with this change.
 
 Final style
 -----------

@@ -457,7 +457,7 @@ The ``x-labelObstacle`` option is used to mark a different symbolizer as an obst
 Road Shields
 ~~~~~~~~~~~~
 
-The ``graphic`` option is used to dispay a symbol behind a label. A common use for this is to display "highway shields" behind road numbers. This example uses a circle ``shape`` to draw state shields, and an ``external`` image to draw interstate shields, then draws road names on top. The ``x-graphic-resize`` and ``x-graphic-margin`` options are used to resize the graphics to fit the label text::
+The ``graphic`` option is used to display a symbol behind a label. A common use for this is to display "highway shields" behind road numbers. This example uses a circle ``shape`` to draw state shields, and an ``external`` image to draw interstate shields, then draws road names on top. The ``x-graphic-resize`` and ``x-graphic-margin`` options are used to resize the graphics to fit the label text::
 
   feature-styles:
   - name: state
