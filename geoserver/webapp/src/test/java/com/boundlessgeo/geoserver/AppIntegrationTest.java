@@ -17,8 +17,10 @@ import net.sf.json.JSONObject;
 import org.apache.commons.io.IOUtils;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CatalogBuilder;
+import org.geoserver.catalog.FeatureTypeInfo;
 import org.geoserver.catalog.LayerGroupInfo;
 import org.geoserver.catalog.LayerInfo;
+import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.StyleInfo;
 import org.geoserver.data.test.SystemTestData;
 import org.geoserver.importer.Importer;
@@ -39,6 +41,7 @@ import javax.mail.internet.MimeMultipart;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -289,6 +292,43 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             assertNull(obj.get("id"));
         }
     }
+    
+    @Test
+    public void testImportGeoJSONintoDb() throws IOException, Exception {
+        Catalog catalog = getCatalog();
+        StoreInfo targetStore = catalog.getStoreByName("sf", "sf", StoreInfo.class);
+        assertNotNull(targetStore);
+        
+        Importer importer =
+                GeoServerExtensions.bean(Importer.class, applicationContext);
+        ImportController ctrl = new ImportController(getGeoServer(), importer);
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setContextPath("/geoserver");
+        request.setRequestURI("/geoserver/hello");
+        request.setMethod("post");
+        
+        createMultiPartFormContent(request, "form-data; name=\"upload\"; filename=\"point.json\"", "application/json",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.json")));
+
+        JSONObj result = ctrl.importFile("sf", "sf", request);
+
+        assertEquals(1, result.array("imported").size());
+        JSONObj obj = result.array("imported").object(0);
+
+        assertEquals("sf", obj.object("layer").str("workspace"));
+        assertEquals("point", obj.object("layer").str("name"));
+
+        LayerInfo l = catalog.getLayerByName("sf:point");
+        assertNotNull(l);
+        FeatureTypeInfo f = (FeatureTypeInfo)l.getResource();
+        assertEquals(targetStore, f.getStore());
+
+        // ensure style in workspace
+        StyleInfo s = l.getDefaultStyle();
+        assertNotNull(s.getWorkspace());
+    }
+    
 
     @Test
     public void testIconsUploadDelete() throws Exception {
