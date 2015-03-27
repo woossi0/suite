@@ -19,17 +19,9 @@ Upgrade process
 
 #. After backing up your data, :ref:`uninstall <intro.installation.mac.uninstall>` your current version of OpenGeo Suite.
 
-#. The Mac installer for OpenGeo Suite is a disk image made up several :ref:`components <intro.installation.mac.components>` that are installed separately. 
+#. The Mac OS X installer for OpenGeo Suite is a disk image made up several :ref:`components <intro.installation.mac.components>` that are installed separately.  
 
-   .. only:: basic
-
-      .. figure:: img/apps-basic.png
-
-         OpenGeo Suite for Mac OS X
-
-   .. only:: enterprise
-
-      .. figure:: img/apps-ee.png
+   .. figure:: img/apps.png
 
          OpenGeo Suite for Mac OS X
 

@@ -28,13 +28,9 @@ Boundless SDK is part of the OS X OpenGeo Suite CLI tools.
 
 #. In the OpenGeo folder, double-click :guilabel:`OpenGeo CLI Tools`.
 
-   .. only:: basic
+   .. figure:: ../intro/installation/mac/img/apps.png
 
-      .. figure:: ../intro/installation/mac/img/apps-basic.png
-
-   .. only:: enterprise
-
-      .. figure:: ../intro/installation/mac/img/apps-ee.png
+      OpenGeo CLI Tools
 
 #. Follow the installation process to install the CLI tools, including Boundless SDK.
 

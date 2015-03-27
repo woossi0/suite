@@ -1,0 +1,24 @@
+title: Heatmap
+feature-styles:
+- transform:
+    name: gs:Heatmap
+    params:
+      weightAttr: pop2000
+      radiusPixels: 100
+      pixelsPerCell: 10
+      outputBBOX: ${env('wms_bbox')}
+      outputWidth: ${env('wms_width')}
+      outputHeight: ${env('wms_height')}
+  rules:
+  - symbolizers:
+    - raster:
+        geometry: the_geom
+        opacity: 0.6
+        color-map:
+          type: ramp
+          entries:
+          - ('#FFFFFF',0,0.0,'nodata')
+          - ('#FFFFFF',0,0.02,'nodata')
+          - ('#4444FF',1,0.1,'nodata')
+          - ('#FF0000',1,0.5,'values')
+          - ('#FFFF00',1,1.0,'values')

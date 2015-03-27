@@ -3,13 +3,7 @@
 Installing
 ==========
 
-.. only:: basic
-
-   This section describes how to perform a new installation of **OpenGeo Suite** |version| on Mac OS X. These instructions should only be followed if your system does not have OpenGeo Suite installed.
-
-.. only:: enterprise
-
-   This section describes how to perform a new installation of **OpenGeo Suite Enterprise** |version| on Mac OS X. These instructions should be only followed if your system does not have OpenGeo Suite installed.
+This section describes how to perform a new installation of **OpenGeo Suite** |version| on Mac OS X. These instructions should only be followed if your system does not have OpenGeo Suite installed.
 
 .. note::
 
@@ -24,17 +18,9 @@ Installation
 
 The Mac installer for OpenGeo Suite is a disk image made up several :ref:`components <intro.installation.mac.components>` that are installed separately. 
 
-.. only:: basic
+.. figure:: img/apps.png
 
-   .. figure:: img/apps-basic.png
-
-      OpenGeo Suite for Mac OS X
-
-.. only:: enterprise
-
-   .. figure:: img/apps-ee.png
-
-      OpenGeo Suite for Mac OS X
+   OpenGeo Suite for Mac OS X
 
 .. include:: include/componentinstall.txt
 

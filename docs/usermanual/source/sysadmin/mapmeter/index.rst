@@ -11,7 +11,7 @@ Whereas administrator utilities are focused on application-agnostic metrics (net
 * Location of source requests
 * Filters by layer, service, IP address, and more
 
-Mapmeter is available for Enterprise clients only. If you are an Enterprise client and don't have access to Mapmeter, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`__.
+Mapmeter is available for OpenGeo Suite Enterprise clients only. If you are an Enterprise client and don't have access to Mapmeter, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`__.
 
 .. figure:: img/mapmeter.png
 

@@ -13,6 +13,8 @@ Also included only with Composer is the ability to style layers with :ref:`YSLD 
 
 This section will detail how to use Composer.
 
+.. note:: Composer is only available with `OpenGeo Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
+
 .. toctree::
    :maxdepth: 2
 

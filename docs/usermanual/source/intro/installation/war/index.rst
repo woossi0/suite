@@ -4,7 +4,9 @@ OpenGeo Suite for Application Servers
 =====================================
 
 In addition to being available through installers and packages, OpenGeo Suite web applications such as GeoServer are available individually for use with a custom application server. Web applications are distributed as web archives (WAR files).
-   
+
+.. note:: This bundle is only available with `OpenGeo Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
+
 **This is the recommended method of install for systems that already have an application server** in place, rather than using a duplicate container, as can happen with the installers.
    
 The individual applications shipped as part of the WAR bundle are:

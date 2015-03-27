@@ -17,17 +17,13 @@ Windows
 
 The GeoPackage extension can be added during the installation process. On the :guilabel:`Components` page, check the box for :guilabel:`GeoPackage` in the section named :guilabel:`GeoServer Extensions`.
 
-.. only:: basic
-
    .. figure:: img/geopackage_components.png
 
-      GeoPackage in the components list
-
-.. only:: enterprise
+      GeoPackage in the components list (OpenGeo Suite)
 
    .. figure:: img/geopackage_enterprise_components.png
 
-      GeoPackage in the components list
+      GeoPackage in the components list (OpenGeo Suite Enterprise)
 
 If OpenGeo Suite has already been installed and you wish to install GeoPackage support at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`GeoPackage`. This will add GeoPackage support to the existing OpenGeo Suite installation.
 
@@ -64,14 +60,12 @@ The GeoPackage extension can be added to OpenGeo Suite by installing the ``geose
 
 .. note:: This command will need to be run as root or with :command:`sudo`.
 
-.. only:: enterprise
+Application servers
+~~~~~~~~~~~~~~~~~~~
 
-   Application servers
-   ~~~~~~~~~~~~~~~~~~~
+The GeoPackage extension can be added to OpenGeo Suite by copying the contents of the :file:`geopackage` extension directory (not the directory itself) to the GeoServer library directory. If GeoServer is installed at :file:`/opt/tomcat/webapps/geoserver`, the GeoServer library directory will be found at :file:`/opt/tomcat/webapps/geoserver/WEB-INF/lib`.
 
-   The GeoPackage extension can be added to OpenGeo Suite by copying the contents of the :file:`geopackage` extension folder (not the folder itself) to the GeoServer library directory. If GeoServer is installed at :file:`/opt/tomcat/webapps/geoserver`, the GeoServer library directory will be found at :file:`/opt/tomcat/webapps/geoserver/WEB-INF/lib`.
-
-   After copying files, the application server or GeoServer will need to be restarted.
+After copying files, the application server or GeoServer will need to be restarted.
 
 Verifying installation
 ----------------------

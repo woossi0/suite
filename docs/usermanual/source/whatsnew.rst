@@ -7,13 +7,11 @@ Each new version of OpenGeo Suite includes numerous fixes and component upgrades
 
 In addition, OpenGeo Suite |version| has been updated with all-new features, including:
 
-.. only:: enterprise
+**Composer**
 
-   **Composer**
+:ref:`Composer <webmaps.composer>` is a new integrated tool for easily making maps and styling layers in GeoServer. It includes the all-new :ref:`YSLD <cartography.ysld>` markup language which vastly simplifies map styling.
 
-   :ref:`Composer <webmaps.composer>` is a new integrated tool for easily making maps and styling layers in GeoServer. It includes the all-new :ref:`YSLD <cartography.ysld>` markup language which vastly simplifies map styling.
-
-   Composer is available for OpenGeo Suite Enterprise only.
+Composer is available for OpenGeo Suite Enterprise only.
 
 **OpenLayers 3**
 
@@ -29,36 +27,18 @@ Java 7 is now required for OpenGeo Suite on all platforms. OpenGeo Suite is test
 
 The latest branch of GeoServer, version 2.6, is included. This contains the following improvements.
 
-.. only:: basic
+* New graphic options including "windbarbs" and custom WKT graphics
 
-   * New graphic options including "windbarbs" and custom WKT graphics
+* Oracle SDO users can now enjoy support for curves
 
-   * Oracle SDO users can now enjoy support for curves
+* Coverage views to dynamically recombine bands into a multi-band coverage
 
-   * Coverage views to dynamically recombine bands into a multi-band coverage
+* Can now define an image mosaic "no data" area using a vector footprint
 
-   * Can now define an image mosaic "no data" area using a vector footprint
+* All new implementation of cascading (external) WFS data store 
 
-   * All new implementation of cascading (external) WFS data store 
+* WFS Transactions (WFS-T, for read-write actions) now turned off by default for improved security.
 
-   * WFS Transactions (WFS-T, for read-write actions) now turned off by default for improved security.
+* CSS styles may now be managed in the GeoServer admin interface like any other style
 
-   * CSS styles may now be managed in the GeoServer admin interface like any other style
-
-.. only:: enterprise
-
-   * New graphic options including "windbarbs" and custom WKT graphics
-
-   * Oracle SDO users can now enjoy support for curves
-
-   * Coverage views to dynamically recombine bands into a multi-band coverage
-
-   * Can now define an image mosaic "no data" area using a vector footprint
-
-   * All new implementation of cascading (external) WFS data store 
-
-   * WFS Transactions (WFS-T, for read-write actions) now turned off by default for improved security.
-
-   * CSS styles may now be managed in the GeoServer admin interface like any other style
-
-   * :ref:`YSLD <cartography.ysld>` styles—those used by :ref:`Composer <webmaps.composer>`—may also be managed in the GeoServer admin interface like any other style.
+* :ref:`YSLD <cartography.ysld>` styles—those used by :ref:`Composer <webmaps.composer>`—may also be managed in the GeoServer admin interface like any other style.

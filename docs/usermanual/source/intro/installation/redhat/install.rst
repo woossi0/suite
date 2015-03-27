@@ -3,13 +3,7 @@
 Installing
 ==========
 
-.. only:: basic
-
-   This section describes how to perform an installation of **OpenGeo Suite** |version| on Red hat-based Linux distributions. These instructions should be followed if your system does not have OpenGeo Suite installed.
-
-.. only:: enterprise
-
-   This section describes how to perform an installation of **OpenGeo Suite Enterprise** |version| on Red Hat-based Linux distributions. These instructions should be followed if your system does not have OpenGeo Suite installed.
+This section describes how to perform an installation of **OpenGeo Suite** |version| on Red hat-based Linux distributions. These instructions should be followed if your system does not have OpenGeo Suite installed.
 
 .. note::
 
@@ -36,11 +30,9 @@ The commands in this section require root privileges.
 
       sudo su - 
 
-#. Add the OpenGeo Suite repository by creating the file :file:`/etc/yum.repos.d/OpenGeo.repo` with the following contents:
+#. Add the OpenGeo Suite repository by creating the file :file:`/etc/yum.repos.d/OpenGeo.repo` and adding the following contents:
 
-   .. only:: basic
-
-      ::
+   * For **OpenGeo Suite**::
 
         [opengeo]
         name=opengeo
@@ -48,11 +40,9 @@ The commands in this section require root privileges.
         enabled=1
         gpgcheck=0
 
-      Make sure to replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
+     Make sure to replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
 
-   .. only:: enterprise
-
-      ::
+   * For **OpenGeo Suite Enterprise**::
 
         [opengeo]
         name=opengeo
@@ -60,9 +50,9 @@ The commands in this section require root privileges.
         enabled=1
         gpgcheck=0
 
-      Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase. Also, replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
+     Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase. Also, replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
 
-      .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__.
+     .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__.
 
 Installation process
 --------------------

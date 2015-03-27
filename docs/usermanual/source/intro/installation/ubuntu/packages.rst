@@ -20,7 +20,7 @@ The following packages are considered "meta" packages that only depend on other 
 .. list-table::
    :header-rows: 1
    :widths: 20 40 40
-   :class: table-leftwise
+   :class: non-responsive
 
    * - Package
      - Description
@@ -47,7 +47,7 @@ The following packages contain the server components of OpenGeo Suite. These pac
 .. list-table::
    :header-rows: 1
    :widths: 20 40 40
-   :class: table-leftwise
+   :class: non-responsive
 
    * - Package
      - Description
@@ -89,7 +89,7 @@ The following packages contain the client components of OpenGeo Suite. These pac
 .. list-table::
    :header-rows: 1
    :widths: 20 40 40
-   :class: table-leftwise
+   :class: non-responsive
 
    * - Package
      - Description
@@ -133,62 +133,55 @@ The following packages add additional functionality to GeoServer. After installi
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
-.. only:: basic
+The following packages are available:
 
-   The following packages are available for OpenGeo Suite:
-   
-   .. tabularcolumns:: |p{5cm}|p{7cm}|
-   .. list-table::
-      :header-rows: 1
-      :widths: 30 70
-      :class: non-responsive
+.. list-table::
+   :stub-columns: 1
+   :header-rows: 1
+   :class: non-responsive
 
-      * - Package
-        - Description
-      * - ``geoserver-csw``
-        - Catalogue Service for Web (CSW) extension for GeoServer
-      * - ``geoserver-geopackage``
-        - GeoPackage extension for GeoServer
-      * - ``geoserver-wps``
-        - Web Processing Service (WPS) extension for GeoServer
-
-.. only:: enterprise
-
-   The following packages are available for OpenGeo Suite Enterprise:
-
-   .. tabularcolumns:: |p{5cm}|p{7cm}|
-   .. list-table::
-      :header-rows: 1
-      :widths: 30 70
-      :class: non-responsive
-
-      * - Package
-        - Description
-      * - ``geoserver-arcsde``
-        - ArcSDE middleware extension for GeoServer
-      * - ``geoserver-cluster``
-        - Clustering extension for GeoServer. Use with ``geoserver-jdbcconfig``.
-      * - ``geoserver-css``
-        - CSS styling extension for GeoServer
-      * - ``geoserver-csw``
-        - Catalogue Service for Web (CSW) extension for GeoServer
-      * - ``geoserver-db2``
-        - DB2 database extension for GeoServer
-      * - ``geoserver-gdal``
-        - GDAL extension for GeoServer
-      * - ``geoserver-geopackage``
-        - GeoPackage extension for GeoServer
-      * - ``geoserver-jdbcconfig``
-        - Database catalog and configuration extension for GeoServer. Use with ``geoserver-cluster``.
-      * - ``geoserver-mapmeter``
-        - Mapmeter extension for GeoServer
-      * - ``geoserver-mongodb``
-        - MongoDB data format extension for GeoServer
-      * - ``geoserver-oracle``
-        - Oracle database extension for GeoServer
-      * - ``geoserver-script``
-        - Scripting extension for GeoServer
-      * - ``geoserver-sqlserver``
-        - SQL Server database extension for GeoServer
-      * - ``geoserver-wps``
-        - Web Processing Service (WPS) extension for GeoServer
+   * - Package
+     - Description
+     - Availability
+   * - ``geoserver-arcsde``
+     - ArcSDE middleware extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-cluster``
+     - Clustering extension for GeoServer. Use with ``geoserver-jdbcconfig``.
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-css``
+     - CSS styling extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-csw``
+     - Catalogue Service for Web (CSW) extension for GeoServer
+     - 
+   * - ``geoserver-gdal``
+     - GDAL extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-geopackage``
+     - GeoPackage extension for GeoServer
+     - 
+   * - ``geoserver-db2``
+     - DB2 database extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-jdbcconfig``
+     - Database catalog and configuration extension for GeoServer. Use with ``geoserver-cluster``.
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-mapmeter``
+     - Mapmeter extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-mongodb``
+     - MongoDB data format extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-oracle``
+     - Oracle database extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-script``
+     - Scripting extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-sqlserver``
+     - SQL Server database extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-wps``
+     - Web Processing Service (WPS) extension for GeoServer
+     - 
