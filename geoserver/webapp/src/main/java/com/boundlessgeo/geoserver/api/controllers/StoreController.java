@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.wicket.util.file.File;
 import org.geoserver.catalog.CascadeDeleteVisitor;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CatalogFactory;
@@ -23,6 +24,7 @@ import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.WMSStoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.config.GeoServer;
+import org.geoserver.platform.resource.Files;
 import org.geotools.data.DataAccess;
 import org.geotools.data.DataAccessFinder;
 import org.geotools.data.wms.WebMapServer;
@@ -138,23 +140,9 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         List<ResourceInfo> layers = cat.getResourcesByStore(store, ResourceInfo.class );
         if( layers.isEmpty() ){
             cat.remove(store);
-        }
-        else if (recurse){
-            CascadeDeleteVisitor delete = new CascadeDeleteVisitor(cat);
-            if( store instanceof DataStoreInfo){
-                delete.visit((DataStoreInfo)store);
-            }
-            else if( store instanceof CoverageStoreInfo){
-                delete.visit((CoverageStoreInfo)store);
-            }
-            else if( store instanceof WMSStoreInfo){
-                delete.visit((WMSStoreInfo)store);
-            }
-            else {
-                throw new IllegalStateException( "Unable to delete "+name+" - expected data store, coverage store or wms store" );
-            }
-        }
-        else {
+        } else if (recurse){
+            store.accept(new CascadeDeleteVisitor(cat));
+        } else {
             StringBuilder message = new StringBuilder();
             message.append("Use recurse=true to remove ").append(name).append(" along with layers:");
             for( ResourceInfo l : layers ){
@@ -162,6 +150,17 @@ import com.boundlessgeo.geoserver.json.JSONObj;
             }
             throw new IllegalStateException( message.toString() );
         }
+        try {
+            // If this store is file based, and was uploaded using this API or the REST upload API,
+            // delete the uploaded file.
+            java.io.File uploadDir = ImportController.uploadDir(cat, store.getWorkspace(), store);
+            if (uploadDir.exists()) {
+                Files.delete(uploadDir);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Could not delete store files for "+name, e);
+        }
+        
         JSONObj json = new JSONObj();
         json.put("name", name  )
             .put("workspace", wsName  );

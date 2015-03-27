@@ -1,4 +1,4 @@
-/* (c) 2014-2014 Boundless, http://boundlessgeo.com
+/* (c) 2014-2015 Boundless, http://boundlessgeo.com
  * This code is licensed under the GPL 2.0 license.
  */
 package com.boundlessgeo.geoserver;
@@ -8,6 +8,7 @@ import com.boundlessgeo.geoserver.api.controllers.IconController;
 import com.boundlessgeo.geoserver.api.controllers.ImportController;
 import com.boundlessgeo.geoserver.api.controllers.LayerController;
 import com.boundlessgeo.geoserver.api.controllers.Metadata;
+import com.boundlessgeo.geoserver.api.controllers.StoreController;
 import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
 import com.boundlessgeo.geoserver.api.controllers.WorkspaceController;
 import com.boundlessgeo.geoserver.json.JSONArr;
@@ -23,13 +24,18 @@ import org.geoserver.catalog.CatalogBuilder;
 import org.geoserver.catalog.FeatureTypeInfo;
 import org.geoserver.catalog.LayerGroupInfo;
 import org.geoserver.catalog.LayerInfo;
+import org.geoserver.catalog.ResourcePool;
 import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.StyleInfo;
+import org.geoserver.config.GeoServer;
+import org.geoserver.config.GeoServerInfo;
+import org.geoserver.config.SettingsInfo;
 import org.geoserver.data.test.SystemTestData;
 import org.geoserver.importer.Importer;
 import org.geoserver.importer.StyleGenerator;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
+import org.geoserver.rest.util.RESTUtils;
 import org.geoserver.test.GeoServerSystemTestSupport;
 import org.geotools.referencing.CRS;
 import org.junit.Before;
@@ -50,6 +56,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -90,6 +97,19 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         removeLayer("cgf", "renamedLayer");
         removeLayer("cgf", "Points-map");
         removeLayer("cgf", "Lines-map");
+    }
+    
+    @Before
+    public void removeFiles() {
+        removeStore("gs","point");
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "data/gs/point/point.shp").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "data/gs/point/point.prj").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "data/gs/point/point.shx").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "data/gs/point/point.dbf").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.prj").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shx").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.dbf").delete();
     }
 
     @Test
@@ -145,6 +165,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
     @Test
     public void testImportShapefileAsZip() throws Exception {
         Catalog catalog = getCatalog();
+        //Test default root of "data"
+        RESTUtils.loadMapFromGlobal().remove("root");
         assertNull(catalog.getLayerByName("gs:point"));
 
         Importer importer =
@@ -168,11 +190,17 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals("point", obj.object("layer").str("name"));
 
         LayerInfo l = catalog.getLayerByName("gs:point");
+        StoreInfo s = catalog.getStoreByName("gs", "point", StoreInfo.class);
         assertNotNull(l);
+        assertNotNull(s);
+        assertTrue(new File(catalog.getResourceLoader().getBaseDirectory(), "data/gs/point/point.shp").exists());
+        assertTrue(new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).exists());
+        assertEquals(new File(catalog.getResourceLoader().getBaseDirectory(), "data/gs/point/point.shp").getAbsoluteFile(),
+                new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).getAbsoluteFile());
 
         // ensure style in workspace
-        StyleInfo s = l.getDefaultStyle();
-        assertNotNull(s.getWorkspace());
+        StyleInfo style = l.getDefaultStyle();
+        assertNotNull(style.getWorkspace());
         
         //Try to reimport the same store - should succeed
         createMultiPartFormContent(request, "form-data; name=\"upload\"; filename=\"point.zip\"", "application/zip",
@@ -186,11 +214,17 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
     @Test
     public void testImportShapefiles() throws Exception {
         Catalog catalog = getCatalog();
+        //Test REST global root
+        GeoServerInfo gsInfo = GeoServerExtensions.bean(GeoServer.class).getGlobal();
+        SettingsInfo info = gsInfo.getSettings();
+        info.getMetadata().put("root", catalog.getResourceLoader().findOrCreateDirectory("uploads").getAbsolutePath());
+        getGeoServer().save(gsInfo);
         assertNull(catalog.getLayerByName("gs:point"));
 
         Importer importer =
             GeoServerExtensions.bean(Importer.class, applicationContext);
         ImportController ctrl = new ImportController(getGeoServer(), importer);
+        StoreController storeCtrl = new StoreController(getGeoServer());
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.setContextPath("/geoserver");
@@ -221,11 +255,26 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals("point", obj.object("layer").str("name"));
 
         LayerInfo l = catalog.getLayerByName("gs:point");
+        StoreInfo s = catalog.getStoreByName("gs", "point", StoreInfo.class);
         assertNotNull(l);
+        assertNotNull(s);
+        assertTrue(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").exists());
+        assertTrue(new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).exists());
+        assertEquals(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").getAbsoluteFile(),
+                new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).getAbsoluteFile());
 
         // ensure style in workspace
-        StyleInfo s = l.getDefaultStyle();
-        assertNotNull(s.getWorkspace());
+        StyleInfo style = l.getDefaultStyle();
+        assertNotNull(style.getWorkspace());
+        
+        //Delete the store and re-upload:
+        MockHttpServletRequest deleteRequest = new MockHttpServletRequest();
+        deleteRequest.setContextPath("/geoserver");
+        deleteRequest.setRequestURI("/geoserver/hello");
+        deleteRequest.setMethod("delete");
+        storeCtrl.delete("gs", "point", true, deleteRequest);
+        result = ctrl.importFile("gs", request);
+        assertEquals(1, result.array("imported").size());
     }
     
     @Test

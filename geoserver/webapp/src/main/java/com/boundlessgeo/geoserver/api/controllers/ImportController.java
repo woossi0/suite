@@ -13,6 +13,7 @@ import com.google.common.collect.Maps;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.geoserver.catalog.CascadeDeleteVisitor;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CoverageStoreInfo;
 import org.geoserver.catalog.DataStoreInfo;
@@ -26,6 +27,7 @@ import org.geoserver.catalog.WMSStoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.config.GeoServer;
 import org.geoserver.config.GeoServerDataDirectory;
+import org.geoserver.importer.ASpatialFile;
 import org.geoserver.importer.Database;
 import org.geoserver.importer.Directory;
 import org.geoserver.importer.FileData;
@@ -33,11 +35,17 @@ import org.geoserver.importer.ImportContext;
 import org.geoserver.importer.ImportData;
 import org.geoserver.importer.ImportFilter;
 import org.geoserver.importer.ImportTask;
+import org.geoserver.importer.ImportTask.State;
 import org.geoserver.importer.Importer;
+import org.geoserver.importer.SpatialFile;
 import org.geoserver.importer.Table;
+import org.geoserver.platform.resource.Paths;
 import org.geoserver.platform.resource.Resource;
+import org.geoserver.rest.util.RESTUploadExternalPathMapper;
+import org.geoserver.rest.util.RESTUploadPathMapper;
 import org.geotools.data.DataAccessFactory.Param;
 import org.geotools.data.DataStoreFactorySpi;
+import org.geotools.util.logging.Logging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -55,12 +63,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/api/imports")
@@ -68,6 +79,8 @@ public class ImportController extends ApiController {
 
     Importer importer;
     Hasher hasher;
+    
+    static Logger LOG = Logging.getLogger(ImportController.class);
 
     @Autowired
     public ImportController(GeoServer geoServer, Importer importer) {
@@ -115,9 +128,9 @@ public class ImportController extends ApiController {
         if (!files.hasNext()) {
             throw new BadRequestException("Request must contain one or more files");
         }
-
+        
         // create a new temp directory for the uploaded file
-        File uploadDir = dataDir().get(ws, "data", hasher.get().toLowerCase()).dir();
+        File uploadDir = Files.createTempDirectory("importFile").toFile();
         if (!uploadDir.exists()) {
             throw new RuntimeException("Unable to create directory for file upload");
         }
@@ -131,18 +144,129 @@ public class ImportController extends ApiController {
         ImportContext imp;
         if (storeName == null) {
             imp = importer.createContext(dir, ws);
-        
-            //Check if this store already exists in the catalog
-            StoreInfo store = findStore(imp, ws);
-            if (store != null) {
-                return (new JSONObj()).put("store", IO.store(new JSONObj(), store, request, geoServer));
-            }
         } else {
             StoreInfo store = findStore(wsName, storeName, geoServer.getCatalog());
             imp = importer.createContext(dir, ws, store);
         }
-
+        
         return doImport(imp, ws);
+    }
+    
+    public static File uploadDir(Catalog catalog, WorkspaceInfo ws, StoreInfo store) throws IOException {
+        RESTUploadPathMapper destDirMapper = new RESTUploadExternalPathMapper(catalog);
+        
+        //Match org.catalog.rest.StoreFileResource default base dir
+        StringBuilder destDirBuilder = new StringBuilder(
+                Paths.toFile(catalog.getResourceLoader().getBaseDirectory(), 
+                        Paths.path("data", ws.getName(),store.getName())).getAbsolutePath());
+        
+        //See if we can get the root directory from the Global REST root path
+        destDirMapper.mapStorePath(destDirBuilder, ws.getName(), store.getName(), new HashMap<String, String>());
+        
+        //Move main file
+        return new File(destDirBuilder.toString());
+    }
+    
+    /**
+     * Moves uploaded files from the temp upload directory to the appropriate store folder
+     * Updates the ImportContext tasks and stores with the new location.
+     * Updates the catalog store with the new location.
+     * 
+     * @param t ImportTask containing data about a single import
+     */
+    void moveFile(ImportTask t) {
+        Catalog catalog = geoServer.getCatalog();
+        StoreInfo store = catalog.getStore(t.getStore().getId(), StoreInfo.class);
+        
+        if (store == null) {
+            LOG.warning("Trying to move files to a non-existant store");
+            return;
+        }
+        if (! (t.getData() instanceof FileData)) {
+            LOG.warning("Trying to move non-file data");
+            return;
+        }
+        if (!t.isDirect()) {
+            LOG.warning("Trying to move files from an indirect import");
+            return;
+        }
+        
+        WorkspaceInfo ws = store.getWorkspace();
+        
+        //Special behavior for SpatialFile - linked files
+        FileData srcData = (FileData)t.getData();
+        File srcFile = srcData.getFile();
+        File storeFile;
+        
+        File destDir;
+        FileData destData;
+        File destFile;
+        
+        try {
+            destDir = uploadDir(catalog, ws, store);
+            destFile = new File(destDir, srcData.getFile().getName());
+            if (srcFile.getAbsoluteFile().equals(destFile.getAbsoluteFile())) {
+                LOG.warning("Trying to move file to itself");
+                return;
+            }
+            destDir.mkdirs();
+            
+            //Update Store
+            File baseDirectory = catalog.getResourceLoader().getBaseDirectory();
+            String url = "file:"+Paths.convert(baseDirectory, destFile);
+            if (store instanceof CoverageStoreInfo) {
+                storeFile = new File(new URL(((CoverageStoreInfo)store).getURL()).getFile());
+                if (!storeFile.getAbsoluteFile().equals(srcData.getFile().getAbsoluteFile())) {
+                    throw new RuntimeException("CoverageStore file not the same as imported file");
+                }
+                ((CoverageStoreInfo)store).setURL(url);
+            } else if (store instanceof DataStoreInfo){
+                storeFile = new File(new URL(store.getConnectionParameters().get("url").toString()).getFile());
+                if (!storeFile.getAbsoluteFile().equals(srcData.getFile().getAbsoluteFile())) {
+                    throw new RuntimeException("DataStore file not the same as imported file");
+                }
+                store.getConnectionParameters().put("url", url);
+            } else {
+                throw new RuntimeException("Invalid store type: "+store.getClass());
+            }
+            
+            Files.move(srcData.getFile().toPath(), destFile.toPath());
+            //move any supplementary files, update ImportData
+            if (srcData instanceof SpatialFile) {
+                destData = new SpatialFile(destFile);
+                if (((SpatialFile)srcData).getPrjFile() != null) {
+                    File prjFile = new File(destDir, ((SpatialFile)srcData).getPrjFile().getName());
+                    Files.move(((SpatialFile)srcData).getPrjFile().toPath(), prjFile.toPath());
+                    ((SpatialFile)destData).setPrjFile(prjFile);
+                }
+                for (File f : ((SpatialFile)srcData).getSuppFiles()) {
+                    File suppFile = new File(destDir, f.getName());
+                    Files.move(f.toPath(), suppFile.toPath());
+                    ((SpatialFile)destData).getSuppFiles().add(suppFile);
+                }
+            } else if (srcData instanceof ASpatialFile) {
+                destData = new ASpatialFile(destFile);
+            } else {
+                destData = new FileData(destFile);
+            }
+        } catch (IOException e) {
+            //If this occurs, the store files will be in a temporary folder, so we should abort the import
+            t.setError(e);
+            t.setState(State.ERROR);
+            store.accept(new CascadeDeleteVisitor(catalog));
+            throw new RuntimeException("Failed to move imported files to uploads directory", e);
+        }
+        //Copy over attributes from srcData
+        destData.setFormat(srcData.getFormat());
+        destData.setMessage(srcData.getMessage());
+        destData.setCharsetEncoding(srcData.getCharsetEncoding());
+        
+        //Update data
+        t.setData(destData);
+        t.setStore(store);
+        
+        //Save the updated store to the catalog
+        catalog.save(store);
     }
 
     /**
@@ -289,6 +413,8 @@ public class ImportController extends ApiController {
         for (ImportTask t : imp.getTasks()) {
             if (t.getState() == ImportTask.State.COMPLETE) {
                 touch(t);
+                //If this was a direct file import, move the files out of the temp dir
+                moveFile(t);
             }
         }
         imp.setState(ImportContext.State.COMPLETE);
@@ -320,6 +446,8 @@ public class ImportController extends ApiController {
         for (ImportTask t : newTasks) {
             if (t.getState() == ImportTask.State.COMPLETE) {
                 touch(t);
+                //If this was a direct file import, move the files out of the temp dir
+                moveFile(t);
             }
         }
         imp.setState(ImportContext.State.COMPLETE);
