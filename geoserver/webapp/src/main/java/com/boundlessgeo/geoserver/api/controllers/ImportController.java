@@ -19,6 +19,7 @@ import org.geoserver.catalog.DataStoreInfo;
 import org.geoserver.catalog.LayerInfo;
 import org.geoserver.catalog.NamespaceInfo;
 import org.geoserver.catalog.ResourceInfo;
+import org.geoserver.catalog.ResourcePool;
 import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.StyleInfo;
 import org.geoserver.catalog.WMSStoreInfo;
@@ -452,9 +453,12 @@ public class ImportController extends ApiController {
             return null;
         }
         
+        
         StoreInfo store = data.getFormat().createStore(data, ws, catalog);
         
-        Map<String, Serializable> params = store.getConnectionParameters();
+        //Process relative URLs (required to support directories of spatial files)
+        Map<String, Serializable> params = ResourcePool.getParams(store.getConnectionParameters(), catalog.getResourceLoader() );
+        
         Map<String, Serializable> requiredParams = new HashMap<String, Serializable>();
         DataStoreFactorySpi factory = (DataStoreFactorySpi) DataStoreUtils.aquireFactory(params);
         
@@ -488,7 +492,7 @@ public class ImportController extends ApiController {
         List<? extends StoreInfo> stores = catalog.getStoresByWorkspace(ws, clazz);
         for (StoreInfo s : stores) {
             boolean matches = true;
-            Map<String, Serializable> p = s.getConnectionParameters();
+            Map<String, Serializable> p = ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader() );
             for (String key : requiredParams.keySet()) {
                 //On-disk params read as strings, so compare as strings
                 if (!(requiredParams.get(key).toString()).equals(
