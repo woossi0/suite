@@ -36,7 +36,7 @@ The commands in this section require root privileges.
 
         [opengeo]
         name=opengeo
-        baseurl=http://yum.boundlessgeo.com/suite/v45/<OS>/$releasever/$basearch
+        baseurl=https://yum.boundlessgeo.com/suite/v45/<OS>/$releasever/$basearch
         enabled=1
         gpgcheck=0
 
@@ -53,6 +53,7 @@ The commands in this section require root privileges.
      Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase. Also, replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
 
      .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__.
+
 
 Installation process
 --------------------

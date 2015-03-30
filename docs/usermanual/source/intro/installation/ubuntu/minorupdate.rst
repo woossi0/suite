@@ -34,7 +34,7 @@ The commands in this section require root privileges.
 
    .. code-block:: bash
 
-      wget -qO- http://apt.boundlessgeo.com/gpg.key | apt-key add - 
+      wget -qO- https://apt.boundlessgeo.com/gpg.key | apt-key add - 
 
 #. Add the OpenGeo Suite repository:
 
@@ -42,13 +42,13 @@ The commands in this section require root privileges.
 
      .. code-block:: bash
 
-        echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
    * If installing **OpenGeo Suite** on **Ubuntu 14**:
 
      .. code-block:: bash
 
-        echo "deb http://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
    * If installing **OpenGeo Suite Enterprise** on **Ubuntu 12**:
 

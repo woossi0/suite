@@ -36,7 +36,7 @@ The commands in this section require root privileges.
 
         [opengeo]
         name=opengeo
-        baseurl=http://yum.boundlessgeo.com/suite/v45/<OS>/$releasever/$basearch
+        baseurl=https://yum.boundlessgeo.com/suite/v45/<OS>/$releasever/$basearch
         enabled=1
         gpgcheck=0
 
