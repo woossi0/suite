@@ -40,6 +40,7 @@ import org.geoserver.importer.Importer;
 import org.geoserver.importer.SpatialFile;
 import org.geoserver.importer.Table;
 import org.geoserver.platform.resource.Paths;
+import org.geoserver.ows.util.ResponseUtils;
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.rest.util.RESTUploadExternalPathMapper;
 import org.geoserver.rest.util.RESTUploadPathMapper;
@@ -148,8 +149,9 @@ public class ImportController extends ApiController {
             StoreInfo store = findStore(wsName, storeName, geoServer.getCatalog());
             imp = importer.createContext(dir, ws, store);
         }
-        
-        return doImport(imp, ws);
+
+        //If this is an indirect import, run asynchronously
+        return doImport(imp, ws, request);
     }
     
     public static File uploadDir(Catalog catalog, WorkspaceInfo ws, StoreInfo store) throws IOException {
@@ -324,7 +326,7 @@ public class ImportController extends ApiController {
         
         //Return to requester to allow selection of tables.
         //Complete the import using update()
-        return get(ws.getName(), imp.getId());
+        return get(ws.getName(), imp.getId(), request);
     }
 
     Map<String, Serializable> hack(JSONObj obj) {
@@ -385,8 +387,8 @@ public class ImportController extends ApiController {
      * @param ws - The workspace to import into
      * @return JSON representation of the import
      */
-    JSONObj doImport(ImportContext imp, WorkspaceInfo ws) throws Exception {
-        return doImport(imp, ws, ImportFilter.ALL);
+    JSONObj doImport(ImportContext imp, WorkspaceInfo ws, HttpServletRequest request) throws Exception {
+        return doImport(imp, ws, ImportFilter.ALL, request);
     }
     
     /**
@@ -396,7 +398,7 @@ public class ImportController extends ApiController {
      * @param f - Filter to select import tasks
      * @return JSON representation of the import
      */
-    JSONObj doImport(ImportContext imp, WorkspaceInfo ws, ImportFilter f) throws Exception {
+    JSONObj doImport(ImportContext imp, WorkspaceInfo ws, ImportFilter f, HttpServletRequest request) throws Exception {
         // run the import
         imp.setState(ImportContext.State.RUNNING);
         GeoServerDataDirectory dataDir = dataDir();
@@ -407,18 +409,8 @@ public class ImportController extends ApiController {
                 t.setState(ImportTask.State.CANCELED);
             }
         }
-        
-        importer.run(imp, f);
-
-        for (ImportTask t : imp.getTasks()) {
-            if (t.getState() == ImportTask.State.COMPLETE) {
-                touch(t);
-                //If this was a direct file import, move the files out of the temp dir
-                moveFile(t);
-            }
-        }
-        imp.setState(ImportContext.State.COMPLETE);
-        return get(ws.getName(), imp.getId());
+        importer.runAsync(imp, f);
+        return get(ws.getName(), imp.getId(), request);
     }
     
     /**
@@ -429,7 +421,7 @@ public class ImportController extends ApiController {
      * @param f - Filter to select import tasks
      * @return JSON representation of the import
      */
-    JSONObj reImport(ImportContext imp, WorkspaceInfo ws, ImportFilter f) throws Exception {
+    JSONObj reImport(ImportContext imp, WorkspaceInfo ws, ImportFilter f, HttpServletRequest request) throws Exception {
      // run the import
         imp.setState(ImportContext.State.RUNNING);
         GeoServerDataDirectory dataDir = dataDir();
@@ -441,17 +433,8 @@ public class ImportController extends ApiController {
                 newTasks.add(t);
             } 
         }
-        importer.run(imp, f);
-
-        for (ImportTask t : newTasks) {
-            if (t.getState() == ImportTask.State.COMPLETE) {
-                touch(t);
-                //If this was a direct file import, move the files out of the temp dir
-                moveFile(t);
-            }
-        }
-        imp.setState(ImportContext.State.COMPLETE);
-        return get(ws.getName(), imp.getId());
+        importer.runAsync(imp, f);
+        return get(ws.getName(), imp.getId(), request);
     }
     
     /*
@@ -517,6 +500,7 @@ public class ImportController extends ApiController {
      * {
      *    "id": 0, 
      *    "preimport": [],
+     *    "running": [],
      *    "imported": [
      *      {
      *        "task": 0, 
@@ -539,55 +523,95 @@ public class ImportController extends ApiController {
      *    ],
      *    "ignored": [], 
      *    "failed": []
+     *    "status":"complete"
+     *    "tasksComplete":2
+     *    "tasksTotal":2
      *  }
      * 
-     * The response is an object with 6 properties:
-     * * id - The identifier of this import job, needed to make modifications to it (see below)
-     * * preimport - Tasks that have been identified but not yet imported. Only used by the database import.
-     * * completed - Tasks that were successfully imported. Each task contains the resulting layer representation.
-     * * pending - Tasks that require further input from the user before being imported. The most common case being missing projection information. Each task contains a property named "problem" that identifies the issue.
-     * * ignored - Tasks that correspond to files that GeoServer doesn't recognize. Usually these are README files or other metadata files that don't correspond to data to be imported, but are present in the uploaded archive.
-     * * failed - Task that failed for some other reason. Each task contains an error trace that provides more information about the failure.
+     * The response is an object with 10 properties:
+     * * id - The identifier of this import job, needed to make modifications to it
+     * * status - The current status of the import. May be "pending", "running", or "complete"
+     * * tasksComplete - The number of tasks that have been processed and have either been 
+     *   successfully imported or given an error.
+     * * tasksTotal - The total number of tasks associated with this import
+     * * preimport - Tasks that have been identified but not yet imported. Used by the database 
+     *   import and asynchronous import
+     * * running - Tasks that are currently running. Only used by asynchronous import
+     * * completed - Tasks that were successfully imported. Each task contains the resulting layer 
+     *   representation.
+     * * pending - Tasks that require further input from the user before being imported. The most 
+     *   common case being missing projection information. Each task contains a property named 
+     *   "problem" that identifies the issue.
+     * * ignored - Tasks that correspond to files that GeoServer doesn't recognize. Usually these 
+     *   are README files or other metadata files that don't correspond to data to be imported, but 
+     *   are present in the uploaded archive.
+     * * failed - Task that failed for some other reason. Each task contains an error trace that 
+     *   provides more information about the failure.
      *
      * @throws Exception if the request is invalid, or another error occurs.
      */
     @RequestMapping(value = "/{wsName}/{id:\\d+}", method = RequestMethod.GET)
-    public @ResponseBody JSONObj get(@PathVariable String wsName, @PathVariable Long id) throws Exception {
+    public @ResponseBody JSONObj get(@PathVariable String wsName, @PathVariable Long id, HttpServletRequest request) throws Exception {
         ImportContext imp = findImport(id);
 
         JSONObj result = new JSONObj();
         result.put("id", imp.getId());
-
+        
         JSONArr preimport = result.putArray("preimport");
+        JSONArr running = result.putArray("running");
         JSONArr imported = result.putArray("imported");
         JSONArr pending = result.putArray("pending");
         JSONArr failed = result.putArray("failed");
         JSONArr ignored = result.putArray("ignored");
 
         for (ImportTask task : imp.getTasks()) {
-            if (imp.getState() == ImportContext.State.PENDING) {
-                preimport.add(task(task));
-            } else {
-                switch(task.getState()) {
-                    case COMPLETE:
-                        imported.add(complete(task));
-                        break;
-                    case NO_BOUNDS:
-                    case NO_CRS:
-                        pending.add(pending(task));
-                        // fixable state, throw into pending
-                        break;
-                    case ERROR:
-                        // error, dump out some details
-                        failed.add(failed(task));
-                        break;
-                    default:
-                        // ignore this task
-                        ignored.add(ignored(task));
-                }
+            switch(task.getState()) {
+                case READY:
+                case PENDING:
+                    preimport.add(task(task));
+                    break;
+                case RUNNING:
+                    running.add(task(task));
+                    break;
+                case COMPLETE:
+                    imported.add(complete(task));
+                    break;
+                case NO_BOUNDS:
+                case NO_CRS:
+                    pending.add(pending(task));
+                    // fixable state, throw into pending
+                    break;
+                case ERROR:
+                    // error, dump out some details
+                    failed.add(failed(task));
+                    break;
+                default:
+                    // ignore this task
+                    ignored.add(ignored(task));
             }
         }
-
+        
+        result.put("tasksCompleted", imp.getTasks().size()-(preimport.size()+running.size()));
+        result.put("tasksTotal", imp.getTasks().size());
+        result.put("importerEndpoint", ResponseUtils.baseURL(request)+"geoserver/rest/imports/"+id);
+        
+        //If there are no more tasks to run, consider the import complete
+        if ((preimport.size()+running.size()) == 0) {
+            imp.setState(ImportContext.State.COMPLETE);
+        }
+        switch(imp.getState()) {
+            case COMPLETE:
+                result.put("state", "complete");
+                break;
+            case PENDING:
+                result.put("state", "pending");
+                break;
+            case RUNNING:
+                result.put("state", "running");
+                break;
+            default:
+                break;
+        }
         return result;
     }
 
@@ -615,24 +639,42 @@ public class ImportController extends ApiController {
      * Currently "ALL" is the only supported filter. This would import all tasks:
      * { "filter":"ALL" }
      * 
+     * If the import is currently running, you cannot update it, as this may interfere with running
+     * tasks and cause an inconsistent state. To cancel a running import, provide the value
+     * "cancelled":true in the request object.
+     * 
      * @return a JSON object describing the result of the import. See {@link #get(String, Long) get}.
      * @throws Exception if the request is invalid.
      */
     @RequestMapping(value = "/{wsName}/{id:\\d+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody JSONObj update(@PathVariable String wsName, @PathVariable Long id, @RequestBody JSONObj obj)
+    public @ResponseBody JSONObj update(@PathVariable String wsName, @PathVariable Long id, @RequestBody JSONObj obj, HttpServletRequest request)
         throws Exception {
 
         Catalog catalog = geoServer.getCatalog();
         WorkspaceInfo ws = findWorkspace(wsName, catalog);
-        
         ImportContext imp = findImport(id);
-        ImportFilter f = filter(obj, imp);
         
-        //Pre-import (Database import only)
-        if (imp.getState() == ImportContext.State.PENDING) {
+        //If this import is currently running, we should not start another job
+        if (imp.getState() == ImportContext.State.RUNNING) {
+            if (obj.bool("cancelled")) {
+                imp.progress().setCanceled(true);
+                return get(wsName, id, request);
+            } else {
+                throw new RuntimeException("This import is currently running.");
+            }
+        }
+        ImportFilter f = filter(obj, imp);
+        boolean preimport = true;
+        for (ImportTask task : imp.getTasks()) {
+            //Pre-import (Database import only)
+            if (task.getState() != ImportTask.State.PENDING) {
+                preimport = false;
+                break;
+            }
+        }
+        if (preimport) {
             // create the import data
-            
-            return doImport(imp, ws, f);
+            return doImport(imp, ws, f, request);
         }
         
         //Re-import
@@ -640,7 +682,7 @@ public class ImportController extends ApiController {
         
         //Filter only: run on all tasks that match the filter
         if (arr == null) {
-            return reImport(imp, ws, f);
+            return reImport(imp, ws, f, request);
         }
         
         //Task List: Update CRS tasks, run all tasks that match filter or list.
@@ -675,7 +717,7 @@ public class ImportController extends ApiController {
                 }
             }
         }
-        return reImport(imp, ws, f);
+        return reImport(imp, ws, f, request);
     }
 
     ImportContext findImport(Long id) {
@@ -759,7 +801,10 @@ public class ImportController extends ApiController {
         l = catalog().getLayer(l.getId());
         if (l != null) {
             Date now = new Date();
-            Metadata.created(l, now);
+            //If we have already touched this task, don't update
+            if (Metadata.created(l) == null) {
+                Metadata.created(l, now);
+            }
             Metadata.modified(l, now);
             geoServer.getCatalog().save(l);
         }

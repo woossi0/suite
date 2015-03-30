@@ -33,6 +33,7 @@ import org.geoserver.config.SettingsInfo;
 import org.geoserver.data.test.SystemTestData;
 import org.geoserver.importer.Importer;
 import org.geoserver.importer.StyleGenerator;
+import org.geoserver.ows.util.ResponseUtils;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.rest.util.RESTUtils;
@@ -50,6 +51,7 @@ import javax.imageio.ImageIO;
 import javax.mail.internet.InternetHeaders;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
+import javax.servlet.http.HttpServletRequest;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -182,6 +184,11 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
                 IOUtils.toByteArray(getClass().getResourceAsStream("point.shp.zip")));
 
         JSONObj result = ctrl.importFile("gs", request);
+        Long id = Long.parseLong(result.str("id"));
+        verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        //Wait for the import to complete
+        Thread.sleep(100);
+        result = ctrl.get("gs", id, request);
 
         assertEquals(1, result.array("imported").size());
         JSONObj obj = result.array("imported").object(0);
@@ -247,6 +254,11 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
 
 
         JSONObj result = ctrl.importFile("gs", request);
+        Long id = Long.parseLong(result.str("id"));
+        verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        //Wait for the import to complete
+        result = pollImport(ctrl, "gs", id, "complete", request);
+        assertNotNull(result);
 
         assertEquals(1, result.array("imported").size());
         JSONObj obj = result.array("imported").object(0);
@@ -293,44 +305,42 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             request.setRequestURI("/geoserver/hello");
             request.setMethod("post");
             
-            JSONObj obj = data.createConnectionParameters();
-            obj = ctrl.importDb("gs", obj, request);
+            JSONObj result = data.createConnectionParameters();
+            result = ctrl.importDb("gs", result, request);
             
-            Long id = Long.parseLong(obj.get("id").toString());
+            Long id = Long.parseLong(result.str("id"));
+            verifyImporterEndpoint(result.str("importerEndpoint"), request);
             assertNotNull(id);
-            JSONArr preimport = obj.array("preimport");
-            assertTrue(3 <= preimport.size());
-            assertEquals(0, obj.array("imported").size());
-            assertEquals(0, obj.array("pending").size());
-            assertEquals(0, obj.array("failed").size());
-            assertEquals(0, obj.array("ignored").size());
+            assertTrue(result.integer("tasksTotal") > 0);
             
-            //Choose tables to import
+            assertEquals("pending", result.get("state"));
             List<String> names = Arrays.asList(new String[]{"ft1","ft2","ft3"});
             JSONArr tasks = new JSONArr();
-            for (JSONObj o : preimport.objects()) {
+            for (JSONObj o : result.array("preimport").objects()) {
                 if (names.contains(o.get("name"))) {
                     tasks.add(new JSONObj().put("task", o.get("task").toString()));
                     assertEquals("table", o.get("type"));
                 }
             }
-            assertEquals(3, tasks.size());
+            assertTrue(tasks.size() > 0);
             JSONObj response = new JSONObj();
             response.put("tasks", tasks);
             
-            obj = ctrl.update("gs", id, response);
+            result = ctrl.update("gs", id, response, request);
+            //Wait for the import to complete
+            result = pollImport(ctrl, "gs", id, "complete", request);
+            assertNotNull(result);
             
-            assertEquals(0, obj.array("preimport").size());
-            assertEquals(1, obj.array("imported").size());
-            assertEquals(2, obj.array("pending").size());
-            assertEquals(0, obj.array("failed").size());
-            assertEquals(preimport.size()-3, obj.array("ignored").size());
+            assertEquals(0, result.array("preimport").size());
+            assertEquals(1, result.array("imported").size());
+            assertEquals(2, result.array("pending").size());
+            assertEquals(0, result.array("failed").size());
             
-            obj = ctrl.get("gs",  id);
+            result = ctrl.get("gs",  id, request);
             
             //Set CRS
             tasks = new JSONArr();
-            for (JSONObj o : obj.array("pending").objects()) {
+            for (JSONObj o : result.array("pending").objects()) {
                 String srs = "EPSG:4326";
                 tasks.add(new JSONObj().put("task", o.get("task").toString())
                                        .put("proj", IO.proj(new JSONObj(), CRS.decode(srs), srs)));
@@ -338,20 +348,22 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             response = new JSONObj();
             response.put("tasks", tasks);
             
-            obj = ctrl.update("gs", id, response);
+            result = ctrl.update("gs", id, response, request);
+            //Wait for the import to complete
+            result = pollImport(ctrl, "gs", id, "complete", request);
+            assertNotNull(result);
             
-            assertEquals(0, obj.array("preimport").size());
-            assertEquals(3, obj.array("imported").size());
-            assertEquals(0, obj.array("pending").size());
-            assertEquals(0, obj.array("failed").size());
-            assertEquals(preimport.size()-3, obj.array("ignored").size());
+            assertEquals(0, result.array("preimport").size());
+            assertEquals(3, result.array("imported").size());
+            assertEquals(0, result.array("pending").size());
+            assertEquals(0, result.array("failed").size());
             
             //Try to reimport the same store - should fail and return existing store
-            obj = data.createConnectionParameters();
-            obj = ctrl.importDb("gs", obj, request);
+            result = data.createConnectionParameters();
+            result = ctrl.importDb("gs", result, request);
             
-            assertNotNull(obj.get("store"));
-            assertNull(obj.get("id"));
+            assertNotNull(result.get("store"));
+            assertNull(result.get("id"));
         }
     }
     
@@ -374,7 +386,13 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
                 IOUtils.toByteArray(getClass().getResourceAsStream("point.json")));
 
         JSONObj result = ctrl.importFile("sf", "sf", request);
-
+        Long id = Long.parseLong(result.str("id"));
+        verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        
+        //Wait for the import to complete
+        result = pollImport(ctrl, "gs", id, "complete", request);
+        assertNotNull(result);
+        
         assertEquals(1, result.array("imported").size());
         JSONObj obj = result.array("imported").object(0);
 
@@ -389,6 +407,32 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         // ensure style in workspace
         StyleInfo s = l.getDefaultStyle();
         assertNotNull(s.getWorkspace());
+    }
+    
+    private void verifyImporterEndpoint(String url, HttpServletRequest request) throws Exception {
+        String baseURL = ResponseUtils.baseURL(request)+"geoserver/";
+        String relativeURL = url.substring(baseURL.length());
+        com.mockrunner.mock.web.MockHttpServletResponse res = getAsServletResponse(relativeURL);
+        assertEquals("application/json", res.getContentType());
+    }
+    private JSONObj pollImport(ImportController ctrl, String ws, long id, String state, HttpServletRequest request) {
+        int attempts = 100;
+        int interval = 10;
+        
+        for (int i = 0; i < attempts; i++) {
+            try {
+                Thread.sleep(interval);
+                JSONObj obj = ctrl.get(ws, id, request);
+                if (obj.get("state").equals(state)) {
+                    return obj;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        
+        return null;
     }
     
 
