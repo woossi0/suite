@@ -364,16 +364,34 @@ public class IO {
      * Layers API
      */
     
+    /**
+     * Generates a reasonable title for a layer.
+     * @param layer
+     * @return The layer title, or the resource title, or null
+     */
     static Object title(LayerInfo layer) {
         ResourceInfo r = layer.getResource();
         return layer.getTitle() != null ? layer.getTitle() : r != null ? r.getTitle() : null;
     }
 
+    /**
+     * Generates a reasonable description for a layer.
+     * @param layer
+     * @return The layer abstract, or the resource abstract, or null
+     */
     static Object description(LayerInfo layer) {
         ResourceInfo r = layer.getResource();
         return layer.getAbstract() != null ? layer.getAbstract() : r != null ? r.getAbstract() : null;
     }
 
+    /**
+     * Encodes a short layer description within the specified object
+     * 
+     * @param json The object to encode within.
+     * @param info The layer to encode
+     * @param req The HTTP request
+     * @return The encoded object
+     */
     public static JSONObj layer(JSONObj json, LayerInfo info, HttpServletRequest req) {
         String wsName = info.getResource().getNamespace().getPrefix();
         json.put("name", info.getName())
@@ -383,6 +401,16 @@ public class IO {
         return json;
     }
     
+    /**
+     * Encodes a detailed layer or layer group description within the specified object. Delegates to
+     * {@link #layerDetails(JSONObj, LayerInfo, HttpServletRequest)} and 
+     * {@link #layerDetails(JSONObj, LayerGroupInfo, HttpServletRequest)}.
+     * 
+     * @param json The object to encode within.
+     * @param layer The layer or layer group to encode
+     * @param req The HTTP request
+     * @return The encoded object
+     */
     public static JSONObj layerDetails(JSONObj obj, PublishedInfo layer, HttpServletRequest req) {
         if( layer == null ){
             return obj;
@@ -398,6 +426,11 @@ public class IO {
         }
     }
     
+    /**
+     * Encodes a layer group within the specified object.
+     *
+     * @return The object passed in.
+     */
     public static JSONObj layerDetails(JSONObj obj, LayerGroupInfo group, HttpServletRequest req) {
         String wsName = group.getWorkspace().getName();
         obj.put("name", group.getName())
@@ -470,6 +503,10 @@ public class IO {
         return metadata(obj, layer);
     }
 
+    /**
+     * Provides a text description of a resource
+     * @return "raster", "vector", "wms", or "resource"
+     */
     static String type(ResourceInfo r)  {
         if (r instanceof CoverageInfo) {
             return "raster";
@@ -485,6 +522,10 @@ public class IO {
         }
     }
 
+    /**
+     * Provides a text description of a geometry
+     * @return The geometry class name of a vector layer; or "raster", "layer", or "none"
+     */
     static String geometry(LayerInfo layer) {
         ResourceInfo r = layer.getResource();
         
@@ -513,6 +554,12 @@ public class IO {
         return "none";
     }
     
+    /**
+     * Encodes the bounding box of a layer group into the passed object
+     * @param bbox The object to encode
+     * @param l The layer group
+     * @return The encoded object
+     */
     public static JSONObj bbox( JSONObj bbox, LayerGroupInfo l ){
         ReferencedEnvelope bounds = l.getBounds();
         if (bounds != null) {
@@ -528,6 +575,12 @@ public class IO {
         return bbox;
     }
     
+    /**
+     * Encodes the bounding box of a resource into the passed object
+     * @param bbox The object to encode
+     * @param r The resource
+     * @return The encoded object
+     */
     public static JSONObj bbox( JSONObj bbox, ResourceInfo r ){
         if (r.getNativeBoundingBox() != null) {
             bounds(bbox.putObject("native"), r.getNativeBoundingBox());
@@ -550,6 +603,14 @@ public class IO {
         return bbox;
     }
     
+    /**
+     * Encodes a Feature type schema into the passed object
+     * @param schema The object to encode
+     * @param type The feature type
+     * @param details Flag to list details such as the namespace, and description, as well as any
+     * filters or other constraints.
+     * @return The encoded object
+     */
     public static JSONObj schema( JSONObj schema, FeatureType type, boolean details){
         if( type != null ){
             schema.put("name", type.getName().getLocalPart() );
@@ -685,6 +746,14 @@ public class IO {
      * Stores API
      */
     
+    /**
+     * Encode a basic store description into the passed object
+     * @param obj Object to encode
+     * @param store The store
+     * @param req HTTP request
+     * @param geoServer GeoServer instance
+     * @return The encoded object
+     */
     public static JSONObj store(JSONObj obj, StoreInfo store, HttpServletRequest req, GeoServer geoServer) {       
         String name = store.getName();
 
@@ -703,6 +772,14 @@ public class IO {
         return metadata(obj, store);
     }
 
+    /**
+     * Encode a detailed store description into the passed object
+     * @param obj the bject to encode
+     * @param store the store
+     * @param req HTTP request
+     * @param geoServer GeoServer instance
+     * @return The encoded object
+     */
     public static JSONObj storeDetails(JSONObj json, StoreInfo store, HttpServletRequest req, GeoServer geoServer) throws IOException {
         store(json, store, req, geoServer);
 
@@ -752,6 +829,14 @@ public class IO {
         return count;
     }
 
+    /**
+     * Encode a list of layers into the passed object
+     * @param r The resource containing the layers to list
+     * @param list the object to encode
+     * @param geoServer GeoServer instance
+     * @return The encoded object
+     * @throws IOException
+     */
     private static JSONArr layers(ResourceInfo r, JSONArr list, GeoServer geoServer) throws IOException {
         if (r != null) {
             Catalog cat = geoServer.getCatalog();
@@ -762,6 +847,14 @@ public class IO {
         return list;
     }
     
+    /**
+     * Encode a list of layers into the passed object
+     * @param r The store containing the layers to list
+     * @param list the object to encode
+     * @param geoServer GeoServer instance
+     * @return The encoded object
+     * @throws IOException
+     */
     private static JSONArr layers(StoreInfo store, JSONArr list, GeoServer geoServer) throws IOException {
         Catalog cat = geoServer.getCatalog();
         WorkspaceInfo ws = store.getWorkspace();
@@ -779,6 +872,14 @@ public class IO {
         return list;
     }
 
+    /**
+     * Encode a list of resources into the passed object
+     * @param store the store containing the resources
+     * @param list the object to encode
+     * @param geoServer GeoServer instance
+     * @return the encoded object
+     * @throws IOException
+     */
     @SuppressWarnings("unchecked")
     private static JSONArr resources(StoreInfo store, JSONArr list, GeoServer geoServer) throws IOException {
         for (String resource : listResources(store)) {
@@ -811,6 +912,15 @@ public class IO {
         return list;
     }
     
+    /**
+     * Encode the description of a resource into the passed object
+     * @param obj the object to encode
+     * @param store the resource
+     * @param name the name of the resource
+     * @param geoServer GeoServer instance
+     * @return the encoded object
+     * @throws IOException
+     */
     public static JSONObj resource(JSONObj obj, StoreInfo store, String name, GeoServer geoServer) throws IOException {
         obj.put("name", name);
         if(store instanceof DataStoreInfo){
@@ -1008,7 +1118,7 @@ public class IO {
     /*
      * Basic JSON Utilities
      */
-
+    /** Encode a date */
     static JSONObj date(JSONObj obj, Date date) {
         String timestamp = new SimpleDateFormat(DATE_FORMAT).format(date);
         return obj.put("timestamp", timestamp).put("pretty", PRETTY_TIME.format(date));
@@ -1026,7 +1136,7 @@ public class IO {
         }
         return obj;
     }
-
+    /** Encode an exception */
     public static JSONObj error(JSONObj json, Throwable error) {
         if (error != null) {
             String message = null;
@@ -1053,7 +1163,7 @@ public class IO {
         }
         return json;
     }
-    
+    /** Encode a parameter */
     public static JSONObj param(JSONObj json, Parameter<?> p) {
         if (p != null) {
             String title = p.getTitle() != null ? p.getTitle().toString() : WordUtils.capitalize(p.getName());
@@ -1108,7 +1218,13 @@ public class IO {
         }
         return value.toString();
     }
-
+    /**
+     * Construct a local url from an HTTP request and a relative URL
+     * @param req The HTTP request, containing the base URL
+     * @param path Format string describing the relative url
+     * @param args Arguments for formatting the relative url
+     * @return The resolved URL.
+     */
     public static Object url(HttpServletRequest req, String path, Object ... args) {
         if (req == null) {
             return null;
@@ -1119,6 +1235,7 @@ public class IO {
         return resolved;
     }
 
+    /** Encode a RecentObjectCache reference */
     public static JSONObj ref(JSONObj obj, Ref ref) {
         obj.put("name", ref.name);
         if (ref.workspace != null) {

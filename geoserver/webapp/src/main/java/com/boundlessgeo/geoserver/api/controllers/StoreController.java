@@ -59,7 +59,13 @@ import com.boundlessgeo.geoserver.json.JSONObj;
     public StoreController(GeoServer geoServer) {
         super(geoServer);
     }
-
+    
+    /**
+     * API endpoint to list the stores in the workspace
+     * @param wsName The workspace
+     * @param req The HTTP request
+     * @return The list of stores encoded as a JSON array
+     */
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.GET)
     public @ResponseBody
     JSONArr list(@PathVariable String wsName, HttpServletRequest req){
@@ -71,6 +77,13 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         return arr;
     }
     
+    /**
+     * API endpoint to get details on a specific store
+     * @param wsName The workspace name
+     * @param name The store name
+     * @param req The HTTP request
+     * @return The store, encoded as a JSON object
+     */
     @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.GET)
     public @ResponseBody
     JSONObj get(@PathVariable String wsName, @PathVariable String name, HttpServletRequest req) {
@@ -85,6 +98,15 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         }
     }
 
+    /**
+     * API endpoint to get details on a specific resource contained in a store, 
+     * such as a database table.
+     * @param wsName The workspace name
+     * @param stName The store name
+     * @param name The resource name
+     * @param req The HTTP request
+     * @return The store, encoded as a JSON object
+     */
     @RequestMapping(value = "/{wsName}/{stName}/{name:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj resource(@PathVariable String wsName, @PathVariable String stName, @PathVariable String name, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();
@@ -96,6 +118,14 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         return obj;
     }
     
+    /**
+     * API endpoint to delete a store from the catalog
+     * @param wsName The workspace name
+     * @param name The store name
+     * @param recurse Flag to recursively delete dependent maps and layers
+     * @param req The HTTP request
+     * @return The name and workspace of the deleted store
+     */
     @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.DELETE)
     public @ResponseBody
     JSONObj delete(@PathVariable String wsName,
@@ -138,6 +168,15 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         return json;
     }
     
+    /**
+     * API endpoint to create a new store
+     * @param wsName The workspace to create the store in
+     * @param name The name of the new store
+     * @param obj The connection parameters for the store
+     * @param req The HTTP request
+     * @return The description of the newly created store
+     * @throws IOException
+     */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.POST)
     public @ResponseBody
@@ -219,6 +258,16 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         
         return IO.storeDetails(new JSONObj(), store, req, geoServer);
     }
+    
+    /**
+     * API endpoint to update an existing store
+     * @param wsName The workspace of the store
+     * @param name The name of the store
+     * @param obj Partial description of the store, containing all changes
+     * @param req HTTP request
+     * @return The description of the updated store
+     * @throws IOException
+     */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.PATCH)
     public @ResponseBody JSONObj patch(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();
@@ -243,6 +292,15 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         }
     }
     
+    /**
+     * API endpoint to update an existing store
+     * @param wsName The workspace of the store
+     * @param name The name of the store
+     * @param obj Partial description of the store, containing all changes
+     * @param req HTTP request
+     * @return The description of the updated store
+     * @throws IOException
+     */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj put(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();

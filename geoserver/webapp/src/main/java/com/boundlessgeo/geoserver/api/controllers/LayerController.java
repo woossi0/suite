@@ -103,6 +103,16 @@ public class LayerController extends ApiController {
         this.importer = importer;
     }
 
+    /**
+     * API endpoint to list layers in a workspace
+     * @param wsName The workspace
+     * @param page Page of the list
+     * @param count Number of items per page
+     * @param sort Sort order (asc or desc)
+     * @param textFilter Search filter to limit results
+     * @param req HTTP request
+     * @return List of items for the page, encoded as a JSON array
+     */
     @RequestMapping(value="/{wsName:.+}", method = RequestMethod.GET)
     public @ResponseBody
     JSONObj list(@PathVariable String wsName, 
@@ -145,6 +155,13 @@ public class LayerController extends ApiController {
         return obj;
     }
 
+    /**
+     * API endpoint to create a new layer
+     * @param wsName The workspace to create the layer in
+     * @param obj description of the layer
+     * @param req HTTP request
+     * @return The description of the newly created layer
+     */
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody JSONObj create(@PathVariable String wsName, @RequestBody JSONObj obj, HttpServletRequest req) {
@@ -386,14 +403,24 @@ public class LayerController extends ApiController {
         return styleName;
     }
 
-
-
+    /**
+     * API endpoint to get details on a specific layer
+     * @param wsName The workspace name
+     * @param name The layer name
+     * @param req The HTTP request
+     * @return The layer, encoded as a JSON object
+     */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj get(@PathVariable String wsName, @PathVariable String name, HttpServletRequest req) {
         LayerInfo l = findLayer(wsName, name, geoServer.getCatalog());
         return layer(new JSONObj(), l, req);
     }
 
+    /**
+     * API endpoint to delete a layer from the catalog
+     * @param wsName The workspace name
+     * @param name The layer name
+     */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.DELETE)
     public @ResponseBody void delete(@PathVariable String wsName, @PathVariable String name) throws IOException {
         Catalog cat = geoServer.getCatalog();
@@ -419,6 +446,15 @@ public class LayerController extends ApiController {
         }
     }
 
+    /**
+     * API endpoint to update an existing layer
+     * @param wsName The workspace of the layer
+     * @param name The name of the layer
+     * @param obj Partial description of the layer, containing all changes
+     * @param req HTTP request
+     * @return The description of the updated layer
+     * @throws IOException
+     */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.PATCH)
     public @ResponseBody JSONObj patch(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();
@@ -427,6 +463,15 @@ public class LayerController extends ApiController {
         return update(layer, ws, obj,req);
     }
 
+    /**
+     * API endpoint to update an existing layer
+     * @param wsName The workspace of the layer
+     * @param name The name of the layer
+     * @param obj Partial description of the layer, containing all changes
+     * @param req HTTP request
+     * @return The description of the updated layer
+     * @throws IOException
+     */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj put(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();

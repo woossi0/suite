@@ -76,12 +76,31 @@ public class ImportController extends ApiController {
         this.hasher = new Hasher(7);
     }
 
+    /**
+     * API endpoint to import a file or list of files as a new layer or layers into GeoServer. 
+     * Files are provided as MediaType.MULTIPART_FORM_DATA_VALUE in the request
+     * @param wsName The workspace to import the files into
+     * @param request The HTTP request
+     * @return a JSON object describing the result of the import. See {@link #get(String, Long) get}.
+     * @throws Exception if the request is invalid, or the file upload fails.
+     */
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public @ResponseBody
     JSONObj importFile(@PathVariable String wsName, HttpServletRequest request) throws Exception {
         return importFile(wsName, null, request);
     }
     
+    /**
+     * API endpoint to import a file or list of files as a new layer or layers into into an existing
+     * store inGeoServer. 
+     * Files are provided as MediaType.MULTIPART_FORM_DATA_VALUE in the request
+     * @param wsName The workspace to import the files into
+     * @param storeName The store to import the layers into. If null, tries to import into a new 
+     * store.
+     * @param request The HTTP request
+     * @return a JSON object describing the result of the import. See {@link #get(String, Long) get}.
+     * @throws Exception if the request is invalid, or the file upload fails.
+     */
     @RequestMapping(value = "/{wsName:.+}/{storeName:.+}", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public @ResponseBody
     JSONObj importFile(@PathVariable String wsName, @PathVariable String storeName, HttpServletRequest request)
@@ -126,12 +145,33 @@ public class ImportController extends ApiController {
         return doImport(imp, ws);
     }
 
+    /**
+     * API endpoint to import a database as a new layer or layers into GeoServer. 
+     * Connection details are provided as a JSONObject, formatted according to the 
+     * {@see com.boundlessgeo.geoserver.api.controllers.FormatController} API.
+     * @param wsName The workspace to import the database into
+     * @param request The HTTP request
+     * @return a JSON object describing the result of the import. See {@link #get(String, Long) get}.
+     * @throws Exception if the request is invalid.
+     */
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj importDb(@PathVariable String wsName, @RequestBody JSONObj obj, 
             HttpServletRequest request) throws Exception {
         return importDb(wsName, null, obj, request);
     }
     
+    /**
+     * API endpoint to import the contents of a database as a new layer or layers into an existing 
+     * data store in GeoServer. 
+     * Connection details are provided as a JSONObject, formatted according to the 
+     * {@see com.boundlessgeo.geoserver.api.controllers.FormatController} API.
+     * @param wsName The workspace to import the database into
+     * @param storeName The store to import the layers into. If null, tries to import into a new 
+     * store.
+     * @param request The HTTP request
+     * @return a JSON object describing the result of the import. See {@link #get(String, Long) get}.
+     * @throws Exception if the request is invalid.
+     */
     @RequestMapping(value = "/{wsName:.+}/{storeName:.+}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj importDb(@PathVariable String wsName, @PathVariable String storeName, @RequestBody JSONObj obj, 
             HttpServletRequest request) throws Exception {
@@ -176,6 +216,13 @@ public class ImportController extends ApiController {
         return map;
     }
     
+    /*
+     * Extracts details on a task filter from the JSONObj and creates a ImportFilter object based on these 
+     * details. Valid filters are:
+     * * "filter":"ALL" - All tasks
+     * * "tasks":[<list of tasks>] where each task object must contain "task":<task id> - Only 
+     *   select the tasks identified in the list
+     */
     ImportFilter filter(JSONObj obj, ImportContext imp) {
         Object filter = obj.get("filter");
         JSONArr arr = obj.array("tasks");
@@ -208,7 +255,8 @@ public class ImportController extends ApiController {
         }
     }
     
-    /*
+    /**
+     * Runs an import using the GeoServer importer
      * @param data - The data to import
      * @param ws - The workspace to import into
      * @return JSON representation of the import
@@ -217,7 +265,8 @@ public class ImportController extends ApiController {
         return doImport(imp, ws, ImportFilter.ALL);
     }
     
-    /*
+    /**
+     * Runs an import using the GeoServer importer
      * @param imp - The context to run the import from
      * @param ws - The workspace to import into
      * @param f - Filter to select import tasks
@@ -246,7 +295,7 @@ public class ImportController extends ApiController {
         return get(ws.getName(), imp.getId());
     }
     
-    /*
+    /**
      * Rerun an import.
      * 
      * @param imp - The context to run the import from
@@ -277,10 +326,11 @@ public class ImportController extends ApiController {
         return get(ws.getName(), imp.getId());
     }
     
+    /*
+     * 1. hack the context object to ensure that all styles are workspace local
+     * 2. mark layers as "imported" so we can safely delete styles later
+     */
     void prepTask(ImportTask t, WorkspaceInfo ws, GeoServerDataDirectory dataDir) {
-        // 1. hack the context object to ensure that all styles are workspace local
-        // 2. mark layers as "imported" so we can safely delete styles later
-        
         LayerInfo l = t.getLayer();
         
         //If the task has no associated layer, it is probably a junk file that won't get imported
@@ -331,6 +381,48 @@ public class ImportController extends ApiController {
         return styleName;
     }
 
+    /**
+     * Get details on an existing import.
+     * @param wsName The workspace of the import
+     * @param id The id of the import
+     * @return A JSONObj containing the import details:
+     * {
+     *    "id": 0, 
+     *    "preimport": [],
+     *    "imported": [
+     *      {
+     *        "task": 0, 
+     *        "name": "stipple.shp",
+     *        "type": "file"
+     *        "layer": {
+     *          "name": "stipple", 
+     *          "workspace": "opengeo",
+     *          ... rest of layer definition
+     *        }
+     *      }
+     *    ], 
+     *    "pending": [
+     *      {
+     *        "task": 1, 
+     *        "name": "usa-merc.tif",
+     *        "type": "file"
+     *        "problem": "NO_CRS"
+     *      }
+     *    ],
+     *    "ignored": [], 
+     *    "failed": []
+     *  }
+     * 
+     * The response is an object with 6 properties:
+     * * id - The identifier of this import job, needed to make modifications to it (see below)
+     * * preimport - Tasks that have been identified but not yet imported. Only used by the database import.
+     * * completed - Tasks that were successfully imported. Each task contains the resulting layer representation.
+     * * pending - Tasks that require further input from the user before being imported. The most common case being missing projection information. Each task contains a property named "problem" that identifies the issue.
+     * * ignored - Tasks that correspond to files that GeoServer doesn't recognize. Usually these are README files or other metadata files that don't correspond to data to be imported, but are present in the uploaded archive.
+     * * failed - Task that failed for some other reason. Each task contains an error trace that provides more information about the failure.
+     *
+     * @throws Exception if the request is invalid, or another error occurs.
+     */
     @RequestMapping(value = "/{wsName}/{id:\\d+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj get(@PathVariable String wsName, @PathVariable Long id) throws Exception {
         ImportContext imp = findImport(id);
@@ -371,6 +463,33 @@ public class ImportController extends ApiController {
         return result;
     }
 
+    /**
+     * Modify an existing import. This can involve updating projections, or importing previously 
+     * excluded tasks.
+     * 
+     * @param wsName
+     * @param id
+     * @param obj The update request: 
+     * The request payload can be a list of task objects with any additional data that needs to be 
+     * specified by the user. This example (re)imports of task 0, and sets the projection and 
+     * re-imports task 1:
+     * { 
+     *     "tasks":[
+     *         {
+     *              "task": 0
+     *         },
+     *         {
+     *              "task": 1,
+     *              "proj": "epsg:3857"
+     *         }]
+     * }
+     * Alternatively, the request can specify a filter to select tasks to import. 
+     * Currently "ALL" is the only supported filter. This would import all tasks:
+     * { "filter":"ALL" }
+     * 
+     * @return a JSON object describing the result of the import. See {@link #get(String, Long) get}.
+     * @throws Exception if the request is invalid.
+     */
     @RequestMapping(value = "/{wsName}/{id:\\d+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody JSONObj update(@PathVariable String wsName, @PathVariable Long id, @RequestBody JSONObj obj)
         throws Exception {
