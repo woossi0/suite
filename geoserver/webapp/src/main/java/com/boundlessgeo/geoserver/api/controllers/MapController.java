@@ -5,6 +5,7 @@ package com.boundlessgeo.geoserver.api.controllers;
 
 import static org.geoserver.catalog.Predicates.equal;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -77,6 +78,15 @@ public class MapController extends ApiController {
         super(geoServer, recentCache);
     }
 
+    /**
+     * API Endpoint to create a new map.
+     * @param wsName The workspace to create the map in
+     * @param obj Map description
+     * @param req HTTP Request
+     * @return The description of the newly created map
+     * @throws NoSuchAuthorityCodeException If the map SRS is invalid
+     * @throws FactoryException
+     */
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
@@ -181,6 +191,12 @@ public class MapController extends ApiController {
         }
     }
 
+    /**
+     * API endpoint to delete a map from the catalog
+     * @param wsName The workspace name
+     * @param name The map name
+     * @return A list of the remaining maps in the workspace
+     */
     @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.DELETE)
     public @ResponseBody
     JSONArr delete(@PathVariable String wsName, @PathVariable String name) {
@@ -195,6 +211,13 @@ public class MapController extends ApiController {
         return list(wsName, null, null, null, null).array("maps");
     }
     
+    /**
+     * API endpoint to get details on a specific map
+     * @param wsName The workspace name
+     * @param name The map name
+     * @param req The HTTP request
+     * @return The map, encoded as a JSON object
+     */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj get(@PathVariable String wsName,
                                      @PathVariable String name, HttpServletRequest req) {
@@ -203,6 +226,15 @@ public class MapController extends ApiController {
         return mapDetails(new JSONObj(), map, wsName, req);
     }
 
+    /**
+     * API endpoint to update an existing map
+     * @param wsName The workspace of the map
+     * @param name The name of the map
+     * @param obj Partial description of the map, containing all changes
+     * @param req HTTP request
+     * @return The description of the updated map
+     * @throws Exception
+     */
     @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.PATCH)
     public @ResponseBody JSONObj patch(@PathVariable String wsName,
                                        @PathVariable String name,
@@ -210,6 +242,15 @@ public class MapController extends ApiController {
         return put(wsName, name, obj,req);
     }
 
+    /**
+     * API endpoint to update an existing map
+     * @param wsName The workspace of the map
+     * @param name The name of the map
+     * @param obj Partial description of the map, containing all changes
+     * @param req HTTP request
+     * @return The description of the updated map
+     * @throws Exception
+     */
     @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.PUT)
     public @ResponseBody JSONObj put(@PathVariable String wsName,
                                      @PathVariable String name, 
@@ -281,7 +322,15 @@ public class MapController extends ApiController {
 
         return mapDetails(new JSONObj(), map, wsName, req);
     }
-    
+    /**
+     * API endpoint to list maps in a workspace
+     * @param wsName The workspace
+     * @param page Page of the list
+     * @param count Number of items per page
+     * @param sort Sort order (asc or desc)
+     * @param textFilter Search filter to limit results
+     * @return List of items for the page, encoded as a JSON array
+     */
     @RequestMapping(value="/{wsName:.+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj list(@PathVariable String wsName,
       @RequestParam(value="page", required=false) Integer page,

@@ -22,6 +22,14 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/api/login")
 public class LoginController {
 
+    /**
+     * API endpoint for determining if a user is logged in
+     * 
+     * @param req HTTP request
+     * @param res HTTP response
+     * @return JSON object containing the session id, the session timeout interval, 
+     * and the GeoServer user, if applicable.
+     */
     @RequestMapping()
     public @ResponseBody
     JSONObj handle(HttpServletRequest req, HttpServletResponse res) {
