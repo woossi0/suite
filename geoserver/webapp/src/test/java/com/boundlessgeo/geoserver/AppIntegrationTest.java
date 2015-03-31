@@ -6,6 +6,9 @@ package com.boundlessgeo.geoserver;
 import com.boundlessgeo.geoserver.api.controllers.IO;
 import com.boundlessgeo.geoserver.api.controllers.IconController;
 import com.boundlessgeo.geoserver.api.controllers.ImportController;
+import com.boundlessgeo.geoserver.api.controllers.LayerController;
+import com.boundlessgeo.geoserver.api.controllers.Metadata;
+import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
 import com.boundlessgeo.geoserver.api.controllers.WorkspaceController;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
@@ -24,33 +27,36 @@ import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.StyleInfo;
 import org.geoserver.data.test.SystemTestData;
 import org.geoserver.importer.Importer;
+import org.geoserver.importer.StyleGenerator;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.test.GeoServerSystemTestSupport;
 import org.geotools.referencing.CRS;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
+import javax.imageio.ImageIO;
 import javax.mail.internet.InternetHeaders;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -488,5 +494,133 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
 
         assertNotNull(catalog.getLayerByName("cdf:foo"));
 
+    }
+    
+    @Test
+    public void testThumbnail() throws Exception {
+        ThumbnailController ctrl = applicationContext.getBean(ThumbnailController.class);
+        LayerController layerCtrl = applicationContext.getBean(LayerController.class);
+        AppConfiguration config = applicationContext.getBean(AppConfiguration.class);
+        
+        //Precision on file.lastModified for the current architecture
+        int filePrecision = 1000;
+        if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
+            //Still keep a small delay, just in case
+            filePrecision = 10;
+        }
+        
+        //Setup map
+        Catalog catalog = getCatalog();
+        CatalogBuilder catBuilder = new CatalogBuilder(catalog);
+
+        LayerInfo layer = catalog.getLayerByName("sf:PrimitiveGeoFeature");
+        
+        StyleGenerator styleGenerator = new StyleGenerator(catalog);
+        StyleInfo style = styleGenerator.createStyle((FeatureTypeInfo)layer.getResource());
+        /*
+        StyleInfo style = catalog.getFactory().createStyle();
+        style.setName("style");
+        style.setFilename("style.sld");
+        File styleFile = new File(rl.getBaseDirectory().getAbsolutePath()+"/styles/style.sld");
+        Files.copy(getClass().getResourceAsStream("point.sld"), styleFile.toPath());
+        */
+        catalog.add(style);
+        layer.setDefaultStyle(style);
+        catalog.save(layer);
+
+        LayerGroupInfo map = catalog.getFactory().createLayerGroup();
+        map.setWorkspace(catalog.getWorkspaceByName("sf"));
+        map.setName("map");
+        map.getLayers().add(layer);
+        map.getStyles().add(style);
+        catBuilder.calculateLayerGroupBounds(map);
+        catalog.add(map);
+        //get proxy layergroup
+        map = catalog.getLayerGroupByName("sf:map");
+        assertNotNull(map);
+        
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setContextPath("/geoserver");
+        request.setRequestURI("/geoserver/hello");
+        request.setMethod("get");
+        
+        //Test initial get
+        assertNull(Metadata.thumbnail(layer));
+        assertNull(Metadata.thumbnail(map));
+        HttpEntity<byte[]> response = ctrl.getMap("sf", "map", false, request);
+        BufferedImage image = ImageIO.read(new ByteArrayInputStream(response.getBody()));
+        
+        //refresh the proxy object
+        map = catalog.getLayerGroupByName("sf:map");
+        
+        String thumbnailPath = Metadata.thumbnail(map);
+        assertNotNull(thumbnailPath);
+        
+        File imageFile = config.getCacheFile(thumbnailPath);
+        assertTrue(imageFile.exists());
+        
+        long lastModified = imageFile.lastModified();
+        
+        //Test cached get
+        response = ctrl.getMap("sf", "map", true, request);
+        thumbnailPath = Metadata.thumbnail(map);
+        assertNotNull(thumbnailPath);
+        
+        imageFile = config.getCacheFile(thumbnailPath);
+        assertTrue(imageFile.exists());
+        assertEquals(lastModified, imageFile.lastModified());
+        
+        //Test invalidate
+        Metadata.invalidateThumbnail(map);
+        assertNull(Metadata.thumbnail(map));
+        catalog.save(map);
+        //file.lastModified is only accurate to the second
+        Thread.sleep(filePrecision);
+        
+        response = ctrl.getMap("sf", "map", true, request);
+        map = catalog.getLayerGroupByName("sf:map");
+        
+        thumbnailPath = Metadata.thumbnail(map);
+        assertNotNull(thumbnailPath);
+        
+        imageFile = config.getCacheFile(thumbnailPath);
+        assertTrue(imageFile.exists());
+        long lm2 = imageFile.lastModified();
+        assertTrue(lastModified < lm2);
+        
+        lastModified = imageFile.lastModified();
+        
+        
+        
+        //Test layer get
+        response = ctrl.getLayer("sf", "PrimitiveGeoFeature", true, request);
+        BufferedImage image2 = ImageIO.read(new ByteArrayInputStream(response.getBody()));
+        
+        //Compare high/low res
+        assertEquals(image.getWidth()*2, image2.getWidth());
+        assertEquals(image.getHeight()*2, image2.getHeight());
+        
+        //Update proxy
+        layer = catalog.getLayerByName("sf:PrimitiveGeoFeature");
+        thumbnailPath = Metadata.thumbnail(layer);
+        assertNotNull(thumbnailPath);
+        
+        imageFile = config.getCacheFile(thumbnailPath);
+        assertTrue(imageFile.exists());
+        
+        //Test layer invalidating map
+        request = new MockHttpServletRequest();
+        request.setContextPath("/geoserver");
+        request.setRequestURI("/geoserver/hello");
+        request.setMethod("put");
+        
+        layerCtrl.put("sf", "PrimitiveGeoFeature", new JSONObj().put("title", layer.getTitle()), request);
+        
+        //Update proxy
+        layer = catalog.getLayerByName("sf:PrimitiveGeoFeature");
+        map = catalog.getLayerGroupByName("sf:map");
+        
+        assertNull(Metadata.thumbnail(layer));
+        assertNull(Metadata.thumbnail(map));
     }
 }

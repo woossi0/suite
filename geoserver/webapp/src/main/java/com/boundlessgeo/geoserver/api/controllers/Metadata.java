@@ -5,6 +5,7 @@ package com.boundlessgeo.geoserver.api.controllers;
 
 import org.geoserver.catalog.Info;
 import org.geoserver.catalog.MetadataMap;
+import org.geoserver.catalog.PublishedInfo;
 import org.geoserver.ows.util.OwsUtils;
 import org.geotools.util.Converters;
 
@@ -18,7 +19,22 @@ public class Metadata {
     static final String CREATED = "created";
     static final String MODIFIED = "modified";
     static final String IMPORTED = "imported";
-
+    
+    public static final String THUMBNAIL = "thumbnail";
+    
+    //Relative thumbnail location
+    public static void thumbnail(PublishedInfo obj, String path) {
+        map(obj).put(THUMBNAIL, path);
+    }
+    
+    public static String thumbnail(PublishedInfo obj) {
+        return (String)map(obj).get(THUMBNAIL);
+    }
+    
+    public static void invalidateThumbnail(PublishedInfo layer) {
+        Metadata.map(layer).remove(Metadata.THUMBNAIL);
+    }
+    
     public static void created(Info obj, Date created) {
         MetadataMap map = map(obj);
         map.put(CREATED, created);

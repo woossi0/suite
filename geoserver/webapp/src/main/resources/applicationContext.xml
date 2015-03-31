@@ -31,6 +31,15 @@
         <property name="beanId" value="layerListDemo2"/>
     </bean>
     
+    <!-- configure thumbnail cache -->
+    <bean id="config" class="com.boundlessgeo.geoserver.AppConfiguration">
+      <constructor-arg ref="catalog"/>
+    </bean>
+    
+    <bean class="com.boundlessgeo.geoserver.catalog.ThumbnailInvalidatingCatalogListener">
+      <constructor-arg ref="catalog"/>
+    </bean>
+    
     <!-- configure FTL template loading path -->
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
       <property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
