@@ -5,7 +5,7 @@ OpenGeo Suite for Red Hat Linux
 
 This document describes how to manage installaton of OpenGeo Suite for Red Hat-based distributions, such as Red Hat Enterprise Linux and CentOS.
 
-.. note:: QGIS, while part of OpenGeo Suite, is not currently bundled as a package by Boundless. To use QGIS with a Red Hat system, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
+.. warning:: While QGIS often paired with the rest of OpenGeo Suite, it is not currently bundled as a package by Boundless. **We do not recommend running QGIS on the same machine as OpenGeo Suite**, as package conflicts will occur. Instead, you can use QGIS on a different machine and connect to OpenGeo Suite services from there.
 
 Please select the option that best matches your system:
 
