@@ -25,7 +25,7 @@ Usage
 
 As with all rendering transformations, the transformation is invoked by inserting a transform into a style. The style can then be applied to any layer which is backed by a suitable dataset.
 
-The transformation function is called ``gs:BarnesSurface``. Note that this is the same as the WPS process, as these functions can be invoked as either a WPS process or a rendering transformation.
+The transformation function is called ``vec:BarnesSurface``. Note that this is the same as the WPS process, as these functions can be invoked as either a WPS process or a rendering transformation.
 
 The transformation parameters are as follows. The order of parameters is not significant.
 
@@ -98,21 +98,17 @@ Output
 
 The output of the transformation is a single-band **raster**. Each pixel has a floating-point value in the range [0..1] measuring the density of the pixel relative to the rest of the surface. The raster can be styled using a raster symbolizer.
 
-In order for the style to be correctly validated, the input geometry element must be declared in the raster symbolizer:
+.. note::
 
-YSLD:
+   In order for the style to be correctly validated in SLD, the input geometry element must be declared in the raster symbolizer:
 
-.. code-block:: yaml
+   .. code-block:: xml
 
-   geometry: ${...}
+      <Geometry>
+        <ogc:PropertyName>...</ogc:PropertyName>
+      </Geometry>
 
-SLD:
-
-.. code-block:: xml
-
-   <Geometry>
-     <ogc:PropertyName>...</ogc:PropertyName>
-   </Geometry>
+   YSLD has no such restriction; the  ``geometry:`` element is not required.
 
 Examples
 --------
@@ -130,7 +126,7 @@ The surface layer in the image is produced by the following YSLD:
 
 .. literalinclude:: artifact/barnes_example.ysld
    :linenos:
-   :emphasize-lines: 7,9-19,23-24,28-29
+   :emphasize-lines: 7,9-19,23-25
 
 The YSLD example defines the Barnes Surface rendering transformation, giving values for the transformation parameters which are appropriate for the input dataset.
 
@@ -146,13 +142,12 @@ The YSLD example defines the Barnes Surface rendering transformation, giving val
 
 The **raster** symbolizer is used to style the raster computed by the transformation.
 
-* Parameter **geometry** defines the geometry property of the input dataset, which is required for SLD validation purposes.
 * Parameter **opacity** specifies an overall opacity of 0.8 for the rendered layer.
-* Parameter **color-map** defines a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The type could also be ``intervals``, which produces a contour effect with discrete transition between colors (see image below). The first color map tuple specifies that the NO_DATA value of -990 and -9 should be displayed with a fully transparent color of white (making uncomputed pixels invisible).
+* Parameter **color-map** defines a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The type could also be ``intervals``, which produces a contour effect with discrete transition between colors (see image below). The first color map tuple specifies that the NO_DATA value of -990 and -9 should be displayed with a fully transparent color of white (masking uncomputed pixels).
 
 .. figure:: img/barnes_surface_intervals.png
 
-   Barnes surface using intervals color map
+   Barnes surface using intervals instead of a ramp
 
 .. note:: :download:`Download the YSLD for this example <artifact/barnes_example.ysld>`
 
@@ -181,7 +176,7 @@ In the SLD, **Lines 14-70** define the Barnes surface rendering transformation, 
 * **Line 74 geometry** defines the geometry property of the input dataset, which is required for SLD validation purposes.
 * **Line 75 opacity** specifies an overall opacity of 0.8 for the rendered layer.
 * **Lines 78-94** define a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The type could also be ``intervals``, which produces a contour effect with discrete transition between colors (see image above).
-* **Line 77** specifies that the NO_DATA value of -990 and -9 should be displayed with a fully transparent color of white (making uncomputed pixels invisible).
+* **Line 77** specifies that the NO_DATA value of -990 and -9 should be displayed with a fully transparent color of white (masking uncomputed pixels).
 
 .. note:: :download:`Download the SLD for this example <artifact/barnes_example.sld>`
 

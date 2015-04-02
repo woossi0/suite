@@ -12,7 +12,7 @@
       <Abstract>A style that produces a Barnes surface using a rendering transformation</Abstract>
       <FeatureTypeStyle>
    <Transformation>
-     <ogc:Function name="gs:BarnesSurface">
+     <ogc:Function name="vec:BarnesSurface">
        <ogc:Function name="parameter">
          <ogc:Literal>data</ogc:Literal>
        </ogc:Function>

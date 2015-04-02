@@ -4,7 +4,7 @@ abstract: Styles volcanoes using stacked points
 feature-styles:
 - name: name
   transform:
-    name: gs:PointStacker
+    name: vec:PointStacker
     params:
       cellSize: 30
       outputBBOX: ${env('wms_bbox')}

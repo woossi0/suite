@@ -12,7 +12,7 @@
       <Abstract>A heatmap surface showing population density</Abstract>
       <FeatureTypeStyle>
         <Transformation>
-          <ogc:Function name="gs:Heatmap">
+          <ogc:Function name="vec:Heatmap">
             <ogc:Function name="parameter">
               <ogc:Literal>data</ogc:Literal>
             </ogc:Function>

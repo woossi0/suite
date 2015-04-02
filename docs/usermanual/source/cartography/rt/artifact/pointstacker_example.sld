@@ -13,7 +13,7 @@
       <Abstract>Styles volcanoes using stacked points</Abstract>
       <FeatureTypeStyle>
         <Transformation>
-          <ogc:Function name="gs:PointStacker">
+          <ogc:Function name="vec:PointStacker">
             <ogc:Function name="parameter">
               <ogc:Literal>data</ogc:Literal>
             </ogc:Function>

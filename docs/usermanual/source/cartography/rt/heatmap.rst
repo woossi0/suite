@@ -20,7 +20,7 @@ Usage
 
 As with all rendering transformations, the transformation is invoked by inserting a transform into a style. The style can then be applied to any layer which is backed by a suitable dataset. The dataset may have a weight attribute, whose name is supplied to the process via the ``weightAttr`` process parameter.
 
-The transformation function is called ``gs:Heatmap``. Note that this is the same as the WPS process, as these functions can be invoked as either a WPS process or a rendering transformation.
+The transformation function is called ``vec:Heatmap``. Note that this is the same as the WPS process, as these functions can be invoked as either a WPS process or a rendering transformation.
 
 The transformation parameters are as follows. The order of parameters is not significant.
 

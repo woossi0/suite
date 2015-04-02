@@ -1,7 +1,7 @@
 title: Heatmap
 feature-styles:
 - transform:
-    name: gs:Heatmap
+    name: vec:Heatmap
     params:
       weightAttr: pop2000
       radiusPixels: 100
