@@ -49,7 +49,7 @@
       <fileset dir="geoserver/webapp/target/" includes="suite-geoserver-${artifact_postfix}.zip"/>
     </unzip>
     <unzip dest="${webappsdir}/geoserver" overwrite="true">
-      <fileset dir="geoserver/webapp/target/${suite.build_profile}" includes="geoserver.war">
+      <fileset dir="geoserver/webapp/target" includes="geoserver.war">
         <exclude name="META-INF/**"/>
         <exclude name="data/**"/>
       </fileset>
@@ -62,12 +62,12 @@
     <copy todir="${webappsdir}/geoexplorer">
       <fileset dir="geoexplorer/target/war" includes="**/*"/>
     </copy>
-    <mkdir dir="docs/target/${suite.build_profile}"/>
-    <unzip dest="docs/target/${suite.build_profile}" overwrite="true">
+    <mkdir dir="docs/target"/>
+    <unzip dest="docs/target" overwrite="true">
       <fileset dir="docs/target/" includes="suite-docs-${artifact_postfix}.zip"/>
     </unzip>
     <copy todir="${webappsdir}">
-      <fileset dir="docs/target/${suite.build_profile}" includes="opengeo-docs/**/*"/>
+      <fileset dir="docs/target" includes="opengeo-docs/**/*"/>
     </copy>
     <unzip dest="${webappsdir}/apps" src="apps/target/apps.war"/>
     <copy todir="${bindir}/data_dir">
