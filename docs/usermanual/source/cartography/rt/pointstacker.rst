@@ -79,7 +79,7 @@ The output can be styled using a point symbolizer.
 Examples
 --------
 
-The map image above shows point stacking applied to a dataset of world volcanoes, displayed with a base map layer of continental topography.
+This example shows point stacking applied to a dataset of world volcanoes, displayed with a base map layer of continental topography.
 
 The source data used in this example is the ``world:volcanoes`` layer (available for download on the :ref:`intro.sampledata` page).
 
@@ -88,31 +88,33 @@ Below are two examples showing how to perform this rendering transformation in b
 YSLD
 ^^^^
 
-The PointStacker output, as seen in the image above, can be produced by the following YSLD:
+The PointStacker output, as seen in the figure at the top of the page, can be produced by the following YSLD:
 
 .. literalinclude:: artifact/pointstacker_example.ysld
+   :language: yaml
    :linenos:
    :emphasize-lines: 9-12,14,24,47
 
 This style defines the Point Stacker rendering transformation, providing values for the transformation parameters which are appropriate for the input dataset.
 
-* Parameter **cellSize** specifies a cell size of 30 to aggregate the points by.
-* The output parameters **outputBBOX**, **outputWith** and **outputHeight**, are obtained from internal environment variables set during rendering, as described above.
+* On **line 9**, **cellSize** specifies a cell size of 30 to aggregate the points by.
+* On **lines 10-12**, **outputBBOX**, **outputWith** and **outputHeight**, are obtained from internal environment variables set during rendering, as described above.
 
 Rules are applied to the transformation output to produce the rendered layer.
 
-* Rule **rule1** depicts a single (unstacked) point using a red triangle symbol.
-* Rule **rule29** depicts a stacked point which has a count in the range 2 to 9. The points are styled as dark red circles of size 14 pixels, with a label showing the count inside them.
-* The rule **rule10** depicts a stacked point which has a count of 10 or greater. The points are styled as dark red circles of size 22 pixels, with a label that includes the point count.
+* Starting at **line 14**, the rule **rule1** depicts a single (unstacked) point using a red triangle symbol.
+* Starting at **line 24**, the rule **rule29** depicts a stacked point which has a count in the range 2 to 9. The points are styled as dark red circles of size 14 pixels, with a label showing the count inside them.
+* Starting at **line 47**, the rule **rule10** depicts a stacked point which has a count of 10 or greater. The points are styled as dark red circles of size 22 pixels, with a label that includes the point count.
 
 .. note:: :download:`Download the YSLD for this example <artifact/pointstacker_example.ysld>`
 
 SLD
 ^^^
 
-The PointStacker output, as seen in the image above, can also be produced by the following SLD:
+The PointStacker output can also be produced by the following SLD:
 
 .. literalinclude:: artifact/pointstacker_example.sld
+   :language: xml
    :linenos:
    :emphasize-lines: 18,21,25,31,37,45,66,121
       

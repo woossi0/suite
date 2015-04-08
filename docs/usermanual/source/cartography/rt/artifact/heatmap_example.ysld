@@ -12,7 +12,6 @@ feature-styles:
   rules:
   - symbolizers:
     - raster:
-        geometry: the_geom
         opacity: 0.6
         color-map:
           type: ramp

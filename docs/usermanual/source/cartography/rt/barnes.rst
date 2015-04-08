@@ -113,7 +113,7 @@ The output of the transformation is a single-band **raster**. Each pixel has a f
 Examples
 --------
 
-The map image above shows a temperature surface interpolated across a set of data points with a attribute giving the maximum daily temperature on a given day. It shows the generated Barnes Surface, the original input data points (drawn by another style), as well as a base map layer.
+This example shows a temperature surface interpolated across a set of data points with a attribute giving the maximum daily temperature on a given day. It shows the generated Barnes Surface, the original input data points (drawn by another style), as well as a base map layer.
 
 The source data used in this example is the ``world:globaldata_temp`` layer (available for download on the :ref:`intro.sampledata` page).
 
@@ -122,59 +122,65 @@ Below are two examples showing how to perform this rendering transformation in b
 YSLD
 ^^^^
 
-The surface layer in the image is produced by the following YSLD:
+The surface layer, as seen in the figure at the top of the page, can be produced by the following YSLD:
 
 .. literalinclude:: artifact/barnes_example.ysld
+   :language: yaml
    :linenos:
-   :emphasize-lines: 7,9-19,23-25
+   :emphasize-lines: 9-19,22-25
 
 The YSLD example defines the Barnes Surface rendering transformation, giving values for the transformation parameters which are appropriate for the input dataset.
 
-* Parameter **valueAttr** specifies the name of the observation value attribute.
-* Parameter **scale** sets a length scale of 15 degrees.
-* Parameter **convergence** sets the convergence factor to be 0.2.
-* Parameter **passes** requests that 3 passes be performed (one for the initial estimate, and two refinement passes).
-* Parameter **minObervations** specifies that the minimum number of observations required to support an estimated cell is 1 (which means every observation point will be represented in the output).
-* Parameter **maxObservations** specifies the maximum distance from a computed grid cell to an observation point is 10 degrees.
-* Parameter **pixelsPerCell** defines the resolution of computation to be 10 pixels per cell, which provides efficient rendering time while still providing output of reasonable visual quality.
-* Parameter **queryBuffer** specifies the query buffer to be 40 degrees, which is chosen to be at least double the length scale for stability.
-* Parameter **outputBBOX**, **outputWidth**, **outputHeight** define the output parameters, which are obtained from internal environment variables set during rendering, as described above.
+* On **line 9**, **valueAttr** specifies the name of the observation value attribute.
+* On **line 10**, **scale** sets a length scale of 15 degrees.
+* On **line 11**, **convergence** sets the convergence factor to be 0.2.
+* On **line 12**, **passes** requests that 3 passes be performed (one for the initial estimate, and two refinement passes).
+* On **line 13**, **minObervations** specifies that the minimum number of observations required to support an estimated cell is 1 (which means every observation point will be represented in the output).
+* On **line 14**, **maxObservationDistance** specifies the maximum distance from a computed grid cell to an observation point is 10 degrees.
+* On **line 15**, **pixelsPerCell** defines the resolution of computation to be 10 pixels per cell, which provides efficient rendering time while still providing output of reasonable visual quality.
+* On **line 16**, **queryBuffer** specifies the query buffer to be 40 degrees, which is chosen to be at least double the length scale for stability.
+* On **lines 17-19**, **outputBBOX**, **outputWidth**, **outputHeight** define the output parameters, which are obtained from internal environment variables set during rendering, as described above.
 
-The **raster** symbolizer is used to style the raster computed by the transformation.
+The **raster** symbolizer (starting on **line 22**) is used to style the raster computed by the transformation.
 
-* Parameter **opacity** specifies an overall opacity of 0.8 for the rendered layer.
-* Parameter **color-map** defines a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The type could also be ``intervals``, which produces a contour effect with discrete transition between colors (see image below). The first color map tuple specifies that the NO_DATA value of -990 and -9 should be displayed with a fully transparent color of white (masking uncomputed pixels).
+* On **line 23**, **opacity** specifies an overall opacity of 0.8 for the rendered layer.
+* Starting on **line 24**, **color-map** defines a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp`` (**line 25**), which produces a smooth transition between colors.
 
-.. figure:: img/barnes_surface_intervals.png
+  .. note::
 
-   Barnes surface using intervals instead of a ramp
+     The **type** could also be ``intervals``, which produces a contour effect with discrete transition between colors (see image below). The first color map tuple specifies that the NO_DATA value of -990 and -9 should be displayed with a fully transparent color of white (masking uncomputed pixels).
+
+     .. figure:: img/barnes_surface_intervals.png
+
+        Barnes surface using intervals instead of a ramp
 
 .. note:: :download:`Download the YSLD for this example <artifact/barnes_example.ysld>`
 
 SLD
 ^^^
 
-The surface layer output, as seen in the image above, can also be produced by the following SLD:
+The surface layer can also be produced by the following SLD:
 
 .. literalinclude:: artifact/barnes_example.sld
+   :language: xml
    :linenos:
    :emphasize-lines: 15,17,20,24,28,32,36,40,44,48,52,58,64,74,75,77,78
 
 In the SLD, **Lines 14-70** define the Barnes surface rendering transformation, giving values for the transformation parameters which are appropriate for the input dataset.
 
-* **Line 17 data** specifies the input dataset parameter name.
-* **Line 20 valueAttr** specifies the name of the observation value attribute.
-* **Line 25 scale** sets a length scale of 15 degrees.
-* **Line 29 convergence** sets the convergence factor to be 0.2.
-* **Line 33 passes** requests that 3 passes be performed (one for the initial estimate, and two refinement passes).
-* **Line 37 minObervations** specifies that the minimum number of observations required to support an estimated cell is 1 (which means every observation point will be represented in the output).
-* **Line 41 maxObservations** specifies the maximum distance from a computed grid cell to an observation point is 10 degrees.
-* **Line 45 pixelsPerCell** defines the resolution of computation to be 10 pixels per cell, which provides efficient rendering time while still providing output of reasonable visual quality.
-* **Line 49 queryBuffer** specifies the query buffer to be 40 degrees, which is chosen to be at least double the length scale for stability.
+* **Line 17** specifies the input dataset parameter name.
+* **Line 20** specifies the name of the observation value attribute.
+* **Line 25** sets a length scale of 15 degrees.
+* **Line 29** sets the convergence factor to be 0.2.
+* **Line 33** requests that 3 passes be performed (one for the initial estimate, and two refinement passes).
+* **Line 37** specifies that the minimum number of observations required to support an estimated cell is 1 (which means every observation point will be represented in the output).
+* **Line 41** specifies the maximum distance from a computed grid cell to an observation point is 10 degrees.
+* **Line 45** defines the resolution of computation to be 10 pixels per cell, which provides efficient rendering time while still providing output of reasonable visual quality.
+* **Line 49** specifies the query buffer to be 40 degrees, which is chosen to be at least double the length scale for stability.
 * **Lines 51-68** define the output parameters, which are obtained from internal environment variables set during rendering, as described above.
 * **Lines 72-96** define the symbolizer used to style the raster computed by the transformation.
-* **Line 74 geometry** defines the geometry property of the input dataset, which is required for SLD validation purposes.
-* **Line 75 opacity** specifies an overall opacity of 0.8 for the rendered layer.
+* **Line 74** defines the geometry property of the input dataset, which is required for SLD validation purposes.
+* **Line 75** specifies an overall opacity of 0.8 for the rendered layer.
 * **Lines 78-94** define a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The type could also be ``intervals``, which produces a contour effect with discrete transition between colors (see image above).
 * **Line 77** specifies that the NO_DATA value of -990 and -9 should be displayed with a fully transparent color of white (masking uncomputed pixels).
 
