@@ -227,7 +227,7 @@ public class IO {
     public static JSONObj proj(JSONObj obj, CoordinateReferenceSystem crs, String srs) {
         if (srs == null && crs != null) {
             try {
-                srs = CRS.lookupIdentifier(crs, false);
+                srs = CRS.toSRS(crs);
             } catch (Exception e) {
                 LOG.log(Level.WARNING, "Unable to determine srs from crs: " + crs, e);
             }

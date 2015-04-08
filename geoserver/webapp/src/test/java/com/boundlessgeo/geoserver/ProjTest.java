@@ -3,6 +3,7 @@
  */
 package com.boundlessgeo.geoserver;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -20,7 +21,13 @@ public class ProjTest {
 
     @Before
     public void setup() {
+        Proj.INSTANCE = null;
         proj = Proj.get();
+    }
+    
+    @After
+    public void tearDown() {
+        Proj.INSTANCE = null;
     }
 
     @Test
@@ -32,9 +39,10 @@ public class ProjTest {
 
     @Test
     public void testRecent() throws Exception {
-        testCRS();
-
+        
         Map<String,CoordinateReferenceSystem> recent = proj.recent();
+        proj.crs("EPSG:3005");
+        
         assertEquals(3, recent.size());
 
         assertNotNull(recent.get("EPSG:4326"));

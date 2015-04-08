@@ -145,6 +145,35 @@ public class MapControllerTest {
             assertTrue(e.getMessage().contains("already exists"));
         }
     }
+    
+    @Test
+    public void testCopy() throws Exception {
+        MockGeoServer.get().catalog()
+            .workspace("foo", "http://scratch.org", true)
+                .map("map")
+                  .defaults()
+                  .info("The map", "This map is cool!")
+                  .layer("one").featureType().defaults().store("shape").map()
+                  .layer("two").featureType().defaults().store("shape")
+            .geoServer().build(geoServer);
+        
+        Catalog cat = geoServer.getCatalog();
+        
+        JSONObj obj = new JSONObj();
+        obj.put("name", "bar");
+        obj.put("copylayers", "false");
+        
+        MockHttpServletRequestBuilder req = put("/api/maps/foo/map/copy")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(obj.toString());
+
+        mvc.perform(req)
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andReturn();
+
+        verify(cat, times(1)).add(isA(LayerGroupInfo.class));
+    }
 
     @Test
     public void testList() throws Exception {

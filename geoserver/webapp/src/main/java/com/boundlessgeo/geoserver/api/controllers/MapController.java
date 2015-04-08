@@ -8,6 +8,7 @@ import static org.geoserver.catalog.Predicates.equal;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +72,8 @@ import com.vividsolutions.jts.geom.Envelope;
 public class MapController extends ApiController {
     static Logger LOG = Logging.getLogger(MapController.class);
 
-
+    @Autowired
+    LayerController layerController;
 
     @Autowired
     public MapController(GeoServer geoServer, RecentObjectCache recentCache) {
@@ -322,6 +324,63 @@ public class MapController extends ApiController {
 
         return mapDetails(new JSONObj(), map, wsName, req);
     }
+    
+    @RequestMapping(value = "/{wsName}/{name}/copy", method = RequestMethod.PUT)
+    public @ResponseBody JSONObj copy(@PathVariable String wsName,
+                                     @PathVariable String name, 
+                                     @RequestBody JSONObj obj,
+                                     HttpServletRequest req) throws NoSuchAuthorityCodeException, FactoryException {
+        Catalog cat = catalog();
+        
+        //update name
+        String nameCopy = obj.str("name");
+        JSONObj map = get(wsName, name, req).put("name", nameCopy);
+        
+        
+        //Default to copying layers
+        if (!obj.has("copylayers") || obj.bool("copylayers")) {
+            JSONArr layers = new JSONArr();
+            Map<String, Integer> renames = new HashMap<String, Integer>();
+            
+            //get mappings for renames
+            if (obj.has("layers")) {
+                layers = obj.array("layers");
+                for (int i = 0; i < layers.size(); i++) {
+                    JSONObj layer = layers.object(i);
+                    renames.put(layer.object("layer").str("name"), i);
+                }
+            }
+            
+            JSONArr oldLayers = map.array("layers");
+            JSONArr newLayers = new JSONArr();
+            
+            for (JSONObj layer : oldLayers.objects()) {
+                String layerName = layer.str("name");
+                if (renames.containsKey(layerName)) {
+                    newLayers.add(layerController.create(wsName, layers.object(renames.get(layerName)), req));
+                    renames.remove(layerName);
+                } else {
+                    //default to <layerName>-<map>
+                    JSONObj newLayer = new JSONObj()
+                        .put("name", layerName + "-" + nameCopy.substring(0, 3))
+                        .put("layer", layer);
+                    newLayers.add(layerController.create(wsName, newLayer, req));
+                }
+            }
+            //Print a warning if they provided layes that do not belong to the map.
+            if (renames.size() > 0) {
+                for (Integer i : renames.values()) {
+                    LOG.log(Level.FINE, wsName+"."+name+" unrecognized layers:"
+                            +layers.object(renames.get(i)).str("name"));
+                }
+                
+            }
+            map.put("layers", newLayers);
+        }
+        
+        return create(wsName, map, req);
+    }
+    
     /**
      * API endpoint to list maps in a workspace
      * @param wsName The workspace
