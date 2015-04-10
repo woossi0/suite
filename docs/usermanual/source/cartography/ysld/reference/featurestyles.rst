@@ -3,7 +3,7 @@
 Feature Styles
 ==============
 
-In YSLD, A Feature Style is a block of styling :ref:`Rules <cartography.ysld.reference.rules>`.
+In YSLD, a Feature Style is a block of styling :ref:`Rules <cartography.ysld.reference.rules>`.
 
 .. todo:: FIGURE NEEDED
 
@@ -64,6 +64,8 @@ The following is the basic syntax of a feature style. Note that the contents of 
      rules:
      - ...
      x-firstMatch: <boolean>
+     x-composite: <text>
+     x-composite-base: <boolean>
 
 where:
 
@@ -114,7 +116,91 @@ The following properties are equivalent to SLD "vendor options".
      - No
      - Stops rule evaluation after the first match. Can make the rendering more efficient by reducing the number of rules that need to be traversed by features, as well as simplyfing the rule filters.
      - ``false``
+   * - ``x-composite``
+     - No
+     - Allows for both alpha compositing and color blending options between layers. There are many options; :ref:`see below <cartography.ysld.reference.featurestyles.composite>`.
+     - N/A
+   * - ``x-composite-base``
+     - No
+     - Allows the rendering engine to use that feature-style as a "base", and will compose all subsequent feature-styles and layers on top of it, until another base is found. Once the full set of layers against a base is composed, then the base itself will be composed against the next set of composed layers using its own compositing operator, if present. This is useful to fine-tune the use of ``x-composite``, and to make sure that only the desired content is composited/blended and not all of the drawn content.
+     - ``false``
 
+.. _cartography.ysld.reference.featurestyles.composite:
+
+Compositing and blending
+------------------------
+
+By default, multiple layers are drawn with one on top of the other. However, using the ``x-composite`` and ``x-composite-base`` options, one can customize the way that layers are displayed.
+
+The following two tables show the possible alpha compositing and color blending values for the ``x-composite`` option. Note that in the tables below, **source** refers to the image that is drawn on top, while **destination** refers to the image that the source is drawn on top of.
+
+.. todo:: Add image showing source and destination
+
+**Alpha compositing**
+
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Value
+     - Description
+   * - ``copy``
+     - Only the source will be present in the output.
+   * - ``destination``
+     - Only the destination will be present in the output.
+   * - ``source-over``
+     - The source is drawn over the destination, and the destination is visible where the source is transparent. Opposite of ``destination-over``.
+   * - ``destination-over``
+     - The source is drawn below the destination, and is visible only when the destination is transparent. Opposite of ``source-over``.
+   * - ``source-in``
+     - The source is visible only when overlapping some non-transparent pixel of the destination. This allows the background map to act as a mask for the layer/feature being drawn. Opposite of ``destination-in``.
+   * - ``destination-in``
+     - The destination is retained only when overlapping some non transparent pixel in the source. This allows the layer/feature to be drawn to act as a mask for the background map. Opposite of ``source-in``.
+   * - ``source-out``
+     - The source is retained only in areas where the destination is transparent. This acts as a reverse mask when compared to ``source-in``.
+   * - ``destination-out``
+     - The destination is retained only in areas where the source is transparent. This acts as a reverse mask when compared to ``destination-in``.
+   * - ``source-atop``
+     - The destination is drawn fully, while the source is drawn only where it intersects the destination.
+   * - ``destination-atop``
+     - The source is drawn fully, and the destination is drawn over the source only where it intersects it.
+   * - ``xor``
+     - "Exclusive Or" mode. Each pixel is rendered only if either the source or the destination is not blank, but not both.
+
+**Color blending**
+
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :widths: 20 80
+
+   * - Value
+     - Description
+   * - ``multiply``
+     - The source color is multiplied by the destination color and replaces the destination. The resulting color is always at least as dark as either the source or destination color. Multiplying any color with black results in black. Multiplying any color with white preserves the original color.
+   * - ``screen``
+     - Multiplies the complements of the source and destination color values, then complements the result. The end result color is always at least as light as either of the two constituent colors. Screening any color with white produces white; screening with black leaves the original color unchanged.
+   * - ``overlay``
+     - Multiplies the colors depending on the destination color value. Source colors overlay the destination while preserving highlights and shadows. The backdrop color is not replaced but is mixed with the source color to reflect the lightness or darkness of the backdrop.
+   * - ``darken``
+     - Selects the darker of the destination and source colors. The destination is replaced with the source only where the source is darker.
+   * - ``lighten``
+     - Selects the lighter of the destination and source colors. The destination is replaced with the source only where the source is lighter.
+   * - ``color-dodge``
+     - Brightens the destination color to reflect the source color. Drawing with black produces no changes.
+   * - ``color-burn``
+     - Darkens the destination color to reflect the source color. Drawing with white produces no change.
+   * - ``hard-light``
+     - Multiplies the colors, depending on the source color value. The effect is similar to shining a harsh spotlight on the destination.
+   * - ``soft-light``
+     - Darkens or lightens the colors, depending on the source color value. The effect is similar to a diffused spotlight on the destination.
+   * - ``difference``
+     - Subtracts the darker of the two constituent colors from the lighter color. White inverts the destination color; black produces no change.
+   * - ``exclusion``
+     - Produces an effect similar to that of difference but lower in contrast. White inverts the destination color; black produces no change.
+
+.. note:: For more details about the compositing and blending options, please see the `GeoServer User Manual <../../../geoserver/styling/sld-extensions/composite-blend/>`__.
 
 Short syntax
 ------------
@@ -257,3 +343,5 @@ Using the ``x-firstMatch: true`` parameter, the style is simplified:
            <<: *allotherplaces
 
 Specifically, the third rule no longer needs the extra ``AND industry <> 'fishing'``, because the previous two rules imply that any features remaining by this rule have that condition.
+
+
