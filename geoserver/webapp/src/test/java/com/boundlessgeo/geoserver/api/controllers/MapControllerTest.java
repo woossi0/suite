@@ -23,6 +23,7 @@ import java.util.Collections;
 import javax.annotation.Nullable;
 
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
+
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.Info;
 import org.geoserver.catalog.LayerGroupInfo;
@@ -297,6 +298,32 @@ public class MapControllerTest {
         obj = arr.object(1);
         assertEquals("one", obj.str("name"));
         assertEquals("raster", obj.str("type"));
+    }
+    
+    @Test
+    public void testPut() throws Exception {
+        @SuppressWarnings("unused")
+        GeoServer gs = MockGeoServer.get().catalog()
+            .workspace("foo", "http://scratch.org", true)
+                .map("map").info("title", "map title")
+                    .defaults()
+                    .layer("one")
+                        .style().ysld("one.ysld").layer()
+                        .featureType().defaults().store("store").map()
+                    .layer("two")
+                        .style().ysld("two.ysld").layer()
+                        .featureType().defaults().store("store")
+            .geoServer().build(geoServer);
+
+        JSONObj obj = new JSONObj().put("title", "new title").put("proj", "EPSG:4326");
+        MockHttpServletRequestBuilder req = put("/api/maps/foo/map")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(obj.toString());
+
+        mvc.perform(req).andExpect(status().isOk()).andReturn();
+
+        LayerGroupInfo l = gs.getCatalog().getLayerGroupByName("map");
+        verify(l, times(1)).setTitle("new title");
     }
 
     @Test
