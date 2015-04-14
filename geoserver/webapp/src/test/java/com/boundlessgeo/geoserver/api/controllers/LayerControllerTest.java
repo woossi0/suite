@@ -330,7 +330,7 @@ public class LayerControllerTest {
                 .featureType().defaults().store("one")
                 .geoServer().build(geoServer);
 
-        JSONObj obj = new JSONObj().put("title", "new title");
+        JSONObj obj = new JSONObj().put("title", "new title").put("proj", "EPSG:4326");
         MockHttpServletRequestBuilder req = put("/api/layers/foo/one")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());

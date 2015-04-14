@@ -502,11 +502,7 @@ public class LayerController extends ApiController {
                         new ReferencedEnvelope(IO.bounds(bbox.object("lonlat")), DefaultGeographicCRS.WGS84));
                 }
             } else if ("proj".equals(prop)) {
-                JSONObj proj = obj.object("proj");
-                if (!proj.has("srs")) {
-                    throw new BadRequestException("proj property must contain a 'srs' property");
-                }
-                String srs = proj.str("srs");
+                String srs = obj.str("proj");
                 try {
                     CRS.decode(srs);
                 } catch (Exception e) {
