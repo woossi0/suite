@@ -57,7 +57,7 @@
     <mvc:interceptors>
         <!-- intercept all /api/** routes and lock the catalog appropriately -->
         <mvc:interceptor>
-            <mvc:mapping path="/**"/>
+            <mvc:mapping path="/api/**"/>
             <bean class="com.boundlessgeo.geoserver.api.controllers.ConfigurationLockInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
