@@ -27,11 +27,20 @@ import org.geoserver.config.GeoServer;
 import org.geoserver.platform.resource.Files;
 import org.geotools.data.DataAccess;
 import org.geotools.data.DataAccessFinder;
+import org.geotools.data.DataStore;
+import org.geotools.data.FeatureSource;
+import org.geotools.data.Query;
+import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.data.wms.WebMapServer;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
+import org.geotools.feature.NameImpl;
 import org.geotools.util.NullProgressListener;
 import org.geotools.util.logging.Logging;
 import org.opengis.coverage.grid.Format;
 import org.opengis.coverage.grid.GridCoverageReader;
+import org.opengis.feature.Feature;
+import org.opengis.feature.type.FeatureType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -117,6 +126,51 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         obj.putObject("store")
             .put("name", stName )
             .put("url", IO.url(req, "/stores/%s/%s",wsName,stName));
+        return obj;
+    }
+    
+    /**
+     * API endpoint to get the list of attributes of a specific resource contained in a store, 
+     * such as a database table.
+     * @param wsName The workspace name
+     * @param stName The store name
+     * @param name The resource name
+     * @param req The HTTP request
+     * @return The schema and list of attributes, encoded as a JSON object
+     */
+    @RequestMapping(value = "/{wsName}/{stName}/{name:.+}/attributes", method = RequestMethod.GET)
+    public @ResponseBody JSONObj attributes(
+            @PathVariable String wsName, @PathVariable String stName, @PathVariable String name, 
+            @RequestParam(value="count", required=false, defaultValue=""+DEFAULT_PAGESIZE) Integer count,
+            HttpServletRequest req) throws IOException {
+        
+        Catalog cat = geoServer.getCatalog();
+        StoreInfo store = findStore(wsName, stName, cat );
+        
+        JSONObj obj = new JSONObj();
+        if (store instanceof DataStoreInfo) {
+            DataStoreInfo data = (DataStoreInfo) store;
+            
+            @SuppressWarnings("rawtypes")
+            FeatureSource source;
+            @SuppressWarnings("rawtypes")
+            DataAccess dataStore = data.getDataStore(new NullProgressListener());
+            
+            if (dataStore instanceof DataStore) {
+                source = ((DataStore) dataStore).getFeatureSource(name);
+            } else {
+                NameImpl qname = new NameImpl(name);
+                source = dataStore.getFeatureSource(qname);
+            }
+            //Limit number of features;
+            Query query = new Query(Query.ALL);
+            query.setMaxFeatures(count);
+            
+            FeatureCollection features = source.getFeatures(query);
+            obj.put("schema", IO.schema(new JSONObj(), features.getSchema(), false));
+            obj.put("values", IO.features(new JSONArr(), features));
+        }
+        
         return obj;
     }
     

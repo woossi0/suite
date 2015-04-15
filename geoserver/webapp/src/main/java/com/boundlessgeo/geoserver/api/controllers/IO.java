@@ -60,6 +60,8 @@ import org.geotools.data.DataStore;
 import org.geotools.data.DataAccessFactory.Param;
 import org.geotools.data.ows.Layer;
 import org.geotools.data.Parameter;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
 import org.geotools.feature.FeatureTypes;
 import org.geotools.feature.NameImpl;
 import org.geotools.filter.text.ecql.ECQL;
@@ -75,6 +77,8 @@ import org.geotools.util.logging.Logging;
 import org.ocpsoft.pretty.time.PrettyTime;
 import org.opengis.coverage.grid.Format;
 import org.opengis.coverage.grid.GridCoverageReader;
+import org.opengis.feature.Feature;
+import org.opengis.feature.Property;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AssociationDescriptor;
 import org.opengis.feature.type.AttributeDescriptor;
@@ -702,6 +706,32 @@ public class IO {
             }
         }
         return schema;
+    }
+    /**
+     * Encodes a Feature into the passed array
+     * @param arr The object to encode
+     * @param feature The feature
+     * @return The encoded object
+     */
+    public static JSONArr feature( JSONArr arr, Feature feature) {
+        for( Property p : feature.getProperties()){
+            arr.add(p.getValue() == null ? null : p.getValue().toString());
+        }
+        return arr;
+    }
+    
+    /**
+     * Encodes a FeatureCollection into the passed array
+     * @param arr The object to encode
+     * @param features The feature collection
+     * @return The encoded object
+     */
+    public static JSONArr features( JSONArr arr, FeatureCollection<FeatureType, Feature> features) {
+        FeatureIterator i = features.features();
+        while(i.hasNext()) {
+            arr.add(feature(new JSONArr(), i.next()));
+        }
+        return arr;
     }
     
     /**
