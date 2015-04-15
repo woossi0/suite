@@ -25,9 +25,7 @@ import javax.annotation.Nullable;
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
 
 import org.geoserver.catalog.Catalog;
-import org.geoserver.catalog.Info;
 import org.geoserver.catalog.LayerGroupInfo;
-import org.geoserver.catalog.LayerInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.config.GeoServer;
 import org.geoserver.security.impl.GeoServerRole;
@@ -97,7 +95,7 @@ public class MapControllerTest {
     public void testCreate() throws Exception {
         MockGeoServer.get().catalog()
             .workspace("foo", "http://scratch.org", true)
-                .layer("one").featureType().defaults().store("sample")
+                .layer("one").style().point().layer().featureType().defaults().store("sample")
             .geoServer().build(geoServer);
 
         JSONObj obj = new JSONObj();
@@ -154,8 +152,8 @@ public class MapControllerTest {
                 .map("map")
                   .defaults()
                   .info("The map", "This map is cool!")
-                  .layer("one").featureType().defaults().store("shape").map()
-                  .layer("two").featureType().defaults().store("shape")
+                  .layer("one").style().point().layer().featureType().defaults().store("shape").map()
+                  .layer("two").style().point().layer().featureType().defaults().store("shape")
             .geoServer().build(geoServer);
         
         Catalog cat = geoServer.getCatalog();
@@ -232,8 +230,8 @@ public class MapControllerTest {
                 .map("map")
                   .defaults()
                   .info("The map", "This map is cool!")
-                  .layer("one").featureType().defaults().store("shape").map()
-                  .layer("two").featureType().defaults().store("shape")
+                  .layer("one").style().point().layer().featureType().defaults().store("shape").map()
+                  .layer("two").style().point().layer().featureType().defaults().store("shape")
           .geoServer().build(geoServer);
         
         MvcResult result = mvc.perform(get("/api/maps/foo/map"))
@@ -279,8 +277,8 @@ public class MapControllerTest {
             .workspace("foo", "http://scratch.org", true)
                 .map("map")
                     .defaults()
-                    .layer("one").coverage().defaults().store("store").map()
-                    .layer("two").featureType().defaults().store("store")
+                    .layer("one").style().point().layer().coverage().defaults().store("store").map()
+                    .layer("two").style().point().layer().featureType().defaults().store("store")
             .geoServer().build(geoServer);
 
         MvcResult result = mvc.perform(get("/api/maps/foo/map/layers"))
@@ -371,13 +369,13 @@ public class MapControllerTest {
             .workspace("foo", "http://scratch.org", true)
             .map("map1", "map1")
               .defaults()
-              .layer("one").featureType().defaults().store("foo").map().workspace()
+              .layer("one").style().point().layer().featureType().defaults().store("foo").map().workspace()
             .map("map2", "map2")
               .defaults()
-              .layer("one").featureType().defaults().store("foo").map().workspace()
+              .layer("one").style().point().layer().featureType().defaults().store("foo").map().workspace()
             .map("map3", "map3")
               .defaults()
-              .layer("one").featureType().store("foo").defaults()
+              .layer("one").style().point().layer().featureType().store("foo").defaults()
             .geoServer().build(geoServer);
         
         JSONObj obj;
