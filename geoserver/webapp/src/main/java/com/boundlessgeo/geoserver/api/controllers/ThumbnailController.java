@@ -49,6 +49,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boundlessgeo.geoserver.AppConfiguration;
+import com.boundlessgeo.geoserver.catalog.ThumbnailInvalidatingCatalogListener;
 import com.google.common.util.concurrent.Striped;
 import com.vividsolutions.jts.geom.Envelope;
 
@@ -241,6 +242,40 @@ public class ThumbnailController extends ApiController {
                 catalog.save((LayerInfo)layer);
             } else if (layer instanceof LayerGroupInfo) {
                 catalog.save((LayerGroupInfo)layer);
+            }
+        } finally {
+            s.release();
+        }
+    }
+    
+    /**
+     * Clears any cached thumbnail information (called by {@link ThumbnailInvalidatingCatalogListener} when a layer is removed).
+     * 
+     * @param layer
+     * @throws InterruptedException 
+     */
+    public void clearThumbnail(PublishedInfo layer) {
+        Semaphore s = semaphores.get(layer);
+        try {
+            s.acquire();
+        } catch (InterruptedException e) {
+            LOG.finer("Unable to clear thumbnail for "+layer.prefixedName()+":"+e.getMessage());
+            return;
+        }
+        try {
+            File loRes = config.cacheFile(thumbnailFilename(layer));
+            if( loRes.exists() ){
+                boolean removed = loRes.delete();
+                if (!removed) {
+                    loRes.deleteOnExit();
+                }
+            }
+            File hiRes = config.cacheFile(thumbnailFilename(layer,true));
+            if( hiRes.exists() ){
+                boolean removed = hiRes.delete();
+                if (!removed) {
+                    hiRes.deleteOnExit();
+                }
             }
         } finally {
             s.release();

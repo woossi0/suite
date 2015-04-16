@@ -15,18 +15,21 @@ import org.geoserver.catalog.event.CatalogListener;
 import org.geoserver.catalog.event.CatalogModifyEvent;
 import org.geoserver.catalog.event.CatalogPostModifyEvent;
 import org.geoserver.catalog.event.CatalogRemoveEvent;
+import org.geoserver.platform.GeoServerExtensions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boundlessgeo.geoserver.api.controllers.Metadata;
+import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
 
 /**
  * Removes thumbnail metadata from LayerInfo and LayerGroupInfo objects when those objects or any
  * StyleInfo objects they depend upon are changed. This ensures the thumbnail listed in the metadata
  * is always up to date.
- *
  */
 public class ThumbnailInvalidatingCatalogListener implements CatalogListener {
     Catalog catalog;
-    //Prevent recursion
+    
+    /** Flag to prevent recursion during layer, layergroup events */
     private boolean modifying = false;
     
     public ThumbnailInvalidatingCatalogListener(Catalog catalog) {
@@ -36,7 +39,7 @@ public class ThumbnailInvalidatingCatalogListener implements CatalogListener {
     
     @Override
     public void handleAddEvent(CatalogAddEvent event) throws CatalogException {
-        //No change on add, as thumbnails will not have been generated yet
+        // No change on add, as thumbnails will not have been generated yet
     }
 
     @Override
@@ -49,34 +52,50 @@ public class ThumbnailInvalidatingCatalogListener implements CatalogListener {
             try {
                 modifying = true;
                 if (source instanceof StyleInfo) {
-                    //Invalidate any maps or layers using this style
-                    for (LayerInfo layer : catalog.getLayers()) {
+                    // Consider cache directory based on naming convention to prevent full catalog scan                    
+                    StyleInfo style = (StyleInfo) source;
+
+                    // Invalidate any maps or layers using this style
+                    for (LayerInfo layer : catalog.getLayers(style)) {
+                        
                         if (source.equals(layer.getDefaultStyle())) {
+                            ThumbnailController controller = GeoServerExtensions.bean(ThumbnailController.class);
+                            controller.clearThumbnail(layer);
+
                             Metadata.invalidateThumbnail(layer);
                             catalog.save(layer);
                         }
                     }
                     for (LayerGroupInfo layerGroup : catalog.getLayerGroups()) {
                         if (layerGroup.getStyles().contains(source)) {
+                            ThumbnailController controller = GeoServerExtensions.bean(ThumbnailController.class);
+                            
+                            controller.clearThumbnail(layerGroup);
                             Metadata.invalidateThumbnail(layerGroup);
                             catalog.save(layerGroup);
                         }
                     }
                 } else if(source instanceof LayerInfo) {
-                    LayerInfo layer = catalog.getLayer(source.getId());
+                    LayerInfo layer = (LayerInfo) source;
                     Metadata.invalidateThumbnail(layer);
-                    catalog.save(layer);
-                    //Invalidate any maps using this layer
-                    for (LayerGroupInfo layerGroup : catalog.getLayerGroups()) {
-                        if (layerGroup.getLayers().contains(source)) {
-                            Metadata.invalidateThumbnail(layerGroup);
-                            catalog.save(layerGroup);
-                        }
-                    }
+                    
+                    ThumbnailController controller = GeoServerExtensions.bean(ThumbnailController.class);
+                    controller.clearThumbnail(layer);
+                    // save the layer? no because it is being deleted...
+                    
+                    // look up wrapped layer in catalog so we can save
+                    // layer = catalog.getLayer(source.getId());
+                    // catalog.save(layer);
                 } else if (source instanceof LayerGroupInfo) {
-                    LayerGroupInfo layerGroup = catalog.getLayerGroup(source.getId());
+                    LayerGroupInfo layerGroup = (LayerGroupInfo) source;
+                    ThumbnailController controller = GeoServerExtensions.bean(ThumbnailController.class);
+                    controller.clearThumbnail(layerGroup);
+                    
                     Metadata.invalidateThumbnail(layerGroup);
-                    catalog.save(layerGroup);
+                    
+                    // layerGroup = catalog.getLayerGroup(source.getId());
+                    // layer group being removed so no need to save
+                    // catalog.save(layerGroup);
                 }
             } finally {
                 modifying = false;
