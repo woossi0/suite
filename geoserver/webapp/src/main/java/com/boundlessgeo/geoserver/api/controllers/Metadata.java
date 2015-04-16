@@ -9,6 +9,8 @@ import org.geoserver.catalog.PublishedInfo;
 import org.geoserver.ows.util.OwsUtils;
 import org.geotools.util.Converters;
 
+import com.boundlessgeo.geoserver.AppConfiguration;
+
 import java.util.Date;
 
 /**
@@ -22,15 +24,31 @@ public class Metadata {
     
     public static final String THUMBNAIL = "thumbnail";
     
-    //Relative thumbnail location
+    /**
+     * Store file path for thumbnail.
+     * 
+     * @param layer or layergroup
+     * @param path file path relative to {@link AppConfiguration#getCacheDir()}
+     */
     public static void thumbnail(PublishedInfo obj, String path) {
         map(obj).put(THUMBNAIL, path);
     }
     
+    /**
+     * File path to thumbnail relative to {@link AppConfiguration#getCacheDir()}
+     * 
+     * @param layer or layergroup
+     * @return absolute file path to thumbnail
+     */
     public static String thumbnail(PublishedInfo obj) {
         return (String)map(obj).get(THUMBNAIL);
     }
     
+    /**
+     * Remove file path stored for thumbnail.
+     * 
+     * @param layer
+     */
     public static void invalidateThumbnail(PublishedInfo layer) {
         Metadata.map(layer).remove(Metadata.THUMBNAIL);
     }

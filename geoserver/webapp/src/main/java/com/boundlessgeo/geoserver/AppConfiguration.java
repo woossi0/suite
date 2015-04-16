@@ -26,6 +26,7 @@ public class AppConfiguration implements ServletContextAware {
     Catalog catalog;
     ServletContext servletContext;
     
+    /** Cache directory location set by configuration on startup */
     private String cacheDir;
     
     private static Logger LOGGER = Logging.getLogger(AppConfiguration.class);
@@ -79,6 +80,18 @@ public class AppConfiguration implements ServletContextAware {
     }
     
     /**
+     * File from the cache directory denoted by a relative path.
+     * 
+     * @return the file (which may or may not exist)
+     */
+    public File cacheFile(String path) {
+        if (path == null) {
+            throw new NullPointerException("cache file path required");
+        }
+        return new File(cacheDir + File.separator + path);
+    }
+    
+    /**
      * Retrieves a file from the cache directory denoted by a relative path. 
      * If the file does not exist, creates a new file.
      * @param path relative path within cache dir
@@ -86,21 +99,22 @@ public class AppConfiguration implements ServletContextAware {
      * @throws IOException if there is an error creating the file
      */
     public File createCacheFile(String path) throws IOException {
-        File file = new File(cacheDir + File.separator + path);
+        File file = cacheFile(path);
         if (!file.exists()) {
             file.createNewFile();
         }
         return file;
     }
+    
     /**
-     * Retrieves a file from the cache directory denoted by a relative path. 
-     * If the file does not exist, throws a FileNotFoundException
+     * Retrieves a file from the cache directory denoted by a relative path. If the file does not exist, throws a FileNotFoundException
+     * 
      * @param path relative path within cache dir
      * @return the file
      * @throws FileNotFoundException if the file does not exist
      */
     public File getCacheFile(String path) throws FileNotFoundException {
-        File file = new File(cacheDir + File.separator + path);
+        File file = cacheFile(path);
         if (!file.exists()) {
             throw new FileNotFoundException(cacheDir + File.separator + path);
         }
