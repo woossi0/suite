@@ -14,4 +14,5 @@ This section will discuss spatial processing and analysis tools using OpenGeo Su
    wpsclient/index
    scripting/index
    contour/index
+   management/index
    processes/index
