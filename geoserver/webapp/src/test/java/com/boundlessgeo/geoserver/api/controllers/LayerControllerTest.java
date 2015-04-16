@@ -31,9 +31,6 @@ import org.geotools.styling.PointSymbolizer;
 import org.geotools.styling.Style;
 import org.geotools.styling.StyledLayerDescriptor;
 import org.geotools.ysld.Ysld;
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
@@ -101,9 +98,9 @@ public class LayerControllerTest {
     public void testList() throws Exception {
         MockGeoServer.get().catalog()
             .workspace("foo", "http://scratch.org", true)
-                .layer("one")
+                .layer("one").style().point().layer()
                   .featureType().defaults().store("one").workspace()
-                .layer("two")
+                .layer("two").style().point().layer()
                   .featureType().defaults().store("two").workspace()
             .geoServer().build(geoServer);
 
@@ -165,7 +162,9 @@ public class LayerControllerTest {
     public void testGet() throws Exception {
         GeoServer gs = MockGeoServer.get().catalog()
             .workspace("foo", "http://scratch.org", true)
-                .layer("one").info("The layer", "This layer is cool!")
+                .layer("one")
+                    .info("The layer", "This layer is cool!")
+                    .style().point().layer()
                 .featureType().defaults().store("foo")
             .geoServer().build(geoServer);
 
@@ -181,6 +180,7 @@ public class LayerControllerTest {
         assertEquals("vector", obj.str("type"));
         assertEquals("The layer", obj.str("title"));
         assertEquals("This layer is cool!", obj.str("description"));
+        assertEquals("point", obj.object("style").str("name"));
 
         assertEquals("EPSG:4326", obj.object("proj").str("srs"));
 
@@ -326,7 +326,7 @@ public class LayerControllerTest {
     public void testPut() throws Exception {
         GeoServer gs = MockGeoServer.get().catalog()
             .workspace("foo", "http://scratch.org", true)
-                .layer("one").info("The layer", "This layer is cool!")
+                .layer("one").info("The layer", "This layer is cool!").style().point().layer()
                 .featureType().defaults().store("one")
                 .geoServer().build(geoServer);
 
@@ -345,7 +345,7 @@ public class LayerControllerTest {
     public void testPutNameChange() throws Exception {
         GeoServer gs = MockGeoServer.get().catalog()
             .workspace("foo", "http://scratch.org", true)
-                .layer("one").info("The layer", "This layer is cool!")
+                .layer("one").info("The layer", "This layer is cool!").style().point().layer()
                 .featureType().defaults().store("one")
                 .geoServer().build(geoServer);
 
@@ -372,11 +372,11 @@ public class LayerControllerTest {
         @SuppressWarnings("unused")
         GeoServer gs = MockGeoServer.get().catalog()
             .workspace("foo", "http://scratch.org", true)
-                .layer("layer1", "layer1")
+                .layer("layer1", "layer1").style().point().layer()
                     .featureType().defaults().store("foo").workspace()
-                .layer("layer2", "layer2")
+                .layer("layer2", "layer2").style().point().layer()
                     .featureType().defaults().store("foo").workspace()
-                .layer("layer3", "layer3")
+                .layer("layer3", "layer3").style().point().layer()
                     .featureType().defaults().store("foo").workspace()
                 .geoServer().build(geoServer);
 

@@ -108,14 +108,16 @@ public class MockGeoServer {
 
     public class ResourcesBuilder extends  Builder {
         File base;
+        Resource baseResource = mock(Resource.class);
         List<String> paths;
         ResourceStore resourceStore;
+        GeoServerResourceLoader resourceLoader;
         CatalogBuilder catalogBuilder;
 
         public ResourcesBuilder(CatalogBuilder catalogBuilder) {
             this.catalogBuilder = catalogBuilder;
-
-            File base;
+            this.paths = new ArrayList<String>();
+            
             try {
                 base = File.createTempFile("resource","base");
                 base.deleteOnExit();
@@ -123,22 +125,13 @@ public class MockGeoServer {
             } catch (IOException e) {
                 base = null;
             }
-            
-            Resource baseResource = mock(Resource.class);
-            when(baseResource.dir()).thenReturn(base);
-
             this.resourceStore = mock(ResourceStore.class);
+            
+            when(baseResource.dir()).thenReturn(base);
             when(resourceStore.get(Paths.BASE)).thenReturn(baseResource);
-
-            when(catalogBuilder.catalog.getResourceLoader())
-                .thenAnswer(new Answer<GeoServerResourceLoader>() {
-                    @Override
-                    public GeoServerResourceLoader answer(InvocationOnMock invocation) throws Throwable {
-                        return new GeoServerResourceLoader(resourceStore);
-                    }
-                });
-
-            this.paths = new ArrayList<String>();
+            
+            this.resourceLoader = new GeoServerResourceLoader(resourceStore);
+            when(catalogBuilder.catalog.getResourceLoader()).thenReturn(resourceLoader);
         }
 
         public ResourcesBuilder resource(String path, String content) {
@@ -876,6 +869,7 @@ public class MockGeoServer {
         public StyleBuilder ysld(String filename) {
             when(style.getFormat()).thenReturn(YsldHandler.FORMAT);
             when(style.getFilename()).thenReturn(filename);
+            when(style.getName()).thenReturn(filename);
             return this;
         }
 
@@ -897,6 +891,8 @@ public class MockGeoServer {
             ResourcesBuilder resources = geoServer().catalog().resources();
             String wsName = layerBuilder.workspaceBuilder.namespace.getName();
             String fileName = "point.sld";
+            String name = "point";
+            when(this.style.getName() ).thenReturn(name);
             when(this.style.getFilename() ).thenReturn(fileName );
             when(this.style.getWorkspace() ).thenReturn( layerBuilder.workspaceBuilder.workspace );
             when(this.style.getFormat()).thenReturn("sld");

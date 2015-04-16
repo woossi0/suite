@@ -40,6 +40,7 @@ import org.geoserver.catalog.PublishedInfo;
 import org.geoserver.catalog.ResourceInfo;
 import org.geoserver.catalog.ResourcePool;
 import org.geoserver.catalog.StoreInfo;
+import org.geoserver.catalog.StyleInfo;
 import org.geoserver.catalog.WMSLayerInfo;
 import org.geoserver.catalog.WMSStoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
@@ -93,6 +94,7 @@ import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.GenericName;
 
 import com.boundlessgeo.geoserver.Proj;
+import com.boundlessgeo.geoserver.api.exceptions.NotFoundException;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.google.common.base.Function;
@@ -474,6 +476,14 @@ public class IO {
                      url(req, "/stores/%s/%s/%s",wsName, store.getName(),r.getName())
                 );
         }
+        
+        StyleInfo style = layer.getDefaultStyle();
+        if (style == null) {
+            throw new NotFoundException(String.format("Layer %s:%s has no default style", wsName, layer.getName()));
+        }
+        obj.putObject("style")
+                .put("name", style.getName())
+                .put("workspace", style.getWorkspace() == null ? null : style.getWorkspace().getName());
         
         JSONArr keywords = new JSONArr();
         keywords.raw().addAll( r.keywordValues() );
