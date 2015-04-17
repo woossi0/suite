@@ -18,12 +18,10 @@ import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CoverageStoreInfo;
 import org.geoserver.catalog.DataStoreInfo;
 import org.geoserver.catalog.LayerInfo;
-import org.geoserver.catalog.NamespaceInfo;
 import org.geoserver.catalog.ResourceInfo;
 import org.geoserver.catalog.ResourcePool;
 import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.StyleInfo;
-import org.geoserver.catalog.WMSStoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.config.GeoServer;
 import org.geoserver.config.GeoServerDataDirectory;
@@ -39,6 +37,7 @@ import org.geoserver.importer.ImportTask.State;
 import org.geoserver.importer.Importer;
 import org.geoserver.importer.SpatialFile;
 import org.geoserver.importer.Table;
+import org.geoserver.importer.job.Task;
 import org.geoserver.platform.resource.Paths;
 import org.geoserver.ows.util.ResponseUtils;
 import org.geoserver.platform.resource.Resource;
@@ -72,6 +71,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
@@ -81,7 +82,10 @@ public class ImportController extends ApiController {
     Importer importer;
     Hasher hasher;
     
-    static Logger LOG = Logging.getLogger(ImportController.class);
+    private Long id = 0L;
+    private Map<Long, ImportHelper> imports = new HashMap<Long, ImportHelper>();
+    
+    private static Logger LOG = Logging.getLogger(ImportController.class);
 
     @Autowired
     public ImportController(GeoServer geoServer, Importer importer) {
@@ -142,16 +146,14 @@ public class ImportController extends ApiController {
             dir.accept(files.next());
         }
         
-        ImportContext imp;
+        Long id;
         if (storeName == null) {
-            imp = importer.createContext(dir, ws);
+            id = importer.createContextAsync(dir, ws, null);
         } else {
             StoreInfo store = findStore(wsName, storeName, geoServer.getCatalog());
-            imp = importer.createContext(dir, ws, store);
+            id = importer.createContextAsync(dir, ws, store);
         }
-
-        //If this is an indirect import, run asynchronously
-        return doImport(imp, ws, request);
+        return get(wsName, createImport(importer.getTask(id)), request);
     }
     
     public static File uploadDir(Catalog catalog, WorkspaceInfo ws, StoreInfo store) throws IOException {
@@ -309,24 +311,24 @@ public class ImportController extends ApiController {
         // create the import data
         Database db = new Database(hack(obj));
         
-        ImportContext imp; 
+        Long id; 
         if (storeName == null) {
-            imp = importer.createContext(db, ws);
+            id = importer.createContextAsync(db, ws, null);
         
             //Check if this store already exists in the catalog
-            StoreInfo store = findStore(imp, ws);
+            StoreInfo store = findStore(hack(obj), ws);
             if (store != null) {
                 return (new JSONObj()).put("store", IO.store(new JSONObj(), store, request, geoServer));
             }
             
         } else {
             StoreInfo store = findStore(wsName, storeName, geoServer.getCatalog());
-            imp = importer.createContext(db, ws, store);
+            id = importer.createContextAsync(db, ws, store);
         }
         
         //Return to requester to allow selection of tables.
         //Complete the import using update()
-        return get(ws.getName(), imp.getId(), request);
+        return get(ws.getName(), createImport(importer.getTask(id)), request);
     }
 
     Map<String, Serializable> hack(JSONObj obj) {
@@ -387,18 +389,21 @@ public class ImportController extends ApiController {
      * @param ws - The workspace to import into
      * @return JSON representation of the import
      */
-    JSONObj doImport(ImportContext imp, WorkspaceInfo ws, HttpServletRequest request) throws Exception {
-        return doImport(imp, ws, ImportFilter.ALL, request);
+    JSONObj doImport(ImportHelper helper, WorkspaceInfo ws, HttpServletRequest request) throws Exception {
+        return doImport(helper, ws, ImportFilter.ALL, request);
     }
     
     /**
      * Runs an import using the GeoServer importer
-     * @param imp - The context to run the import from
+     * @param helper - The ImportWrapper containing the context to run the import from
      * @param ws - The workspace to import into
      * @param f - Filter to select import tasks
      * @return JSON representation of the import
      */
-    JSONObj doImport(ImportContext imp, WorkspaceInfo ws, ImportFilter f, HttpServletRequest request) throws Exception {
+    JSONObj doImport(ImportHelper helper, WorkspaceInfo ws, ImportFilter f, HttpServletRequest request) throws Exception {
+        helper.setTask(null);
+        ImportContext imp = helper.getContext();
+        
         // run the import
         imp.setState(ImportContext.State.RUNNING);
         GeoServerDataDirectory dataDir = dataDir();
@@ -409,20 +414,22 @@ public class ImportController extends ApiController {
                 t.setState(ImportTask.State.CANCELED);
             }
         }
-        importer.runAsync(imp, f);
-        return get(ws.getName(), imp.getId(), request);
+        helper.setTask(importer.getTask(importer.runAsync(imp, f)));
+        return get(ws.getName(), helper.id, request);
     }
-    
     /**
      * Rerun an import.
      * 
-     * @param imp - The context to run the import from
+     * @param helper - The ImportWrapper containing the context to run the import from
      * @param ws - The workspace to import into
      * @param f - Filter to select import tasks
      * @return JSON representation of the import
      */
-    JSONObj reImport(ImportContext imp, WorkspaceInfo ws, ImportFilter f, HttpServletRequest request) throws Exception {
-     // run the import
+    JSONObj reImport(ImportHelper helper, WorkspaceInfo ws, ImportFilter f, HttpServletRequest request) throws Exception {
+        helper.setTask(null);
+        ImportContext imp = helper.getContext();
+        
+        // run the import
         imp.setState(ImportContext.State.RUNNING);
         GeoServerDataDirectory dataDir = dataDir();
         //These tasks were not run the first time, and need to be set up
@@ -433,8 +440,8 @@ public class ImportController extends ApiController {
                 newTasks.add(t);
             } 
         }
-        importer.runAsync(imp, f);
-        return get(ws.getName(), imp.getId(), request);
+        helper.setTask(importer.getTask(importer.runAsync(imp, f)));
+        return get(ws.getName(), helper.id, request);
     }
     
     /*
@@ -477,7 +484,6 @@ public class ImportController extends ApiController {
                 throw new RuntimeException("Error copying style to workspace", e);
             }
         }
- 
     }
 
     String findUniqueStyleName(ResourceInfo resource, WorkspaceInfo workspace, Catalog catalog) {
@@ -528,8 +534,10 @@ public class ImportController extends ApiController {
      *    "tasksTotal":2
      *  }
      * 
-     * The response is an object with 10 properties:
+     * The response is an object with 11 properties. If this is a new import, and the context has
+     * not yet been created, only id and task will be included.
      * * id - The identifier of this import job, needed to make modifications to it
+     * * task - A textual representation of the current task. Not included if no task is currently running.
      * * status - The current status of the import. May be "pending", "running", or "complete"
      * * tasksComplete - The number of tasks that have been processed and have either been 
      *   successfully imported or given an error.
@@ -552,10 +560,26 @@ public class ImportController extends ApiController {
      */
     @RequestMapping(value = "/{wsName}/{id:\\d+}", method = RequestMethod.GET)
     public @ResponseBody JSONObj get(@PathVariable String wsName, @PathVariable Long id, HttpServletRequest request) throws Exception {
-        ImportContext imp = findImport(id);
-
-        JSONObj result = new JSONObj();
-        result.put("id", imp.getId());
+        ImportHelper helper = imports.get(id);
+        if (helper == null) {
+            throw new NotFoundException("Import with id "+id+" does not exist");
+        }
+        JSONObj result = new JSONObj().put("id",id);
+        
+        Task<ImportContext> t = helper.getTask();
+        ImportContext imp = helper.getContext();
+        
+        if (t != null) {
+            result.put("task", t.toString());
+        }
+        
+        if (imp == null) {
+            if (t == null) {
+                throw new RuntimeException("Invalid import");
+            }
+            return result;
+        }
+        result.put("importerEndpoint", ResponseUtils.baseURL(request)+"geoserver/rest/imports/"+imp.getId());
         
         JSONArr preimport = result.putArray("preimport");
         JSONArr running = result.putArray("running");
@@ -593,7 +617,6 @@ public class ImportController extends ApiController {
         
         result.put("tasksCompleted", imp.getTasks().size()-(preimport.size()+running.size()));
         result.put("tasksTotal", imp.getTasks().size());
-        result.put("importerEndpoint", ResponseUtils.baseURL(request)+"geoserver/rest/imports/"+id);
         
         //If there are no more tasks to run, consider the import complete
         if ((preimport.size()+running.size()) == 0) {
@@ -652,37 +675,50 @@ public class ImportController extends ApiController {
 
         Catalog catalog = geoServer.getCatalog();
         WorkspaceInfo ws = findWorkspace(wsName, catalog);
-        ImportContext imp = findImport(id);
+        ImportHelper helper = imports.get(id);
+        if (helper == null) {
+            throw new NotFoundException("Import with id "+id+" does not exist");
+        }
+        JSONObj result = new JSONObj().put("id",id);
+        
+        Task<ImportContext> t = helper.getTask();
+        ImportContext imp = helper.getContext();
         
         //If this import is currently running, we should not start another job
-        if (imp.getState() == ImportContext.State.RUNNING) {
+        if (t != null) {
             if (obj.bool("cancelled")) {
-                imp.progress().setCanceled(true);
+                t.cancel(true);
                 return get(wsName, id, request);
             } else {
                 throw new RuntimeException("This import is currently running.");
             }
         }
+        
+        if (imp == null) {
+            throw new RuntimeException("Invalid import");
+        }
         ImportFilter f = filter(obj, imp);
+        
+        //Pre-import: Context has been created, but nothing has been imported yet
         boolean preimport = true;
         for (ImportTask task : imp.getTasks()) {
-            //Pre-import (Database import only)
-            if (task.getState() != ImportTask.State.PENDING) {
+            if (!(task.getState() == ImportTask.State.PENDING 
+                    || task.getState() == ImportTask.State.READY)) {
                 preimport = false;
                 break;
             }
         }
         if (preimport) {
             // create the import data
-            return doImport(imp, ws, f, request);
+            return doImport(helper, ws, f, request);
         }
         
-        //Re-import
+        //Re-import: Data (but perhaps not everything) has been imported
         JSONArr arr = obj.array("tasks");
         
         //Filter only: run on all tasks that match the filter
         if (arr == null) {
-            return reImport(imp, ws, f, request);
+            return reImport(helper, ws, f, request);
         }
         
         //Task List: Update CRS tasks, run all tasks that match filter or list.
@@ -717,7 +753,7 @@ public class ImportController extends ApiController {
                 }
             }
         }
-        return reImport(imp, ws, f, request);
+        return reImport(helper, ws, f, request);
     }
 
     ImportContext findImport(Long id) {
@@ -735,18 +771,8 @@ public class ImportController extends ApiController {
      * 
      * For better matching, only compares the required parameters of the store.
      */
-    StoreInfo findStore(ImportContext imp, WorkspaceInfo ws) throws Exception {
+    StoreInfo findStore(Map<String, Serializable> params, WorkspaceInfo ws) throws Exception {
         Catalog catalog = geoServer.getCatalog();
-        ImportData data = imp.getData();
-        if (data.getFormat() == null) {
-            return null;
-        }
-        
-        
-        StoreInfo store = data.getFormat().createStore(data, ws, catalog);
-        
-        //Process relative URLs (required to support directories of spatial files)
-        Map<String, Serializable> params = ResourcePool.getParams(store.getConnectionParameters(), catalog.getResourceLoader() );
         
         Map<String, Serializable> requiredParams = new HashMap<String, Serializable>();
         DataStoreFactorySpi factory = (DataStoreFactorySpi) DataStoreUtils.aquireFactory(params);
@@ -762,23 +788,7 @@ public class ImportController extends ApiController {
             requiredParams.put("database", params.get("database"));
         }
         
-        if (!store.getConnectionParameters().containsKey("namespace")) {
-            if (ws != null) {
-                NamespaceInfo ns = catalog.getNamespaceByPrefix(ws.getName());
-                if (ns != null) {
-                    store.getConnectionParameters().put("namespace", ns.getURI());
-                }
-            }
-        }
-        Class<? extends StoreInfo> clazz = StoreInfo.class;
-        if (store instanceof CoverageStoreInfo) {
-            clazz = CoverageStoreInfo.class;
-        } else if (store instanceof DataStoreInfo) {
-            clazz = DataStoreInfo.class;
-        } else if (store instanceof WMSStoreInfo) {
-            clazz = WMSStoreInfo.class;
-        }
-        List<? extends StoreInfo> stores = catalog.getStoresByWorkspace(ws, clazz);
+        List<? extends StoreInfo> stores = catalog.getStoresByWorkspace(ws, StoreInfo.class);
         for (StoreInfo s : stores) {
             boolean matches = true;
             Map<String, Serializable> p = ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader() );
@@ -876,5 +886,104 @@ public class ImportController extends ApiController {
         }
     
     }
-
+    
+    /**
+     * Create a new ImportHelper and add it to {@code imports}, tracking the index.
+     * @param t
+     * @return
+     */
+    private Long createImport(Task<ImportContext> t) {
+        ImportHelper i = new ImportHelper(t);
+        //Make sure we get the right index
+        synchronized (id) {
+            imports.put(id, i);
+            i.id = id;
+            id++;
+        }
+        return i.id;
+    }
+    
+    /**
+     * Utility class to track both the current Task, and the ImportContext with a consistent id.
+     * The intended use pattern is to use {@link #createImport} to create the wrapper with the Task
+     * object created by importer.createContextAsync. When this task has finished execution, 
+     * this class is updated with the newly created context.
+     * Subsequent tasks can be added with the setTask method.
+     *
+     */
+    private class ImportHelper {
+        private Task<ImportContext> currentTask = null;
+        private ImportContext context = null;
+        Long id = -1L;
+        
+        protected ImportHelper(Task<ImportContext> initTask) {
+            if (initTask == null) {
+                throw new NullPointerException("Initial task cannot be null");
+            }
+            currentTask = initTask;
+            new Thread(new TaskListener(initTask)).start();
+        }
+        
+        public ImportContext getContext() {
+            return context;
+        }
+        
+        /**
+         * Returns the currently running task. If the current task has completed, updates the 
+         * ImportContext and sets the current task to null.
+         * @return The currently running task, or null if no task is running
+         * @throws InterruptedException
+         * @throws ExecutionException
+         */
+        public Task<ImportContext> getTask() throws InterruptedException, ExecutionException {
+            if (currentTask != null && currentTask.isDone())  {
+                context = currentTask.get();
+                currentTask = null;
+            }
+            return currentTask;
+        }
+        
+        /**
+         * Sets the currentTask, as long as no task is currently running. 
+         * Applies a TaskListener to the new task, used to update file locations when an import completes.
+         * @param t
+         * @throws RuntimeException If a currentTask is already running
+         * @throws InterruptedException
+         * @throws ExecutionException
+         */
+        public void setTask(Task<ImportContext> t) throws RuntimeException, InterruptedException, ExecutionException {
+            if (t != null) {
+                new Thread(new TaskListener(t)).start();
+            }
+            if (getTask() == null) {
+                currentTask = t;
+            } else {
+                throw new RuntimeException("Cannot set task: another task is still running");
+            }
+        }
+    }
+    
+    /**
+     * Utility class which blocks on a running Task, and updates the location of any Imported files 
+     * when that task completes.
+     */
+    private class TaskListener implements Runnable {
+        Task<ImportContext> task;
+        public TaskListener(Task<ImportContext> task) {
+            this.task = task;
+        }
+        
+        public void run() {
+            try {
+                ImportContext context = task.get();
+                for (ImportTask t : context.getTasks()) {
+                    if (t.getState() == State.COMPLETE) {
+                        moveFile(t);
+                    }
+                }
+            } catch (InterruptedException | ExecutionException e) {
+                LOG.log(Level.WARNING, "Failed to move imported files", e);
+            }
+        }
+    }
 }

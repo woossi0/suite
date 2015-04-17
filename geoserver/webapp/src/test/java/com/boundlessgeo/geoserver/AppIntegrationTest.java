@@ -185,11 +185,14 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
 
         JSONObj result = ctrl.importFile("gs", request);
         Long id = Long.parseLong(result.str("id"));
-        verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        
         //Wait for the import to complete
-        Thread.sleep(100);
-        result = ctrl.get("gs", id, request);
-
+        result = pollImport(ctrl, "gs", id, "pending", request);
+        verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        result = ctrl.update("gs", id, getUpdateTasks(result), request);
+        result = pollImport(ctrl, "gs", id, "complete", request);
+        assertNotNull(result);
+        
         assertEquals(1, result.array("imported").size());
         JSONObj obj = result.array("imported").object(0);
 
@@ -255,11 +258,15 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
 
         JSONObj result = ctrl.importFile("gs", request);
         Long id = Long.parseLong(result.str("id"));
-        verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        
         //Wait for the import to complete
+        result = pollImport(ctrl, "gs", id, "pending", request);
+        assertNotNull(result);
+        verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        result = ctrl.update("gs", id, getUpdateTasks(result), request);
         result = pollImport(ctrl, "gs", id, "complete", request);
         assertNotNull(result);
-
+        
         assertEquals(1, result.array("imported").size());
         JSONObj obj = result.array("imported").object(0);
 
@@ -286,6 +293,13 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         deleteRequest.setMethod("delete");
         storeCtrl.delete("gs", "point", true, deleteRequest);
         result = ctrl.importFile("gs", request);
+        id = Long.parseLong(result.str("id"));
+        //Wait for the import to complete
+        result = pollImport(ctrl, "gs", id, "pending", request);
+        assertNotNull(result);
+        result = ctrl.update("gs", id, getUpdateTasks(result), request);
+        result = pollImport(ctrl, "gs", id, "complete", request);
+        assertNotNull(result);
         assertEquals(1, result.array("imported").size());
     }
     
@@ -309,11 +323,11 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             result = ctrl.importDb("gs", result, request);
             
             Long id = Long.parseLong(result.str("id"));
+            result = pollImport(ctrl, "gs", id, "pending", request);
+            assertNotNull(result);
             verifyImporterEndpoint(result.str("importerEndpoint"), request);
-            assertNotNull(id);
-            assertTrue(result.integer("tasksTotal") > 0);
             
-            assertEquals("pending", result.get("state"));
+            assertTrue(result.integer("tasksTotal") > 0);
             List<String> names = Arrays.asList(new String[]{"ft1","ft2","ft3"});
             JSONArr tasks = new JSONArr();
             for (JSONObj o : result.array("preimport").objects()) {
@@ -327,7 +341,6 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             response.put("tasks", tasks);
             
             result = ctrl.update("gs", id, response, request);
-            //Wait for the import to complete
             result = pollImport(ctrl, "gs", id, "complete", request);
             assertNotNull(result);
             
@@ -384,12 +397,15 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         
         createMultiPartFormContent(request, "form-data; name=\"upload\"; filename=\"point.json\"", "application/json",
                 IOUtils.toByteArray(getClass().getResourceAsStream("point.json")));
-
+        
         JSONObj result = ctrl.importFile("sf", "sf", request);
         Long id = Long.parseLong(result.str("id"));
-        verifyImporterEndpoint(result.str("importerEndpoint"), request);
         
         //Wait for the import to complete
+        result = pollImport(ctrl, "gs", id, "pending", request);
+        assertNotNull(result);
+        verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        result = ctrl.update("gs", id, getUpdateTasks(result), request);
         result = pollImport(ctrl, "gs", id, "complete", request);
         assertNotNull(result);
         
@@ -408,6 +424,14 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         StyleInfo s = l.getDefaultStyle();
         assertNotNull(s.getWorkspace());
     }
+    private JSONObj getUpdateTasks(JSONObj result) {
+        JSONArr tasks = new JSONArr();
+        for (JSONObj o : result.array("preimport").objects()) {
+            tasks.add(new JSONObj().put("task", o.get("task").toString()));
+        }
+        JSONObj response = new JSONObj();
+        return response.put("tasks", tasks);
+    }
     
     private void verifyImporterEndpoint(String url, HttpServletRequest request) throws Exception {
         String baseURL = ResponseUtils.baseURL(request)+"geoserver/";
@@ -415,7 +439,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         com.mockrunner.mock.web.MockHttpServletResponse res = getAsServletResponse(relativeURL);
         assertEquals("application/json", res.getContentType());
     }
-    private JSONObj pollImport(ImportController ctrl, String ws, long id, String state, HttpServletRequest request) {
+    private JSONObj pollImport(ImportController ctrl, String ws, Long id, String state, HttpServletRequest request) {
         int attempts = 100;
         int interval = 10;
         
@@ -423,7 +447,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             try {
                 Thread.sleep(interval);
                 JSONObj obj = ctrl.get(ws, id, request);
-                if (obj.get("state").equals(state)) {
+                if (obj.get("state") != null && obj.get("state").equals(state)) {
                     return obj;
                 }
             } catch (Exception e) {
