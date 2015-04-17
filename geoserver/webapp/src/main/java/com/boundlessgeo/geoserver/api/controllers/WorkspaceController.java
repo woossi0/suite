@@ -211,9 +211,12 @@ public class WorkspaceController extends ApiController {
             cat.setDefaultNamespace(ns);
         }
         else if (Boolean.FALSE.equals(isDefault)) {
-            //TODO: check if currently the default, and unset it
+            WorkspaceInfo defaultWorkspace = cat.getDefaultWorkspace();
+            if( defaultWorkspace != null && defaultWorkspace.getId().equals( ws.getId())){
+                cat.setDefaultWorkspace(null);
+                cat.setDefaultNamespace(null);
+            }
         }
-
         return IO.workspace(new JSONObj(), ws, ns, isDefault == Boolean.TRUE);
     }
 
