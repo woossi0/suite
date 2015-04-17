@@ -38,7 +38,9 @@ Using the example of the contour map (using the process ``ras:Contour``, we can 
 
       Setting the process input limits
 
-#. Click :guilabel:`Apply` twice.
+#. Click :guilabel:`Apply` to close the process limits page.
+
+#. Click :guilabel:`Apply` to close the process selection page.
 
 #. Click :guilabel:`Submit`.
 
