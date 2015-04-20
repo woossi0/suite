@@ -527,7 +527,8 @@ public class LayerController extends ApiController {
     public @ResponseBody void style(@RequestBody byte[] rawStyle, @PathVariable String wsName,
         @PathVariable String name, @RequestParam(value="map", required=false) String mapName) throws IOException {
         // first thing is sanity check on the style content
-        List<MarkedYAMLException> errors = Ysld.validate(ByteSource.wrap(rawStyle).openStream());
+        List<MarkedYAMLException> errors = (List) Styles.handler(YsldHandler.FORMAT).validate(ByteSource.wrap(rawStyle).openStream(), null, null);
+
         if (!errors.isEmpty()) {
             throw new InvalidYsldException(errors);
         }
