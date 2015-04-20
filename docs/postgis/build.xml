@@ -10,7 +10,7 @@
             <param name="flags" value="-q"/>
         </antcall>
 
-        <get src="http://data.opengeo.org/suite/postgis-docs-${pg.version}.zip" dest="doc.zip" 
+        <get src="http://data.boundlessgeo.com/suite/postgis-docs-${pg.version}.zip" dest="doc.zip" 
             usetimestamp="true"/>
         <mkdir dir="${doc.dir}"/>
         <unzip src="doc.zip" dest="${doc.dir}"/>
