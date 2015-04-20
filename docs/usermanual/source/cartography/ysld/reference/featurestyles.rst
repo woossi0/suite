@@ -345,3 +345,82 @@ Using the ``x-firstMatch: true`` parameter, the style is simplified:
 Specifically, the third rule no longer needs the extra ``AND industry <> 'fishing'``, because the previous two rules imply that any features remaining by this rule have that condition.
 
 
+Layer mask
+~~~~~~~~~~
+
+Given two layers (in this case, two three-band rasters), one can mask or "knock out" the other, making visible what's beneath.
+
+.. figure:: img/fs_land.png
+
+   Top/source layer
+
+.. figure:: img/fs_ocean.png
+
+   Bottom/destination layer
+
+.. note:: Screenshots show data provided by `Natural Earth <http://naturalearthdata.com>`_.
+
+Layer 1 (top/source):
+
+.. code-block:: yaml
+   :linenos:
+   :emphasize-lines: 7
+
+   feature-styles:
+   - rules:
+     - title: Top/source
+       symbolizers:
+       - raster:
+           opacity: 1.0
+     x-composite: xor
+ 
+Layer 2 (bottom/destination):
+
+.. code-block:: yaml
+   :linenos:
+
+   feature-styles:
+   - rules:
+     - title: Bottom/destination
+       symbolizers:
+       - raster:
+           opacity: 1.0
+
+.. figure:: img/fs_xor.png
+
+   Layer as mask
+
+Color inversion
+~~~~~~~~~~~~~~~
+
+Given the same two layers as the previous example, one can display the difference of the colors of layers, which can have the effect of a color "inversion".
+
+Layer 1 (top/source):
+
+.. code-block:: yaml
+   :linenos:
+   :emphasize-lines: 7
+
+   feature-styles:
+   - rules:
+     - title: Top/source
+       symbolizers:
+       - raster:
+           opacity: 1.0
+     x-composite: difference
+ 
+Layer 2 (bottom/destination):
+
+.. code-block:: yaml
+   :linenos:
+
+   feature-styles:
+   - rules:
+     - title: Bottom/destination
+       symbolizers:
+       - raster:
+           opacity: 1.0
+
+.. figure:: img/fs_difference.png
+
+   Layer as color inversion
