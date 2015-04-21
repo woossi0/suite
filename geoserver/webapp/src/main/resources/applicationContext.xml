@@ -41,6 +41,10 @@
       <constructor-arg ref="config" />
     </bean>
     
+    <bean class="com.boundlessgeo.geoserver.catalog.UploadDeleteCatalogListener">
+      <constructor-arg ref="catalog"/>
+    </bean>
+    
     <!-- configure thumbnail cache -->
     <bean id="config" class="com.boundlessgeo.geoserver.AppConfiguration">
       <constructor-arg ref="catalog"/>

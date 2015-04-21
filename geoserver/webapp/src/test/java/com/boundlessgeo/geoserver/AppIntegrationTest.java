@@ -64,6 +64,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -273,6 +274,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         deleteRequest.setRequestURI("/geoserver/hello");
         deleteRequest.setMethod("delete");
         storeCtrl.delete("gs", "point", true, deleteRequest);
+        assertFalse(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").exists());
         result = ctrl.importFile("gs", request);
         assertEquals(1, result.array("imported").size());
     }
