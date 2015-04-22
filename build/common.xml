@@ -52,6 +52,7 @@ Common build targets.
         <tstamp>
           <format property="suite.build_date" pattern="yyyy-MM-dd'T'hh:mm:ssZ"/>
           <format property="suite.build_prettydate" pattern="E MMM dd, yyyy @ HH:mm z"/>
+          <format property="suite.build_shortdate" pattern="E MMM dd, yyyy"/>
         </tstamp>
     </target>
 
@@ -125,6 +126,8 @@ Common build targets.
       <echo message="build_branch=${suite.build_branch}${line.separator}" 
           file="target/version.ini" append="true"/>
       <echo message="build_rev=${suite.build_rev}${line.separator}" 
+          file="target/version.ini" append="true"/>
+                <echo message="build_shortdate=${suite.build_shortdate}${line.separator}" 
           file="target/version.ini" append="true"/>
       <echo message="build_date=${suite.build_date}${line.separator}" 
           file="target/version.ini" append="true"/>
@@ -281,6 +284,7 @@ Common build targets.
         <arg line="-Dsuite.build_date='${suite.build_date}'"/>
         <arg line="-Dsuite.build_prettydate='${suite.build_prettydate}'"/>
         <arg line="-Dsuite.build_profile=${suite.build_profile}"/>
+        <arg line="-Dsuite.build_shortdate=${suite.build_shortdate}"/>
      </exec>
   </target>
 
