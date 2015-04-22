@@ -205,7 +205,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertNotNull(s);
         assertTrue(new File(catalog.getResourceLoader().getBaseDirectory(), "data/gs/point/point.shp").exists());
         assertTrue(new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).exists());
-        assertEquals(new File(catalog.getResourceLoader().getBaseDirectory(), "data/gs/point/point.shp").getAbsoluteFile(),
+        assertEquals(new File(catalog.getResourceLoader().getBaseDirectory(), "data/gs/point").getAbsoluteFile(),
                 new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).getAbsoluteFile());
 
         // ensure style in workspace
@@ -279,7 +279,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertNotNull(s);
         assertTrue(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").exists());
         assertTrue(new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).exists());
-        assertEquals(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").getAbsoluteFile(),
+        assertEquals(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point").getAbsoluteFile(),
                 new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).getAbsoluteFile());
 
         // ensure style in workspace
