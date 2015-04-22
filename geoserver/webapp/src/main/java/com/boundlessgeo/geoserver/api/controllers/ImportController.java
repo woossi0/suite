@@ -659,18 +659,17 @@ public class ImportController extends ApiController {
             
             ResourceInfo resource = task.getLayer().getResource();
             
-            if (task.getState() == ImportTask.State.NO_CRS) {
-                JSONObj proj = taskObj.object("proj");
-                if (proj == null) {
-                    throw new BadRequestException("Task "+taskId+" requires a 'proj' property");
-                }
-                
+            JSONObj proj = taskObj.object("proj");
+            
+            if (task.getState() == ImportTask.State.NO_CRS && proj == null) {
+                throw new BadRequestException("Task "+taskId+" requires a 'proj' property");
+            }
+            if (proj != null) {
                 try {
                     resource.setSRS(IO.srs(proj));
                     resource.setNativeCRS(IO.crs(proj));
                     importer.changed(task);
-                }
-                catch(Exception e) {
+                } catch(Exception e) {
                     throw new BadRequestException("Unable to parse proj: " + proj.toString());
                 }
             }
