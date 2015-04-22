@@ -66,6 +66,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -681,22 +682,16 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         //Setup map
         Catalog catalog = getCatalog();
         CatalogBuilder catBuilder = new CatalogBuilder(catalog);
-
+        
         LayerInfo layer = catalog.getLayerByName("sf:PrimitiveGeoFeature");
         
         StyleGenerator styleGenerator = new StyleGenerator(catalog);
         StyleInfo style = styleGenerator.createStyle((FeatureTypeInfo)layer.getResource());
-        /*
-        StyleInfo style = catalog.getFactory().createStyle();
-        style.setName("style");
-        style.setFilename("style.sld");
-        File styleFile = new File(rl.getBaseDirectory().getAbsolutePath()+"/styles/style.sld");
-        Files.copy(getClass().getResourceAsStream("point.sld"), styleFile.toPath());
-        */
+        
         catalog.add(style);
         layer.setDefaultStyle(style);
         catalog.save(layer);
-
+        
         LayerGroupInfo map = catalog.getFactory().createLayerGroup();
         map.setWorkspace(catalog.getWorkspaceByName("sf"));
         map.setName("map");
@@ -704,8 +699,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         map.getStyles().add(style);
         catBuilder.calculateLayerGroupBounds(map);
         catalog.add(map);
-        //get proxy layergroup
-        map = catalog.getLayerGroupByName("sf:map");
+        
         assertNotNull(map);
         
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -714,52 +708,35 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setMethod("get");
         
         //Test initial get
-        assertNull(Metadata.thumbnail(layer));
-        assertNull(Metadata.thumbnail(map));
+        assertFalse(config.cacheFile(ThumbnailController.thumbnailFilename(layer)).exists());
+        assertFalse(config.cacheFile(ThumbnailController.thumbnailFilename(map)).exists());
         HttpEntity<byte[]> response = ctrl.getMap("sf", "map", false, request);
         BufferedImage image = ImageIO.read(new ByteArrayInputStream(response.getBody()));
         
-        //refresh the proxy object
-        map = catalog.getLayerGroupByName("sf:map");
-        
-        String thumbnailPath = Metadata.thumbnail(map);
-        assertNotNull(thumbnailPath);
-        
-        File imageFile = config.getCacheFile(thumbnailPath);
+        File imageFile = config.cacheFile(ThumbnailController.thumbnailFilename(map));
         assertTrue(imageFile.exists());
         
         long lastModified = imageFile.lastModified();
         
         //Test cached get
         response = ctrl.getMap("sf", "map", true, request);
-        thumbnailPath = Metadata.thumbnail(map);
-        assertNotNull(thumbnailPath);
-        
-        imageFile = config.getCacheFile(thumbnailPath);
+        imageFile = config.cacheFile(ThumbnailController.thumbnailFilename(map));
         assertTrue(imageFile.exists());
         assertEquals(lastModified, imageFile.lastModified());
         
         //Test invalidate
-        Metadata.invalidateThumbnail(map);
-        assertNull(Metadata.thumbnail(map));
-        catalog.save(map);
+        ctrl.clearThumbnail(map);
+        assertFalse(config.cacheFile(ThumbnailController.thumbnailFilename(map)).exists());
         //file.lastModified is only accurate to the second
         Thread.sleep(filePrecision);
         
         response = ctrl.getMap("sf", "map", true, request);
-        map = catalog.getLayerGroupByName("sf:map");
         
-        thumbnailPath = Metadata.thumbnail(map);
-        assertNotNull(thumbnailPath);
-        
-        imageFile = config.getCacheFile(thumbnailPath);
+        imageFile = config.cacheFile(ThumbnailController.thumbnailFilename(map));
         assertTrue(imageFile.exists());
         long lm2 = imageFile.lastModified();
         assertTrue(lastModified < lm2);
-        
         lastModified = imageFile.lastModified();
-        
-        
         
         //Test layer get
         response = ctrl.getLayer("sf", "PrimitiveGeoFeature", true, request);
@@ -769,12 +746,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals(image.getWidth()*2, image2.getWidth());
         assertEquals(image.getHeight()*2, image2.getHeight());
         
-        //Update proxy
-        layer = catalog.getLayerByName("sf:PrimitiveGeoFeature");
-        thumbnailPath = Metadata.thumbnail(layer);
-        assertNotNull(thumbnailPath);
         
-        imageFile = config.getCacheFile(thumbnailPath);
+        imageFile = config.cacheFile(ThumbnailController.thumbnailFilename(layer));
         assertTrue(imageFile.exists());
         
         //Test layer invalidating map
@@ -786,10 +759,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         layerCtrl.put("sf", "PrimitiveGeoFeature", new JSONObj().put("title", layer.getTitle()), request);
         
         //Update proxy
-        layer = catalog.getLayerByName("sf:PrimitiveGeoFeature");
-        map = catalog.getLayerGroupByName("sf:map");
-        
-        assertNull(Metadata.thumbnail(layer));
-        assertNull(Metadata.thumbnail(map));
+        assertFalse(config.cacheFile(ThumbnailController.thumbnailFilename(layer)).exists());
+        assertFalse(config.cacheFile(ThumbnailController.thumbnailFilename(map)).exists());
     }
 }

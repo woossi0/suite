@@ -133,29 +133,16 @@ public class ThumbnailController extends ApiController {
      * @throws Exception
      */
     public HttpEntity<byte[]> get(WorkspaceInfo ws, PublishedInfo layer, boolean hiRes) throws Exception {
-        String path = Metadata.thumbnail(layer);
+        String path = thumbnailFilename(layer, hiRes);
         FileInputStream in = null;
         
-        //Has not been generated yet, use WMS reflector
-        if (path == null) {
-            createThumbnail(ws, layer);
-            path = Metadata.thumbnail(layer);
-        }
         File thumbnailFile;
         //If the file has been deleted, recreate it
-        try {
-            thumbnailFile = config.getCacheFile(path);
-        } catch (FileNotFoundException e) {
+        if (!config.cacheFile(path).exists()) {
             createThumbnail(ws, layer);
-            path = Metadata.thumbnail(layer);
         }
         try {
-            if (hiRes) {
-                thumbnailFile = config.getCacheFile(path.replaceAll(
-                        EXTENSION+"$", EXTENSION_HR));
-            } else {
-                thumbnailFile = config.getCacheFile(path);
-            }
+            thumbnailFile = config.cacheFile(path);
             in = new FileInputStream(thumbnailFile);
             byte[] bytes = IOUtils.toByteArray(in);
             final HttpHeaders headers = new HttpHeaders();
@@ -234,15 +221,7 @@ public class ThumbnailController extends ApiController {
             } else {
                 throw new RuntimeException("Unsupported getMap response format:" + response.getClass().getName());
             }
-            
             writeThumbnail(layer, image);
-            Metadata.thumbnail(layer, thumbnailFilename(layer));
-            
-            if (layer instanceof LayerInfo) {
-                catalog.save((LayerInfo)layer);
-            } else if (layer instanceof LayerGroupInfo) {
-                catalog.save((LayerGroupInfo)layer);
-            }
         } finally {
             s.release();
         }

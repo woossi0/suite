@@ -22,37 +22,6 @@ public class Metadata {
     static final String MODIFIED = "modified";
     static final String IMPORTED = "imported";
     
-    public static final String THUMBNAIL = "thumbnail";
-    
-    /**
-     * Store file path for thumbnail.
-     * 
-     * @param layer or layergroup
-     * @param path file path relative to {@link AppConfiguration#getCacheDir()}
-     */
-    public static void thumbnail(PublishedInfo obj, String path) {
-        map(obj).put(THUMBNAIL, path);
-    }
-    
-    /**
-     * File path to thumbnail relative to {@link AppConfiguration#getCacheDir()}
-     * 
-     * @param layer or layergroup
-     * @return absolute file path to thumbnail
-     */
-    public static String thumbnail(PublishedInfo obj) {
-        return (String)map(obj).get(THUMBNAIL);
-    }
-    
-    /**
-     * Remove file path stored for thumbnail.
-     * 
-     * @param layer
-     */
-    public static void invalidateThumbnail(PublishedInfo layer) {
-        Metadata.map(layer).remove(Metadata.THUMBNAIL);
-    }
-    
     public static void created(Info obj, Date created) {
         MetadataMap map = map(obj);
         map.put(CREATED, created);

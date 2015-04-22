@@ -75,7 +75,7 @@ public class AppConfiguration implements ServletContextAware {
      * Returns the location of the composer cache directory
      * @return Path to the composer cache directory
      */
-    public String getCacheDir() {
+    public String cacheDir() {
         return cacheDir;
     }
     
@@ -102,21 +102,6 @@ public class AppConfiguration implements ServletContextAware {
         File file = cacheFile(path);
         if (!file.exists()) {
             file.createNewFile();
-        }
-        return file;
-    }
-    
-    /**
-     * Retrieves a file from the cache directory denoted by a relative path. If the file does not exist, throws a FileNotFoundException
-     * 
-     * @param path relative path within cache dir
-     * @return the file
-     * @throws FileNotFoundException if the file does not exist
-     */
-    public File getCacheFile(String path) throws FileNotFoundException {
-        File file = cacheFile(path);
-        if (!file.exists()) {
-            throw new FileNotFoundException(cacheDir + File.separator + path);
         }
         return file;
     }
