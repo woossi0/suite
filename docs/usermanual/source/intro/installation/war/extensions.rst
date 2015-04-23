@@ -15,6 +15,8 @@ GeoServer :ref:`extensions <intro.extensions>` are distributed as a separate arc
      - Description
    * - ``arcsde``
      - ArcSDE middleware extension for GeoServer
+   * - ``app-schema``
+     - Application Schema support.
    * - ``cluster``
      - Clustering extension for GeoServer. Use with ``jdbcconfig``.
    * - ``css``
@@ -27,6 +29,8 @@ GeoServer :ref:`extensions <intro.extensions>` are distributed as a separate arc
      - GeoPackage extension for GeoServer
    * - ``jdbcconfig``
      - Database catalog and configuration extension for GeoServer. Use with ``cluster``.
+   * - ``inspire``
+     - Additional WMS and WFS metadata configuration for INSPIRE compliance
    * - ``mapmeter``
      - Mapmeter extension for GeoServer
    * - ``mongodb``

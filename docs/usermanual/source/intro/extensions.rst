@@ -29,6 +29,15 @@ Please visit the `ArcSDE 8.1 Service Pack 1 Readme <http://downloads2.esri.com/s
    
 .. _intro.extensions.clustering:
 
+AppSchema
+---------
+
+.. note:: OpenGeo Suite Enterprise only.
+
+The AppSchema extensions add the ability to publish data confirming to predefined data product. Once this extension is added, GeoServer can be configured with mapping files defining how content is processed into the terms expected by your application schema.
+
+For more information, and a tutorial, see the `GeoServer Application Schema documentation <../geoserver/data/app-schema/>`_.
+
 Clustering
 ----------
 
@@ -104,6 +113,15 @@ GeoPackage
 The GeoPackage extension adds the ability for GeoServer to publish data from `GeoPackage <http://www.geopackage.org/>`_ sources (a data format based on `SQLite <http://www.sqlite.org/>`_). Once this extension is added, GeoServer will show GeoPackage as one of its available data sources when adding a new store.
    
 .. _intro.extensions.mapmeter:
+
+INSPIRE
+-------
+
+.. note:: OpenGeo Suite Enterprise only.
+
+The INSPIRE extension provides additional metadata information to WMS and WFS services required by the European Commission `INSPIRE directive <http://inspire.ec.europa.eu>`__.
+
+For information on configuring WMS and WFS services see the `GeoServer INSPIRE documentation <../geoserver/extensions/inspire/>`_.
 
 Mapmeter
 --------
