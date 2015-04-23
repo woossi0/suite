@@ -293,6 +293,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         deleteRequest.setRequestURI("/geoserver/hello");
         deleteRequest.setMethod("delete");
         storeCtrl.delete("gs", "point", true, deleteRequest);
+        assertFalse(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").exists());
         result = ctrl.importFile("gs", request);
         id = Long.parseLong(result.str("id"));
         //Wait for the import to complete
