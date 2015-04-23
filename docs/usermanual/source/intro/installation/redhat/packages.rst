@@ -83,7 +83,7 @@ The following packages contain the server components of OpenGeo Suite. These pac
 Client/library packages
 -----------------------
 
-The following packages contain the client components of OpenGeo Suite. These packages are installed via the ``opengeo-clinet`` metapackage.
+The following packages contain the client components of OpenGeo Suite. These packages are installed via the ``opengeo-client`` metapackage.
 
 .. tabularcolumns:: |p{3cm}|p{5cm}|p{7cm}|
 .. list-table::

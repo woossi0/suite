@@ -11,7 +11,12 @@ This section describes how to perform an installation of **OpenGeo Suite** |vers
    * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.ubuntu.minorupdate` section.
    * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.ubuntu.majorupdate` section.
 
-.. warning:: While QGIS often paired with the rest of OpenGeo Suite, it is not currently bundled as a package by Boundless. **We do not recommend running QGIS on the same machine as OpenGeo Suite**, as package conflicts will occur. Instead, you can use QGIS on a different machine and connect to OpenGeo Suite services from there.
+.. warning::
+
+   While QGIS often paired with the rest of OpenGeo Suite, **please do not try to run QGIS on the same machine as OpenGeo Suite**, as package conflicts will occur (specifically with GDAL). If you install OpenGeo Suite on a machine that has QGIS, **QGIS may be automatically uninstalled!**
+
+   Instead, use QGIS on a different machine and connect to OpenGeo Suite services from there.
+
 
 .. include:: include/sysreq.txt
 
