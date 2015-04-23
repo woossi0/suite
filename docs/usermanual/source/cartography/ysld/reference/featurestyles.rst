@@ -3,17 +3,17 @@
 Feature Styles
 ==============
 
-In YSLD, a Feature Style a block of styling :ref:`Rules <cartography.ysld.reference.rules>`. The Feature Style is applied to a single feature type and drawn into an off-screen buffer.
+In YSLD, a Feature Style is a block of styling :ref:`Rules <cartography.ysld.reference.rules>`. The Feature Style is applied to a single feature type and drawn in an off-screen buffer.
 
 .. figure:: img/feature-style.svg
 
-   feature-style
+   The feature style element
 
-**The purpose of a Feature Style is to specify drawing order.** The buffer for the first Feature Style will be drawn first, while buffer for the second Feature Style will be processed after that, etc. When drawing is complete the buffers will composed into the final Map.
+**The purpose of a Feature Style is to specify drawing order.** The buffer for the first Feature Style will be drawn first, while buffer for the second Feature Style will be processed after that, etc. When drawing is complete the buffers will composed into the final drawn map.
 
 A Feature Style is a **top-level element** in a YSLD style.
 
-Consider the following heirarchy:
+Consider the following hierarchy:
 
 * Feature Style 1
 
@@ -30,7 +30,7 @@ In this case, the rules contained inside Feature Style 1 will be processed and t
 
 .. figure:: img/feature-style-order.svg
 
-   feature-style order
+   Feature style order
 
 Drawing order
 -------------
@@ -41,7 +41,7 @@ Rules inside a feature style are all applied to each feature at once. After all 
 
 The off-screen buffer for each feature style is merged together during composition. These buffers are merged in the order defined by the feature styles. In this way, **using multiple feature styles is a way of specifying z-order**.
 
-Consider the same heirarchy as above. Given a layer that contains three features, the rules will be applied as follows:
+Consider the same hierarchy as above. Given a layer that contains three features, the rules will be applied as follows:
 
 Feature style 1 will draw an off-screen buffer:
 
@@ -67,11 +67,11 @@ This final map is produced by composition:
 
 #. The buffer for feature style 1 is drawn
 #. The buffer for feature style 2 is drawn
-#. Finally any labeling is drawn on top
+#. Any labeling is drawn on top
 
 .. figure:: img/draw-order-map.svg
 
-   composition of buffer 1 and buffer 2
+   Composition of both feature styles
 
 **If you need a rule to apply on top of other rules, use a second feature style.** A useful case for this is for lines representing bridges or overpasses. In order to ensure that the bridge lines always display on "top" of other lines (which in a display that includes, they would need to be applied using a second feature style.)
 
@@ -80,7 +80,7 @@ Syntax
 
 The following is the basic syntax of a feature style. Note that the contents of the block are not all expanded here.
 
-::
+.. code-block:: yaml
 
    feature-styles:
    - name: <text>
@@ -238,7 +238,9 @@ Short syntax
 
 When a style has a single feature style, it is possible to omit the syntax for the feature style and start at the first parameter inside.
 
-So the following complete styles are both equivalent::
+So the following complete styles are both equivalent:
+
+.. code-block:: yaml
 
   feature-styles:
   - rules:
@@ -255,7 +257,7 @@ So the following complete styles are both equivalent::
           stroke-color: '#000000'
           stroke-width: 1
 
-::
+.. code-block:: yaml
 
   rules:
   - name: rule1
@@ -277,7 +279,9 @@ Examples
 Road casing
 ~~~~~~~~~~~
 
-This example shows how a smaller line can be drawn on top of a larger line, creating the effect of lines being drawn with a "casing" or "border"::
+This example shows how a smaller line can be drawn on top of a larger line, creating the effect of lines being drawn with a border or "casing":
+
+.. code-block:: yaml
 
   feature-styles:
   - name: outer
@@ -297,18 +301,17 @@ This example shows how a smaller line can be drawn on top of a larger line, crea
           stroke-color: '#44FF88'
           stroke-width: 6
 
-To draw the inner lines always on top of the outer lines we need to control draw **z-order**. The ``outer_rule`` is encased in its own feature style and drawn into a distinct `Outer line` buffer. Next the ``inner_rule`` is encased in its own feature style and drawn into a distinct `Inner line` buffer.
+To draw the inner lines always on top of the outer lines we need to control the **z-order**. The ``outer_rule`` is encased in its own feature style and drawn into a distinct "Outer line" buffer. Next the ``inner_rule`` is encased in its own feature style and drawn into a distinct "Inner line" buffer.
 
 .. figure:: img/line-casing-buffers.svg
 
-   feature style off-screen buffers
+   Feature style buffers
    
-
-During composition these two off-screen buffers are combined into the the final Map.
+During composition these two off-screen buffers are combined into the the final map.
 
 .. figure:: img/line-casing-map.svg
 
-   map composition
+   Final map composition
 
 When drawn, the outer line has a width of 8 pixels and the inner line has a width of 6 pixels, so the line "border" is 1 pixel (on each side).
 
@@ -352,7 +355,6 @@ This first example shows the standard way of creating rules for a dataset. There
        symbolizers:
        - point:
            <<: *allotherplaces
-
 
 Using the ``x-firstMatch: true`` parameter, the style is simplified:
 

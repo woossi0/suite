@@ -19,7 +19,7 @@
                 <tspan x="50" y="85">stroke-width: 2</tspan>
             </text>
             <text id="symbolizer:---line:" sketch:type="MSTextLayer" font-family="Courier New" font-size="10" font-weight="normal" fill="#000000">
-                <tspan x="37" y="52">symbolizer:</tspan>
+                <tspan x="37" y="52">symbolizers:</tspan>
                 <tspan x="37" y="63">- line:</tspan>
             </text>
             <text id="--name:-rule-1" sketch:type="MSTextLayer" font-family="Courier New" font-size="10" font-weight="normal" fill="#000000">
