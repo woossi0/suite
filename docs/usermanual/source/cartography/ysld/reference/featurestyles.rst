@@ -251,6 +251,7 @@ Alpha compositing controls how buffers are merged using the transparent areas of
        .. figure:: img/composite-xor.*
           
           xor
+          
 **Color blending**
 
 Color blending allows buffers to be mixed during composition.
@@ -258,32 +259,88 @@ Color blending allows buffers to be mixed during composition.
 .. list-table::
    :class: non-responsive
    :header-rows: 1
+   :stub-columns: 1
    :widths: 20 80
 
    * - Value
      - Description
    * - ``multiply``
      - The source color is multiplied by the destination color and replaces the destination. The resulting color is always at least as dark as either the source or destination color. Multiplying any color with black results in black. Multiplying any color with white preserves the original color.
+     
+       .. figure:: img/blend-multiply.*
+          
+          multiply
+          
    * - ``screen``
      - Multiplies the complements of the source and destination color values, then complements the result. The end result color is always at least as light as either of the two constituent colors. Screening any color with white produces white; screening with black leaves the original color unchanged.
+     
+       .. figure:: img/blend-screen.*
+          
+          screen
+
    * - ``overlay``
      - Multiplies the colors depending on the destination color value. Source colors overlay the destination while preserving highlights and shadows. The backdrop color is not replaced but is mixed with the source color to reflect the lightness or darkness of the backdrop.
+
+     
+       .. figure:: img/blend-overlay.*
+          
+          overlay
+          
    * - ``darken``
      - Selects the darker of the destination and source colors. The destination is replaced with the source only where the source is darker.
+     
+       .. figure:: img/blend-darken.*
+          
+          darken
+          
    * - ``lighten``
      - Selects the lighter of the destination and source colors. The destination is replaced with the source only where the source is lighter.
+     
+       .. figure:: img/blend-lighten.*
+          
+          lighten
+          
    * - ``color-dodge``
      - Brightens the destination color to reflect the source color. Drawing with black produces no changes.
+
+       .. figure:: img/blend-color-dodge.*
+          
+          color-dodge
+          
    * - ``color-burn``
      - Darkens the destination color to reflect the source color. Drawing with white produces no change.
+     
+       .. figure:: img/blend-color-burn.*
+          
+          color-burn
+          
    * - ``hard-light``
      - Multiplies the colors, depending on the source color value. The effect is similar to shining a harsh spotlight on the destination.
+     
+       .. figure:: img/blend-hard-light.*
+          
+          hard-light
+          
    * - ``soft-light``
      - Darkens or lightens the colors, depending on the source color value. The effect is similar to a diffused spotlight on the destination.
+
+       .. figure:: img/blend-soft-light.*
+          
+          soft-light
+
    * - ``difference``
      - Subtracts the darker of the two constituent colors from the lighter color. White inverts the destination color; black produces no change.
+
+       .. figure:: img/blend-difference.*
+          
+          difference
+          
    * - ``exclusion``
      - Produces an effect similar to that of difference but lower in contrast. White inverts the destination color; black produces no change.
+     
+       .. figure:: img/blend-difference.*
+          
+          exclusion
 
 .. note:: For more details about the compositing and blending options, please see the `GeoServer User Manual <../../../geoserver/styling/sld-extensions/composite-blend/>`__.
 
