@@ -3,15 +3,17 @@
 Feature Styles
 ==============
 
-In YSLD, a Feature Style is a block of styling :ref:`Rules <cartography.ysld.reference.rules>`.
+In YSLD, a Feature Style is a block of styling :ref:`Rules <cartography.ysld.reference.rules>`. The Feature Style is applied to a single feature type and drawn in an off-screen buffer.
 
-.. todo:: FIGURE NEEDED
+.. figure:: img/feature-style.svg
 
-**The purpose of a Feature Style is to specify drawing order.** The first Feature Style will always have its rules applied first, while the second Feature Style will be processed after that, etc.
+   The feature style element
+
+**The purpose of a Feature Style is to specify drawing order.** The buffer for the first Feature Style will be drawn first, while buffer for the second Feature Style will be processed after that, etc. When drawing is complete the buffers will composed into the final drawn map.
 
 A Feature Style is a **top-level element** in a YSLD style.
 
-Consider the following heirarchy:
+Consider the following hierarchy:
 
 * Feature Style 1
 
@@ -26,6 +28,10 @@ Consider the following heirarchy:
 
 In this case, the rules contained inside Feature Style 1 will be processed and their :ref:`symbolizers <cartography.ysld.reference.symbolizers>` drawn first. After Rule 1a and 1b are processed, the renderer will move on to Feature Style 2, where Rule 2a, 2b, and 2c will then be processed and their symbolizers drawn.
 
+.. figure:: img/feature-style-order.svg
+
+   Feature style order
+
 Drawing order
 -------------
 
@@ -33,27 +39,48 @@ The order of feature styles is significant, and also the order of rules inside f
 
 Rules inside a feature style are all applied to each feature at once. After all of the rules in a feature style have been applied to each feature, the next feature style will start again, applying rules to each feature.
 
-In this way, **using multiple feature styles is a way of specifying z-order**. The style from each feature style is also sometimes known as an additional style layer or "inner style layer".
+The off-screen buffer for each feature style is merged together during composition. These buffers are merged in the order defined by the feature styles. In this way, **using multiple feature styles is a way of specifying z-order**.
 
-Consider the same heirarchy as above. Given a layer that contains three features, the rules will be applied in the following order:
+Consider the same hierarchy as above. Given a layer that contains three features, the rules will be applied as follows:
+
+Feature style 1 will draw an off-screen buffer:
 
 #. Rule 1a is applied to the first feature, followed by rule 1b
 #. Rule 1a is applied to the second feature, followed by rule 1b
 #. Rule 1a is applied to the third feature, followed by rule 1b
+
+.. figure:: img/draw-order-buffer1.svg
+
+   Feature style 1 buffer
+
+Feature style 2 will draw an off-screen buffer:
+
 #. Rule 2a is applied to the first feature, followed by rule 2b and then rule 2c
 #. Rule 2a is applied to the second feature, followed by rule 2b and then rule 2c
 #. Rule 2a is applied to the third feature, followed by rule 2b and then rule 2c
 
-**If you need a rule to apply on top of other rules, use a second feature style.** A useful case for this is for lines representing bridges or overpasses. In order to ensure that the bridge lines always display on "top" of other lines (which in a display that includes, they would need to be applied using a second feature style.
+.. figure:: img/draw-order-buffer2.svg
 
-.. todo:: FIGURES DEFINITELY NEEDED HERE 
+   Feature style 2 buffer
+
+This final map is produced by composition:
+
+#. The buffer for feature style 1 is drawn
+#. The buffer for feature style 2 is drawn
+#. Any labeling is drawn on top
+
+.. figure:: img/draw-order-map.svg
+
+   Composition of both feature styles
+
+**If you need a rule to apply on top of other rules, use a second feature style.** A useful case for this is for lines representing bridges or overpasses. In order to ensure that the bridge lines always display on "top" of other lines (which in a display that includes, they would need to be applied using a second feature style.)
 
 Syntax
 ------
 
 The following is the basic syntax of a feature style. Note that the contents of the block are not all expanded here.
 
-::
+.. code-block:: yaml
 
    feature-styles:
    - name: <text>
@@ -118,7 +145,7 @@ The following properties are equivalent to SLD "vendor options".
      - ``false``
    * - ``x-composite``
      - No
-     - Allows for both alpha compositing and color blending options between layers. There are many options; :ref:`see below <cartography.ysld.reference.featurestyles.composite>`.
+     - Allows for both alpha compositing and color blending options between buffers. There are many options; :ref:`see below <cartography.ysld.reference.featurestyles.composite>`.
      - N/A
    * - ``x-composite-base``
      - No
@@ -130,13 +157,15 @@ The following properties are equivalent to SLD "vendor options".
 Compositing and blending
 ------------------------
 
-By default, multiple layers are drawn with one on top of the other. However, using the ``x-composite`` and ``x-composite-base`` options, one can customize the way that layers are displayed.
+By default, multiple feature styles are drawn with one buffer on top of the other. However, using the ``x-composite`` and ``x-composite-base`` options, one can customize the way that buffers are displayed.
 
-The following two tables show the possible alpha compositing and color blending values for the ``x-composite`` option. Note that in the tables below, **source** refers to the image that is drawn on top, while **destination** refers to the image that the source is drawn on top of.
+The following two tables show the possible alpha compositing and color blending values for the ``x-composite`` option. Note that in the tables below, **source** refers to the buffer that is drawn on top, while **destination** refers to the buffer that the source is drawn on top of.
 
 .. todo:: Add image showing source and destination
 
 **Alpha compositing**
+
+Alpha compositing controls how buffers are merged using the transparent areas of each buffer.
 
 .. list-table::
    :class: non-responsive
@@ -169,6 +198,8 @@ The following two tables show the possible alpha compositing and color blending 
      - "Exclusive Or" mode. Each pixel is rendered only if either the source or the destination is not blank, but not both.
 
 **Color blending**
+
+Color blending allows buffers to be mixed during composition.
 
 .. list-table::
    :class: non-responsive
@@ -207,7 +238,9 @@ Short syntax
 
 When a style has a single feature style, it is possible to omit the syntax for the feature style and start at the first parameter inside.
 
-So the following complete styles are both equivalent::
+So the following complete styles are both equivalent:
+
+.. code-block:: yaml
 
   feature-styles:
   - rules:
@@ -224,7 +257,7 @@ So the following complete styles are both equivalent::
           stroke-color: '#000000'
           stroke-width: 1
 
-::
+.. code-block:: yaml
 
   rules:
   - name: rule1
@@ -246,7 +279,9 @@ Examples
 Road casing
 ~~~~~~~~~~~
 
-This example shows how a smaller line can be drawn on top of a larger line, creating the effect of lines being drawn with a "border"::
+This example shows how a smaller line can be drawn on top of a larger line, creating the effect of lines being drawn with a border or "casing":
+
+.. code-block:: yaml
 
   feature-styles:
   - name: outer
@@ -266,12 +301,23 @@ This example shows how a smaller line can be drawn on top of a larger line, crea
           stroke-color: '#44FF88'
           stroke-width: 6
 
-In order to draw the inner lines always on top of the outer lines, the rule in encased in its own feature style. When drawn, the outer line has a width of 8 pixels and the inner line has a width of 6 pixels, so the line "border" is 1 pixel (on each side).
+To draw the inner lines always on top of the outer lines we need to control the **z-order**. The ``outer_rule`` is encased in its own feature style and drawn into a distinct "Outer line" buffer. Next the ``inner_rule`` is encased in its own feature style and drawn into a distinct "Inner line" buffer.
+
+.. figure:: img/line-casing-buffers.svg
+
+   Feature style buffers
+   
+During composition these two off-screen buffers are combined into the the final map.
+
+.. figure:: img/line-casing-map.svg
+
+   Final map composition
+
+When drawn, the outer line has a width of 8 pixels and the inner line has a width of 6 pixels, so the line "border" is 1 pixel (on each side).
 
 .. figure:: img/fs_roadcasing.png
 
    Example showing road casing
-
 
 First match
 ~~~~~~~~~~~
@@ -309,7 +355,6 @@ This first example shows the standard way of creating rules for a dataset. There
        symbolizers:
        - point:
            <<: *allotherplaces
-
 
 Using the ``x-firstMatch: true`` parameter, the style is simplified:
 
