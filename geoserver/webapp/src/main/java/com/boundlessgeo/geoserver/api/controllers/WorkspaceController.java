@@ -200,7 +200,7 @@ public class WorkspaceController extends ApiController {
         if (uri != null) {
             ns.setURI(uri);
         }
-
+        Metadata.modified(ws, new Date());
         cat.save(ws);
         cat.save(ns);
         recent.add(WorkspaceInfo.class, ws);
