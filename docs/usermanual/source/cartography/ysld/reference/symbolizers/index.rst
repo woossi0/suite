@@ -11,7 +11,7 @@ Symbolizers are contained inside :ref:`rules <cartography.ysld.reference.rules>`
 
    .. figure:: img/symbolizers.svg
       
-      Use of Multiple Symbolizers
+      Use of multiple symbolizers
 
 Drawing order
 -------------
@@ -24,7 +24,7 @@ Consider the following two symbolizers::
 
    symbolizers:
    - point:
-     '  symbols:
+       symbols:
        - mark:
            shape: square
            fill-color: '#FFCC00'
@@ -34,53 +34,32 @@ Consider the following two symbolizers::
            shape: triangle
            fill-color: '#FF3300
      
-When drawing three points these symbolizers will be applied in order:
+When drawing three points these symbolizers will be applied in order on each feature:
 
-#. Feature 1 is drawn as a square, followed by a triangle
+#. Feature 1 is drawn as a square, followed by a triangle:
    
    .. figure:: img/symbolizer-order1.svg
       
       Feature 1 buffer rendering
       
-#. Feature 2 is drawn as a square, followed by a triangle. Notice the slight overlap with Feature 1.
+#. Feature 2 is drawn as a square, followed by a triangle. Notice the slight overlap with Feature 1:
 
    .. figure:: img/symbolizer-order2.svg
       
       Feature 2 buffer rendering
 
-#. Feature 3 is drawn as a square, followed by a triangle
+#. Feature 3 is drawn as a square, followed by a triangle:
 
    .. figure:: img/symbolizer-order3.svg
       
       Feature 3 buffer rendering
 
-
-.. note::  In the final image Feature 1 and Feature 2 have a slight overlap. This overlap is determined by data order which we have no control over. If you need to control the overlap review the feature-styles section on managing z-order.
+.. note:: In the final image, Feature 1 and Feature 2 have a slight overlap. This overlap is determined by data order which we have no control over. If you need to control the overlap review the :ref:`cartography.ysld.reference.featurestyles` section on managing "z-order".
    
    .. figure:: img/symbolizer-order4.svg
       
-      Feature style z-order
+      Feature style controlling z-order
    
-   Feature-style z-order example::
-   
-      feature-styles:
-      - rules:
-        - name: gold
-          symbolizers:
-          - point:
-              symbols:
-              - mark:
-                  shape: square
-                  fill-color: '#FFCC00'
-      - rules:
-        - name: red
-          symbolizers:
-          - point:
-              symbols:
-              - mark:
-                  shape: triangle
-                  fill-color: '#FF3300'
-
 Matching symbolizers and geometries
 -----------------------------------
 
@@ -117,10 +96,10 @@ It is common to match the symbolizer with the type of geometries contained in th
      - n/a
      - Transform raster values to color channels for display
    * - Text Symbolizer
-     - label at point location
-     - label at midpoint of lines
-     - label at centroid of polygons
-     - label at centroid of raster outline
+     - Label at point location
+     - Label at midpoint of lines
+     - Label at centroid of polygons
+     - Label at centroid of raster outline
 
 Syntax
 ------
@@ -179,7 +158,7 @@ The following properties are equivalent to SLD "vendor options".
      
 Composition and blending are handled in the same manner as described in :ref:`see feature-styles <cartography.ysld.reference.featurestyles.composite>`.
 
-Each kind of symbolizer provides additional syntax:
+Each kind of symbolizer provides additional syntax. See the following pages for details:
 
 .. toctree::
    :maxdepth: 1
