@@ -147,7 +147,7 @@ The following packages are available:
      - ArcSDE middleware extension for GeoServer
      - OpenGeo Suite Enterprise only
    * - ``geoserver-app-schema``
-     - Application Schema support.
+     - Application Schema support
      - OpenGeo Suite Enterprise only
    * - ``geoserver-cluster``
      - Clustering extension for GeoServer. Use with ``geoserver-jdbcconfig``.

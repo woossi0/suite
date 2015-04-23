@@ -55,7 +55,7 @@ GeoServer Extensions
    * - ArcSDE
      - ArcSDE database support.
      - OpenGeo Suite Enterprise only
-   * - AppSchema
+   * - App Schema
      - Application Schema support.
      - OpenGeo Suite Enterprise only
    * - Clustering
@@ -91,7 +91,7 @@ GeoServer Extensions
    * - Oracle
      - :ref:`Oracle <dataadmin.oracle>` database support.
      - OpenGeo Suite Enterprise only
-   * - SQL Server
+   * - SQLServer
      - SQL Server database support.
      - OpenGeo Suite Enterprise only
    * - WPS

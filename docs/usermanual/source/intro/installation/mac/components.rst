@@ -64,7 +64,7 @@ GeoServer Extensions
    * - ArcSDE
      - ArcSDE database support.
      - OpenGeo Suite Enterprise only
-   * - AppSchema
+   * - App Schema
      - Application Schema support.
      - OpenGeo Suite Enterprise only
    * - Clustering
