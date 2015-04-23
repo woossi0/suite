@@ -5,7 +5,7 @@ Feature Styles
 
 In YSLD, a Feature Style is a block of styling :ref:`Rules <cartography.ysld.reference.rules>`. The Feature Style is applied to a single feature type and drawn in an off-screen buffer.
 
-.. figure:: img/feature-style.svg
+.. figure:: img/feature-style.*
 
    The feature style element
 
@@ -28,7 +28,7 @@ Consider the following hierarchy:
 
 In this case, the rules contained inside Feature Style 1 will be processed and their :ref:`symbolizers <cartography.ysld.reference.symbolizers>` drawn first. After Rule 1a and 1b are processed, the renderer will move on to Feature Style 2, where Rule 2a, 2b, and 2c will then be processed and their symbolizers drawn.
 
-.. figure:: img/feature-style-order.svg
+.. figure:: img/feature-style-order.*
 
    Feature style order
 
@@ -49,7 +49,7 @@ Feature style 1 will draw an off-screen buffer:
 #. Rule 1a is applied to the second feature, followed by rule 1b
 #. Rule 1a is applied to the third feature, followed by rule 1b
 
-.. figure:: img/draw-order-buffer1.svg
+.. figure:: img/draw-order-buffer1.*
 
    Feature style 1 buffer
 
@@ -59,7 +59,7 @@ Feature style 2 will draw an off-screen buffer:
 #. Rule 2a is applied to the second feature, followed by rule 2b and then rule 2c
 #. Rule 2a is applied to the third feature, followed by rule 2b and then rule 2c
 
-.. figure:: img/draw-order-buffer2.svg
+.. figure:: img/draw-order-buffer2.*
 
    Feature style 2 buffer
 
@@ -69,7 +69,7 @@ This final map is produced by composition:
 #. The buffer for feature style 2 is drawn
 #. Any labeling is drawn on top
 
-.. figure:: img/draw-order-map.svg
+.. figure:: img/draw-order-map.*
 
    Composition of both feature styles
 
@@ -303,13 +303,13 @@ This example shows how a smaller line can be drawn on top of a larger line, crea
 
 To draw the inner lines always on top of the outer lines we need to control the **z-order**. The ``outer_rule`` is encased in its own feature style and drawn into a distinct "Outer line" buffer. Next the ``inner_rule`` is encased in its own feature style and drawn into a distinct "Inner line" buffer.
 
-.. figure:: img/line-casing-buffers.svg
+.. figure:: img/line-casing-buffers.*
 
    Feature style buffers
    
 During composition these two off-screen buffers are combined into the the final map.
 
-.. figure:: img/line-casing-map.svg
+.. figure:: img/line-casing-map.*
 
    Final map composition
 
