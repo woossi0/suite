@@ -3,6 +3,8 @@
  */
 package com.boundlessgeo.geoserver.catalog;
 
+import javax.annotation.PostConstruct;
+
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CatalogException;
 import org.geoserver.catalog.CatalogInfo;
@@ -17,6 +19,7 @@ import org.geoserver.catalog.event.CatalogPostModifyEvent;
 import org.geoserver.catalog.event.CatalogRemoveEvent;
 import org.geoserver.platform.GeoServerExtensions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.boundlessgeo.geoserver.api.controllers.Metadata;
 import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
@@ -26,14 +29,20 @@ import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
  * StyleInfo objects they depend upon are changed. This ensures the thumbnail listed in the metadata
  * is always up to date.
  */
+@Component
 public class ThumbnailInvalidatingCatalogListener implements CatalogListener {
+    @Autowired
     Catalog catalog;
+    @Autowired
+    ThumbnailController controller;
     
     /** Flag to prevent recursion during layer, layergroup events */
     private boolean modifying = false;
     
-    public ThumbnailInvalidatingCatalogListener(Catalog catalog) {
-        this.catalog = catalog;
+    public ThumbnailInvalidatingCatalogListener() { }
+    
+    @PostConstruct
+    private void addListener() {
         catalog.addListener(this);
     }
     
@@ -59,43 +68,20 @@ public class ThumbnailInvalidatingCatalogListener implements CatalogListener {
                     for (LayerInfo layer : catalog.getLayers(style)) {
                         
                         if (source.equals(layer.getDefaultStyle())) {
-                            ThumbnailController controller = GeoServerExtensions.bean(ThumbnailController.class);
                             controller.clearThumbnail(layer);
-
-                            Metadata.invalidateThumbnail(layer);
-                            catalog.save(layer);
                         }
                     }
                     for (LayerGroupInfo layerGroup : catalog.getLayerGroups()) {
                         if (layerGroup.getStyles().contains(source)) {
-                            ThumbnailController controller = GeoServerExtensions.bean(ThumbnailController.class);
-                            
                             controller.clearThumbnail(layerGroup);
-                            Metadata.invalidateThumbnail(layerGroup);
-                            catalog.save(layerGroup);
                         }
                     }
                 } else if(source instanceof LayerInfo) {
                     LayerInfo layer = (LayerInfo) source;
-                    Metadata.invalidateThumbnail(layer);
-                    
-                    ThumbnailController controller = GeoServerExtensions.bean(ThumbnailController.class);
                     controller.clearThumbnail(layer);
-                    // save the layer? no because it is being deleted...
-                    
-                    // look up wrapped layer in catalog so we can save
-                    // layer = catalog.getLayer(source.getId());
-                    // catalog.save(layer);
                 } else if (source instanceof LayerGroupInfo) {
                     LayerGroupInfo layerGroup = (LayerGroupInfo) source;
-                    ThumbnailController controller = GeoServerExtensions.bean(ThumbnailController.class);
                     controller.clearThumbnail(layerGroup);
-                    
-                    Metadata.invalidateThumbnail(layerGroup);
-                    
-                    // layerGroup = catalog.getLayerGroup(source.getId());
-                    // layer group being removed so no need to save
-                    // catalog.save(layerGroup);
                 }
             } finally {
                 modifying = false;
@@ -124,36 +110,27 @@ public class ThumbnailInvalidatingCatalogListener implements CatalogListener {
                     //Invalidate any maps or layers using this style
                     for (LayerInfo layer : catalog.getLayers()) {
                         if (source.equals(layer.getDefaultStyle())) {
-                            Metadata.invalidateThumbnail(layer);
-                            catalog.save(layer);
+                            controller.clearThumbnail(layer);
                         }
                     }
                     for (LayerGroupInfo layerGroup : catalog.getLayerGroups()) {
                         if (layerGroup.getStyles().contains(source)) {
-                            Metadata.invalidateThumbnail(layerGroup);
-                            catalog.save(layerGroup);
+                            controller.clearThumbnail(layerGroup);
                         }
                     }
                 } else if(source instanceof LayerInfo) {
                     //Invalidate layer, plus any maps using this layer
-                    if (!updateThumbnailEvent(event)) {
-                        LayerInfo layer = catalog.getLayer(source.getId());
-                        Metadata.invalidateThumbnail(layer);
-                        catalog.save(layer);
-                    }
+                    LayerInfo layer = catalog.getLayer(source.getId());
+                    controller.clearThumbnail(layer);
                     for (LayerGroupInfo layerGroup : catalog.getLayerGroups()) {
                         if (layerGroup.getLayers().contains(source)) {
-                            Metadata.invalidateThumbnail(layerGroup);
-                            catalog.save(layerGroup);
+                            controller.clearThumbnail(layerGroup);
                         }
                     }
                 } else if (source instanceof LayerGroupInfo) {
                     //Only invalidate map
-                    if (!updateThumbnailEvent(event)) {
-                        LayerGroupInfo layerGroup = catalog.getLayerGroup(source.getId());
-                        Metadata.invalidateThumbnail(layerGroup);
-                        catalog.save(layerGroup);
-                    }
+                    LayerGroupInfo layerGroup = catalog.getLayerGroup(source.getId());
+                    controller.clearThumbnail(layerGroup);
                 }
             } finally {
                 modifying = false;
@@ -162,54 +139,6 @@ public class ThumbnailInvalidatingCatalogListener implements CatalogListener {
         
     }
     
-    /* 
-     * Determines if this event changes the thumbnail entry in the metadata map. If so returns true,
-     * otherwise returns false.
-     * 
-     * If the event modifies the metadata map, and the metadata map contains a thumbnail entry that 
-     * is not changed, invalidates the thumbnail entry by removing it from the metadata map.
-     */
-    private boolean updateThumbnailEvent(CatalogModifyEvent event) {
-        for (int i = 0; i < event.getNewValues().size(); i++) {
-            if (event.getNewValues().get(i) instanceof MetadataMap) {
-                MetadataMap oldMap = (MetadataMap)event.getOldValues().get(i);
-                MetadataMap newMap = (MetadataMap)event.getNewValues().get(i);
-                
-                if (updateMetadataMap(oldMap, newMap)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    
-    /* 
-     * Determines if the metadata maps contain thumbnail entries and if the entries are different.
-     * If so returns true, otherwise returns false.
-     * 
-     * If both maps contain thumbnail entries that are identical, 
-     * this method removes the thumbnail entry from newMap.
-     */
-    protected static boolean updateMetadataMap(MetadataMap oldMap, MetadataMap newMap) {
-        //Modify thumbnail entry
-        if (oldMap.containsKey(Metadata.THUMBNAIL) && newMap.containsKey(Metadata.THUMBNAIL)
-                && !oldMap.get(Metadata.THUMBNAIL).equals(newMap.get(Metadata.THUMBNAIL)) ) {
-            return true;
-        }
-        //Add or remove thumbnail entry
-        if ((oldMap.containsKey(Metadata.THUMBNAIL) && !newMap.containsKey(Metadata.THUMBNAIL))
-                || (!oldMap.containsKey(Metadata.THUMBNAIL) && newMap.containsKey(Metadata.THUMBNAIL))) {
-            return true;
-        }
-        //If the metadata map changes but the thumbnail does not, remove the thumbnail 
-        //from the map to invalidate it.
-        if (oldMap.containsKey(Metadata.THUMBNAIL) && newMap.containsKey(Metadata.THUMBNAIL)
-                && oldMap.get(Metadata.THUMBNAIL).equals(newMap.get(Metadata.THUMBNAIL)) ) {
-            newMap.remove(Metadata.THUMBNAIL);
-        }
-        return false;
-    }
-
     @Override
     public void handlePostModifyEvent(CatalogPostModifyEvent event)
             throws CatalogException { }
