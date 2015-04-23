@@ -7,21 +7,79 @@ The basic unit of visualization is the symbolizer. There are five types of symbo
 
 Symbolizers are contained inside :ref:`rules <cartography.ysld.reference.rules>`. A rule can contain one or many symbolizers. 
 
-.. toctree::
-   :maxdepth: 1
-
-   line
-   polygon
-   point
-   raster
-   text
-
 .. note:: The most common use case for multiple symbolizers is a geometry (point/line/polygon) symbolizer to draw the features plus a text symbolizer for labeling these features.
 
    .. figure:: img/symbolizers.svg
       
       Use of Multiple Symbolizers
 
+Drawing order
+-------------
+
+The order of symbolizers significant, and also the order of your data.
+
+For each feature the rules are evaluated resulting in a list of symbolizers that will be used to draw that feature. The symbolizers are drawn in the order provided.
+
+Consider the following two symbolizers::
+
+   symbolizers:
+   - point:
+     '  symbols:
+       - mark:
+           shape: square
+           fill-color: '#FFCC00'
+   - point:
+       symbols:
+       - mark:
+           shape: triangle
+           fill-color: '#FF3300
+     
+When drawing three points these symbolizers will be applied in order:
+
+#. Feature 1 is drawn as a square, followed by a triangle
+   
+   .. figure:: img/symbolizer-order1.svg
+      
+      Feature 1 buffer rendering
+      
+#. Feature 2 is drawn as a square, followed by a triangle. Notice the slight overlap with Feature 1.
+
+   .. figure:: img/symbolizer-order2.svg
+      
+      Feature 2 buffer rendering
+
+#. Feature 3 is drawn as a square, followed by a triangle
+
+   .. figure:: img/symbolizer-order3.svg
+      
+      Feature 3 buffer rendering
+
+
+.. note::  In the final image Feature 1 and Feature 2 have a slight overlap. This overlap is determined by data order which we have no control over. If you need to control the overlap review the feature-styles section on managing z-order.
+   
+   .. figure:: img/symbolizer-order4.svg
+      
+      Feature style z-order
+   
+   Feature-style z-order example::
+   
+      feature-styles:
+      - rules:
+        - name: gold
+          symbolizers:
+          - point:
+              symbols:
+              - mark:
+                  shape: square
+                  fill-color: '#FFCC00'
+      - rules:
+        - name: red
+          symbolizers:
+          - point:
+              symbols:
+              - mark:
+                  shape: triangle
+                  fill-color: '#FF3300'
 
 Matching symbolizers and geometries
 -----------------------------------
@@ -44,12 +102,12 @@ It is common to match the symbolizer with the type of geometries contained in th
      - Centroid of the polygons
      - Centroid of the raster
    * - Line Symbolizer
-     - Small horizontal line
+     - n/a
      - **Lines**
      - Outline (stroke) of the polygons
      - Outline (stroke) of the raster
    * - Polygon Symbolizer
-     - Will "square" the point and style as a polygon
+     - n/a
      - Will "close" the line and style as a polygon 
      - **Polygons**
      - Will "outline" the raster and style as a polygon
@@ -63,29 +121,6 @@ It is common to match the symbolizer with the type of geometries contained in th
      - label at midpoint of lines
      - label at centroid of polygons
      - label at centroid of raster outline
-
-Drawing order
--------------
-
-The order of symbolizers significant, and also the order of your data.
-
-For each feature the rules are evaluated resulting in a list of symbolizers that will be used to draw that feature. The symbolizers are drawn in the order provided.
-
-Consider the following two symbolizers::
-
-   symbolizers:
-   - point:
-     - shape: square
-   - point:
-     - shape: triangle
-     
-When drawing three points these symbolizers will be applied in order:
-
-#. Feature 1 is drawn as a square, followed by a triangle
-#. Feature 2 is drawn as a square, followed by a triangle. Notice the slight overlap with Feature 1.
-#. Feature 3 is drawn as a square, followed by a triangle
-
-In the final image Feature 1 and Feature 2 have a slight overlap. This overlap is determined by data order which we have no control over. If you need to control the overlap review the feature-styles section on managing z-order.
 
 Syntax
 ------
@@ -143,3 +178,14 @@ The following properties are equivalent to SLD "vendor options".
      - ``false``
      
 Composition and blending are handled in the same manner as described in :ref:`see feature-styles <cartography.ysld.reference.featurestyles.composite>`.
+
+Each kind of symbolizer provides additional syntax:
+
+.. toctree::
+   :maxdepth: 1
+
+   line
+   polygon
+   point
+   raster
+   text
