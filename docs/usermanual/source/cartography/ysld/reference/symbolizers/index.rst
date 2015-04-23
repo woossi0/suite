@@ -87,6 +87,19 @@ When drawing three points these symbolizers will be applied in order:
 
 In the final image Feature 1 and Feature 2 have a slight overlap. This overlap is determined by data order which we have no control over. If you need to control the overlap review the feature-styles section on managing z-order.
 
+Syntax
+------
+
+The following is the basic syntax of a feature style. Note that the contents of the block are not all expanded here.
+
+::
+
+   geometry: <cql>
+   uom: <text>
+   ..
+   x-composite: <text>
+   x-composite-base: <boolean>
+
 where:
 
 .. list-table::
