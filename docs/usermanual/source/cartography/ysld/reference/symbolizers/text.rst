@@ -165,7 +165,7 @@ where:
      - Specifies the level of transparency for the halo. Value of ``0`` means entirely transparent, while ``1`` means entirely opaque.
      - ``1``
 
-The following properties allow for a graphic to be displayed in addition to just a label. This is used when drawing "shields" (text overtop of a graphic) such as in road signs.
+The following properties allow for a graphic to be displayed in addition to just a label. This is used when drawing "shields" (text over top of a graphic) such as in road signs.
 
 .. list-table::
    :class: non-responsive
@@ -293,7 +293,7 @@ Examples
 Basic label
 ~~~~~~~~~~~
 
-Text symbolizers are used to draw labels on objects. The label text is usually linked to some attribute of the layer. Font options are available in the ``font-family``, ``font-size``, ``font-style``, and ``font-weight`` properties. The following example draws a label using the ``name`` attribute of the layer, and with a SansSerif font of size 12, gray color, blod and italic::
+Text symbolizers are used to draw labels on objects. The label text is usually linked to some attribute of the layer. Font options are available in the ``font-family``, ``font-size``, ``font-style``, and ``font-weight`` properties. The following example draws a label using the ``name`` attribute of the layer, and with a SansSerif font of size 12, gray color, bold and italic::
 
   feature-styles:
   - name: name

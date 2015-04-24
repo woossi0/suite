@@ -66,7 +66,7 @@ Basic line with styled ends
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``linejoin`` and ``linecap`` properties can be used to style the joins and ends of any stroke.
-This example draws lines with transparent black lines with rounded ends and sharp (mitred) corners::
+This example draws lines with partially transparent black lines with rounded ends and sharp (mitred) corners::
 
   feature-styles:
   - rules:

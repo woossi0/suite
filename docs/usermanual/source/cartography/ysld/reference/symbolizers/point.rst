@@ -162,7 +162,7 @@ Sometimes it may be useful to use an image to represent certain points. This can
 Point composition
 ~~~~~~~~~~~~~~~~~
 
-Using more than one point symbolizer allows the composition of complex symbology. This example shows a symbolizer using ``x-composite`` to subtract a shape from a square mark allowing the background to show through.
+Using more than one point symbolizer allows the composition of more complex symbology. This example shows two symbolizers along with the ``x-composite`` parameter in order to *subtract* a shape from a square mark, allowing the background to show through.
 
 .. code-block:: yaml
 
@@ -189,7 +189,7 @@ Using more than one point symbolizer allows the composition of complex symbology
 Points as arrow heads
 ~~~~~~~~~~~~~~~~~~~~~
 
-Sometimes it is useful to generate a point using a CQL expression. The following example generates a point at the end of each line, rotating the point to the correct orientation.
+Sometimes it is useful to generate a point using a CQL expression. The following example generates a point at the end of each line in the shape of an arrow, rotated such that it matches the orientation of the line.
 
 .. code-block:: yaml
 
@@ -199,13 +199,13 @@ Sometimes it is useful to generate a point using a CQL expression. The following
       stroke-color: '#808080'
       stroke-width: 3
    - point:
-       geometry: ${endPoint( the_geom )}
+       geometry: ${endPoint(the_geom)}
        symbols:
        - mark:
            shape: shape://oarrow
            fill-color: '#808080'
        size: 30
-       rotation: ${endAngle( the_geom )}
+       rotation: ${endAngle(the_geom)}
 
 .. figure:: img/arrow.png
    

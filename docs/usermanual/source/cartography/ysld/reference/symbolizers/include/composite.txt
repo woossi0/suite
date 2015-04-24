@@ -14,5 +14,5 @@
      - N/A
    * - ``x-composite-base``
      - No
-     - Allows the rendering engine to use symbolizer to define a "base" buffer for subsequent ''x-composite'' compositing and blending (:ref:`see feature-styles <cartography.ysld.reference.featurestyles.composite>`.)
+     - Allows the rendering engine to use the symbolizer mapping to define a "base" buffer for subsequent compositing and blending using ``x-composite``. See the section on :ref:`Feature Styles <cartography.ysld.reference.featurestyles.composite>` for more details.
      - ``false``

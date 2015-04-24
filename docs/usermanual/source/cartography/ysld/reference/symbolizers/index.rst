@@ -104,7 +104,7 @@ It is common to match the symbolizer with the type of geometries contained in th
 Syntax
 ------
 
-The following is the basic syntax of a feature style. Note that the contents of the block are not all expanded here.
+The following is the basic syntax common to all symbolizers. Note that the contents of the block are not all expanded here and that each kind of symbolizer provides additional syntax.
 
 ::
 
@@ -122,7 +122,7 @@ The following properties are equivalent to SLD "vendor options".
 
 .. include:: include/composite.txt
 
-Each kind of symbolizer provides additional syntax. See the following pages for details:
+See the following pages for details:
 
 .. toctree::
    :maxdepth: 1

@@ -11,7 +11,7 @@
    * - ``geometry``
      - No
      - Specifies which attribute to use as the geometry.
-     - First geometry attribute found (often ``geom`` or ``the_geom``)
+     - First geometry attribute found (usually named ``geom`` or ``the_geom``)
    * - ``uom``
      - No
      - Unit of measure used for width calculations
