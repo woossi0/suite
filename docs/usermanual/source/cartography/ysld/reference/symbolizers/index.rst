@@ -9,7 +9,7 @@ Symbolizers are contained inside :ref:`rules <cartography.ysld.reference.rules>`
 
 .. note:: The most common use case for multiple symbolizers is a geometry (point/line/polygon) symbolizer to draw the features plus a text symbolizer for labeling these features.
 
-   .. figure:: img/symbolizers.png
+   .. figure:: img/symbolizers.*
       
       Use of multiple symbolizers
 
@@ -38,25 +38,25 @@ When drawing three points these symbolizers will be applied in order on each fea
 
 #. Feature 1 is drawn as a square, followed by a triangle:
    
-   .. figure:: img/symbolizer-order1.png
+   .. figure:: img/symbolizer-order1.*
       
       Feature 1 buffer rendering
       
 #. Feature 2 is drawn as a square, followed by a triangle. Notice the slight overlap with Feature 1:
 
-   .. figure:: img/symbolizer-order2.png
+   .. figure:: img/symbolizer-order2.*
       
       Feature 2 buffer rendering
 
 #. Feature 3 is drawn as a square, followed by a triangle:
 
-   .. figure:: img/symbolizer-order3.png
+   .. figure:: img/symbolizer-order3.*
       
       Feature 3 buffer rendering
 
 .. note:: In the final image, Feature 1 and Feature 2 have a slight overlap. This overlap is determined by data order which we have no control over. If you need to control the overlap review the :ref:`cartography.ysld.reference.featurestyles` section on managing "z-order".
    
-   .. figure:: img/symbolizer-order4.png
+   .. figure:: img/symbolizer-order4.*
       
       Feature style controlling z-order
    
@@ -104,7 +104,7 @@ It is common to match the symbolizer with the type of geometries contained in th
 Syntax
 ------
 
-The following is the basic syntax of a feature style. Note that the contents of the block are not all expanded here.
+The following is the basic syntax common to all symbolizers. Note that the contents of the block are not all expanded here and that each kind of symbolizer provides additional syntax.
 
 ::
 
@@ -116,49 +116,13 @@ The following is the basic syntax of a feature style. Note that the contents of 
 
 where:
 
-.. list-table::
-   :class: non-responsive
-   :header-rows: 1
-   :stub-columns: 1
-   :widths: 20 10 50 20
-
-   * - Property
-     - Required?
-     - Description
-     - Default value
-   * - ``geometry``
-     - No
-     - Geometry attribute to draw, the default geometry will be used if not provided
-     - Blank
-   * - ``uom``
-     - No
-     - Unit of measure used for width calculations, default is pixel
-     - Blank
+.. include:: include/symbol.txt
 
 The following properties are equivalent to SLD "vendor options".
 
-.. list-table::
-   :class: non-responsive
-   :header-rows: 1
-   :stub-columns: 1
-   :widths: 20 10 50 20
+.. include:: include/composite.txt
 
-   * - Property
-     - Required?
-     - Description
-     - Default value
-   * - ``x-composite``
-     - No
-     - Allows for both alpha compositing and color blending options between symbolizers.
-     - N/A
-   * - ``x-composite-base``
-     - No
-     - Allows the rendering engine to use symbolizer to define a "base" buffer for subsequent ''x-composite'' compositing and blending.
-     - ``false``
-     
-Composition and blending are handled in the same manner as described in :ref:`see feature-styles <cartography.ysld.reference.featurestyles.composite>`.
-
-Each kind of symbolizer provides additional syntax. See the following pages for details:
+See the following pages for details:
 
 .. toctree::
    :maxdepth: 1

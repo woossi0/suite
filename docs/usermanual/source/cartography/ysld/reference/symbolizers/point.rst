@@ -39,7 +39,10 @@ The full syntax of a point symbolizer is::
       opacity: <expression>
       rotation: <expression>
       geometry: <expression>
+      uom: <text>
       x-labelObstacle: <boolean>
+      x-composite-base: <boolean>
+      x-composite: <text>
 
 where:
 
@@ -97,12 +100,14 @@ where:
      - No
      - Value (in degrees) or rotation of the mark. Larger values increase counter-clockwise rotation. A value of ``180`` will make the mark upside-down.
      - ``0``
-   * - ``geometry``
-     - No
-     - Specifies which attribute to use as the geometry.
-     - First geometry attribute found (often ``geom`` or ``the_geom``)
+
+.. include:: include/symbol.txt
+
+The following properties are equivalent to SLD "vendor options".
 
 .. include:: include/misc.txt
+
+.. include:: include/composite.txt
 
 Examples
 --------
@@ -143,7 +148,7 @@ Sometimes it may be useful to use an image to represent certain points. This can
   - name: name
     rules:
     - symbolizers:
-        point
+      - point:
           symbols:
           - external:
               url: 'geoserver.png'
@@ -154,3 +159,54 @@ Sometimes it may be useful to use an image to represent certain points. This can
 
    Point as image
 
+Point composition
+~~~~~~~~~~~~~~~~~
+
+Using more than one point symbolizer allows the composition of more complex symbology. This example shows two symbolizers along with the ``x-composite`` parameter in order to *subtract* a shape from a square mark, allowing the background to show through.
+
+.. code-block:: yaml
+
+   symbolizers:
+   - point:
+       symbols:
+       - mark:
+           shape: square
+           fill-color: '#222222'
+       size: 40
+   - point:
+       symbols:
+       - external:
+           url: 'stamp.png'
+           format: image/png
+       x-composite: xor
+       size: 40
+
+.. figure:: img/point_composition.png
+
+   Point composition
+   
+
+Points as arrow heads
+~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes it is useful to generate a point using a CQL expression. The following example generates a point at the end of each line in the shape of an arrow, rotated such that it matches the orientation of the line.
+
+.. code-block:: yaml
+
+   name: arrow
+   symbolizers:
+   - line:
+      stroke-color: '#808080'
+      stroke-width: 3
+   - point:
+       geometry: ${endPoint(the_geom)}
+       symbols:
+       - mark:
+           shape: shape://oarrow
+           fill-color: '#808080'
+       size: 30
+       rotation: ${endAngle(the_geom)}
+
+.. figure:: img/arrow.png
+   
+   Point as arrow head

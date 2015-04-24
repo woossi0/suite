@@ -30,7 +30,10 @@ The full syntax of a polygon symbolizer is::
       offset: <expression>
       displacement: <expression>
       geometry: <expression>
+      uom: <text>
       x-labelObstacle: <boolean>
+      x-composite-base: <boolean>
+      x-composite: <text>
 
 where:
 
@@ -56,12 +59,14 @@ where:
      - No
      - Specifies a distance to which to move the symbol relative to the feature. Value is an ``(x,y)`` tuple with values expressed in pixels, so (10,5) will displace the symbol 10 pixels to the right, and 5 pixels down.
      - ``(0,0)``
-   * - ``geometry``
-     - No
-     - Specifies which attribute to use as the geometry.
-     - First geometry attribute found (often ``geom`` or ``the_geom``)
+
+.. include:: include/symbol.txt
+
+The following properties are equivalent to SLD "vendor options".
 
 .. include:: include/misc.txt
+
+.. include:: include/composite.txt
 
 Examples
 --------
