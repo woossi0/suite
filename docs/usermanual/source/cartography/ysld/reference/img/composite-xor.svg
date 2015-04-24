@@ -6,22 +6,22 @@
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="composite-xor" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-45" stroke="#979797" fill="#FFFFFF" sketch:type="MSShapeGroup" x="13" y="15" width="96" height="67"></rect>
-            <text id="source" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="9" font-weight="260" fill="#000000">
-                <tspan x="13" y="12">source</tspan>
+            <text id="source" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="12" font-weight="260" fill="#000000">
+                <tspan x="13" y="15">source</tspan>
             </text>
-            <rect id="Rectangle-45-Copy" stroke="#979797" fill="#FFFFFF" sketch:type="MSShapeGroup" x="143" y="15" width="96" height="67"></rect>
-            <text id="destination" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="9" font-weight="260" fill="#000000">
-                <tspan x="143" y="12">destination</tspan>
+            <rect id="Rectangle-45" stroke="#979797" fill="#FFFFFF" sketch:type="MSShapeGroup" x="13" y="17" width="96" height="67"></rect>
+            <rect id="Rectangle-45-Copy" stroke="#979797" fill="#FFFFFF" sketch:type="MSShapeGroup" x="143" y="17" width="96" height="67"></rect>
+            <rect id="source-copy" fill="#1210E0" sketch:type="MSShapeGroup" x="27" y="28" width="45" height="45"></rect>
+            <circle id="destination-copy" fill="#F8E81C" sketch:type="MSShapeGroup" cx="205" cy="51" r="25"></circle>
+            <text id="destination" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="12" font-weight="260" fill="#000000">
+                <tspan x="143" y="15">destination</tspan>
             </text>
-            <rect id="Rectangle-45-Copy-2" stroke="#979797" fill="#FFFFFF" sketch:type="MSShapeGroup" x="273" y="15" width="96" height="67"></rect>
-            <path d="M334.965239,66 C331.166542,69.1242002 326.302329,71 321,71 C315.697671,71 310.833458,69.1242002 307.034761,66 L334.965239,66 Z M339,61.6523165 C341.520117,58.0736217 343,53.7096334 343,49 C343,44.2903666 341.520117,39.9263783 339,36.3476835 L339,61.6523165 Z M333.652317,31 C330.073622,28.4798828 325.709633,27 321,27 C316.290367,27 311.926378,28.4798828 308.347683,31 L333.652317,31 Z M303,36.3476835 C300.479883,39.9263783 299,44.2903666 299,49 C299,53.7096334 300.479883,58.0736217 303,61.6523165 L303,36.3476835 Z" id="Rectangle-48-Copy-2" fill="#F8E71C" sketch:type="MSShapeGroup"></path>
-            <text id="xor" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="9" font-weight="260" fill="#000000">
-                <tspan x="273" y="12">xor</tspan>
+            <rect id="Rectangle-45-Copy-2" stroke="#979797" fill="#FFFFFF" sketch:type="MSShapeGroup" x="273" y="17" width="96" height="67"></rect>
+            <path d="M325.185656,28 L282,28 L282,73 L323.115537,73 C315.304881,68.7717582 310,60.5053898 310,51 C310,40.676703 316.257093,31.8148284 325.185656,28 Z" id="source-copy-2" fill="#1210E0" sketch:type="MSShapeGroup"></path>
+            <path d="M327.185656,28 C330.198794,26.712603 333.516178,26 337,26 C350.807119,26 362,37.1928813 362,51 C362,64.8071187 350.807119,76 337,76 C332.698272,76 328.650305,74.9135201 325.115539,73.0000011 L334,73 L334,28 L327.185656,28 Z" id="Oval-4-Copy-2" fill="#F8E81C" sketch:type="MSShapeGroup"></path>
+            <text id="xor" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="12" font-weight="260" fill="#000000">
+                <tspan x="273" y="15">xor</tspan>
             </text>
-            <path d="M308.347683,31 L303,31 L303,36.3476835 C304.461352,34.2724886 306.272489,32.4613524 308.347683,31 Z M333.652317,31 L339,31 L339,36.3476835 C337.538648,34.2724886 335.727511,32.4613524 333.652317,31 Z M339,61.6523165 L339,66 L334.965239,66 C336.497162,64.7400853 337.855798,63.2771414 339,61.6523165 Z M307.034761,66 L303,66 L303,61.6523165 C304.144202,63.2771414 305.502838,64.7400853 307.034761,66 Z" id="Rectangle-48-Copy" fill="#1210E0" sketch:type="MSShapeGroup"></path>
-            <rect id="Rectangle-48" fill="#1210E0" sketch:type="MSShapeGroup" x="40" y="31" width="36" height="35"></rect>
-            <circle id="Oval-4" fill="#F8E81C" sketch:type="MSShapeGroup" cx="191" cy="49" r="22"></circle>
         </g>
     </g>
 </svg>
