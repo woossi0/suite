@@ -110,14 +110,16 @@ Many maps use a hatched pattern to represent railroads. This can be accomplished
 Specifying sizes in units
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The units for ``stroke-width``, ``size``, and other similar attributes default to pixels, meaning that graphics remain a constant size at different zoom levels. Alternately, units (feet or meters) can be specified for values, so graphics will scale as you zoom in or out. This example draws roads with a fixed width of 8 meters::
+The units for ``stroke-width``, ``size``, and other similar attributes default to pixels, meaning that graphics remain a constant size at different zoom levels. Alternately, units (feet or meters) can be specified for values, so graphics will scale as you zoom in or out. This example draws roads with a fixed width of 8 meters:
 
-  feature-styles:
-  - rules:
-    - symbolizers:
-      - line:
-          stroke-color: '#000000'
-          stroke-width: '8 m'
+.. code-block:: yaml
+
+   feature-styles:
+   - rules:
+     - symbolizers:
+       - line:
+           stroke-color: '#000000'
+           stroke-width: '8 m'
 
 .. figure:: img/line_uomsmall.png
 
@@ -126,3 +128,17 @@ The units for ``stroke-width``, ``size``, and other similar attributes default t
 .. figure:: img/line_uombig.png
 
    Line width measured in meters (zoomed in)
+   
+The default unit of measure for the symbolizer is defined using ``uom``. This example uses a default of meters to supply distances for ``stroke-width`` and ``stroke-dasharray`` using meters.
+   
+.. code-block:: yaml
+
+   line:
+     uom: http://www.opengeospatial.org/se/units/metre
+     stroke-color: '#000000'
+     stroke-width: '8'
+     stroke-dasharray: '20 3'
+     
+.. figure:: img/line-uom.png
+
+   Line width and spacing in meters
