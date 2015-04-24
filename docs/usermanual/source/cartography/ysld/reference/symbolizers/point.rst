@@ -148,7 +148,7 @@ Sometimes it may be useful to use an image to represent certain points. This can
   - name: name
     rules:
     - symbolizers:
-        point
+      - point:
           symbols:
           - external:
               url: 'geoserver.png'
@@ -158,6 +158,33 @@ Sometimes it may be useful to use an image to represent certain points. This can
 .. figure:: img/point_graphic.png
 
    Point as image
+
+Point composition
+~~~~~~~~~~~~~~~~~
+
+Using more than one point symbolizer allows the composition of complex symbology. This example shows a symbolizer using ``x-composite`` to subtract a shape from a square mark allowing the background to show through.
+
+.. code-block:: yaml
+
+   symbolizers:
+   - point:
+       symbols:
+       - mark:
+           shape: square
+           fill-color: '#222222'
+       size: 40
+   - point:
+       symbols:
+       - external:
+           url: 'stamp.png'
+           format: image/png
+       x-composite: xor
+       size: 40
+
+.. figure:: img/point_composition.png
+
+   Point composition
+   
 
 Points as arrow heads
 ~~~~~~~~~~~~~~~~~~~~~
