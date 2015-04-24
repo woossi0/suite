@@ -178,79 +178,57 @@ Alpha compositing controls how buffers are merged using the transparent areas of
    * - ``copy``
      - Only the source will be present in the output.
        
-       .. figure:: img/composite-source.png
-          
-          copy
+       .. image:: img/composite-source.png
 
    * - ``destination``
      - Only the destination will be present in the output.
 
-       .. figure:: img/composite-destination.png
-          
-          destination
+       .. image:: img/composite-destination.png
           
    * - ``source-over``
      - The source is drawn over the destination, and the destination is visible where the source is transparent. Opposite of ``destination-over``. This is the default value for x-composite.
      
-       .. figure:: img/composite-source-over.png
-          
-          source-over
+       .. image:: img/composite-source-over.png
 
    * - ``destination-over``
      - The source is drawn below the destination, and is visible only when the destination is transparent. Opposite of ``source-over``.
 
-       .. figure:: img/composite-destination-over.png
-          
-          destination-over
+       .. image:: img/composite-destination-over.png
 
    * - ``source-in``
      - The source is visible only when overlapping some non-transparent pixel of the destination. This allows the background map to act as a mask for the layer/feature being drawn. Opposite of ``destination-in``.
      
-       .. figure:: img/composite-source-in.png
-          
-          source-in
+       .. image:: img/composite-source-in.png
           
    * - ``destination-in``
      - The destination is retained only when overlapping some non transparent pixel in the source. This allows the layer/feature to be drawn to act as a mask for the background map. Opposite of ``source-in``.
 
-       .. figure:: img/composite-destination-in.png
-          
-          destination-in
+       .. image:: img/composite-destination-in.png
 
    * - ``source-out``
      - The source is retained only in areas where the destination is transparent. This acts as a reverse mask when compared to ``source-in``.
      
-       .. figure:: img/composite-source-out.png
-          
-          source-out
+       .. image:: img/composite-source-out.png
           
    * - ``destination-out``
      - The destination is retained only in areas where the source is transparent. This acts as a reverse mask when compared to ``destination-in``.
 
-       .. figure:: img/composite-destination-out.png
-          
-          destination-out
+       .. image:: img/composite-destination-out.png
 
    * - ``source-atop``
      - The destination is drawn fully, while the source is drawn only where it intersects the destination.
 
-       .. figure:: img/composite-source-atop.png
-          
-          source-atop
+       .. image:: img/composite-source-atop.png
 
    * - ``destination-atop``
      - The source is drawn fully, and the destination is drawn over the source only where it intersects it.
 
-       .. figure:: img/composite-destination-atop.png
-          
-          destination-atop
+       .. image:: img/composite-destination-atop.png
           
    * - ``xor``
      - "Exclusive Or" mode. Each pixel is rendered only if either the source or the destination is not blank, but not both.
 
-       .. figure:: img/composite-xor.png
-          
-          xor
+       .. image:: img/composite-xor.png
           
 **Color blending**
 
@@ -267,80 +245,57 @@ Color blending allows buffers to be mixed during composition.
    * - ``multiply``
      - The source color is multiplied by the destination color and replaces the destination. The resulting color is always at least as dark as either the source or destination color. Multiplying any color with black results in black. Multiplying any color with white preserves the original color.
      
-       .. figure:: img/blend-multiply.png
-          
-          multiply
+       .. image:: img/blend-multiply.png
           
    * - ``screen``
      - Multiplies the complements of the source and destination color values, then complements the result. The end result color is always at least as light as either of the two constituent colors. Screening any color with white produces white; screening with black leaves the original color unchanged.
      
-       .. figure:: img/blend-screen.png
-          
-          screen
+       .. image:: img/blend-screen.png
 
    * - ``overlay``
      - Multiplies the colors depending on the destination color value. Source colors overlay the destination while preserving highlights and shadows. The backdrop color is not replaced but is mixed with the source color to reflect the lightness or darkness of the backdrop.
-
      
-       .. figure:: img/blend-overlay.png
-          
-          overlay
+       .. image:: img/blend-overlay.png
           
    * - ``darken``
      - Selects the darker of the destination and source colors. The destination is replaced with the source only where the source is darker.
      
-       .. figure:: img/blend-darken.png
-          
-          darken
+       .. image:: img/blend-darken.png
           
    * - ``lighten``
      - Selects the lighter of the destination and source colors. The destination is replaced with the source only where the source is lighter.
      
-       .. figure:: img/blend-lighten.png
-          
-          lighten
+       .. image:: img/blend-lighten.png
           
    * - ``color-dodge``
      - Brightens the destination color to reflect the source color. Drawing with black produces no changes.
 
-       .. figure:: img/blend-color-dodge.png
-          
-          color-dodge
+       .. image:: img/blend-color-dodge.png
           
    * - ``color-burn``
      - Darkens the destination color to reflect the source color. Drawing with white produces no change.
      
-       .. figure:: img/blend-color-burn.png
-          
-          color-burn
+       .. image:: img/blend-color-burn.png
           
    * - ``hard-light``
      - Multiplies the colors, depending on the source color value. The effect is similar to shining a harsh spotlight on the destination.
      
-       .. figure:: img/blend-hard-light.png
-          
-          hard-light
+       .. image:: img/blend-hard-light.png
           
    * - ``soft-light``
      - Darkens or lightens the colors, depending on the source color value. The effect is similar to a diffused spotlight on the destination.
 
-       .. figure:: img/blend-soft-light.png
-          
-          soft-light
+       .. image:: img/blend-soft-light.png
 
    * - ``difference``
      - Subtracts the darker of the two constituent colors from the lighter color. White inverts the destination color; black produces no change.
 
-       .. figure:: img/blend-difference.png
-          
-          difference
+       .. image:: img/blend-difference.png
           
    * - ``exclusion``
      - Produces an effect similar to that of difference but lower in contrast. White inverts the destination color; black produces no change.
      
-       .. figure:: img/blend-difference.png
-          
-          exclusion
+       .. image:: img/blend-difference.png
 
 .. note:: For more details about the compositing and blending options, please see the `GeoServer User Manual <../../../geoserver/styling/sld-extensions/composite-blend/>`__.
 
