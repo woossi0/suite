@@ -5,7 +5,7 @@ Feature Styles
 
 In YSLD, a Feature Style is a block of styling :ref:`Rules <cartography.ysld.reference.rules>`. The Feature Style is applied to a single feature type and drawn in an off-screen buffer.
 
-.. figure:: img/feature-style.png
+.. figure:: img/feature-style.*
 
    The feature style element
 
@@ -28,7 +28,7 @@ Consider the following hierarchy:
 
 In this case, the rules contained inside Feature Style 1 will be processed and their :ref:`symbolizers <cartography.ysld.reference.symbolizers>` drawn first. After Rule 1a and 1b are processed, the renderer will move on to Feature Style 2, where Rule 2a, 2b, and 2c will then be processed and their symbolizers drawn.
 
-.. figure:: img/feature-style-order.png
+.. figure:: img/feature-style-order.*
 
    Feature style order
 
@@ -49,7 +49,7 @@ Feature style 1 will draw an off-screen buffer:
 #. Rule 1a is applied to the second feature, followed by rule 1b
 #. Rule 1a is applied to the third feature, followed by rule 1b
 
-.. figure:: img/draw-order-buffer1.png
+.. figure:: img/draw-order-buffer1.*
 
    Feature style 1 buffer
 
@@ -59,7 +59,7 @@ Feature style 2 will draw an off-screen buffer:
 #. Rule 2a is applied to the second feature, followed by rule 2b and then rule 2c
 #. Rule 2a is applied to the third feature, followed by rule 2b and then rule 2c
 
-.. figure:: img/draw-order-buffer2.png
+.. figure:: img/draw-order-buffer2.*
 
    Feature style 2 buffer
 
@@ -69,7 +69,7 @@ This final map is produced by composition:
 #. The buffer for feature style 2 is drawn
 #. Any labeling is drawn on top
 
-.. figure:: img/draw-order-map.png
+.. figure:: img/draw-order-map.*
 
    Composition of both feature styles
 
@@ -178,57 +178,57 @@ Alpha compositing controls how buffers are merged using the transparent areas of
    * - ``copy``
      - Only the source will be present in the output.
        
-       .. image:: img/composite-source.png
+       .. image:: img/composite-source.*
 
    * - ``destination``
      - Only the destination will be present in the output.
 
-       .. image:: img/composite-destination.png
+       .. image:: img/composite-destination.*
           
    * - ``source-over``
      - The source is drawn over the destination, and the destination is visible where the source is transparent. Opposite of ``destination-over``. This is the default value for x-composite.
      
-       .. image:: img/composite-source-over.png
+       .. image:: img/composite-source-over.*
 
    * - ``destination-over``
      - The source is drawn below the destination, and is visible only when the destination is transparent. Opposite of ``source-over``.
 
-       .. image:: img/composite-destination-over.png
+       .. image:: img/composite-destination-over.*
 
    * - ``source-in``
      - The source is visible only when overlapping some non-transparent pixel of the destination. This allows the background map to act as a mask for the layer/feature being drawn. Opposite of ``destination-in``.
      
-       .. image:: img/composite-source-in.png
+       .. image:: img/composite-source-in.*
           
    * - ``destination-in``
      - The destination is retained only when overlapping some non transparent pixel in the source. This allows the layer/feature to be drawn to act as a mask for the background map. Opposite of ``source-in``.
 
-       .. image:: img/composite-destination-in.png
+       .. image:: img/composite-destination-in.*
 
    * - ``source-out``
      - The source is retained only in areas where the destination is transparent. This acts as a reverse mask when compared to ``source-in``.
      
-       .. image:: img/composite-source-out.png
+       .. image:: img/composite-source-out.*
           
    * - ``destination-out``
      - The destination is retained only in areas where the source is transparent. This acts as a reverse mask when compared to ``destination-in``.
 
-       .. image:: img/composite-destination-out.png
+       .. image:: img/composite-destination-out.*
 
    * - ``source-atop``
      - The destination is drawn fully, while the source is drawn only where it intersects the destination.
 
-       .. image:: img/composite-source-atop.png
+       .. image:: img/composite-source-atop.*
 
    * - ``destination-atop``
      - The source is drawn fully, and the destination is drawn over the source only where it intersects it.
 
-       .. image:: img/composite-destination-atop.png
+       .. image:: img/composite-destination-atop.*
           
    * - ``xor``
      - "Exclusive Or" mode. Each pixel is rendered only if either the source or the destination is not blank, but not both.
 
-       .. image:: img/composite-xor.png
+       .. image:: img/composite-xor.*
           
 **Color blending**
 
@@ -381,7 +381,7 @@ During composition these two off-screen buffers are combined into the the final 
 
 When drawn, the outer line has a width of 8 pixels and the inner line has a width of 6 pixels, so the line "border" is 1 pixel (on each side).
 
-.. figure:: img/fs_roadcasing.png
+.. figure:: img/fs_roadcasing.*
 
    Example showing road casing
 

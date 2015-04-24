@@ -9,7 +9,7 @@ Symbolizers are contained inside :ref:`rules <cartography.ysld.reference.rules>`
 
 .. note:: The most common use case for multiple symbolizers is a geometry (point/line/polygon) symbolizer to draw the features plus a text symbolizer for labeling these features.
 
-   .. figure:: img/symbolizers.png
+   .. figure:: img/symbolizers.*
       
       Use of multiple symbolizers
 
@@ -38,25 +38,25 @@ When drawing three points these symbolizers will be applied in order on each fea
 
 #. Feature 1 is drawn as a square, followed by a triangle:
    
-   .. figure:: img/symbolizer-order1.png
+   .. figure:: img/symbolizer-order1.*
       
       Feature 1 buffer rendering
       
 #. Feature 2 is drawn as a square, followed by a triangle. Notice the slight overlap with Feature 1:
 
-   .. figure:: img/symbolizer-order2.png
+   .. figure:: img/symbolizer-order2.*
       
       Feature 2 buffer rendering
 
 #. Feature 3 is drawn as a square, followed by a triangle:
 
-   .. figure:: img/symbolizer-order3.png
+   .. figure:: img/symbolizer-order3.*
       
       Feature 3 buffer rendering
 
 .. note:: In the final image, Feature 1 and Feature 2 have a slight overlap. This overlap is determined by data order which we have no control over. If you need to control the overlap review the :ref:`cartography.ysld.reference.featurestyles` section on managing "z-order".
    
-   .. figure:: img/symbolizer-order4.png
+   .. figure:: img/symbolizer-order4.*
       
       Feature style controlling z-order
    
