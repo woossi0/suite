@@ -517,7 +517,9 @@ public class ImportController extends ApiController {
      * @param id The id of the import
      * @return A JSONObj containing the import details:
      * {
-     *    "id": 0, 
+     *    "id": 0,
+     *    "task": "Processing data usa-merc.tif"
+     *    "importerEndpoint":"http:\/\/localhost:8000\/geoserver\/geoserver\/rest\/imports\/1",
      *    "preimport": [],
      *    "running": [],
      *    "imported": [
@@ -547,10 +549,11 @@ public class ImportController extends ApiController {
      *    "tasksTotal":2
      *  }
      * 
-     * The response is an object with 11 properties. If this is a new import, and the context has
+     * The response is an object with 12 properties. If this is a new import, and the context has
      * not yet been created, only id and task will be included.
      * * id - The identifier of this import job, needed to make modifications to it
      * * task - A textual representation of the current task. Not included if no task is currently running.
+     * * importerEndpoint - REST endpoint to manage this import using the GeoServer Importer REST API
      * * status - The current status of the import. May be "pending", "running", or "complete"
      * * tasksComplete - The number of tasks that have been processed and have either been 
      *   successfully imported or given an error.
