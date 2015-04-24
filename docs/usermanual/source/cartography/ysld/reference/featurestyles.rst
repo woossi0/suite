@@ -369,13 +369,13 @@ This example shows how a smaller line can be drawn on top of a larger line, crea
 
 To draw the inner lines always on top of the outer lines we need to control the **z-order**. The ``outer_rule`` is encased in its own feature style and drawn into a distinct "Outer line" buffer. Next the ``inner_rule`` is encased in its own feature style and drawn into a distinct "Inner line" buffer.
 
-.. figure:: img/line-casing-buffers.png
+.. figure:: img/line-casing-buffers.*
 
    Feature style buffers
    
 During composition these two off-screen buffers are combined into the the final map.
 
-.. figure:: img/line-casing-map.png
+.. figure:: img/line-casing-map.*
 
    Final map composition
 
