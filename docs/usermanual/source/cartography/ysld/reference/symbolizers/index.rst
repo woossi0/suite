@@ -116,47 +116,11 @@ The following is the basic syntax of a feature style. Note that the contents of 
 
 where:
 
-.. list-table::
-   :class: non-responsive
-   :header-rows: 1
-   :stub-columns: 1
-   :widths: 20 10 50 20
-
-   * - Property
-     - Required?
-     - Description
-     - Default value
-   * - ``geometry``
-     - No
-     - Geometry attribute to draw, the default geometry will be used if not provided
-     - Blank
-   * - ``uom``
-     - No
-     - Unit of measure used for width calculations, default is pixel
-     - Blank
+.. include:: include/symbol.txt
 
 The following properties are equivalent to SLD "vendor options".
 
-.. list-table::
-   :class: non-responsive
-   :header-rows: 1
-   :stub-columns: 1
-   :widths: 20 10 50 20
-
-   * - Property
-     - Required?
-     - Description
-     - Default value
-   * - ``x-composite``
-     - No
-     - Allows for both alpha compositing and color blending options between symbolizers.
-     - N/A
-   * - ``x-composite-base``
-     - No
-     - Allows the rendering engine to use symbolizer to define a "base" buffer for subsequent ''x-composite'' compositing and blending.
-     - ``false``
-     
-Composition and blending are handled in the same manner as described in :ref:`see feature-styles <cartography.ysld.reference.featurestyles.composite>`.
+.. include:: include/composite.txt
 
 Each kind of symbolizer provides additional syntax. See the following pages for details:
 

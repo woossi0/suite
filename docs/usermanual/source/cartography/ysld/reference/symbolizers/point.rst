@@ -39,7 +39,10 @@ The full syntax of a point symbolizer is::
       opacity: <expression>
       rotation: <expression>
       geometry: <expression>
+      uom: <text>
       x-labelObstacle: <boolean>
+      x-composite-base: <boolean>
+      x-composite: <text>
 
 where:
 
@@ -97,12 +100,14 @@ where:
      - No
      - Value (in degrees) or rotation of the mark. Larger values increase counter-clockwise rotation. A value of ``180`` will make the mark upside-down.
      - ``0``
-   * - ``geometry``
-     - No
-     - Specifies which attribute to use as the geometry.
-     - First geometry attribute found (often ``geom`` or ``the_geom``)
+
+.. include:: include/symbol.txt
+
+The following properties are equivalent to SLD "vendor options".
 
 .. include:: include/misc.txt
+
+.. include:: include/composite.txt
 
 Examples
 --------

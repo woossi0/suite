@@ -42,6 +42,10 @@ The full syntax of a text symbolizer is::
         size: <expression>
         opacity: <expression>
         rotation: <expression>
+      geometry: <expression>
+      uom: <text>
+      x-composite-base: <boolean>
+      x-composite: <text>
       x-allowOverruns: <boolean>
       x-autoWrap: <expression>
       x-conflictResolution: <boolean>
@@ -194,6 +198,8 @@ The following properties allow for a graphic to be displayed in addition to just
      - Value (in degrees) or rotation of the graphic. Larger values increase counter-clockwise rotation. A value of ``180`` will make the graphic upside-down.
      - ``0``
 
+.. include:: include/symbol.txt
+
 The following properties are equivalent to SLD "vendor options".
 
 .. list-table::
@@ -278,6 +284,8 @@ The following properties are equivalent to SLD "vendor options".
      - No
      - Minimum distance (in pixels) between two labels. A negative value specifies the maximum overlap between two labels.
      - 0
+
+.. include:: include/composite.txt
 
 Examples
 --------

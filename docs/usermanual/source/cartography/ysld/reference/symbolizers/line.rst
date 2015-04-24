@@ -27,7 +27,10 @@ The full syntax of a line symbolizer is:
         <graphic_options>
       offset: <expression>
       geometry: <expression>
+      uom: <text>
       x-labelObstacle: <boolean>
+      x-composite-base: <boolean>
+      x-composite: <text>
 
 where:
 
@@ -47,12 +50,14 @@ where:
      - No
      - Value in pixels for moving the drawn line relative to the location of the feature. 
      - ``0``
-   * - ``geometry``
-     - No
-     - Specifies which attribute to use as the geometry.
-     - First geometry attribute found (often ``geom`` or ``the_geom``)
+
+.. include:: include/symbol.txt
+
+The following properties are equivalent to SLD "vendor options".
 
 .. include:: include/misc.txt
+
+.. include:: include/composite.txt
 
 Examples
 --------
