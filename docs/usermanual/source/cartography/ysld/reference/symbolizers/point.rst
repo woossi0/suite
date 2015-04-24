@@ -159,3 +159,27 @@ Sometimes it may be useful to use an image to represent certain points. This can
 
    Point as image
 
+Points as arrow heads
+~~~~~~~~~~~~~~~~~~~~~
+
+Sometimes it is useful to generate a point using a CQL expression. The following example generates a point at the end of each line, rotating the point to the correct orientation.
+
+.. code-block:: yaml
+
+   name: arrow
+   symbolizers:
+   - line:
+      stroke-color: '#808080'
+      stroke-width: 3
+   - point:
+       geometry: ${endPoint( the_geom )}
+       symbols:
+       - mark:
+           shape: shape://oarrow
+           fill-color: '#808080'
+       size: 30
+       rotation: ${endAngle( the_geom )}
+
+.. figure:: img/arrow.png
+   
+   Point as arrow head
