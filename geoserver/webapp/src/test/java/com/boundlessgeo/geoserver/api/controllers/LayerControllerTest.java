@@ -168,6 +168,9 @@ public class LayerControllerTest {
                 .featureType().defaults().store("foo")
             .geoServer().build(geoServer);
 
+        LayerInfo l = gs.getCatalog().getLayerByName("foo:one");
+        l.getMetadata().put("timeout", 1000);
+        gs.getCatalog().save(l);
         MvcResult result = mvc.perform(get("/api/layers/foo/one"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -197,6 +200,8 @@ public class LayerControllerTest {
         assertEquals(90d, obj.object("bbox").object("lonlat").doub("north"), 0.1);
         assertEquals(0d, obj.object("bbox").object("lonlat").array("center").doub(0), 0.1);
         assertEquals(0d, obj.object("bbox").object("lonlat").array("center").doub(1), 0.1);
+        
+        assertEquals(1000L, obj.get("timeout"));
 
         assertNotNull(obj.get("modified"));
         assertNotNull(obj.get("created"));
@@ -330,7 +335,7 @@ public class LayerControllerTest {
                 .featureType().defaults().store("one")
                 .geoServer().build(geoServer);
 
-        JSONObj obj = new JSONObj().put("title", "new title").put("proj", "EPSG:4326");
+        JSONObj obj = new JSONObj().put("title", "new title").put("proj", "EPSG:4326").put("timeout", 1000);
         MockHttpServletRequestBuilder req = put("/api/layers/foo/one")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
@@ -339,6 +344,7 @@ public class LayerControllerTest {
 
         LayerInfo l = gs.getCatalog().getLayerByName("foo:one");
         verify(l, times(1)).setTitle("new title");
+        assertEquals(1000L, l.getMetadata().get("timeout"));
     }
 
     @Test

@@ -510,6 +510,9 @@ public class IO {
         else if( r instanceof WMSLayerInfo) {
             obj.put("geometry", geometry(layer));
         }
+        if (layer.getMetadata().containsKey("timeout")) {
+            obj.put("timeout", layer.getMetadata().get("timeout"));
+        }
         return metadata(obj, layer);
     }
 
