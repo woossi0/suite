@@ -5,7 +5,7 @@ Feature Styles
 
 In YSLD, a Feature Style is a block of styling :ref:`Rules <cartography.ysld.reference.rules>`. The Feature Style is applied to a single feature type and drawn in an off-screen buffer.
 
-.. figure:: img/feature-style.*
+.. figure:: img/feature-style.png
 
    The feature style element
 
@@ -28,7 +28,7 @@ Consider the following hierarchy:
 
 In this case, the rules contained inside Feature Style 1 will be processed and their :ref:`symbolizers <cartography.ysld.reference.symbolizers>` drawn first. After Rule 1a and 1b are processed, the renderer will move on to Feature Style 2, where Rule 2a, 2b, and 2c will then be processed and their symbolizers drawn.
 
-.. figure:: img/feature-style-order.*
+.. figure:: img/feature-style-order.png
 
    Feature style order
 
@@ -49,7 +49,7 @@ Feature style 1 will draw an off-screen buffer:
 #. Rule 1a is applied to the second feature, followed by rule 1b
 #. Rule 1a is applied to the third feature, followed by rule 1b
 
-.. figure:: img/draw-order-buffer1.*
+.. figure:: img/draw-order-buffer1.png
 
    Feature style 1 buffer
 
@@ -59,7 +59,7 @@ Feature style 2 will draw an off-screen buffer:
 #. Rule 2a is applied to the second feature, followed by rule 2b and then rule 2c
 #. Rule 2a is applied to the third feature, followed by rule 2b and then rule 2c
 
-.. figure:: img/draw-order-buffer2.*
+.. figure:: img/draw-order-buffer2.png
 
    Feature style 2 buffer
 
@@ -69,7 +69,7 @@ This final map is produced by composition:
 #. The buffer for feature style 2 is drawn
 #. Any labeling is drawn on top
 
-.. figure:: img/draw-order-map.*
+.. figure:: img/draw-order-map.png
 
    Composition of both feature styles
 
@@ -178,77 +178,77 @@ Alpha compositing controls how buffers are merged using the transparent areas of
    * - ``copy``
      - Only the source will be present in the output.
        
-       .. figure:: img/composite-source.*
+       .. figure:: img/composite-source.png
           
           copy
 
    * - ``destination``
      - Only the destination will be present in the output.
 
-       .. figure:: img/composite-destination.*
+       .. figure:: img/composite-destination.png
           
           destination
           
    * - ``source-over``
      - The source is drawn over the destination, and the destination is visible where the source is transparent. Opposite of ``destination-over``. This is the default value for x-composite.
      
-       .. figure:: img/composite-source-over.*
+       .. figure:: img/composite-source-over.png
           
           source-over
 
    * - ``destination-over``
      - The source is drawn below the destination, and is visible only when the destination is transparent. Opposite of ``source-over``.
 
-       .. figure:: img/composite-destination-over.*
+       .. figure:: img/composite-destination-over.png
           
           destination-over
 
    * - ``source-in``
      - The source is visible only when overlapping some non-transparent pixel of the destination. This allows the background map to act as a mask for the layer/feature being drawn. Opposite of ``destination-in``.
      
-       .. figure:: img/composite-source-in.*
+       .. figure:: img/composite-source-in.png
           
           source-in
           
    * - ``destination-in``
      - The destination is retained only when overlapping some non transparent pixel in the source. This allows the layer/feature to be drawn to act as a mask for the background map. Opposite of ``source-in``.
 
-       .. figure:: img/composite-destination-in.*
+       .. figure:: img/composite-destination-in.png
           
           destination-in
 
    * - ``source-out``
      - The source is retained only in areas where the destination is transparent. This acts as a reverse mask when compared to ``source-in``.
      
-       .. figure:: img/composite-source-out.*
+       .. figure:: img/composite-source-out.png
           
           source-out
           
    * - ``destination-out``
      - The destination is retained only in areas where the source is transparent. This acts as a reverse mask when compared to ``destination-in``.
 
-       .. figure:: img/composite-destination-out.*
+       .. figure:: img/composite-destination-out.png
           
           destination-out
 
    * - ``source-atop``
      - The destination is drawn fully, while the source is drawn only where it intersects the destination.
 
-       .. figure:: img/composite-source-atop.*
+       .. figure:: img/composite-source-atop.png
           
           source-atop
 
    * - ``destination-atop``
      - The source is drawn fully, and the destination is drawn over the source only where it intersects it.
 
-       .. figure:: img/composite-destination-atop.*
+       .. figure:: img/composite-destination-atop.png
           
           destination-atop
           
    * - ``xor``
      - "Exclusive Or" mode. Each pixel is rendered only if either the source or the destination is not blank, but not both.
 
-       .. figure:: img/composite-xor.*
+       .. figure:: img/composite-xor.png
           
           xor
           
@@ -267,14 +267,14 @@ Color blending allows buffers to be mixed during composition.
    * - ``multiply``
      - The source color is multiplied by the destination color and replaces the destination. The resulting color is always at least as dark as either the source or destination color. Multiplying any color with black results in black. Multiplying any color with white preserves the original color.
      
-       .. figure:: img/blend-multiply.*
+       .. figure:: img/blend-multiply.png
           
           multiply
           
    * - ``screen``
      - Multiplies the complements of the source and destination color values, then complements the result. The end result color is always at least as light as either of the two constituent colors. Screening any color with white produces white; screening with black leaves the original color unchanged.
      
-       .. figure:: img/blend-screen.*
+       .. figure:: img/blend-screen.png
           
           screen
 
@@ -282,63 +282,63 @@ Color blending allows buffers to be mixed during composition.
      - Multiplies the colors depending on the destination color value. Source colors overlay the destination while preserving highlights and shadows. The backdrop color is not replaced but is mixed with the source color to reflect the lightness or darkness of the backdrop.
 
      
-       .. figure:: img/blend-overlay.*
+       .. figure:: img/blend-overlay.png
           
           overlay
           
    * - ``darken``
      - Selects the darker of the destination and source colors. The destination is replaced with the source only where the source is darker.
      
-       .. figure:: img/blend-darken.*
+       .. figure:: img/blend-darken.png
           
           darken
           
    * - ``lighten``
      - Selects the lighter of the destination and source colors. The destination is replaced with the source only where the source is lighter.
      
-       .. figure:: img/blend-lighten.*
+       .. figure:: img/blend-lighten.png
           
           lighten
           
    * - ``color-dodge``
      - Brightens the destination color to reflect the source color. Drawing with black produces no changes.
 
-       .. figure:: img/blend-color-dodge.*
+       .. figure:: img/blend-color-dodge.png
           
           color-dodge
           
    * - ``color-burn``
      - Darkens the destination color to reflect the source color. Drawing with white produces no change.
      
-       .. figure:: img/blend-color-burn.*
+       .. figure:: img/blend-color-burn.png
           
           color-burn
           
    * - ``hard-light``
      - Multiplies the colors, depending on the source color value. The effect is similar to shining a harsh spotlight on the destination.
      
-       .. figure:: img/blend-hard-light.*
+       .. figure:: img/blend-hard-light.png
           
           hard-light
           
    * - ``soft-light``
      - Darkens or lightens the colors, depending on the source color value. The effect is similar to a diffused spotlight on the destination.
 
-       .. figure:: img/blend-soft-light.*
+       .. figure:: img/blend-soft-light.png
           
           soft-light
 
    * - ``difference``
      - Subtracts the darker of the two constituent colors from the lighter color. White inverts the destination color; black produces no change.
 
-       .. figure:: img/blend-difference.*
+       .. figure:: img/blend-difference.png
           
           difference
           
    * - ``exclusion``
      - Produces an effect similar to that of difference but lower in contrast. White inverts the destination color; black produces no change.
      
-       .. figure:: img/blend-difference.*
+       .. figure:: img/blend-difference.png
           
           exclusion
 
@@ -414,13 +414,13 @@ This example shows how a smaller line can be drawn on top of a larger line, crea
 
 To draw the inner lines always on top of the outer lines we need to control the **z-order**. The ``outer_rule`` is encased in its own feature style and drawn into a distinct "Outer line" buffer. Next the ``inner_rule`` is encased in its own feature style and drawn into a distinct "Inner line" buffer.
 
-.. figure:: img/line-casing-buffers.*
+.. figure:: img/line-casing-buffers.png
 
    Feature style buffers
    
 During composition these two off-screen buffers are combined into the the final map.
 
-.. figure:: img/line-casing-map.*
+.. figure:: img/line-casing-map.png
 
    Final map composition
 
