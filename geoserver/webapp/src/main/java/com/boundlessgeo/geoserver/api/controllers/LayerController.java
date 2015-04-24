@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -509,6 +510,8 @@ public class LayerController extends ApiController {
                     throw new BadRequestException("Unknown spatial reference identifier: " + srs);
                 }
                 resource.setSRS(srs);
+            } else if ("timeout".equals(prop)){
+                layer.getMetadata().put("timeout", (Serializable)obj.get("timeout"));
             }
         }
 

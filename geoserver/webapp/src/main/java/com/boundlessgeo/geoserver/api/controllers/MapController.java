@@ -6,6 +6,7 @@ package com.boundlessgeo.geoserver.api.controllers;
 import static org.geoserver.catalog.Predicates.equal;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -301,6 +302,9 @@ public class MapController extends ApiController {
             }
             map.layers().clear();
             map.layers().addAll(layers);
+        }
+        if (obj.has("timeout")) {
+            map.getMetadata().put("timeout", (Serializable)obj.get("timeout"));
         }
         // update configuration history
         String user = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -647,6 +651,9 @@ public class MapController extends ApiController {
         IO.bounds(obj.putObject("projectionExtent"), CRS.getEnvelope(bounds.getCoordinateReferenceSystem()));
         obj.put("layer_count", map.getLayers().size());
 
+        if (map.getMetadata().containsKey("timeout")) {
+            obj.put("timeout", map.getMetadata().get("timeout"));
+        }
         IO.metadata(obj, map);
         if (!obj.has("modified")) {
             Resource r = dataDir().config(map);
