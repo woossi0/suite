@@ -190,6 +190,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         //Wait for the import to complete
         result = pollImport(ctrl, "gs", id, "pending", request);
         verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        assertNotNull(result);
         result = ctrl.update("gs", id, getUpdateTasks(result), request);
         result = pollImport(ctrl, "gs", id, "complete", request);
         assertNotNull(result);
@@ -641,7 +642,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
 
         com.mockrunner.mock.web.MockHttpServletResponse resp =
                 postAsServletResponse("/app/api/layers/sf", obj.toString(), MediaType.APPLICATION_JSON_VALUE);
-        assertEquals(resp.getStatusCode(), 201);
+        assertEquals(201, resp.getStatusCode());
 
         assertNotNull(catalog.getLayerByName("sf:foo"));
     }
@@ -661,7 +662,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
 
         com.mockrunner.mock.web.MockHttpServletResponse resp =
             postAsServletResponse("/app/api/layers/cdf", obj.toString(), MediaType.APPLICATION_JSON_VALUE);
-        assertEquals(resp.getStatusCode(), 201);
+        assertEquals(201, resp.getStatusCode());
 
         assertNotNull(catalog.getLayerByName("cdf:foo"));
 
