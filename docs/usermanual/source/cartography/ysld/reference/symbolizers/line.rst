@@ -134,7 +134,7 @@ The default unit of measure for the symbolizer is defined using ``uom``. This ex
 .. code-block:: yaml
 
    line:
-     uom: http://www.opengeospatial.org/se/units/metre
+     uom: metre
      stroke-color: '#000000'
      stroke-width: '8'
      stroke-dasharray: '20 3'
