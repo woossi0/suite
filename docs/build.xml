@@ -72,7 +72,7 @@
               <sequential>
                <antcall target="assemble-artifact">
                     <param name="name" value="pdfdoc"/>
-                    <param name="dir" value="usermanual/target/latex/${suite.build_profile}"/>
+                    <param name="dir" value="usermanual/target/latex/"/>
                     <param name="includes" value="*.pdf"/>
                 </antcall>
                 <antcall target="assemble-artifact">
