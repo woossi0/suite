@@ -101,7 +101,7 @@ where:
      - ``normalize``
    * - ``gamma``
      - No
-     - Multipler value for contrast adjustment. A value greater than 1 will increase darkness, while a value less than 1 will decrease darkness.
+     - Multiplier value for contrast adjustment. A value greater than 1 will increase darkness, while a value less than 1 will decrease darkness.
      - ``1``
 
 Examples

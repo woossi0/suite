@@ -217,16 +217,28 @@ public class ImportController extends ApiController {
             
             //Update Store
             File baseDirectory = catalog.getResourceLoader().getBaseDirectory();
-            String url = "file:"+Paths.convert(baseDirectory, destFile);
+            
             if (store instanceof CoverageStoreInfo) {
-                storeFile = new File(new URL(((CoverageStoreInfo)store).getURL()).getFile());
-                if (!storeFile.getAbsoluteFile().equals(srcData.getFile().getAbsoluteFile())) {
+                storeFile = catalog.getResourceLoader().url(((CoverageStoreInfo)store).getURL());
+                //A CoverageStore needs a single file
+                String url = "file:"+Paths.convert(baseDirectory, destFile);
+                if (!(srcData.getFile().getAbsolutePath().equals(storeFile.getAbsolutePath())) ) {
                     throw new RuntimeException("CoverageStore file not the same as imported file");
                 }
                 ((CoverageStoreInfo)store).setURL(url);
             } else if (store instanceof DataStoreInfo){
-                storeFile = new File(new URL(store.getConnectionParameters().get("url").toString()).getFile());
-                if (!storeFile.getAbsoluteFile().equals(srcData.getFile().getAbsoluteFile())) {
+                storeFile = catalog.getResourceLoader().url(store.getConnectionParameters().get("url").toString());
+                /* A DataStore may contain multiple files as separate "tables".
+                 * Therefore, we use the store dir for the URL, and ensure the file location is 
+                 * somewhere in this directory.
+                 * * If the store file is the same as the destination directory, then we may be in 
+                 *   progress moving files.
+                 * * If the store file is a prefix of the source data file, then all is well
+                 * * Otherwise, we have a problem and should abort.
+                 */
+                String url = "file:"+Paths.convert(baseDirectory, destDir);
+                if (!(storeFile.equals(destDir.getAbsoluteFile()) 
+                        || srcData.getFile().getAbsolutePath().startsWith(storeFile.getAbsolutePath())) ) {
                     throw new RuntimeException("DataStore file not the same as imported file");
                 }
                 store.getConnectionParameters().put("url", url);
@@ -253,11 +265,12 @@ public class ImportController extends ApiController {
             } else {
                 destData = new FileData(destFile);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             //If this occurs, the store files will be in a temporary folder, so we should abort the import
             t.setError(e);
             t.setState(State.ERROR);
             store.accept(new CascadeDeleteVisitor(catalog));
+            importer.changed(t);
             throw new RuntimeException("Failed to move imported files to uploads directory", e);
         }
         //Copy over attributes from srcData
@@ -504,7 +517,9 @@ public class ImportController extends ApiController {
      * @param id The id of the import
      * @return A JSONObj containing the import details:
      * {
-     *    "id": 0, 
+     *    "id": 0,
+     *    "task": "Processing data usa-merc.tif"
+     *    "importerEndpoint":"http:\/\/localhost:8000\/geoserver\/geoserver\/rest\/imports\/1",
      *    "preimport": [],
      *    "running": [],
      *    "imported": [
@@ -534,10 +549,11 @@ public class ImportController extends ApiController {
      *    "tasksTotal":2
      *  }
      * 
-     * The response is an object with 11 properties. If this is a new import, and the context has
+     * The response is an object with 12 properties. If this is a new import, and the context has
      * not yet been created, only id and task will be included.
      * * id - The identifier of this import job, needed to make modifications to it
      * * task - A textual representation of the current task. Not included if no task is currently running.
+     * * importerEndpoint - REST endpoint to manage this import using the GeoServer Importer REST API
      * * status - The current status of the import. May be "pending", "running", or "complete"
      * * tasksComplete - The number of tasks that have been processed and have either been 
      *   successfully imported or given an error.

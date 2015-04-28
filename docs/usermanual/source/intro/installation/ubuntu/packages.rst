@@ -83,7 +83,7 @@ The following packages contain the server components of OpenGeo Suite. These pac
 Client/library packages
 -----------------------
 
-The following packages contain the client components of OpenGeo Suite. These packages are installed via the ``opengeo-clinet`` metapackage.
+The following packages contain the client components of OpenGeo Suite. These packages are installed via the ``opengeo-client`` meta-package.
 
 .. tabularcolumns:: |p{3cm}|p{6cm}|p{6cm}|
 .. list-table::
@@ -136,8 +136,8 @@ For more information, please see the section on :ref:`GeoServer extensions <intr
 The following packages are available:
 
 .. list-table::
-   :stub-columns: 1
    :header-rows: 1
+   :widths: 20 40 40
    :class: non-responsive
 
    * - Package
@@ -146,12 +146,15 @@ The following packages are available:
    * - ``geoserver-arcsde``
      - ArcSDE middleware extension for GeoServer
      - OpenGeo Suite Enterprise only
+   * - ``geoserver-app-schema``
+     - Application Schema support
+     - OpenGeo Suite Enterprise only
    * - ``geoserver-cluster``
      - Clustering extension for GeoServer. Use with ``geoserver-jdbcconfig``.
      - OpenGeo Suite Enterprise only
    * - ``geoserver-css``
      - CSS styling extension for GeoServer
-     - OpenGeo Suite Enterprise only
+     -
    * - ``geoserver-csw``
      - Catalogue Service for Web (CSW) extension for GeoServer
      - 
@@ -166,6 +169,9 @@ The following packages are available:
      - OpenGeo Suite Enterprise only
    * - ``geoserver-jdbcconfig``
      - Database catalog and configuration extension for GeoServer. Use with ``geoserver-cluster``.
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-inspire``
+     - Additional WMS and WFS metadata configuration for INSPIRE compliance
      - OpenGeo Suite Enterprise only
    * - ``geoserver-mapmeter``
      - Mapmeter extension for GeoServer

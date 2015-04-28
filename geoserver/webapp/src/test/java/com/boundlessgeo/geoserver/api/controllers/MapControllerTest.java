@@ -26,6 +26,7 @@ import com.boundlessgeo.geoserver.util.RecentObjectCache;
 
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.LayerGroupInfo;
+import org.geoserver.catalog.LayerInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.config.GeoServer;
 import org.geoserver.security.impl.GeoServerRole;
@@ -234,6 +235,9 @@ public class MapControllerTest {
                   .layer("two").style().point().layer().featureType().defaults().store("shape")
           .geoServer().build(geoServer);
         
+        LayerGroupInfo l = gs.getCatalog().getLayerGroupByName("map");
+        l.getMetadata().put("timeout", 1000);
+        
         MvcResult result = mvc.perform(get("/api/maps/foo/map"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -267,6 +271,8 @@ public class MapControllerTest {
             }
         });
 
+        assertEquals(1000L, obj.get("timeout"));
+        
         assertNotNull(obj.get("modified"));
     }
 
@@ -313,7 +319,7 @@ public class MapControllerTest {
                         .featureType().defaults().store("store")
             .geoServer().build(geoServer);
 
-        JSONObj obj = new JSONObj().put("title", "new title").put("proj", "EPSG:4326");
+        JSONObj obj = new JSONObj().put("title", "new title").put("proj", "EPSG:4326").put("timeout", 1000);
         MockHttpServletRequestBuilder req = put("/api/maps/foo/map")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
@@ -322,6 +328,7 @@ public class MapControllerTest {
 
         LayerGroupInfo l = gs.getCatalog().getLayerGroupByName("map");
         verify(l, times(1)).setTitle("new title");
+        assertEquals(1000L, l.getMetadata().get("timeout"));
     }
 
     @Test

@@ -150,16 +150,6 @@ import com.boundlessgeo.geoserver.json.JSONObj;
             }
             throw new IllegalStateException( message.toString() );
         }
-        try {
-            // If this store is file based, and was uploaded using this API or the REST upload API,
-            // delete the uploaded file.
-            java.io.File uploadDir = ImportController.uploadDir(cat, store.getWorkspace(), store);
-            if (uploadDir.exists()) {
-                Files.delete(uploadDir);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Could not delete store files for "+name, e);
-        }
         
         JSONObj json = new JSONObj();
         json.put("name", name  )

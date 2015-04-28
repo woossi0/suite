@@ -15,10 +15,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
+import javax.media.jai.PlanarImage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
@@ -50,6 +50,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boundlessgeo.geoserver.AppConfiguration;
 import com.boundlessgeo.geoserver.catalog.ThumbnailInvalidatingCatalogListener;
+import com.google.common.io.Closeables;
 import com.google.common.util.concurrent.Striped;
 import com.vividsolutions.jts.geom.Envelope;
 
@@ -133,29 +134,16 @@ public class ThumbnailController extends ApiController {
      * @throws Exception
      */
     public HttpEntity<byte[]> get(WorkspaceInfo ws, PublishedInfo layer, boolean hiRes) throws Exception {
-        String path = Metadata.thumbnail(layer);
+        String path = thumbnailFilename(layer, hiRes);
         FileInputStream in = null;
         
-        //Has not been generated yet, use WMS reflector
-        if (path == null) {
-            createThumbnail(ws, layer);
-            path = Metadata.thumbnail(layer);
-        }
         File thumbnailFile;
         //If the file has been deleted, recreate it
-        try {
-            thumbnailFile = config.getCacheFile(path);
-        } catch (FileNotFoundException e) {
+        if (!config.cacheFile(path).exists()) {
             createThumbnail(ws, layer);
-            path = Metadata.thumbnail(layer);
         }
         try {
-            if (hiRes) {
-                thumbnailFile = config.getCacheFile(path.replaceAll(
-                        EXTENSION+"$", EXTENSION_HR));
-            } else {
-                thumbnailFile = config.getCacheFile(path);
-            }
+            thumbnailFile = config.cacheFile(path);
             in = new FileInputStream(thumbnailFile);
             byte[] bytes = IOUtils.toByteArray(in);
             final HttpHeaders headers = new HttpHeaders();
@@ -175,7 +163,6 @@ public class ThumbnailController extends ApiController {
      * @throws Exception
      */
     protected void createThumbnail(WorkspaceInfo ws, PublishedInfo layer) throws Exception {
-        Catalog catalog = geoServer.getCatalog();
         //Sync against this map/layer
         Semaphore s = semaphores.get(layer);
         s.acquire();
@@ -229,20 +216,19 @@ public class ThumbnailController extends ApiController {
             BufferedImage image;
             if (response instanceof RenderedImageMap) {
                 RenderedImageMap map = (RenderedImageMap)response;
-                assert(map.getImage() instanceof BufferedImage);
-                image = (BufferedImage)map.getImage();
+                if (map.getImage() instanceof BufferedImage) {
+                    //Regular thumbnails
+                    image = (BufferedImage)map.getImage();
+                } else if (map.getImage() instanceof PlanarImage) {
+                    //Raster-only thumbnails
+                    image = ((PlanarImage)map.getImage()).getAsBufferedImage();
+                } else {
+                    throw new RuntimeException("Unsupported getMap image format:" + map.getImage().getClass().getName());
+                }
             } else {
                 throw new RuntimeException("Unsupported getMap response format:" + response.getClass().getName());
             }
-            
             writeThumbnail(layer, image);
-            Metadata.thumbnail(layer, thumbnailFilename(layer));
-            
-            if (layer instanceof LayerInfo) {
-                catalog.save((LayerInfo)layer);
-            } else if (layer instanceof LayerGroupInfo) {
-                catalog.save((LayerGroupInfo)layer);
-            }
         } finally {
             s.release();
         }
@@ -284,31 +270,36 @@ public class ThumbnailController extends ApiController {
     
     protected void writeThumbnail(PublishedInfo layer, BufferedImage image) throws FileNotFoundException, IOException, InterruptedException {
       //Write the thumbnail files
+        File loResFile = null;
+        File hiResFile = null;
         FileOutputStream loRes = null;
         FileOutputStream hiRes = null;
         
         try {
-            loRes = new FileOutputStream(config.createCacheFile(thumbnailFilename(layer)));
-            hiRes = new FileOutputStream(config.createCacheFile(thumbnailFilename(layer, true)));
+            loResFile = config.createCacheFile(thumbnailFilename(layer));
+            hiResFile = config.createCacheFile(thumbnailFilename(layer, true));
+            loRes = new FileOutputStream(loResFile);
+            hiRes = new FileOutputStream(hiResFile);
             
             ImageIO.write(scaleImage(image, 0.5, true), TYPE, loRes);
             //Don't scale, but crop to square
             ImageIO.write(scaleImage(image, 1.0, true), TYPE, hiRes);
+        } catch (Exception e) {
+            Closeables.close(loRes, true);
+            Closeables.close(hiRes, true);
+            
+            //If there was an error, remove the files we created, as they will be invalid
+            if (loResFile != null && loResFile.exists()) {
+                loResFile.delete();
+            }
+            if (hiResFile != null && hiResFile.exists()) {
+                hiResFile.delete();
+            }
+            //propagate the exception
+            throw e;
         } finally {
-            if (loRes != null) { 
-                try {
-                    loRes.close(); 
-                } catch (IOException e) {
-                    LOG.log(Level.WARNING, "Error closing file", e);
-                }
-            }
-            if (hiRes != null) { 
-                try {
-                    hiRes.close();
-                } catch (IOException e) {
-                    LOG.log(Level.WARNING, "Error closing file", e);
-                }
-            }
+            Closeables.close(loRes, true);
+            Closeables.close(hiRes, true);
         }
     }
     /**
@@ -350,8 +341,9 @@ public class ThumbnailController extends ApiController {
         if (scale != 1.0) {
             AffineTransform scaleTransform = AffineTransform.getScaleInstance(scale, scale);
             AffineTransformOp bilinearScaleOp = new AffineTransformOp(scaleTransform, AffineTransformOp.TYPE_BILINEAR);
-            scaled =  bilinearScaleOp.filter(image, new BufferedImage(
-                    (int)(image.getWidth()*scale), (int)(image.getHeight()*scale), image.getType()));
+            scaled =  bilinearScaleOp.filter(image, new BufferedImage(image.getColorModel(), 
+                    image.getRaster().createCompatibleWritableRaster((int)(image.getWidth()*scale), (int)(image.getHeight()*scale)), 
+                    image.isAlphaPremultiplied(), null));
         }
         if (square) {
             if (scaled.getHeight() > scaled.getWidth()) {

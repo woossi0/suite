@@ -42,6 +42,10 @@ The full syntax of a text symbolizer is::
         size: <expression>
         opacity: <expression>
         rotation: <expression>
+      geometry: <expression>
+      uom: <text>
+      x-composite-base: <boolean>
+      x-composite: <text>
       x-allowOverruns: <boolean>
       x-autoWrap: <expression>
       x-conflictResolution: <boolean>
@@ -161,7 +165,7 @@ where:
      - Specifies the level of transparency for the halo. Value of ``0`` means entirely transparent, while ``1`` means entirely opaque.
      - ``1``
 
-The following properties allow for a graphic to be displayed in addition to just a label. This is used when drawing "shields" (text overtop of a graphic) such as in road signs.
+The following properties allow for a graphic to be displayed in addition to just a label. This is used when drawing "shields" (text over top of a graphic) such as in road signs.
 
 .. list-table::
    :class: non-responsive
@@ -193,6 +197,8 @@ The following properties allow for a graphic to be displayed in addition to just
      - No
      - Value (in degrees) or rotation of the graphic. Larger values increase counter-clockwise rotation. A value of ``180`` will make the graphic upside-down.
      - ``0``
+
+.. include:: include/symbol.txt
 
 The following properties are equivalent to SLD "vendor options".
 
@@ -279,13 +285,15 @@ The following properties are equivalent to SLD "vendor options".
      - Minimum distance (in pixels) between two labels. A negative value specifies the maximum overlap between two labels.
      - 0
 
+.. include:: include/composite.txt
+
 Examples
 --------
 
 Basic label
 ~~~~~~~~~~~
 
-Text symbolizers are used to draw labels on objects. The label text is usually linked to some attribute of the layer. Font options are available in the ``font-family``, ``font-size``, ``font-style``, and ``font-weight`` properties. The following example draws a label using the ``name`` attribute of the layer, and with a SansSerif font of size 12, gray color, blod and italic::
+Text symbolizers are used to draw labels on objects. The label text is usually linked to some attribute of the layer. Font options are available in the ``font-family``, ``font-size``, ``font-style``, and ``font-weight`` properties. The following example draws a label using the ``name`` attribute of the layer, and with a SansSerif font of size 12, gray color, bold and italic::
 
   feature-styles:
   - name: name

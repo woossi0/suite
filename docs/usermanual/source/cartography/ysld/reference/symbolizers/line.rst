@@ -27,7 +27,10 @@ The full syntax of a line symbolizer is:
         <graphic_options>
       offset: <expression>
       geometry: <expression>
+      uom: <text>
       x-labelObstacle: <boolean>
+      x-composite-base: <boolean>
+      x-composite: <text>
 
 where:
 
@@ -47,12 +50,14 @@ where:
      - No
      - Value in pixels for moving the drawn line relative to the location of the feature. 
      - ``0``
-   * - ``geometry``
-     - No
-     - Specifies which attribute to use as the geometry.
-     - First geometry attribute found (often ``geom`` or ``the_geom``)
+
+.. include:: include/symbol.txt
+
+The following properties are equivalent to SLD "vendor options".
 
 .. include:: include/misc.txt
+
+.. include:: include/composite.txt
 
 Examples
 --------
@@ -61,7 +66,7 @@ Basic line with styled ends
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``linejoin`` and ``linecap`` properties can be used to style the joins and ends of any stroke.
-This example draws lines with transparent black lines with rounded ends and sharp (mitred) corners::
+This example draws lines with partially transparent black lines with rounded ends and sharp (mitred) corners::
 
   feature-styles:
   - rules:
@@ -105,14 +110,16 @@ Many maps use a hatched pattern to represent railroads. This can be accomplished
 Specifying sizes in units
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The units for ``stroke-width``, ``size``, and other similar attributes default to pixels, meaning that graphics remain a constant size at different zoom levels. Alternately, units (feet or meters) can be specified for values, so graphics will scale as you zoom in or out. This example draws roads with a fixed width of 8 meters::
+The units for ``stroke-width``, ``size``, and other similar attributes default to pixels, meaning that graphics remain a constant size at different zoom levels. Alternately, units (feet or meters) can be specified for values, so graphics will scale as you zoom in or out. This example draws roads with a fixed width of 8 meters:
 
-  feature-styles:
-  - rules:
-    - symbolizers:
-      - line:
-          stroke-color: '#000000'
-          stroke-width: '8 m'
+.. code-block:: yaml
+
+   feature-styles:
+   - rules:
+     - symbolizers:
+       - line:
+           stroke-color: '#000000'
+           stroke-width: '8 m'
 
 .. figure:: img/line_uomsmall.png
 
@@ -121,3 +128,17 @@ The units for ``stroke-width``, ``size``, and other similar attributes default t
 .. figure:: img/line_uombig.png
 
    Line width measured in meters (zoomed in)
+   
+The default unit of measure for the symbolizer is defined using ``uom``. This example uses a default of meters to supply distances for ``stroke-width`` and ``stroke-dasharray`` using meters.
+   
+.. code-block:: yaml
+
+   line:
+     uom: metre
+     stroke-color: '#000000'
+     stroke-width: '8'
+     stroke-dasharray: '20 3'
+     
+.. figure:: img/line-uom.png
+
+   Line width and spacing in meters

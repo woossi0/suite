@@ -27,6 +27,19 @@ The ArcSDE extension adds the ability for GeoServer to publish data from ArcSDE 
 
 Please visit the `ArcSDE 8.1 Service Pack 1 Readme <http://downloads2.esri.com/support/downloads/ao_/SP1_downloads/ArcSDE_sp1_readme.html>`_ for more information.
    
+.. _intro.extensions.appschema:
+
+App Schema
+----------
+
+.. note:: OpenGeo Suite Enterprise only.
+
+The Application Schema (or App Schema) extension allows the ability to apply a mapping from a simple data store such as a shapefile or database table to one or more complex feature types, conforming to a GML application schema.
+
+Once this extension is added, GeoServer can be configured with mapping files defining how content is to be processed as expected by a given application schema.
+
+For more information, please see the `GeoServer Application Schema documentation <../geoserver/data/app-schema/>`_.
+
 .. _intro.extensions.clustering:
 
 Clustering
@@ -56,8 +69,6 @@ Scripts for setting up clusters either on Amazon Web Services (AWS) or locally-h
 
 CSS Styling
 -----------
-
-.. note:: OpenGeo Suite Enterprise only.
 
 The CSS Styling extension adds functionality to GeoServer to be able to style layers using a syntax that is similar to CSS (Cascading Style Sheets). CSS can be preferable to the standard Styled Layer Descriptor (SLD) styling method, due to the compactness of CSS as well as greater familiarity.
 
@@ -102,7 +113,18 @@ GeoPackage
 ----------
 
 The GeoPackage extension adds the ability for GeoServer to publish data from `GeoPackage <http://www.geopackage.org/>`_ sources (a data format based on `SQLite <http://www.sqlite.org/>`_). Once this extension is added, GeoServer will show GeoPackage as one of its available data sources when adding a new store.
-   
+  
+.. _intro.extensions.inspire:
+
+INSPIRE
+-------
+
+.. note:: OpenGeo Suite Enterprise only.
+
+The INSPIRE extension provides additional metadata information for WMS and WFS services as required by the European Commission's `INSPIRE directive <http://inspire.ec.europa.eu>`__.
+
+For information on configuring WMS and WFS services, please see the `GeoServer INSPIRE documentation <../geoserver/extensions/inspire/>`_.
+
 .. _intro.extensions.mapmeter:
 
 Mapmeter

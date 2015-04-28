@@ -55,12 +55,15 @@ GeoServer Extensions
    * - ArcSDE
      - ArcSDE database support.
      - OpenGeo Suite Enterprise only
+   * - App Schema
+     - Application Schema support.
+     - OpenGeo Suite Enterprise only
    * - Clustering
      - :ref:`Clustering <sysadmin.clustering>` plug-ins.
      - OpenGeo Suite Enterprise only
    * - CSS Styling
      - CSS map styling support.
-     - OpenGeo Suite Enterprise only
+     - 
    * - CSW
      - Catalogue Service for Web (CSW) support.
      - 
@@ -76,6 +79,9 @@ GeoServer Extensions
    * - GeoScript
      - Scripting extension for GeoServer.
      - OpenGeo Suite Enterprise only
+   * - INSPIRE
+     - Additional WMS and WFS metadata configuration for INSPIRE compliance
+     - OpenGeo Suite Enterprise only
    * - Mapmeter
      - :ref:`Mapmeter <sysadmin.mapmeter>` monitoring service.
      - OpenGeo Suite Enterprise only
@@ -85,7 +91,7 @@ GeoServer Extensions
    * - Oracle
      - :ref:`Oracle <dataadmin.oracle>` database support.
      - OpenGeo Suite Enterprise only
-   * - SQL Server
+   * - SQLServer
      - SQL Server database support.
      - OpenGeo Suite Enterprise only
    * - WPS

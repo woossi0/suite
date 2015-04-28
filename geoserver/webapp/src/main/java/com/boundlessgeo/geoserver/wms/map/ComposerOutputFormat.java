@@ -13,11 +13,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.geoserver.platform.ServiceException;
 import org.geoserver.wms.GetMapRequest;
 import org.geoserver.wms.MapProducerCapabilities;
 import org.geoserver.wms.WMS;
@@ -85,14 +84,16 @@ public class ComposerOutputFormat extends RenderedImageMapOutputFormat {
      * A new instance of this class should be instantiated for each call to produceMap.
      */
     protected class InternalTimeoutOutputFormat extends RenderedImageMapOutputFormat {
-    
+        
         protected WMSMapContent mapContent = null;
         protected StreamingRenderer renderer = null;
         protected Graphics2D graphic = null;
         protected RenderedImage preparedImage = null;
         
         protected RenderedImageMap map = null;
-    
+        
+        protected ServiceException exception = null;
+        
         InternalTimeoutOutputFormat(WMS wms) {
             super(MIME_TYPE, new String[] {FORMAT}, wms);
         }
@@ -120,20 +121,38 @@ public class ComposerOutputFormat extends RenderedImageMapOutputFormat {
             } else if (localMaxRenderingTime != 0) {
                 maxRenderingTime = Math.min(maxRenderingTime, localMaxRenderingTime);
             }
-            
-            InternalTimeoutEnforcer timeout = new InternalTimeoutEnforcer(maxRenderingTime);
-            timeout.start();
+            Thread produceMapThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        InternalTimeoutOutputFormat.this.map = InternalTimeoutOutputFormat.super.produceMap(mapContent, tiled);
+                    } catch (ServiceException e) {
+                        exception = e;
+                    } catch (Throwable t) {
+                        LOGGER.log(Level.FINER, "produceMap() threw an unexpected error", t);
+                    }
+                }
+            });
             try {
-                map = super.produceMap(mapContent, tiled);
-            /*} catch (ServiceException e) {
-                LOGGER.log(Level.WARNING,"Service Exception. Returning partial image", e);*/
-            } finally {
-                timeout.stop();
+                produceMapThread.start();
+                //Wait until the rendering finishes or timeout is reached.
+                produceMapThread.join(maxRenderingTime);
+            } catch (InterruptedException e) {
+                LOGGER.log(Level.FINE, "Rendering was interrupted", e);
             }
-            if (timeout.timedOut) {
+            //Rendering Timed out; save the current map and stop the thread gracefully
+            if (produceMapThread.isAlive()) {
                 LOGGER.log(Level.FINE,"Renderer timed out. Returning partial image");
-            }
-            if (map == null) {
+                map = buildMap(mapContent, preparedImage);
+                //We have what we need, defer cleanup to a separate thread
+                new Thread(new StopRenderingRunnable(produceMapThread, renderer, graphic)).start();
+                
+            //Some other error occurred, try and get a partial map
+            } else if (this.map == null) {
+                map = buildMap(mapContent, preparedImage);
+                
+            //Rendering completed; get the complete map.
+            } else {
                 map = this.map;
             }
             //Clean up
@@ -142,7 +161,12 @@ public class ComposerOutputFormat extends RenderedImageMapOutputFormat {
             this.graphic = null;
             this.preparedImage = null;
             this.map = null;
-            
+            //If rendering threw an exception, throw it
+            if (exception != null) {
+                ServiceException e = exception;
+                exception = null;
+                throw e;
+            }
             return map;
         }
         
@@ -175,61 +199,35 @@ public class ComposerOutputFormat extends RenderedImageMapOutputFormat {
             return this.preparedImage;
         }
         
-        public class InternalTimeoutEnforcer {
-            long timeout;
-            Timer timer;
-            boolean timedOut = false;
-        
-            public InternalTimeoutEnforcer(long timeout) {
-                this.timeout = timeout;
+        public class StopRenderingRunnable implements Runnable {
+            Thread renderingThread;
+            StreamingRenderer renderer;
+            Graphics2D graphic;
+            
+            StopRenderingRunnable(Thread renderingThread, StreamingRenderer renderer, Graphics2D graphic) {
+                this.renderingThread = renderingThread;
+                this.renderer = renderer;
+                this.graphic = graphic;
             }
-            /**
-             * Starts checking the rendering timeout (if timeout is positive, does nothing otherwise)
-             */
-            public void start() {
-                if(timer != null)
-                    throw new IllegalStateException("The timeout enforcer has already been started");
+            
+            @Override
+            public void run() {
+                //ask nicely
+                renderer.stopRendering();
+                // ... but also be rude for extra measure (coverage rendering is
+                // an atomic call to the graphics, it cannot be stopped
+                // by the above)
+                graphic.dispose();
                 
-                if(timeout > 0) {
-                    timedOut = false;
-                    timer = new Timer();
-                    timer.schedule(new StopRenderingTask(), timeout);
+                //If the rendering does not finish in a timely fashion, force the thread to stop
+                try {
+                    renderingThread.join(1000);
+                } catch (InterruptedException e) {
+                    LOGGER.log(Level.FINE, "Rendering cleanup interrupted, this should not happen", e);
                 }
-            }
-            
-            /**
-             * Stops the timeout check
-             */
-            public void stop() {
-                if(timer != null) {
-                    timer.cancel();
-                    timer.purge();
-                    timer = null;
-                }
-            }
-            
-            /**
-             * Returns true if the renderer has been stopped mid-way due to the timeout occurring
-             */
-            public boolean isTimedOut() {
-                return timedOut;
-            }
-            
-            class StopRenderingTask extends TimerTask {
-                @Override
-                public void run() {
-                    // mark as timed out
-                    timedOut = true;
-                    
-                    //Save the current image
-                    map = buildMap(mapContent, preparedImage);
-                    // ask gently...
-                    renderer.stopRendering();
-                    // ... but also be rude for extra measure (coverage rendering is
-                    // an atomic call to the graphics, it cannot be stopped
-                    // by the above)
-                    graphic.dispose();
-                    
+                if (renderingThread.isAlive()) {
+                    LOGGER.log(Level.WARNING,"Renderer stopRendering() timed out. Killing renderer thread");
+                    renderingThread.stop();
                 }
             }
         }
