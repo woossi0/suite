@@ -67,29 +67,35 @@
         </antcall>
 
         <if>
-            <equals arg1="${pdflatex.isPresent}" arg2="true"/>
+            <available file="OpenGeoSuiteUserManual.pdf" filepath="usermanual/target/latex/"/>
             <then>
-              <sequential>
                <antcall target="assemble-artifact">
                     <param name="name" value="pdfdoc"/>
-                    <param name="dir" value="usermanual/target/latex/${suite.build_profile}"/>
+                    <param name="dir" value="usermanual/target/latex/"/>
                     <param name="includes" value="*.pdf"/>
                 </antcall>
+            </then>
+        </if>
+        <if>
+            <available file="README-mac.pdf" filepath="install/mac/target/latex/"/>
+            <then>
                 <antcall target="assemble-artifact">
                     <param name="name" value="osx-readme"/>
                     <param name="dir" value="install/mac/target/latex/"/>
                     <param name="includes" value="README*.pdf"/>
                 </antcall>
+            </then>
+        </if>
+        <if>
+            <available file="README-windows.pdf" filepath="install/windows/target/latex/"/>
+            <then>
+
                 <antcall target="assemble-artifact">
                     <param name="name" value="win-readme"/>
                     <param name="dir" value="install/windows/target/latex/"/>
                     <param name="includes" value="README*.pdf"/>
                 </antcall>
-              </sequential>
             </then>
-            <else>
-                <echo message="Skipping pdf assembly."/>
-            </else>
         </if>
     </target>
 
@@ -100,22 +106,30 @@
           <param name="path" value="docs"/>
         </antcall>
         <if>
-          <equals arg1="${pdflatex.isPresent}" arg2="true"/>
+          <available file="suite-pdfdoc-${suite.build_rev}.zip" filepath="target"/>
           <then>
-            <sequential>
               <antcall target="publish-artifact">
                   <param name="name" value="pdfdoc"/>
                   <param name="path" value="docs"/>
               </antcall>
+          </then>
+        </if>
+        <if>
+          <available file="suite-osx-readme-${suite.build_rev}.zip" filepath="target"/>
+            <then>
               <antcall target="publish-artifact">
                   <param name="name" value="osx-readme"/>
                   <param name="path" value="docs"/>
               </antcall>
+            </then>
+        </if>
+        <if>
+          <available file="suite-win-readme-${suite.build_rev}.zip" filepath="target"/>
+            <then>
               <antcall target="publish-artifact">
                   <param name="name" value="win-readme"/>
                   <param name="path" value="docs"/>
               </antcall>
-            </sequential>
           </then>
         </if>
     </target>
