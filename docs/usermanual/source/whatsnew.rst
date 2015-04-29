@@ -5,40 +5,49 @@ What's new in |version|
 
 Each new version of OpenGeo Suite includes numerous fixes and component upgrades.
 
-In addition, OpenGeo Suite |version| has been updated with all-new features, including:
+In addition, OpenGeo Suite |version| has been updated features, including:
 
-**Composer**
+.. only:: enterprise
 
-:ref:`Composer <webmaps.composer>` is a new integrated tool for easily making maps and styling layers in GeoServer. It includes the all-new :ref:`YSLD <cartography.ysld>` markup language which vastly simplifies map styling.
+   **Composer**
 
-Composer is available for OpenGeo Suite Enterprise only.
+   :ref:`Composer <webmaps.composer>` is a new integrated tool for easily making maps and styling layers in GeoServer. It includes the all-new :ref:`YSLD <cartography.ysld>` markup language which vastly simplifies map styling.
 
-**OpenLayers 3**
+   Composer is available for OpenGeo Suite Enterprise only.
 
-The latest version of OpenLayers 3 is included, offering new visualization options for modern browsers including `integration with Cesium <http://openlayers.org/ol3-cesium/>`_ for visualizing data on the globe.
+**OpenLayers 3.4.0**
 
-If you are new to OpenLayers 3 be sure to check out the :ref:`Boundless SDK <webapps.sdk>`, which has web application templates that utilize OpenLayers 3.
+The latest version of OpenLayers 3 is included, offering new visualization options for modern browsers including `integration with Cesium <http://openlayers.org/ol3-cesium/>`_ for visualizing data on a globe.
 
 **Java 7**
 
 Java 7 is now required for OpenGeo Suite on all platforms. OpenGeo Suite is tested with both Oracle JRE and OpenJDK.
 
-**GeoServer 2.6**
+**PostGIS 2.1.7**
 
-The latest branch of GeoServer, version 2.6, is included. This contains the following improvements.
+PostGIS has been upgraded to version 2.1.7. This contains the following improvements.
 
-* New graphic options including "windbarbs" and custom WKT graphics
+   * Substantial disk space savings for users with large tables.
 
-* Oracle SDO users can now enjoy support for curves
+   * Fixed critical bug in GeoJSON ingestion
 
-* Coverage views to dynamically recombine bands into a multi-band coverage
+**GeoServer 2.7**
 
-* Can now define an image mosaic "no data" area using a vector footprint
+The latest branch of GeoServer, version 2.7, is included. This contains the following improvements.
 
-* All new implementation of cascading (external) WFS data store 
+.. only:: basic
 
-* WFS Transactions (WFS-T, for read-write actions) now turned off by default for improved security.
+   * Color composition and blending allows for greater control over how overlapping layers are styled
 
-* CSS styles may now be managed in the GeoServer admin interface like any other style
+   * Relative time support in WMS/WCS
 
-* :ref:`YSLD <cartography.ysld>` styles—those used by :ref:`Composer <webmaps.composer>`—may also be managed in the GeoServer admin interface like any other style.
+   * Web Processing Service (WPS) improvements for clustering, limits, security, and dismiss
+
+   * Improved WFS Cascade with support for republishing stored queries
+
+.. only:: enterprise
+
+   * Clustering Extension improvements related to UI performance with large catalogs and JDBCConfig
+
+   * :ref:`Composer <webmaps.composer>`, for writing GeoServer styles in :ref:`YSLD <cartography.ysld>`, has been updated with an OpenLayers 3 export option, database import improvements and bug fixes. Composer is available from GeoServer Admin (left sidebar bottom link).
+
