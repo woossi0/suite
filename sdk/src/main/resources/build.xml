@@ -166,7 +166,7 @@
             <fileset dir="${app.fullpath}/src/ol3"/>
         </copy>
         <!-- copy ol3-cesium resources -->
-        <copy todir="${app.build}/src/ol3-cesium">
+        <copy todir="${app.build}/src/ol3-cesium" failonerror="false">
             <fileset dir="${app.fullpath}/src/ol3-cesium">
                 <include name="**/*"/>
             </fileset>
