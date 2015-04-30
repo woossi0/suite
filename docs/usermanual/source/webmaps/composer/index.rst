@@ -15,7 +15,7 @@ This section will detail how to use Composer.
 
 .. note:: Composer is only available with `OpenGeo Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
 
-.. warning:: Composer has been known to cause issues when used with the :ref:`sysadmin.clustering` extension. If using this extension, please make a backup of your data directory before performing any tasks with Composer, and then be sure to verify the output.
+.. warning:: Composer should not be used in a clustered environment. If you do attempt to use Composer with a :ref:`GeoServer cluster <sysadmin.clustering>`, please note that you will need a shared data directory, and be sure to verify any changes made.
 
 .. toctree::
    :maxdepth: 2
