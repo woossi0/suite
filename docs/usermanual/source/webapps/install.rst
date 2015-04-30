@@ -17,6 +17,10 @@ Boundless SDK is included in OpenGeo Suite for Windows as an optional component.
 
 If you have already installed OpenGeo Suite, the installer can be rerun and just this option checked. That will install the SDK without affecting the current installation.
 
+.. figure:: img/winwebappsdk.png
+
+   Installing the SDK from the Components page
+
 OS X
 ~~~~
 
