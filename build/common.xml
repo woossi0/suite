@@ -284,7 +284,6 @@ Common build targets.
         <arg line="-Dsuite.build_date='${suite.build_date}'"/>
         <arg line="-Dsuite.build_prettydate='${suite.build_prettydate}'"/>
         <arg line="-Dsuite.build_profile=${suite.build_profile}"/>
-        <arg line="-Dsuite.build_shortdate=${suite.build_shortdate}"/>
      </exec>
   </target>
 
