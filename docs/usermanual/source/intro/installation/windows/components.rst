@@ -5,7 +5,7 @@ Components
 
 The following is a list of components available for OpenGeo Suite on Windows. These are accessible from the **Components** page of the installer.
 
-Adding or removing components to OpenGeo Suite can be accomplished by running the installer again and selecting or deselecting the appropriate component.
+Adding components to OpenGeo Suite can be accomplished by running the installer again and selecting the appropriate component.
 
 .. note:: The list of available components differs between OpenGeo Suite and OpenGeo Suite Enterprise. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
 
