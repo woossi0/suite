@@ -93,6 +93,12 @@ Installation process
 
       apt-get install opengeo-tomcat6- opengeo-tomcat7
 
+#. Remove the existing ``libgdal`` package if it exists, as it can cause conflicts on upgrade:
+
+   .. code-block:: bash
+
+      apt-get remove libgdal
+
 #. You have options on what packages to install:
 
    .. note::  See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details of individual packages.
