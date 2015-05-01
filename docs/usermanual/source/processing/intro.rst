@@ -46,12 +46,4 @@ For example, one can run the ``JTS:union`` process on a collection of geometries
 SQL Views
 ~~~~~~~~~
 
-Another way to perform spatial processing is by using the `SQL Views <../geoserver/data/database/sqlview.html>`_ functionality in GeoServer.  When backed by the powerful capabilities of a database such as PostGIS, SQL Views provide an effective way to transform and analyze spatial datasets.  Using a SQL View, a layer can be defined as the result of a spatial query on a PostGIS dataset.  This layer can then be visualized by WMS, queried via WFS, and even used in further processing operations.  Spatial queries in PostGIS support a wide variety of spatial processing, including data transformation, spatial analysis, and even raster processing (OpenGeo Suite 3.0 / PostGIS 2 and newer).
-
-
-.. Commented out until GeoScript is included.
-
-.. GeoScript
-.. ~~~~~~~~~
-..
-.. As an additional option, administrators can utilize basic processing functionality through GeoScript, a tool that adds spatial capabilities to scripting languages such as JavaScript and Python.  GeoScript facilitates a connection between these languages and the Java Virtual Machine where GeoServer runs, eliminating the need for coding processes directly in Java.
+Another way to perform spatial processing is by using the `SQL Views <../geoserver/data/database/sqlview.html>`_ functionality in GeoServer.  When backed by the powerful capabilities of a database such as PostGIS, SQL Views provide an effective way to transform and analyze spatial datasets.  Using a SQL View, a layer can be defined as the result of a spatial query on a PostGIS dataset.  This layer can then be visualized by WMS, queried via WFS, and even used in further processing operations.  Spatial queries in PostGIS support a wide variety of spatial processing, including data transformation, spatial analysis, and even raster processing.
