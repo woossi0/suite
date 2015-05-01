@@ -165,7 +165,7 @@ GeoScript
 
 .. note:: OpenGeo Suite Enterprise only.
 
-The GeoScript extension adds support for the use of Python and JavaScript in GeoServer. Spatial capabilities are added to these dynamic scripting languages allowing the quick generation of custom processes.
+The GeoScript extension adds support for the use of Python in GeoServer. Spatial capabilities are added to Python allowing for the quick generation of custom processes.
 
 For more information on scripting in OpenGeo Suite, please see the :ref:`processing.scripting` section.
 

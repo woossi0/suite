@@ -13,18 +13,18 @@ Boundless SDK is easiest to install as part of OpenGeo Suite.
 Windows
 ~~~~~~~
 
-Boundless SDK is included in OpenGeo Suite for Windows as an optional component.
+Boundless SDK is included in OpenGeo Suite for Windows as an optional component. During the :ref:`intro.installation.windows` process, on the :guilabel:`Components` page, expand the :guilabel:`Dev Tools` tree and select :guilabel:`Boundless SDK`.
 
-#. A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ will need to be downloaded and installed. The standard Java Runtime Environment (JRE) bundled with OpenGeo Suite is not sufficient. To verify installation execute the command ``javac -version`` from the command prompt.
+If you have already installed OpenGeo Suite, the installer can be rerun and just this option checked. That will install the SDK without affecting the current installation.
 
-#. During the :ref:`intro.installation.windows` process, on the :guilabel:`Components` page, expand the :guilabel:`Dev Tools` tree and select :guilabel:`Boundless SDK`.
+.. figure:: img/winwebappsdk.png
+
+   Installing the SDK from the Components page
 
 OS X
 ~~~~
 
 Boundless SDK is part of the OS X OpenGeo Suite CLI tools.
-
-#. A `Java Development Kit (JDK) <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_ will need to be downloaded and installed. The standard Java Runtime Environment (JRE) bundled with OpenGeo Suite is not sufficient. To verify installation execute the command ``javac -version`` from the command prompt.
 
 #. In the OpenGeo folder, double-click :guilabel:`OpenGeo CLI Tools`.
 
@@ -41,33 +41,24 @@ Boundless SDK is part of the OS X OpenGeo Suite CLI tools.
 Ubuntu Linux
 ~~~~~~~~~~~~
 
-Boundless SDK is available as an individual package, installed through standard package management.
+Boundless SDK is available as an individual package, installed through standard package management tools.
 
-#. Install the package is called ``opengeo-webapp-sdk``.
+#. Install the package called ``opengeo-webapp-sdk``.
 
    .. code-block:: console
 
       sudo apt-get install opengeo-webapp-sdk
 
-#. This package depends on 'OpenJDK 7 <http://openjdk.java.net>`_ . To verify this is available, execute the command ``javac -version`` from the command prompt.
-
-#. This package depends on `Apache Ant <http://ant.apache.org>`_ . To verify this is available, execute the command ``ant -version`` from a command prompt.
-
-
 Red Hat-based Linux
 ~~~~~~~~~~~~~~~~~~~
 
-Boundless SDK is available as an individual package, installed through standard package management.
+Boundless SDK is available as an individual package, installed through standard package management tools.
 
 #. Install the package called ``opengeo-webapp-sdk``.
 
    .. code-block:: console
 
       sudo yum install opengeo-webapp-sdk
-   
-#. This package depends on 'OpenJDK 7 <http://openjdk.java.net>`_ . To verify this is available, execute the command ``javac -version`` from the command prompt.
-
-#. This package depends on `Apache Ant <http://ant.apache.org>`_ . To verify this is available, execute the command ``ant -version`` from a command prompt.
 
 Application Servers
 ~~~~~~~~~~~~~~~~~~~
