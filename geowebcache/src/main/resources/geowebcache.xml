@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <gwcConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-                  xsi:noNamespaceSchemaLocation="http://geowebcache.org/schema/1.5.0/geowebcache.xsd" 
-                  xmlns="http://geowebcache.org/schema/1.5.0">
-<version>1.5.0</version>
+                  xsi:noNamespaceSchemaLocation="http://geowebcache.org/schema/1.7.0/geowebcache.xsd" 
+                  xmlns="http://geowebcache.org/schema/1.7.0">
+<version>1.7.0</version>
 <backendTimeout>120</backendTimeout>
 <gridSets>
   <!-- Grid Set Example, 
-       by default EPSG:900913 and EPSG:4326 are defined -->
+       by default EPSG:900913/EPSG3857/GoogleMapsCompatible and
+       EPSG:4326/GoogleCRS84Quad are defined -->
   <gridSet>
-    <!-- This does not have to be an EPSG code, you can also 
-         have multiple gridSet elements per SRS -->
-    <name>EPSG:3034</name>
-    <srs><number>3034</number></srs>
+    <name>ETRS-LCC</name>
+    <srs><number>3034</number></srs> <!-- EPSG number of the CRS -->
     <extent>
-      <coords>
+      <coords> <!-- Bounding box in the CRS coordinates-->
         <double>2033618.238</double>
         <double>826551.000</double>
         <double>6751120.078</double>
         <double>5145060.146</double>
       </coords>
     </extent>
-    <scaleDenominators>
+    <scaleDenominators> <!-- Scales for the zoom levels -->
+      <double>32000000</double>
+      <double>16000000</double>
       <double>8000000</double>
       <double>4000000</double>
       <double>2000000</double>
@@ -36,37 +37,15 @@
 
   <wmsLayer>
     <name>world</name>
-    <grids>
-     <entry>
-      <srs>
-        <number>4326</number>
-      </srs>
-      <grid>
-        <srs>
-          <number>4326</number>
-        </srs>
-        <!-- If in doubt, set dataBounds and gridBounds to be the same -->
-        <dataBounds>
-          <coords>
-            <double>-180</double>
-            <double>-90</double>
-            <double>180</double>
-            <double>90</double>
-          </coords>
-        </dataBounds>
-        <gridBounds>
-          <coords>
-            <double>-180</double>
-            <double>-90</double>
-            <double>180</double>
-            <double>90</double>
-          </coords>
-        </gridBounds>
-        <zoomStart>0</zoomStart>
-        <zoomStop>25</zoomStop>
-      </grid>
-    </entry>
-  </grids>
+    <gridSubsets> <!-- Use two of the predefined gridsets -->
+      <gridSubset>
+        <gridSetName>GoogleCRS84Quad</gridSetName>
+      </gridSubset>
+      <gridSubset>
+        <gridSetName>EPSG:900913</gridSetName>
+      </gridSubset>
+    </gridSubsets>
+    <mimeFormats><string>image/png</string></mimeFormats>
     <wmsUrl><string>http://suite.opengeo.org/geoserver/wms</string></wmsUrl>
   </wmsLayer>
 
@@ -74,48 +53,20 @@
     <name>europe</name>
     <gridSubsets>
       <gridSubset>
-        <gridSetName>EPSG:3034</gridSetName>
+        <gridSetName>ETRS-LCC</gridSetName>
       </gridSubset>
     </gridSubsets>
-    <grids>
-     <entry>
-      <srs>
-        <number>3034</number>
-      </srs>
-      <grid>
-        <srs>
-          <number>3034</number>
-        </srs>
-        <!-- If in doubt, set dataBounds and gridBounds to be the same -->
-        <dataBounds>
-	  <coords>
-	    <double>2033618.238</double>
-	    <double>826551.000</double>
-	    <double>6751120.078</double>
-	    <double>5145060.146</double>
-	  </coords>
-        </dataBounds>
-        <gridBounds>
-	  <coords>
-	    <double>2033618.238</double>
-	    <double>826551.000</double>
-	    <double>6751120.078</double>
-	    <double>5145060.146</double>
-	  </coords>
-        </gridBounds>
-        <zoomStart>0</zoomStart>
-        <zoomStop>5</zoomStop>
-      </grid>
-     </entry>
-    </grids>
     <wmsUrl><string>http://suite.opengeo.org/geoserver/wms</string></wmsUrl>
     <wmsLayers>world</wmsLayers>
+
+    <mimeFormats><string>image/jpeg</string></mimeFormats>
     
     <!-- Fill in the transparent background with blue -->
     <transparent>false</transparent>
     <bgColor>0x0066FF</bgColor>
 
-    <!-- Layer style has fixed labels and so is succeptible to lost labels at metatile boundaries.  A wide gutter helps. -->
+    <!-- Layer style has fixed labels and so is succeptible to lost labels at 
+         metatile boundaries.  A wide gutter helps. -->
     <gutter>60</gutter>
   </wmsLayer>
   
