@@ -7,8 +7,6 @@ Each new version of OpenGeo Suite includes numerous fixes and component upgrades
 
 In addition, OpenGeo Suite |version| has been updated features, including:
 
-.. only:: enterprise
-
    **Composer**
 
    :ref:`Composer <webmaps.composer>` is a new integrated tool for easily making maps and styling layers in GeoServer. It includes the all-new :ref:`YSLD <cartography.ysld>` markup language which vastly simplifies map styling.
@@ -35,8 +33,6 @@ PostGIS has been upgraded to version 2.1.7. This contains the following improvem
 
 The latest branch of GeoServer, version 2.7, is included. This contains the following improvements.
 
-.. only:: basic
-
    * Color composition and blending allows for greater control over how overlapping layers are styled
 
    * Relative time support in WMS/WCS
@@ -45,9 +41,9 @@ The latest branch of GeoServer, version 2.7, is included. This contains the foll
 
    * Improved WFS Cascade with support for republishing stored queries
 
-.. only:: enterprise
+ In **GeoServer for OpenGeo Suite Enterprise**
 
    * Clustering Extension improvements related to UI performance with large catalogs and JDBCConfig
 
-   * :ref:`Composer <webmaps.composer>`, for writing GeoServer styles in :ref:`YSLD <cartography.ysld>`, has been updated with an OpenLayers 3 export option, database import improvements and bug fixes. Composer is available from GeoServer Admin (left sidebar bottom link).
+   * :ref:`Composer <webmaps.composer>`, for writing GeoServer styles in :ref:`YSLD <cartography.ysld>`, has been updated with an OpenLayers 3 export option, asynchronous database import improvements and bug fixes. Composer is available from GeoServer Admin (left sidebar bottom link).
 
