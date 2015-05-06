@@ -1,7 +1,7 @@
 .. _intro.installation.redhat.minorupdate:
 
-Updating a minor version
-========================
+Upgrading a minor version
+=========================
 
 This section describes how to perform a minor update from OpenGeo Suite 4.x to |version| on Red Hat-based Linux distributions.
 
@@ -15,10 +15,10 @@ This section describes how to perform a minor update from OpenGeo Suite 4.x to |
 
 .. include:: include/sysreq.txt
 
-Pre-installation process
-------------------------
+Pre-upgrade process
+-------------------
 
-This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <intro.installation.redhat.packages>` section for details about the possible packages to install.
+This process will add the OpenGeo Suite package repository and then upgrade the appropriate packages. See the :ref:`Packages <intro.installation.redhat.packages>` section for details about the possible packages to upgrade.
 
 .. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
 
@@ -55,8 +55,8 @@ The commands in this section require root privileges.
      .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__.
 
 
-Installation process
---------------------
+Upgrade process
+---------------
 
 #. Search for OpenGeo Suite packages to verify that the repository list is correct. If the command does not return any results, examine the output of the ``yum`` command for any errors or warnings.
 
@@ -71,47 +71,47 @@ Installation process
       rpm -e --nodeps --noscripts opengeo-tomcat 
       yum remove tomcat6
 
-#. You have options on what packages to install:
+#. You have options on what packages to upgrade:
 
    .. note::  See the :ref:`Packages <intro.installation.redhat.packages>` section for details of individual packages.
 
-   * To install typical server components:
+   * To upgrade typical server components:
 
      .. code-block:: bash
 
-        yum install opengeo-server
+        yum upgrade opengeo-server
 
-   * To install typical client components:
-
-     .. code-block:: bash
-
-        yum install opengeo-client
-
-   * To install typical client and server components:
+   * To upgrade typical client components:
 
      .. code-block:: bash
 
-        yum install opengeo
+        yum upgrade opengeo-client
 
-  .. note:: If you encounter an error where gdal failed to install, you may need to manually uninstall gdal-filegdb:
+   * To upgrade typical client and server components:
+
+     .. code-block:: bash
+
+        yum upgrade opengeo
+
+  .. note:: If you encounter an error where gdal failed to upgrade, you may need to manually uninstall gdal-filegdb:
 
       .. code-block:: bash
 
          yum remove gdal-filegdb
 
-#. Be sure to update any all additional See the :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
+#. Be sure to upgrade any all additional See the :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
 
-   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+   * To upgrade the :ref:`Boundless SDK <webapps.sdk>`:
 
      .. code-block:: bash
 
-        yum install opengeo-webapp-sdk
+        yum upgrade opengeo-webapp-sdk
 
    * To update a GeoServer extension such as :ref:`WPS <processing>`:
 
-        yum install geoserver-wps
+        yum upgrade geoserver-wps
 
-After update
-------------
+After upgrade
+-------------
 
-The update is now complete. Please see the section on :ref:`intro.installation.redhat.postinstall` to continue.
+The upgrade is now complete. Please see the section on :ref:`intro.installation.redhat.postinstall` to continue.
