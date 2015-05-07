@@ -139,6 +139,7 @@ public class ImportController extends ApiController {
         if (!uploadDir.exists()) {
             throw new RuntimeException("Unable to create directory for file upload");
         }
+        uploadDir.deleteOnExit();
 
         // pass off the uploaded file(s) to the importer
         Directory dir = new Directory(uploadDir);
@@ -245,19 +246,33 @@ public class ImportController extends ApiController {
             } else {
                 throw new RuntimeException("Invalid store type: "+store.getClass());
             }
+            //Test if we can actually move the file; otherwise copy the file.
+            boolean move = srcFile.renameTo(srcFile);
             
-            Files.move(srcData.getFile().toPath(), destFile.toPath());
+            if (move) {
+                Files.move(srcFile.toPath(), destFile.toPath());
+            } else {
+                Files.copy(srcFile.toPath(), destFile.toPath());
+            }
             //move any supplementary files, update ImportData
             if (srcData instanceof SpatialFile) {
                 destData = new SpatialFile(destFile);
                 if (((SpatialFile)srcData).getPrjFile() != null) {
                     File prjFile = new File(destDir, ((SpatialFile)srcData).getPrjFile().getName());
-                    Files.move(((SpatialFile)srcData).getPrjFile().toPath(), prjFile.toPath());
+                    if (move) {
+                        Files.move(((SpatialFile)srcData).getPrjFile().toPath(), prjFile.toPath());
+                    } else{
+                        Files.copy(((SpatialFile)srcData).getPrjFile().toPath(), prjFile.toPath());
+                    }
                     ((SpatialFile)destData).setPrjFile(prjFile);
                 }
                 for (File f : ((SpatialFile)srcData).getSuppFiles()) {
                     File suppFile = new File(destDir, f.getName());
-                    Files.move(f.toPath(), suppFile.toPath());
+                    if (move) {
+                        Files.move(f.toPath(), suppFile.toPath());
+                    } else {
+                        Files.copy(f.toPath(), suppFile.toPath());
+                    }
                     ((SpatialFile)destData).getSuppFiles().add(suppFile);
                 }
             } else if (srcData instanceof ASpatialFile) {
@@ -270,7 +285,6 @@ public class ImportController extends ApiController {
             t.setError(e);
             t.setState(State.ERROR);
             store.accept(new CascadeDeleteVisitor(catalog));
-            importer.changed(t);
             throw new RuntimeException("Failed to move imported files to uploads directory", e);
         }
         //Copy over attributes from srcData
