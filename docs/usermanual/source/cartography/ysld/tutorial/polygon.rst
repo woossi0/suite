@@ -392,7 +392,7 @@ Much of the styling content in each of the filters used above is repeated. This 
           - polygon:
               <<: *polystyle
               fill-color: '#C3FFFF'
-       - filter: ${MAPCOLOR7 = 6}
+        - filter: ${MAPCOLOR7 = 6}
           symbolizers:
           - polygon:
               <<: *polystyle

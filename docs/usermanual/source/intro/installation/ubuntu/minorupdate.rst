@@ -1,9 +1,9 @@
 .. _intro.installation.ubuntu.minorupdate:
 
-Updating a minor version
-========================
+Upgrading a minor version
+=========================
    
-This section describes how to perform a minor update from OpenGeo Suite 4.x to |version| on Ubuntu Linux.
+This section describes how to perform a minor upgrade from OpenGeo Suite 4.x to |version| on Ubuntu Linux.
 
 .. note::
 
@@ -19,10 +19,10 @@ This section describes how to perform a minor update from OpenGeo Suite 4.x to |
 
 .. include:: include/sysreq.txt
 
-Pre-installation process
-------------------------
+Pre-upgrade process
+-------------------
 
-This installation will add the OpenGeo Suite package repository and then install the appropriate packages. See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details about the possible packages to install.
+This upgrade will add the OpenGeo Suite package repository and then upgrade the appropriate packages. See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details about the possible packages to install.
 
 .. warning:: Mixing repositories with is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
 
@@ -42,38 +42,38 @@ The commands in this section require root privileges.
 
 #. Add the OpenGeo Suite repository:
 
-   * If installing **OpenGeo Suite** on **Ubuntu 12**:
+   * If upgrading **OpenGeo Suite** on **Ubuntu 12**:
 
      .. code-block:: bash
 
         echo "deb https://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
-   * If installing **OpenGeo Suite** on **Ubuntu 14**:
+   * If upgrading **OpenGeo Suite** on **Ubuntu 14**:
 
      .. code-block:: bash
 
         echo "deb https://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
-   * If installing **OpenGeo Suite Enterprise** on **Ubuntu 12**:
+   * If upgrading **OpenGeo Suite Enterprise** on **Ubuntu 12**:
 
      .. code-block:: bash
 
-        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" >> /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
      Making sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
-   * If installing **OpenGeo Suite Enterprise** on **Ubuntu 14**:
+   * If upgrading **OpenGeo Suite Enterprise** on **Ubuntu 14**:
 
      .. code-block:: bash
 
-        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" >> /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
      Making sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
    .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__.
 
-Installation process
---------------------
+Upgrade process
+---------------
 
 #. Update the repository list:
 
@@ -91,7 +91,7 @@ Installation process
 
    .. code-block:: bash
 
-      apt-get install opengeo-tomcat6- opengeo-tomcat7
+      apt-get upgrade opengeo-tomcat6- opengeo-tomcat7
 
 #. Remove the existing ``libgdal`` package if it exists, as it can cause conflicts on upgrade:
 
@@ -99,43 +99,45 @@ Installation process
 
       apt-get remove libgdal
 
-#. You have options on what packages to install:
+#. You have options on what packages to upgrade:
 
    .. note::  See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details of individual packages.
 
-   * To install typical server components:
+   * To upgrade typical server components:
 
      .. code-block:: bash
 
-        apt-get install opengeo-server
+        apt-get upgrade opengeo-server
 
-   * To install typical client components:
-
-     .. code-block:: bash
-
-        apt-get install opengeo-client
-
-   * To install typical client and server components:
+   * To upgrade typical client components:
 
      .. code-block:: bash
 
-        apt-get install opengeo
+        apt-get upgrade opengeo-client
+
+   * To upgrade typical client and server components:
+
+     .. code-block:: bash
+
+        apt-get upgrade opengeo
 
 #. Update any other additional :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example:
 
-   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+   * To upgrade the :ref:`Boundless SDK <webapps.sdk>`:
 
      .. code-block:: bash
 
-        apt-get install opengeo-webapp-sdk
+        apt-get upgrade opengeo-webapp-sdk
 
    * To update a GeoServer extension such as :ref:`WPS <processing>`:
 
      .. code-block:: bash
 
-        apt-get install geoserver-wps
+        apt-get upgrade geoserver-wps
 
 After update
 ------------
+
+If you have changed the GeoServer data directory by setting ``GEOSERVER_DATA_DIRECTORY`` in ``/etc/defaults/tomcat7`` the update process will reset it back to the default location.  This change is often done as part of setting up a cluster.  If you have changed it, be sure to remember and re-make your change after the update.  The effects of running GeoServer with the wrong data directory can be highly variable.
 
 The update is now complete. Please see the section on :ref:`intro.installation.ubuntu.postinstall` to continue.

@@ -319,9 +319,9 @@ public class ThumbnailController extends ApiController {
      */
     public static final String thumbnailFilename(PublishedInfo layer, boolean hiRes) {
         if (hiRes) {
-            return layer.getId()+EXTENSION_HR;
+            return AppConfiguration.sanitizeFilename(layer.getId())+EXTENSION_HR;
         }
-        return layer.getId()+EXTENSION;
+        return AppConfiguration.sanitizeFilename(layer.getId())+EXTENSION;
     }
     
     public static RenderedImage scaleImage(BufferedImage image, double scale) throws IOException {
