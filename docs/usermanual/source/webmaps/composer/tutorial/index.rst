@@ -81,9 +81,22 @@ With the project workspace created, we're now ready to load data.
 
       Shapefile uploaded
 
-#. After upload is complete, repeat the upload process for the three other files.
+#. After upload is complete click :guilabel:`Next: Load` to review file contents.
+Select :file:`ne_10m_roads.shp` and click :guilabel:`Import Selected Layers`.
 
-#. When finished with uploads, click :guilabel:`Cancel` to close out of the import wizard. You will see the four data sources listed on the :guilabel:`Data` tab. Note specifically that for each data store, the resource is marked as :guilabel:`Published`.
+   .. figure:: img/availablelayers.png
+      
+      Available Layers
+
+#. Imported layers can be added to an existing map or used to create a new map. Click :guilabel:`Close`.
+   
+   .. figure:: img/layerimported.png
+      
+      Layer Imported
+
+#. Repeat the upload and import process for the three other files.
+
+#. When finished with uploads, click :guilabel:`Close` to close out of the import wizard. You will see the four data sources listed on the :guilabel:`Data` tab. Note specifically that for each data store, the resource is marked as :guilabel:`Published`.
 
    .. figure:: img/datatab.png
 
@@ -135,7 +148,9 @@ With the project workspace created, we're now ready to load data.
 
 #. View each of the layers by clicking the :guilabel:`Style` button for each layer.
 
-   .. todo:: ADD FIGURE
+   .. figure:: img/layerstyles.png
+      
+      Layer Style
 
 .. _webmaps.composer.tutorial.map:
 
