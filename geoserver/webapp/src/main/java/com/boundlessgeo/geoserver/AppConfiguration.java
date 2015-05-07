@@ -26,6 +26,11 @@ public class AppConfiguration implements ServletContextAware {
     Catalog catalog;
     ServletContext servletContext;
     
+    //When writing cache files, replace any invalid file chars with the replace char.
+    //This regex matches /?<>\:*|"
+    public static final String invalidCharRegex = "[/\\?<>\\\\:\\*|\"]";
+    public static final String replaceChar = "_";
+    
     /** Cache directory location set by configuration on startup */
     private String cacheDir;
     
@@ -104,5 +109,11 @@ public class AppConfiguration implements ServletContextAware {
             file.createNewFile();
         }
         return file;
+    }
+    /**
+     * Replace any invalid characters with the replaceChar
+     */
+    public static String sanitizeFilename(String filename) {
+        return filename.replaceAll(invalidCharRegex, replaceChar);
     }
 }
