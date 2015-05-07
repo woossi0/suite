@@ -4,35 +4,6 @@
                   xmlns="http://geowebcache.org/schema/1.7.0">
 <version>1.7.0</version>
 <backendTimeout>120</backendTimeout>
-<gridSets>
-  <!-- Grid Set Example, 
-       by default EPSG:900913/EPSG3857/GoogleMapsCompatible and
-       EPSG:4326/GoogleCRS84Quad are defined -->
-  <gridSet>
-    <name>ETRS-LCC</name>
-    <srs><number>3034</number></srs> <!-- EPSG number of the CRS -->
-    <extent>
-      <coords> <!-- Bounding box in the CRS coordinates-->
-        <double>2033618.238</double>
-        <double>826551.000</double>
-        <double>6751120.078</double>
-        <double>5145060.146</double>
-      </coords>
-    </extent>
-    <scaleDenominators> <!-- Scales for the zoom levels -->
-      <double>32000000</double>
-      <double>16000000</double>
-      <double>8000000</double>
-      <double>4000000</double>
-      <double>2000000</double>
-      <double>1000000</double>
-      <double>500000</double>
-    </scaleDenominators>
-    <tileHeight>256</tileHeight>
-    <tileWidth>256</tileWidth>
-  </gridSet>
-</gridSets>
-
 <layers>
 
   <wmsLayer>
@@ -49,26 +20,5 @@
     <wmsUrl><string>http://suite.opengeo.org/geoserver/wms</string></wmsUrl>
   </wmsLayer>
 
-  <wmsLayer>
-    <name>europe</name>
-    <gridSubsets>
-      <gridSubset>
-        <gridSetName>ETRS-LCC</gridSetName>
-      </gridSubset>
-    </gridSubsets>
-    <wmsUrl><string>http://suite.opengeo.org/geoserver/wms</string></wmsUrl>
-    <wmsLayers>world</wmsLayers>
-
-    <mimeFormats><string>image/jpeg</string></mimeFormats>
-    
-    <!-- Fill in the transparent background with blue -->
-    <transparent>false</transparent>
-    <bgColor>0x0066FF</bgColor>
-
-    <!-- Layer style has fixed labels and so is succeptible to lost labels at 
-         metatile boundaries.  A wide gutter helps. -->
-    <gutter>60</gutter>
-  </wmsLayer>
-  
 </layers>
 </gwcConfiguration>
