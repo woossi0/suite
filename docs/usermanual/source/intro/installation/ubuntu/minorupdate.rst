@@ -138,4 +138,6 @@ Upgrade process
 After update
 ------------
 
+If you have changed the GeoServer data directory by setting ``GEOSERVER_DATA_DIRECTORY`` in ``/etc/defaults/tomcat7`` the update process will reset it back to the default location.  This change is often done as part of setting up a cluster.  If you have changed it, be sure to remember and re-make your change after the update.  The effects of running GeoServer with the wrong data directory can be highly variable.
+
 The update is now complete. Please see the section on :ref:`intro.installation.ubuntu.postinstall` to continue.
