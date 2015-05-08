@@ -459,12 +459,9 @@ public class ImportController extends ApiController {
         // run the import
         imp.setState(ImportContext.State.RUNNING);
         GeoServerDataDirectory dataDir = dataDir();
-        //These tasks were not run the first time, and need to be set up
-        List<ImportTask> newTasks = new ArrayList<ImportTask>();
         for (ImportTask t : imp.getTasks()) {
-            if (f.include(t) && t.getState() == ImportTask.State.CANCELED) {
+            if (f.include(t)) {
                 prepTask(t, ws, dataDir);
-                newTasks.add(t);
             } 
         }
         helper.setTask(importer.getTask(importer.runAsync(imp, f)));
@@ -485,7 +482,8 @@ public class ImportController extends ApiController {
         
         l.getMetadata().put(Metadata.IMPORTED, new Date());
 
-        if (l != null && l.getDefaultStyle() != null) {
+        //If the style exists, and we haven't already moved it into the workspace, move it to ws.
+        if (l != null && l.getDefaultStyle() != null && l.getDefaultStyle().getWorkspace() != ws) {
             StyleInfo s = l.getDefaultStyle();
 
             // JD: have to regenerate the unique name here, the importer already does this but because we are
