@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import org.geoserver.platform.ServiceException;
 import org.geoserver.wms.GetMapRequest;
 import org.geoserver.wms.MapProducerCapabilities;
+import org.geoserver.wms.RenderingVariables;
 import org.geoserver.wms.WMS;
 import org.geoserver.wms.WMSMapContent;
 import org.geoserver.wms.map.RenderedImageMap;
@@ -125,6 +126,7 @@ public class ComposerOutputFormat extends RenderedImageMapOutputFormat {
                 @Override
                 public void run() {
                     try {
+                        RenderingVariables.setupEnvironmentVariables(mapContent);
                         InternalTimeoutOutputFormat.this.map = InternalTimeoutOutputFormat.super.produceMap(mapContent, tiled);
                     } catch (ServiceException e) {
                         exception = e;
