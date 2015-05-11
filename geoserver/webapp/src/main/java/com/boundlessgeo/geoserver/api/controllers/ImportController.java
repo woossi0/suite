@@ -483,7 +483,7 @@ public class ImportController extends ApiController {
         l.getMetadata().put(Metadata.IMPORTED, new Date());
 
         //If the style exists, and we haven't already moved it into the workspace, move it to ws.
-        if (l != null && l.getDefaultStyle() != null && l.getDefaultStyle().getWorkspace() != ws) {
+        if (l != null && l.getDefaultStyle() != null && !ws.equals(l.getDefaultStyle().getWorkspace())) {
             StyleInfo s = l.getDefaultStyle();
 
             // JD: have to regenerate the unique name here, the importer already does this but because we are
