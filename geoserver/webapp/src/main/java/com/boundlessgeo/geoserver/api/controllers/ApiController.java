@@ -1,16 +1,18 @@
-/* (c) 2014 Boundless, http://boundlessgeo.com
+/* (c) 2014 - 2015 Boundless, http://boundlessgeo.com
  * This code is licensed under the GPL 2.0 license.
  */
 package com.boundlessgeo.geoserver.api.controllers;
 
-import java.util.Iterator;
+import java.io.IOException;
+import java.util.NoSuchElementException;
 
-import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 
 import com.boundlessgeo.geoserver.api.exceptions.BadRequestException;
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
-import org.apache.commons.fileupload.FileItem;
+
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -25,8 +27,6 @@ import org.geoserver.config.GeoServer;
 import org.geoserver.config.GeoServerDataDirectory;
 
 import com.boundlessgeo.geoserver.api.exceptions.NotFoundException;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import org.opengis.filter.sort.SortBy;
 
 /**
@@ -106,19 +106,40 @@ public abstract class ApiController {
         return new ServletFileUpload(diskFactory);
     }
 
-    @SuppressWarnings("unchecked")
-    protected Iterator<FileItem> doFileUpload(HttpServletRequest request) throws FileUploadException {
-        ServletFileUpload upload = newFileUpload();
-
-        // filter out only file fields
-        return Iterables.filter(upload.parseRequest(request), new Predicate<FileItem>() {
+    protected FileItemIterator doFileUpload(final HttpServletRequest request) throws FileUploadException, IOException {
+        final ServletFileUpload upload = newFileUpload();
+        //Delegate FileItemIterator to only return files
+        return new FileItemIterator() {
+            FileItemIterator delegate = upload.getItemIterator(request);
+            FileItemStream next = null;
             @Override
-            public boolean apply(@Nullable FileItem input) {
-            return !input.isFormField() && input.getName() != null;
+            public boolean hasNext() throws FileUploadException, IOException {
+                if (next != null) {
+                    return true;
+                }
+                while (delegate.hasNext()) {
+                    FileItemStream item = delegate.next();
+                    if (!item.isFormField()) {
+                        next = item;
+                        break;
+                    }
+                }
+                return next != null;
             }
-        }).iterator();
-    }
 
+            @Override
+            public FileItemStream next() throws FileUploadException,
+                    IOException {
+                if (hasNext()) {
+                    FileItemStream current = next;
+                    next = null;
+                    return current;
+                }
+                throw new NoSuchElementException();
+            }
+        };
+    }
+    
     protected SortBy parseSort(String sort) {
         SortBy sortBy = null;
         if (sort != null) {

@@ -10,7 +10,8 @@ import com.boundlessgeo.geoserver.json.JSONObj;
 import com.boundlessgeo.geoserver.util.Hasher;
 import com.google.common.collect.Maps;
 
-import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.geoserver.catalog.CascadeDeleteVisitor;
@@ -63,12 +64,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -129,7 +128,7 @@ public class ImportController extends ApiController {
         WorkspaceInfo ws = findWorkspace(wsName, catalog);
 
         // get the uploaded files
-        Iterator<FileItem> files = doFileUpload(request);
+        FileItemIterator files = doFileUpload(request);
         if (!files.hasNext()) {
             throw new BadRequestException("Request must contain one or more files");
         }
@@ -140,11 +139,15 @@ public class ImportController extends ApiController {
             throw new RuntimeException("Unable to create directory for file upload");
         }
         uploadDir.deleteOnExit();
-
+        
         // pass off the uploaded file(s) to the importer
         Directory dir = new Directory(uploadDir);
         while(files.hasNext()) {
-            dir.accept(files.next());
+            FileItemStream item = files.next();
+            try (InputStream stream = item.openStream()) {
+                String name = item.getName();
+                dir.accept(name, stream);
+            }
         }
         
         Long id;
