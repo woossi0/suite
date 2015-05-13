@@ -19,5 +19,6 @@ Please choose from the following options:
    ubuntu/index
    redhat/index
    war/index
-   aws/index
+
+..   aws/index
 
