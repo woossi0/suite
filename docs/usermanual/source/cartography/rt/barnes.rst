@@ -164,24 +164,25 @@ The surface layer can also be produced by the following SLD:
 .. literalinclude:: artifact/barnes_example.sld
    :language: xml
    :linenos:
-   :emphasize-lines: 15,17,20-21,24-25,28-29,32-33,36-37,40-41,44-45,48-49,52-55,58-61,64-67,74,75,77
+   :emphasize-lines: 15,17,20-21,24-25,28-29,32-33,36-37,40-41,44-45,48-49,52-55,58-61,64-67,74-77
 
 In the SLD, **Lines 14-70** define the Barnes surface rendering transformation, giving values for the transformation parameters which are appropriate for the input dataset.
 
+* **Line 15** specifes the name of the rendering transformation (``vec:BarnesSurface``).
 * **Line 17** specifies the input dataset parameter name.
-* **Line 20** specifies the name of the observation value attribute to `value`.
-* **Line 24** sets a length scale of 15 degrees.
-* **Line 28** sets the convergence factor to be 0.2.
-* **Line 32** requests that 3 passes be performed (one for the initial estimate, and two refinement passes).
-* **Line 36** specifies that the minimum number of observations required to support an estimated cell is 1 (which means every observation point will be represented in the output).
-* **Line 40** specifies the maximum distance from a computed grid cell to an observation point is 10 degrees.
-* **Line 44** defines the resolution of computation to be 10 pixels per cell, which provides efficient rendering time while still providing output of reasonable visual quality.
-* **Line 48** specifies the query buffer to be 40 degrees, which is chosen to be at least double the length scale for stability.
-* **Lines 51-68** define the output parameters, which are obtained from internal environment variables set during rendering, as described above.
-* **Lines 72-96** define the symbolizer used to style the raster computed by the transformation.
+* **Lines 20-21** specifies the name of the observation value attribute ``valueattr`` to be ``value``.
+* **Lines 24-25** sets a length ``scale`` of 15 degrees.
+* **Lines 28-29** sets the ``convergence`` factor to be 0.2.
+* **Lines 32-33** requests that 3 ``passes`` be performed (one for the initial estimate, and two refinement passes).
+* **Lines 36-37** specifies that the minimum number of observations (``minObservations``) required to support an estimated cell is 1 (which means every observation point will be represented in the output).
+* **Lines 40-41** specifies the maximum distance from a computed grid cell to an observation point (``maxObservationDistance``) is 10 degrees.
+* **Lines 44-45** defines the resolution of computation to be 10 pixels per cell (``pixelsPerCell``), which provides efficient rendering time while still providing output of reasonable visual quality.
+* **Lines 48-49** specifies the query buffer (``queryBuffer``) to be 40 degrees, which is chosen to be at least double the length scale for stability.
+* **Lines 51-68** define the output parameters (``outputBBOX``, ``outputWidth``, and ``outputHeight``), which are obtained from internal environment variables set during rendering, as described above.
+* **Lines 72-96** define the symbolizer used to style the raster computed by the transformation (``RasterSymbolizer``).
 * **Line 74** defines the geometry property of the input dataset, which is required for SLD validation purposes.
 * **Line 75** specifies an overall opacity of 0.8 for the rendered layer.
-* **Lines 78-94** define a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The type could also be ``intervals``, which produces a contour effect with discrete transition between colors (see image above).
+* **Lines 76-95** define a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp``, which produces a smooth transition between colors. The type could also be ``intervals``, which produces a contour effect with discrete transition between colors (see image above).
 * **Line 77** specifies that the NO_DATA value of -990 should be displayed with a fully transparent color of white (masking uncomputed pixels).
 
 .. note:: :download:`Download the SLD for this example <artifact/barnes_example.sld>`
