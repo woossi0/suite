@@ -5,6 +5,7 @@
 
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.boundlessgeo.geoserver.json.JSONWrapper;
+
 import org.apache.commons.io.FileUtils;
 import org.geoserver.catalog.DataStoreInfo;
 import org.geoserver.config.util.XStreamPersisterFactory;
@@ -13,6 +14,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -57,7 +59,7 @@ public class BundleExporterTest extends BundleTestSupport {
         DataStoreInfo store = new XStreamPersisterFactory().createXMLPersister()
                 .load(new FileInputStream(root.resolve("bar/datastore.xml").toFile()), DataStoreInfo.class);
 
-        assertEquals("file:%WORKSPACE%/data/bar", store.getConnectionParameters().get("directory"));
+        assertEquals("file:%WORKSPACE%/data"+File.separator+"bar", store.getConnectionParameters().get("directory"));
     }
 
     @Test
@@ -95,7 +97,7 @@ public class BundleExporterTest extends BundleTestSupport {
             .load(new FileInputStream(root.resolve("bar/datastore.xml").toFile()), DataStoreInfo.class);
 
         assertEquals("geopkg", store.getConnectionParameters().get("dbtype"));
-        assertEquals("file:%WORKSPACE%/data/bar.gpkg", store.getConnectionParameters().get("database"));
+        assertEquals("file:%WORKSPACE%/data"+File.separator+"bar.gpkg", store.getConnectionParameters().get("database"));
     }
 
     @Test
