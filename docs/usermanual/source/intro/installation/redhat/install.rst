@@ -13,6 +13,8 @@ This section describes how to perform an installation of **OpenGeo Suite** |vers
 
 .. warning:: While QGIS often paired with the rest of OpenGeo Suite, it is not currently bundled as a package by Boundless. **We do not recommend running QGIS on the same machine as OpenGeo Suite**, as package conflicts will occur. Instead, you can use QGIS on a different machine and connect to OpenGeo Suite services from there.
 
+.. _intro.installation.redhat.install.sysreq:
+
 .. include:: include/sysreq.txt
 
 Pre-installation process

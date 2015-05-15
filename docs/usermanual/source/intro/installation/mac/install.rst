@@ -11,6 +11,8 @@ This section describes how to perform a new installation of **OpenGeo Suite** |v
    * For updating from a previous **minor version** of OpenGeo Suite (4.x), please see the :ref:`intro.installation.mac.minorupdate` section.
    * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.mac.majorupdate` section.
 
+.. _intro.installation.mac.install.sysreq:
+
 .. include:: include/sysreq.txt
 
 Installation

@@ -17,6 +17,7 @@ This section describes how to perform an installation of **OpenGeo Suite** |vers
 
    Instead, use QGIS on a different machine and connect to OpenGeo Suite services from there.
 
+.. _intro.installation.ubuntu.install.sysreq:
 
 .. include:: include/sysreq.txt
 

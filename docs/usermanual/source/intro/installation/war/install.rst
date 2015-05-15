@@ -10,16 +10,16 @@ The following sections will assume that Tomcat is used, although most of the ins
 System requirements
 -------------------
 
-OpenGeo Suite requires the use of Java 7 as a minimum. Either **Oracle JRE 7** or **OpenJDK 7** is supported.
+OpenGeo Suite requires the use of Java 7. You may use either a JRE or a JDK from Oracle or the OpenJDK project.
 
 .. for reference http://docs.geoserver.org/latest/en/user/installation/java.html
 
 Other system requirements are the same as for other operating systems:
 
-* :ref:`Windows <intro.installation.windows.install>`
-* :ref:`OS X <intro.installation.mac.install>`
-* :ref:`Ubuntu <intro.installation.ubuntu.install>`
-* :ref:`Red Hat / CentOS <intro.installation.redhat.install>`
+* :ref:`Windows system requirements <intro.installation.windows.install.sysreq>`
+* :ref:`OS X system requirements <intro.installation.mac.install.sysreq>`
+* :ref:`Ubuntu system requirements <intro.installation.ubuntu.install.sysreq>`
+* :ref:`Red Hat / CentOS system requirements <intro.installation.redhat.install.sysreq>`
 
 Deploying with Tomcat
 ---------------------
