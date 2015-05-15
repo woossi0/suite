@@ -14,8 +14,10 @@ The OpenGeo Suite comes with support for publishing data from many formats suppo
 Installation
 ------------
 
-Ubuntu
-~~~~~~
+Ubuntu packages
+~~~~~~~~~~~~~~~
+
+.. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with OpenGeo Suite for Application Servers (via a WAR bundle) is not supported.
 
 #. Install the following package from the Boundless repository.  (See :ref:`intro.installation.ubuntu.install` for instructions on how to add the OpenGeo repository):
 
@@ -36,6 +38,8 @@ Continue reading at the :ref:`dataadmin.gdal.verify` section.
 CentOS / Red Hat
 ~~~~~~~~~~~~~~~~
 
+.. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with OpenGeo Suite for Application Servers (via a WAR bundle) is not supported.
+
 #. Install the following package from the Boundless repository.  (See :ref:`intro.installation.redhat.install` for instructions on how to add the Boundless repository):
 
    .. code-block:: console
@@ -52,17 +56,23 @@ CentOS / Red Hat
 
 Continue reading at the :ref:`dataadmin.gdal.verify` section.
 
+Windows installer
+~~~~~~~~~~~~~~~~~
 
-Windows
-~~~~~~~
+The GDAL image formats can be added during the :ref:`installation <intro.installation.windows.install>` process. On the :guilabel:`Components` page, check the box for :guilabel:`GDAL Image Formats` in the section named :guilabel:`GeoServer Extensions`.
 
-.. note:: GDAL image formats are enabled by default when using the Windows installer, Mac OS X installer, or Linux packages. Extra configuration is required only if using **OpenGeo Suite for Application Servers** (WAR bundle).
+If OpenGeo Suite has already been installed and you wish to install GDAL image formats at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`GDAL Image Formats`. This will add support to the existing OpenGeo Suite installation.
 
-#. Navigate to:  http://data.opengeo.org/gdal_support/.
+Windows application server
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Download the file with a version number that most closely matches the version of OpenGeo Suite.
+.. note:: This section is for installing GDAL image formats on a Windows-based installation of OpenGeo Suite for Application Servers (WAR bundle).
 
-   .. note:: This file requires 32-bit Java/Tomcat.
+#. Navigate to http://data.boundlessgeo.com/gdal_support/.
+
+#. Download the file with a version number that most closely matches the version of OpenGeo Suite. For example, the file :file:`gdal_win_suite_40.zip` would be appropriate for OpenGeo Suite 4.x.
+
+   .. note:: This file requires a 32-bit Java/Tomcat.
 
 #. Extract the file :file:`gdal-A.B.C.jar` (where A.B.C is a version number) from the archive. Copy into :file:`<TOMCAT_HOME>\\webapps\\geoserver\\WEB-INF\\lib\\`, where :file:`<TOMCAT_HOME>` is the location where Tomcat is installed (such as :file:`C:\\Program Files\\Tomcat\\`).
 
@@ -86,14 +96,26 @@ Windows
 
 Continue reading at the :ref:`dataadmin.gdal.verify` section.
 
-Mac OS X
-~~~~~~~~
+OS X installer
+~~~~~~~~~~~~~~
 
-.. note:: GDAL image formats are enabled by default when using the Windows installer, Mac OS X installer, or Linux packages. Extra configuration is required only if using **OpenGeo Suite for Application Servers** (WAR bundle).
+The GDAL image formats extension can be added to OpenGeo Suite by copying the contents of the :file:`gdal` extension folder (not the folder itself) to the GeoServer library folder. The GeoServer library folder can be found by selecting :guilabel:`Open Webapps Directory` from the GeoServer menu and then navigating to :file:`geoserver/WEB-INF/lib`.
 
-#. Navigate to:  http://data.opengeo.org/gdal_support/
+   .. figure:: ../../intro/installation/mac/img/ext_webappsmenu.png
 
-#. Download the file with a version number that most closely matches the version of OpenGeo Suite.
+      Opening the webapps directory from the GeoServer menu
+
+Once copied, GeoServer will need to be restarted to take effect.
+
+
+OS X application server
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. note:: This section is for installing GDAL image formats on an OS X-based installation of OpenGeo Suite for Application Servers (WAR bundle).
+
+#. Navigate to:  http://data.boundlessgeo.com/gdal_support/
+
+#. Download the file with a version number that most closely matches the version of OpenGeo Suite. For example, the file :file:`gdal_osx_suite_40.zip` would be appropriate for OpenGeo Suite 4.x.
 
 #. Extract the contents of the archive into :file:`/usr/local/lib/`.  The path may not exist, so it may need to be created first.
 
@@ -101,7 +123,7 @@ Mac OS X
 
       export DYLD_LIBRARY_PATH=/usr/local/lib:$DYLD_LIBRARY_PATH`
 
-#. Restart Tomcat
+#. Restart Tomcat.
 
 Continue reading at the :ref:`dataadmin.gdal.verify` section.
 
@@ -119,5 +141,4 @@ Verification
 
    .. figure:: img/gdal_verify.png
       
-      Verifying that GDAL is an option in the Raster Data Sources
-
+      Verifying that GDAL image formats are available
