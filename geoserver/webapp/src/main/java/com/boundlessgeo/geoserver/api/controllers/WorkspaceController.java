@@ -1,4 +1,4 @@
-/* (c) 2014 Boundless, http://boundlessgeo.com
+/* (c) 2014 - 2015 Boundless, http://boundlessgeo.com
  * This code is licensed under the GPL 2.0 license.
  */
 package com.boundlessgeo.geoserver.api.controllers;
@@ -7,7 +7,9 @@ import com.boundlessgeo.geoserver.api.exceptions.BadRequestException;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
-import org.apache.commons.fileupload.FileItem;
+
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.io.FileUtils;
 import org.geoserver.catalog.CascadeDeleteVisitor;
 import org.geoserver.catalog.Catalog;
@@ -19,10 +21,13 @@ import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.catalog.util.CloseableIterator;
 import org.geoserver.config.GeoServer;
+import org.geoserver.data.util.IOUtils;
+
 import com.boundlessgeo.geoserver.bundle.BundleExporter;
 import com.boundlessgeo.geoserver.bundle.BundleImporter;
 import com.boundlessgeo.geoserver.bundle.ExportOpts;
 import com.boundlessgeo.geoserver.bundle.ImportOpts;
+
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.platform.resource.Resource.Type;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +43,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
-import java.util.Iterator;
 
 @Controller
 @RequestMapping("/api/workspaces")
@@ -255,16 +261,15 @@ public class WorkspaceController extends ApiController {
         WorkspaceInfo ws = findWorkspace(wsName, cat);
 
         // grab the uploaded file
-        Iterator<FileItem> files = doFileUpload(request);
+        FileItemIterator files = doFileUpload(request);
         if (!files.hasNext()) {
             throw new BadRequestException("Request must contain a single file");
         }
-
-        FileItem file = files.next();
-
         Path zip = Files.createTempFile(null, null);
-        file.write(zip.toFile());
-
+        FileItemStream item = files.next();
+        try (InputStream stream = item.openStream()) {
+            IOUtils.copy(stream, zip.toFile());
+        }
         BundleImporter importer = new BundleImporter(cat, new ImportOpts(ws));
         importer.unzip(zip);
         importer.run();
