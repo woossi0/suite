@@ -3,6 +3,7 @@
  */
 package com.boundlessgeo.geoserver.api.controllers;
 
+import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -337,23 +338,29 @@ public class ThumbnailController extends ApiController {
      * @throws IOException
      */
     public static BufferedImage scaleImage(BufferedImage image, double scale, boolean square) throws IOException {
-        BufferedImage scaled = image;
-        if (scale != 1.0) {
-            AffineTransform scaleTransform = AffineTransform.getScaleInstance(scale, scale);
-            AffineTransformOp bilinearScaleOp = new AffineTransformOp(scaleTransform, AffineTransformOp.TYPE_BILINEAR);
-            scaled =  bilinearScaleOp.filter(image, new BufferedImage(image.getColorModel(), 
-                    image.getRaster().createCompatibleWritableRaster((int)(image.getWidth()*scale), (int)(image.getHeight()*scale)), 
-                    image.isAlphaPremultiplied(), null));
-        }
+        int sx = 0, sy = 0;
+        int swidth = image.getWidth();
+        int sheight = image.getHeight();
+        
         if (square) {
-            if (scaled.getHeight() > scaled.getWidth()) {
-                scaled = scaled.getSubimage(0, (scaled.getHeight() - scaled.getWidth())/2, 
-                                            scaled.getWidth(), scaled.getWidth());
-            } else if (scaled.getHeight() < scaled.getWidth()) {
-                scaled = scaled.getSubimage((scaled.getWidth() - scaled.getHeight())/2, 0,
-                                            scaled.getHeight(), scaled.getHeight());
+            if (image.getHeight() > image.getWidth()) {
+                sy = (int) ((image.getHeight() - image.getWidth())/2.0);
+                sheight = swidth;
+            } else if (image.getHeight() < image.getWidth()) {
+                sx = (int) ((image.getWidth() - image.getHeight())/2.0);
+                swidth = sheight;
             }
         }
+        int width = (int) (swidth*scale);
+        int height = (int) (sheight*scale);
+        
+        BufferedImage scaled = new BufferedImage(image.getColorModel(), 
+                image.getRaster().createCompatibleWritableRaster(width, height), 
+                image.isAlphaPremultiplied(), null);
+        
+        Graphics g = scaled.getGraphics();
+        g.drawImage(image, 0, 0, width, height, sx, sy, sx+swidth, sy+sheight, null);
+        g.dispose();
         
         return scaled;
     }
