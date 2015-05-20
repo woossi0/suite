@@ -66,13 +66,64 @@ On the style panel there is a toolbar with the following buttons:
    * - :guilabel:`Color`
      - Allows a color to be chosen from a color picker and subsequently inserted into the style.
    * - :guilabel:`Icons`
-     - Allows for icons (graphics) to be chosen and inserted into a style. Icons can be uploaded from this dialog as well.
+     - Allows for icons (graphics) to be chosen and inserted into a style. Icons can be uploaded from this dialog as well. See the section on :ref:`webmaps.composer.styleview.icons`.
    * - :guilabel:`Undo`
      - Returns to a previous version of the style
    * - :guilabel:`Attributes`
      - Shows a list of the available attributes. Useful when creating :ref:`style filters <cartography.ysld.reference.filters>`.
 
 Editing styles
---------------
+~~~~~~~~~~~~~~
 
 Styles are written in the YSLD markup language, which is compatible with but simpler than SLD. For more information about YSLD syntax, please see the section on :ref:`cartography.ysld`.
+
+.. _webmaps.composer.styleview.icons:
+
+Using icons in a style
+~~~~~~~~~~~~~~~~~~~~~~
+
+Composer has the ability to upload icons and other graphics and associate them with a given layer's style.
+
+To upload an image file to be used as a graphic in a style:
+
+#. In the style toolbar, click :guilabel:`Icons`.
+
+   .. figure:: img/icons_button.png
+
+      Icons button in the style toolbar
+
+#. A list of the avilable icons in that project workspace will be shown, if any.
+
+   .. figure:: img/icons_list.png
+
+      No icons available in the project workspace
+
+#. Click :guilabel:`Upload icon`.
+
+#. A file chooser will display. Select the file on your system to be uploaded.
+
+#. The file will then be displayed in the list.
+
+   .. figure:: img/icons_new.png
+
+      Newly uploaded icon available
+
+#. To add this icon to the current style, select the icon and then click :guilabel:`Copy selected to Clipboard`.
+
+#. The dialog will close automatically. Paste the path in the appropriate location, such as:
+
+   .. code-block:: yaml
+      :emphasize-lines: 2
+
+      - external:
+          url: /workspaces/tutorial/styles/smileyface.png
+          format: image/png
+
+   .. note:: The pasted code will be of the form ``/workspaces/<project_workspace>/styles/<filename.ext>``.
+
+   .. figure:: img/icons_pasted.png
+
+      Icon location added to style
+
+.. note:: All web-friendly file formats are supported through this interface.
+
