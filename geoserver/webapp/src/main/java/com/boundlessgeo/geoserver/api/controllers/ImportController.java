@@ -440,36 +440,12 @@ public class ImportController extends ApiController {
         for (ImportTask t : imp.getTasks()) {
             if (f.include(t)) {
                 prepTask(t, ws, dataDir);
-            } else {
-                t.setState(ImportTask.State.CANCELED);
             }
         }
         helper.setTask(importer.getTask(importer.runAsync(imp, f)));
         return get(ws.getName(), helper.id, request);
     }
-    /**
-     * Rerun an import.
-     * 
-     * @param helper - The ImportWrapper containing the context to run the import from
-     * @param ws - The workspace to import into
-     * @param f - Filter to select import tasks
-     * @return JSON representation of the import
-     */
-    JSONObj reImport(ImportHelper helper, WorkspaceInfo ws, ImportFilter f, HttpServletRequest request) throws Exception {
-        helper.setTask(null);
-        ImportContext imp = helper.getContext();
-        
-        // run the import
-        imp.setState(ImportContext.State.RUNNING);
-        GeoServerDataDirectory dataDir = dataDir();
-        for (ImportTask t : imp.getTasks()) {
-            if (f.include(t)) {
-                prepTask(t, ws, dataDir);
-            } 
-        }
-        helper.setTask(importer.getTask(importer.runAsync(imp, f)));
-        return get(ws.getName(), helper.id, request);
-    }
+    
     
     /*
      * 1. hack the context object to ensure that all styles are workspace local
@@ -729,27 +705,11 @@ public class ImportController extends ApiController {
             throw new RuntimeException("Invalid import");
         }
         ImportFilter f = filter(obj, imp);
-        
-        //Pre-import: Context has been created, but nothing has been imported yet
-        boolean preimport = true;
-        for (ImportTask task : imp.getTasks()) {
-            if (!(task.getState() == ImportTask.State.PENDING 
-                    || task.getState() == ImportTask.State.READY)) {
-                preimport = false;
-                break;
-            }
-        }
-        if (preimport) {
-            // create the import data
-            return doImport(helper, ws, f, request);
-        }
-        
-        //Re-import: Data (but perhaps not everything) has been imported
         JSONArr arr = obj.array("tasks");
         
         //Filter only: run on all tasks that match the filter
         if (arr == null) {
-            return reImport(helper, ws, f, request);
+            return doImport(helper, ws, f, request);
         }
         
         //Task List: Update CRS tasks, run all tasks that match filter or list.
@@ -783,7 +743,7 @@ public class ImportController extends ApiController {
                 }
             }
         }
-        return reImport(helper, ws, f, request);
+        return doImport(helper, ws, f, request);
     }
 
     ImportContext findImport(Long id) {
