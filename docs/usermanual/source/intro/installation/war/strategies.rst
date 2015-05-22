@@ -22,7 +22,7 @@ If your application server is configured to sandbox web applications, you will n
          permission java.security.AllPermission;
       };
   
-#. Start tomcat with the ``-security`` option to use :file:`catalina.policy`.
+#. Start Tomcat with the ``-security`` option to use :file:`catalina.policy`.
 
 Split GeoServer and GeoWebCache
 -------------------------------

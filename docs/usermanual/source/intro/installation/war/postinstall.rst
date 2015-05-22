@@ -15,18 +15,20 @@ A fix is available for spatial reference systems measured in Imperial units (fee
 
 To enable this fix:
 
-#. Add the following parameter to :file:`/etc/tomcat7/server.xml` (or the equivalent on your own application server):
+#. Add the following parameter to your application server settings:
 
    .. code-block:: bash
 
       -Dorg.geotoools.render.lite.scale.unitCompensation=true
 
-#. Restart Tomcat.
+   .. note:: On Tomcat, 7, it is typical for this file to be located at :file:`/etc/tomcat7/server.xml`.
+
+#. Restart the application server.
 
 Update GeoJSON output
 ^^^^^^^^^^^^^^^^^^^^^
 
-GeoServer GeoJSON output is now provided in x/y/z order as required by the specification. In addition, the ``crs``  output has changed to support full URN representation of spatial refernce systems:
+GeoServer GeoJSON output is now provided in x/y/z order as required by the specification. In addition, the ``crs``  output has changed to support full URN representation of spatial reference systems:
 
    .. code-block:: json
 
@@ -50,7 +52,7 @@ GeoServer GeoJSON output is now provided in x/y/z order as required by the speci
             }
          }
 
-To restore the previous ``crs`` representation for compatibility reasons (espcially when working with OpenLayers 3):
+To restore the previous ``crs`` representation for compatibility reasons (especially when working with OpenLayers 3):
 
 #. Add the following context parameter to your GeoServer :file:`WEB-INF/web.xml` file:
 
@@ -61,4 +63,4 @@ To restore the previous ``crs`` representation for compatibility reasons (espcia
            <param-value>true</param-value>
        </context-param>
 
-#. Restart Tomcat.
+#. Restart the application server.
