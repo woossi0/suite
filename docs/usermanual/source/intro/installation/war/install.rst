@@ -118,7 +118,7 @@ By default, GeoWebCache stores the cache and cache configuration information in 
       
       <bean id="gwcXmlConfig" class="org.geowebcache.config.XMLConfiguration">
         <constructor-arg ref="gwcAppCtx" />
-        <constructor-arg ref="/var/lib/opengeo/geowebcache" />
+        <constructor-arg value="/var/lib/opengeo/geowebcache" />
 
 #. Next, move the cache directory. Here are some suggested locations:
 
