@@ -281,7 +281,7 @@ public class MapController extends ApiController {
             try {
                 crs = CRS.decode(srs);
             } catch (FactoryException e) {
-                LOG.log(Level.FINE, wsName+"."+name+" unrecognized proj:"+srs,e);
+                throw new BadRequestException("Unknown spatial reference identifier: " + srs);
             }
             if (obj.has("bbox")){
                 Envelope envelope = IO.bounds(obj.object("bbox"));
