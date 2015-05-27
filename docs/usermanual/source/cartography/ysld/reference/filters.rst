@@ -55,7 +55,7 @@ where:
      - Default value
    * - ``<attribute>``
      - Yes
-     - That to which something is going to be compared.
+     - That to which something is going to be compared. Typically an **attribute name**. May be case sensitive.
      - N/A
    * - ``<operator>``
      - Yes
@@ -63,7 +63,7 @@ where:
      - N/A
    * - ``<value>``
      - Yes
-     - That which the ``<attribute>`` is being compared to. Must be a static value such as a string or scalar, though it can also be an expression that evaluates to a static value. Cannot be another attribute. Can include mathematical operators such as ``+``, ``-``, ``*``, ``/``.
+     - That which the ``<attribute>`` is being compared to. Typically a static value such as a string or scalar, though can be an expression that evaluates to a static value. Can include mathematical operators such as ``+``, ``-``, ``*``, ``/``. Use **single quotes** for strings, as double-quotes will be interpreted as an attribute name. Omit quotes for scalar values.
      - N/A
 
 The following is a description of all available operators:
