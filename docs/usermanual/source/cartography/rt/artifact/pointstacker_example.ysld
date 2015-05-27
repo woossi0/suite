@@ -7,9 +7,6 @@ feature-styles:
     name: vec:PointStacker
     params:
       cellSize: 30
-      outputBBOX: ${env('wms_bbox')}
-      outputWidth: ${env('wms_width')}
-      outputHeight: ${env('wms_height')}
   rules:
   - name: rule1
     title: Volcano

@@ -23,6 +23,7 @@ The transformation parameters are as follows. The order of parameters is not sig
 .. list-table::
    :header-rows: 1
    :class: non-responsive
+   :widths: 20 10 70
 
    * - Name
      - Required?
@@ -35,13 +36,13 @@ The transformation parameters are as follows. The order of parameters is not sig
      - Size of the cells in which to aggregate points (in pixels, default = 1)
    * - ``outputBBOX``
      - Yes
-     - Georeferenced bounding box of the output
+     - Georeferenced bounding box of the output. Not required with YSLD.
    * - ``outputWidth``
      - Yes
-     - Output image width
+     - Output image width. Not required with YSLD.
    * - ``outputHeight``
      - Yes
-     - Output image height
+     - Output image height. Not required with YSLD.
 
 .. include:: include/envvars.txt
 
@@ -59,6 +60,7 @@ The output of the transformation is a **vector** layer containing point features
 .. list-table::
    :header-rows: 1
    :class: non-responsive
+   :widths: 20 20 60
 
    * - Name
      - Type
@@ -93,18 +95,17 @@ The PointStacker output, as seen in the figure at the top of the page, can be pr
 .. literalinclude:: artifact/pointstacker_example.ysld
    :language: yaml
    :linenos:
-   :emphasize-lines: 9-12,14,24,47
+   :emphasize-lines: 9,11,21,44
 
 This style defines the Point Stacker rendering transformation, providing values for the transformation parameters which are appropriate for the input dataset.
 
 * On **line 9**, **cellSize** specifies a cell size of 30 to aggregate the points by.
-* On **lines 10-12**, **outputBBOX**, **outputWith** and **outputHeight**, are obtained from internal environment variables set during rendering, as described above.
 
 Rules are applied to the transformation output to produce the rendered layer.
 
-* Starting at **line 14**, the rule **rule1** depicts a single (unstacked) point using a red triangle symbol.
-* Starting at **line 24**, the rule **rule29** depicts a stacked point which has a count in the range 2 to 9. The points are styled as dark red circles of size 14 pixels, with a label showing the count inside them.
-* Starting at **line 47**, the rule **rule10** depicts a stacked point which has a count of 10 or greater. The points are styled as dark red circles of size 22 pixels, with a label that includes the point count.
+* Starting at **line 11**, the rule **rule1** depicts a single (unstacked) point using a red triangle symbol.
+* Starting at **line 21**, the rule **rule29** depicts a stacked point which has a count in the range 2 to 9. The points are styled as dark red circles of size 14 pixels, with a label showing the count inside them.
+* Starting at **line 44**, the rule **rule10** depicts a stacked point which has a count of 10 or greater. The points are styled as dark red circles of size 22 pixels, with a label that includes the point count.
 
 .. note:: :download:`Download the YSLD for this example <artifact/pointstacker_example.ysld>`
 

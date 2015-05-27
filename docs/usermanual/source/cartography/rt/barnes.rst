@@ -32,6 +32,7 @@ The transformation parameters are as follows. The order of parameters is not sig
 .. list-table::
    :header-rows: 1
    :class: non-responsive
+   :widths: 20 10 70
 
    * - Name
      - Required?
@@ -68,13 +69,13 @@ The transformation parameters are as follows. The order of parameters is not sig
      - Distance to expand the query envelope by. Larger values provide a more stable surface. In units of the input data CRS. fault = 0)
    * - ``outputBBOX``
      - Yes
-     - Georeferenced bounding box of the output
+     - Georeferenced bounding box of the output. Not required with YSLD.
    * - ``outputWidth``
      - Yes
-     - Output image width
+     - Output image width. Not required with YSLD.
    * - ``outputHeight``
      - Yes
-     - Output image height
+     - Output image height. Not required with YSLD.
 
 .. include:: include/envvars.txt
 
@@ -127,7 +128,7 @@ The surface layer, as seen in the figure at the top of the page, can be produced
 .. literalinclude:: artifact/barnes_example.ysld
    :language: yaml
    :linenos:
-   :emphasize-lines: 9-19,22-25
+   :emphasize-lines: 9-16,19-22
 
 The YSLD example defines the Barnes Surface rendering transformation, giving values for the transformation parameters which are appropriate for the input dataset.
 
@@ -139,12 +140,11 @@ The YSLD example defines the Barnes Surface rendering transformation, giving val
 * On **line 14**, **maxObservationDistance** specifies the maximum distance from a computed grid cell to an observation point is 10 degrees.
 * On **line 15**, **pixelsPerCell** defines the resolution of computation to be 10 pixels per cell, which provides efficient rendering time while still providing output of reasonable visual quality.
 * On **line 16**, **queryBuffer** specifies the query buffer to be 40 degrees, which is chosen to be at least double the length scale for stability.
-* On **lines 17-19**, **outputBBOX**, **outputWidth**, **outputHeight** define the output parameters, which are obtained from internal environment variables set during rendering, as described above.
 
-The **raster** symbolizer (starting on **line 22**) is used to style the raster computed by the transformation.
+The **raster** symbolizer (starting on **line 19**) is used to style the raster computed by the transformation.
 
-* On **line 23**, **opacity** specifies an overall opacity of 0.8 for the rendered layer.
-* Starting on **line 24**, **color-map** defines a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp`` (**line 25**), which produces a smooth transition between colors.
+* On **line 20**, **opacity** specifies an overall opacity of 0.8 for the rendered layer.
+* Starting on **line 21**, **color-map** defines a color map with which to symbolize the output raster. In this case the color map uses a **type** of ``ramp`` (**line 22**), which produces a smooth transition between colors.
 
   .. note::
 

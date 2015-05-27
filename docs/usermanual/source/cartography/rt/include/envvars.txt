@@ -23,7 +23,7 @@ There are three environment variables that will be useful to us, which can be us
      - Height of resulting image
      - ``outputHeight``
 
-YSLD syntax for employing environment variables:
+The following YSLD syntax for employing environment variables is assumed by default and need not be added to the style:
 
 .. code-block:: yaml
 
@@ -31,7 +31,7 @@ YSLD syntax for employing environment variables:
    outputWidth: ${env(wms_width)}
    outputHeight: ${env(wms_height)}
 
-SLD syntax for employing environment variables:
+The following SLD syntax for employing environment variables must be explictly declared:
 
 .. code-block:: xml
 

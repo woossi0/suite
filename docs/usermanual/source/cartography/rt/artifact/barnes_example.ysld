@@ -14,9 +14,6 @@ feature-styles:
       maxObservationDistance: 10
       pixelsPerCell: 10
       queryBuffer: 40
-      outputBBOX: ${env('wms_bbox')}
-      outputWidth: ${env('wms_width')}
-      outputHeight: ${env('wms_height')}
   rules:
   - symbolizers:
     - raster:
