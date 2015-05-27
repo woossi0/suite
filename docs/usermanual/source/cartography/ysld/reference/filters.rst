@@ -30,7 +30,7 @@ Types of filters
 
 As mentioned above, the filter can be any valid construction made with CQL/ECQL (Extended/Contextual Query Language).
 
-CQL is written using a familiar text-based syntax with strong similarities to SQL statements. One can think of a CQL expression as the "WHERE" clause of a SQL statment.
+CQL is written using a familiar text-based syntax with strong similarities to SQL statements. One can think of a CQL expression as the "WHERE" clause of a SQL statement.
 
 The following are all standard filter constructions:
 
@@ -59,14 +59,14 @@ where:
      - N/A
    * - ``<operator>``
      - Yes
-     - Method of comparison. Valid operators are ``=``, ``<``, ``>``, ``<=``, ``>=``, ``LIKE``, ``ILIKE``, ``BETWEEN``, ``IS NULL``, and ``IN``. ``NOT`` can be added to invert the comparison.
+     - Method of comparison. Valid operators are ``=``, ``<``, ``>``, ``<=``, ``>=``, ``<>``, ``LIKE``, ``ILIKE``, ``BETWEEN``, ``IS NULL``, ``IN``. ``NOT`` can be added to invert the comparison.
      - N/A
    * - ``<value>``
      - Yes
      - That which the ``<attribute>`` is being compared to. Must be a static value such as a string or scalar, though it can also be an expression that evaluates to a static value. Cannot be another attribute. Can include mathematical operators such as ``+``, ``-``, ``*``, ``/``.
      - N/A
 
-The following is a desription of all available operators:
+The following is a description of all available operators:
 
 .. list-table::
    :class: non-responsive
@@ -87,29 +87,35 @@ The following is a desription of all available operators:
    * - ``>=``
      - Greater than or equal to (inclusive)
    * - ``LIKE``
-     - Fuzzy matching for strings and other non-numeric attributes. Add ``%`` for multi-character wildcards, and ``_`` for single-character wilcards. 
+     - Fuzzy matching for strings and other non-numeric attributes. Add ``%`` for multi-character wildcards, and ``_`` for single-character wildcards. 
    * - ``ILIKE``
      - Case-insensitive version of ``LIKE``
    * - ``BETWEEN``
-     - Tests if a value that is between two given values.
+     - Tests if a value that is between two given values
    * - ``IS NULL``
-     - For testing against a ``NULL`` value.
+     - For testing against a ``NULL`` value
    * - ``IN``
      - Used when specifying a list. Must be contained in the list for the statement to be true.
+   * - ``NOT``
+     - Negates a boolean (true/false) condition. Can be used with an additional operator such as ``NOT LIKE`` or ``NOT BETWEEN``.
+   * - ``<>``
+     - Not equal (used when comparing a string or numeric value only)
 
 .. note:: These operators are not case sensitive, but are shown here in all caps for legibility and consistency.
 
 Spatial filters
 ~~~~~~~~~~~~~~~
 
-Filters can be spatial in nature. Any valid spatial construction in `WKT (Well Known Text) <http://en.wikipedia.org/wiki/Well-known_text>`_ can be used. Spatial filters include ``INTERSECTS``, ``DISJOINT``, ``CONTAINS``, ``WITHIN``, ``TOUCHES``, ``CROSSES``, ``EQUALS``, ``DWITHIN``, and ``BBOX``. For more details about these spatial filters and their syntax, please see the `GeoServer ECQL reference <../../../geoserver/filter/ecql_reference.html>`_ or `uDig CQL reference <http://udig.github.io/docs/user/concepts/Constraint%20Query%20Language.html>`_.
+Filters can be spatial in nature. Any valid spatial construction in `WKT (Well Known Text) <http://en.wikipedia.org/wiki/Well-known_text>`_ can be used. Spatial filters include ``INTERSECTS``, ``DISJOINT``, ``CONTAINS``, ``WITHIN``, ``TOUCHES``, ``CROSSES``, ``EQUALS``, ``DWITHIN``, and ``BBOX``. ``NOT`` can be added to negate the condition.
+
+For more details about these spatial filters and their syntax, please see the `GeoServer ECQL reference <../../../geoserver/filter/ecql_reference.html>`_ or `uDig CQL reference <http://udig.github.io/docs/user/concepts/Constraint%20Query%20Language.html>`_.
 
 Compound statements
 ~~~~~~~~~~~~~~~~~~~
 
 The filter can be a combination of statements. A common case is testing if the value of an attribute is greater than one value but less than another.
 
-The syntax for creating compound statements is to use standard Boolean notation use as ``AND``, ``OR``, along with relevant parentheses.
+The syntax for creating compound statements is to use standard Boolean notation such as ``AND``, ``OR``, and ``NOT`` along with relevant parentheses.
 
 For example, a filter where both statements need to be true would be::
 
@@ -121,12 +127,11 @@ A filter where either statement would need to be true would be::
 
 Larger filters can be built up in this way::
 
-  filter: ${(<statement1> OR <statement2>) AND <statement3> OR <statement4>}
+  filter: ${(<statement1> OR <statement2>) AND <statement3> OR NOT <statement4>}
 
-In these examples, every ``statement`` is a valid filter.
+In these examples, every ``<statement>`` is a valid filter.
 
-In terms of precendence, ``AND`` conjunctions take precendence over ``OR`` conjunctions unless modified by parentheses. So, in the last example above, ``(<statement1> OR <statement2>)`` will be evaluated first, followed by the result of that ``AND <statement3>``, and finally the result of that ``OR <statement4>``
-
+In terms of precedence, ``AND`` is evaluated first, followed by ``OR``, unless modified by parentheses. So, in the last example above, ``(<statement1> OR <statement2>)`` will be evaluated first, followed by the result of that ``AND <statement3>``, and finally the result of that with ``OR NOT <statement4>``.
 
 Examples
 --------
@@ -201,7 +206,7 @@ Filters can also be used to color a map based on attributes of the data. The fol
 
 .. figure:: img/filters_categories.png
 
-   Fitler based on attribute value
+   Filter based on attribute value
 
 **Filter by bounding box**
 
@@ -242,4 +247,4 @@ Spatial filters can also be used to compare layer geometries against arbitrary g
 
 .. figure:: img/filters_within.png
 
-   Filter using ``within`` 
+   Filter using ``within``
