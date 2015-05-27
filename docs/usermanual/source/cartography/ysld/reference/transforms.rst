@@ -14,15 +14,17 @@ For more information, please see the sections on :ref:`cartography.rt` and :ref:
 Syntax
 ------
 
-The full syntax for using a rendering transformation is::
+The full syntax for using a rendering transformation is:
 
-  feature-styles
-    ...
-    transform:
-      name: <text>
-      params: <options>
-    rules:
-      ...
+.. code-block:: yaml
+
+   feature-styles
+     ...
+     transform:
+       name: <text>
+       params: <options>
+     rules:
+       ...
 
 where:
 
@@ -62,6 +64,17 @@ The values in the ``params`` options typically include values, strings, or attri
    * - ``env('wms_height')``
      - The height of the request
 
+With this in mind, the following ``params`` are assumed unless otherwise specified:
+
+.. code-block:: yaml
+
+   params:
+     ...
+     outputBBOX: ${env('wms_bbox')}
+     outputWidth: ${env('wms_width')}
+     outputHeight: ${env('wms_height')}
+     ...
+
 .. note:: Be aware that the transform happens *outside* of the :ref:`rules <cartography.ysld.reference.rules>` and :ref:`symbolizers <cartography.ysld.reference.symbolizers>`, but inside the :ref:`feature styles <cartography.ysld.reference.featurestyles>`.
 
 Examples
@@ -70,64 +83,62 @@ Examples
 Heatmap
 ~~~~~~~
 
-The following uses the :ref:`cartography.rt.heatmap` process to convert a point layer to a heatmap raster::
+The following uses the :ref:`cartography.rt.heatmap` process to convert a point layer to a heatmap raster:
 
-  title: Heatmap
-  feature-styles:
-  - transform:
-      name: gs:Heatmap
-      params:
-        weightAttr: pop2000
-        radiusPixels: 100
-        pixelsPerCell: 10
-        outputBBOX: ${env('wms_bbox')}
-        outputWidth: ${env('wms_width')}
-        outputHeight: ${env('wms_height')}
-    rules:
-    - symbolizers:
-      - raster:
-          opacity: 0.6
-          color-map:
-            type: ramp
-            entries:
-            - ('#FFFFFF',0,0.0,nodata)
-            - ('#4444FF',1,0.1,nodata)
-            - ('#FF0000',1,0.5,values)
-            - ('#FFFF00',1,1.0,values)
+.. code-block:: yaml
+
+   title: Heatmap
+   feature-styles:
+   - transform:
+       name: gs:Heatmap
+       params:
+         weightAttr: pop2000
+         radiusPixels: 100
+         pixelsPerCell: 10
+     rules:
+     - symbolizers:
+       - raster:
+           opacity: 0.6
+           color-map:
+             type: ramp
+             entries:
+             - ('#FFFFFF',0,0.0,nodata)
+             - ('#4444FF',1,0.1,nodata)
+             - ('#FF0000',1,0.5,values)
+             - ('#FFFF00',1,1.0,values)
 
 
 Point Stacker
 ~~~~~~~~~~~~~
 
-The point stacker transform can be used to combine points that are close together. This transform acts on a point geometry layer, and combines any points that are within a single cell as specified by the ``cellSize`` parameter. The resulting geometry has attributes ``geom`` (the geometry), ``count`` (the number of features represented by this point) and ``countUnique`` (the number of unique features represented by this point). These attributes can be used to size and label the points based on how many points are combined together::
+The point stacker transform can be used to combine points that are close together. This transform acts on a point geometry layer, and combines any points that are within a single cell as specified by the ``cellSize`` parameter. The resulting geometry has attributes ``geom`` (the geometry), ``count`` (the number of features represented by this point) and ``countUnique`` (the number of unique features represented by this point). These attributes can be used to size and label the points based on how many points are combined together:
 
-  title: pointstacker
-  feature-styles:
-  - transform:
-      name: gs:PointStacker
-      params:
-      cellSize: 100
-      outputBBOX: ${env('wms_bbox')}
-      outputWidth: ${env('wms_width')}
-      outputHeight: ${env('wms_height')}
-    rules:
-    - symbolizers:
-      - point:
-          size: ${8*sqrt(count)}
-          symbols:
-          - mark:
-              shape: circle
-              fill-color: '#EE0000'
-    - filter: count > 1
-      symbolizers:
-      - text:
-            fill-color: '#FFFFFF'
-            font-family: Arial
-            font-size: 10
-            font-weight: bold
-            label: ${count}
-            placement:
-                anchor: (0.5,0.75)
+.. code-block:: yaml
+
+   title: pointstacker
+   feature-styles:
+   - transform:
+       name: gs:PointStacker
+       params:
+       cellSize: 100
+     rules:
+     - symbolizers:
+       - point:
+           size: ${8*sqrt(count)}
+           symbols:
+           - mark:
+               shape: circle
+               fill-color: '#EE0000'
+     - filter: count > 1
+       symbolizers:
+       - text:
+             fill-color: '#FFFFFF'
+             font-family: Arial
+             font-size: 10
+             font-weight: bold
+             label: ${count}
+             placement:
+                 anchor: (0.5,0.75)
 
 .. figure:: img/transforms_pointstacker.png
 
