@@ -21,6 +21,7 @@ import net.sf.json.JSONObject;
 import org.apache.commons.io.IOUtils;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CatalogBuilder;
+import org.geoserver.catalog.DataStoreInfo;
 import org.geoserver.catalog.FeatureTypeInfo;
 import org.geoserver.catalog.LayerGroupInfo;
 import org.geoserver.catalog.LayerInfo;
@@ -38,9 +39,20 @@ import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.rest.util.RESTUtils;
 import org.geoserver.test.GeoServerSystemTestSupport;
+import org.geotools.data.DataAccess;
+import org.geotools.data.FeatureSource;
+import org.geotools.data.Query;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
+import org.geotools.feature.NameImpl;
 import org.geotools.referencing.CRS;
+import org.geotools.util.Converters;
+import org.geotools.util.NullProgressListener;
 import org.junit.Before;
 import org.junit.Test;
+import org.opengis.feature.Feature;
+import org.opengis.feature.Property;
+import org.opengis.geometry.Geometry;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -163,6 +175,50 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals(1, obj.getInt("count"));
         arr = obj.getJSONArray("maps");
         assertEquals(1, arr.size());
+    }
+
+    @Test
+    public void testListAttributes() throws Exception {
+        Catalog cat = getCatalog();
+        
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setContextPath("/geoserver");
+        request.setRequestURI("/geoserver/hello");
+        request.setMethod("get");
+        
+        StoreController ctrl = new StoreController(getGeoServer());
+        JSONObj obj = ctrl.attributes("sf", "sf", "PrimitiveGeoFeature", 10, request);
+        JSONArr attributes = obj.object("schema").array("attributes");
+        JSONArr values = obj.array("values");
+        
+        //Page through actual features and ensure values match what is returned
+        StoreInfo store = cat.getStoreByName("sf", "sf", StoreInfo.class);
+        DataAccess data = ((DataStoreInfo)store).getDataStore(new NullProgressListener());
+        FeatureSource source = data.getFeatureSource(new NameImpl("PrimitiveGeoFeature"));
+        
+        Query query = new Query(Query.ALL);
+        query.setMaxFeatures(10);
+        FeatureIterator features = source.getFeatures(query).features();
+        int featureIndex = 0;
+        while (features.hasNext()) {
+            Feature feature = features.next();
+            JSONArr featureJSON = (JSONArr) values.at(featureIndex);
+            Property[] properties = feature.getProperties().toArray(
+                    new Property[feature.getProperties().size()]);
+            
+            for (int i = 0; i < attributes.size(); i++) {
+                
+                //Verify the schema matches the feature
+                JSONObj attribute = attributes.object(i);
+                assertEquals(attribute.get("type"), properties[i].getDescriptor().getType().getBinding().getSimpleName());
+                assertEquals(attribute.get("name"), properties[i].getDescriptor().getName().getLocalPart());
+                
+                //Verify the value matches the feature
+                assertEquals(featureJSON.str(i), 
+                        properties[i].getValue() == null ? null : properties[i].getValue().toString());
+            }
+            featureIndex++;
+        }
     }
 
     @Test
