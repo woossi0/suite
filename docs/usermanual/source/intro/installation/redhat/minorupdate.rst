@@ -1,7 +1,7 @@
 .. _intro.installation.redhat.minorupdate:
 
-Upgrading a minor version
-=========================
+Updating a minor version
+========================
 
 This section describes how to perform a minor update from OpenGeo Suite 4.x to |version| on Red Hat-based Linux distributions.
 
@@ -11,14 +11,18 @@ This section describes how to perform a minor update from OpenGeo Suite 4.x to |
    * For upgrading to **OpenGeo Suite Enterprise**, please see the section on :ref:`intro.installation.redhat.upgrade`.
    * For updating from a previous **major version** of OpenGeo Suite (3.x), please see the :ref:`intro.installation.redhat.majorupdate` section.
 
-.. warning:: While QGIS often paired with the rest of OpenGeo Suite, it is not currently bundled as a package by Boundless. **We do not recommend running QGIS on the same machine as OpenGeo Suite**, as package conflicts will occur. Instead, you can use QGIS on a different machine and connect to OpenGeo Suite services from there.
+.. warning::
+
+   While QGIS often paired with the rest of OpenGeo Suite, **please do not try to run QGIS on the same machine as OpenGeo Suite**, as package conflicts will occur (specifically with GDAL). If you install OpenGeo Suite on a machine that has QGIS, **QGIS may be automatically uninstalled!**
+
+   Instead, use QGIS on a different machine and connect to OpenGeo Suite services from there.
 
 .. include:: include/sysreq.txt
 
-Pre-upgrade process
--------------------
+Pre-update process
+------------------
 
-This process will add the OpenGeo Suite package repository and then upgrade the appropriate packages. See the :ref:`Packages <intro.installation.redhat.packages>` section for details about the possible packages to upgrade.
+This process will add the OpenGeo Suite package repository and then update the appropriate packages. See the :ref:`Packages <intro.installation.redhat.packages>` section for details about the possible packages to be updated.
 
 .. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
 
@@ -54,9 +58,8 @@ The commands in this section require root privileges.
 
      .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__.
 
-
-Upgrade process
----------------
+Update process
+--------------
 
 #. Search for OpenGeo Suite packages to verify that the repository list is correct. If the command does not return any results, examine the output of the ``yum`` command for any errors or warnings.
 
@@ -71,37 +74,37 @@ Upgrade process
       rpm -e --nodeps --noscripts opengeo-tomcat 
       yum remove tomcat6
 
-#. You have options on what packages to upgrade:
+#. You have options on what packages to update:
 
    .. note::  See the :ref:`Packages <intro.installation.redhat.packages>` section for details of individual packages.
 
-   * To upgrade typical server components:
+   * To update typical server components:
 
      .. code-block:: bash
 
         yum upgrade opengeo-server
 
-   * To upgrade typical client components:
+   * To update typical client components:
 
      .. code-block:: bash
 
         yum upgrade opengeo-client
 
-   * To upgrade typical client and server components:
+   * To update typical client and server components:
 
      .. code-block:: bash
 
         yum upgrade opengeo
 
-  .. note:: If you encounter an error where gdal failed to upgrade, you may need to manually uninstall gdal-filegdb:
+  .. note:: If you encounter an error where GDAL failed to update, you may need to manually uninstall ``gdal-filegdb``:
 
       .. code-block:: bash
 
          yum remove gdal-filegdb
 
-#. Be sure to upgrade any all additional See the :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
+#. Be sure to update any additional :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
 
-   * To upgrade the :ref:`Boundless SDK <webapps.sdk>`:
+   * To update the :ref:`Boundless SDK <webapps.sdk>`:
 
      .. code-block:: bash
 
@@ -111,7 +114,7 @@ Upgrade process
 
         yum upgrade geoserver-wps
 
-After upgrade
--------------
+After update
+------------
 
-The upgrade is now complete. Please see the section on :ref:`intro.installation.redhat.postinstall` to continue.
+The update is now complete. Please see the section on :ref:`intro.installation.redhat.postinstall` to continue.
