@@ -7,7 +7,7 @@ This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterpris
 
 .. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`__ for information on how to purchase OpenGeo Suite Enterprise.
 
-#. To upgrade, you must first :ref:`uninstall <intro.installation.ubuntu.uninstall>` your current version of OpenGeo Suite. Your data and settings will be preserved.
+On a system that already has OpenGeo Suite:
 
 #. Change to the ``root`` user:
 
@@ -15,9 +15,9 @@ This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterpris
 
       sudo su - 
 
-#. Remove the OpenGeo Suite repository entry, which is typically inside ``/etc/apt/sources.list.d/opengeo.list`` or ``/etc/apt/sources.list``. Open the file and delete the line or lines that refer to OpenGeo Suite.
+#. Remove the OpenGeo Suite repository entry, which is typically inside either ``/etc/apt/sources.list.d/opengeo.list`` or ``/etc/apt/sources.list``. Open the file and delete the line or lines that refer to OpenGeo Suite.
 
-#. Add the OpenGeo Suite Enterprise repository. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
+#. Add the OpenGeo Suite Enterprise repository. Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase:
 
    * If installing on Ubuntu 12:
 
@@ -39,39 +39,19 @@ This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterpris
 
       apt-get update
 
-#. Now install the appropriate OpenGeo Suite packages. You have options on what packages to install:
+#. Now you can upgrade the installed packages, which will now include the OpenGeo Suite Enterprise components:
+
+   .. code-block:: bash
+
+      apt-get upgrade
+
+#. You can now install additional packages as well, such as new extensions. For example, to install the :ref:`MongoDB <dataadmin.mongodb>` extension:
+
+   .. code-block:: bash
+
+      apt-get install geoserver-mongodb
 
    .. note:: See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details of individual packages.
-
-   * To install typical server components:
-
-     .. code-block:: bash
-
-        apt-get install opengeo-server
-
-   * To install typical client components:
-
-     .. code-block:: bash
-
-        apt-get install opengeo-client
-
-   * To install typical client and server components:
-
-     .. code-block:: bash
-
-        apt-get install opengeo
-
-#. If you installed any additional packages originally, you can update them now. For example:
-
-   * To update the :ref:`Boundless SDK <webapps.sdk>`:
-
-     .. code-block:: bash
-
-        apt-get install opengeo-webapp-sdk
-
-   * To update a GeoServer extension such as :ref:`WPS <processing>`:
-
-        apt-get install geoserver-wps
 
 After upgrade
 -------------
