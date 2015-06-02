@@ -329,6 +329,44 @@ public class MapController extends ApiController {
         return mapDetails(new JSONObj(), map, wsName, req);
     }
     
+    /**
+     * API Endpoint to calculate the bounds of a map, given an (optional) projection
+     * @param wsName Workspace name
+     * @param name Map name
+     * @param obj JSON object, containing the projection to calculate the bounds for.
+     * @param req Servlet Request
+     * @return JSON object returning the calculated bounds
+     * @throws Exception If there is an error in the request.
+     */
+    @RequestMapping(value = "/{wsName}/{name:.+}/bounds", method = RequestMethod.PUT)
+    public @ResponseBody JSONObj bounds(@PathVariable String wsName,
+                                     @PathVariable String name, 
+                                     @RequestBody JSONObj obj,
+                                     HttpServletRequest req) throws Exception {
+        
+        Catalog cat = geoServer.getCatalog();
+
+        LayerGroupInfo map = findMap(wsName, name, cat);
+        WorkspaceInfo ws = map.getWorkspace();
+        
+        CoordinateReferenceSystem crs = CRS.decode("EPSG:4326");
+        if(obj.has("proj")) {
+            String srs = obj.str("proj");
+            try {
+                crs = CRS.decode(srs);
+            } catch (FactoryException e) {
+                throw new BadRequestException("Unknown spatial reference identifier: " + srs);
+            }
+        } else if (map.getBounds() != null) {
+            crs = map.getBounds().getCoordinateReferenceSystem();
+        }
+        new CatalogBuilder( cat ).calculateLayerGroupBounds( map, crs );
+        JSONObj result = new JSONObj();
+        IO.proj(result.putObject("proj"), crs,CRS.toSRS(crs));
+        IO.bbox(result.putObject("bbox"), map);
+        return result;
+    }
+    
     @RequestMapping(value = "/{wsName}/{name}/copy", method = RequestMethod.PUT)
     public @ResponseBody JSONObj copy(@PathVariable String wsName,
                                      @PathVariable String name, 
