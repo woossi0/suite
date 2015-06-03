@@ -15,7 +15,7 @@ Upgrade process
 #. To upgrade, you must first back up your data:
    
    * Back up your GeoServer data directory by copying it to a safe location. You can find your data directory by running GeoServer and selecting :guilabel:`Open GeoServer Data Directory` from the GeoServer icon in the OS X menu bar.
-   * Back up your PostGIS database to a safe location by following the instructions in the :ref:`dataadmin.pgDBAdmin.backup` section.
+   * Back up your PostGIS database to a safe location by following the instructions in the :ref:`PostgreSQL backup and restore <dataadmin.pgDBAdmin.backup>` section of the User Manual.
 
 #. After backing up your data, :ref:`uninstall <intro.installation.mac.uninstall>` your current version of OpenGeo Suite.
 
