@@ -91,9 +91,6 @@ GeoServer Extensions
    * - INSPIRE
      - Additional WMS and WFS metadata configuration for INSPIRE compliance
      - OpenGeo Suite Enterprise only
-   * - Mapmeter
-     - :ref:`Mapmeter <sysadmin.mapmeter>` monitoring service.
-     - OpenGeo Suite Enterprise only
    * - MongoDB
      - :ref:`MongoDB <dataadmin.mongodb>` database support.
      - OpenGeo Suite Enterprise only

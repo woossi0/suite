@@ -125,17 +125,6 @@ The INSPIRE extension provides additional metadata information for WMS and WFS s
 
 For information on configuring WMS and WFS services, please see the `GeoServer INSPIRE documentation <../geoserver/extensions/inspire/>`_.
 
-.. _intro.extensions.mapmeter:
-
-Mapmeter
---------
-
-.. note:: OpenGeo Suite Enterprise only.
-
-The Mapmeter extension adds the ability to connect to Mapmeter. `Mapmeter <http://boundlessgeo.com/solutions/mapmeter/>`_ is a cloud-based service that allows you to monitor and analyze your geospatial deployments in real-time.
-
-For more information on using Mapmeter, see the section on :ref:`sysadmin.mapmeter`.
-
 .. _intro.extensions.mongodb:
 
 MongoDB

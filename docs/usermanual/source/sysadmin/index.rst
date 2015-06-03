@@ -9,7 +9,6 @@ This section will discuss how to manage OpenGeo Suite deployments, including ser
    :maxdepth: 2
 
    startup/index
-   mapmeter/index
    production/index
    jvm/index
    manager/index

@@ -31,8 +31,6 @@ GeoServer :ref:`extensions <intro.extensions>` are distributed as a separate arc
      - Database catalog and configuration extension for GeoServer. Use with ``cluster``.
    * - ``inspire``
      - Additional WMS and WFS metadata configuration for INSPIRE compliance
-   * - ``mapmeter``
-     - Mapmeter extension for GeoServer
    * - ``mongodb``
      - MongoDB data format extension for GeoServer
    * - ``oracle``
