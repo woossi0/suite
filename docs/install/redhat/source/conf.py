@@ -192,7 +192,7 @@ htmlhelp_basename = 'OpenGeoSuiteInstallationdoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'README-centos.tex', u'OpenGeo Suite for CentOS and Red Hat',
-   u'OpenGeo', 'howto'),
+   u'Boundless', 'howto'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

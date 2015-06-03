@@ -190,7 +190,7 @@ htmlhelp_basename = 'OpenGeoSuiteInstallationdoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'README-mac.tex', u'OpenGeo Suite for Mac OS X',
-   u'OpenGeo', 'howto'),
+   u'Boundless', 'howto'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
