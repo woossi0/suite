@@ -65,17 +65,6 @@ For more information about Clustering, please see the :ref:`sysadmin.clustering`
 
 Scripts for setting up clusters either on Amazon Web Services (AWS) or locally-hosted virtual machines are available to OpenGeo Suite Enterprise clients. Please `contact Boundless <http://boundlessgeo.com/about-us/contact/>`_ to access these scripts.
 
-.. _intro.extensions.css:
-
-CSS Styling
------------
-
-The CSS Styling extension adds functionality to GeoServer to be able to style layers using a syntax that is similar to CSS (Cascading Style Sheets). CSS can be preferable to the standard Styled Layer Descriptor (SLD) styling method, due to the compactness of CSS as well as greater familiarity.
-
-For more information about CSS styling in GeoServer, please see the `GeoServer CSS documentation <../geoserver/extensions/css/>`_.
-
-.. warning:: The installation instructions in the GeoServer documentation do not apply to users of OpenGeo Suite. Users of OpenGeo Suite can install the extension following the standard way as indicated above.
-
 .. _intro.extensions.csw:
 
 CSW

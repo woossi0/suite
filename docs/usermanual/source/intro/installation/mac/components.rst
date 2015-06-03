@@ -70,9 +70,6 @@ GeoServer Extensions
    * - Clustering
      - :ref:`Clustering <sysadmin.clustering>` plug-ins.
      - OpenGeo Suite Enterprise only
-   * - CSS Styling
-     - CSS map styling support.
-     - 
    * - CSW
      - Catalogue Service for Web (CSW) support.
      - 

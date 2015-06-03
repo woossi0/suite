@@ -152,9 +152,6 @@ The following packages are available:
    * - ``geoserver-cluster``
      - Clustering extension for GeoServer. Use with ``geoserver-jdbcconfig``.
      - OpenGeo Suite Enterprise only
-   * - ``geoserver-css``
-     - CSS styling extension for GeoServer
-     -
    * - ``geoserver-csw``
      - Catalogue Service for Web (CSW) extension for GeoServer
      - 

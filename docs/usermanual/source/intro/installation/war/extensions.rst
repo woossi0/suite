@@ -19,8 +19,6 @@ GeoServer :ref:`extensions <intro.extensions>` are distributed as a separate arc
      - Application Schema support
    * - ``cluster``
      - Clustering extension for GeoServer. Use with ``jdbcconfig``.
-   * - ``css``
-     - CSS styling extension for GeoServer
    * - ``csw``
      - Catalogue Service for Web (CSW) extension for GeoServer
    * - ``db2``
