@@ -65,6 +65,10 @@ OS X
 Ubuntu Linux
 ------------
 
+There are two ways to accomplish this in Ubuntu: **use a symlink** or **edit the configuration file**.
+
+Using a symlink:
+
 #. Stop the PostgreSQL service::
 
      sudo service postgresql stop
@@ -83,8 +87,34 @@ Ubuntu Linux
 
      sudo service postgresql start
 
+Editing the configuration file:
+
+#. Stop the PostgreSQL service::
+
+     sudo service postgresql stop
+
+#. Move the location of the data directory::
+
+     sudo mv /var/lib/postgresql/9.3/main <NEWPATH>
+
+   where ``<NEWPATH>`` would be the desired path (such as ``/opt/pgdata``)
+
+#. Open :file:`/etc/postgresql/9.3/main/postgresql.conf` in a text editor (with super user privileges).
+
+#. Find the line that reads ``data_directory=/var/lib/postgresql/9.3/main`` and change the path to the ``<NEWPATH>`` determined above.
+
+#. Save and close the file.
+
+#. Start the PostgreSQL service::
+
+     sudo service postgresql start
+
 Red Hat / CentOS Linux
 ----------------------
+
+There are two ways to accomplish this in Red Hat / CentOS: **use a symlink** or **edit the configuration file**.
+
+Using a symlink:
 
 #. Stop the PostgreSQL service::
 
@@ -103,3 +133,25 @@ Red Hat / CentOS Linux
 #. Start the PostgreSQL service::
 
       sudo service postgresql-9.3 start
+
+Editing the configuration file:
+
+#. Stop the PostgreSQL service::
+
+     sudo service postgresql-9.3 stop
+
+#. Move the location of the data directory::
+
+      sudo mv /var/lib/pgsql/9.3/data <NEWPATH>
+
+   where ``<NEWPATH>`` would be the desired path (such as ``/opt/pgdata``)
+
+#. Open :file:`/etc/rc.d/init.d/postgresql-9.3` in a text editor (with super user privileges).
+
+#. Find the line that starts with ``PGDATA`` and and change the path to the ``<NEWPATH>`` determined above.
+
+#. Save and close the file.
+
+#. Start the PostgreSQL service::
+
+     sudo service postgresql start
