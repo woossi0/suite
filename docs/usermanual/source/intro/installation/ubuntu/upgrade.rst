@@ -45,13 +45,13 @@ On a system that already has OpenGeo Suite:
 
       apt-get upgrade
 
-#. You can now install additional packages as well, such as new extensions. For example, to install the :ref:`MongoDB <dataadmin.mongodb>` extension:
+#. You can now install additional packages as well, such as new :ref:`extensions <intro.extensions>`. For example, to install the :ref:`MongoDB <dataadmin.mongodb>` extension:
 
    .. code-block:: bash
 
       apt-get install geoserver-mongodb
 
-   .. note:: See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details of individual packages.
+   .. note:: See the :ref:`Packages <intro.installation.ubuntu.packages>` section for details about individual packages.
 
 After upgrade
 -------------

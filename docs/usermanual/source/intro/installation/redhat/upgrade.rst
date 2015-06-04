@@ -7,13 +7,13 @@ This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterpris
 
 .. note:: OpenGeo Suite Enterprise can only be obtained through `Boundless <http://boundlessgeo.com>`_. Please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`__ for information on how to purchase OpenGeo Suite Enterprise.
 
-#. To upgrade, you must first :ref:`uninstall <intro.installation.redhat.uninstall>` your current version of OpenGeo Suite. Your data and settings will be preserved.
+On a system that already has OpenGeo Suite:
 
 #. Change to the ``root`` user:
 
    .. code-block:: bash
 
-      sudo su - 
+      sudo su -
 
 #. Add the OpenGeo Suite Enterprise repository by replacing the file :file:`/etc/yum.repos.d/OpenGeo.repo` with the following contents::
 
@@ -33,39 +33,25 @@ This section describes how to upgrade OpenGeo Suite to **OpenGeo Suite Enterpris
 
       yum update
 
-#. Now install the appropriate OpenGeo Suite packages. You have options on what packages to install:
+#. Clean the metadata for existing packages:
 
-   .. note:: See the :ref:`Packages <intro.installation.redhat.packages>` section for details of individual packages.
+   .. code-block:: bash
 
-   * To install typical server components:
+      yum clean metadata
 
-     .. code-block:: bash
+#. Now you can reinstall the existing packages, which will now include the OpenGeo Suite Enterprise components. Currently all of the Enterprise-specific components are contained in the ``geoserver`` package:
 
-        yum install opengeo-server
+   .. code-block:: bash
 
-   * To install typical client components:
+      yum reinstall geoserver
 
-     .. code-block:: bash
+#. You can now install additional packages as well, such as new :ref:`extensions <intro.extensions>`. For example, to install the :ref:`MongoDB <dataadmin.mongodb>` extension:
 
-        yum install opengeo-client
+   .. code-block:: bash
 
-   * To install typical client and server components:
+      yum install geoserver-mongodb
 
-     .. code-block:: bash
-
-        yum install opengeo
-
-#. If you installed any additional packages originally, you can update them now. For example:
-
-   * To update the :ref:`Boundless SDK <webapps.sdk>`:
-
-     .. code-block:: bash
-
-        yum install opengeo-webapp-sdk
-
-   * To update a GeoServer extension such as :ref:`WPS <processing>`:
-
-        yum install geoserver-wps
+   .. note:: See the :ref:`Packages <intro.installation.redhat.packages>` section for details about individual packages.
 
 After upgrade
 -------------
