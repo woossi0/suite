@@ -35,7 +35,7 @@ The process for adding a MongoDB store to GeoServer is the same as for any other
 
      .. note::
 
-        This field can accept either a mongodb or file URI. It must be an absolute path of the form ``file://``, so if using a Windows path, it will need to be converted to this form: ``file:///c/data/schemas/database`` If Linux: ``file:///opt/schemas/database/``. The directory will be created if it does not exist, in which case write permissions will be necessary.
+        This field can accept either a mongodb or file URI. It must be an absolute path of the form ``file:///``, so if using a Windows path, it will need to be converted to this form: ``file:///c/data/schemas/database`` If Linux: ``file:///opt/schemas/database/``. The directory will be created if it does not exist, in which case write permissions will be necessary.
 
         The database and collection names are optional. If missing, the database name will default to ``geotools`` and the collection name to ``schemas``. The database and collection must be writable using the credentials provided with the URI. Schemas are stored as MongoDB documents or files adhering to the JSON schema format with the schema "Type Name" (typeName) as the key.
 
