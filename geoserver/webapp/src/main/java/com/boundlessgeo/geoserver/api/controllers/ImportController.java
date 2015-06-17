@@ -767,6 +767,9 @@ public class ImportController extends ApiController {
         Map<String, Serializable> requiredParams = new HashMap<String, Serializable>();
         DataStoreFactorySpi factory = (DataStoreFactorySpi) DataStoreUtils.aquireFactory(params);
         
+        if (factory == null) {
+            return null;
+        }
         for (Param p : factory.getParametersInfo()) {
             if (p.isRequired() && params.get(p.getName()) != null) {
                 requiredParams.put(p.getName(), params.get(p.getName()));
