@@ -10,7 +10,7 @@ Design
 
 The data has already been loaded, so all that needs to be done is to craft a style for the raster layer that employs a rendering transformation. You can use the style created in the :ref:`previous section <processing.contour.static>` here.
 
-Adding a rendering transformation is done with the ``<Transformation>`` tag. The transformation name is ``gs:Contour``, the name of the WPS process. From there, the other arguments to the process are supplied exactly as was done through the WPS Request Builder, except that no output format is required.
+Adding a rendering transformation is done with the ``<Transformation>`` tag. The transformation name is ``ras:Contour``, the name of the WPS process. From there, the other arguments to the process are supplied exactly as was done through the WPS Request Builder, except that no output format is required.
 
 .. list-table::
    :header-rows: 1

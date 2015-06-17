@@ -41,7 +41,7 @@ Processes fall into three categories:  vector, raster, and geometry, referring t
 
 WPS is a `service published by GeoServer <../geoserver/extensions/wps/>`_ and so is an integral part of the OpenGeo Suite.  It provides a collection of many standard processes along with the ability to add additional ones.  These processes can be employed inside custom applications, built using the :ref:`Boundless SDK <webapps.sdk>`, for a full web-based spatial processing solution.
 
-For example, one can run the ``JTS:union`` process on a collection of geometries to output a single geometry that is the union of them.  Processes can be chained, so one can run the ``gs:Reproject`` process to reproject a raster image to a different SRS, then take the output of that and run ``gs:CropCoverage`` to crop the raster down to a certain bounds.  The result can be fed into the ``gs:Import`` process to save the resulting coverage as a new layer in GeoServer, for use by other clients.
+For example, one can run the ``geo:union`` process on a collection of geometries to output a single geometry that is the union of them.  Processes can be chained, so one can run the ``vec:Reproject`` process to reproject a raster image to a different SRS, then take the output of that and run ``ras:CropCoverage`` to crop the raster down to a certain bounds.  The result can be fed into the ``gs:Import`` process to save the resulting coverage as a new layer in GeoServer, for use by other clients.
 
 SQL Views
 ~~~~~~~~~

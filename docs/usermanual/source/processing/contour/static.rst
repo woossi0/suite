@@ -3,7 +3,7 @@
 Creating a static contour map
 =============================
 
-Using the GeoServer WPS process **gs:Contour** it is possible to generate a vector contour layer of a given raster layer. You can access this process through the **WPS Request Builder** by going to :guilabel:`Demos` and selecting :guilabel:`WPS Request Builder`. Once there, select :guilabel:`gs:Contour` in the box marked :guilabel:`Choose process`. Enter the following information for your specific data:
+Using the GeoServer WPS process **ras:Contour** it is possible to generate a vector contour layer of a given raster layer. You can access this process through the **WPS Request Builder** by going to :guilabel:`Demos` and selecting :guilabel:`WPS Request Builder`. Once there, select :guilabel:`ras:Contour` in the box marked :guilabel:`Choose process`. Enter the following information for your specific data:
 
 .. list-table::
    :header-rows: 1

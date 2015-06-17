@@ -84,18 +84,18 @@ Examples
 Importing result of process output
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``gs:Import`` process is useful for automatically incorporating results from other processes into the GeoServer catalog. The following example shows how the result of a transform operation (using the :ref:`gs:Transform <processing.processes.vector.transform>` process), is imported into GeoServer.
+The ``gs:Import`` process is useful for automatically incorporating results from other processes into the GeoServer catalog. The following example shows how the result of a transform operation (using the :ref:`vec:Transform <processing.processes.vector.transform>` process), is imported into GeoServer.
 
 .. note:: This is an example of a "chained" process, where the output of a process is used as the input of another.
 
-Input parameters for ``gs:Transform``:
+Input parameters for ``vec:Transform``:
 
 * ``features``: ``medford:bikelanes``
 * ``transform``: ``the_geom=the_geom; street_name=streetname; length = length(the_geom)``
 
 Input parameters for ``gs:Import``:
 
-* ``features``: output from ``gs:Transform``
+* ``features``: output from ``vec:Transform``
 * ``workspace``: ``medford``
 * ``store``: [blank]
 * ``name``: ``bikelanes_length``

@@ -40,7 +40,7 @@ where:
      - Default value
    * - ``name``
      - Yes
-     - Full name of the rendering transform including any prefixes (such as ``gs:Heatmap``)
+     - Full name of the rendering transform including any prefixes (such as ``vec:Heatmap``)
      - N/A
    * - ``params``
      - Yes
@@ -90,7 +90,7 @@ The following uses the :ref:`cartography.rt.heatmap` process to convert a point 
    title: Heatmap
    feature-styles:
    - transform:
-       name: gs:Heatmap
+       name: vec:Heatmap
        params:
          weightAttr: pop2000
          radiusPixels: 100
@@ -118,7 +118,7 @@ The point stacker transform can be used to combine points that are close togethe
    title: pointstacker
    feature-styles:
    - transform:
-       name: gs:PointStacker
+       name: vec:PointStacker
        params:
        cellSize: 100
      rules:

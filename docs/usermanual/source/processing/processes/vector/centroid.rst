@@ -6,7 +6,7 @@ Centroid
 Description
 -----------
 
-The ``gs:Centroid`` process takes a feature collection and returns a point feature collection containing the centroids of the geometries of the input features. Feature attributes names and values remain unchanged.
+The ``vec:Centroid`` process takes a feature collection and returns a point feature collection containing the centroids of the geometries of the input features. Feature attributes names and values remain unchanged.
 
 The `centroid <http://en.wikipedia.org/wiki/Centroid>`_ of a geometry is defined for all geometry types (Point, Line and Polygon). It is equal to the geometric center of all points contained in the geometry.
 
@@ -14,7 +14,7 @@ The `centroid <http://en.wikipedia.org/wiki/Centroid>`_ of a geometry is defined
 
 .. figure:: img/centroid.png
 
-   *gs:Centroid*
+   *vec:Centroid*
 
 Centroids can provide a representative point for features. Typical use cases include distance analysis and label placement.
 
@@ -22,7 +22,7 @@ Centroids can provide a representative point for features. Typical use cases inc
 Inputs and outputs
 ------------------
 
-``gs:Centroid`` accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
+``vec:Centroid`` accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
 
 Inputs
 ~~~~~~
@@ -75,5 +75,5 @@ Finding the centroids of the polygons in the ``medford:zoning`` layer:
 Related processes
 -----------------
 
-* Centroid calculation is also available with the `gs:Transform <processing.processes.vector.transform>`_ process, using the ``centroid(geom)`` function.
-* If a point guaranteed to lie within the input geometry is required, use the ``interiorPoint(geom)`` function with the ``gs:Transform`` process.
+* Centroid calculation is also available with the `vec:Transform <processing.processes.vector.transform>`_ process, using the ``centroid(geom)`` function.
+* If a point guaranteed to lie within the input geometry is required, use the ``interiorPoint(geom)`` function with the ``vec:Transform`` process.

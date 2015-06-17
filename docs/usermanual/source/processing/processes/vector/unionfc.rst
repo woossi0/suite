@@ -6,17 +6,17 @@ UnionFeatureCollection
 Description
 -----------
 
-The ``gs:UnionFeatureCollection`` process is similar to a merge operation. It takes as input two feature collections and outputs a single feature collection, containing all features and attributes. This is useful for combining similar sets of features, such as layers that cover different geographic areas, but otherwise contain the same type of information.
+The ``vec:UnionFeatureCollection`` process is similar to a merge operation. It takes as input two feature collections and outputs a single feature collection, containing all features and attributes. This is useful for combining similar sets of features, such as layers that cover different geographic areas, but otherwise contain the same type of information.
 
 
 .. figure:: img/unionfc.png
 
-   *gs:UnionFeatureCollection*
+   *vec:UnionFeatureCollection*
 
 Inputs and outputs
 ------------------
 
-``gs:UnionFeatureCollection`` accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
+``vec:UnionFeatureCollection`` accepts :ref:`processing.processes.formats.fcin` and returns :ref:`processing.processes.formats.fcout`.
 
 Inputs
 ~~~~~~
@@ -69,5 +69,5 @@ Usage notes
 Related processes
 -----------------
 
-* The :ref:`gs:IntersectionFeatureCollection <processing.processes.vector.intersectionfc>` process performs an intersection operation on two feature collections instead of a merge operation.
+* The :ref:`vec:IntersectionFeatureCollection <processing.processes.vector.intersectionfc>` process performs an intersection operation on two feature collections instead of a merge operation.
 

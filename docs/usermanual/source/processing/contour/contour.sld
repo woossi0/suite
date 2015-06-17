@@ -12,7 +12,7 @@
       <Abstract>Extracts contours from DEM</Abstract>
       <FeatureTypeStyle>
         <Transformation>
-          <ogc:Function name="gs:Contour">
+          <ogc:Function name="ras:Contour">
             <ogc:Function name="parameter">
               <ogc:Literal>data</ogc:Literal>
             </ogc:Function>

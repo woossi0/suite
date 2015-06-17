@@ -10,7 +10,7 @@ There are two methods of creating a contour map from raster data using the OpenG
 * **Statically**, using the Web Processing Service (WPS)
 * **Dynamically**, using SLD and :ref:`cartography.rt`
 
-Both methods require the WPS process **gs:Contour**.
+Both methods require the WPS process **ras:Contour**.
 
 To create a static map, import data into GeoServer, execute the process using the WPS Request Builder, and output the result. Load the output back into GeoServer to view the results alongside the original content.
 
@@ -31,7 +31,7 @@ Load this dataset into GeoServer. The simplest way is to use `GeoExplorer <../..
 
 This is the default style of the layer in GeoServer, a grayscale output mapped from lightest at highest values to darkest at lowest values. In this case, the attribute values range from approximately **500 to 4400**; the units of this data are in meters.
 
-.. note:: To find the minimum and maximum values for a raster using WPS processes, use the **gs:RasterZonalStatistics** process or, alternately, chain the output of the **gs:RasterAsPointCollection** into the input of **gs:Aggregate** with the :guilabel:`Min` or :guilabel:`Max` function.
+.. note:: To find the minimum and maximum values for a raster using WPS processes, use the **ras:RasterZonalStatistics** process or, alternately, chain the output of the **ras:RasterAsPointCollection** into the input of **vec:Aggregate** with the :guilabel:`Min` or :guilabel:`Max` function.
 
 .. todo:: Make the above process easier.
 
