@@ -90,56 +90,60 @@ Windows (Application server)
 Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 
 
-Mac OS X (Installer)
-~~~~~~~~~~~~~~~~~~~~
+Mac OS X
+~~~~~~~~
 
-MrSID support is enabled via a separate installation package, available in the OpenGeo Suite bundle. In addition to the standard :file:`OpenGeo Suite Installer.pkg` file, there is also an :file:`OpenGeo Suite Extensions.mpkg` file.
+Currently, MrSID support is not available on OS X.
 
-.. figure:: img/mrsid_mac_ext.png
+.. Mac OS X (Installer)
+.. ~~~~~~~~~~~~~~~~~~~~
+
+.. MrSID support is enabled via a separate installation package, available in the OpenGeo Suite bundle. In addition to the standard :file:`OpenGeo Suite Installer.pkg` file, there is also an :file:`OpenGeo Suite Extensions.mpkg` file.
+
+.. .. figure:: img/mrsid_mac_ext.png
       
-   OpenGeo Suite Extensions contain MrSID support
+..    OpenGeo Suite Extensions contain MrSID support
 
-#. Double click on this file to install MrSID after the OpenGeo Suite installation process has completed. Click :guilabel:`Next` to continue.
+.. #. Double click on this file to install MrSID after the OpenGeo Suite installation process has completed. Click :guilabel:`Next` to continue.
 
-   .. figure:: img/mrsid_mac_welcome.png
+..    .. figure:: img/mrsid_mac_welcome.png
       
-      OpenGeo Suite Extensions contain the MrSID extension
+..       OpenGeo Suite Extensions contain the MrSID extension
 
-#. Select the target disk, which should be the same as where the OpenGeo Suite was installed. Click  :guilabel:`Next` again.
+.. #. Select the target disk, which should be the same as where the OpenGeo Suite was installed. Click  :guilabel:`Next` again.
 
-#. On the following page, check the box that says :guilabel:`MrSID Support for OpenGeo Suite`, then click :guilabel:`Next`.
+.. #. On the following page, check the box that says :guilabel:`MrSID Support for OpenGeo Suite`, then click :guilabel:`Next`.
 
-   .. figure:: img/mrsid_mac_components.png
+..    .. figure:: img/mrsid_mac_components.png
       
-      Check this box to install MrSID support
+..       Check this box to install MrSID support
 
-#. Please wait while the installation proceeds.
+.. #. Please wait while the installation proceeds.
 
-   .. figure:: img/mrsid_mac_progress.png
+..    .. figure:: img/mrsid_mac_progress.png
       
-      Installation
+..       Installation
 
-#. You will receive confirmation that the installation was successful. 
+.. #. You will receive confirmation that the installation was successful. 
 
-    .. figure:: img/mrsid_mac_success.png
+..     .. figure:: img/mrsid_mac_success.png
 
-       MrSID support successfully installed
+..        MrSID support successfully installed
 
-Continue reading at the :ref:`dataadmin.mrsid.verify` section.
+.. Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 
+.. Mac OS X (Application server)
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Mac OS X (Application server)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. #. Navigate to:  http://data.opengeo.org/gdal_support/
 
-#. Navigate to:  http://data.opengeo.org/gdal_support/
+.. #. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`mrsid_osx_30.zip` for version 3.0).
 
-#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`mrsid_osx_30.zip` for version 3.0).
+.. #. Extract the contents of the archive into :file:`/usr/local/lib/`.
 
-#. Extract the contents of the archive into :file:`/usr/local/lib/`.
+.. #. Restart Tomcat.
 
-#. Restart Tomcat.
-
-Continue reading at the :ref:`dataadmin.mrsid.verify` section.
+.. Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 
 
 .. _dataadmin.mrsid.verify:
