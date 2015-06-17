@@ -423,7 +423,8 @@ public class LayerController extends ApiController {
      * @param name The layer name
      */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.DELETE)
-    public @ResponseBody void delete(@PathVariable String wsName, @PathVariable String name) throws IOException {
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable String wsName, @PathVariable String name) throws IOException {
         Catalog cat = geoServer.getCatalog();
         WorkspaceInfo ws = findWorkspace(wsName, cat);
         LayerInfo layer = findLayer(wsName, name, cat);
@@ -527,7 +528,8 @@ public class LayerController extends ApiController {
     }
 
     @RequestMapping(value="/{wsName}/{name}/style", method = RequestMethod.PUT, consumes = YsldHandler.MIMETYPE)
-    public @ResponseBody void style(@RequestBody byte[] rawStyle, @PathVariable String wsName,
+    @ResponseStatus(value = HttpStatus.OK)
+    public void style(@RequestBody byte[] rawStyle, @PathVariable String wsName,
         @PathVariable String name, @RequestParam(value="map", required=false) String mapName) throws IOException {
         // first thing is sanity check on the style content
         List<MarkedYAMLException> errors = (List) Styles.handler(YsldHandler.FORMAT).validate(ByteSource.wrap(rawStyle).openStream(), null, null);

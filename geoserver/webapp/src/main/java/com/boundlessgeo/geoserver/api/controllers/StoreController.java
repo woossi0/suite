@@ -42,6 +42,7 @@ import org.opengis.coverage.grid.GridCoverageReader;
 import org.opengis.feature.Feature;
 import org.opengis.feature.type.FeatureType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +51,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
@@ -183,8 +185,8 @@ import com.boundlessgeo.geoserver.json.JSONObj;
      * @return The name and workspace of the deleted store
      */
     @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.DELETE)
-    public @ResponseBody
-    JSONObj delete(@PathVariable String wsName,
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable String wsName,
                    @PathVariable String name,
                    @RequestParam(value="recurse",defaultValue="false") boolean recurse,
                    HttpServletRequest req) {
@@ -204,11 +206,6 @@ import com.boundlessgeo.geoserver.json.JSONObj;
             }
             throw new IllegalStateException( message.toString() );
         }
-        
-        JSONObj json = new JSONObj();
-        json.put("name", name  )
-            .put("workspace", wsName  );
-        return json;
     }
     
     /**
@@ -221,9 +218,9 @@ import com.boundlessgeo.geoserver.json.JSONObj;
      * @throws IOException
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{wsName}", method = RequestMethod.POST)
     public @ResponseBody
-    JSONObj create(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
+    JSONObj create(@PathVariable String wsName, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
         Catalog cat = geoServer.getCatalog();
         CatalogFactory factory = cat.getFactory();
         
@@ -237,12 +234,9 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         if( params.has("raster")){
             String url = params.str("raster");            
             CoverageStoreInfo info = factory.createCoverageStore();
-            info.setWorkspace(workspace);
-            info.setType(name);
             
             // connect and defaults
             info.setURL(url);
-            info.setType(obj.str("type"));
             try {
                 GridCoverageReader reader = info.getGridCoverageReader(null, null);
                 Format format = reader.getFormat();
@@ -258,8 +252,6 @@ import com.boundlessgeo.geoserver.json.JSONObj;
                 params.str("url").toLowerCase().contains("Service=WMS") &&
                 params.str("url").startsWith("http")){
             WMSStoreInfo info = factory.createWebMapServer();
-            info.setWorkspace(workspace);
-            info.setType(name);
             
             // connect and defaults
             info.setCapabilitiesURL(params.str("url"));
@@ -281,8 +273,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
                 throw new IllegalArgumentException("Connection parameters incomplete (does not match an available data store, coverage store or wms store).");
             }
             DataStoreInfo info = factory.createDataStore();
-            info.setWorkspace(workspace);
-            info.setType(name);
+            
             info.getConnectionParameters().putAll(map);
             try {
                 info.setDescription( dataStore.getInfo().getDescription());
@@ -296,6 +287,13 @@ import com.boundlessgeo.geoserver.json.JSONObj;
         boolean refresh = define( store, obj );
         if( refresh ){
             LOG.log( Level.FINE, "Inconsistent: default connection used for store creation required refresh");
+        }
+        store.setWorkspace(workspace);
+        if (obj.get("name") != null) {
+            store.setName(obj.str("name"));
+        }
+        if (obj.get("type") != null) {
+            store.setType(obj.str("type"));
         }
         cat.add(store);
         

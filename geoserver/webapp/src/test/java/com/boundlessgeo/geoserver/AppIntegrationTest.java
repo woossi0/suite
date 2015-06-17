@@ -541,8 +541,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         
         // test delete
         MockHttpServletRequestBuilder delete = delete("/api/icons/foo/icon.png");
-        boolean removed = ctrl.delete("cite","STYLE.PROPERTIES");
-        assertEquals( true, removed );
+        ctrl.delete("cite","STYLE.PROPERTIES");
     }
 
     @Test

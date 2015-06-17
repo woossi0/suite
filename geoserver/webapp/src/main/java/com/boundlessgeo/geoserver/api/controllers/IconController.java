@@ -200,7 +200,8 @@ public class IconController extends ApiController {
     }
 
     @RequestMapping(value = "/{wsName}/{icon:.+}", method = RequestMethod.DELETE)
-    public boolean delete(@PathVariable String wsName, @PathVariable String icon) throws IOException {
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable String wsName, @PathVariable String icon) throws IOException {
 
         WorkspaceInfo ws = findWorkspace(wsName, catalog());
 
@@ -213,7 +214,9 @@ public class IconController extends ApiController {
         if( !ICON_FORMATS.containsKey(ext)){
             throw new NotFoundException("Icon "+icon+" format unsupported");
         }
-        return resource.delete();
+        if (!resource.delete()) {
+            throw new RuntimeException("Failed to delete icon "+icon);
+        }
     }
     
     @ExceptionHandler(FileUploadException.class)

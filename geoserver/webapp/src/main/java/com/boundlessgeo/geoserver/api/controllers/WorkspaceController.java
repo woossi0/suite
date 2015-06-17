@@ -227,26 +227,27 @@ public class WorkspaceController extends ApiController {
     }
 
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String wsName, HttpServletResponse response) {
         Catalog cat = geoServer.getCatalog();
-
+        
         WorkspaceInfo ws = findWorkspace(wsName, cat);
         new CascadeDeleteVisitor(cat).visit(ws);
-
-        response.setStatus(HttpStatus.OK.value());
+        
         recent.remove(WorkspaceInfo.class, ws);
     }
 
     @RequestMapping(value = "/{wsName}/export", method = RequestMethod.POST, produces = APPLICATION_ZIP_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
     public void export(@PathVariable String wsName, HttpServletResponse response) throws Exception {
         Catalog cat = geoServer.getCatalog();
 
         WorkspaceInfo ws = findWorkspace(wsName, cat);
         BundleExporter exporter = new BundleExporter(cat, new ExportOpts(ws));
         exporter.run();
-
+        
         Path zip = exporter.zip();
-
+        
         response.setContentType(APPLICATION_ZIP_VALUE);
         response.setHeader("Content-Disposition", "attachment; filename=\""+zip.getFileName()+"\"");
         FileUtils.copyFile(zip.toFile(), response.getOutputStream());
@@ -254,12 +255,13 @@ public class WorkspaceController extends ApiController {
 
 
     @RequestMapping(value = "/{wsName}/import", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
     public void inport(@PathVariable String wsName, HttpServletRequest request, HttpServletResponse response)
         throws Exception {
         Catalog cat = geoServer.getCatalog();
-
+        
         WorkspaceInfo ws = findWorkspace(wsName, cat);
-
+        
         // grab the uploaded file
         FileItemIterator files = doFileUpload(request);
         if (!files.hasNext()) {
@@ -273,8 +275,6 @@ public class WorkspaceController extends ApiController {
         BundleImporter importer = new BundleImporter(cat, new ImportOpts(ws));
         importer.unzip(zip);
         importer.run();
-
-        response.setStatus(HttpStatus.OK.value());
     }
 
 }

@@ -201,8 +201,8 @@ public class MapController extends ApiController {
      * @return A list of the remaining maps in the workspace
      */
     @RequestMapping(value = "/{wsName}/{name:.+}", method = RequestMethod.DELETE)
-    public @ResponseBody
-    JSONArr delete(@PathVariable String wsName, @PathVariable String name) {
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable String wsName, @PathVariable String name) {
         Catalog cat = catalog();
 
         WorkspaceInfo ws = findWorkspace(wsName, cat);
@@ -211,7 +211,6 @@ public class MapController extends ApiController {
 
         recent.remove(LayerGroupInfo.class, map);
         recent.add(WorkspaceInfo.class, ws);
-        return list(wsName, null, null, null, null).array("maps");
     }
     
     /**
