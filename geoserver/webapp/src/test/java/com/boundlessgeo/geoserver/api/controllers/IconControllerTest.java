@@ -79,6 +79,8 @@ public class IconControllerTest {
           .directory("workspaces/foo/styles")
           .resource("workspaces/foo/styles/icon.png", "PNG")
           .resource("workspaces/foo/styles/symbols.TTF", "TTF")
+          .directory("styles")
+          .resource("styles/global.png", "PNG")
         .geoServer().catalog()
           .workspace("foo", "http://scratch.org", true)
             .layer("one")
@@ -91,7 +93,7 @@ public class IconControllerTest {
       assertEquals( d.getType(), Type.DIRECTORY );
       assertEquals( 3, d.list().size() );
       
-      MvcResult result = mvc.perform(get("/api/icons/foo"))
+      MvcResult result = mvc.perform(get("/api/icons/list/foo"))
               .andExpect(status().isOk())
               .andExpect(content().contentType(MediaType.APPLICATION_JSON))
               .andReturn();
@@ -109,6 +111,19 @@ public class IconControllerTest {
               }
           }
       }
+      
+      //Global styles dir
+      d = rl.get("styles");
+      assertEquals( d.getType(), Type.DIRECTORY );
+      assertEquals( 1, d.list().size() );
+      
+      result = mvc.perform(get("/api/icons/list"))
+              .andExpect(status().isOk())
+              .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+              .andReturn();
+
+      arr = JSONWrapper.read(result.getResponse().getContentAsString()).toArray();
+      assertEquals( 1, arr.size() );
     }
 
     @Test
@@ -119,6 +134,8 @@ public class IconControllerTest {
           .directory("workspaces/foo/styles")
           .resource("workspaces/foo/styles/icon.png", "PNG8")
           .resource("workspaces/foo/styles/symbols.TTF", "TTF")
+          .directory("styles")
+          .resource("styles/global.png", "PNG")
         .geoServer().catalog()
           .workspace("foo", "http://scratch.org", true)
             .layer("one")
@@ -133,6 +150,17 @@ public class IconControllerTest {
       String raw = result.getResponse().getContentAsString();
       
       assertEquals("PNG8",raw);
+      
+      //Global styles directory
+      result = mvc.perform(get("/api/icons/global.png"))
+              .andExpect(status().isOk())
+              .andExpect(content().contentType(MediaType.IMAGE_PNG_VALUE))
+              .andReturn();
+
+      raw = result.getResponse().getContentAsString();
+      
+      assertEquals("PNG",raw);
+      
     }
 
     

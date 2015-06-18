@@ -527,7 +527,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         // test upload
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.setContextPath("/geoserver");
-        request.setRequestURI("/geoserver/api/icons");
+        request.setRequestURI("/geoserver/api/icons/cite");
         request.setMethod("post");
 
         createMultiPartFormContent(request, "form-data; name=\"icon\"; filename=\"STYLE.PROPERTIES\"",
@@ -540,8 +540,35 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals("created", Resource.Type.RESOURCE, r.getType() );
         
         // test delete
-        MockHttpServletRequestBuilder delete = delete("/api/icons/foo/icon.png");
+        MockHttpServletRequestBuilder delete = delete("/api/icons/cite/icon.png");
         ctrl.delete("cite","STYLE.PROPERTIES");
+        
+        r = catalog.getResourceLoader().get("workspaces/cite/styles/STYLE.PROPERTIES");
+        assertEquals("deleted", Resource.Type.UNDEFINED, r.getType() );
+        
+        //Global style directory
+        
+        // test upload
+        request = new MockHttpServletRequest();
+        request.setContextPath("/geoserver");
+        request.setRequestURI("/geoserver/api/icons");
+        request.setMethod("post");
+
+        createMultiPartFormContent(request, "form-data; name=\"icon\"; filename=\"STYLE.PROPERTIES\"",
+            "text/x-java-properties", "square=LINESTRING((0 0,0 1,1 1,1 0,0 0))".getBytes() );
+
+        arr = ctrl.create(request);
+        assertEquals( 1, arr.size() );
+        
+        r = catalog.getResourceLoader().get("styles/STYLE.PROPERTIES");
+        assertEquals("created", Resource.Type.RESOURCE, r.getType() );
+        
+        // test delete
+        delete = delete("/api/icons/icon.png");
+        ctrl.delete("STYLE.PROPERTIES");
+        
+        r = catalog.getResourceLoader().get("styles/STYLE.PROPERTIES");
+        assertEquals("deleted", Resource.Type.UNDEFINED, r.getType() );
     }
 
     @Test
