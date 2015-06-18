@@ -319,7 +319,7 @@ public class LayerControllerTest {
                 .geoServer().build(geoServer);
 
         mvc.perform(delete("/api/layers/foo/one"))
-            .andExpect(status().isOk())
+            .andExpect(status().isNoContent())
             .andReturn();
 
         Catalog cat = geoServer.getCatalog();

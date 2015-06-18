@@ -197,7 +197,7 @@ public class WorkspaceControllerTest {
             .geoServer().build(geoServer);
 
         mvc.perform(delete("/api/workspaces/foo"))
-            .andExpect(status().isOk())
+            .andExpect(status().isNoContent())
             .andReturn();
 
         Catalog cat = geoServer.getCatalog();
