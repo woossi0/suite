@@ -6,51 +6,47 @@
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="structure_feature_style" sketch:type="MSArtboardGroup">
-            <rect id="box" stroke="#4A4A4A" fill="#F2F2F2" sketch:type="MSShapeGroup" x="31" y="6" width="239" height="122" rx="4"></rect>
-            <text id="feature-style" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="10" font-weight="526" fill="#000000">
-                <tspan x="56.5" y="15.8385093">feature-style</tspan>
+            <rect id="box" stroke="#4A4A4A" fill="#F2F2F2" sketch:type="MSShapeGroup" x="7" y="5" width="143" height="122" rx="4"></rect>
+            <text id="feature-style" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="12" font-weight="526" fill="#000000">
+                <tspan x="33" y="17">feature-style</tspan>
             </text>
-            <g id="feature_style" sketch:type="MSLayerGroup" transform="translate(34.500000, 9.354037)">
+            <g id="feature_style" sketch:type="MSLayerGroup" transform="translate(11.000000, 10.000000)">
                 <path d="M0.754882812,6.50254149 L5.75488281,0.423348942 L16.5048828,0.423348942 L11.5048828,6.50254149 L0.754882812,6.50254149 Z" id="border" stroke="#FFFFFF" fill="#F4D7BD" sketch:type="MSShapeGroup"></path>
                 <path d="M0.754882812,6.50254149 L5.75488281,0.423348942 L16.5048828,0.423348942 L11.5048828,6.50254149 L0.754882812,6.50254149 Z" id="edge" stroke="#B1792C" sketch:type="MSShapeGroup"></path>
             </g>
-            <text id="title:-Transportatio" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="10" font-weight="260" fill="#000000">
-                <tspan x="56.5471698" y="40">title: Transportation</tspan>
+            <text id="name" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="10" font-weight="260" fill="#000000">
+                <tspan x="33" y="28">name</tspan>
+                <tspan x="33" y="40">title</tspan>
+                <tspan x="33" y="52">abstract</tspan>
             </text>
-            <text id="name:-transport" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="10" font-weight="260" fill="#000000">
-                <tspan x="56.5471698" y="28">name: transport</tspan>
-            </text>
-            <text id="abstract:-Road-and-r" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="10" font-weight="260" fill="#000000">
-                <tspan x="56.5471698" y="51">abstract: Road and railway transportation routes</tspan>
-            </text>
-            <g id="rule" sketch:type="MSLayerGroup" transform="translate(56.500000, 58.000000)">
-                <rect id="Rectangle-3-Copy" stroke="#000000" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="200" height="21" rx="5"></rect>
-                <text sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="10" font-weight="260" fill="#000000">
-                    <tspan x="27" y="14">rule</tspan>
+            <g id="rule" sketch:type="MSLayerGroup" transform="translate(32.500000, 57.000000)">
+                <rect id="Rectangle-3-Copy" stroke="#000000" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="147" height="21" rx="5"></rect>
+                <text sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="12" font-weight="526" fill="#000000">
+                    <tspan x="28.1824818" y="14">rule</tspan>
                 </text>
-                <g id="rule-copy" transform="translate(6.000000, 5.000000)" sketch:type="MSShapeGroup">
-                    <path d="M7.5,0.0048828125 C7.5,0.0048828125 0.745117188,3.7069664 0.745117188,5.87154961 C0.745117187,8.03613281 7.5,12.0048828 7.5,12.0048828 L14.2451172,5.87154961 L7.5,0.0048828125 Z" id="interior" stroke="#FFFFFF" fill="#F4D7BD"></path>
-                    <path d="M7.5,0.0048828125 C7.5,0.0048828125 0.745117188,3.7069664 0.745117188,5.87154961 C0.745117187,8.03613281 7.5,12.0048828 7.5,12.0048828 L14.2451172,5.87154961 L7.5,0.0048828125 Z" id="edge" stroke="#B1792C"></path>
+                <g id="rule-copy" transform="translate(6.262774, 4.000000)" sketch:type="MSShapeGroup">
+                    <path d="M7.09110273,0.0048828125 C7.09110273,0.0048828125 0.70449367,3.7069664 0.70449367,5.87154961 C0.70449367,8.03613281 7.09110273,12.0048828 7.09110273,12.0048828 L13.4684786,5.87154961 L7.09110273,0.0048828125 Z" id="interior" stroke="#FFFFFF" fill="#F4D7BD"></path>
+                    <path d="M7.09110273,0.0048828125 C7.09110273,0.0048828125 0.70449367,3.7069664 0.70449367,5.87154961 C0.70449367,8.03613281 7.09110273,12.0048828 7.09110273,12.0048828 L13.4684786,5.87154961 L7.09110273,0.0048828125 Z" id="edge" stroke="#B1792C"></path>
                 </g>
             </g>
-            <g id="rule-copy-2" sketch:type="MSLayerGroup" transform="translate(56.500000, 78.000000)">
-                <rect id="Rectangle-3-Copy" stroke="#000000" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="200" height="21" rx="5"></rect>
-                <text id="rule" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="10" font-weight="260" fill="#000000">
-                    <tspan x="27" y="14">rule</tspan>
+            <g id="rule-copy-2" sketch:type="MSLayerGroup" transform="translate(32.500000, 77.000000)">
+                <rect id="Rectangle-3-Copy" stroke="#000000" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="147" height="21" rx="5"></rect>
+                <text id="rule" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="12" font-weight="526" fill="#000000">
+                    <tspan x="28.1824818" y="14">rule</tspan>
                 </text>
-                <g id="rule-copy" transform="translate(6.000000, 5.000000)" sketch:type="MSShapeGroup">
-                    <path d="M7.5,0.0048828125 C7.5,0.0048828125 0.745117188,3.7069664 0.745117188,5.87154961 C0.745117187,8.03613281 7.5,12.0048828 7.5,12.0048828 L14.2451172,5.87154961 L7.5,0.0048828125 Z" id="interior" stroke="#FFFFFF" fill="#F4D7BD"></path>
-                    <path d="M7.5,0.0048828125 C7.5,0.0048828125 0.745117188,3.7069664 0.745117188,5.87154961 C0.745117187,8.03613281 7.5,12.0048828 7.5,12.0048828 L14.2451172,5.87154961 L7.5,0.0048828125 Z" id="edge" stroke="#B1792C"></path>
+                <g id="rule-copy" transform="translate(6.262774, 4.000000)" sketch:type="MSShapeGroup">
+                    <path d="M7.09110273,0.0048828125 C7.09110273,0.0048828125 0.70449367,3.7069664 0.70449367,5.87154961 C0.70449367,8.03613281 7.09110273,12.0048828 7.09110273,12.0048828 L13.4684786,5.87154961 L7.09110273,0.0048828125 Z" id="interior" stroke="#FFFFFF" fill="#F4D7BD"></path>
+                    <path d="M7.09110273,0.0048828125 C7.09110273,0.0048828125 0.70449367,3.7069664 0.70449367,5.87154961 C0.70449367,8.03613281 7.09110273,12.0048828 7.09110273,12.0048828 L13.4684786,5.87154961 L7.09110273,0.0048828125 Z" id="edge" stroke="#B1792C"></path>
                 </g>
             </g>
-            <g id="rule-copy-3" sketch:type="MSLayerGroup" transform="translate(56.547170, 98.000000)">
-                <rect id="Rectangle-3-Copy" stroke="#000000" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="200" height="21" rx="5"></rect>
-                <text id="rule" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="10" font-weight="260" fill="#000000">
-                    <tspan x="27" y="14">rule</tspan>
+            <g id="rule-copy-3" sketch:type="MSLayerGroup" transform="translate(32.500000, 97.000000)">
+                <rect id="Rectangle-3-Copy" stroke="#000000" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="147" height="21" rx="5"></rect>
+                <text id="rule" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="12" font-weight="526" fill="#000000">
+                    <tspan x="28.1824818" y="14">rule</tspan>
                 </text>
-                <g id="rule-copy" transform="translate(6.000000, 5.000000)" sketch:type="MSShapeGroup">
-                    <path d="M7.5,0.0048828125 C7.5,0.0048828125 0.745117188,3.7069664 0.745117188,5.87154961 C0.745117187,8.03613281 7.5,12.0048828 7.5,12.0048828 L14.2451172,5.87154961 L7.5,0.0048828125 Z" id="interior" stroke="#FFFFFF" fill="#F4D7BD"></path>
-                    <path d="M7.5,0.0048828125 C7.5,0.0048828125 0.745117188,3.7069664 0.745117188,5.87154961 C0.745117187,8.03613281 7.5,12.0048828 7.5,12.0048828 L14.2451172,5.87154961 L7.5,0.0048828125 Z" id="edge" stroke="#B1792C"></path>
+                <g id="rule-copy" transform="translate(6.262774, 4.000000)" sketch:type="MSShapeGroup">
+                    <path d="M7.09110273,0.0048828125 C7.09110273,0.0048828125 0.70449367,3.7069664 0.70449367,5.87154961 C0.70449367,8.03613281 7.09110273,12.0048828 7.09110273,12.0048828 L13.4684786,5.87154961 L7.09110273,0.0048828125 Z" id="interior" stroke="#FFFFFF" fill="#F4D7BD"></path>
+                    <path d="M7.09110273,0.0048828125 C7.09110273,0.0048828125 0.70449367,3.7069664 0.70449367,5.87154961 C0.70449367,8.03613281 7.09110273,12.0048828 7.09110273,12.0048828 L13.4684786,5.87154961 L7.09110273,0.0048828125 Z" id="edge" stroke="#B1792C"></path>
                 </g>
             </g>
         </g>
