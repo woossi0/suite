@@ -10,7 +10,7 @@ This section will show how to install OpenGeo Suite for Application Servers. **A
 System requirements
 -------------------
 
-OpenGeo Suite requires the use of **Java 7**. You may use either a JRE or a JDK from Oracle or the OpenJDK project.
+OpenGeo Suite requires the use of **Java 7** or higher. You may use either a JRE or a JDK from Oracle or the OpenJDK project.
 
 .. for reference http://docs.geoserver.org/latest/en/user/installation/java.html
 
