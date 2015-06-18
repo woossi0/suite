@@ -25,21 +25,46 @@ This would style every polygon feature in a given layer with the given RGB color
 
 The structure of a typical YSLD file is as follows:
 
-* Variable definitions (if any)
-* Scale grid / zoom levels (if any)
-* Header (name, title, etc.)
-* Feature style(s)
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :stub-columns: 1
+   :widths: 20 80
 
-Regarding feature styles and their content:
+   * - Structure
+     - Description
+   * - ``Variable definitions``
+     - (if any) for common style settings
+   * - ``Scale grid / zoom levels``
+     - (if any) used to define style based on tile set zoom level
+   * - ``style header``
+     - Document name, title, and abstract followed by feature-styles
+        
+       .. image:: img/structure_header.*
+     
+   * - :ref:`feature style <cartography.ysld.reference.featurestyles>`
+     - Independent block that can contain one or many rules.
 
-* A :ref:`feature style <cartography.ysld.reference.featurestyles>` is a block that can contain one or many rules.
-* A :ref:`rule <cartography.ysld.reference.rules>` is a directive that can contain one or many :ref:`symbolizers <cartography.ysld.reference.symbolizers>`.
-* A rule applies to all features unless made to be selective by the use of a :ref:`filter <cartography.ysld.reference.filters>`.
+       .. image:: img/structure_feature_style.*
 
-**The basic unit of a style is the symbolizer.** This contains the actual visualization for individual features.
+   * - :ref:`rule <cartography.ysld.reference.rules>`
+     - Directive that can contain one or many :ref:`symbolizers <cartography.ysld.reference.symbolizers>`.
+       
+       .. image:: img/structure_rule_all.*
+       
+   * - :ref:`filter <cartography.ysld.reference.filters>`
+     - A rule "includes" all features unless made to be selective by the use of a :ref:`filter <cartography.ysld.reference.filters>`.
+       
+       .. image:: img/structure_rule.*
+     
+   * - :ref:`symbolizers <cartography.ysld.reference.symbolizers>`
+     - basic unit of a style containing the actual visualization instructions for individual features.
 
-.. todo:: FIGURE NEEDED
+The structure YSLD files is outlined using indentation.
 
+.. figure:: img/structure_example.*
+
+   Structure of YSLD style_example
 
 Property syntax
 ---------------

@@ -101,12 +101,12 @@ Using ``filter`` and ``else`` together::
   rules:
   - name: small
     title: Small features
-    filter: type = small
+    filter: ${type = 'small'}
     symbolizers:
     - ...
   - name: large
     title: Large features
-    filter: type = large
+    filter: ${type = 'large'}
     symbolizers:
     - ...
   - name: else
@@ -130,13 +130,13 @@ Using ``filter``, ``else``, and ``scale`` together::
   - name: small_zoomin
     scale: (,10000)
     title: Small features when zoomed in
-    filter: type = small
+    filter: ${type = 'small'}
     symbolizers:
     - ...
   - name: small_zoomout
     scale: (10000,)
     title: Small features when zoomed out
-    filter: type = small
+    filter: ${type = 'small'}
     symbolizers:
     - ...
   - name: else_zoomin
