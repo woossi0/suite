@@ -63,7 +63,6 @@ import org.geotools.styling.Style;
 import org.geotools.styling.StyledLayerDescriptor;
 import org.geotools.util.Version;
 import org.geotools.util.logging.Logging;
-import org.geotools.ysld.Ysld;
 import org.opengis.feature.type.Name;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
@@ -543,21 +542,25 @@ public class LayerController extends ApiController {
         LayerInfo l = findLayer(wsName, name, cat);
 
         StyleInfo s = l.getDefaultStyle();
-
+        
+        //Style does not exist, create one
         if (s == null) {
             // create one
-            s = cat.getFactory().createStyle();
-            s.setName(findUniqueStyleName(wsName, name, cat));
-            s.setFilename(s.getName()+".yaml");
-            s.setWorkspace(ws);
+            s = createYsld(name, ws);
+            l.getStyles().add(s);
+            l.setDefaultStyle(s);
         }
-        else {
-            // we are converting from normal SLD?
-            if (!YsldHandler.FORMAT.equalsIgnoreCase(s.getFormat())) {
-                // reuse base file name
-                String base = FilenameUtils.getBaseName(s.getFilename());
-                s.setFilename(base + ".yaml");
-            }
+        //Converting from an existing style in a different format
+        else if (!YsldHandler.FORMAT.equalsIgnoreCase(s.getFormat())) {
+            
+            // reuse base file name
+            String base = FilenameUtils.getBaseName(s.getFilename());
+            l.getStyles().add(s);
+            
+            //Create a new style and set as the default
+            s = createYsld(base+"_YSLD", ws);
+            l.getStyles().add(s);
+            l.setDefaultStyle(s);
          }
 
         s.setFormat(YsldHandler.FORMAT);
@@ -609,6 +612,15 @@ public class LayerController extends ApiController {
 
             recent.add(LayerGroupInfo.class, map);
         }
+    }
+    
+    private StyleInfo createYsld(String name, WorkspaceInfo ws) {
+        StyleInfo s = geoServer.getCatalog().getFactory().createStyle();
+        s.setName(findUniqueStyleName(ws.getName(), name, geoServer.getCatalog()));
+        s.setFilename(s.getName()+".yaml");
+        s.setWorkspace(ws);
+        
+        return s;
     }
 
 

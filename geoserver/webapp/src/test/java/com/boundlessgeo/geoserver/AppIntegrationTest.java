@@ -7,7 +7,6 @@ import com.boundlessgeo.geoserver.api.controllers.IO;
 import com.boundlessgeo.geoserver.api.controllers.IconController;
 import com.boundlessgeo.geoserver.api.controllers.ImportController;
 import com.boundlessgeo.geoserver.api.controllers.LayerController;
-import com.boundlessgeo.geoserver.api.controllers.Metadata;
 import com.boundlessgeo.geoserver.api.controllers.StoreController;
 import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
 import com.boundlessgeo.geoserver.api.controllers.WorkspaceController;
@@ -26,6 +25,7 @@ import org.geoserver.catalog.FeatureTypeInfo;
 import org.geoserver.catalog.LayerGroupInfo;
 import org.geoserver.catalog.LayerInfo;
 import org.geoserver.catalog.ResourcePool;
+import org.geoserver.catalog.SLDHandler;
 import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.StyleInfo;
 import org.geoserver.config.GeoServer;
@@ -39,20 +39,18 @@ import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.rest.util.RESTUtils;
 import org.geoserver.test.GeoServerSystemTestSupport;
+import org.geoserver.ysld.YsldHandler;
 import org.geotools.data.DataAccess;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.Query;
-import org.geotools.feature.FeatureCollection;
 import org.geotools.feature.FeatureIterator;
 import org.geotools.feature.NameImpl;
 import org.geotools.referencing.CRS;
-import org.geotools.util.Converters;
 import org.geotools.util.NullProgressListener;
 import org.junit.Before;
 import org.junit.Test;
 import org.opengis.feature.Feature;
 import org.opengis.feature.Property;
-import org.opengis.geometry.Geometry;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -748,6 +746,26 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
 
         assertNotNull(catalog.getLayerByName("cdf:foo"));
 
+    }
+    
+    @Test
+    public void testPutStyleExistingSLD() throws Exception {
+        Catalog catalog = getCatalog();
+        LayerInfo layer = catalog.getLayerByName("sf:PrimitiveGeoFeature");
+        assertNotNull(layer.getDefaultStyle());
+        assertEquals(SLDHandler.FORMAT, layer.getDefaultStyle().getFormat());
+        
+        String sldName = layer.getDefaultStyle().getName();
+        
+        com.mockrunner.mock.web.MockHttpServletResponse resp =
+                putAsServletResponse("/app/api/layers/sf/PrimitiveGeoFeature/style", "title: ysld", YsldHandler.MIMETYPE);
+        assertEquals(200,resp.getStatusCode());
+
+        layer = catalog.getLayerByName("sf:PrimitiveGeoFeature");
+        assertNotNull(layer.getDefaultStyle());
+        assertEquals(2, layer.getStyles().size());
+        assertEquals(sldName+"_YSLD", layer.getDefaultStyle().getName());
+        assertEquals(YsldHandler.FORMAT, layer.getDefaultStyle().getFormat());
     }
     
     @Test
