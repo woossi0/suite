@@ -34,36 +34,8 @@
        </antcall>
      </target>
   
-     <target name="build-pdf" depends="check-pdf,get-cores"
-       description="Build pdf docs">
-       <if>
-           <equals arg1="${pdflatex.isPresent}" arg2="true"/>
-           <then>
-             <sequential>
-               <copy todir="${basedir}/target/latex">
-                 <fileset dir="${basedir}/../themes/suite_rtd_theme/static/img/">
-                 <include name="**/opengeo-logo-only-blue.png"/>
-                 </fileset>
-               </copy>
-               <antcall target="sphinx">
-                 <param name="dir" value="source"/>
-                 <param name="builder" value="latex"/>
-                 <param name="flags" value="-q"/>
-               </antcall>
-               <exec executable="make" failonerror="true" dir="target/latex">
-                 <arg line="all-pdf"/>
-               </exec>
-             </sequential>
-           </then>
-           <else>
-               <echo message="No PDF generated because pdflatex is not on PATH.  This may make installer assembly fail."/>
-           </else>
-       </if>
-     </target>
-  
     <target name="build" depends="init">
       <antcall target="build-html"/>
-      <antcall target="build-pdf"/>
     </target>
 
     <target name="clean" depends="destroy">

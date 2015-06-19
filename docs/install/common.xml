@@ -20,7 +20,6 @@
     description="Build project">
     <antcall target="build-html"/>
     <antcall target="build-text"/>
-    <antcall target="build-pdf"/>
   </target>
 
   <target name="assemble">
