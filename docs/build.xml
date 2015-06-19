@@ -65,17 +65,6 @@
             <param name="dir" value="target"/>
             <param name="includes" value="opengeo-docs.war"/>
         </antcall>
-
-        <if>
-            <available file="OpenGeoSuiteUserManual.pdf" filepath="usermanual/target/latex/"/>
-            <then>
-               <antcall target="assemble-artifact">
-                    <param name="name" value="pdfdoc"/>
-                    <param name="dir" value="usermanual/target/latex/"/>
-                    <param name="includes" value="*.pdf"/>
-                </antcall>
-            </then>
-        </if>
         <if>
             <available file="README-mac.pdf" filepath="install/mac/target/latex/"/>
             <then>
@@ -105,15 +94,6 @@
           <param name="name" value="opengeo-docs-war"/>
           <param name="path" value="docs"/>
         </antcall>
-        <if>
-          <available file="suite-pdfdoc-${suite.build_rev}.zip" filepath="target"/>
-          <then>
-              <antcall target="publish-artifact">
-                  <param name="name" value="pdfdoc"/>
-                  <param name="path" value="docs"/>
-              </antcall>
-          </then>
-        </if>
         <if>
           <available file="suite-osx-readme-${suite.build_rev}.zip" filepath="target"/>
             <then>
