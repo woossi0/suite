@@ -1,7 +1,7 @@
-.. _intro.installation.windows.qgis:
+.. _qgis.installation.windows:
 
-QGIS
-====
+Installing QGIS on Windows
+==========================
 
 This section will describe how to install QGIS on Windows.
 
@@ -71,16 +71,3 @@ Uninstall
 ---------
 
 To remove QGIS, use the standard Windows program removal procedure (for example: :menuselection:`Control Panel --> Programs and Features`).
-
-#. Click :guilabel:`Uninstall` to start the uninstallation process.
-
-   .. figure:: img/uninstall.png
-
-      Ready to uninstall QGIS
-
-#. The uninstallation will proceed.
-
-   .. figure:: img/uninstalling.png
-
-      Uninstalling OpenGeo QGIS
-

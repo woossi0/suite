@@ -1,7 +1,8 @@
-.. _intro.installation.mac.qgis:
+.. _qgis.installation.osx:
 
-QGIS
-====
+Installing QGIS on Mac OS X
+===========================
+
 
 This section will describe how to install QGIS on Mac OS X.
 
@@ -19,13 +20,13 @@ Install
 
 #. Extract the provided archive. There will be a single entry: :file:`QGIS.app`.
 
-   .. figure:: img/qgis-app.png
+   .. figure:: img/osx_qgis-app.png
 
       QGIS.app
 
 #. Drag this icon into the :guilabel:`Applications` folder.
 
-   .. figure:: img/qgis-install.png
+   .. figure:: img/osx_qgis-install.png
 
       QGIS copied to Applications folder
 

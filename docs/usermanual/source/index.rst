@@ -30,6 +30,9 @@ This User Manual will help you get the most out of OpenGeo Suite.
 :ref:`sysadmin`
   Manage and optimize your OpenGeo Suite installation.
 
+:ref:`qgis`
+  Connect to OpenGeo Suite from your desktop with QGIS.
+
 **Additional Documentation**
 
 :ref:`glossary`
@@ -46,6 +49,7 @@ This User Manual will help you get the most out of OpenGeo Suite.
    processing/index
    dataadmin/index
    sysadmin/index
+   qgis/index
    glossary
 
 

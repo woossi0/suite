@@ -19,7 +19,7 @@ An additional extensions download is available as well.
 
 .. note:: As PostGIS is not a web application, it is not included in this bundle. If you want to use PostGIS as part of your OpenGeo Suite installation, you should install it from the installer or from packages (``opengeo-postgis``).
 
-.. note:: QGIS is also not included. Boundless has installers for :ref:`Windows <intro.installation.windows.qgis>` and :ref:`OS X <intro.installation.mac.qgis>`. To use QGIS with Linux, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
+.. note:: QGIS is also not included. Boundless has installers for :ref:`Windows <qgis.installation.windows>` and :ref:`OS X <qgis.installation.osx>`. To use QGIS with Linux, please see the `QGIS community installation instructions <https://www.qgis.org/en/site/forusers/download.html>`_.
 
 Please select the option that best matches your system:
 
