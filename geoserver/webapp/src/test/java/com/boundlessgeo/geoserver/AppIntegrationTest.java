@@ -174,6 +174,17 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         arr = obj.getJSONArray("maps");
         assertEquals(1, arr.size());
     }
+    
+    @Test
+    public void testPageStores() throws Exception {
+        JSONObject obj = (JSONObject) getAsJSON(("/app/api/stores/sf"));
+        JSONArray arr = obj.getJSONArray("stores");
+        assertEquals(1, arr.size());
+
+        obj = (JSONObject) getAsJSON(("/app/api/stores/sf?page=1&count=1"));
+        arr = obj.getJSONArray("stores");
+        assertEquals(0, arr.size());
+    }
 
     @Test
     public void testListAttributes() throws Exception {
