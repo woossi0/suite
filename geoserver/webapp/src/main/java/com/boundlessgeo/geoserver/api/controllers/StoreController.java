@@ -3,6 +3,8 @@
  */
 package com.boundlessgeo.geoserver.api.controllers;
 
+import static org.geoserver.catalog.Predicates.equal;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,11 +21,14 @@ import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CatalogFactory;
 import org.geoserver.catalog.CoverageStoreInfo;
 import org.geoserver.catalog.DataStoreInfo;
+import org.geoserver.catalog.LayerGroupInfo;
+import org.geoserver.catalog.Predicates;
 import org.geoserver.catalog.ResourceInfo;
 import org.geoserver.catalog.ResourcePool;
 import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.WMSStoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
+import org.geoserver.catalog.util.CloseableIterator;
 import org.geoserver.config.GeoServer;
 import org.geoserver.platform.resource.Files;
 import org.geotools.data.DataAccess;
@@ -42,6 +47,8 @@ import org.opengis.coverage.grid.Format;
 import org.opengis.coverage.grid.GridCoverageReader;
 import org.opengis.feature.Feature;
 import org.opengis.feature.type.FeatureType;
+import org.opengis.filter.Filter;
+import org.opengis.filter.sort.SortBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -77,18 +84,57 @@ import com.boundlessgeo.geoserver.json.JSONObj;
     /**
      * API endpoint to list the stores in the workspace
      * @param wsName The workspace
+     * @param page Page of the list
+     * @param count Number of items per page
+     * @param sort Sort order (asc or desc)
+     * @param textFilter Search filter to limit results
      * @param req The HTTP request
-     * @return The list of stores encoded as a JSON array
+     * @return A JSONObj containing the current page, the number of items returned, the total number
+     * of stores matching the current filter, and the list of stores for the current page.
      */
     @RequestMapping(value = "/{wsName:.+}", method = RequestMethod.GET)
     public @ResponseBody
-    JSONArr list(@PathVariable String wsName, HttpServletRequest req){
-        JSONArr arr = new JSONArr();
+    JSONObj list(@PathVariable String wsName, 
+            @RequestParam(value="page", required=false) Integer page,
+            @RequestParam(value="count", required=false, defaultValue=""+DEFAULT_PAGESIZE) Integer count,
+            @RequestParam(value="sort", required=false) String sort,
+            @RequestParam(value="filter", required=false) String textFilter, 
+            HttpServletRequest req) {
+        
         Catalog cat = geoServer.getCatalog();
-        for (StoreInfo store : cat.getStoresByWorkspace(wsName, StoreInfo.class)) {
-            IO.store(arr.addObject(), store, req, geoServer);
+        
+        if ("default".equals(wsName)) {
+            WorkspaceInfo def = cat.getDefaultWorkspace();
+            if (def != null) {
+                wsName = def.getName();
+            }
         }
-        return arr;
+        
+        Filter filter = equal("workspace.name", wsName);
+        if (textFilter != null) {
+            filter = Predicates.and(filter, Predicates.fullTextSearch(textFilter));
+        }
+        
+        SortBy sortBy = parseSort(sort);
+        
+        Integer total = cat.count(StoreInfo.class, filter);
+        
+        JSONObj obj = new JSONObj();
+        obj.put("total", total);
+        obj.put("page", page != null ? page : 0);
+        obj.put("count", Math.min(total, count != null ? count : total));
+        
+        JSONArr arr = obj.putArray("stores");
+        try (
+            CloseableIterator<StoreInfo> it =
+                cat.list(StoreInfo.class, filter, offset(page, count), count, sortBy);
+        ) {
+            while (it.hasNext()) {
+                StoreInfo store = it.next();
+                IO.store(arr.addObject(), store, req, geoServer);
+            }
+        }
+        return obj;
     }
     
     /**
