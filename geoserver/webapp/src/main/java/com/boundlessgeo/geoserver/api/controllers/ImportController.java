@@ -972,6 +972,11 @@ public class ImportController extends ApiController {
                 for (ImportTask t : context.getTasks()) {
                     if (t.getState() == State.COMPLETE) {
                         moveFile(t);
+                        //Set created date
+                        StoreInfo store = t.getStore();
+                        if (store != null && Metadata.created(store) == null) {
+                            Metadata.created(store, new Date());
+                        }
                     }
                 }
             } catch (InterruptedException | ExecutionException e) {
