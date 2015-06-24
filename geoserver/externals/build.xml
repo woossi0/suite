@@ -82,4 +82,10 @@
         <param name="goals" value="clean install"/>
      </antcall>
    </target>
+
+   <target name="build-wps-gui" unless="skip.wps-gui"
+      description="Build WPS GUI">
+     <ant antfile="build.xml" dir="wps-gui" target="clean"/>
+     <ant antfile="build.xml" dir="wps-gui" target="war"/>
+   </target>
 </project>
