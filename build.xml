@@ -62,6 +62,10 @@
     <copy todir="${webappsdir}/geoexplorer">
       <fileset dir="geoexplorer/target/war" includes="**/*"/>
     </copy>
+    <unzip dest="${webappsdir}/wps-gui" overwrite="true">
+      <fileset dir="geoserver/externals/wps-gui/build" includes="wps-gui.war">
+      </fileset>
+    </unzip>
     <mkdir dir="docs/target"/>
     <unzip dest="docs/target" overwrite="true">
       <fileset dir="docs/target/" includes="suite-docs-${artifact_postfix}.zip"/>
