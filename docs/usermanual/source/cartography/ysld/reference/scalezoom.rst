@@ -151,69 +151,9 @@ Also be aware of the inverse relationship between scale and zoom; **as the zoom 
 Zoom syntax
 -----------
 
-In certain limited cases, it can be more useful to specify scales by way of zoom levels for predefined gridsets. The gridsets allowed are:
+In certain limited cases, it can be more useful to specify scales by way of zoom levels for predefined gridsets. These can be any predefined gridsets in GeoServer.
 
-* ``EPSG:4326`` (Mercator)
-* ``EPSG:3857`` (Web Mercator)
-* Any valid GeoWebCache gridset 
-
-In order to use zoom levels, they must be defined globally for the entire style, above any :ref:`cartography.ysld.reference.featurestyles` or :ref:`cartography.ysld.reference.rules`.
-
-The full syntax for using a zoom level parameter in a style is::
-
-  grid:
-    name: <string>
-
-..  grid:
-..    initial-scale: <value>
-..    initial-level: <integer>
-..    ratio: <integer>
-..    scales:
-..    - <value>
-..    - <value>
-..    - ...
-..    name: <string>
-
-
-where:
-
-.. list-table::
-   :class: non-responsive
-   :header-rows: 1
-   :stub-columns: 1
-   :widths: 20 10 50 20
-
-   * - Property
-     - Required?
-     - Description
-     - Default value
-   * - ``name``
-     - No
-     - A name of an existing commonly-used spatial reference system in GeoServer. Can also be a name of a GeoWebCache gridset. Options are ``EPSG:4326`` or ``EPSG:3857``, or any defined gridset name in GeoWebCache.
-     - N/A
-
-..    * - ``name``
-..      - No
-..      - A name of an existing commonly-used spatial reference system in GeoServer. Can also be a name of a GeoWebCache gridset. Options are ``EPSG:4326`` or ``EPSG:3857``, or any defined gridset name in GeoWebCache. If a duplicate name exists, the GeoWebCache gridset will take priority. Can't be used with ``initial-scale`` or ``scales``.
-..      - N/A
-..    * - ``initial-scale``
-..      - No
-..      - Specifies the scale to be used for a specific zoom level, which is by default zoom level 0. Cannot be used with ``scales`` or ``name``.
-..      - N/A
-..    * - ``initial-level``
-..      - No
-..      - Modifies the ``initial-scale`` value to apply to a different zoom level from 0.
-..      - ``0``
-..    * - ``ratio``
-..      - No
-..      - Specifies the multiplier value between scales in adjacent zoom levels. A value of ``2`` means that each increase in zoom level will indicate a change of scale by a factor of 1/2.
-..      - ``2``
-..    * - ``scales``
-..      - No
-..      - A list of ordered discrete scale values. Typically the first value is defined to be zoom level 0, unless ``initial-level`` is used. This is most often used for zoom levels that are not regular scale multiples of each other. Can't be used with ``initial-scale`` or ``name``.
-..      - N/A
-
-Inside a rule, the syntax for using these zoom levels is::
+Inside a rule, the syntax for using zoom levels is::
 
   rules:
   - ...
@@ -242,6 +182,32 @@ where:
      - ``infinite``
 
 .. note:: It is not possible to use an expression for any of these values.
+
+If your map is in Mercator (EPSG:4326) or Web Mercator (EPSG:900913 or EPSG:3785), then the parser will be able to interpret this from the context without any additional information.  However, if using a custom-defined gridset, you will need to specify an additional parameter, the ``grid``.
+
+.. warning:: Only specify the ``grid`` if using something other than EPSG:4326, EPSG:900913, or EPSG:3785.
+
+The ``grid`` parameter at the root of the YSLD content, above any :ref:`cartography.ysld.reference.featurestyles` or :ref:`cartography.ysld.reference.rules`. The syntax is::
+
+  grid:
+    name: <string>
+
+where:
+
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :stub-columns: 1
+   :widths: 20 10 50 20
+
+   * - Property
+     - Required?
+     - Description
+     - Default value
+   * - ``name``
+     - No
+     - A name of a predefined gridset in GeoServer.
+     - N/A
 
 As with scales, either the ``min`` and ``max`` values can omitted. For example::
 
@@ -411,9 +377,10 @@ Zoom examples
 Named gridset
 ~~~~~~~~~~~~~
 
-Given the existing named gridset of ``EPSG:3857``::
+Given a custom named gridset called ``EPSG:2263`` (defined by its `namesake spatial reference system <http://www.spatialreference.org/ref/epsg/2263/>`_) and using its full extent::
 
-  name: EPSG:3857
+  grid:
+    name: EPSG:2263
 
 This defines zoom levels as the following (rounded to the nearest whole number below):
 
@@ -423,56 +390,33 @@ This defines zoom levels as the following (rounded to the nearest whole number b
 
    * - Scale
      - Zoom level
-   * - ``559082264``
+   * - ``4381894``
      - ``0``
-   * - ``279541132``
+   * - ``2190947``
      - ``1``
-   * - ``139770566``
+   * - ``1095473``
      - ``2``
-   * - ``69885283``
+   * - ``547736``
      - ``3``
-   * - ``34942641``
+   * - ``273868``
      - ``4``
-   * - ``17471321``
+   * - ``136934``
      - ``5``
-   * - ``8735660``
+   * - ``68467``
      - ``6``
-   * - ``4367830``
+   * - ``34234``
      - ``7``
-   * - ``2183915``
+   * - ``17117``
      - ``8``
    * - ``<previous_scale> / 2``
      - ``<previous_zoom> + 1``
 
-For the existing name gridset of ``EPSG:4326``::
+.. note::
 
-  name: EPSG:4326
+   This can be verified in GeoServer on the :guilabel:`Gridsets` page under the definition for the gridset:
 
-This defines zoom levels as the following (below rounded to the nearest whole number):
+   .. figure:: img/scalezoom_customgridset.png
 
-.. list-table::
-   :header-rows: 1
-   :stub-columns: 1
+      Gridset defined in GeoServer
 
-   * - Scale
-     - Zoom level
-   * - ``279541132``
-     - ``0``
-   * - ``139770566``
-     - ``1``
-   * - ``69885283``
-     - ``2``
-   * - ``34942641``
-     - ``3``
-   * - ``17471321``
-     - ``4``
-   * - ``8735660``
-     - ``5``
-   * - ``4367830``
-     - ``6``
-   * - ``2183915``
-     - ``7``
-   * - ``1091958``
-     - ``8``
-   * - ``<previous_scale> / 2``
-     - ``<previous_zoom> + 1``
+   Specifically, note the scale values under :guilabel:`Tile Matrix Set`.
