@@ -5,14 +5,14 @@ feature-styles:
   x-firstMatch: true
   rules:
   - name: big
-    scale: (8000000,)
+    scale: [8000000,max]
     filter: ${scalerank < 4}
     symbolizers:
     - line:
         stroke-color: '#333333'
         stroke-width: 1
   - name: ferry
-    scale: (,8000000)
+    scale: [min,8000000]
     filter: ${featurecla = 'Ferry'}
     symbolizers:
     - line:
@@ -20,7 +20,7 @@ feature-styles:
         stroke-width: 2
         stroke-dasharray: '4 6'
   - name: expressway
-    scale: (,8000000)
+    scale: [min,8000000]
     filter: ${expressway = 1}
     symbolizers:
     - line:
@@ -28,14 +28,14 @@ feature-styles:
         stroke-width: 6
         stroke-linecap: round
   - name: medium
-    scale: (,8000000)
+    scale: [min,8000000]
     filter: ${scalerank < 8}
     symbolizers:
     - line:
         stroke-color: '#333333'
         stroke-width: 1
   - name: small
-    scale: (,2000000)
+    scale: [min,2000000]
     else: true
     symbolizers:
     - line:
@@ -44,7 +44,7 @@ feature-styles:
 - name: inner
   rules:
   - name: expressway
-    scale: (,8000000)
+    scale: [min,8000000]
     filter: ${expressway = 1}
     symbolizers:
     - line:

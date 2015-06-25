@@ -311,13 +311,13 @@ So the following complete styles are both equivalent:
   feature-styles:
   - rules:
     - name: rule1
-      scale: (,50000)
+      scale: [min,50000]
       symbolizers:
       - line:
           stroke-color: '#000000'
           stroke-width: 2
     - name: rule2
-      scale: (50000,)
+      scale: [50000,max]
       symbolizers:
       - line:
           stroke-color: '#000000'
@@ -327,13 +327,13 @@ So the following complete styles are both equivalent:
 
   rules:
   - name: rule1
-    scale: (,50000)
+    scale: [min,50000]
     symbolizers:
     - line:
         stroke-color: '#000000'
         stroke-width: 2
   - name: rule2
-    scale: (50000,)
+    scale: [50000,max]
     symbolizers:
     - line:
         stroke-color: '#000000'

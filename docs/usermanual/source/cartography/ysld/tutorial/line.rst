@@ -52,7 +52,7 @@ If we zoom in, we want to see all the roads, not just those included in our filt
    
    .. note::
       
-      YAML requires that the rules form a list with the same amount of indentation as shown below. To adjust indentation select a block of text and use TAB (or Shift-TAB) as appropriate.
+      YAML requires that the rules form a list with the same amount of indentation as shown below. To adjust indentation select a block of text and use Tab (or Shift-Tab) as appropriate.
 
    .. code-block:: yaml
       :emphasize-lines: 13-25
@@ -63,21 +63,21 @@ If we zoom in, we want to see all the roads, not just those included in our filt
       - name: name
         rules:
         - name: big
-          scale: (8000000,)
+          scale: [8000000,max]
           filter: ${scalerank < 4}
           symbolizers:
           - line:
               stroke-color: '#333333'
               stroke-width: 1
         - name: medium
-          scale: (2000000,8000000)
+          scale: [2000000,8000000]
           filter: ${scalerank < 8}
           symbolizers:
           - line:
               stroke-color: '#333333'
               stroke-width: 1
         - name: small
-          scale: (,2000000)
+          scale: [min,2000000]
           symbolizers:
           - line:
               stroke-color: '#777777'
@@ -97,27 +97,27 @@ On the smaller scales, we want some differentiation between roads based of the f
       
         rules:
         - name: big
-          scale: (8000000,)
+          scale: [8000000,max]
           filter: ${scalerank < 4}
           symbolizers:
           - line:
               stroke-color: '#333333'
               stroke-width: 1
         - name: medium
-          scale: (2000000,8000000)
+          scale: [2000000,8000000]
           filter: ${scalerank < 8}
           symbolizers:
           - line:
               stroke-color: '#333333'
               stroke-width: 1
         - name: ferry
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${featurecla = 'Ferry'}
           symbolizers:
           - line:
               stroke-color: '#00CCFF'
         - name: small
-          scale: (,2000000)
+          scale: [min,2000000]
           symbolizers:
           - line:
               stroke-color: '#777777'
@@ -129,7 +129,7 @@ On the smaller scales, we want some differentiation between roads based of the f
       :emphasize-lines: 7-8
       
         - name: ferry
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${featurecla = 'Ferry'}
           symbolizers:
           - line:
@@ -154,7 +154,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
       :emphasize-lines: 9-16
 
         - name: ferry
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${featurecla = 'Ferry'}
           symbolizers:
           - line:
@@ -162,7 +162,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
               stroke-width: 2
               stroke-dasharray: '4 6'
         - name: expressway
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${expressway = 1}
           symbolizers:
           - line:
@@ -176,7 +176,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
       :emphasize-lines: 7-18
 
         - name: small
-          scale: (,2000000)
+          scale: [min,2000000]
           symbolizers:
           - line:
               stroke-color: '#777777'
@@ -184,7 +184,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
       - name: inner
         rules:
         - name: expressway
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${expressway = 1}
           symbolizers:
           - line:
@@ -206,7 +206,7 @@ Line symbolizers only have a stroke, so you cannot normally draw an outline arou
       :emphasize-lines: 3
 
         - name: medium
-          scale: (2000000,8000000)
+          scale: [2000000,8000000]
           filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
           symbolizers:
           - line:
@@ -226,7 +226,7 @@ To accomplish this, we can make an ``else`` rule. This means that it will only a
       :emphasize-lines: 2
 
         - name: medium
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
           symbolizers:
           - line:
@@ -239,7 +239,7 @@ To accomplish this, we can make an ``else`` rule. This means that it will only a
       :emphasize-lines: 3
 
         - name: small
-          scale: (,2000000)
+          scale: [min,2000000]
           else: true
           symbolizers:
           - line:
@@ -263,7 +263,7 @@ However, if we reorder the rules and employ the ``x-firstMatch`` parameter, we c
       :emphasize-lines: 17-23
 
         - name: ferry
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${featurecla = 'Ferry'}
           symbolizers:
           - line:
@@ -271,7 +271,7 @@ However, if we reorder the rules and employ the ``x-firstMatch`` parameter, we c
               stroke-width: 2
               stroke-dasharray: '4 6'
         - name: expressway
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${expressway = 1}
           symbolizers:
           - line:
@@ -279,7 +279,7 @@ However, if we reorder the rules and employ the ``x-firstMatch`` parameter, we c
               stroke-width: 6
               stroke-linecap: round
         - name: medium
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${scalerank < 8 AND expressway <> 1 AND featurecla <> 'Ferry'}
           symbolizers:
           - line:
@@ -305,7 +305,7 @@ However, if we reorder the rules and employ the ``x-firstMatch`` parameter, we c
       :emphasize-lines: 3
 
         - name: medium
-          scale: (,8000000)
+          scale: [min,8000000]
           filter: ${scalerank < 8}
           symbolizers:
           - line:

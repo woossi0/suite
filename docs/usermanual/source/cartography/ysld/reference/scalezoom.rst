@@ -20,7 +20,7 @@ The syntax for using a scale conditional parameter in a rule is::
 
   rules:
   - ...
-    scale: (<min>,<max>)
+    scale: [<min>,<max>]
     ...
 
 where:
@@ -36,25 +36,25 @@ where:
      - Description
      - Default value
    * - ``min``
-     - No
+     - Yes
      - The minimum scale (inclusive) for which the rule will be applied. Value is a number, either decimal or integer.
-     - ``0``
+     - N/A
    * - ``max``
-     - No
+     - Yes
      - The maximum scale (exclusive) for which the rule will be applied. Value is a number, either decimal or integer.
-     - ``infinite``
+     - N/A
 
 .. note:: It is not possible to use an expression for any of these values.
 
-Either the ``min`` and ``max`` values can omitted. For example::
+Use the literal strings ``min`` and ``max`` to denote where there are no lower or upper scale boundaries. For example, to denote that the scale is anything less than some ``<max>`` value::
 
-  scale: (,<max>)
+  scale: [min,<max>]
 
-will make the rule apply for any zoom level that includes scales lower than the ``max`` scale. Also::
+To denote that the scale is anything greater than or equal to some ``<min>`` value::
 
-  scale: (<min>,)
+  scale: [<min>,max]
 
-will make the rule apply for any zoom level that includes scales higher than the ``min`` scale.
+.. note:: In the above examples, ``min`` and ``max`` are always literals, entered exactly like that, while ``<min>`` and ``<max>`` would be replaced by actual scalar values.
 
 If the scale parameter is omitted entirely, then the rule will apply at all scales.
 
@@ -65,19 +65,19 @@ Three rules, all applicable at different scales::
 
   rule:
   - name: large_scale
-    scale: (,100000)
+    scale: [min,100000]
     symbolizers:
     - line:
         stroke-width: 3
         stroke-color: '#0165CD'
   - name: medium_scale
-    scale: (100000,200000)
+    scale: [100000,200000]
     symbolizers:
     - line:
         stroke-width: 2
         stroke-color: '#0165CD'
   - name: small_scale
-    scale: (200000,)
+    scale: [200000,max]
     symbolizers:
     - line:
         stroke-width: 1
@@ -128,25 +128,13 @@ But since zoom levels are discrete (0, 1, 2, etc.) and scale levels are continuo
 
 For example, if you have a situation where a zoom level 0 corresponds to a scale of 1,000,000 (and each subsequent zoom level is half that scale, as is common), you can set the scale values of your rules to be:
 
-* ``scale: (750000,1500000)`` (includes 1,000,000)
-* ``scale: (340000,750000)`` (includes 500,000)
-* ``scale: (160000,340000)`` (includes 250,000)
-* ``scale: (80000,160000)`` (includes 125,000)
+* ``scale: [750000,1500000]`` (includes 1,000,000)
+* ``scale: [340000,750000]`` (includes 500,000)
+* ``scale: [160000,340000]`` (includes 250,000)
+* ``scale: [80000,160000]`` (includes 125,000)
 * etc.
 
 Also be aware of the inverse relationship between scale and zoom; **as the zoom level increases, the scale decreases.**
-
-.. **NOTE: Content below commented out because of the problem of styles, layers, and maps having conflicting information (especially when CRSs don't match.)**
-
-.. When styling web maps, typically the choice of zoom levels (and therefore scales) are set in advance. Because of this, **it can be more useful to define style rules as being dependent on the zoom level instead of the scale level**.
-
-.. With YSLD, there is a lot of flexibility in terms of specifying zoom levels. You can:
-
-.. * Specify an initial scale, and have it calculate all subsequent scale levels.
-.. * Specify a list of scales, and have each correspond to a list of zoom levels.
-.. * Specify a name for a common gridset, and have all the scales and zoom levels be automatically defined.
-
-.. When a collection of zoom levels is inferred from a list of scales, it is understood that the scale level is actually the "middle" of the scale range. 
 
 Zoom syntax
 -----------
@@ -157,7 +145,7 @@ Inside a rule, the syntax for using zoom levels is::
 
   rules:
   - ...
-    zoom: (<min>, <max>)
+    zoom: [<min>, <max>]
     ...
 
 where:
@@ -173,21 +161,36 @@ where:
      - Description
      - Default value
    * - ``min``
-     - No
+     - Yes
      - The minimum zoom level for which the rule will be applied. Value is an integer.
-     - ``0``
+     - N/A
    * - ``max``
-     - No
+     - Yes
      - The maximum zoom level for which the rule will be applied. Value is an integer.
-     - ``infinite``
+     - N/A
 
 .. note:: It is not possible to use an expression for any of these values.
+
+As with scales, use the literal strings ``min`` and ``max`` to denote where there are no lower or upper scale boundaries. For example, to denote that the zoom level is anything less than some ``<max>`` value::
+
+  zoom: [min,<max>]
+
+To denote that the zoom level is anything greater than or equal to some ``<min>`` value::
+
+  zoom: [<min>,max]
+
+.. note:: In the above examples, ``min`` and ``max`` are always literals, entered exactly like that, while ``<min>`` and ``<max>`` would be replaced by actual scalar values.
+
+The ``scale`` and ``zoom`` parameters should not be used together in a rule (but if used, ``scale`` takes priority over ``zoom``).
+
+Specifying a custom grid
+------------------------
 
 If your map is in Mercator (EPSG:4326) or Web Mercator (EPSG:900913 or EPSG:3785), then the parser will be able to interpret this from the context without any additional information.  However, if using a custom-defined gridset, you will need to specify an additional parameter, the ``grid``.
 
 .. warning:: Only specify the ``grid`` if using something other than EPSG:4326, EPSG:900913, or EPSG:3785.
 
-The ``grid`` parameter at the root of the YSLD content, above any :ref:`cartography.ysld.reference.featurestyles` or :ref:`cartography.ysld.reference.rules`. The syntax is::
+The ``grid`` parameter should remain at the top of the YSLD content, above any :ref:`cartography.ysld.reference.featurestyles` or :ref:`cartography.ysld.reference.rules`. The syntax is::
 
   grid:
     name: <string>
@@ -209,17 +212,6 @@ where:
      - A name of a predefined gridset in GeoServer.
      - N/A
 
-As with scales, either the ``min`` and ``max`` values can omitted. For example::
-
-  zoom: (,<max>)
-
-will make the rule apply for any zoom level less than or equal to the ``max`` zoom level. Also::
-
-  zoom: (<min>,)
-
-will make the rule apply for any zoom level greater than or equal to the ``min`` zoom level.
-
-The ``scale`` and ``zoom`` parameters should not be used together in a rule (but if used, the ``scale`` takes priority over ``zoom``).
 
 Zoom examples
 -------------
@@ -413,7 +405,7 @@ This defines zoom levels as the following (rounded to the nearest whole number b
 
 .. note::
 
-   This can be verified in GeoServer on the :guilabel:`Gridsets` page under the definition for the gridset:
+   These scale values can be verified in GeoServer on the :guilabel:`Gridsets` page under the definition for the gridset:
 
    .. figure:: img/scalezoom_customgridset.png
 

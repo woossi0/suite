@@ -29,7 +29,7 @@ The following is the basic syntax of a rule. Note that the contents of the block
        title: <text>
        filter: <filter>
        else: <boolean>
-       scale: (<min>,<max>)
+       scale: [<min>,<max>]
        symbolizers:
        - ...
 
@@ -128,25 +128,25 @@ Using ``filter``, ``else``, and ``scale`` together::
 
   rules:
   - name: small_zoomin
-    scale: (,10000)
+    scale: [min,10000]
     title: Small features when zoomed in
     filter: ${type = 'small'}
     symbolizers:
     - ...
   - name: small_zoomout
-    scale: (10000,)
+    scale: [10000,max]
     title: Small features when zoomed out
     filter: ${type = 'small'}
     symbolizers:
     - ...
   - name: else_zoomin
-    scale: (,10000)
+    scale: [min,10000]
     title: All other features when zoomed in
     else: true
     symbolizers:
     - ...
   - name: else_zoomout
-    scale: (10000,)
+    scale: [10000,max]
     title: All other features when zoomed out
     else: true
     symbolizers:
