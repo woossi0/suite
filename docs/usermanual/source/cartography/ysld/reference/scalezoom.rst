@@ -183,12 +183,12 @@ To denote that the zoom level is anything greater than or equal to some ``<min>`
 
 The ``scale`` and ``zoom`` parameters should not be used together in a rule (but if used, ``scale`` takes priority over ``zoom``).
 
-Specifying a custom grid
-------------------------
+Specifying a grid
+-----------------
 
-If your map is in Mercator (EPSG:4326) or Web Mercator (EPSG:900913 or EPSG:3785), then the parser will be able to interpret this from the context without any additional information.  However, if using a custom-defined gridset, you will need to specify an additional parameter, the ``grid``.
+While every web map can have zoom levels, the specific relationship between a zoom level and its scale is dependent on the gridset (spatial reference system, extent, etc.) used.
 
-.. warning:: Only specify the ``grid`` if using something other than EPSG:4326, EPSG:900913, or EPSG:3785.
+So when specifying zoom levels in YSLD, you should also specify the grid. 
 
 The ``grid`` parameter should remain at the top of the YSLD content, above any :ref:`cartography.ysld.reference.featurestyles` or :ref:`cartography.ysld.reference.rules`. The syntax is::
 
@@ -209,8 +209,12 @@ where:
      - Default value
    * - ``name``
      - No
-     - A name of a predefined gridset in GeoServer.
-     - N/A
+     - ``WGS84``, ``WebMercator``, or a name of a predefined gridset in GeoServer.
+     - ``WebMercator``
+
+.. note:: As many web maps use "web mercator" (also known as EPSG:3857 or EPSG:900913), this is assumed to be the default if no ``grid`` is specified.
+
+.. warning:: As multiple gridsets can contain the same SRS, we recommend naming custom gridsets by something other than the EPSG code.
 
 
 Zoom examples
@@ -366,13 +370,80 @@ Zoom examples
 ..    * - ``10000``
 ..      - ``4``
 
-Named gridset
-~~~~~~~~~~~~~
 
-Given a custom named gridset called ``EPSG:2263`` (defined by its `namesake spatial reference system <http://www.spatialreference.org/ref/epsg/2263/>`_) and using its full extent::
+Default gridset
+~~~~~~~~~~~~~~~
+
+Given the default of web mercator (also known as EPSG:3857 or EPSG:900913), which requires no ``grid`` designation, this defines zoom levels as the following scale levels (rounded to the nearest whole number below):
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Scale
+     - Zoom level
+   * - ``559082264``
+     - ``0``
+   * - ``279541132``
+     - ``1``
+   * - ``139770566``
+     - ``2``
+   * - ``69885283``
+     - ``3``
+   * - ``34942641``
+     - ``4``
+   * - ``17471321``
+     - ``5``
+   * - ``8735660``
+     - ``6``
+   * - ``4367830``
+     - ``7``
+   * - ``2183915``
+     - ``8``
+   * - ``<previous_scale> / 2``
+     - ``<previous_zoom> + 1``
+
+Named gridsets
+~~~~~~~~~~~~~~
+
+For the existing gridset of ``WGS84`` (often known as ``EPSG:4326``)::
 
   grid:
-    name: EPSG:2263
+    name: WGS84
+
+This defines zoom levels as the following scale levels (rounded to the nearest whole number below):
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Scale
+     - Zoom level
+   * - ``279541132``
+     - ``0``
+   * - ``139770566``
+     - ``1``
+   * - ``69885283``
+     - ``2``
+   * - ``34942641``
+     - ``3``
+   * - ``17471321``
+     - ``4``
+   * - ``8735660``
+     - ``5``
+   * - ``4367830``
+     - ``6``
+   * - ``2183915``
+     - ``7``
+   * - ``1091958``
+     - ``8``
+   * - ``<previous_scale> / 2``
+     - ``<previous_zoom> + 1``
+
+Given a custom named gridset called ``NYLongIslandFtUS``, defined by a CRS of `EPSG:2263 <http://www.spatialreference.org/ref/epsg/2263/>`_ and using its full extent::
+
+  grid:
+    name: NYLongIslandFtUS
 
 This defines zoom levels as the following (rounded to the nearest whole number below):
 
@@ -411,4 +482,4 @@ This defines zoom levels as the following (rounded to the nearest whole number b
 
       Gridset defined in GeoServer
 
-   Specifically, note the scale values under :guilabel:`Tile Matrix Set`.
+   Specifically, note the :guilabel:`Scale` values under :guilabel:`Tile Matrix Set`.
