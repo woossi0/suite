@@ -68,9 +68,9 @@ The ``color-map`` attribute can be used to convert any single band of data into 
 
       * - Color
         - Values
-      * - ``0043c8``
+      * - ``'#0043C8'``
         - Less than ``8080``
-      * - ``00c819``
+      * - ``'#00C819'``
         - Between ``8080`` and ``100000``
 
    ::
@@ -94,15 +94,15 @@ The ``color-map`` attribute can be used to convert any single band of data into 
 
       * - Color
         - Value
-      * - ``0043c8`` (blue)
+      * - ``'#0043C8'`` (blue)
         - ``8080``
-      * - ``00c819`` (green)
+      * - ``'#00C819'`` (green)
         - ``10000``
-      * - ``bbc800`` (yellow)
+      * - ``'#BBC800'`` (yellow)
         - ``15000``
-      * - ``c81c00`` (red)
+      * - ``'#C81C00'`` (red)
         - ``30000``
-      * - ``ffffff`` (white)
+      * - ``'#FFFFFF`` (white)
         - ``50000``
 
    ::
@@ -154,15 +154,15 @@ Because our final purpose for this layer is to display it along with other layer
 
       * - Color
         - Value
-      * - ``'#0043c8'`` (ocean)
+      * - ``'#0043C8'`` (ocean)
         - Less than ``8080``
       * - ``'#3A3519'`` (shore)
         - Between ``8080`` and ``8100``
-      * - ``4b4422`` (low elevation)
+      * - ``'#4B4422'`` (low elevation)
         - Between ``8080`` and ``10000``
-      * - ``857b54`` (mid elevation)
+      * - ``'#857B54'`` (mid elevation)
         - Between ``10000`` and ``15000``
-      * - ``d9d1a8`` (red)
+      * - ``'#D9D1A8'`` (red)
         - Between ``15000`` and ``30000``
 
 ::

@@ -80,7 +80,7 @@ where:
    * - ``fill-color``
      - No
      - Color of inside of the label.
-     - ``808080`` (gray)
+     - ``'#808080'`` (gray)
    * - ``fill-opacity``
      - No
      - Opacity of fill of the label text. Valid values are a decimal value between ``0`` (completely transparent) and ``1`` (completely opaque).
@@ -159,7 +159,7 @@ where:
    * - ``fill-color``
      - No
      - Color of the halo
-     - ``808080``
+     - ``'#808080'``
    * - ``fill-opacity``
      - No
      - Specifies the level of transparency for the halo. Value of ``0`` means entirely transparent, while ``1`` means entirely opaque.
@@ -397,7 +397,7 @@ The following example uses ``x-group`` to ensure only one label is drawn for eac
       symbolizers:
       - text:
           label: ${name}
-          fill-color: '555555'
+          fill-color: '#555555'
           font-family: SansSerif
           font-size: 12
           font-style: italic
