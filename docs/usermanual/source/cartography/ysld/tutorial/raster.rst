@@ -78,8 +78,8 @@ The ``color-map`` attribute can be used to convert any single band of data into 
           color-map:
             type: intervals
             entries:
-            - ('#0043C8', 1, 8080, blue)
-            - ('#00C819', 1, 100000, green)
+            - ['#0043C8', 1, 8080, blue]
+            - ['#00C819', 1, 100000, green]
 
    .. figure:: img/raster_dem_interval.png
 
@@ -110,12 +110,11 @@ The ``color-map`` attribute can be used to convert any single band of data into 
           color-map:
             type: ramp
             entries:
-            - ('#0043C8', 1, 8080, blue)
-            - ('#00C819', 1, 10000, green)
-            - ('#BBC800', 1, 15000, yellow)
-            - ('#C81C00', 1, 30000, red)
-            - ('#FFFFFF', 1, 50000, white)
-
+            - ['#0043C8', 1, 8080, blue]
+            - ['#00C819', 1, 10000, green]
+            - ['#BBC800', 1, 15000, yellow]
+            - ['#C81C00', 1, 30000, red]
+            - ['#FFFFFF', 1, 50000, white]
 
    .. figure:: img/raster_dem_rgb.png
 
@@ -133,11 +132,11 @@ The ``color-map`` attribute can be used to convert any single band of data into 
             color-map:
               type: ramp
               entries:
-              - ('#0043C8', 1, 8080, blue)
-              - ('#00C819', 1, 10000, green)
-              - ('#BBC800', 1, 15000, yellow)
-              - ('#C81C00', 1, 30000, red)
-              - ('#FFFFFF', 1, 50000, white)
+              - ['#0043C8', 1, 8080, blue]
+              - ['#00C819', 1, 10000, green]
+              - ['#BBC800', 1, 15000, yellow]
+              - ['#C81C00', 1, 30000, red]
+              - ['#FFFFFF', 1, 50000, white]
 
 
 Simplifying the style
@@ -170,11 +169,11 @@ Because our final purpose for this layer is to display it along with other layer
           color-map:
             type: ramp
             entries:
-            - ('#0043C8', 1, 8080, ocean)
-            - ('#3A3519', 1, 8100, shore)
-            - ('#4B4422', 1, 10000, low)
-            - ('#857B54', 1, 20000, mid)
-            - ('#D9D1A8', 1, 60000, high)
+            - ['#0043C8', 1, 8080, ocean]
+            - ['#3A3519', 1, 8100, shore]
+            - ['#4B4422', 1, 10000, low]
+            - ['#857B54', 1, 20000, mid]
+            - ['#D9D1A8', 1, 60000, high]
 
 Final style
 -----------

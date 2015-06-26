@@ -138,12 +138,12 @@ where:
      - ``0``
    * - ``anchor``
      - No
-     - Specify the center of the symbol relative to the feature location (centroid for lines and polygons). Value is an ``(x,y)`` tuple with decimal values from 0-1, with ``(0,0)`` meaning that the symbol is anchored to the bottom left of the label, and ``(1,1)`` meaning anchored to the top right of the label.
-     - ``(0,0)``
+     - Specify the center of the symbol relative to the feature location (centroid for lines and polygons). Value is an ``[x,y]`` tuple with decimal values from 0-1, with ``[0,0]`` meaning that the symbol is anchored to the bottom left of the label, and ``[1,1]`` meaning anchored to the top right of the label.
+     - ``[0,0]``
    * - ``displacement``
      - No
-     - Specifies a distance (in pixels) to which to move the label relative to the feature. Value is an ``(x,y)`` tuple with values expressed in pixels, so (10,5) will displace the label 10 pixels to the right and 5 pixels up. Only valid for when ``type`` is set to ``point``.
-     - ``(0,0)``
+     - Specifies a distance (in pixels) to which to move the label relative to the feature. Value is an ``[x,y]`` tuple with values expressed in pixels, so [10,5] will displace the label 10 pixels to the right and 5 pixels up. Only valid for when ``type`` is set to ``point``.
+     - ``[0,0]``
    * - ``rotation``
      - No
      - Value (in degrees) or rotation of the label. Larger values increase counter-clockwise rotation. A value of ``180`` will make the label upside-down. Only valid for when ``type`` is set to ``point``.
@@ -329,8 +329,8 @@ Text symbolizers are used to draw labels on objects. The label text is usually l
 ..           font-size: 12
 ..           font-style: italic
 ..           font-weight: bold
-..           anchor: (0.5,0)
-..           displacement: (0,-20)
+..           anchor: [0.5,0]
+..           displacement: [0,-20]
 
 
 Label with wrap
@@ -350,7 +350,7 @@ Wrapping long labels can improve how well they fit on maps. This can be accompli
           font-size: 12
           x-autoWrap: 70
           x-maxDisplacement: 100
-          anchor: (0.5, -1)
+          anchor: [0.5,-1]
 
 .. figure:: img/text_wrap.png
 
@@ -377,7 +377,7 @@ Surrounding labels with a halo will allow them to be visible even on complex map
              radius: 2
              fill-color: '#FFFFFF'
              fill-opacity: 0.8
-          anchor: (0.5, -1)
+          anchor: [0.5,-1]
 
 .. figure:: img/text_halo.png
 
@@ -478,7 +478,7 @@ The ``graphic`` option is used to display a symbol behind a label. A common use 
           stroke-linecap: round
       - text:
           label: ${name}
-          anchor: (0.5, 0.5)
+          anchor: [0.5, 0.5]
           fill-color: black
           font-family: SansSerif
           font-weight: bold
@@ -501,7 +501,7 @@ The ``graphic`` option is used to display a symbol behind a label. A common use 
           stroke-linecap: round
       - text:
           label: ${name}
-          anchor: (0.5, 0.5)
+          anchor: [0.5, 0.5]
           fill-color: white
           font-family: SansSerif
           font-weight: bold

@@ -57,8 +57,8 @@ where:
      - ``0``
    * - ``displacement``
      - No
-     - Specifies a distance to which to move the symbol relative to the feature. Value is an ``(x,y)`` tuple with values expressed in pixels, so (10,5) will displace the symbol 10 pixels to the right, and 5 pixels down.
-     - ``(0,0)``
+     - Specifies a distance to which to move the symbol relative to the feature. Value is an ``[x,y]`` tuple with values expressed in pixels, so [10,5] will displace the symbol 10 pixels to the right, and 5 pixels down.
+     - ``[0,0]``
 
 .. include:: include/symbol.txt
 

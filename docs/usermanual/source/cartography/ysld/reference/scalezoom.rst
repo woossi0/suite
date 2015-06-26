@@ -20,7 +20,7 @@ The syntax for using a scale conditional parameter in a rule is::
 
   rules:
   - ...
-    scale: (<min>,<max>)
+    scale: [<min>,<max>]
     ...
 
 where:
@@ -36,25 +36,25 @@ where:
      - Description
      - Default value
    * - ``min``
-     - No
+     - Yes
      - The minimum scale (inclusive) for which the rule will be applied. Value is a number, either decimal or integer.
-     - ``0``
+     - N/A
    * - ``max``
-     - No
+     - Yes
      - The maximum scale (exclusive) for which the rule will be applied. Value is a number, either decimal or integer.
-     - ``infinite``
+     - N/A
 
 .. note:: It is not possible to use an expression for any of these values.
 
-Either the ``min`` and ``max`` values can omitted. For example::
+Use the literal strings ``min`` and ``max`` to denote where there are no lower or upper scale boundaries. For example, to denote that the scale is anything less than some ``<max>`` value::
 
-  scale: (,<max>)
+  scale: [min,<max>]
 
-will make the rule apply for any zoom level that includes scales lower than the ``max`` scale. Also::
+To denote that the scale is anything greater than or equal to some ``<min>`` value::
 
-  scale: (<min>,)
+  scale: [<min>,max]
 
-will make the rule apply for any zoom level that includes scales higher than the ``min`` scale.
+.. note:: In the above examples, ``min`` and ``max`` are always literals, entered exactly like that, while ``<min>`` and ``<max>`` would be replaced by actual scalar values.
 
 If the scale parameter is omitted entirely, then the rule will apply at all scales.
 
@@ -65,19 +65,19 @@ Three rules, all applicable at different scales::
 
   rule:
   - name: large_scale
-    scale: (,100000)
+    scale: [min,100000]
     symbolizers:
     - line:
         stroke-width: 3
         stroke-color: '#0165CD'
   - name: medium_scale
-    scale: (100000,200000)
+    scale: [100000,200000]
     symbolizers:
     - line:
         stroke-width: 2
         stroke-color: '#0165CD'
   - name: small_scale
-    scale: (200000,)
+    scale: [200000,max]
     symbolizers:
     - line:
         stroke-width: 1
@@ -128,96 +128,24 @@ But since zoom levels are discrete (0, 1, 2, etc.) and scale levels are continuo
 
 For example, if you have a situation where a zoom level 0 corresponds to a scale of 1,000,000 (and each subsequent zoom level is half that scale, as is common), you can set the scale values of your rules to be:
 
-* ``scale: (750000,1500000)`` (includes 1,000,000)
-* ``scale: (340000,750000)`` (includes 500,000)
-* ``scale: (160000,340000)`` (includes 250,000)
-* ``scale: (80000,160000)`` (includes 125,000)
+* ``scale: [750000,1500000]`` (includes 1,000,000)
+* ``scale: [340000,750000]`` (includes 500,000)
+* ``scale: [160000,340000]`` (includes 250,000)
+* ``scale: [80000,160000]`` (includes 125,000)
 * etc.
 
 Also be aware of the inverse relationship between scale and zoom; **as the zoom level increases, the scale decreases.**
 
-.. **NOTE: Content below commented out because of the problem of styles, layers, and maps having conflicting information (especially when CRSs don't match.)**
-
-.. When styling web maps, typically the choice of zoom levels (and therefore scales) are set in advance. Because of this, **it can be more useful to define style rules as being dependent on the zoom level instead of the scale level**.
-
-.. With YSLD, there is a lot of flexibility in terms of specifying zoom levels. You can:
-
-.. * Specify an initial scale, and have it calculate all subsequent scale levels.
-.. * Specify a list of scales, and have each correspond to a list of zoom levels.
-.. * Specify a name for a common gridset, and have all the scales and zoom levels be automatically defined.
-
-.. When a collection of zoom levels is inferred from a list of scales, it is understood that the scale level is actually the "middle" of the scale range. 
-
 Zoom syntax
 -----------
 
-In certain limited cases, it can be more useful to specify scales by way of zoom levels for predefined gridsets. The gridsets allowed are:
+In certain limited cases, it can be more useful to specify scales by way of zoom levels for predefined gridsets. These can be any predefined gridsets in GeoServer.
 
-* ``EPSG:4326`` (Mercator)
-* ``EPSG:3857`` (Web Mercator)
-* Any valid GeoWebCache gridset 
-
-In order to use zoom levels, they must be defined globally for the entire style, above any :ref:`cartography.ysld.reference.featurestyles` or :ref:`cartography.ysld.reference.rules`.
-
-The full syntax for using a zoom level parameter in a style is::
-
-  grid:
-    name: <string>
-
-..  grid:
-..    initial-scale: <value>
-..    initial-level: <integer>
-..    ratio: <integer>
-..    scales:
-..    - <value>
-..    - <value>
-..    - ...
-..    name: <string>
-
-
-where:
-
-.. list-table::
-   :class: non-responsive
-   :header-rows: 1
-   :stub-columns: 1
-   :widths: 20 10 50 20
-
-   * - Property
-     - Required?
-     - Description
-     - Default value
-   * - ``name``
-     - No
-     - A name of an existing commonly-used spatial reference system in GeoServer. Can also be a name of a GeoWebCache gridset. Options are ``EPSG:4326`` or ``EPSG:3857``, or any defined gridset name in GeoWebCache.
-     - N/A
-
-..    * - ``name``
-..      - No
-..      - A name of an existing commonly-used spatial reference system in GeoServer. Can also be a name of a GeoWebCache gridset. Options are ``EPSG:4326`` or ``EPSG:3857``, or any defined gridset name in GeoWebCache. If a duplicate name exists, the GeoWebCache gridset will take priority. Can't be used with ``initial-scale`` or ``scales``.
-..      - N/A
-..    * - ``initial-scale``
-..      - No
-..      - Specifies the scale to be used for a specific zoom level, which is by default zoom level 0. Cannot be used with ``scales`` or ``name``.
-..      - N/A
-..    * - ``initial-level``
-..      - No
-..      - Modifies the ``initial-scale`` value to apply to a different zoom level from 0.
-..      - ``0``
-..    * - ``ratio``
-..      - No
-..      - Specifies the multiplier value between scales in adjacent zoom levels. A value of ``2`` means that each increase in zoom level will indicate a change of scale by a factor of 1/2.
-..      - ``2``
-..    * - ``scales``
-..      - No
-..      - A list of ordered discrete scale values. Typically the first value is defined to be zoom level 0, unless ``initial-level`` is used. This is most often used for zoom levels that are not regular scale multiples of each other. Can't be used with ``initial-scale`` or ``name``.
-..      - N/A
-
-Inside a rule, the syntax for using these zoom levels is::
+Inside a rule, the syntax for using zoom levels is::
 
   rules:
   - ...
-    zoom: (<min>, <max>)
+    zoom: [<min>, <max>]
     ...
 
 where:
@@ -233,27 +161,61 @@ where:
      - Description
      - Default value
    * - ``min``
-     - No
+     - Yes
      - The minimum zoom level for which the rule will be applied. Value is an integer.
-     - ``0``
+     - N/A
    * - ``max``
-     - No
+     - Yes
      - The maximum zoom level for which the rule will be applied. Value is an integer.
-     - ``infinite``
+     - N/A
 
 .. note:: It is not possible to use an expression for any of these values.
 
-As with scales, either the ``min`` and ``max`` values can omitted. For example::
+As with scales, use the literal strings ``min`` and ``max`` to denote where there are no lower or upper scale boundaries. For example, to denote that the zoom level is anything less than some ``<max>`` value::
 
-  zoom: (,<max>)
+  zoom: [min,<max>]
 
-will make the rule apply for any zoom level less than or equal to the ``max`` zoom level. Also::
+To denote that the zoom level is anything greater than or equal to some ``<min>`` value::
 
-  zoom: (<min>,)
+  zoom: [<min>,max]
 
-will make the rule apply for any zoom level greater than or equal to the ``min`` zoom level.
+.. note:: In the above examples, ``min`` and ``max`` are always literals, entered exactly like that, while ``<min>`` and ``<max>`` would be replaced by actual scalar values.
 
-The ``scale`` and ``zoom`` parameters should not be used together in a rule (but if used, the ``scale`` takes priority over ``zoom``).
+The ``scale`` and ``zoom`` parameters should not be used together in a rule (but if used, ``scale`` takes priority over ``zoom``).
+
+Specifying a grid
+-----------------
+
+While every web map can have zoom levels, the specific relationship between a zoom level and its scale is dependent on the gridset (spatial reference system, extent, etc.) used.
+
+So when specifying zoom levels in YSLD, you should also specify the grid. 
+
+The ``grid`` parameter should remain at the top of the YSLD content, above any :ref:`cartography.ysld.reference.featurestyles` or :ref:`cartography.ysld.reference.rules`. The syntax is::
+
+  grid:
+    name: <string>
+
+where:
+
+.. list-table::
+   :class: non-responsive
+   :header-rows: 1
+   :stub-columns: 1
+   :widths: 20 10 50 20
+
+   * - Property
+     - Required?
+     - Description
+     - Default value
+   * - ``name``
+     - No
+     - ``WGS84``, ``WebMercator``, or a name of a predefined gridset in GeoServer.
+     - ``WebMercator``
+
+.. note:: As many web maps use "web mercator" (also known as EPSG:3857 or EPSG:900913), this is assumed to be the default if no ``grid`` is specified.
+
+.. warning:: As multiple gridsets can contain the same SRS, we recommend naming custom gridsets by something other than the EPSG code.
+
 
 Zoom examples
 -------------
@@ -408,14 +370,11 @@ Zoom examples
 ..    * - ``10000``
 ..      - ``4``
 
-Named gridset
-~~~~~~~~~~~~~
 
-Given the existing named gridset of ``EPSG:3857``::
+Default gridset
+~~~~~~~~~~~~~~~
 
-  name: EPSG:3857
-
-This defines zoom levels as the following (rounded to the nearest whole number below):
+Given the default of web mercator (also known as EPSG:3857 or EPSG:900913), which requires no ``grid`` designation, this defines zoom levels as the following scale levels (rounded to the nearest whole number below):
 
 .. list-table::
    :header-rows: 1
@@ -444,11 +403,15 @@ This defines zoom levels as the following (rounded to the nearest whole number b
    * - ``<previous_scale> / 2``
      - ``<previous_zoom> + 1``
 
-For the existing name gridset of ``EPSG:4326``::
+Named gridsets
+~~~~~~~~~~~~~~
 
-  name: EPSG:4326
+For the existing gridset of ``WGS84`` (often known as ``EPSG:4326``)::
 
-This defines zoom levels as the following (below rounded to the nearest whole number):
+  grid:
+    name: WGS84
+
+This defines zoom levels as the following scale levels (rounded to the nearest whole number below):
 
 .. list-table::
    :header-rows: 1
@@ -456,23 +419,67 @@ This defines zoom levels as the following (below rounded to the nearest whole nu
 
    * - Scale
      - Zoom level
-   * - ``279541132``
+   * - ``559082264``
      - ``0``
-   * - ``139770566``
+   * - ``279541132``
      - ``1``
-   * - ``69885283``
+   * - ``139770566``
      - ``2``
-   * - ``34942641``
+   * - ``69885283``
      - ``3``
-   * - ``17471321``
+   * - ``34942641``
      - ``4``
-   * - ``8735660``
+   * - ``17471321``
      - ``5``
-   * - ``4367830``
+   * - ``8735660``
      - ``6``
-   * - ``2183915``
+   * - ``4367830``
      - ``7``
-   * - ``1091958``
+   * - ``2183915``
      - ``8``
    * - ``<previous_scale> / 2``
      - ``<previous_zoom> + 1``
+
+Given a custom named gridset called ``NYLongIslandFtUS``, defined by a CRS of `EPSG:2263 <http://www.spatialreference.org/ref/epsg/2263/>`_ and using its full extent::
+
+  grid:
+    name: NYLongIslandFtUS
+
+This defines zoom levels as the following (rounded to the nearest whole number below):
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Scale
+     - Zoom level
+   * - ``4381894``
+     - ``0``
+   * - ``2190947``
+     - ``1``
+   * - ``1095473``
+     - ``2``
+   * - ``547736``
+     - ``3``
+   * - ``273868``
+     - ``4``
+   * - ``136934``
+     - ``5``
+   * - ``68467``
+     - ``6``
+   * - ``34234``
+     - ``7``
+   * - ``17117``
+     - ``8``
+   * - ``<previous_scale> / 2``
+     - ``<previous_zoom> + 1``
+
+.. note::
+
+   These scale values can be verified in GeoServer on the :guilabel:`Gridsets` page under the definition for the gridset:
+
+   .. figure:: img/scalezoom_customgridset.png
+
+      Gridset defined in GeoServer
+
+   Specifically, note the :guilabel:`Scale` values under :guilabel:`Tile Matrix Set`.

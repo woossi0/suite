@@ -22,7 +22,7 @@ The full syntax of a raster symbolizer is::
       color-map:
         type: <ramp|interval|values>
         entries:
-        - (color, entry_opacity, band_value, text_label)
+        - [color, entry_opacity, band_value, text_label]
       contrast-enhancement: 
         mode: <normalize|histogram>
         gamma: <expression>
@@ -193,9 +193,9 @@ This example shows a color ramp from red to green to blue, with raster band valu
       color-map:
         type: ramp
         entries:
-        - ('#FF0000', 1, 0, red)
-        - ('#00FF00', 1, 100, green)
-        - ('#0000FF', 1, 200, blue)
+        - ['#FF0000', 1, 0, red]
+        - ['#00FF00', 1, 100, green]
+        - ['#0000FF', 1, 200, blue]
 
 In this example, the grid values will have the following colors applied:
 
@@ -218,9 +218,9 @@ The same example as above, but with the ``color-map`` type set to ``intervals``:
       color-map:
         type: intervals
         entries:
-        - ('#FF0000', 1, 0, red)
-        - ('#00FF00', 1, 100, green)
-        - ('#0000FF', 1, 200, blue)
+        - ['#FF0000', 1, 0, red]
+        - ['#00FF00', 1, 100, green]
+        - ['#0000FF', 1, 200, blue]
 
 In this example, the grid values will have the following colors applied:
 
@@ -243,9 +243,9 @@ The same example as above, but with the ``color-map`` type set to ``values``::
       color-map:
         type: values
         entries:
-        - ('#FF0000', 1, 0, red)
-        - ('#00FF00', 1, 100, green)
-        - ('#0000FF', 1, 200, blue)
+        - ['#FF0000', 1, 0, red]
+        - ['#00FF00', 1, 100, green]
+        - ['#0000FF', 1, 200, blue]
 
 In this example, the grid values will have the following colors applied:
 

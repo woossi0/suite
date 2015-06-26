@@ -99,7 +99,7 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
         - Description
       * - ``font-weight: bold``
         - Make the font bold
-      * - ``displacement: (3, 2)``
+      * - ``displacement: [3,2]``
         - Adjusts the label so it does not overlap the point symbolizer
       * - ``x-labelPriority: ${10-LABELRANK}``
         - Select labels based on priority (uses the ``LABELRANK`` attribute of the data to determine this).
@@ -128,7 +128,7 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
         - text:
             label: ${NAME}
             font-weight: bold
-            displacement: (3, 2)
+            displacement: [3,2]
             x-labelPriority: ${10-LABELRANK}
 
    .. figure:: img/point_style_label.png
@@ -159,7 +159,7 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
         - text:
             label: ${NAME}
             font-weight: bold
-            displacement: (5, 4)
+            displacement: [5,4]
             x-labelPriority: ${10-LABELRANK}
 
    Note that the circle shape is still set to be 1px larger than the star.
@@ -186,7 +186,7 @@ To improve the display further, we can add scale rules.
       feature-styles:
       - name: name
         rules:
-        - scale: (1e8,)
+        - scale: [1e8,max]
           filter: ${ADM0CAP = 1}
           symbolizers:
           - point:
@@ -195,7 +195,7 @@ To improve the display further, we can add scale rules.
               - mark:
                   shape: circle
                   fill-color: '#000000'
-        - scale: (,1e8)
+        - scale: [min,1e8]
           filter: ${ADM0CAP = 1}
           symbolizers:
           - point:
@@ -210,18 +210,18 @@ To improve the display further, we can add scale rules.
               - mark:
                   shape: circle
                   stroke-color: '#000000'
-        - scale: (,5e7)
+        - scale: [min,5e7]
           filter: ${ADM0CAP = 1}  
           symbolizers:
           - text:
               label: ${NAME}
               font-weight: bold
-              displacement: (5, 4)
+              displacement: [5,4]
               x-labelPriority: ${10-LABELRANK}
 
 #. To show all cities when we are fully zoomed in, we can add some ``else`` rules for small scales. As with the capital cities, we will only display the labels when zoomed in (``5e6``), and will only show points with out labels at other scale::
 
-    - scale: (5e6,1e7)
+    - scale: [5e6,1e7]
       else: true
       symbolizers:
         - point:
@@ -232,7 +232,7 @@ To improve the display further, we can add scale rules.
                 stroke-color: '#000000'
                 fill-color: '#777777'
                 fill-opacity: 0.5
-    - scale: (,5e6)
+    - scale: [min,5e6]
       else: true
       symbolizers:
         - point:
@@ -245,7 +245,7 @@ To improve the display further, we can add scale rules.
                 fill-opacity: 0.5
         - text:
             label: ${NAME}
-            displacement: (5,4)
+            displacement: [5,4]
             x-labelPriority: ${10-LABELRANK}
 
 #. Add these two rules to the existing rules.
