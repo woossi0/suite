@@ -99,7 +99,7 @@ The ``<property>`` is a string denoting the property name, while the ``<value>``
      - Spaces, colons, and other special characters are allowed. If value is amiguous, use single quotes.
    * - Color
      - Six-digits (for hex) / rgb(r,g,b) (for decimal)
-     - ``'#808080'`` / ``rgb(255,0,255)``
+     - ``'#FF00FF'`` / ``rgb(255,0,255)``
      - Used when specifying RGB colors. For hex, use ``'#RRGGBB'`` with each two character pair having a value from ``00`` to ``FF``. For decimal, use ``rgb(rrr,ggg,bbb)`` with each ordinate having a value from ``0`` to ``255``.
    * - Tuple
      - Parentheses
