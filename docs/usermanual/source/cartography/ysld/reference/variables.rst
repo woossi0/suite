@@ -7,7 +7,7 @@ Variables in YSLD that allow for a certain directive or block of directives to b
 
 The two most-common use cases for using variables are:
 
-* To create a more-friendly name for a value (such as using ``orange`` instead of ``#ff8000``)
+* To create a more-friendly name for a value (such as using ``myorange`` instead of ``#EE8000``)
 * To define a block of directives to remove redundant content and to decrease file length
 
 It is customary, but not required, to place all definitions at the very top of the YSLD file, above all :ref:`header information <cartography.ysld.reference.structure>`, :ref:`feature styles <cartography.ysld.reference.featurestyles>`, or :ref:`rules <cartography.ysld.reference.rules>`.
@@ -44,7 +44,7 @@ where:
      - N/A
    * - ``<value>``
      - Yes
-     - A single value, such as ``512`` or ``dd0000``
+     - A single value, such as ``512`` or ``'#DD0000'``
      - N/A
 
 The syntax for using this variable is to prepend the variable name with a ``*``::
@@ -86,11 +86,11 @@ The following are all examples of variable substitution
 
 Name a color::
 
-  define: &orange ff8000
+  define: &myorange '#EE8000'
 
 ::
 
-  stroke: *orange
+  stroke: *myorange
 
 Reusable text string::
 
@@ -103,7 +103,7 @@ Reusable text string::
 Stroke style::
 
   define: &strokestyle
-    stroke: ff0000
+    stroke: '#FF0000'
     stroke-width: 2
     stroke-opacity: 0.5
 

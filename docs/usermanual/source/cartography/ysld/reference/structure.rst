@@ -34,9 +34,9 @@ The structure of a typical YSLD file is as follows:
    * - Structure
      - Description
    * - ``Variable definitions``
-     - (if any) for common style settings
+     - For common style settings
    * - ``Scale grid / zoom levels``
-     - (if any) used to define style based on tile set zoom level
+     - Used to define style based on tile set zoom level
    * - ``style header``
      - Document name, title, and abstract followed by feature-styles
         
@@ -99,16 +99,16 @@ The ``<property>`` is a string denoting the property name, while the ``<value>``
      - Spaces, colons, and other special characters are allowed. If value is amiguous, use single quotes.
    * - Color
      - Six-digits (for hex) / rgb(r,g,b) (for decimal)
-     - ``808080`` / ``rgb(255,0,255)``
-     - Used when specifying RGB colors. For hex, use ``rrggbb`` with each two character pair having a value from ``00`` to ``ff``. For decimal, use ``rgb(rrr,ggg,bbb)`` with each ordinate having a value from ``0`` to ``255``.
+     - ``'#FF00FF'`` / ``rgb(255,0,255)``
+     - Used when specifying RGB colors. For hex, use ``'#RRGGBB'`` with each two character pair having a value from ``00`` to ``FF``. For decimal, use ``rgb(rrr,ggg,bbb)`` with each ordinate having a value from ``0`` to ``255``.
    * - Tuple
-     - Parentheses
-     - ``(0,15000)``
-     - Entries in the the tuple may be left blank to denote being unbounded (such as ``(,15000)``)
+     - Brackets
+     - ``[0,15000]``
+     - Use two single quotes to denote blank entries in the tuple (for example: ``['#FFFFFF',0,0,'']``).
    * - :ref:`Filter <cartography.ysld.reference.filters>` or other expression
      - ${<expression>}
      - ``${type = road}``
-     - If attribute name is ambiguous, encase in brackets (``${[type] = road}``). If value is ambiguous, use single quotes (``${type = 'road'}``).
+     - If attribute name is ambiguous, encase in brackets (for example: ``${[type] = road}``). If value is ambiguous, use single quotes (``${type = 'road'}``).
 
 Expressions
 -----------

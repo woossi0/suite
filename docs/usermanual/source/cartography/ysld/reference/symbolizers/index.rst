@@ -32,7 +32,7 @@ Consider the following two symbolizers::
        symbols:
        - mark:
            shape: triangle
-           fill-color: '#FF3300
+           fill-color: '#FF3300'
      
 When drawing three points these symbolizers will be applied in order on each feature:
 

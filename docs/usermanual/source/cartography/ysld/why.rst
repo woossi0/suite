@@ -206,7 +206,7 @@ In YSLD, all the directives that occur multiple times can be replaced with a var
 
    rules:
    - name: rule1
-     scale: (35000,)
+     scale: [35000,max]
      symbolizers:
      - point:
          size: 6
@@ -215,7 +215,7 @@ In YSLD, all the directives that occur multiple times can be replaced with a var
              <<: *variable
              stroke-width: 2
    - name: rule2
-     scale: (,35000)
+     scale: [min,35000]
      symbolizers:
      - point:
          size: 8
