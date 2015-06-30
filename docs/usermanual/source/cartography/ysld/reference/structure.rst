@@ -98,9 +98,13 @@ The ``<property>`` is a string denoting the property name, while the ``<value>``
      - ``Title``
      - Spaces, colons, and other special characters are allowed. If value is amiguous, use single quotes.
    * - Color
-     - Six-digits (for hex) / rgb(r,g,b) (for decimal)
-     - ``'#FF00FF'`` / ``rgb(255,0,255)``
-     - Used when specifying RGB colors. For hex, use ``'#RRGGBB'`` with each two character pair having a value from ``00`` to ``FF``. For decimal, use ``rgb(rrr,ggg,bbb)`` with each ordinate having a value from ``0`` to ``255``.
+     - * '# + six digits' (hex)
+       * rgb(r,g,b) (decimal)
+       * Text (named colors)
+     - * ``'#FF00FF'``
+       * ``rgb(255,0,255)``
+       * ``fuchsia``
+     - Used when specifying RGB colors. For hex, use ``'#RRGGBB'`` with each two character pair having a value from ``00`` to ``FF``. For decimal, use ``rgb(rrr,ggg,bbb)`` with each ordinate having a value from ``0`` to ``255``. Quotes are not required when using `named colors <http://www.w3schools.com/html/html_colornames.asp>`_.
    * - Tuple
      - Brackets
      - ``[0,15000]``
@@ -183,7 +187,7 @@ In this example, the following markup is **correct**::
        - polygon:
            fill-color: '#808080'
            fill-opacity: 0.5
-           stroke-color: '#000000'
+           stroke-color: black
            stroke-opacity: 0.75
 
 The parameters inside the polygon (symbolizer) are indented, meaning that they are referencing the symbolizer and are not "outside it."
@@ -193,7 +197,7 @@ Compare to the following **incorrect** markup::
        - polygon:
          fill-color: '#808080'
          fill-opacity: 0.5
-         stroke-color: '#000000'
+         stroke-color: black
          stroke-opacity: 0.75
 
 The parameters that are relevant to the polygon block here need to be contained inside that block. Without the parameters being indented, they are at the same "level" as the polygon block, and so will not be interpreted correctly.
@@ -255,6 +259,4 @@ Comment blocks do not exist, so each line of a comment will need to be indicated
   #    stroke-width: 3
 
 .. note:: Comments are not preserved when converting to SLD.
-
-
 
