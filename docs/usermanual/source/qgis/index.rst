@@ -11,6 +11,6 @@ Boundless provides a separate installer for QGIS, including OpenGeo Explorer, a 
    :maxdepth: 2
 
    installation/index
+   explorer/index
 
-.. explorer/index
 .. webappbuilder/index
