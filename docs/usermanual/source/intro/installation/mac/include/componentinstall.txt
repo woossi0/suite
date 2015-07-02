@@ -1,6 +1,8 @@
 PostGIS.app
 ^^^^^^^^^^^
 
+.. note:: While it is possible to run the PostGIS application directly from the installer disk image, we recommend you drag it to :file:`/Applications` and run from there.
+
 PostGIS ships as a self-contained application. Start by double-clicking :guilabel:`PostGIS.app`. You will see a "Welcome" window the first time the application is launched.
 
 .. figure:: img/pgwelcome.png
@@ -23,10 +25,11 @@ You can check the PostgreSQL server status and perform other tasks from the Post
 
    PostGIS menu
 
-.. note:: While it is possible to run the PostGIS application directly from the installer disk image it is recommended you copy it to :file:`/Applications` and run from there.
 
 GeoServer.app
 ^^^^^^^^^^^^^
+
+.. note:: While it is possible to run the GeoServer application directly from the installer disk image, we recommend you drag it to :file:`/Applications` and run from there. 
 
 GeoServer also ships as a self-contained application. Start by double-clicking :guilabel:`GeoServer.app`. You will see a "Welcome" window the first time the application is launched.
 
@@ -56,13 +59,12 @@ Once the server has fully started up a web browser will open and display the Ope
 
 .. todo:: Update Dashboard graphic
 
-.. note:: While it is possible to run the GeoServer application directly from the installer disk image it is recommended you copy it to :file:`/Applications` and run from there. 
-
 PostGIS Utilities
 ^^^^^^^^^^^^^^^^^
 
-The PostGIS Utilities package contains utility applications for working with 
-PostGIS and PostgreSQL:
+.. note:: As with all other applications of OpenGeo Suite, we recommended you drag any tools to :file:`/Applications` and run from there.
+
+The PostGIS Utilities package contains utility applications for working with PostGIS and PostgreSQL:
 
 * **pgAdmin** - A database manager for PostgreSQL
 * **pgShapeLoader** - A graphical Shapefile loader/dumper
@@ -77,4 +79,3 @@ Double-click to run the applications.
 
    PostGIS Shapefile Loader
 
-.. note:: As with the other applications of OpenGeo Suite, it is recommended that you copy them to :file:`/Applications` for subsequent usage.
