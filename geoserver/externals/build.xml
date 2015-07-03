@@ -18,7 +18,7 @@
      </exec>
      <antcall target="mvn">
         <param name="dir" value="${gt.dir}"/>
-        <param name="flags" value="-DskipTests -Dall -P ogr,mbtiles,geopkg -Dpostgresql.jdbc.version=${postgresql.jdbc.version} -Dbuild.commit.id=${gt.rev} ${gt.flags}"/>
+        <param name="flags" value="-DskipTests -Dall -P ogr,mbtiles,geopkg,mongodb -Dpostgresql.jdbc.version=${postgresql.jdbc.version} -Dbuild.commit.id=${gt.rev} ${gt.flags}"/>
         <param name="goals" value="clean install"/>
      </antcall>
    </target>
