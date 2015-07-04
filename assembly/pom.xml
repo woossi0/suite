@@ -50,11 +50,6 @@
    </dependency>
    <dependency>
      <groupId>org.geotools</groupId>
-     <artifactId>gt-mongodb</artifactId>
-     <version>${gt.version}</version>
-   </dependency>
-   <dependency>
-     <groupId>org.geotools</groupId>
      <artifactId>gt-ogr-jni</artifactId>
      <version>${gt.version}</version>
    </dependency>
@@ -83,6 +78,11 @@
    <dependency>
      <groupId>org.opengeo.geoserver</groupId>
      <artifactId>cluster</artifactId>
+     <version>${gs.version}</version>
+   </dependency>
+   <dependency>
+     <groupId>org.opengeo</groupId>
+     <artifactId>gs-mongodb</artifactId>
      <version>${gs.version}</version>
    </dependency>
 
