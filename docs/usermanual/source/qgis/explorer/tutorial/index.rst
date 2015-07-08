@@ -82,7 +82,9 @@ In order to publish data into the GeoServer connected to in the previous step, w
 
    It contains the following layers:
 
-   * 
+   * ``elevation``
+   * ``geology_landuse``
+   * ``dem``
 
 #. We will publish this project to GeoServer as it is, with those layers, groups, and the symbology associated with each layer.
 
