@@ -57,6 +57,7 @@ import org.geotools.coverage.grid.io.GridCoverage2DReader;
 import org.geotools.data.DataAccess;
 import org.geotools.data.DataAccessFactory;
 import org.geotools.data.DataStore;
+import org.geotools.data.FileDataStoreFactorySpi;
 import org.geotools.data.DataAccessFactory.Param;
 import org.geotools.data.ows.Layer;
 import org.geotools.data.Parameter;
@@ -68,6 +69,7 @@ import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.filter.visitor.DuplicatingFilterVisitor;
 import org.geotools.geometry.jts.Geometries;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.jdbc.JDBCDataStoreFactory;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.resources.coverage.FeatureUtilities;
@@ -128,18 +130,15 @@ public class IO {
             for (Param info : format.getParametersInfo()) {
                 params.add(info.getName());
             }
-            if (params.contains("dbtype")) {
-                return Kind.DATABASE;
-            }
-            if (params.contains("directory") || params.contains("file") || params.contains("raster")) {
+            if (format instanceof FileDataStoreFactorySpi) {
                 return Kind.FILE;
+            }
+            if (format instanceof JDBCDataStoreFactory) {
+                return Kind.DATABASE;
             }
             if (params.contains("wms")
                     || params.contains("WFSDataStoreFactory:GET_CAPABILITIES_URL")) {
                 return Kind.WEB;
-            }
-            if( params.contains("url") ){
-                return Kind.FILE;
             }
             return Kind.GENERIC;
         }
@@ -808,9 +807,22 @@ public class IO {
             .put("url", url(req,"/stores/%s/%s",store.getWorkspace().getName(), store.getName()) );
         
         String source = source(store, geoServer);
-        obj.put("source", source )
-           .put("type", Kind.of(store).name())
-           .put("kind", Type.of(store).name());   
+        
+        if (store instanceof DataStoreInfo) {
+            try {
+                obj.put("type", Kind.of(geoServer.getCatalog().getResourcePool()
+                        .getDataStoreFactory((DataStoreInfo)store)).name());
+            } catch (IOException e) {
+                LOG.log(Level.WARNING,"Could not get data store factory for store "+source
+                        +", generating type from connection parameters." , e);
+                obj.put("type", Kind.of(store).name());
+            }
+        } else {
+            obj.put("type", Kind.of(store).name());
+            
+        }
+        obj.put("source", source ).put("kind", Type.of(store).name()); 
+          
 
         return metadata(obj, store);
     }
