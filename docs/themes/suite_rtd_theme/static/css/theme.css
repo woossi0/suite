@@ -4966,6 +4966,19 @@ a:hover {
   margin-top: 0.5em;
 }
 
+.rst-content .caption {
+  text-align: inherit;
+  margin-top: 0.5em;
+}
+
+.rst-content .guilabel {
+  font-weight: bold; 
+  text-shadow: 1px 1px 0 #dddddd;
+  border: 1px solid #aaaaaa;
+  padding: 0px 3px;
+  border-radius: 5px;
+}
+
 div[class^='highlight'] pre {
   font-size: 13px;
   line-height: 1.8em;
