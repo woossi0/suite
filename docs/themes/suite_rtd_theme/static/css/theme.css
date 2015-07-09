@@ -3720,11 +3720,10 @@ code, .rst-content tt {
   max-width: 100%;
   background: white;
   border: solid 1px #e1e4e5;
-  font-size: 75%;
   padding: 0 5px;
   font-family: "Source Code Pro", "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
-  color: #e74c3c;
   overflow-x: auto;
+  font-weight: normal;
 }
 code.code-large, .rst-content tt.code-large {
   font-size: 90%;
