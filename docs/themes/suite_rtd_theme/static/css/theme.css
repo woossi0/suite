@@ -4972,7 +4972,7 @@ a:hover {
   margin-top: 0.5em;
 }
 
-.rst-content .guilabel {
+.rst-content .guilabel, .rst-content .menuselection {
   font-weight: bold; 
   text-shadow: 1px 1px 0 #dddddd;
   border: 1px solid #aaaaaa;
