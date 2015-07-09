@@ -4923,12 +4923,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2em !important;
+  font-size: 2.2em !important;
 }
 
 h2 {
-  font-size: 1.6em !important;
-  font-weight: 300 !important;
+  font-size: 1.8em !important;
+}
+
+h3 {
+  font-size: 1.5em !important;
+}
+
+h1:after, h2:after, h3:after {
+    content: ' ';
+    display: block;
+    border-top: 1px dotted #28728d;
 }
 
 .section {
@@ -4937,7 +4946,7 @@ h2 {
 
 a {
   font-size: 14px;
-  color: #28728d;
+  color: #28728d
   outline: none !important;
   focus: none;
 }
