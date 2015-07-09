@@ -4122,7 +4122,7 @@ div[class^='highlight'] pre {
 }
 .wy-breadcrumbs li a {
   display: inline-block;
-  padding: 5px;
+  padding: 5px 3px;
 }
 .wy-breadcrumbs li a:first-child {
   padding-left: 0;
