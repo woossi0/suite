@@ -3479,6 +3479,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled] {
 }
 .wy-table td:first-child, .rst-content table.docutils td:first-child, .rst-content table.field-list td:first-child, .wy-table th:first-child, .rst-content table.docutils th:first-child, .rst-content table.field-list th:first-child {
   border-left-width: 0;
+  vertical-align: middle;
 }
 .wy-table thead, .rst-content table.docutils thead, .rst-content table.field-list thead {
   color: black;
