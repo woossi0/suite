@@ -55,6 +55,7 @@ Every layer in every group in the QGIS project will be listed in this tab. For e
 
 * A check box with the name of the layer controls whether the layer will be added to the app or not.
 * Another check box controls whether the layer will be visible when the app is loaded.
+* A check box allow to specify whether the layer has to be added to the overview map (if the web app contains an overview map).
 
 The following is a description of the different options that you might find for each type of layer, and how the app builder deals with each layer type.
 
@@ -105,12 +106,18 @@ WMS/WFS layers
 
 For WFS and WMS, you will find most of the same options for vector and raster layers, except for the *Connect to this layer using* option, as the original service will always be used.
 
+Two additional options will be available
+
+* :guilabel:`Refresh layer automatically`. If checked, the web app will refresh the layer periodically.
+
+* :guilabel:`Refresh interval`. The interval, in milliseconds, between two refreshes of the layer.
+
 Handling projections
 ~~~~~~~~~~~~~~~~~~~~
 
 All layers will be automatically reprojected into the projection of the map to be created (by default, EPSG:3857) if needed. You can use input layers from any CRS.
 
-Remote services such as WMS or WFS are an exception to this, as they must use the projection used in the web app. If a layer that is based on a remote service is added to the web map and uses a CRS other than the one specified, a warning will be shown and the application will not be created.
+WMS services are an exception to this, as they must use the projection used in the web app. If a layer that is based on a WMS service is added to the web map and uses a CRS other than the one specified, a warning will be shown and the application will not be created.
 
 Other layers
 ------------
@@ -133,6 +140,7 @@ Base Layers will be added to a group named "Base layers" in the app, which by de
 
    Base layers in a web app
 
+Base layers are always added to the overview map.
 
 Controls
 --------
@@ -197,10 +205,10 @@ The Settings tab shows additional configuration for the application:
      - When selected, a feature's popup will be shown when the mouse rolls over the feature. Otherwise the feature will need to be clicked for the popup to display.
    * - Style for highlighted features
      - Allows customizing the way that features will look when highlighted. Clicking :guilabel:`Edit` will bring up a box with a CSS style, which can be customized.
-   * - Style for selected features
-     - Allows customizing the way that features will look when selected. Clicking :guilabel:`Edit` will bring up a box with a CSS style, which can be customized.
    * - Use layer scale dependent visibility
      - If defined in the QGIS rendering properties, layers will only be visible in the map when they are within the defined scale range.
+   * - Use view CRS for WFS connections. 
+   * - If checked, it will request data for a WFS layer using the CRS of the web app view. Otherwise, it will request the data in the CRS that it uses in the QGIS layer, and reproject it client-side before rendering it in the view.
    * - Zoom level when zooming to point feature
      - If a single feature is selected in the attributes table in the web app, and the :guilabel:`Zoom to selected` button is clicked, the map zoom will be set to this zoom level.
 
