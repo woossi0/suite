@@ -4115,6 +4115,7 @@ div[class^='highlight'] pre {
 
 .wy-breadcrumbs li {
   display: inline-block;
+  padding-bottom: 20px;
 }
 .wy-breadcrumbs li.wy-breadcrumbs-aside {
   float: right;
