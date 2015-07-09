@@ -4980,6 +4980,10 @@ a:hover {
   border-radius: 5px;
 }
 
+.rst-content .caption-text {
+  font-style: italic;
+}
+
 div[class^='highlight'] pre {
   font-size: 13px;
   line-height: 1.8em;
