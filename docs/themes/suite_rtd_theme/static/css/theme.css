@@ -4644,10 +4644,7 @@ nav.stickynav {
     height: auto;
   }
 }
-.rst-content img {
-  max-width: 100%;
-  height: auto !important;
-}
+
 .rst-content div.figure {
   margin-bottom: 24px;
 }
@@ -4960,10 +4957,15 @@ a:hover {
 }
 
 .rst-content img {
+  max-width: 100%;
+  height: auto !important;
+}
+
+.rst-content .figure img {
   border: 1px solid #888888;
   box-shadow: 0.33em 0.33em 0.17em #888888, 0.33em 0.33em 1em rgba(0, 0, 0, 0.3);
-  max-width: 100%;
 }
+
 .rst-content tt {
   font-size: 90% !important;
 }
