@@ -13,11 +13,15 @@ Navigating around the style editor interface is easy with the mouse, but there a
    * - Function
      - Shortcut
    * - Auto-complete
-     - Ctrl-Space
+     - ``Ctrl-Enter``
    * - Code folding
-     - Ctrl-F
+     - ``Ctrl-,`` and ``Ctrl-.``
    * - Save
-     - Ctrl-S
+     - ``Ctrl-S``
+   * - Select line
+     - ``Shift-Up`` and ``Shift-Down``
+   * - Increase/reduce indent
+     - ``Tab`` and ``Shift-Tab``
 
 This list can be retrieved by clicking the keyboard icon on the top right of the window.
 
@@ -31,12 +35,12 @@ The resulting list will be displayed.
 
    List of keyboard shortcuts
 
-Auto-complete ``(Ctrl-Space)``
+Auto-complete (``Ctrl-Enter``)
 ------------------------------
 
 The style editor offers an easy way to explore and determine the correct syntax for functions by way of an auto-complete function.
 
-Auto-complete is activated by pressing **Ctrl-Space** (**Cmd-Space** on OS X). A drop-down list will display showing a list of possible options. The location of the cursor and the context will determine what goes in this list.
+Auto-complete is activated by pressing **Ctrl-Enter** (**Cmd-Enter** on OS X). A drop-down list will display showing a list of possible options. The location of the cursor and the context will determine what goes in this list.
 
 .. figure:: img/keys_auto.png
 
@@ -58,12 +62,12 @@ Removing the dash and triggering auto-complete will show only mapping entries:
 
    Auto-complete on a mapping
 
-Code folding ``(Ctrl-F)``
--------------------------
+Code folding (``Ctrl-,`` and ``Ctrl-.``)
+----------------------------------------
 
 It can sometimes be useful to hide and display certain portions of the code. This is known as "code folding".
 
-Code folding is activated by pressing **Ctrl-F** (**Cmd-F** on OS X). The code to be folded is dependent on where the cursor is.
+Code folding is activated by pressing **Ctrl-,** (**Cmd-,** on OS X). The code to be folded is dependent on where the cursor is.
 
 When the cursor is on a line that contains a list entry (with the dash) the entire contents of that list entry will be folded.
 
@@ -77,7 +81,7 @@ When the cursor is on a line that contains a list entry (with the dash) the enti
 
 When the cursor is on a line that is inside a mapping (no dash), then the contents of the *parent* will be folded. In this case, the cursor will move to the parent line from the (now-hidden) original line.
 
-Code that is folded is indicated by a |doublearrow| at the end of a line, with a small arrow shown in the margin area to the left of the line. Placing the cursor on this line and pressing **Ctrl-F**/**Cmd-F** will unfold the code. You can also click the |doublearrow| icon to unfold the code.
+Code that is folded is indicated by a |doublearrow| at the end of a line, with a small arrow shown in the margin area to the left of the line. Placing the cursor on this line and pressing **Ctrl-.** (**Cmd-.** on OS X) will unfold the code. You can also click the |doublearrow| icon to unfold the code. Attempting to navigate into the folded region using the arrow keys will also unfold the code.
 
 .. |doublearrow| image:: img/keys_doublearrow.png
 
@@ -85,7 +89,7 @@ As another indicator of code folding, the line numbers in the margin will become
 
 .. note:: It is not possible to force folding using tokens or regions.
 
-Save ``(Ctrl-S)``
+Save (``Ctrl-S``)
 -----------------
 
 Like many typical programs, you can save your progress by pressing **Ctrl-S** (**Cmd-S** on OS X).
@@ -97,3 +101,14 @@ If there are no errors, you will see a :guilabel:`Style saved` note at the top o
    Style saved
 
 If there is an error, the line that contains the error will be highlighted, and any other details known about the error will be listed.
+
+Select line (``Shift-Up`` and ``Shift-Down``)
+---------------------------------------------
+
+As in other programs, holding **Shift** and moving the cursor with the arrow keys will select all characters between the original cursor position and the new cursor position. By this method, **Shift-Up** will select the previous line and **Shift-Down** will select the next line. **Shift-Left** will select the previous character and **Shift-Right** will select the next character.
+
+
+Increase/reduce indent (``Tab`` and ``Shift-Tab``)
+--------------------------------------------------
+
+It may be useful to change the indentation of a block of text. Pressing **Tab** will increase the indentation of all selected lines by two spaces. **Shift-Tab** will decrease the indentation of all selected lines by two spaces.
