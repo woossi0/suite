@@ -1,12 +1,14 @@
 .. _qgis.webappbuilder:
 
-Web App Builder plugin
-======================
+Web App Builder plugin for QGIS
+===============================
 
-The QGIS Web App Builder plugin allows for the creation of web applications based on layers as configured in QGIS. The applications can include other web serivces, various controls, and other interactivity. The layers can also be published from the local QGIS instance to GeoServer and PostGIS.
+The Web App Builder plugin for QGIS allows for the creation of web applications based on layers as configured in QGIS. The applications can include other web serivces, various controls, and other interactivity. The layers can also be published from the local QGIS instance to GeoServer and PostGIS.
+
+.. image:: tutorials/schools/img/schoolsapp.png
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    usage/index
    controls/index

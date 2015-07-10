@@ -15,7 +15,7 @@ This archive contains a single point shapefile, consisting of the locations of b
 Preparing the application in QGIS
 ---------------------------------
 
-First, we have to set up our data layers in QGIS. The tutorial data contains a QGIS project. Open it and you will see that it has a single layer with the location and description of bakeries.
+First, we have to set up our data layers in QGIS. The tutorial data contains a QGIS project. Open it and you will see that it has a single layer.
 
 If you open the attributes table for this layer, you will see that the layer has several fields with information about each bakery, and a field named :guilabel:`Text` with a HTML-formatted text which includes that information. We will be using this field for showing the description of each bakery. 
 
