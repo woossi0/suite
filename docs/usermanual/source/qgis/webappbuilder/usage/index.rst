@@ -55,7 +55,7 @@ Every layer in every group in the QGIS project will be listed in this tab. For e
 
 * A check box with the name of the layer controls whether the layer will be added to the app or not.
 * Another check box controls whether the layer will be visible when the app is loaded.
-* A check box allow to specify whether the layer has to be added to the overview map (if the web app contains an overview map).
+* A third check box that specifies whether the layer has to be added to the overview map (if applicable).
 
 The following is a description of the different options that you might find for each type of layer, and how the app builder deals with each layer type.
 
@@ -108,9 +108,9 @@ For WFS and WMS, you will find most of the same options for vector and raster la
 
 Two additional options will be available
 
-* :guilabel:`Refresh layer automatically`. If checked, the web app will refresh the layer periodically.
+* :guilabel:`Refresh layer automatically`: If checked, the web app will refresh the layer periodically.
 
-* :guilabel:`Refresh interval`. The interval, in milliseconds, between two refreshes of the layer.
+* :guilabel:`Refresh interval`: Interval, in milliseconds, between two refreshes of the layer.
 
 Handling projections
 ~~~~~~~~~~~~~~~~~~~~
@@ -208,7 +208,7 @@ The Settings tab shows additional configuration for the application:
    * - Use layer scale dependent visibility
      - If defined in the QGIS rendering properties, layers will only be visible in the map when they are within the defined scale range.
    * - Use view CRS for WFS connections. 
-   * - If checked, it will request data for a WFS layer using the CRS of the web app view. Otherwise, it will request the data in the CRS that it uses in the QGIS layer, and reproject it client-side before rendering it in the view.
+     - If checked, it will request data for a WFS layer using the CRS of the web app view. Otherwise, it will request the data in the CRS that it uses in the QGIS layer, and reproject it client-side before rendering it in the view.
    * - Zoom level when zooming to point feature
      - If a single feature is selected in the attributes table in the web app, and the :guilabel:`Zoom to selected` button is clicked, the map zoom will be set to this zoom level.
 

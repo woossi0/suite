@@ -1,4 +1,4 @@
-.. _.. _qgis.webappbuilder.controls:
+.. _qgis.webappbuilder.controls:
 
 Controls
 ========

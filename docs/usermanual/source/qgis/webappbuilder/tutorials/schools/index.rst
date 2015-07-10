@@ -197,7 +197,7 @@ Final result
 
 If not already open, launch the app by opening :file:`index.html` file inside the directory where you created your web app.
 
-.. figure:: img/app.png
+.. figure:: img/schoolsapp.png
 
    Deployed app
 

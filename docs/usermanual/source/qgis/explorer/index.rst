@@ -16,7 +16,7 @@ For example, you can create a project in QGIS, including local layers, and then 
 This section describes how to use the OpenGeo Explorer plugin for QGIS.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    install
    tutorial/index
