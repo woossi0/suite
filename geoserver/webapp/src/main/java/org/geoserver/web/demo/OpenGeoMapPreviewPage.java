@@ -11,6 +11,7 @@ import static org.geoserver.web.demo.OpenGeoPreviewProvider.TITLE;
 import static org.geoserver.web.demo.OpenGeoPreviewProvider.TYPE;
 
 import java.io.Serializable;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -149,7 +150,7 @@ public class OpenGeoMapPreviewPage extends GeoServerBasePage {
         for (GetMapOutputFormat f : getGeoServerApplication().getBeansOfType(
             GetMapOutputFormat.class)) {
             linkTemplates.add(new WMSLinkTemplate(translate("format.wms.", f.getMimeType()), true,
-                "&format=" + f.getMimeType()));
+                "&format=" + URLEncoder.encode(f.getMimeType())));
         }
         Collections.sort(linkTemplates, ByLabel);
         return Collections.unmodifiableList(linkTemplates);
