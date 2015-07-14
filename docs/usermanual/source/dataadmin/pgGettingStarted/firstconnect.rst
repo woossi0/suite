@@ -119,7 +119,7 @@ The details are similar to that of allowing local connections, with some slight 
 
    .. code-block:: console
 
-      host    all             all             0.0.0.0/32               trust
+      host    all             all             0.0.0.0/0               trust
 
    .. warning:: This is a potential security risk, and you may wish to customize this further. For more information on the various options, please see the `PostgreSQL documentation on pg_hba.conf <http://www.postgresql.org/docs/devel/static/auth-pg-hba-conf.html>`_. 
 
