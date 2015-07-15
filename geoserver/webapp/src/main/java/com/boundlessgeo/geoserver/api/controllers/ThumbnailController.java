@@ -3,9 +3,9 @@
  */
 package com.boundlessgeo.geoserver.api.controllers;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -13,15 +13,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
-import javax.media.jai.PlanarImage;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.io.IOUtils;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.LayerGroupHelper;
@@ -31,12 +30,9 @@ import org.geoserver.catalog.PublishedInfo;
 import org.geoserver.catalog.StyleInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.config.GeoServer;
-import org.geoserver.wms.GetMapRequest;
-import org.geoserver.wms.MapLayerInfo;
-import org.geoserver.wms.WebMap;
 import org.geoserver.wms.WebMapService;
-import org.geoserver.wms.map.RenderedImageMap;
-import org.geotools.styling.Style;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.referencing.CRS;
 import org.geotools.util.logging.Logging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -48,12 +44,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.boundlessgeo.geoserver.AppConfiguration;
 import com.boundlessgeo.geoserver.catalog.ThumbnailInvalidatingCatalogListener;
 import com.google.common.io.Closeables;
 import com.google.common.util.concurrent.Striped;
-import com.vividsolutions.jts.geom.Envelope;
 
 @Controller
 @RequestMapping("/api/thumbnails")
@@ -61,7 +55,7 @@ public class ThumbnailController extends ApiController {
     
     private static Logger LOG = Logging.getLogger(ThumbnailController.class);
     static final String TYPE = "png";
-    static final String MIME_TYPE = "image/png";
+    static final String MIME_TYPE = "image/png;+mode=8bit";
     public static final String EXTENSION = ".png";
     public static final String EXTENSION_HR = "@2x.png";
     public static final int THUMBNAIL_SIZE = 75;
@@ -100,7 +94,7 @@ public class ThumbnailController extends ApiController {
         WorkspaceInfo ws = findWorkspace(wsName, catalog);
         LayerGroupInfo map = findMap(wsName, name, catalog);
         
-        return get(ws, map, hiRes);
+        return get(ws, map, hiRes, request);
     }
     
     /**
@@ -123,7 +117,7 @@ public class ThumbnailController extends ApiController {
         WorkspaceInfo ws = findWorkspace(wsName, catalog);
         LayerInfo layer = findLayer(wsName, name, catalog);
         
-        return get(ws, layer, hiRes);
+        return get(ws, layer, hiRes, request);
     }
     
     /**
@@ -134,14 +128,14 @@ public class ThumbnailController extends ApiController {
      * @return HttpEntity containing the thumbnail image as a byte array
      * @throws Exception
      */
-    public HttpEntity<byte[]> get(WorkspaceInfo ws, PublishedInfo layer, boolean hiRes) throws Exception {
+    public HttpEntity<byte[]> get(WorkspaceInfo ws, PublishedInfo layer, boolean hiRes, HttpServletRequest request) throws Exception {
         String path = thumbnailFilename(layer, hiRes);
         FileInputStream in = null;
         
         File thumbnailFile;
         //If the file has been deleted, recreate it
         if (!config.cacheFile(path).exists()) {
-            createThumbnail(ws, layer);
+            createThumbnail(ws, layer, request);
         }
         try {
             thumbnailFile = config.cacheFile(path);
@@ -163,71 +157,83 @@ public class ThumbnailController extends ApiController {
      * @return The thumbnail image as a Resource
      * @throws Exception
      */
-    protected void createThumbnail(WorkspaceInfo ws, PublishedInfo layer) throws Exception {
+    protected void createThumbnail(WorkspaceInfo ws, PublishedInfo layer, HttpServletRequest baseRequest) throws Exception {
         //Sync against this map/layer
         Semaphore s = semaphores.get(layer);
         s.acquire();
         try {
-            //Set up getMap request
-            GetMapRequest request = new GetMapRequest();
+            //(SUITE-1072) Initialize the thumbnail to a blank image in case the WMS request crashes geoserver
+            BufferedImage blankImage = new BufferedImage(THUMBNAIL_SIZE*2, THUMBNAIL_SIZE*2, BufferedImage.TYPE_4BYTE_ABGR);
+            Graphics2D g = blankImage.createGraphics();
+            g.setColor(new Color(0, 0, 0, 0));
+            g.fillRect(0, 0, blankImage.getWidth(), blankImage.getHeight());
+            writeThumbnail(layer, blankImage);
             
-            List<MapLayerInfo> layers = new ArrayList<MapLayerInfo>();
-            List<Style> styles = new ArrayList<Style>();
-            Envelope bbox = null;
+            //Set up getMap request
+            String url = baseRequest.getScheme()+"://"+baseRequest.getServerName()+":"+baseRequest.getServerPort()
+            + baseRequest.getContextPath()+"/"+ws.getName()+"/wms/reflect";
+            
+            url += "?FORMAT="+MIME_TYPE;
+            
+            ReferencedEnvelope bbox = null;
             if (layer instanceof LayerInfo) {
-                layers.add(new MapLayerInfo((LayerInfo)layer));
-                styles.add(((LayerInfo)layer).getDefaultStyle().getStyle());
+                url += "&LAYERS="+layer.getName();
+                url += "&STYLES="+((LayerInfo)layer).getDefaultStyle().getName();
                 bbox = ((LayerInfo)layer).getResource().boundingBox();
             } else if (layer instanceof LayerGroupInfo) {
+                
                 LayerGroupHelper helper = new LayerGroupHelper((LayerGroupInfo)layer);
                 bbox = ((LayerGroupInfo)layer).getBounds();
+                url+="&CRS="+CRS.toSRS(bbox.getCoordinateReferenceSystem());
                 
                 List<LayerInfo> layerList = helper.allLayersForRendering();
-                for (int i = 0; i  < layerList.size(); i++) {
-                    layers.add(new MapLayerInfo(layerList.get(i)));
+                if (layerList.size() > 0) {
+                    url += "&LAYERS=";
+                    for (int i = 0; i  < layerList.size(); i++) {
+                        if (i > 0) {
+                            url+=",";
+                        }
+                        url+=layerList.get(i) == null ? "" : layerList.get(i).getName();
+                    }
                 }
                 List<StyleInfo> styleList = helper.allStylesForRendering();
-                for (int i = 0; i  < styleList.size(); i++) {
-                    if (styleList.get(i) == null) {
-                        styles.add(layerList.get(i).getDefaultStyle().getStyle());
-                    } else {
-                        styles.add(styleList.get(i).getStyle());
+                if (styleList.size() > 0) {
+                    url += "&STYLES=";
+                    for (int i = 0; i  < styleList.size(); i++) {
+                        if (i > 0) {
+                            url+=",";
+                        }
+                        if (styleList.get(i) == null) {
+                            url += layerList.get(i).getDefaultStyle() == null ? "" : layerList.get(i).getDefaultStyle().getName();
+                        } else {
+                            url += styleList.get(i) == null ? "" : styleList.get(i).getName();
+                        }
                     }
                 }
             } else {
                 throw new RuntimeException("layer must be one of LayerInfo or LayerGroupInfo");
             }
-            request.setLayers(layers);
-            request.setStyles(styles);
-            request.setFormat(MIME_TYPE);
-            
             //Set the size of the HR thumbnail
             //Take the smallest bbox dimension as the min dimension. We can then crop the other 
             //dimension to give a square thumbnail
-            request.setBbox(bbox);
+            url+="&BBOX="+((float)bbox.getMinX())+","+((float)bbox.getMinY())+","
+                         +((float)bbox.getMaxX())+","+((float)bbox.getMaxY());
             if (bbox.getWidth() < bbox.getHeight()) {
-                request.setWidth(2*THUMBNAIL_SIZE);
+                url+="&WIDTH="+(2*THUMBNAIL_SIZE);
+                url+="&HEIGHT="+(2*THUMBNAIL_SIZE*Math.round(bbox.getHeight()/bbox.getWidth()));
             } else {
-                request.setHeight(2*THUMBNAIL_SIZE);
+                url+="&HEIGHT="+(2*THUMBNAIL_SIZE);
+                url+="&WIDTH="+(2*THUMBNAIL_SIZE*Math.round(bbox.getWidth()/bbox.getHeight()));
             }
             
             //Run the getMap request through the WMS Reflector
-            WebMap response = wms.reflect(request);
-            //Get the resulting map image
-            BufferedImage image;
-            if (response instanceof RenderedImageMap) {
-                RenderedImageMap map = (RenderedImageMap)response;
-                if (map.getImage() instanceof BufferedImage) {
-                    //Regular thumbnails
-                    image = (BufferedImage)map.getImage();
-                } else if (map.getImage() instanceof PlanarImage) {
-                    //Raster-only thumbnails
-                    image = ((PlanarImage)map.getImage()).getAsBufferedImage();
-                } else {
-                    throw new RuntimeException("Unsupported getMap image format:" + map.getImage().getClass().getName());
-                }
-            } else {
-                throw new RuntimeException("Unsupported getMap response format:" + response.getClass().getName());
+            //WebMap response = wms.reflect(request);            
+            URL obj = new URL(url);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            BufferedImage image = ImageIO.read(con.getInputStream());
+            if (image == null) {
+                throw new RuntimeException("Failed to encode thumbnail for "+ws.getName()+":"+layer.getName());
             }
             writeThumbnail(layer, image);
         } finally {
