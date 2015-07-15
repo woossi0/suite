@@ -799,6 +799,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals(YsldHandler.FORMAT, layer.getDefaultStyle().getFormat());
     }
     
+    /* (SUITE-1072) Full WMS URL is not compatible with GeoServerSystemTestSupport
+     * Removing test case until a viable workaround can be found
     @Test
     public void testThumbnail() throws Exception {
         ThumbnailController ctrl = applicationContext.getBean(ThumbnailController.class);
@@ -895,4 +897,5 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertFalse(config.cacheFile(ThumbnailController.thumbnailFilename(layer)).exists());
         assertFalse(config.cacheFile(ThumbnailController.thumbnailFilename(map)).exists());
     }
+    */
 }
