@@ -66,6 +66,9 @@ import org.geotools.util.logging.Logging;
 import org.opengis.feature.type.Name;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.operation.TransformException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -455,9 +458,12 @@ public class LayerController extends ApiController {
      * @param req HTTP request
      * @return The description of the updated layer
      * @throws IOException
+     * @throws FactoryException 
+     * @throws TransformException 
+     * @throws NoSuchAuthorityCodeException 
      */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.PATCH)
-    public @ResponseBody JSONObj patch(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
+    public @ResponseBody JSONObj patch(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException, NoSuchAuthorityCodeException, TransformException, FactoryException {
         Catalog cat = geoServer.getCatalog();
         WorkspaceInfo ws = findWorkspace(wsName, cat);
         LayerInfo layer = findLayer(wsName, name, cat);
@@ -472,16 +478,19 @@ public class LayerController extends ApiController {
      * @param req HTTP request
      * @return The description of the updated layer
      * @throws IOException
+     * @throws FactoryException 
+     * @throws TransformException 
+     * @throws NoSuchAuthorityCodeException 
      */
     @RequestMapping(value="/{wsName}/{name:.+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody JSONObj put(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException {
+    public @ResponseBody JSONObj put(@PathVariable String wsName, @PathVariable String name, @RequestBody JSONObj obj, HttpServletRequest req) throws IOException, NoSuchAuthorityCodeException, TransformException, FactoryException {
         Catalog cat = geoServer.getCatalog();
         WorkspaceInfo ws = findWorkspace(wsName, cat);
         LayerInfo layer = findLayer(wsName, name, cat);
         return  update(layer, ws, obj,req);
     }
     
-    JSONObj update(LayerInfo layer, WorkspaceInfo ws, JSONObj obj, HttpServletRequest req) {
+    JSONObj update(LayerInfo layer, WorkspaceInfo ws, JSONObj obj, HttpServletRequest req) throws NoSuchAuthorityCodeException, TransformException, FactoryException, IOException {
         ResourceInfo resource = layer.getResource();
         for (String prop : obj.keys()) {
             if ("name".equals(prop)) {
@@ -499,8 +508,11 @@ public class LayerController extends ApiController {
                         new ReferencedEnvelope(IO.bounds(bbox.object("native")), resource.getCRS()));
                 }
                 if (bbox.has("lonlat")) {
-                    resource.setNativeBoundingBox(
+                    resource.setLatLonBoundingBox(
                         new ReferencedEnvelope(IO.bounds(bbox.object("lonlat")), DefaultGeographicCRS.WGS84));
+                } else if (bbox.has("native")) {
+                    //If the native bbox has changed, update the latlon bbox
+                    computeLatLonBounds(resource, geoServer.getCatalog());
                 }
             } else if ("proj".equals(prop)) {
                 String srs = obj.str("proj");
@@ -510,6 +522,10 @@ public class LayerController extends ApiController {
                     throw new BadRequestException("Unknown spatial reference identifier: " + srs);
                 }
                 resource.setSRS(srs);
+                //If bbox is not defined, update it.
+                if (obj.get("bbox") == null) {
+                    computeLatLonBounds(resource, geoServer.getCatalog());
+                }
             } else if ("timeout".equals(prop)){
                 layer.getMetadata().put("timeout", (Serializable)obj.get("timeout"));
             }
@@ -524,6 +540,20 @@ public class LayerController extends ApiController {
         recent.add(WorkspaceInfo.class, ws);
 
         return IO.layerDetails(new JSONObj(), layer, req);
+    }
+    
+    public void computeNativeBounds(ResourceInfo r, Catalog catalog) throws IOException {
+        //Need to save the resource for cb to work
+        CatalogBuilder cb = new CatalogBuilder(catalog);
+        r.setNativeBoundingBox(cb.getNativeBounds(r));
+        
+    }
+    public void computeLatLonBounds(ResourceInfo r, Catalog catalog) throws IOException, NoSuchAuthorityCodeException, FactoryException {
+        CatalogBuilder cb = new CatalogBuilder(catalog);
+        if (r.getNativeBoundingBox() == null) {
+            computeNativeBounds(r, catalog);
+        }
+        r.setLatLonBoundingBox(cb.getLatLonBounds(r.getNativeBoundingBox(), CRS.decode(r.getSRS())));
     }
 
     @RequestMapping(value="/{wsName}/{name}/style", method = RequestMethod.PUT, consumes = YsldHandler.MIMETYPE)
