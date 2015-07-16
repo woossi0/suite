@@ -43,3 +43,6 @@
 [submodule "geoserver/externals/wps-gui"]
 	path = geoserver/externals/wps-gui
 	url = https://github.com/boundlessgeo/wps-gui.git
+[submodule "geoserver/externals/geomesa"]
+	path = geoserver/externals/geomesa
+	url = https://github.com/boundlessgeo/geomesa.git
