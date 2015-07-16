@@ -3,7 +3,7 @@
    <import file="../../build/common.xml"/>
 
    <target name="build" description="Build all projects"
-      depends="init, build-gt, build-gwc, build-geoscript-js, build-geoscript-py, build-gs, build-gs-exts, build-wps-gui, build-geomesa">
+      depends="init, build-gt, build-gwc, build-geoscript-js, build-geoscript-py, build-gs, build-gs-exts, build-wps-gui">
    </target>
 
    <target name="clean"/>
@@ -62,15 +62,6 @@
         <param name="dir" value="${gs-exts.dir}"/>
         <param name="flags" value="-DskipTests -Dgs.version=${gs.version} -Dgt.version=${gt.version} ${gs-exts.flags}"/>
         <param name="goals" value="clean install assembly:attached"/>
-     </antcall>
-   </target>
-
-   <target name="build-geomesa" unless="skip.geomesa"
-      description="Build geomesa">
-     <antcall target="mvn">
-        <param name="dir" value="${geomesa.dir}"/>
-        <param name="flags" value="-DskipTests -P geoserver-ext"/>
-        <param name="goals" value="clean install"/>
      </antcall>
    </target>
 
