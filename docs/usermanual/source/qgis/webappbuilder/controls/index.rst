@@ -378,7 +378,7 @@ Timeline
 
 Adds a slider to the map that can be used to select a given date, and show/hide layers depending on their timestamp.
 
-.. figure:: img/aboutpanel.png
+.. figure:: img/timeline.png
 
    Timeline slider
 
