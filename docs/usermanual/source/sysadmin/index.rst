@@ -19,3 +19,4 @@ This section will discuss how to manage OpenGeo Suite deployments, including ser
    virtualservices/index
    caching/index
    clustering/index
+   cloudwatch/index
