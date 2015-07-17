@@ -358,7 +358,7 @@ Bookmarks
 
 Adds the ability to create and retrieve spatial bookmarks. A spatial bookmark consists of a name, an extent and a description.
 
-When this tool is enabled, a :guilabel:`Bookmarks` tab will be created in the app.
+When this tool is enabled, a :guilabel:`Bookmarks` entry will be created in the app.
 
 .. todo:: ADD FIGURE
 
@@ -372,6 +372,25 @@ There are two options for defining bookmarks:
 
 The :guilabel:`Configuration tab` controls how the bookmarks will be displayed. If the :guilabel:`Show as story panel` box is checked, a narrative map will be created, and a panel to browse across bookmarks will be added to the web app. Otherwise, bookmarks will be shown as menu entries in the navigation bar, under a :guilabel:`Bookmarks` menu.
 
+.. _qgis.webappbuilder.controls.timeline:
+Timeline
+--------
+
+Adds a slider to the map that can be used to select a given date, and show/hide layers depending on their timestamp.
+
+.. figure:: img/aboutpanel.png
+
+   Timeline slider
+
+The timeline control has no configuration, but layers have to be prepared and the corresponding time information has to be added. To configure layers for the timeline control, follow these instructions.
+
+* Create a group in your QGIS project and put all data layers representing the same variable but in different times, into the group. 
+* Set the timestamp of each layer, selecting it in the :guilable:`Layer time info` field. All layers in a group must have a valid timestamp.
+* The group will be considered as a single layer in your web app and it's ready to be used by the timeline control.
+
+In your web app you will not see all the layers in the group, but just the one that corresponds to the current time selected in the timeline control. The group content will not be listed, so the name of individual layers in the group is not relevant, since it will never be shown in your web app. Also, the :guilable:`Visible at startup`. parameter will be ignored. The timeline component is set at the latest timestamp of all layers with time information, so the latest layer will be visible, while the other ones will be hidden.
+
+You can repeat the above steps and create different groups, each of them containing the data for a given variable at different times.
 
 About panel
 -----------

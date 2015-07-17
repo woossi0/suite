@@ -112,6 +112,13 @@ Two additional options will be available
 
 * :guilabel:`Refresh interval`: Interval, in milliseconds, between two refreshes of the layer.
 
+Time information
+~~~~~~~~~~~~~~~~~
+
+When a layer belongs to a group you will see an additional option named :guilable:`Layer time info`. By default, its value is "Not set", and you can leave it like that in case you are not going to add a timelime control, since it will not be used.
+
+In case you want to add a timeline control, groups can be used for defining a set of layers representing the same information at different times, and the time info of each layer has to be selected in that field. To know more about how to use this feature, check the :ref:`qgis.webappbuilder.controls.timeline` section.
+
 Handling projections
 ~~~~~~~~~~~~~~~~~~~~
 
