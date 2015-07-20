@@ -14,8 +14,8 @@ The Composer interface consists of two main sections:
 
 The Configuration pages regard the composition of maps, the availability of layers, and the data that comprises them. The Style Editor page provides an interface for viewing and styling layers and maps, with the view updating in real-time.
 
-Login
------
+Logging in
+----------
 
 Because of the ability to make low-level configuration changes to GeoServer, **access to Composer is only granted to users with administrative rights to GeoServer**.
 
@@ -27,11 +27,18 @@ Enter an administrative user name and password and click :guilabel:`Login` to ac
 
 .. note:: The default GeoServer administrator credentials are ``admin`` / ``geoserver``.
 
-If you leave Composer unattended for more than 30 minutes, a dialog will appear asking you to login again. After logging in, you can continue right where you left off - any unsaved data will be preserved. A similar dialog will appear if you logout through the GeoServer Admin interface instead of the composer interface and try to use Composer.
+Composer is aware of the GeoServer Admin interface log in, so if you are already logged in there using the same browser, Composer will log you in as well without prompting. 
+
+Session expiration and logging out
+----------------------------------
+
+If you leave Composer unattended for more than **30 minutes**, you will be automatically logged out, and the dialog will appear again. After logging back in, you will be able to continue right where you left off—any unsaved data will be preserved.
 
 .. figure:: img/sessionexpired.png
 
    Session expired dialog
+
+Because Composer login information is tied to GeoServer, if you log out of the GeoServer Admin, you will be automatically be logged out of Composer as well.
 
 Home page / Recent
 ------------------
@@ -49,10 +56,10 @@ Toolbar
 
 When logged in, the top of the application will always contain four links:
 
-* **Home**, accessible by clicking the :guilabel:`Composer` logo
-* **Help**, to bring up this documentation
-* **Recent Alerts**, to display a list of recent errors and other messages
-* **User settings**, with links to the GeoServer Admin interface and to logout
+* Composer Home, accessible by clicking the :guilabel:`Suite Composer` logo and title on the left
+* :guilabel:`Help`, to bring up this documentation
+* :guilabel:`Recent Alerts`, to display a list of recent errors and other messages
+* User settings, usually noted with the user name :guilabel:`admin`, links to the GeoServer Admin interface and logout
 
 .. figure:: img/toolbar.png
 
@@ -61,7 +68,9 @@ When logged in, the top of the application will always contain four links:
 Recent Alerts
 ~~~~~~~~~~~~~
 
-Clicking on the :guilabel:`Recent Alerts` link in the toolbar will display the Recent Alerts dialog. This window lists all alerts, warnings, and messages for the current browser session. This list can be filtered by type using the three checkboxes. If an alert contains additional details, they can be shown or hidden by clicking on the :guilabel:`Details`/:guilabel:`Hide Details` links.
+Clicking the :guilabel:`Recent Alerts` link in the toolbar will display the Recent Alerts dialog. This window lists all alerts, warnings, and messages for the current browser session. This list can be filtered by type using the three checkboxes: :guilabel:`Danger`, :guilabel:`Warning`, and :guilabel:`Success`.
+
+If an alert contains additional details, they can be shown or hidden by clicking the :guilabel:`Details` and :guilabel:`Hide Details` links.
 
 .. figure:: img/alerts.png
 
@@ -75,7 +84,7 @@ All Configuration pages contain the same Navigation panel on the left side of th
 * :guilabel:`New` menu: Creates a new project workspace.
 * :guilabel:`Project Workspaces`: Lists all project workspaces available on the server. If the screen size is small, or if the list of project workspaces is large, a :guilabel:`More` link will appear, which will take you to the :guilabel:`All Project Workspaces` page.
 
-   * Within each project workspace listing, there are individual links to view the list of that project workspace's :guilabel:`Maps`, :guilabel:`Layers`, and :guilabel:`Data`.
+   * Within each individual project workspace listing, there are links to view its :guilabel:`Maps`, :guilabel:`Layers`, and :guilabel:`Data`.
 
 * :guilabel:`All Maps`: Lists all maps in all project workspaces.
 * :guilabel:`All Layers`: Lists all published layers

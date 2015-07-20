@@ -69,7 +69,7 @@ With the project workspace created, we're now ready to load data.
 
       Add Data link
 
-#. A dialog will appear for importing data to GeoServer. Either click :guilabel:`Browse` and select each of the files or drag the files onto this window.
+#. A dialog will appear for importing data to GeoServer. Either click :guilabel:`Browse` and select each of the files, or drag each of the files onto this dialog.
 
    .. figure:: img/importfile.png
 
