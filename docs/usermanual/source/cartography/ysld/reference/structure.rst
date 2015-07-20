@@ -175,6 +175,8 @@ It is sometimes not obvious whether an object should be a list (and use dashes) 
    * - Color table (for raster symbolizers)
      - List
 
+.. _cartography.ysld.reference.structure.indentation:
+
 Indentation
 -----------
 

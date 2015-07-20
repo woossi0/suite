@@ -16,12 +16,12 @@ Navigating around the style editor interface is easy with the mouse, but there a
      - :guilabel:`Ctrl` + :guilabel:`S`
    * - Autocomplete
      - :guilabel:`Ctrl` + :guilabel:`Enter`
-   * - Code fold/unfold
-     - :guilabel:`Ctrl` + :guilabel:`,` and :guilabel:`Ctrl` + :guilabel:`.`
+   * - Code fold / unfold
+     - :guilabel:`Ctrl` + :guilabel:`,` / :guilabel:`Ctrl` + :guilabel:`.`
    * - Select line
      - :guilabel:`Shift` + :guilabel:`Up` and :guilabel:`Shift` + :guilabel:`Down`
-   * - Increase/reduce indent
-     - :guilabel:`Tab` and :guilabel:`Shift` + :guilabel:`Tab`
+   * - Increase / reduce indent
+     - :guilabel:`Tab` / :guilabel:`Shift` + :guilabel:`Tab`
 
 This list can be retrieved by clicking the keyboard icon on the top right of the window.
 
@@ -63,6 +63,8 @@ This can also be useful during debugging, as you can verify if an option is in t
 
 Not only does the auto-complete respect cursor location, but it also respects whether the expected option will be a list, a mapping, or a value.
 
+.. note:: Read more about lists, mappings, and more :ref:`YSLD structure <cartography.ysld.reference.structure>`.
+
 When auto-complete is triggered on a list item (noted by the dash prefix), only list options will be shown:
 
 .. figure:: img/keys_autolist.png
@@ -87,8 +89,8 @@ When auto-complete is triggered on a value with an infinite number of possible v
 
    Auto-complete on a number
 
-Code folding (:guilabel:`Ctrl` + :guilabel:`,` and :guilabel:`Ctrl` + :guilabel:`.`)
-------------------------------------------------------------------------------------
+Code folding (:guilabel:`Ctrl` + :guilabel:`,` / :guilabel:`Ctrl` + :guilabel:`.`)
+----------------------------------------------------------------------------------
 
 It can sometimes be useful to hide and display certain portions of the code. This is known as "code folding".
 
@@ -106,6 +108,8 @@ When the cursor is on a line that contains a list entry (with the dash) the enti
 
 When the cursor is on a line that is inside a mapping (no dash), then the contents of the *parent* will be folded. In this case, the cursor will move to the parent line from the (now-hidden) original line.
 
+.. note:: Read more about lists, mappings, and more :ref:`YSLD structure <cartography.ysld.reference.structure>`.
+
 Code that is folded is indicated by a |doublearrow| at the end of a line, with a small arrow shown in the margin area to the left of the line. Placing the cursor on this line and pressing :guilabel:`Ctrl` + :guilabel:`.` (:guilabel:`Cmd` + :guilabel:`.` on OS X) will unfold the code. You can also click the |doublearrow| icon to unfold the code. Attempting to navigate into the folded region using the arrow keys will also unfold the code.
 
 .. |doublearrow| image:: img/keys_doublearrow.png
@@ -117,15 +121,18 @@ As another indicator of code folding, the line numbers in the margin will become
 Comment/uncomment selection (:guilabel:`Ctrl` + :guilabel:`3`)
 --------------------------------------------------------------
 
-It may be usefull to comment out a block of text so that it does not affect the style. This can be done by selecting the text to be commented and pressing :guilabel:`Ctrl` + :guilabel:`3``. This can be reversed by selecting the commented text and pressing :guilabel:`Ctrl` + :guilabel:`3` again.
+It may be useful to comment out a block of text so that it does not affect the style. This can be done by selecting the text to be commented and pressing :guilabel:`Ctrl` + :guilabel:`3`. All lines selected (or partially selected) will then have a ``#`` added to the beginning of the line, indicating that the line is now commented out.
+
+This can be reversed by selecting the commented text and pressing :guilabel:`Ctrl` + :guilabel:`3` again.
+
 
 Select line (:guilabel:`Shift` + :guilabel:`Up` and :guilabel:`Shift` + :guilabel:`Down`)
 -----------------------------------------------------------------------------------------
 
-As in other programs, holding :guilabel:`Shift` and moving the cursor with the arrow keys will select all characters between the original cursor position and the new cursor position. By this method, :guilabel:`Shift` + :guilabel:`Up` will select the previous line and :guilabel:`Shift` + :guilabel:`Down` will select the next line. :guilabel:`Shift` + :guilabel:`Left` will select the previous character and :guilabel:`Shift` + :guilabel:`Right` will select the next character.
+As in many other programs, holding :guilabel:`Shift` and moving the cursor with the arrow keys will select all characters between the original cursor position and the new cursor position. By this method, :guilabel:`Shift` + :guilabel:`Up` will select the previous line and :guilabel:`Shift` + :guilabel:`Down` will select the next line. :guilabel:`Shift` + :guilabel:`Left` will select the previous character and :guilabel:`Shift` + :guilabel:`Right` will select the next character.
 
 
 Increase/reduce indent (:guilabel:`Tab` and :guilabel:`Shift` + :guilabel:`Tab`)
 --------------------------------------------------------------------------------
 
-It may be useful to change the indentation of a block of text. Pressing :guilabel:`Tab` will increase the indentation of all selected lines by two spaces. :guilabel:`Shift` + :guilabel:`Tab` will decrease the indentation of all selected lines by two spaces.
+Since proper :ref:`indenting <cartography.ysld.reference.structure.indentation>` is so crucial to YSLD syntax, it can be useful to change the indentation of a block of text together. Selecting a block of text and then pressing :guilabel:`Tab` will increase the indentation of all selected lines by two spaces. Pressing :guilabel:`Shift` + :guilabel:`Tab` will decrease the indentation of all selected lines by two spaces.

@@ -25,23 +25,29 @@ To view a map, navigate to the map in the appropriate :ref:`webmaps.composer.con
 Style Editor
 ------------
 
-The Style Editor is mostly the same whether styling a layer or a map. The only difference is the existence of the layer list in the middle of the screen.
-
-.. figure:: img/mapstylepage.png
-
-   Styling a map
+The Style Editor is mostly the same whether styling a layer or a map. The only difference is the existence of the layer panel in the middle of the screen.
 
 .. figure:: img/layerstylepage.png
 
    Styling a single layer
 
+.. figure:: img/mapstylepage.png
+
+   Styling a map (with layer panel)
+
 The Style Editor page consists of a navigation bar and two (or three) panels.
 
-The navigation bar sits above the panels. To the left there is a breadcrum navigation, consisting of the workspace name (which links back to the workspace page) and the map or layer name (which shows the map or layer settings). For maps only, the number of layers, a button to add layers to the map, and the name of the current layer are all shown on the right side of the toolbar. For both maps and layers, there is a keyboard icon (which shows the :ref:`keyboard shortcuts<webmaps.composer.keys>` for the style editor), and a gear icon (which also shows the map or layer settings).
+The navigation bar sits above the panels and displays the following information:
 
-* The **viewer** on the left side shows the current style of layer or map. In this panel there are buttons for zoom in/out, zoom to extent, and copy bounds. There is also the current scale and zoom level. This panel is seperated from the other panels by a horizontal grey bar, which can be dragged to adjust the relative size of the panels.
-* For maps only, there is a **layer list**. This list can be dragged to adjust drawing order, and each layer can be toggled on or off in visibility (without removing them from the map).
-* The **style** panel shows the current style for the selected layer. Even if viewing a map, only one layer's style will be shown at once. 
+* To the left is a breadcrumb navigation, consisting of the workspace name (which links back to the project workspace page) and the map or layer name (which shows the map or layer settings)
+* For maps only, the number of layers, a button to add layers to the map, and the name of the current layer are all shown on the right side of the toolbar.
+* For both maps and layers, there is a keyboard icon (which shows the :ref:`keyboard shortcuts<webmaps.composer.keys>` for the style editor), and a gear icon (which also shows the map or layer settings).
+
+The main part of the window displays the following:
+
+* The **viewer** on the left side shows the current style of layer or map. In this panel there are buttons for zoom in/out, zoom to extent, and copy bounds. There is also the current scale and zoom level. This panel is seperated from the other panels by a horizontal gray bar, which can be dragged to adjust the relative size of the panels.
+* For maps only, there is a **layer panel**. This contains a list with elements that can be dragged to adjust layer drawing order. Each layer can be toggled on or off in visibility (without removing them from the map).
+* The **style** panel shows the current style for the selected layer. Even if viewing a map, only one layer's style will be shown at a time.
 
 .. todo:: Names are made up.
 
@@ -60,13 +66,13 @@ On the style panel there is a toolbar with the following buttons:
    * - :guilabel:`Fullscreen`
      - Toggle fulscreen editing mode, where the **style** and **layer list** panels float above the **viewer**, which expands to the full screen size.
    * - :guilabel:`Layers`
-     - Shows/hides the layers panel. Only valid when viewing a map.
+     - Shows/hides the layers panel. Only shown when viewing a map.
    * - :guilabel:`Save`
-     - Saves the current style
+     - Saves the current style.
    * - :guilabel:`Undo`
-     - Returns to a previous version of the style
+     - Returns to a previous version of the style.
    * - :guilabel:`Display`
-     - Provides a list of options for changing how the map and style are displayed. **Only affects how the map and style are viewed in Composer, not the actual map or style.**
+     - Provides a list of options for changing how the map and style code are displayed. The background color, font, and font size of the style section can be changed, while the map controls can be changed, as well as a basemap added.
    * - :guilabel:`Color`
      - Allows a color to be chosen from a color picker and subsequently inserted into the style.
    * - :guilabel:`Icons`
@@ -79,7 +85,7 @@ On the style panel there is a toolbar with the following buttons:
 Editing styles
 ~~~~~~~~~~~~~~
 
-Styles are written in the YSLD markup language, which is compatible with but simpler than SLD. For more information about YSLD syntax, please see the section on :ref:`cartography.ysld`.
+Styles are written in the :ref:`YSLD <cartography.ysld>` markup language, which is compatible with, but simpler than, SLD, which is the standard style language used with GeoServer. For more information about YSLD syntax, please see the section on :ref:`cartography.ysld`.
 
 .. _webmaps.composer.styleview.icons:
 
@@ -96,7 +102,7 @@ To upload an image file to be used as a graphic in a style:
 
       Icons button in the style toolbar
 
-#. A list of the avilable icons in that project workspace will be shown, if any.
+#. A list of the available icons in that project workspace will be shown, if any.
 
    .. figure:: img/icons_list.png
 
@@ -124,13 +130,6 @@ To upload an image file to be used as a graphic in a style:
         - external:
             url: smileyface.png
             format: image/png
-
-   .. note:: The pasted code will be of the form 
-      .. code-block:: yaml
-      
-         - external:
-             url: smileyface.png
-             format: image/png
 
    .. figure:: img/icons_pasted.png
 
