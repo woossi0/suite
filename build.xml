@@ -62,7 +62,7 @@
     <copy todir="${webappsdir}/geoexplorer">
       <fileset dir="geoexplorer/target/war" includes="**/*"/>
     </copy>
-    <unzip dest="${webappsdir}/wpsbuilder" overwrite="true">
+    <unzip dest="${webappsdir}/wps-gui" overwrite="true">
       <fileset dir="geoserver/externals/wps-gui/build" includes="wpsbuilder.war">
       </fileset>
     </unzip>
