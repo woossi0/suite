@@ -1,20 +1,27 @@
 .. _processing.wpsbuilder:
 
-Executing processes using the WPS Builder 
-=========================================
+Executing processes using WPS Builder 
+=====================================
 
-The WPS Builder allows for the creating of graphical process workflows that can be easily executed and reproduced. Processes that are available are the same as those available in GeoServer.
+WPS Builder allows for the creating of graphical process workflows that can be easily executed and reproduced. Processes that are available are the same as those available in GeoServer.
 
-.. todo:: Enterprise only?
+.. note:: WPS Builder is only available with `OpenGeo Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
 
 .. figure:: img/wpsbuilder.png
 
    WPS Builder application
 
+Launching the application
+-------------------------
+
+By default, WPS Builder is available in the same application server as GeoServer under the context ``/wpsbuilder``. So if GeoServer is available at ``http://localhost:8080/geoserver``, WPS Builder will be available at ``http://localhost:8080/wpsbuilder``.
+
+.. note:: WPS Builder requires GeoServer to function properly.
+
 Application panels
 ------------------
 
-The WPS Builder consists of three panels, from left to right:
+WPS Builder consists of three panels, from left to right:
 
 * :guilabel:`Process List`
 * :guilabel:`Canvas`
