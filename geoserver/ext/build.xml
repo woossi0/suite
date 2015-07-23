@@ -1,13 +1,13 @@
 <project name="geoserver.ext" default="build">
     <import file="../../build/common.xml"/>
 
-    <property name="gs-core.ext.list" 
+    <property name="gs-core.ext.list"
         value="app-schema,arcsde,control-flow,csw,db2,gdal,inspire,jp2k,libjpeg-turbo,oracle,sqlserver,wps"/>
-    <property name="gs-core.ext.dir" 
+    <property name="gs-core.ext.dir"
         value="../externals/geoserver/src/target/release"/>
 
     <property name="gs-comm.ext.list" value="geopkg,javascript,jdbcconfig,mbtiles,python,hz-cluster"/>
-    <property name="gs-comm.ext.dir" 
+    <property name="gs-comm.ext.dir"
         value="../externals/geoserver/src/community/target/release"/>
 
     <property name="gs-exts.ext.list" value="cloudwatch,gsr,mapmeter,mongodb"/>
@@ -34,7 +34,7 @@
             </fileset>
         </copy>
     </target>
-    
+
     <target name="assemble-marlin">
         <copy todir="target/marlin" flatten="true">
             <fileset dir="lib">
@@ -69,19 +69,19 @@
                 <exclude name="*.txt"/>
                 <exclude name="*.TXT"/>
                 <exclude name="*.ini"/>
-			    <exclude name="imageio-ext-geocore-*.jar"/>
-			    <exclude name="gt-geopkg-12-*.jar"/>
-			    <exclude name="sqlite-jdbc-*.jar"/>
-			    <exclude name="gt-geojson-*.jar"/>
-			    <exclude name="gt-process-??-SNAPSHOT.jar"/>
-			    <exclude name="gt-process-feature-*.jar"/>
-			    <exclude name="gt-process-raster-*.jar"/>
-			    <exclude name="gt-xsd-kml-*.jar"/>
-			    <exclude name="json-simple-*.jar"/>
-			    <exclude name="imageio-ext-imagereadmt-*.jar"/>
-			    <exclude name="gt-process-geometry-*.jar"/>
-			</patternset>
-		</unzip>
+                <exclude name="imageio-ext-geocore-*.jar"/>
+                <exclude name="gt-geopkg-12-*.jar"/>
+                <exclude name="sqlite-jdbc-*.jar"/>
+                <exclude name="gt-geojson-*.jar"/>
+                <exclude name="gt-process-??-SNAPSHOT.jar"/>
+                <exclude name="gt-process-feature-*.jar"/>
+                <exclude name="gt-process-raster-*.jar"/>
+                <exclude name="gt-xsd-kml-*.jar"/>
+                <exclude name="json-simple-*.jar"/>
+                <exclude name="imageio-ext-imagereadmt-*.jar"/>
+                <exclude name="gt-process-geometry-*.jar"/>
+            </patternset>
+        </unzip>
     </target>
 
     <target name="unpack-comm-ext">
