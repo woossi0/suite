@@ -85,6 +85,11 @@
      <artifactId>gs-mongodb</artifactId>
      <version>${gs.version}</version>
    </dependency>
+   <dependency>
+     <groupId>org.locationtech.geomesa</groupId>
+     <artifactId>plugin</artifactId>
+     <!--<version>${gs.version}</version>-->
+   </dependency>
 
    <!-- GeoPackage/MBTiles -->
    <dependency>
