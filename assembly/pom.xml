@@ -72,7 +72,7 @@
    </dependency>
    <dependency>
      <groupId>org.opengeo.geoserver</groupId>
-     <artifactId>cludwatch</artifactId>
+     <artifactId>cloudwatch</artifactId>
      <version>${gs.version}</version>
    </dependency>
    <dependency>
