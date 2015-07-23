@@ -15,6 +15,7 @@ This section describes some strategies on how to work with your data using OpenG
    pointcloud/index
    oracle/index
    mongodb/index
+   geomesa/index
    gdal/index
    mrsid/index
    geopackage/index
