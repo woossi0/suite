@@ -376,21 +376,16 @@ The :guilabel:`Configuration tab` controls how the bookmarks will be displayed. 
 Timeline
 --------
 
-Adds a slider to the map that can be used to select a given date, and show/hide layers depending on their timestamp.
+Adds a slider to the map that can be used to select a given date, and modifies the visibility of layers and features depending on their timestamp and the current time.
 
 .. figure:: img/timeline.png
 
    Timeline slider
 
-The timeline control has no configuration, but layers have to be prepared and the corresponding time information has to be added. To configure layers for the timeline control, follow these instructions.
+Clicking on the play button will cause the slider to advance automatically. The behaviour of the auto-play mode can be modified using the available options for this control:
 
-* Create a group in your QGIS project and put all data layers representing the same variable but in different times, into the group. 
-* Set the timestamp of each layer, selecting it in the :guilable:`Layer time info` field. All layers in a group must have a valid timestamp.
-* The group will be considered as a single layer in your web app and it's ready to be used by the timeline control.
-
-In your web app you will not see all the layers in the group, but just the one that corresponds to the current time selected in the timeline control. The group content will not be listed, so the name of individual layers in the group is not relevant, since it will never be shown in your web app. Also, the :guilable:`Visible at startup`. parameter will be ignored. The timeline component is set at the latest timestamp of all layers with time information, so the latest layer will be visible, while the other ones will be hidden.
-
-You can repeat the above steps and create different groups, each of them containing the data for a given variable at different times.
+* :guilabel:`numInterval`. The number of intervals into which the full range of the slider is divided
+* :guilabel:`interval`. The time, in milliseconds, to wait in each position of the slider. Positions are defined by dividing the slider range by the number of intervals defined in the above parameter
 
 About panel
 -----------
@@ -464,5 +459,12 @@ Help
 Adds a link on the menubar to a help page.
 
 .. todo:: ADD FIGURE
+
+There are no configurable properties for this control.
+
+Add layer
+-----------
+
+Adds a menu entry that can be used by the web app user to add a layer to the map. Only vector layers can be added. Supported formats for layers are GeoJSON, GPX and KML.
 
 There are no configurable properties for this control.

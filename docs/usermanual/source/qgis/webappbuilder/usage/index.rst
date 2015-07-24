@@ -90,6 +90,20 @@ For each vector layer, the following options are available:
 
 * :guilabel:`Cluster distance`. Specify the distance to use for clustering. Only available with point geometries.
 
+* :guilabel:`Layer time info`. You can add time information for layers, which will be used by the Timeline control in case it is added. Layers with time information will only be rendered if the current time set by the Timeline control correspond to a date in which the layer and its features are valid. If the Timeline control is not added to the web map, the time information will be ignored, and the layer rendered normally.
+
+  To configure the time information of the layer, click in the  :guilable:`Edit` label. You will see the following dialog:
+
+    .. figure:: img/timeinfodialog.png
+
+      Time info dialog
+
+  There are three options available:
+
+    * :guilabel:`No time info`. The layer will be rendered normally.
+    * :guilabel:`Single time info for the whole layer`. The layer will be rendered if the current time set by the Timeline control falls between the two dates defined in the :guilabel:`From date` and :guilabel:`To date` boxes.
+    * :guilabel:`Feature time info is stored in layer attribute`. Each feature has a different pair of to/from dates, and is only rendered if the current time falls between them. The fields in which the dates are stored are selected using the :guilabel:`From date field` and :guilabel:`To date field` dropdown menus. Only fields with date format will be listed in the dropdown menus.
+
 Raster layers
 ~~~~~~~~~~~~~
 
@@ -112,12 +126,12 @@ Two additional options will be available
 
 * :guilabel:`Refresh interval`: Interval, in milliseconds, between two refreshes of the layer.
 
-Time information
-~~~~~~~~~~~~~~~~~
+You will also see an :guilabel:`Info popup content` option. It works similar to the case of a vector layer, but attribute names are not shown in the popup editor, since there is no information in QGIS about them. You can use the same syntax that was explained for vector layer popups, in case you know the attribute names. Otherwise, you can click on the :guilabel:`Add all attributes` button to add all attribute names and values to the popup content. The popup will show the full feature information, as it is returned by the WMS service when it's queried using its GetFeatureInfo method.
+  
+  .. figure:: img/popupeditorwms.png
 
-When a layer belongs to a group you will see an additional option named :guilable:`Layer time info`. By default, its value is "Not set", and you can leave it like that in case you are not going to add a timelime control, since it will not be used.
-
-In case you want to add a timeline control, groups can be used for defining a set of layers representing the same information at different times, and the time info of each layer has to be selected in that field. To know more about how to use this feature, check the :ref:`qgis.webappbuilder.controls.timeline` section.
+     Popup editor for WMS layers
+  
 
 Handling projections
 ~~~~~~~~~~~~~~~~~~~~
@@ -198,8 +212,6 @@ The Settings tab shows additional configuration for the application:
      - The CRS of the finished map. Default is ``EPSG:3857`` (Web Mercator)
    * - Extent
      - The extent of the map. There are two options: :guilabel:`Canvas extent`, which is the current state of the QGIS canvas, or :guilabel:`Fit to Layers extent`, which will calculate the extent based on the union of all the layers in the project.
-   * - Highlight features on hover
-     - When selected, features will glow when the mouse rolls over them.
    * - Max zoom level
      - Maximum zoom level available in the web app, as related to the CRS.
    * - Min zoom level
@@ -210,8 +222,6 @@ The Settings tab shows additional configuration for the application:
      - Do not allow the map to be panned outside of the extent.
    * - Show popups on hover
      - When selected, a feature's popup will be shown when the mouse rolls over the feature. Otherwise the feature will need to be clicked for the popup to display.
-   * - Style for highlighted features
-     - Allows customizing the way that features will look when highlighted. Clicking :guilabel:`Edit` will bring up a box with a CSS style, which can be customized.
    * - Use layer scale dependent visibility
      - If defined in the QGIS rendering properties, layers will only be visible in the map when they are within the defined scale range.
    * - Use view CRS for WFS connections. 
