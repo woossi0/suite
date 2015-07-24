@@ -62,10 +62,12 @@
     <copy todir="${webappsdir}/geoexplorer">
       <fileset dir="geoexplorer/target/war" includes="**/*"/>
     </copy>
+    <!-- Once WPS Builder issues on r2d2 are resolved this should be re-added to the bin bundle
     <unzip dest="${webappsdir}/wpsbuilder" overwrite="true">
       <fileset dir="geoserver/externals/wps-gui/build" includes="wpsbuilder.war">
       </fileset>
     </unzip>
+    -->
     <mkdir dir="docs/target"/>
     <unzip dest="docs/target" overwrite="true">
       <fileset dir="docs/target/" includes="suite-docs-${artifact_postfix}.zip"/>
