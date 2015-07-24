@@ -3,7 +3,7 @@
    <import file="../../build/common.xml"/>
 
    <target name="build" description="Build all projects"
-      depends="init, build-gt, build-gwc, build-geoscript-js, build-geoscript-py, build-gs, build-gs-exts, build-wps-gui, build-geomesa">
+      depends="init, build-gt, build-gwc, build-geoscript-py, build-gs, build-gs-exts, build-wps-gui, build-geomesa">
    </target>
 
    <target name="clean"/>
@@ -70,15 +70,6 @@
      <antcall target="mvn">
         <param name="dir" value="${geomesa.dir}"/>
         <param name="flags" value="-DskipTests -P geoserver-ext"/>
-        <param name="goals" value="clean install"/>
-     </antcall>
-   </target>
-
-   <target name="build-geoscript-js" unless="skip.geoscript-js" 
-      description="Build GeoScript JS"> 
-     <antcall target="mvn">
-        <param name="dir" value="${geoscript-js.dir}"/>
-        <param name="flags" value="-DskipTests -Dgt.version=${gt.version} ${geoscript-js.flags}"/>
         <param name="goals" value="clean install"/>
      </antcall>
    </target>
