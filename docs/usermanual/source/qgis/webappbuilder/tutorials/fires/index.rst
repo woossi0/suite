@@ -17,9 +17,9 @@ Preparing the application in QGIS
 
 Open the QGIS project in the zip file.
 
-.. figure:: img/QGIS project.png
+.. figure:: img/qgisproject.png
 
-   QGIs project with fire data
+   QGIS project with fire data
 
 The project already has the data and symbology that we will use in the web app, so there is no need for further configuration.
 
@@ -98,6 +98,10 @@ If not already open, launch the app by opening :file:`index.html` file inside th
    Deployed app
 
 At the initial time setting, no fire marker are shown, since no fire is active for that time. Move the time slider to set a different time. Points that represent a fire active at the new time set in the time slider will be rendered.
+
+.. figure:: img/appwithfires.png
+
+   Deployed app showing fire markers
 
 You can press the play button to active the autoplay mode. The time slider will advance automatically and the map will be updated accordingly.
 
