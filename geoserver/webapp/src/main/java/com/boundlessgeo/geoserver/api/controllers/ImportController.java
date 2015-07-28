@@ -20,6 +20,7 @@ import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.CoverageStoreInfo;
 import org.geoserver.catalog.DataStoreInfo;
 import org.geoserver.catalog.LayerInfo;
+import org.geoserver.catalog.ProjectionPolicy;
 import org.geoserver.catalog.ResourceInfo;
 import org.geoserver.catalog.ResourcePool;
 import org.geoserver.catalog.StoreInfo;
@@ -522,6 +523,7 @@ public class ImportController extends ApiController {
         }
         
         l.getMetadata().put(Metadata.IMPORTED, new Date());
+        l.getResource().setProjectionPolicy(ProjectionPolicy.FORCE_DECLARED);
 
         //If the style exists, and we haven't already moved it into the workspace, move it to ws.
         if (l != null && l.getDefaultStyle() != null && !ws.equals(l.getDefaultStyle().getWorkspace())) {
