@@ -7,7 +7,7 @@ Amazon CloudWatch is a monitoring service provided for use on Amazon Web Service
 
 This section will describe how to send those GeoServer performance metrics to CloudWatch.
 
-.. note:: This tutorial assumes familiarity with Amazon CloudWatch For more information, please see the `CloudWatch documentation <http://aws.amazon.com/cloudwatch/>`_. 
+.. note:: This tutorial assumes familiarity with Amazon CloudWatch For more information, please see the `CloudWatch documentation <http://aws.amazon.com/cloudwatch/>`_.
 
 
 Installation
@@ -126,8 +126,8 @@ The following are the parameters, along with their description:
    * - ``GS_CW_WATCH_WCS20``
      - Monitors the WCS version 2.0
      - ``true`` or ``false``
-   * - ``GS_CW_WATCH_OSW``
-     - Monitors the OSW
+   * - ``GS_CW_WATCH_OWS``
+     - Monitors the OWS
      - ``true`` or ``false``
    * - ``GS_CW_WATCH_WCS20``
      - Monitors the Catalog service
