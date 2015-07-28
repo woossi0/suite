@@ -27,6 +27,7 @@
   <target name="build-server" description="builds and installs server">
     <antcall target="mvn">
         <param name="goals" value="install"/>
+        <param name="flags" value="-DskipTests"/>
     </antcall>
     <if>
       <equals arg1="${suite.build_profile}" arg2="ee"/>
@@ -34,6 +35,7 @@
         <antcall target="mvn">
           <param name="dir" value="ee"/>
           <param name="goals" value="install"/>
+          <param name="flags" value="-DskipTests"/>
         </antcall>
       </then>
     </if>
