@@ -105,6 +105,17 @@ The following properties can be configured for this control:
 
    Layers List configuration
 
+Legend
+-------
+
+Adds a legend explaining the symbology used in the web app.
+
+.. figure:: img/legend.png
+
+   Legend
+
+A legend entry will be added for all vector and WMS layers. Raster layers will not have an entry in the legend.
+
 Overview map
 ------------
 
