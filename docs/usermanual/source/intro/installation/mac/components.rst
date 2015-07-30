@@ -34,6 +34,10 @@ GeoServer
    * - GeoWebCache
      - Tile caching server
      - All versions
+   * - WPS Builder
+     - :ref:`Graphical utility <processing.wpsbuilder>` for executing WPS processes
+     - OpenGeo Suite Enterprise only
+
 
 PostGIS
 -------
