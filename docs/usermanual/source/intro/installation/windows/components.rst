@@ -30,16 +30,19 @@ Top level
      - Availability
    * - PostGIS
      - The PostgreSQL/PostGIS spatial database.
-     - 
+     - All versions
    * - GeoServer
      - Server implementing OGC compliant map and feature services.
-     - 
+     - All versions
    * - GeoExplorer
      - Map viewing and editing application.
-     - 
+     - All versions
    * - GeoWebCache
      - Tile caching server.
-     - 
+     - All versions
+   * - WPS Builder
+     - :ref:`Graphical utility <processing.wpsbuilder> for executing WPS processes`
+     - OpenGeo Suite Enterprise only
 
 GeoServer Extensions
 --------------------
@@ -52,27 +55,33 @@ GeoServer Extensions
    * - Component
      - Description
      - Availability
+   * - App Schema
+     - Application Schema support.
+     - OpenGeo Suite Enterprise only
    * - ArcSDE
      - ArcSDE database support.
      - OpenGeo Suite Enterprise only
-   * - App Schema
-     - Application Schema support.
+   * - CloudWatch
+     - Connection to :ref:`Amazon CloudWatch <sysadmin.cloudwatch>` monitoring.
      - OpenGeo Suite Enterprise only
    * - Clustering
      - :ref:`Clustering <sysadmin.clustering>` plug-ins.
      - OpenGeo Suite Enterprise only
    * - CSW
      - Catalogue Service for Web (CSW) support.
-     - 
+     - All versions
    * - DB2
      - DB2 database support.
      - OpenGeo Suite Enterprise only
    * - GDAL Image Formats
      - Additional raster formats support as part of GDAL integration.
      - OpenGeo Suite Enterprise only
+   * - GeoMesa
+     - :ref:`GeoMesa <dataadmin.geomesa>` data source support.
+     - OpenGeo Suite Enterprise only
    * - GeoPackage
      - GeoPackage data source support.
-     - 
+     - All versions
    * - GeoScript
      - Scripting extension for GeoServer.
      - OpenGeo Suite Enterprise only
@@ -85,12 +94,12 @@ GeoServer Extensions
    * - Oracle
      - :ref:`Oracle <dataadmin.oracle>` database support.
      - OpenGeo Suite Enterprise only
-   * - SQLServer
+   * - SQL Server
      - SQL Server database support.
      - OpenGeo Suite Enterprise only
    * - WPS
      - :ref:`Web Processing Service (WPS) <processing>` support.
-     - 
+     - All versions
 
 Client Tools
 ------------
@@ -105,13 +114,13 @@ Client Tools
      - Availability
    * - GDAL/OGR
      - Spatial data manipulation utilities such as ``gdal_translate`` and ``ogr2ogr``.
-     - 
+     - All versions
    * - pgAdmin
      - Graphical PostGIS/PostgreSQL database manager. Also includes **pgShapeloader** a graphical utility for loading data into PostGIS
-     - 
+     - All versions
    * - PostGIS Utilities
      - PostGIS command line data loading utilities such as ``psql`` and ``shp2pgsql``. 
-     - 
+     - All versions
 
 Dev Tools
 ---------
@@ -125,5 +134,5 @@ Dev Tools
      - Description
      - Availability	   
    * - Boundless SDK
-     - Toolkit for building web map applications.
-     - 
+     - Tool kit for building web map applications.
+     - All versions

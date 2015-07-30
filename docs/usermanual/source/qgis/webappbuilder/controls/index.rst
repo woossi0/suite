@@ -95,15 +95,33 @@ The following properties can be configured for this control:
    * - showDownload
      - Show Download button, so the user can download the layer in GeoJSON format (vector layers only).
    * - allowReordering
-     - Allows the user to change the rendering order of layers by dragging them.
-   * - showGroupContent
-     - When a group exists, sets whether to show the individual layers.
+     - Allows the user to change the rendering order of layers by dragging them.   
+   * - allowFiltering
+     - Allows the user to set filters for conditional rendering. A filter button is added to each vector layer entry in the layers list, which opens the following dialog:
+
+      .. figure:: img/layersfilters.png
+
+        Layer filters
+
+       Layer filters are added as filter expressions, using the notation accepted by the `Filtrex <https://github.com/joewalnes/filtrex#expressions>`_ library.
+
    * - tipLabel
      - The tooltip to show when mouse is hovered over the layers list. Default is Layers.
 
 .. figure:: img/layerslist_configure.png
 
    Layers List configuration
+
+Legend
+-------
+
+Adds a legend explaining the symbology used in the web app.
+
+.. figure:: img/legend.png
+
+   Legend
+
+A legend entry will be added for all vector and WMS layers. Raster layers will not have an entry in the legend.
 
 Overview map
 ------------

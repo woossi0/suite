@@ -5,45 +5,37 @@ What's new in |version|
 
 Each new version of OpenGeo Suite includes numerous fixes and component upgrades.
 
-In addition, OpenGeo Suite |version| has been updated features, including:
+In addition, OpenGeo Suite |version| includes the following updated features:
 
-   **Composer**
+**WPS Builder**
 
-   :ref:`Composer <webmaps.composer>` is a new integrated tool for easily making maps and styling layers in GeoServer. It includes the all-new :ref:`YSLD <cartography.ysld>` markup language which vastly simplifies map styling.
+New graphical utility for configuring and executing WPS processes in GeoServer.
 
-   Composer is available for OpenGeo Suite Enterprise only.
+.. note:: Read more about :ref:`WPS Builder <processing.wpsbuilder>`.
 
-**OpenLayers 3.4.0**
+**Composer / YSLD**
 
-The latest version of OpenLayers 3 is included, offering new visualization options for modern browsers including `integration with Cesium <http://openlayers.org/ol3-cesium/>`_ for visualizing data on a globe.
+* Added additional supported formats, to match GeoServer import functionality
+* Color swatches for color codes for easier identification
+* Full screen YSLD editing mode
+* Complete YSLD hinter for assistance with syntax
+* Improvements in YSLD syntax
+* Recent alerts dialog for parsing errors
+* Graceful automatic logout
 
-**Java 7**
+.. note:: Read more about :ref:`Composer <webmaps.composer>` and the :ref:`YSLD <cartography.ysld>` markup language.
 
-Java 7 is now required for OpenGeo Suite on all platforms. OpenGeo Suite is tested with both Oracle JRE and OpenJDK.
+**CloudWatch**
 
-**PostGIS 2.1.7**
+New GeoServer extension for integrating GeoServer with Amazon CloudWatch.
 
-PostGIS has been upgraded to version 2.1.7. This contains the following improvements.
+.. note:: Read more about the :ref:`CloudWatch extension <sysadmin.cloudwatch>`.
 
-   * Substantial disk space savings for users with large tables.
+**GeoMesa**
 
-   * Fixed critical bug in GeoJSON ingestion
+New GeoServer extension for integrating GeoServer with GeoMesa and Accumulo.
 
-**GeoServer 2.7**
+**Java**
 
-The latest branch of GeoServer, version 2.7, is included. This contains the following improvements.
-
-   * Color composition and blending allows for greater control over how overlapping layers are styled
-
-   * Relative time support in WMS/WCS
-
-   * Web Processing Service (WPS) improvements for clustering, limits, security, and dismiss
-
-   * Improved WFS Cascade with support for republishing stored queries
-
- In **GeoServer for OpenGeo Suite Enterprise**
-
-   * Clustering Extension improvements related to UI performance with large catalogs and JDBCConfig
-
-   * :ref:`Composer <webmaps.composer>`, for writing GeoServer styles in :ref:`YSLD <cartography.ysld>`, has been updated with an OpenLayers 3 export option, asynchronous database import improvements and bug fixes. Composer is available from GeoServer Admin (left sidebar bottom link).
+Java 8 is now supported for OpenGeo Suite on all platforms. Java 7 remains the default. OpenGeo Suite is tested with both Oracle JRE and OpenJDK.
 

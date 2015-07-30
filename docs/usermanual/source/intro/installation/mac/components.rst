@@ -24,16 +24,16 @@ GeoServer
      - Availability
    * - GeoServer
      - Server implementing OGC compliant map and feature services
-     - 
+     - All versions
    * - Composer
      - Map styling and composition application
      - OpenGeo Suite Enterprise only
    * - GeoExplorer
      - Map viewing and editing application
-     - 
+     - All versions
    * - GeoWebCache
      - Tile caching server
-     -
+     - All versions
 
 PostGIS
 -------
@@ -48,7 +48,7 @@ PostGIS
      - Availability
    * - PostGIS
      - PostgreSQL/PostGIS spatial database
-     -
+     - All versions
 
 GeoServer Extensions
 --------------------
@@ -61,27 +61,33 @@ GeoServer Extensions
    * - Component
      - Description
      - Availability
+   * - App Schema
+     - Application Schema support.
+     - OpenGeo Suite Enterprise only
    * - ArcSDE
      - ArcSDE database support.
      - OpenGeo Suite Enterprise only
-   * - App Schema
-     - Application Schema support.
+   * - CloudWatch
+     - Connection to :ref:`Amazon CloudWatch <sysadmin.cloudwatch>` monitoring.
      - OpenGeo Suite Enterprise only
    * - Clustering
      - :ref:`Clustering <sysadmin.clustering>` plug-ins.
      - OpenGeo Suite Enterprise only
    * - CSW
      - Catalogue Service for Web (CSW) support.
-     - 
+     - All versions
    * - DB2
      - DB2 database support.
      - OpenGeo Suite Enterprise only
    * - GDAL Image Formats
      - Additional raster formats support as part of GDAL integration.
      - OpenGeo Suite Enterprise only
+   * - GeoMesa
+     - :ref:`GeoMesa <dataadmin.geomesa>` data source support.
+     - OpenGeo Suite Enterprise only
    * - GeoPackage
      - GeoPackage data source support.
-     - 
+     - All versions
    * - GeoScript
      - Scripting extension for GeoServer.
      - OpenGeo Suite Enterprise only
@@ -99,7 +105,7 @@ GeoServer Extensions
      - OpenGeo Suite Enterprise only
    * - WPS
      - :ref:`Web Processing Service (WPS) <processing>` support.
-     - 
+     - All versions
 
 PostGIS Utilities
 -----------------
@@ -114,10 +120,10 @@ PostGIS Utilities
      - Availability
    * - pgAdmin3
      - Graphical PostGIS/PostgreSQL database manager.
-     -
+     - All versions
    * - pgShapeLoader
      - Graphical utility for loading data into PostGIS.
-     -
+     - All versions
 
 CLI Tools
 ---------
@@ -132,34 +138,34 @@ CLI Tools
      - Availability
    * - Boundless SDK
      - Toolkit for building web map applications.
-     -
+     - All versions
    * - PostGIS Client Tools
      - PostGIS command line data loading utilities such as ``shp2pgsql``. 
-     -
+     - All versions
    * - PostgreSQL Client Tools
      - PostgreSQL command line data loading utilities such as ``psql``. 
-     -
+     - All versions
    * - GDAL
      - Spatial data manipulation utilities such as ``gdal_translate`` and ``ogr2ogr``.
-     -
+     - All versions
    * - PROJ.4
      - Cartographic Projections Library.
-     -
+     - All versions
    * - GEOS
      - Geometry Engine, Open Source.
-     -
+     - All versions
    * - LIBTIFF
      - TIFF Library and Utilities.
-     -
+     - All versions
    * - GEOTIFF
      - LIBTIFF extension for reading and writing GeoTIFF information tags.
-     -
+     - All versions
    * - LASZIP
      - Free and lossless LiDAR compression library.
-     -
+     - All versions
    * - PDAL
      - Point Data Abstraction Library.
-     -
+     - All versions
    * - ANT
      - Apache Ant build tool, used by Boundless SDK.
-     -
+     - All versions
