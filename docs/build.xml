@@ -31,6 +31,11 @@
                 includes="**/*"/>
             <fileset dir="target" includes="version.ini"/>
         </copy>
+        <mkdir dir="${doc.dir}"/>
+        <copy todir="${doc.dir}/_static">
+            <fileset dir="qgis/target/html/_static"
+                includes="**/*"/>
+        </copy>
 
         <for list="${docs.modules}" param="mod">
             <sequential>
