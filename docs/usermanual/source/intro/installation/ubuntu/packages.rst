@@ -79,6 +79,9 @@ The following packages contain the server components of OpenGeo Suite. These pac
    * - ``opengeo-tomcat7``
      - OpenGeo Suite webapps for Tomcat 7
      - ``tomcat7``
+   * - ``wpsbuilder``
+     - :ref:`Graphical utility <processing.wpsbuilder>` for executing WPS processes
+     - ``geoserver-wps``
 
 Client/library packages
 -----------------------
@@ -149,18 +152,24 @@ The following packages are available:
    * - ``geoserver-app-schema``
      - Application Schema support
      - OpenGeo Suite Enterprise only
+   * - ``geoserver-cloudwatch``
+     - Connection to :ref:`Amazon CloudWatch <sysadmin.cloudwatch>` monitoring
+     - OpenGeo Suite Enterprise only
    * - ``geoserver-cluster``
      - Clustering extension for GeoServer. Use with ``geoserver-jdbcconfig``.
      - OpenGeo Suite Enterprise only
    * - ``geoserver-csw``
      - Catalogue Service for Web (CSW) extension for GeoServer
-     - 
+     - All versions
    * - ``geoserver-gdal``
      - GDAL extension for GeoServer
      - OpenGeo Suite Enterprise only
+   * - ``geoserver-geomesa``
+     - :ref:`GeoMesa <dataadmin.geomesa>` data source support
+     - OpenGeo Suite Enterprise only
    * - ``geoserver-geopackage``
      - GeoPackage extension for GeoServer
-     - 
+     - All versions
    * - ``geoserver-db2``
      - DB2 database extension for GeoServer
      - OpenGeo Suite Enterprise only
@@ -184,4 +193,4 @@ The following packages are available:
      - OpenGeo Suite Enterprise only
    * - ``geoserver-wps``
      - Web Processing Service (WPS) extension for GeoServer
-     - 
+     - All versions
