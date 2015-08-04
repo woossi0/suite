@@ -97,8 +97,8 @@ The following are the parameters, along with their description:
      - AWS Secret Key
      - Credentials specific to the AWS account. To generate AWS credentials, please see the `AWS documentation <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html>`_.
    * - ``GS_CW_ENABLE_PER_INSTANCE_METRICS``
-     - Instance-specific metrics
-     - ``true``
+     - Instance-specific metrics. If disabled, ``GS_CW_AUTOSCALING_GROUP_NAME`` should be populated.
+     - ``true`` or ``false``
    * - ``GS_CW_INSTANCE_ID``
      - Overrides the instance identifier
      - Any name, such as ``testgroup``
@@ -133,6 +133,11 @@ The following are the parameters, along with their description:
      - Monitors the Catalog service
      - ``true`` or ``false``
 
+Each of the enabled OWS watchers will produce three metrics.
+
+- The number of requests per second.
+- The number of errors per second.
+- The median processing time per request (windowed over approximately five minutes).
 
 As an example of usage, on Linux running Tomcat, one could edit the :file:`/usr/share/tomcat7/setenv.sh` file and add the following block:
 
