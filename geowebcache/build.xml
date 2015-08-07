@@ -8,7 +8,7 @@
   <target name="clean" depends="destroy"
     description="Clean project"/> 
 
-  <target name="build" depends="init"
+  <target name="build" depends="init,del_gwc_from_ivy_cache"
     description="Build project">
     <antcall target="retrieve">
       <param name="dir" value="target"/>
@@ -36,5 +36,11 @@
 
   <target name="publish" description="Publishes project artifact"
     depends="publish-artifact"/>
+
+  <target name="del_gwc_from_ivy_cache" depends="init" description="Remove cached version of geoswebcache-${gwc.version}.war from ivy's cache">
+     <delete verbose="true">
+	     <fileset dir="${env.HOME}/.ivy2/cache" includes="**/geowebcache-${gwc.version}.war"/>
+     </delete>
+  </target>
 
 </project>
