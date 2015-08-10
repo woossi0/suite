@@ -12,9 +12,6 @@
         <include>gs-script-py*</include>
         <include>geoscript-py*</include>
         <include>jython*</include>
-        <include>gs-script-js*</include>
-        <include>geoscript-js*</include>
-        <include>rhino*</include>
         <include>jline*</include>
       </includes>
     </fileSet>
