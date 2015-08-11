@@ -55,29 +55,26 @@ Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 Windows (Installer)
 ~~~~~~~~~~~~~~~~~~~
 
-MrSID support must be enabled during the installation process.
+MrSID support is enabled during the installation process.
 
 #. Navigate through the installer until you reach the :guilabel:`Choose Components` page.
 
-   .. figure:: img/mrsid_win_components.png
-      
-      The Components page of the Windows installer
+#. Scroll down to the :guilabel:`GeoServer Extensions` option, and expand the tree.
 
-#. Scroll down to the :guilabel:`Extensions` option, and expand the tree. Check the box for :guilabel:`MrSID`.
+#. Check the box for :guilabel:`GDAL Image Formats`.
 
-   .. figure:: img/mrsid_win_checked.png
-      
-      Enabling the MrSID extension
+   .. note:: See the section on :ref:`intro.installation.windows.components` for more information.
 
-#. Click :guilabel:`Next` and continue the installation process. 
+#. Click :guilabel:`Next` and continue the installation process.
+
+.. note:: If you have already installed OpenGeo Suite but not this component, you and can re-run the installer and select only this option.
 
 Continue reading at the :ref:`dataadmin.mrsid.verify` section.
-
 
 Windows (Application server)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Navigate to:  http://data.opengeo.org/gdal_support/ .
+#. Navigate to:  http://data.boundlessgeo.com/gdal_support/ .
 
 #. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`mrsid_win_30.zip` for version 3.0).
 
@@ -135,7 +132,7 @@ Currently, MrSID support is not available on OS X.
 .. Mac OS X (Application server)
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. #. Navigate to:  http://data.opengeo.org/gdal_support/
+.. #. Navigate to:  http://data.boundlessgeo.com/gdal_support/
 
 .. #. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`mrsid_osx_30.zip` for version 3.0).
 
@@ -153,8 +150,6 @@ Verification
 
 #. To verify that the MrSID extension was installed properly, navigate to the GeoServer web admin interface and log in with administrator credentials.
 
-   .. note:: Please see the GeoServer reference documentation for more information about the GeoServer web admin interface.
-   
 #. Click on :guilabel:`Stores` and then :guilabel:`Add new Store`. There should be a :guilabel:`MrSID` option under :guilabel:`Raster Data Formats`.
 
    .. figure:: img/mrsid_verify.png
