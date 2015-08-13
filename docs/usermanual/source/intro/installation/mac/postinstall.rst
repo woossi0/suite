@@ -26,7 +26,7 @@ To change the Jetty port:
 
 #. Edit the following file::
 
-     ~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer/jetty/start.ini
+     ~/Library/Application\ Support/GeoServer/jetty/start.ini
 
 #. Search for the Java system property named ``jetty.port`` and change its value to a number that does not conflict with any existing services on the machine. 
 
@@ -41,20 +41,20 @@ To change the PostgreSQL port:
 
 #. Edit the following file::
 
-     ~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/PostGIS/var/postgresql.conf
+     ~/Library/Application\ Support/PostGIS/var/postgresql.conf
 
 #. Search or the ``port`` property (around line 63), uncomment it and change its value from 5432 to a number that does not conflict with any existing services on the machine.
 
 GeoServer Data Directory
 ------------------------
 
-The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at :file:`~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer`. You can also find your data directory by running GeoServer and selecting :guilabel:`Open GeoServer Data Directory` from the GeoServer icon in the OS X menu bar.
+The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at :file:`~/Library/Application Support/GeoServer`. You can also find your data directory by running GeoServer and selecting :guilabel:`Open GeoServer Data Directory` from the GeoServer icon in the OS X menu bar.
 
 To point GeoServer to an alternate location:
 
 #. Edit the following file::
 
-     ~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer/jetty/start.ini
+     ~/Library/Application\ Support/GeoServer/jetty/start.ini
 
 #. Uncomment the ``GEOSERVER_DATA_DIR`` system property and sets its value to the desired location. For example::
 
@@ -70,5 +70,5 @@ PostgreSQL Configuration
 
 PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located here::
 
-  ~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/PostGIS/var/postgresql.conf
+  ~/Library/Application\ Support/PostGIS/var/postgresql.conf
 

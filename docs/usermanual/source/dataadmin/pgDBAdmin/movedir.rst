@@ -16,7 +16,7 @@ By default, the database is typically located in the following locations:
    * - Windows
      - :file:`C:\\ProgramData\\Boundless\\OpenGeo\\pgsql\\9.3`
    * - OS X
-     - :file:`~/Library/Containers/com.boundlessgeo.postgis/Data/Library/Application\\ Support/PostGIS`
+     - :file:`~/Library/Application\\ Support/PostGIS`
    * - Ubuntu Linux
      - :file:`/var/lib/postgresql/9.3/main`
    * - Red Hat / CentOS Linux
@@ -52,13 +52,13 @@ OS X
 
 #. In a terminal, move the location of the data directory::
 
-      sudo mv ~/Library/Containers/com.boundlessgeo.postgis/Data/Library/Application\ Support/PostGIS <NEWPATH>
+      sudo mv ~/Library/Application\ Support/PostGIS <NEWPATH>
 
    where ``<NEWPATH>`` would be the desired path (such as ``~/pgdata``)
 
 #. Create a symlink from the old path the new one::
 
-     ln -s ~/Library/Containers/com.boundlessgeo.postgis/Data/Library/Application\ Support/PostGIS <NEWPATH>
+     ln -s ~/Library/Application\ Support/PostGIS <NEWPATH>
 
 #. Launch PostGIS.
 
