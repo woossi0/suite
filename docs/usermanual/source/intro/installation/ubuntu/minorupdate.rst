@@ -46,19 +46,19 @@ The commands in this section require root privileges.
 
      .. code-block:: bash
 
-        echo "deb https://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://apt.boundlessgeo.com/suite/latest/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
    * If updating **OpenGeo Suite** on **Ubuntu 14**:
 
      .. code-block:: bash
 
-        echo "deb https://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://apt.boundlessgeo.com/suite/latest/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
    * If updating **OpenGeo Suite Enterprise** on **Ubuntu 12**:
 
      .. code-block:: bash
 
-        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/latest/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
      Making sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
@@ -66,7 +66,7 @@ The commands in this section require root privileges.
 
      .. code-block:: bash
 
-        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/latest/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
      Making sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
@@ -107,33 +107,25 @@ Update process
 
      .. code-block:: bash
 
-        apt-get upgrade opengeo-server
+        apt-get upgrade opengeo-server geoserver-* --only-upgrade
 
    * To update typical client components:
 
      .. code-block:: bash
 
-        apt-get upgrade opengeo-client
+        apt-get upgrade opengeo-client geoserver-* --only-upgrade
 
    * To update typical client and server components:
 
      .. code-block:: bash
 
-        apt-get upgrade opengeo
+        apt-get upgrade opengeo geoserver-* --only-upgrade
 
-#. Update any other additional :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example:
+#. Update any other additional :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example, to update the :ref:`Boundless SDK <webapps.sdk>`:
 
-   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+   .. code-block:: bash
 
-     .. code-block:: bash
-
-        apt-get upgrade opengeo-webapp-sdk
-
-   * To update a GeoServer extension such as :ref:`WPS <processing>`:
-
-     .. code-block:: bash
-
-        apt-get upgrade geoserver-wps
+      apt-get upgrade opengeo-webapp-sdk
 
 After update
 ------------
