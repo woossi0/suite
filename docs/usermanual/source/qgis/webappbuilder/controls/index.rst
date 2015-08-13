@@ -284,14 +284,10 @@ The following properties can be configured for this control:
 
    * - Option
      - Description
-   * - Select by point and radius
-     - Adds an option for selecting via an initial click, followed by a radius. Default is checked.
    * - Select by polygon
      - Adds an option for selecting via drawing a polygon on the map. Default is checked.
    * - Select by rectangle
      - Adds an option for selecting via drawing a rectangle on the map. Default is checked.
-   * - Select single feature
-     - Adds an option for selecting a single feature via a click. Default is checked.
 
 .. figure:: img/selection_configure.png
 
@@ -300,11 +296,13 @@ The following properties can be configured for this control:
 Attributes table
 ----------------
 
-Adds the ability to display a table containing the attributes of the features in a given layer. Features can be selected/deselected clicking on the table rows. Selected features for the layer are shown in a different color.
+Adds the ability to display a table containing the attributes of the features in a given layer. Features can be selected/deselected clicking on the table rows. Multiple selection is available using the shift and ctrl keys. Selected features for the layer are shown in a different color.
 
 .. figure:: img/attributestable.png
 
    Attributes table
+
+If a rendering filter is defined for the layer, those features that are not visible are rendered in a lighter color in the attributes table.
 
 There are no configurable properties for this control.
 
@@ -486,3 +484,12 @@ Add layer
 Adds a menu entry that can be used by the web app user to add a layer to the map. Only vector layers can be added. Supported formats for layers are GeoJSON, GPX and KML.
 
 There are no configurable properties for this control.
+
+Print
+------
+
+Adds printing capabilities to the web app.
+
+Printing layouts are designed using the QGIS Print Composer. The Web App Builder will take the exisiting print compositions from the current project, and make them available to users of the web app. The web app will generate maps in PDF format using the layout designs created in QGIS, and allowing the user to configure certain parameters, such as the extent of the map of the content of text labels.
+
+Most elements are supported, including legend, arrow, shape, label and scalebar. If any of the print compsitions in the current project contains an element that it is not supported (such as, for instance, an attributes table), a warning will be shown before the web app is created.
