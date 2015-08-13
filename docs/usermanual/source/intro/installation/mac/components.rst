@@ -149,7 +149,7 @@ CLI Tools
    * - PostgreSQL Client Tools
      - PostgreSQL command line data loading utilities such as ``psql``. 
      - All versions
-   * - GDAL
+   * - GDAL (and Python modules)
      - Spatial data manipulation utilities such as ``gdal_translate`` and ``ogr2ogr``.
      - All versions
    * - PROJ.4

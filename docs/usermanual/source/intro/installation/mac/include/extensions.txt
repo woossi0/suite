@@ -31,6 +31,8 @@ To install an extension:
 
       Selecting the files for the WPS extension...
 
+      .. note:: You can use the labeling or tagging feature of the Finder to color or tag extensions, respective to each type of extension, *before* copying them to :file:`geoserver/WEB-INF/lib`. This allows you to quickly find them later if you wish to remove them from GeoServer.
+
    .. figure:: img/ext_copy2.png
 
       ...and copying the files to :file:`geoserver/WEB-INF/lib`
