@@ -18,7 +18,7 @@ QGIS can run on any recent hardware/software combination.
 Install
 -------
 
-#. Extract the provided archive. There will be a single entry: :file:`QGIS.app`.
+#. Open the provided DMG archive. There will be a single :file:`QGIS.app` and an alias to :file:`Applications`.
 
    .. figure:: img/osx_qgis-app.png
 
@@ -32,7 +32,9 @@ Install
 
 QGIS is now installed, and can be run like any normal application.
 
+.. note:: :file:`QGIS.app` can be installed anywhere in the filesystem of your startup volume, not just in :file:`/Applications`, and it will still work correctly. However, you may have issues with the embedded GRASS installation, within :file:`QGIS.app`, if it is installed on other volumes.
+
 Uninstall
 ---------
 
-To uninstall QGIS, delete the icon from the :guilabel:`Applications` folder.
+To uninstall QGIS, delete the icon from the :guilabel:`Applications` folder, or from where it was installed.
