@@ -239,4 +239,4 @@ rst_epilog = "\n" \
  ".. |data_directory_winXP| replace:: :file:`%PROGRAMDATA%\\\\Boundless\\\\OpenGeo\\\\geoserver`\n" \
  ".. |data_directory_win| replace:: :file:`%PROGRAMDATA%\\\\Boundless\\\\OpenGeo\\\\geoserver`\n" \
  ".. |data_directory_linux| replace:: :file:`/var/lib/opengeo/geoserver`\n" \
- ".. |data_directory_mac| replace:: :file:`~/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application\ Support/GeoServer/data_dir`"
+ ".. |data_directory_mac| replace:: :file:`~/Library/Application\ Support/GeoServer/data_dir`"
