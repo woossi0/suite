@@ -40,7 +40,7 @@ The commands in this section require root privileges.
 
         [opengeo]
         name=opengeo
-        baseurl=https://yum.boundlessgeo.com/suite/v45/<OS>/$releasever/$basearch
+        baseurl=https://yum.boundlessgeo.com/suite/latest/<OS>/$releasever/$basearch
         enabled=1
         gpgcheck=0
 
@@ -50,7 +50,7 @@ The commands in this section require root privileges.
 
         [opengeo]
         name=opengeo
-        baseurl=https://<username>:<password>@yum-ee.boundlessgeo.com/suite/v45/<OS>/$releasever/$basearch
+        baseurl=https://<username>:<password>@yum-ee.boundlessgeo.com/suite/latest/<OS>/$releasever/$basearch
         enabled=1
         gpgcheck=0
 
@@ -82,19 +82,19 @@ Update process
 
      .. code-block:: bash
 
-        yum upgrade opengeo-server
+        yum upgrade opengeo-server geoserver-*
 
    * To update typical client components:
 
      .. code-block:: bash
 
-        yum upgrade opengeo-client
+        yum upgrade opengeo-client geoserver-*
 
    * To update typical client and server components:
 
      .. code-block:: bash
 
-        yum upgrade opengeo
+        yum upgrade opengeo geoserver-*
 
   .. note:: If you encounter an error where GDAL failed to update, you may need to manually uninstall ``gdal-filegdb``:
 
@@ -102,17 +102,11 @@ Update process
 
          yum remove gdal-filegdb
 
-#. Be sure to update any additional :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example:
+#. Be sure to update any additional :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example, to update the :ref:`Boundless SDK <webapps.sdk>`:
 
-   * To update the :ref:`Boundless SDK <webapps.sdk>`:
+   .. code-block:: bash
 
-     .. code-block:: bash
-
-        yum upgrade opengeo-webapp-sdk
-
-   * To update a GeoServer extension such as :ref:`WPS <processing>`:
-
-        yum upgrade geoserver-wps
+      yum upgrade opengeo-webapp-sdk
 
 After update
 ------------

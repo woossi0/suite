@@ -48,19 +48,19 @@ The commands in this section require root privileges.
 
      .. code-block:: bash
 
-        echo "deb https://apt.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://apt.boundlessgeo.com/suite/latest/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
    * If installing **OpenGeo Suite** on **Ubuntu 14**:
 
      .. code-block:: bash
 
-        echo "deb https://apt.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://apt.boundlessgeo.com/suite/latest/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
    * If installing **OpenGeo Suite Enterprise** on **Ubuntu 12**:
 
      .. code-block:: bash
 
-        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/latest/ubuntu/ precise main" > /etc/apt/sources.list.d/opengeo.list
 
      Making sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
@@ -68,7 +68,7 @@ The commands in this section require root privileges.
 
      .. code-block:: bash
 
-        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v45/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
+        echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/latest/ubuntu/ trusty main" > /etc/apt/sources.list.d/opengeo.list
 
      Making sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase.
 
