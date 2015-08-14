@@ -11,3 +11,4 @@ The following tutorials will guide you through the process of creating web apps 
    schools/index
    bakeries/index
    songs/index
+   fires/index

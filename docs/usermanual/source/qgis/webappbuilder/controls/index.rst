@@ -99,9 +99,9 @@ The following properties can be configured for this control:
    * - allowFiltering
      - Allows the user to set filters for conditional rendering. A filter button is added to each vector layer entry in the layers list, which opens the following dialog:
 
-      .. figure:: img/layersfilters.png
+       .. figure:: img/layerfilters.png
 
-        Layer filters
+         Layer filters
 
        Layer filters are added as filter expressions, using the notation accepted by the `Filtrex <https://github.com/joewalnes/filtrex#expressions>`_ library.
 
@@ -389,6 +389,7 @@ There are two options for defining bookmarks:
 The :guilabel:`Configuration tab` controls how the bookmarks will be displayed. If the :guilabel:`Show as story panel` box is checked, a narrative map will be created, and a panel to browse across bookmarks will be added to the web app. Otherwise, bookmarks will be shown as menu entries in the navigation bar, under a :guilabel:`Bookmarks` menu.
 
 .. _qgis.webappbuilder.controls.timeline:
+
 Timeline
 --------
 
