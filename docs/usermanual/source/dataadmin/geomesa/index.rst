@@ -3,6 +3,10 @@
 Working with GeoMesa data
 =========================
 
-The GeoMesa extension allows GeoServer to publish data from GeoMesa data stores. `GeoMesa <http://geomesa.org>`_ is a database built on top of `Apache Accumulo <https://accumulo.apache.org/>`_. 
+GeoMesa is an open source project which provides an extension to GeoServer which allows it to interact with `Apache Accumulo <https://accumulo.apache.org/>`_ datastores. You can find out more about GeoMesa by visitng the LocationTech project `page <http://www.locationtech.org/projects/technology.geomesa>`_. 
 
-.. todo:: Placeholder page.
+.. toctree::
+   :maxdepth: 2
+
+   install
+   store
