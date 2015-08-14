@@ -107,19 +107,19 @@ Update process
 
      .. code-block:: bash
 
-        apt-get upgrade opengeo-server geoserver-* --only-upgrade
+        apt-get upgrade opengeo-server geoserver-* postgis-2.1 postgresql-9.3-postgis-2.1 --only-upgrade
 
    * To update typical client components:
 
      .. code-block:: bash
 
-        apt-get upgrade opengeo-client geoserver-* --only-upgrade
+        apt-get upgrade opengeo-client
 
    * To update typical client and server components:
 
      .. code-block:: bash
 
-        apt-get upgrade opengeo geoserver-* --only-upgrade
+        apt-get upgrade opengeo geoserver-* postgis-2.1 postgresql-9.3-postgis-2.1 --only-upgrade
 
 #. Update any other additional :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example, to update the :ref:`Boundless SDK <webapps.sdk>`:
 

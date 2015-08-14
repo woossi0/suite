@@ -88,7 +88,7 @@ Update process
 
      .. code-block:: bash
 
-        yum upgrade opengeo-client geoserver-*
+        yum upgrade opengeo-client
 
    * To update typical client and server components:
 
