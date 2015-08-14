@@ -76,7 +76,7 @@ QGIS Groups
 
        The command will first ask you to select a catalog. Then it will check the layers in the selected catalog, to see if there are missing layers. If so, the layer publish dialog will be shown, containing the layers that have to be published before the group can be created, so you can specify the destination workspace for each of them.
 
-       .. image:: img/publish_layers_single_catalog.png
+       .. image:: img/publish_group.png
     
 QGIS Styles
 -----------
