@@ -51,7 +51,7 @@ For example, to publish multiple QGIS layers at once, select them all, then sele
 
    Publishing multiple layers
 
-This is similar to the dialog that appears when publishing a group to a GeoServer catalog, however, in this case, there is more flexibility, so an additional column is shown which can be used to select the catalog for each layer. Changing the selected catalog at a given row will automatically update the list of workspaces in that row, so it contains the workspaces of that catalog.
+This is similar to the dialog that appears when publishing a group to a GeoServer catalog, however, in this case, there is more flexibility, so an additional column is shown which can be used to select the catalog for each layer. Changing the selected catalog at a given row will automatically update the list of workspaces in that row, so it contains the workspaces of that catalog. There is also an ``OW`` column that indicates when the selected name will overwrite an existing layer of the same name.
 
 .. note:: If only one catalog exists in the Explorer tree, the catalog column will not be shown.
 
