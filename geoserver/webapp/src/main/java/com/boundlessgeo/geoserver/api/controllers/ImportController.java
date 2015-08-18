@@ -8,6 +8,7 @@ import com.boundlessgeo.geoserver.api.exceptions.NotFoundException;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.boundlessgeo.geoserver.util.Hasher;
+import com.boundlessgeo.geoserver.util.NameUtil;
 import com.google.common.collect.Maps;
 
 import org.apache.commons.fileupload.FileItemIterator;
@@ -1035,9 +1036,28 @@ public class ImportController extends ApiController {
                 ImportContext context = task.get();
                 for (ImportTask t : context.getTasks()) {
                     if (t.getState() == State.COMPLETE) {
+                        //Clean up names
+                        Catalog catalog = ImportController.this.geoServer.getCatalog();
+                        
+                        StoreInfo store = catalog.getStore(t.getStore().getId(), StoreInfo.class);
+                        store.setName(NameUtil.sanitizeEnsureUnique(store.getName(), StoreInfo.class, catalog));
+                        LayerInfo layer = catalog.getLayer(t.getLayer().getId());
+                        layer.setName(NameUtil.sanitizeEnsureUnique(layer.getName(), LayerInfo.class, catalog));
+                        //ResourceInfo resource = catalog.getResource(layer.getResource().getId(), layer.getResource().getClass());
+                        //resource.setName(NameUtil.sanitizeEnsureUnique(resource.getName(), ResourceInfo.class, catalog));
+                        StyleInfo style = catalog.getStyle(layer.getDefaultStyle().getId());
+                        style.setName(NameUtil.sanitizeEnsureUnique(style.getName(), StyleInfo.class, catalog));
+                        
+                        catalog.save(store);
+                        catalog.save(layer);
+                        catalog.save(style);
+                        
+                        t.setStore(store);
+                        t.setLayer(layer);
+                        
                         moveFile(t);
                         //Set created date
-                        StoreInfo store = t.getStore();
+                        store = t.getStore();
                         if (store != null && Metadata.created(store) == null) {
                             Metadata.created(store, new Date());
                         }
