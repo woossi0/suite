@@ -10,7 +10,7 @@
     <property name="gs-comm.ext.dir"
         value="../externals/geoserver/src/community/target/release"/>
 
-    <property name="gs-exts.ext.list" value="cloudwatch,gsr,mapmeter,mongodb"/>
+    <property name="gs-exts.ext.list" value="cloudwatch,gsr,mongodb"/>
     <property name="gs-exts.ext.dir" value="../externals/geoserver-exts/target/"/>
 
     <target name="build" depends="init" description="Build project">
