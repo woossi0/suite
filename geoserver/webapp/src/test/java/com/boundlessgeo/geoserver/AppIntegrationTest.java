@@ -6,12 +6,11 @@ package com.boundlessgeo.geoserver;
 import com.boundlessgeo.geoserver.api.controllers.IO;
 import com.boundlessgeo.geoserver.api.controllers.IconController;
 import com.boundlessgeo.geoserver.api.controllers.ImportController;
-import com.boundlessgeo.geoserver.api.controllers.LayerController;
 import com.boundlessgeo.geoserver.api.controllers.StoreController;
-import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
 import com.boundlessgeo.geoserver.api.controllers.WorkspaceController;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
+import com.boundlessgeo.geoserver.util.NameUtil;
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
 
 import net.sf.json.JSONArray;
@@ -33,7 +32,6 @@ import org.geoserver.config.GeoServerInfo;
 import org.geoserver.config.SettingsInfo;
 import org.geoserver.data.test.SystemTestData;
 import org.geoserver.importer.Importer;
-import org.geoserver.importer.StyleGenerator;
 import org.geoserver.ows.util.ResponseUtils;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
@@ -51,19 +49,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.opengis.feature.Feature;
 import org.opengis.feature.Property;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import javax.imageio.ImageIO;
 import javax.mail.internet.InternetHeaders;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpServletRequest;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -106,6 +101,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         removeLayer("cdf", "foo");
         
         removeLayer("gs", "point");
+        removeLayer("gs", "point space");
+        removeLayer("gs", "point_space");
         
         removeLayer("cgf", "renamedLayer");
         removeLayer("cgf", "Points-map");
@@ -123,6 +120,15 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.prj").delete();
         new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shx").delete();
         new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.dbf").delete();
+        
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "data/gs/point_space/point space.shp").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "data/gs/point_space/point space.prj").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "data/gs/point_space/point space.shx").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "data/gs/point_space/point space.dbf").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point_space/point space.shp").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point_space/point space.prj").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point_space/point space.shx").delete();
+        new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point_space/point space.dbf").delete();
     }
 
     @Test
@@ -270,6 +276,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         StoreInfo s = catalog.getStoreByName("gs", "point", StoreInfo.class);
         assertNotNull(l);
         assertNotNull(s);
+        //Wait for the taskListener to move the imported file
+        Thread.sleep(500);
         assertTrue(new File(catalog.getResourceLoader().getBaseDirectory(), "data/gs/point/point.shp").exists());
         assertTrue(new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).exists());
         assertEquals(new File(catalog.getResourceLoader().getBaseDirectory(), "data/gs/point").getAbsoluteFile(),
@@ -344,6 +352,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         StoreInfo s = catalog.getStoreByName("gs", "point", StoreInfo.class);
         assertNotNull(l);
         assertNotNull(s);
+        //Wait for the taskListener to move the imported file
+        Thread.sleep(500);
         assertTrue(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").exists());
         assertTrue(new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).exists());
         assertEquals(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point").getAbsoluteFile(),
@@ -369,6 +379,68 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         result = pollImport(ctrl, "gs", id, "complete", request);
         assertNotNull(result);
         assertEquals(1, result.array("imported").size());
+    }
+    
+    @Test
+    public void testImportShapefilesWithSpaceInName() throws Exception {
+        Catalog catalog = getCatalog();
+        //Test REST global root
+        GeoServerInfo gsInfo = GeoServerExtensions.bean(GeoServer.class).getGlobal();
+        SettingsInfo info = gsInfo.getSettings();
+        info.getMetadata().put("root", catalog.getResourceLoader().findOrCreateDirectory("uploads").getAbsolutePath());
+        getGeoServer().save(gsInfo);
+        assertNull(catalog.getLayerByName("gs:point_space"));
+
+        Importer importer =
+            GeoServerExtensions.bean(Importer.class, applicationContext);
+        ImportController ctrl = new ImportController(getGeoServer(), importer);
+        StoreController storeCtrl = new StoreController(getGeoServer());
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setContextPath("/geoserver");
+        request.setRequestURI("/geoserver/hello");
+        request.setMethod("post");
+        
+        //Import as separate files
+        MimeMultipart body = initMultiPartFormContent(request);
+
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point space.dbf\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point space.dbf")));
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point space.prj\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point space.prj")));
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point space.shp\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point space.shp")));
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point space.shx\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point space.shx")));
+        
+        createMultiPartFormContent(body, request);
+
+
+        JSONObj result = ctrl.importFile("gs", request);
+        Long id = Long.parseLong(result.str("id"));
+        
+        //Wait for the import to complete
+        result = pollImport(ctrl, "gs", id, "pending", request);
+        assertNotNull(result);
+        verifyImporterEndpoint(result.str("importerEndpoint"), request);
+        result = ctrl.update("gs", id, getUpdateTasks(result), request);
+        result = pollImport(ctrl, "gs", id, "complete", request);
+        assertNotNull(result);
+        
+        LayerInfo l = catalog.getLayerByName("gs:point_20space");
+        StoreInfo s = catalog.getStoreByName("gs", "point_space", StoreInfo.class);
+        assertNotNull(l);
+        assertNotNull(s);
+        //Wait for the taskListener to move the imported file
+        Thread.sleep(500);
+        assertTrue(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point_space/point space.shp").exists());
+        assertTrue(new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).exists());
+        assertEquals(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point_space").getAbsoluteFile(),
+                new File(new URL(ResourcePool.getParams(s.getConnectionParameters(), catalog.getResourceLoader()).get("url").toString()).getFile()).getAbsoluteFile());
+        
+        StyleInfo style = l.getDefaultStyle();
+        assertEquals("point_space", l.getDefaultStyle().getName());
+        assertEquals("point_20space", l.getResource().getName());
     }
     
     @Test
@@ -898,4 +970,36 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertFalse(config.cacheFile(ThumbnailController.thumbnailFilename(map)).exists());
     }
     */
+    
+    @Test
+    public void testNameUtil() throws Exception {
+        Catalog catalog = getCatalog();
+        CatalogBuilder catalogBuilder = new CatalogBuilder(catalog);
+        
+        LayerInfo points = catalog.getLayerByName("cgf:Points");
+        StyleInfo pointStyle = points.getDefaultStyle();
+        
+        LayerGroupInfo pointMap = catalog.getFactory().createLayerGroup();
+        pointMap.setWorkspace(catalog.getWorkspaceByName("cgf"));
+        pointMap.setName("Points");
+        pointMap.getLayers().add(points);
+        pointMap.getStyles().add(null);
+        catalogBuilder.calculateLayerGroupBounds(pointMap);
+        catalog.add(pointMap);
+        
+        assertNotNull(catalog.getLayerGroupByName(pointMap.prefixedName()));
+        assertNotNull(catalog.getLayerByName(points.prefixedName()));
+        assertNotNull(catalog.getStyleByName(pointStyle.prefixedName()));
+        
+        //Test unique against existing catalog entries
+        assertEquals(points.getName()+"0", NameUtil.unique(points.getName(), points.getClass(), catalog));
+        assertEquals(pointMap.getName()+"0", NameUtil.unique(pointMap.getName(), pointMap.getClass(), catalog));
+        assertEquals(pointStyle.getName()+"0", NameUtil.unique(pointStyle.getName(), pointStyle.getClass(), catalog));
+        
+        //Test unique with no existing entries
+        assertEquals("unique", NameUtil.unique("unique", points.getClass(), catalog));
+        assertEquals("unique", NameUtil.unique("unique", pointMap.getClass(), catalog));
+        assertEquals("unique", NameUtil.unique("unique", pointStyle.getClass(), catalog));
+        
+    }
 }

@@ -170,7 +170,7 @@ public class ThumbnailController extends ApiController {
             writeThumbnail(layer, blankImage);
             
             //Set up getMap request
-            String url = baseRequest.getScheme()+"://"+baseRequest.getServerName()+":"+baseRequest.getServerPort()
+            String url = baseRequest.getScheme()+"://localhost:"+baseRequest.getLocalPort()
             + baseRequest.getContextPath()+"/"+ws.getName()+"/wms/reflect";
             
             url += "?FORMAT="+MIME_TYPE;
