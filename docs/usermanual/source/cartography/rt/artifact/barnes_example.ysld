@@ -21,21 +21,21 @@ feature-styles:
         color-map:
           type: ramp
           entries:
-          - ('#FFFFFF',0,-990,nodata)
-          - ('#2E4AC9',,-9,nodata)
-          - ('#41A0FC',,-6,values)
-          - ('#58CCFB',,-3,values)
-          - ('#76F9FC',,0,values)
-          - ('#6AC597',,3,values)
-          - ('#479364',,6,values)
-          - ('#2E6000',,9,values)
-          - ('#579102',,12,values)
-          - ('#9AF20C',,15,values)
-          - ('#B7F318',,18,values)
-          - ('#DBF525',,21,values)
-          - ('#FAF833',,24,values)
-          - ('#F9C933',,27,values)
-          - ('#F19C33',,30,values)
-          - ('#ED7233',,33,values)
-          - ('#EA3F33',,36,values)
-          - ('#BB3026',,999,values)
+          - ['#FFFFFF',0,-990,nodata]
+          - ['#2E4AC9',,-9,nodata]
+          - ['#41A0FC',,-6,values]
+          - ['#58CCFB',,-3,values]
+          - ['#76F9FC',,0,values]
+          - ['#6AC597',,3,values]
+          - ['#479364',,6,values]
+          - ['#2E6000',,9,values]
+          - ['#579102',,12,values]
+          - ['#9AF20C',,15,values]
+          - ['#B7F318',,18,values]
+          - ['#DBF525',,21,values]
+          - ['#FAF833',,24,values]
+          - ['#F9C933',,27,values]
+          - ['#F19C33',,30,values]
+          - ['#ED7233',,33,values]
+          - ['#EA3F33',,36,values]
+          - ['#BB3026',,999,values]
