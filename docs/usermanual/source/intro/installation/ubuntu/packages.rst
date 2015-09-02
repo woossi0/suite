@@ -99,7 +99,7 @@ The following packages contain the client components of OpenGeo Suite. These pac
      - Dependencies
    * - ``postgis-2.1``
      - PostGIS 2.1 userland binaries and libraries
-     - ``libpq5`` ``geos`` ``proj`` ``libgdal``
+     - ``libpq5`` ``geos`` ``proj`` ``libgdal-opengeo``
    * - ``pgadmin3``
      - pgAdmin database manager for PostgreSQL
      - ``wxGTK``
@@ -108,8 +108,8 @@ The following packages contain the client components of OpenGeo Suite. These pac
      -
    * - ``pdal``
      - Point Cloud format library
-     - ``libgeotiff`` ``laszip`` ``libgdal`` ``geos`` ``postgresql93-libs``
-   * - ``libgdal``
+     - ``libgeotiff`` ``laszip`` ``libgdal-opengeo`` ``geos`` ``postgresql93-libs``
+   * - ``libgdal-opengeo``
      - GDAL/OGR format library
      - ``proj`` ``geos`` ``postgresql93-libs``
    * - ``libgeos``
