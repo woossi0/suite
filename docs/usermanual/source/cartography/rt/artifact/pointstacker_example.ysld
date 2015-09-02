@@ -40,7 +40,7 @@ feature-styles:
         font-style: normal
         font-weight: bold
         placement: point
-        anchor: (0.5,0.8)
+        anchor: [0.5,0.8]
   - name: rule10
     title: 10 Volcanoes
     filter: count > '9'
@@ -63,4 +63,4 @@ feature-styles:
         font-style: normal
         font-weight: bold
         placement: point
-        anchor: (0.5,0.8)
+        anchor: [0.5,0.8]

@@ -13,8 +13,8 @@ feature-styles:
         color-map:
           type: ramp
           entries:
-          - ('#FFFFFF',0,0.0,'nodata')
-          - ('#FFFFFF',0,0.02,'nodata')
-          - ('#4444FF',1,0.1,'nodata')
-          - ('#FF0000',1,0.5,'values')
-          - ('#FFFF00',1,1.0,'values')
+          - ['#FFFFFF',0,0.0,'nodata']
+          - ['#FFFFFF',0,0.02,'nodata']
+          - ['#4444FF',1,0.1,'nodata']
+          - ['#FF0000',1,0.5,'values']
+          - ['#FFFF00',1,1.0,'values']
