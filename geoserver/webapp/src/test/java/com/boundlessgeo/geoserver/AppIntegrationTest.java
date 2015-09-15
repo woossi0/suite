@@ -266,8 +266,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         result = pollImport(ctrl, "gs", id, "complete", request);
         assertNotNull(result);
         
-        assertEquals(1, result.array("imported").size());
-        JSONObj obj = result.array("imported").object(0);
+        assertEquals(1, result.array("tasks").size());
+        JSONObj obj = result.array("tasks").object(0);
 
         assertEquals("gs", obj.object("layer").str("workspace"));
         assertEquals("point", obj.object("layer").str("name"));
@@ -342,8 +342,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         result = pollImport(ctrl, "gs", id, "complete", request);
         assertNotNull(result);
         
-        assertEquals(1, result.array("imported").size());
-        JSONObj obj = result.array("imported").object(0);
+        assertEquals(1, result.array("tasks").size());
+        JSONObj obj = result.array("tasks").object(0);
 
         assertEquals("gs", obj.object("layer").str("workspace"));
         assertEquals("point", obj.object("layer").str("name"));
@@ -378,7 +378,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         result = ctrl.update("gs", id, getUpdateTasks(result), request);
         result = pollImport(ctrl, "gs", id, "complete", request);
         assertNotNull(result);
-        assertEquals(1, result.array("imported").size());
+        assertEquals(1, result.array("tasks").size());
+        assertEquals("COMPLETE", result.array("tasks").object(0).get("status"));
     }
     
     @Test
@@ -466,12 +467,11 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             result = pollImport(ctrl, "gs", id, "pending", request);
             assertNotNull(result);
             verifyImporterEndpoint(result.str("importerEndpoint"), request);
-            
             assertTrue(result.integer("tasksTotal") > 0);
             List<String> names = Arrays.asList(new String[]{"ft1","ft2","ft3"});
             JSONArr tasks = new JSONArr();
-            for (JSONObj o : result.array("preimport").objects()) {
-                if (names.contains(o.get("name"))) {
+            for (JSONObj o : result.array("tasks").objects()) {
+                if (names.contains(o.get("name")) && o.get("status").equals("READY")) {
                     tasks.add(new JSONObj().put("task", o.get("task").toString()));
                     assertEquals("table", o.get("type"));
                 }
@@ -484,20 +484,34 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             result = pollImport(ctrl, "gs", id, "complete", request);
             assertNotNull(result);
             
-            assertEquals(0, result.array("preimport").size());
-            assertEquals(1, result.array("imported").size());
-            assertEquals(2, result.array("pending").size());
-            assertEquals(0, result.array("failed").size());
-            
-            result = ctrl.get("gs",  id, request);
-            
-            //Set CRS
+            int complete = 0;
+            int ready = 0;
+            int no_crs = 0;
+            int failed = 0;
             tasks = new JSONArr();
-            for (JSONObj o : result.array("pending").objects()) {
-                String srs = "EPSG:4326";
-                tasks.add(new JSONObj().put("task", o.get("task").toString())
-                                       .put("proj", IO.proj(new JSONObj(), CRS.decode(srs), srs)));
+            
+            for (JSONObj o : result.array("tasks").objects()) {
+                if (o.get("status").equals("READY")) {
+                    ready++;
+                }
+                if (o.get("status").equals("NO_CRS")) {
+                    no_crs++;
+                    String srs = "EPSG:4326";
+                    tasks.add(new JSONObj().put("task", o.get("task").toString())
+                                           .put("proj", IO.proj(new JSONObj(), CRS.decode(srs), srs)));
+                }
+                if (o.get("status").equals("COMPLETE")) {
+                    complete++;
+                }
+                if (o.get("status").equals("ERROR") || o.get("status").equals("NO_BOUNDS")) {
+                    failed++;
+                }
             }
+            assertEquals(0, ready);
+            assertEquals(1, complete);
+            assertEquals(2, no_crs);
+            assertEquals(0, failed);
+            
             response = new JSONObj();
             response.put("tasks", tasks);
             
@@ -506,10 +520,9 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             result = pollImport(ctrl, "gs", id, "complete", request);
             assertNotNull(result);
             
-            assertEquals(0, result.array("preimport").size());
-            assertEquals(3, result.array("imported").size());
-            assertEquals(0, result.array("pending").size());
-            assertEquals(0, result.array("failed").size());
+            for (JSONObj o : result.array("tasks").objects()) {
+                assertEquals("COMPLETE", o.get("status"));
+            }
             
             //Try to reimport the same store - should fail and return existing store
             result = data.createConnectionParameters();
@@ -549,8 +562,9 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         result = pollImport(ctrl, "gs", id, "complete", request);
         assertNotNull(result);
         
-        assertEquals(1, result.array("imported").size());
-        JSONObj obj = result.array("imported").object(0);
+        assertEquals(1, result.array("tasks").size());
+        JSONObj obj = result.array("tasks").object(0);
+        assertEquals("COMPLETE", obj.get("status"));
 
         assertEquals("sf", obj.object("layer").str("workspace"));
         assertEquals("point", obj.object("layer").str("name"));
@@ -566,8 +580,10 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
     }
     private JSONObj getUpdateTasks(JSONObj result) {
         JSONArr tasks = new JSONArr();
-        for (JSONObj o : result.array("preimport").objects()) {
-            tasks.add(new JSONObj().put("task", o.get("task").toString()));
+        for (JSONObj o : result.array("tasks").objects()) {
+            if (o.get("status").equals("READY")) {
+                tasks.add(new JSONObj().put("task", o.get("task").toString()));
+            }
         }
         JSONObj response = new JSONObj();
         return response.put("tasks", tasks);
