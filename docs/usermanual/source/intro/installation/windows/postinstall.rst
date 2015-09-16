@@ -59,14 +59,19 @@ To change the PostgreSQL port:
 
 #. Restart OpenGeo PostgreSQL service.
 
+.. _intro.installation.windows.postinstall.datadir:
+
 GeoServer Data Directory
 ------------------------
 
-The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`.
+The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data.
+
+By default, this directory is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`. There exists a shortcut to this location in the Start Menu at :menuselection:`OpenGeo Suite --> GeoServer --> Data Directory`.
 
 To point GeoServer to an alternate location:
 
 #. Create a new **System** environment variable named ``GEOSERVER_DATA_DIR``.
+
 #. Set the value to the desired directory.
 
    .. figure:: img/gs_data_dir.png
