@@ -605,7 +605,7 @@ public class ImportController extends ApiController {
      *    "tasksTotal":2
      *  }
      * 
-     * The response is an object with 12 properties. If this is a new import, and the context has
+     * The response is an object with 7 properties. If this is a new import, and the context has
      * not yet been created, only id and task will be included.
      * * id - The identifier of this import job, needed to make modifications to it
      * * task - A textual representation of the current task. Not included if no task is currently running.
@@ -614,19 +614,7 @@ public class ImportController extends ApiController {
      * * tasksComplete - The number of tasks that have been processed and have either been 
      *   successfully imported or given an error.
      * * tasksTotal - The total number of tasks associated with this import
-     * * preimport - Tasks that have been identified but not yet imported. Used by the database 
-     *   import and asynchronous import
-     * * running - Tasks that are currently running. Only used by asynchronous import
-     * * completed - Tasks that were successfully imported. Each task contains the resulting layer 
-     *   representation.
-     * * pending - Tasks that require further input from the user before being imported. The most 
-     *   common case being missing projection information. Each task contains a property named 
-     *   "problem" that identifies the issue.
-     * * ignored - Tasks that correspond to files that GeoServer doesn't recognize. Usually these 
-     *   are README files or other metadata files that don't correspond to data to be imported, but 
-     *   are present in the uploaded archive.
-     * * failed - Task that failed for some other reason. Each task contains an error trace that 
-     *   provides more information about the failure.
+     * * tasks - An array of tasks. See {@see #task(ImportTask)}.
      *
      * @throws Exception if the request is invalid, or another error occurs.
      */
@@ -653,45 +641,30 @@ public class ImportController extends ApiController {
         }
         result.put("importerEndpoint", ResponseUtils.baseURL(request)+"geoserver/rest/imports/"+imp.getId());
         
-        JSONArr preimport = result.putArray("preimport");
-        JSONArr running = result.putArray("running");
-        JSONArr imported = result.putArray("imported");
-        JSONArr pending = result.putArray("pending");
-        JSONArr failed = result.putArray("failed");
-        JSONArr ignored = result.putArray("ignored");
+        JSONArr tasks = result.putArray("tasks");
 
+        int completed = 0;
+        int pending = 0;
         for (ImportTask task : imp.getTasks()) {
+            tasks.add(task(task));
             switch(task.getState()) {
                 case READY:
                 case PENDING:
-                    preimport.add(task(task));
-                    break;
                 case RUNNING:
-                    running.add(task(task));
-                    break;
-                case COMPLETE:
-                    imported.add(complete(task));
-                    break;
-                case NO_BOUNDS:
-                case NO_CRS:
-                    pending.add(pending(task));
-                    // fixable state, throw into pending
-                    break;
-                case ERROR:
-                    // error, dump out some details
-                    failed.add(failed(task));
+                    pending++;
                     break;
                 default:
-                    // ignore this task
-                    ignored.add(ignored(task));
+                    completed++;
+                    break;
+              
             }
         }
         
-        result.put("tasksCompleted", imp.getTasks().size()-(preimport.size()+running.size()));
+        result.put("tasksCompleted", completed);
         result.put("tasksTotal", imp.getTasks().size());
         
         //If there are no more tasks to run, consider the import complete
-        if ((preimport.size()+running.size()) == 0) {
+        if (pending == 0) {
             imp.setState(ImportContext.State.COMPLETE);
         }
         switch(imp.getState()) {
@@ -878,11 +851,53 @@ public class ImportController extends ApiController {
         }
     }
 
+    /**
+     * A json representation of an importer task
+     * 
+     * The following attributes are included:
+     *   "task": task id
+     *   "name": task name
+     *   "status': task status. One of READY, PENDING, RUNNING, NO_BOUNDS, NO_CRS, COMPLETE, ERROR, or IGNORED
+     *   "layer": details of the imported layer. Only applicable for "status":COMPLETE
+     *   "error": details of the error. Only applicable for "status":ERROR
+     *   "type": data type (file | database | table) of the task. Not applicable for "status":IGNORED
+     *   "geometry": geometry type ({@see com.boundlessgeo.geoserver.api.controllers.IO#geometry(LayerInfo) }) of the task.  Not applicable for "status":IGNORED
+     * @param task
+     * @return
+     */
     JSONObj task(ImportTask task) {
         JSONObj obj = new JSONObj();
+        
         obj.put("task", task.getId())
-           .put("name", name(task))
-           .put("type", type(task))
+           .put("name", name(task));
+        
+        switch(task.getState()) {
+            case READY:
+            case PENDING:
+            case RUNNING:
+            case NO_BOUNDS:
+            case NO_CRS:
+                obj.put("status", task.getState().toString());
+                break;
+            case COMPLETE:
+                obj.put("status", task.getState().toString());
+                touch(task);
+                LayerInfo layer = task.getLayer();
+                IO.layerDetails(obj.putObject("layer"), layer, null);
+                
+                break;
+            case ERROR:
+                // error, dump out some details
+                obj.put("status", task.getState().toString());
+                IO.error(obj.putObject("error"), task.getError() );
+                break;
+            default:
+                obj.put("status", "IGNORED");
+                //no type or geometry
+                return obj;
+        }
+        
+        obj.put("type", type(task))
            .put("geometry", IO.geometry(task.getLayer()));
         return obj;
     }
