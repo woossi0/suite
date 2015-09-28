@@ -9,7 +9,7 @@ For this tutorial, you will need to download the following files from the `Natur
 
 .. include:: files/data.txt
 
-These four files should be imported into Composer as new layers.
+These four files should be imported into Composer as new layers. This tutorial will assume that the layers were renamed to be ``countries``, ``roads``, ``places``, and ``DEM``, respectively.
 
 .. note:: For information on how to load this data into Composer, please see the :ref:`Composer tutorial <webmaps.composer.tutorial>`.
 

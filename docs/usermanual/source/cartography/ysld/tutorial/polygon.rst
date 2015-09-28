@@ -8,7 +8,7 @@ The Countries layer is a polygon layer, and therefore we use a :ref:`polygon sym
 Viewing the existing style
 --------------------------
 
-#. In the layers tab of the Composer, click on the style option for the ``ne_10m_admin_0_countries`` layer to go to the style edit page. A simple default style is already associated with this layer.
+#. In the layers tab of Composer, click the style option for the ``countries`` layer to go to the style edit page. A simple default style is already associated with this layer.
 
    .. figure:: img/poly_default.png
 
@@ -61,38 +61,52 @@ Setting basic styling
 
 Polygon symbolizers provide options for styling both fill (inside) and stroke (outline) of features.
 
-#. Stroke styling is defined primarily by ``stroke-width``, ``stroke-color``, and ``stroke-opacity``. Change the style to use a 0.5px gray stroke:
+#. Stroke styling is defined primarily by ``stroke-width``, ``stroke-color``, and ``stroke-opacity``. Change the style to use a 0.5 pixel gray stroke:
+
+   .. note:: With no opacity set, the default will be 100% opaque.
 
    .. code-block:: yaml
       :emphasize-lines: 5-6
     
-      rules:
-      - title: Countries 
-        symbolizers:
-          polygon:
-            stroke-color: '#777777'
-            stroke-width: 0.5
+        rules:
+        - title: Countries 
+          symbolizers:
+            polygon:
+              stroke-color: '#777777'
+              stroke-width: 0.5
 
 #. Fill styling is defined primarily by ``fill-color`` and ``fill-opacity``. Change the style to use a 50% transparent brown fill:
 
    .. code-block:: yaml
       :emphasize-lines: 7-8
     
-      rules:
-      - title: Countries 
-        symbolizers:
-          polygon:
-            stroke-color: '#777777'
-            stroke-width: 0.5
-            fill-color: '#EFEFC3'
-            fill-opacity: 0.5
+        rules:
+        - title: Countries 
+          symbolizers:
+            polygon:
+              stroke-color: '#777777'
+              stroke-width: 0.5
+              fill-color: '#EFEFC3'
+              fill-opacity: 0.5
 
-#. Additional styling options are available for both stroke and fill, and can be found in the :ref:`symbolizer reference <cartography.ysld.reference.symbolizers>`. Use ``stroke-dasharray`` to change the line style to a dashed line of 4px with 4px gaps.
+#. Additional styling options are available for both stroke and fill, and can be found in the :ref:`symbolizer reference <cartography.ysld.reference.symbolizers>`. Use ``stroke-dasharray`` to change the line style to a dashed line of 4 pixels with 4 pixel gaps.
+
+   .. code-block:: yaml
+      :emphasize-lines: 9
+    
+        rules:
+        - title: Countries 
+          symbolizers:
+            polygon:
+              stroke-color: '#777777'
+              stroke-width: 0.5
+              fill-color: '#EFEFC3'
+              fill-opacity: 0.5
+              stroke-dasharray: '4 4'
 
 #. The complete style after these changes will be:
 
    .. code-block:: yaml
-      :emphasize-lines: 11
       
       name: countries
       title: Countries style
@@ -192,7 +206,7 @@ The default labeling parameters are not ideal, but a number of styling options a
 #. With the label styling, the style now looks like this:
 
    .. code-block:: yaml
-      :emphasize-lines: 16-23
+      :emphasize-lines: 15-23
    
       name: countries
       title: Countries style
@@ -218,7 +232,7 @@ The default labeling parameters are not ideal, but a number of styling options a
               x-goodnessOfFit: 0.8
               x-labelPriority: ${10-LABELRANK}
 
-#. With these additions, the labels now appear much clearer:
+  And the labels now appear much clearer:
 
      .. figure:: img/poly_label_styled.png
 
@@ -229,7 +243,37 @@ Adding filters
 
 Suppose we wish to display different colors for each country. The countries layer contains an attribute called ``MAPCOLOR7``, which assigns each country a number from 1 to 7, such that no adjacent countries have the same number. We can use this attribute to control what color a country is using :ref:`filters <cartography.ysld.reference.filters>`. Filters apply a condition to a rule, so that the symbolizers in that rule are only drawn if the filter evaluates to true.
 
-#. Add seven rules, corresponding to the seven possibilities for ``MAPCOLOR7``. For each value, set the ``fill-color`` to the following values:
+#. First, let's split out the text symbolizer into its own rule. This won't affect the visualization at all, but will make it easier to add the polygon filter rules in the next step.
+
+   .. code-block:: yaml
+      :emphasize-lines: 14
+   
+      name: countries
+      title: Countries style
+      abstract: countries of the world
+      feature-styles:
+      - name: name
+        rules:
+        - symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-width: 0.5
+              stroke-dasharray: '4 4'
+              fill-color: '#EFEFC3'
+              fill-opacity: 0.5
+        - symbolizers:
+          - text:
+              label: ${strToUpperCase(NAME)}
+              font-size: 14
+              font-family: SansSerif
+              font-weight: bold
+              fill-color: '#333333'
+              x-autoWrap: 100
+              x-maxDisplacement: 200
+              x-goodnessOfFit: 0.8
+              x-labelPriority: ${10-LABELRANK}
+
+#. Replace the rule containing the polygon symbolizer with seven rules, corresponding to the seven possibilities of values for ``MAPCOLOR7``. For each value, set the ``fill-color`` to the following:
 
    .. list-table::
       :class: non-responsive
@@ -258,90 +302,90 @@ Suppose we wish to display different colors for each country. The countries laye
    .. code-block:: yaml
       :emphasize-lines: 7-62
 
-       name: countries
-       title: Countries style
-       abstract: countries of the world
-       feature-styles:
-       - name: name
-         rules:
-         - filter: ${MAPCOLOR7 = 1}
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: '#FFC3C3'
-               fill-opacity: 0.5
-         - filter: ${MAPCOLOR7 = 2}
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: '#FFE3C3'
-               fill-opacity: 0.5
-         - filter: ${MAPCOLOR7 = 3}
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: '#FFFFC3'
-               fill-opacity: 0.5
-         - filter: ${MAPCOLOR7 = 4}
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: '#C3FFE3'
-               fill-opacity: 0.5
-         - filter: ${MAPCOLOR7 = 5}
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: '#C3FFFF'
-               fill-opacity: 0.5
-         - filter: ${MAPCOLOR7 = 6}
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: '#C3C3FF'
-               fill-opacity: 0.5
-         - filter: ${MAPCOLOR7 = 7}
-           symbolizers:
-           - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: '#FFC3FF'
-               fill-opacity: 0.5
-         - symbolizers:
-           - text:
-               label: ${strToUpperCase(NAME)}
-               font-size: 14
-               font-family: SansSerif
-               font-weight: bold
-               fill-color: '#333333'
-               x-autoWrap: 100
-               x-maxDisplacement: 200
-               x-goodnessOfFit: 0.8
-               x-labelPriority: ${10-LABELRANK}
+      name: countries
+      title: Countries style
+      abstract: countries of the world
+      feature-styles:
+      - name: name
+        rules:
+        - filter: ${MAPCOLOR7 = 1}
+          symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-dasharray: '4 4'
+              stroke-width: 0.5
+              fill-opacity: 0.5
+              fill-color: '#FFC3C3'
+        - filter: ${MAPCOLOR7 = 2}
+          symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-dasharray: '4 4'
+              stroke-width: 0.5
+              fill-opacity: 0.5
+              fill-color: '#FFE3C3'
+        - filter: ${MAPCOLOR7 = 3}
+          symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-dasharray: '4 4'
+              stroke-width: 0.5
+              fill-opacity: 0.5
+              fill-color: '#FFFFC3'
+        - filter: ${MAPCOLOR7 = 4}
+          symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-dasharray: '4 4'
+              stroke-width: 0.5
+              fill-opacity: 0.5
+              fill-color: '#C3FFE3'
+        - filter: ${MAPCOLOR7 = 5}
+          symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-dasharray: '4 4'
+              stroke-width: 0.5
+              fill-opacity: 0.5
+              fill-color: '#C3FFFF'
+        - filter: ${MAPCOLOR7 = 6}
+          symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-dasharray: '4 4'
+              stroke-width: 0.5
+              fill-opacity: 0.5
+              fill-color: '#C3C3FF'
+        - filter: ${MAPCOLOR7 = 7}
+          symbolizers:
+          - polygon:
+              stroke-color: '#777777'
+              stroke-dasharray: '4 4'
+              stroke-width: 0.5
+              fill-opacity: 0.5
+              fill-color: '#FFC3FF'
+        - symbolizers:
+          - text:
+              label: ${strToUpperCase(NAME)}
+              font-size: 14
+              font-family: SansSerif
+              font-weight: bold
+              fill-color: '#333333'
+              x-autoWrap: 100
+              x-maxDisplacement: 200
+              x-goodnessOfFit: 0.8
+              x-labelPriority: ${10-LABELRANK}
 
    .. figure:: img/poly_label_color.png
 
       Adjacent countries will not have the same color
 
 Reducing redundant content using variables
---------------------------------------------
+------------------------------------------
 
 Much of the styling content in each of the filters used above is repeated. This repeated content can be reduced using :ref:`variables <cartography.ysld.reference.variables>`.
 
-#. Add a directive block named ``polystyle`` to the beginning of the style:
+#. Add a directive block named ``polystyle`` to the beginning (top) of the style, above everything else:
    
    .. code-block:: yaml
 
@@ -414,21 +458,37 @@ Much of the styling content in each of the filters used above is repeated. This 
 Compacting thematic styles with transformation functions
 --------------------------------------------------------
 
-While filters are very useful, the required syntax is quite long, and much of the content is redundant. The exact same functionality can be accomplished much more concisely using the :ref:`recode function <cartography.ysld.reference.functions>`.
+While filters are very useful, the required syntax is still quite long, and much of the content is redundant. The exact same functionality can be accomplished much more concisely using the :ref:`recode function <cartography.ysld.reference.functions>`.
 
-#. Replace the rules with our original (before we added the filters):
+#. Remove all of the polygon rules and the variable at the top, and replace with our original rule:
    
    .. code-block:: yaml
-      :emphasize-lines: 3-8
+      :emphasize-lines: 7-13
       
+      name: countries
+      title: Countries style
+      abstract: countries of the world
+      feature-styles:
+      - name: name
         rules:
-           symbolizers:
+        - symbolizers:
            - polygon:
-               stroke-color: '#777777'
-               stroke-dasharray: '4 4'
-               stroke-width: 0.5
-               fill-color: '#EFEFC3'
-               fill-opacity: 0.5
+              stroke-color: '#777777'
+              stroke-dasharray: '4 4'
+              stroke-width: 0.5
+              fill-color: '#EFEFC3'
+              fill-opacity: 0.5
+        - symbolizers:
+          - text:
+              label: ${strToUpperCase(NAME)}
+              font-size: 14
+              font-family: SansSerif
+              font-weight: bold
+              fill-color: '#333333'
+              x-autoWrap: 100
+              x-maxDisplacement: 200
+              x-goodnessOfFit: 0.8
+              x-labelPriority: ${10-LABELRANK}
 
 #. Change the ``fill-color`` to the following CQL expression:
    
@@ -448,7 +508,7 @@ While filters are very useful, the required syntax is quite long, and much of th
                  }
                fill-opacity: 0.5
 
-This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function: if ``MAPCOLOR7 = 1``, set to ``'#FFC3C3'``, if ``MAPCOLOR7 = 2`` set to ``'#FFE3E3``, etc.
+This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function: if ``MAPCOLOR7 = 1``, set to ``'#FFC3C3'``, if ``MAPCOLOR7 = 2`` set to ``'#FFE3E3'``, etc.
 
 It should be noted that this will produce the *exact same output* as in the previous section.
 
