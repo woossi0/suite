@@ -3,12 +3,12 @@
 Styling a point layer
 =====================
 
-The populated places layer is a point layer, so we use a :ref:`point symbolizer <cartography.ysld.reference.symbolizers.point>`.
+The populated places layer is a point layer, so we will be using :ref:`point symbolizers <cartography.ysld.reference.symbolizers.point>`.
 
 Viewing the existing style
 --------------------------
 
-#. In the layers tab of the Composer, click on the style option for the ``ne_10m_admin_0_populated_places`` layer to go to the style edit page. A simple default style is already associated with this layer.
+#. In the layers tab of Composer, click the style option for the ``places`` layer to go to the style edit page. A simple default style is already associated with this layer.
 
    .. figure:: img/point_default.png
 
@@ -16,12 +16,31 @@ Viewing the existing style
 
    .. note:: Your default color may vary.
 
+#. Change the ``name`` and ``title`` to something more appropriate:
+
+   .. code-block:: yaml
+      :emphasize-lines: 1-2
+
+      name: places
+      title: Populated places style
+      feature-styles:
+      - name: name
+        rules:
+        - symbolizers:
+          - point:
+              size: 6
+              symbols:
+              - mark:
+                  shape: square
+                  fill-color: '#FFFF00'
+
 Adding filters and labels
 -------------------------
 
-There are a lot of points in this data set, and we don't want to draw all of them. 
+#. There are a lot of points in this data set, and we don't want to draw all of them. Use the ``ADM0CAP`` attribute and a filter to show only points that correspond to capital cities (``ADM0CAP = 1``):
 
-#. Use the ``ADM0CAP`` attribute to filter points that correspond to capital cities (``ADM0CAP = 1``)::
+   .. code-block:: yaml
+      :emphasize-lines: 6
 
       name: places
       title: Populated places style
@@ -37,7 +56,10 @@ There are a lot of points in this data set, and we don't want to draw all of the
                   shape: square
                   fill-color: '#FFCC00'
 
-#. Now, just like we did in the previous section, add a text symbolizer referencing the ``NAME`` attribute to display the names of the cities::
+#. Add a text symbolizer referencing the ``NAME`` attribute to display the names of the cities:
+
+   .. code-block:: yaml
+      :emphasize-lines: 14-15
 
       name: places
       title: Populated places style
@@ -64,27 +86,31 @@ There are a lot of points in this data set, and we don't want to draw all of the
 Refining the style
 ------------------
 
-Now, lets do some styling. Point symbolizes are described by symbols, which can either be one of a predefined set of :ref:`marks <cartography.ysld.reference.symbolizers.point>`, or an image. Marks can be styled just like polygons, with both stroke and fill.
+Now, lets do some styling. :ref:`Point symbolizers <cartography.ysld.reference.symbolizers.point>` are described by symbols, which can either be one of a predefined set of marks or an image. Marks can be styled just like polygons, with both stroke and fill.
 
-#. Replace the point symbolizer with the following::
+#. Replace the existing point symbolizer with the following:
 
-      - point:
-          size: 7
-          symbols:
-          - mark:
-              shape: star
-              fill-color: '#000000'
+   .. code-block:: yaml
 
-   This draws a black star 7 pixels in high.
+        - point:
+            size: 7
+            symbols:
+            - mark:
+                shape: star
+                fill-color: '#000000'
 
-#. Create a second point symbolizer with the following::
+   This draws a black star 7 pixels in height.
 
-      - point:
-          size: 8
-          symbols:
-          - mark:
-              shape: circle
-              stroke-color: '#000000'
+#. Create a second point symbolizer with the following:
+
+   .. code-block:: yaml
+
+        - point:
+            size: 8
+            symbols:
+            - mark:
+                shape: circle
+                stroke-color: '#000000'
 
    This draws the outline of a black circle, 8 pixels in diameter.
 
@@ -104,65 +130,69 @@ Now, lets do some styling. Point symbolizes are described by symbols, which can 
       * - ``x-labelPriority: ${10-LABELRANK}``
         - Select labels based on priority (uses the ``LABELRANK`` attribute of the data to determine this).
 
-#. The full style is now::
+#. The full style is now:
 
-    name: places
-    title: Populated places style
-    feature-styles:
-    - name: name
-      rules:
-      - filter: ${ADM0CAP = 1}
-        symbolizers:
-        - point:
-            size: 7
-            symbols:
-            - mark:
-                shape: star
-                fill-color: '#000000'
-        - point:
-            size: 8
-            symbols:
-            - mark:
-                shape: circle
-                stroke-color: '#000000'
-        - text:
-            label: ${NAME}
-            font-weight: bold
-            displacement: [3,2]
-            x-labelPriority: ${10-LABELRANK}
+   .. code-block:: yaml
+      :emphasize-lines: 22-24
+
+      name: places
+      title: Populated places style
+      feature-styles:
+      - name: name
+        rules:
+        - filter: ${ADM0CAP = 1}
+          symbolizers:
+          - point:
+              size: 7
+              symbols:
+              - mark:
+                  shape: star
+                  fill-color: '#000000'
+          - point:
+              size: 8
+              symbols:
+              - mark:
+                  shape: circle
+                  stroke-color: '#000000'
+          - text:
+              label: ${NAME}
+              font-weight: bold
+              displacement: [3,2]
+              x-labelPriority: ${10-LABELRANK}
 
    .. figure:: img/point_style_label.png
 
       Capital cities with labels
 
-#. Since this data set contains population attributes, we can scale the size of the points based on population. Use ``${log(POP_MAX)/log(4)}`` in the ``size`` parameter to get a relative scale without too much variation in point size::
+#. Since this data set contains population attributes, we can scale the size of the points based on population. Use ``${log(POP_MAX)/log(4)}`` in the ``size`` parameter to get a relative scale without too much variation in point size. As before, make the circle symbolizer one pixel larger than the star:
 
-    name: places
-    title: Populated places style
-    feature-styles:
-    - name: name
-      rules:
-      - filter: ${ADM0CAP = 1}
-        symbolizers:
-        - point:
-            size: ${log(POP_MAX)/log(4)}
-            symbols:
-            - mark:
-                shape: star
-                fill-color: '#000000'
-        - point:
-            size: ${log(POP_MAX)/log(4)+1}
-            symbols:
-            - mark:
-                shape: circle
-                stroke-color: '#000000'
-        - text:
-            label: ${NAME}
-            font-weight: bold
-            displacement: [5,4]
-            x-labelPriority: ${10-LABELRANK}
+   .. code-block:: yaml
+      :emphasize-lines: 9,15
 
-   Note that the circle shape is still set to be 1px larger than the star.
+      name: places
+      title: Populated places style
+      feature-styles:
+      - name: name
+        rules:
+        - filter: ${ADM0CAP = 1}
+          symbolizers:
+          - point:
+              size: ${log(POP_MAX)/log(4)}
+              symbols:
+              - mark:
+                  shape: star
+                  fill-color: '#000000'
+          - point:
+              size: ${log(POP_MAX)/log(4)+1}
+              symbols:
+              - mark:
+                  shape: circle
+                  stroke-color: '#000000'
+          - text:
+              label: ${NAME}
+              font-weight: bold
+              displacement: [5,4]
+              x-labelPriority: ${10-LABELRANK}
 
    .. figure:: img/point_size_label.png
 
@@ -175,11 +205,14 @@ To improve the display further, we can add scale rules.
 
 #. Split the single rule into three rules:
 
-   #. A 3px black circle for the features when zoomed out past 100000000 (``1e8``).
-   #. The star/circle combo as done in the previous section when zoomed in past 100000000 (``1e8``).
-   #. The labels only when zoomed in past 50000000 (``5e7``).
+   * A 3 pixel black circle for the features when zoomed out past 100,000,000 (``1e8``).
+   * The star/circle combo as done in the previous section when zoomed in past 100,000,000 (``1e8``).
+   * The labels only when zoomed in past 50,000,000 (``5e7``).
 
-   This results in the following style::
+   This results in the following style:
+
+   .. code-block:: yaml
+      :emphasize-lines: 6-37
 
       name: places
       title: Populated places style
@@ -219,36 +252,37 @@ To improve the display further, we can add scale rules.
               displacement: [5,4]
               x-labelPriority: ${10-LABELRANK}
 
-#. To show all cities when we are fully zoomed in, we can add some ``else`` rules for small scales. As with the capital cities, we will only display the labels when zoomed in (``5e6``), and will only show points with out labels at other scale::
+#. We can show all the cities that are currently hidden when we zoom in further. One way to do this is by adding rules with an ``else`` clause and small scales. As with the capital cities, we will selectively show labels depending on the scale. To do this: add these two rules to the bottom of the style:
 
-    - scale: [5e6,1e7]
-      else: true
-      symbolizers:
-        - point:
-            size: ${log(POP_MAX)/log(4)}
-            symbols:
-            - mark:
-                shape: circle
-                stroke-color: '#000000'
-                fill-color: '#777777'
-                fill-opacity: 0.5
-    - scale: [min,5e6]
-      else: true
-      symbolizers:
-        - point:
-            size: ${log(POP_MAX)/log(4)+1}
-            symbols:
-            - mark:
-                shape: circle
-                stroke-color: '#000000'
-                fill-color: '#777777'
-                fill-opacity: 0.5
-        - text:
-            label: ${NAME}
-            displacement: [5,4]
-            x-labelPriority: ${10-LABELRANK}
+   .. code-block:: yaml
 
-#. Add these two rules to the existing rules.
+        - scale: [5e6,1e7]
+          else: true
+          symbolizers:
+            - point:
+                size: ${log(POP_MAX)/log(4)}
+                symbols:
+                - mark:
+                    shape: circle
+                    stroke-color: '#000000'
+                    fill-color: '#777777'
+                    fill-opacity: 0.5
+        - scale: [min,5e6]
+          else: true
+          symbolizers:
+            - point:
+                size: ${log(POP_MAX)/log(4)+1}
+                symbols:
+                - mark:
+                    shape: circle
+                    stroke-color: '#000000'
+                    fill-color: '#777777'
+                    fill-opacity: 0.5
+            - text:
+                label: ${NAME}
+                displacement: [5,4]
+                x-labelPriority: ${10-LABELRANK}
+
 
 Final style
 -----------

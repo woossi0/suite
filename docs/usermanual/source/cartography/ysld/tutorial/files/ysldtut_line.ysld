@@ -1,5 +1,5 @@
 name: roads
-title: Simple road style
+title: Roads style
 feature-styles:
 - name: roads
   x-firstMatch: true
@@ -16,7 +16,7 @@ feature-styles:
     filter: ${featurecla = 'Ferry'}
     symbolizers:
     - line:
-        stroke-color: '#00CCFF'
+        stroke-color: '#00CCFF' 
         stroke-width: 2
         stroke-dasharray: '4 6'
   - name: expressway
