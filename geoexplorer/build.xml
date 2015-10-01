@@ -14,7 +14,11 @@
     </copy>
 
     <!-- resolve dependencies -->
+    <antcall target="mvn">
+	<param name="goals" value="install"/>
+    </antcall>
     <antcall target="retrieve">
+
       <param name="pattern" value="${war.src}/WEB-INF/lib/[artifact]-[revision].[ext]"/>
       <param name="conf" value="compile"/>
     </antcall>
