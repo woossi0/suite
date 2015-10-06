@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
 
     wget --no-check-certificate https://github.com/aglover/ubuntu-equip/raw/master/equip_java7_64.sh && bash equip_java7_64.sh
     sudo apt-get -y  install maven ant ivy
-    ln -s  /usr/share/java/ivy.jar /usr/share/ant/lib/ivy.jar
+    sudo ln -s  /usr/share/java/ivy.jar /usr/share/ant/lib/ivy.jar
     sudo apt-get -y  install python-setuptools
     sudo easy_install jstools
     sudo apt-get -y  install python-pip
