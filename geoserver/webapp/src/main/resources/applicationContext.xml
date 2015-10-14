@@ -46,6 +46,16 @@
             <mvc:mapping path="/api/**"/>
             <bean class="com.boundlessgeo.geoserver.api.controllers.ConfigurationLockInterceptor" />
         </mvc:interceptor>
+        <!-- intercept all /api/** routes and disable caching -->
+        <mvc:interceptor>
+            <mvc:mapping path="/api/**"/>
+            <bean class="org.springframework.web.servlet.mvc.WebContentInterceptor" >
+              <property name="cacheSeconds" value="0"/>
+              <property name="useExpiresHeader" value="true"/>
+              <property name="useCacheControlHeader" value="true"/>
+              <property name="useCacheControlNoStore" value="true"/>
+            </bean>
+        </mvc:interceptor>
     </mvc:interceptors>
 
     <mvc:annotation-driven>
