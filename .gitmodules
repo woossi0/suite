@@ -15,7 +15,7 @@
 	url = git://github.com/geoscript/geoscript-py.git
 [submodule "geoserver/externals/geoscript/js"]
 	path = geoserver/externals/geoscript/js
-	url = git://github.com/jdeolive/geoscript-js.git
+	url = git://github.com/geoscript/geoscript-js.git
 [submodule "geoexplorer/externals/buildkit"]
 	path = geoexplorer/externals/buildkit
 	url = git://github.com/boundlessgeo/buildkit.git
