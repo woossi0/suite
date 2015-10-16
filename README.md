@@ -18,15 +18,80 @@ Some modules require additional packages:
 * [JSTools](https://github.com/whitmo/jstools) - Latest
 * [Sphinx](http://sphinx.pocoo.org/) - 1.0+ (the full build requires LaTeX support)
 * [NodeJS](http://nodejs.org/) - Latest version
+  * [Bower](http://bower.io/) - `npm install -g bower`
+  * [Grunt](http://gruntjs.com/) - `npm install -g grunt-cli`
+  * [Gulp](http://gulpjs.com/) - `npm install -g gulp`
 
 Ensure that all the above are installed so that the associated executables are on the 
 `PATH` of the user building the suite. 
+
+## Developer Guide
+
+If you just want to build suite locally, and do not intend to contribute changes, you can skip this section and proceed to the [Quickstart](#quickstart).
+
+### Getting Started
+
+1. [Fork](https://guides.github.com/activities/forking/) the suite projuct to your github account. This fork will be used to stage your changes.
+
+1. Clone your fork of suite in the desktop:
+
+        % git clone git://github.com/<yourusername>/suite.git suite
+        % cd suite
+
+1. Add an upstream remote pointing to the boundless suite project:
+
+        % git remote add upstream https://www.github.com/boundlessgeo/suite.git suite
+
+1. This remote will be used to update your fork of suite to the latest from the boundless suie repository. Any time you want to get the latest changes, simply pull from the upstream remote:
+
+        % git pull upstream master
+
+### Submodules
+
+Suite includes code from several other projects by way of [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules). Most suite submodules are in [geoserver/externals](https://github.com/boundlessgeo/suite/tree/master/geoserver/externals). Submodules function like a link to a specific revision of a project. When using git on the desktop, submodules behave like single files as long as you are outside of them. However, they can be traversed like directories and once inside a submodule, git behaves as if you are in a checkout of the submodule project itself. 
+
+1. When inside a submodule, you can update the revision it links to by pulling from a remote. Many submodules link to a specific branch, so make sure you get the right one (ask a developer if you are unsure)!
+
+        % cd geoserver/externals/geoserver
+        % git pull origin 2.7.x
+
+2. In order for this update to be reflected in the suite project, it must be commited like any other change:
+
+        % cd ../
+        % git add geoserver
+        % git commit -m "update geoserver submodule"
+
+3. You can then push this change to your fork and create a pull request, like any other commit.
+
+### Release Branches
+
+During regular development, suite changes are commited to the master branch. Prior to a release, a release branch (of the form `r4.7`) is created. Any changes should be made against that branch instead, and backported to master if necessary. 
+
+1. When commiting a change to the release branch, note the commit id:
+
+        [r4.7 0c66de5] update geoserver submodule
+
+2. To backport this commit to master, switch to the master branch and use `cherry-pick` to copy the commit. Remember to push your change up to the suite repository:
+
+        % git checkout master
+        % git cherry-pick 0c66de5
+        % git push upstream master
+
+Certain submodules (mainly geoserver) will also have release specific branches. If you are updating a submodule on the release branch, first check if it has its own branch for this release (usually of the form `suite-4.7`). Ask a developer if you are unsure.
+
+### What's next
+
+To build suite, go to step 2 of the [Quickstart](#quickstart).
+
+For more information about the build system, see the [Build System Overview](#build-system-overview).
+
+For information on the individual components that comprise suite, follow the links in the [Modules](#modules) section.
 
 ## Quickstart
 
 1. Clone the repository:
 
-        % git clone git://github.com/opengeo/suite.git suite
+        % git clone git://github.com/boundlessgeo/suite.git suite
         % cd suite
 
 1. Initialize submodule dependencies:
