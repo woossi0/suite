@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
     sudo ln -s  /usr/share/java/ivy.jar /usr/share/ant/lib/ivy.jar
     sudo apt-get -y  install python-setuptools
     sudo easy_install jstools
-    sudo apt-get -y  install python-pip
+    sudo apt-get -y  install python-pip python-dev
     sudo pip install -U Sphinx
 
     # the standard ubuntu node install doesnt work very well and is VERY old.  Use this one instead
