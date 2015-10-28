@@ -3,9 +3,10 @@
 What's new in |version|
 =======================
 
-Each new version of OpenGeo Suite includes numerous fixes and component upgrades.
+**This version is a maintenance release** that contains dozens of bug fixes and performance improvements.
 
-In addition, OpenGeo Suite |version| includes the following updated features:
+
+Version 4.7 included the following updated features:
 
 **WPS Builder**
 
