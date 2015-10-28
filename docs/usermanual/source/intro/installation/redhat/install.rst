@@ -32,6 +32,41 @@ The commands in this section require root privileges.
 
       sudo su - 
 
+#. Download the Boundless and Fedora GPG keys:
+
+   .. code-block:: bash
+
+      wget https://yum.boundlessgeo.com/RPM-GPG-KEY-OpenGeo_Suite
+      wget https://getfedora.org/static/0608B895.txt
+
+#. Verify the fingerprint of each certificate:
+
+   .. code-block:: bash
+
+      gpg --quiet --with-fingerprint ./RPM-GPG-KEY-OpenGeo_Suite
+
+   ::
+
+      pub  2048R/E2DD3C77 2015-06-05 OpenGeo Suite <contact@boundlessgeo.com>
+            Key fingerprint = DEF2 E3C7 75C7 5037 97F5  9111 6E26 79DC E2DD 3C77
+      sub  2048R/D8FEF4BF 2015-06-05
+
+   .. code-block:: bash
+
+      gpg --quiet --with-fingerprint ./0608B895.txt
+
+   ::
+
+      pub  4096R/0608B895 2010-04-23 EPEL (6) <epel@fedoraproject.org>
+            Key fingerprint = 8C3B E96A F230 9184 DA5C  0DAE 3B49 DF2A 0608 B895
+
+#. Import the Boundless and Fedora GPG keys:
+
+   .. code-block:: bash
+
+      rpm --import ./RPM-GPG-KEY-OpenGeo_Suite
+      rpm --import ./0608B895.txt
+
 #. Add the OpenGeo Suite repository by creating the file :file:`/etc/yum.repos.d/OpenGeo.repo` and adding the following contents:
 
    * For **OpenGeo Suite**::
@@ -40,7 +75,8 @@ The commands in this section require root privileges.
         name=opengeo
         baseurl=https://yum.boundlessgeo.com/suite/latest/<OS>/$releasever/$basearch
         enabled=1
-        gpgcheck=0
+        gpgcheck=1
+        gpgkey=https://yum.boundlessgeo.com/RPM-GPG-KEY-OpenGeo_Suite,https://getfedora.org/static/0608B895.txt
 
      Make sure to replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
 
@@ -50,9 +86,10 @@ The commands in this section require root privileges.
         name=opengeo
         baseurl=https://<username>:<password>@yum-ee.boundlessgeo.com/suite/latest/<OS>/$releasever/$basearch
         enabled=1
-        gpgcheck=0
+        gpgcheck=1
+        gpgkey=https://<username>:<password>@yum-ee.boundlessgeo.com/RPM-GPG-KEY-OpenGeo_Suite,https://getfedora.org/static/0608B895.txt
 
-     Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase. Also, replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
+     Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you after your purchase. Also, replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
 
      .. note:: If you have OpenGeo Suite Enterprise and do not have a user name and password, please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__.
 
