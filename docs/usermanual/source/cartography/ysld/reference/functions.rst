@@ -307,7 +307,7 @@ The Categorize function returns a different value depending on which range (cate
     rules:
     - symbolizers:
        - polygon:
-          stroke-color: '000000'
+          stroke-color: '#000000'
           stroke-width: 0.5
           fill-color:
             ${categorize(YEARBLT, '#DD4400', 
