@@ -91,6 +91,12 @@ On a system that already has OpenGeo Suite:
 
    .. note:: See the :ref:`Packages <intro.installation.redhat.packages>` section for details about individual packages.
 
+#. Restart the Suite
+
+   .. code-block:: bash
+
+      service tomcat restart
+
 After upgrade
 -------------
 
