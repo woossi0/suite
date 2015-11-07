@@ -29,6 +29,7 @@ Vagrant.configure(2) do |config|
     aws.ami = "ami-d05e75b8"
 
     aws.instance_type = 'c4.2xlarge'
+    aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 30 }]
     aws.tags = {
       'Name' => "#{$AWS_KEYPAIR_NAME}-build-vagrant"
     }
