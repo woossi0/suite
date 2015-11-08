@@ -19,8 +19,8 @@ Vagrant.configure(2) do |config|
     override.vm.box = 'ubuntu/trusty64'
 
     # Adjust these settings as needed.
-    vb.memory = 3000
-    vb.cpus = 4
+    vb.memory = 4048
+    vb.cpus = 2
   end
 
   config.vm.provider :aws do |aws, override|
@@ -31,7 +31,7 @@ Vagrant.configure(2) do |config|
     aws.instance_type = 'c4.2xlarge'
     aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 30 }]
     aws.tags = {
-      'Name' => "#{$AWS_KEYPAIR_NAME}-build-vagrant"
+      'Name' => "#{$AWS_KEYPAIR_NAME}-suite-build-vagrant"
     }
 
     override.ssh.username = 'ubuntu'
@@ -42,7 +42,7 @@ Vagrant.configure(2) do |config|
   # Share host's maven cache. Comment the following line to disable.
   #config.vm.synced_folder '~/.m2', '/home/vagrant/.m2'
 
-  config.vm.provision :shell, inline: <<SCRIPT
+  config.vm.provision :shell, privileged: false, inline: <<SCRIPT
 
     export sudo DEBIAN_FRONTEND=noninteractive
 
@@ -69,7 +69,7 @@ Vagrant.configure(2) do |config|
       cd /vagrant
       echo 'Starting build.'
       (ant -v 2>&1) | tee build_output.txt""" > ~/build
-    chmod a+x ~/build
+    chmod a+rx ~/build
 
     ~/build
 SCRIPT
