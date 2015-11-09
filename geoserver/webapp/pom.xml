@@ -157,7 +157,7 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
      </dependency>
-     
+
      <!-- required to get FreeMarkerConfigurer -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -261,7 +261,7 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-    
+
     <!-- jars shared between various extensions -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -277,6 +277,16 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-app-schema-resolver</artifactId>
+      <version>${gt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-complex</artifactId>
+      <version>${gt.version}</version>
     </dependency>
 
     <!-- Jetty test deps so that we can start GeoServer from an IDE as well -->
@@ -333,7 +343,7 @@
        </configuration>
       </plugin>
     </plugins>
-  </build> 
+  </build>
 
   <profiles>
     <profile>

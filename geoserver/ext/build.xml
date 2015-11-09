@@ -81,6 +81,9 @@
                 <exclude name="json-simple-*.jar"/>
                 <exclude name="imageio-ext-imagereadmt-*.jar"/>
                 <exclude name="gt-process-geometry-*.jar"/>
+                <!-- moved to main geoserver package to prevent extension conflicts -->
+                <exclude name="gt-app-schema-resolver-*.jar"/>
+                <exclude name="gt-complex-*.jar"/>
             </patternset>
         </unzip>
     </target>
