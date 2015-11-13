@@ -43,6 +43,39 @@
           <h2>Recent Releases</h2>
           <div class="panel-group" id="release-accordion">
 
+            <!-- 4.7.1 Release -->
+            <h3 class="release-no">4.7.1 <small style="margin-left: 25px;">Released November 13, 2015</small></h3>
+            <h4 style="margin-left: 16px;">
+              <a href="http://suite.opengeo.org/docs/4.7.1/" target="_blank"><span class="accordion-btn"><i class="fa fa-share"></i></span> <span class="doc-text">Documentation</span></a>
+            </h4>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#release-accordion" href="#collapseNegativeOne">
+                        <span class="accordion-icon"></span><span class="doc-text">Release Notes</span>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseNegativeOne" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <h4>OpenGeo Suite changes:</h4>
+                    <ul>
+                      <li>Composer improvements:
+                        <ul>
+                          <li>List items (workspace, map, layer) now use consistent styles</li>
+                          <li>Settings dialogs have consistent content and entry validation</li>
+                          <li>Moved create/edit workspace to modal dialog instead of page</li>
+                          <li>Moved delete workspace/map/layer outside of settings dialog </li>
+                          <li>Improved import process by consolidating layer list into single list rather than separate sections for each status</li>
+                          <li>Improved createMap/addLayers processes to integrate with import</li>
+                        </ul>
+                      </li>
+                      <li>Plus numerous bug fixes and updates to components</li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+
             <!-- 4.7 Release -->
             <h3 class="release-no">4.7 <small style="margin-left: 25px;">Released August 18, 2015</small></h3>
             <h4 style="margin-left: 16px;">
@@ -64,7 +97,7 @@
                       <li>New CloudWatch extension in GeoServer for connecting to Amazon CloudWatch monitoring service</li>
                       <li>New GeoMesa extension in GeoServer for integrating with Accumulo.</li>
                       <li>Java 8 is now supported</li>
-                      <li>Composer/YSLD improvements: 
+                      <li>Composer/YSLD improvements:
                         <ul>
                           <li>Added additional supported formats, to match GeoServer import functionality</li>
                           <li>Color swatches for color codes for easier identification</li>
@@ -108,7 +141,7 @@
                 <div id="collapseNegativeOne" class="panel-collapse collapse">
                   <div class="panel-body">
                     <p>This release addresses a security vulnerability in GeoServer that can allow
-                    unauthorized access to files on the host server. All users of OpenGeo Suite 
+                    unauthorized access to files on the host server. All users of OpenGeo Suite
                     are strongly encouraged to update to this version.</p>
                     <p>More information about the security vulnerability is available in the <a href="https://osgeo-org.atlassian.net/browse/GEOS-7032">GeoServer bug tracker</a>.</p>
 
