@@ -25,12 +25,14 @@
   {# CSS #}
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600,800,300|Montserrat:400,700|Source+Code+Pro:300,400,500,700' rel='stylesheet' type='text/css'>
 
+<!-- Removing search because it doesn't work well
   {# OPENSEARCH #}
   {% if not embedded %}
     {% if use_opensearch %}
       <link rel="search" type="application/opensearchdescription+xml" title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}" href="{{ pathto('_static/opensearch.xml', 1) }}"/>
     {% endif %}
   {% endif %}
+-->
 
   {# RTD hosts this file, so just load on non RTD builds #}
   {% if not READTHEDOCS %}
@@ -50,9 +52,11 @@
         <link rel="index" title="{{ _('Index') }}"
               href="{{ pathto('genindex') }}"/>
     {%- endif %}
+    <!-- Removing search because it doesn't work well
     {%- if hasdoc('search') %}
         <link rel="search" title="{{ _('Search') }}" href="{{ pathto('search') }}"/>
     {%- endif %}
+    -->
     {%- if hasdoc('copyright') %}
         <link rel="copyright" title="{{ _('Copyright') }}" href="{{ pathto('copyright') }}"/>
     {%- endif %}
@@ -96,10 +100,11 @@
 
     {# SIDE NAV, TOGGLES ON MOBILE #}
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <!-- Removing search because it doesn't work well
       <div class="wy-side-nav-search">
         {% include "searchbox.html" %}
       </div>
-
+      -->
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         {% set toctree = toctree(maxdepth=2, collapse=False, includehidden=True) %}
         {% if toctree %}
