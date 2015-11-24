@@ -79,7 +79,7 @@ The following packages contain the server components of OpenGeo Suite. These pac
    * - ``opengeo-tomcat``
      - OpenGeo Suite webapps for Tomcat
      - ``tomcat6``
-   * - ``wpsbuilder``
+   * - ``opengeo-wpsbuilder``
      - :ref:`Graphical utility <processing.wpsbuilder>` for executing WPS processes
      - ``geoserver-wps``
 

@@ -14,25 +14,37 @@
 #    To build again from the host do `vagrant ssh -c build`
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty64"
 
-  config.vm.provider "virtualbox" do |v|
+  config.vm.provider :virtualbox do |vb, override|
+    override.vm.box = 'ubuntu/trusty64'
+
     # Adjust these settings as needed.
-    v.memory = 4000
-    v.cpus = 2
+    vb.memory = 4048
+    vb.cpus = 2
+  end
+
+  config.vm.provider :aws do |aws, override|
+    override.vm.box = 'dummy'
+    override.vm.box_url = 'https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box'
+    aws.ami = "ami-d05e75b8"
+
+    aws.instance_type = 'c4.2xlarge'
+    aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 30 }]
+    aws.tags = {
+      'Name' => "#{$AWS_KEYPAIR_NAME}-suite-build-vagrant"
+    }
+
+    override.ssh.username = 'ubuntu'
+
+    override.vm.synced_folder '.', '/vagrant', type: 'rsync' #, rsync__exclude: '.git/'
   end
 
   # Share host's maven cache. Comment the following line to disable.
-  config.vm.synced_folder "~/.m2", "/home/vagrant/.m2"
+  #config.vm.synced_folder '~/.m2', '/home/vagrant/.m2'
 
-  config.vm.provision :shell, inline: <<SCRIPT
+  config.vm.provision :shell, privileged: false, inline: <<SCRIPT
 
     export sudo DEBIAN_FRONTEND=noninteractive
-
-    ### Not needed?
-    # Add Boundless repo
-    # wget -qO- https://apt.boundlessgeo.com/gpg.key | sudo apt-key add -
-    # echo "deb https://apt.boundlessgeo.com/suite/latest/ubuntu/ trusty main" | sudo tee /etc/apt/sources.list.d/opengeo.list > /dev/null
 
     sudo apt-get update
 
@@ -56,10 +68,9 @@ Vagrant.configure(2) do |config|
     echo """#!/bin/bash
       cd /vagrant
       echo 'Starting build.'
-      (ant -v 2>&1) | tee build_output.txt""" > /home/vagrant/build
-    chmod a+x /home/vagrant/build
+      (ant -v 2>&1) | tee build_output.txt""" > ~/build
+    chmod a+rx ~/build
 
-    /home/vagrant/build
-
+    ~/build
 SCRIPT
 end

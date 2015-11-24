@@ -24,13 +24,13 @@ This installation will add the OpenGeo Suite package repository and then install
 
 .. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of OpenGeo Suite (such as PostgreSQL) please remove them before installing OpenGeo Suite.
 
-The commands in this section require root privileges. 
+The commands in this section require root privileges.
 
 #. Change to the ``root`` user:
 
    .. code-block:: bash
 
-      sudo su - 
+      sudo su -
 
 #. Download the Boundless and Fedora GPG keys:
 
@@ -123,6 +123,12 @@ Installation process
      .. code-block:: bash
 
         yum install opengeo
+
+#. Restart the Suite
+
+     .. code-block:: bash
+
+        service tomcat restart
 
 After installation
 ------------------
