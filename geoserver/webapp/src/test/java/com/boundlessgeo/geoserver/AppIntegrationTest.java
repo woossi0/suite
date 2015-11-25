@@ -8,6 +8,7 @@ import com.boundlessgeo.geoserver.api.controllers.IconController;
 import com.boundlessgeo.geoserver.api.controllers.ImportController;
 import com.boundlessgeo.geoserver.api.controllers.StoreController;
 import com.boundlessgeo.geoserver.api.controllers.WorkspaceController;
+import com.boundlessgeo.geoserver.catalog.UploadDeleteCatalogListener;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.boundlessgeo.geoserver.util.NameUtil;
@@ -299,6 +300,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
     @Test
     public void testImportShapefiles() throws Exception {
         Catalog catalog = getCatalog();
+        catalog.addListener(new UploadDeleteCatalogListener(catalog));
         //Test REST global root
         GeoServerInfo gsInfo = GeoServerExtensions.bean(GeoServer.class).getGlobal();
         SettingsInfo info = gsInfo.getSettings();

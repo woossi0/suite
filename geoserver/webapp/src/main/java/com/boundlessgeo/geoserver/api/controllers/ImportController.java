@@ -506,7 +506,7 @@ public class ImportController extends ApiController {
                 prepTask(t, ws, dataDir);
             }
         }
-        helper.setTask(importer.getTask(importer.runAsync(imp, f)));
+        helper.setTask(importer.getTask(importer.runAsync(imp, f, false)));
         return get(ws.getName(), helper.id, request);
     }
     
