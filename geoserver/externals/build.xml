@@ -32,11 +32,6 @@
         <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -Dbuild.commit.id=${gs.rev} -P release -P ${gs.modules} ${gs.flags} -Dgwc.version=${gwc.version}"/>
         <param name="goals" value="clean install assembly:attached"/>
      </antcall>
-     <antcall target="mvn">
-        <param name="dir" value="${gs.dir}/src/community"/>
-        <param name="flags" value="-DskipTests -Dbuild.commit.id=${gs.rev} -P communityRelease ${gs.flags} -Dgwc.version=${gwc.version}"/>
-        <param name="goals" value="clean install assembly:attached"/>
-     </antcall>
    </target>
 
    <target name="build-gwc" unless="skip.gwc" description="Build GeoWebCache"> 
