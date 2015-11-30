@@ -61,21 +61,29 @@ Since a custom WPS process is packaged as a regular JAR file the standard archet
       <dependency>
         <groupId>org.geotools</groupId>
         <artifactId>gt-process</artifactId>
-        <version>12-SNAPSHOT</version>
+        <version>${geotools.version}</version>
       </dependency>
       <dependency>
         <groupId>org.geotools</groupId>
-        <artifactId>gt-geometry</artifactId>
-        <version>12-SNAPSHOT</version>
+        <artifactId>gt-process-geometry</artifactId>
+        <version>${geotools.version}</version>
       </dependency>
 
-   .. note:: Please ensure that the GeoTools version matches the one used by OpenGeo Suite being deployed into. You can check the version of GeoTools by navigating to the :guilabel:`About GeoServer` section of the GeoServer admin interface.
+
+#. In addition, add the following lines inside the ``<properties>`` block (typically beneath the line for ``<project.build.sourceEncoding>``, replacing ``GEOSERVER_VERSION`` and ``GEOTOOLS_VERSION`` with the versions used by OpenGeo Suite:
+
+   .. code-block:: xml
+
+      <geoserver.version>GEOSERVER_VERSION</geoserver.version>
+      <geotools.version>GEOTOOLS_VERSION</geotools.version>
+
+   .. warning:: You must make sure that the GeoServer and GeoTools versions match the ones used by OpenGeo Suite. You can check the versions by navigating to the :guilabel:`About GeoServer` section of the GeoServer admin interface. The GeoServer version will be shown under :guilabel:`Version`, and the GeoTool version will be shown under :guilabel:`GeoTools Version`.
 
       .. figure:: img/gt-version.png
 
-         GeoServer showing GeoTools version
+         GeoServer showing version numbers (yours will likely be different)
 
-#. In the same file, add a reference to the OpenGeo Maven repository. This will provide access to the required libraries.
+#. In the same file anywhere inside the ``<project>`` block, add a reference to the Boundless Maven repository. This will provide access to the required libraries.
 
    .. code-block:: xml
 
@@ -87,53 +95,54 @@ Since a custom WPS process is packaged as a regular JAR file the standard archet
         </repository>
       </repositories>
 
-#. The final file should look like this:
+#. The final file should look similar like this (but with different version numbers, as indicated above):
 
    .. code-block:: xml
 
       <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-       <modelVersion>4.0.0</modelVersion>
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        <modelVersion>4.0.0</modelVersion>
 
-       <groupId>org.example.wps</groupId>
-       <artifactId>wps-demo</artifactId>
-       <version>1.0-SNAPSHOT</version>
-       <packaging>jar</packaging>
+        <groupId>org.example.wps</groupId>
+        <artifactId>wps-demo</artifactId>
+        <version>1.0</version>
+        <packaging>jar</packaging>
 
-       <name>wps-demo</name>
-       <url>http://maven.apache.org</url>
+        <name>wps-demo</name>
+        <url>http://maven.apache.org</url>
 
-       <properties>
-         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-       </properties>
+        <properties>
+          <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+          <geoserver.version>2.8-SNAPSHOT</geoserver.version>
+          <geotools.version>14-SNAPSHOT</geotools.version>
+        </properties>
 
-       <dependencies>
-         <dependency>
-           <groupId>org.geotools</groupId>
-           <artifactId>gt-process</artifactId>
-           <version>12-SNAPSHOT</version>
-         </dependency>
-         <dependency>
-           <groupId>org.geotools</groupId>
-           <artifactId>gt-geometry</artifactId>
-           <version>12-SNAPSHOT</version>
-         </dependency>
-         <dependency>
-           <groupId>junit</groupId>
-           <artifactId>junit</artifactId>
-           <version>3.8.1</version>
-           <scope>test</scope>
-         </dependency>
-       </dependencies>
-  
-       <repositories>
-         <repository>
-           <id>boundless</id>
-           <name>Boundless Maven Repository</name>
-           <url>http://repo.boundlessgeo.com/main</url>
-         </repository>
-       </repositories>
-  
+        <repositories>
+          <repository>
+            <id>boundless</id>
+            <name>Boundless Maven Repository</name>
+            <url>http://repo.boundlessgeo.com/main</url>
+          </repository>
+        </repositories>
+
+        <dependencies>
+          <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+          </dependency>
+          <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-process</artifactId>
+            <version>${geotools.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-process-geometry</artifactId>
+            <version>${geotools.version}</version>
+          </dependency>
+        </dependencies>
       </project>
 
 #. Save and close this file.
@@ -306,11 +315,7 @@ The previous steps created a Java package ``org.example.wps`` in which to implem
 Configure GeoServer
 -------------------
 
-.. todo:: Is the title and/or description of this section correct?
-
-GeoServer uses the `Dependency Injection <http://en.wikipedia.org/wiki/Dependency_injection>`_ mechanism of the `Spring Framework <http://www.springsource.org/spring-framework/>`_ to allow instantiating components only when they are used. 
-
-The final file to be created will register the process so that it will be known to GeoServer:
+GeoTools/GeoServer uses the `Java Service Provider Interface <https://docs.oracle.com/javase/tutorial/sound/SPI-intro.html>`_ (or SPI) for plugins. We will now create the required directory and file structure for our process.
 
 #. Create the :file:`wps-demo/src/main/resources/META-INF/services` directory structure.
 
@@ -397,5 +402,4 @@ Once GeoServer is running, you can verify that the new process was deployed succ
 
    which shows the single rectangle being split into two.
 
-   .. todo:: A diagram of this would be nice.
-
+.. todo:: Utilize WPS builder.
