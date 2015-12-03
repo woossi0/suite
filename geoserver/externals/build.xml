@@ -69,7 +69,12 @@
       description="Build geomesa">
      <antcall target="mvn">
         <param name="dir" value="${geomesa.dir}"/>
-        <param name="flags" value="-DskipTests -P geoserver-ext"/>
+        <param name="flags" value="-DskipTests"/>
+        <param name="goals" value="clean install"/>
+     </antcall>
+     <antcall target="mvn">
+        <param name="dir" value="${geomesa.gs-plugin-dist.dir}"/>
+        <param name="flags" value="-DskipTests"/>
         <param name="goals" value="clean install"/>
      </antcall>
    </target>
