@@ -108,7 +108,9 @@
                 <include name="**/geomesa-geoserver-ext-*.zip"/>
             </fileset>
             <mapper type="flatten"/>
+            <patternset><!-- filter out empty dir -->
+                <include name="**/*.jar"/>
+            </patternset>
         </unzip>
     </target>
-
 </project>
