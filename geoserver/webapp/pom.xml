@@ -28,6 +28,15 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    
+    <repository>
+      <id>boundless-libs-release-local</id>
+      <name>Boundless Libs-Release-Local Maven Repository</name>
+      <url>https://boundless.artifactoryonline.com/boundless/libs-release-local/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
 
     <repository>
       <id>geosolutions</id>
