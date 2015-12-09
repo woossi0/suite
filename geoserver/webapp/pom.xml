@@ -261,6 +261,12 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.marlin</groupId>
+      <artifactId>marlin</artifactId>
+      <version>${marlin.version}</version>
+    </dependency>
+
 
     <!-- jars shared between various extensions -->
     <dependency>
