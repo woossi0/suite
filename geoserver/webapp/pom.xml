@@ -54,6 +54,7 @@
     <spring.version>3.2.10.RELEASE</spring.version>
     <spring.security.version>3.2.4.RELEASE</spring.security.version>
     <jackson.version>2.1.1</jackson.version>
+    <marlin.version>0.7.3-Unsafe</marlin.version>
   </properties>
 
   <dependencyManagement>
