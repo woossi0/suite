@@ -34,7 +34,7 @@
      </antcall>
      <antcall target="mvn">
         <param name="dir" value="${gs.dir}/src/community"/>
-        <param name="flags" value="-DskipTests -Dbuild.commit.id=${gs.rev} -P {gs.modules.community} ${gs.flags} -Dgwc.version=${gwc.version}"/>
+        <param name="flags" value="-DskipTests -Dbuild.commit.id=${gs.rev} -P ${gs.modules.community} ${gs.flags} -Dgwc.version=${gwc.version}"/>
         <param name="goals" value="clean install assembly:attached"/>
      </antcall>
    </target>
