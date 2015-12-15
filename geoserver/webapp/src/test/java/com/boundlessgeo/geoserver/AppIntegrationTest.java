@@ -33,11 +33,11 @@ import org.geoserver.config.GeoServerInfo;
 import org.geoserver.config.SettingsInfo;
 import org.geoserver.data.test.SystemTestData;
 import org.geoserver.importer.Importer;
-import org.geoserver.ows.util.ResponseUtils;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.rest.util.RESTUtils;
 import org.geoserver.test.GeoServerSystemTestSupport;
+import org.geoserver.web.GeoServerApplication;
 import org.geoserver.ysld.YsldHandler;
 import org.geotools.data.DataAccess;
 import org.geotools.data.FeatureSource;
@@ -594,6 +594,13 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         
         return null;
     }
+    
+    @Test
+    public void testImporterBeans() {
+        //This will throw an exception if multiple beans are visible to geoserver
+        GeoServerExtensions.bean(Importer.class, applicationContext);
+    }
+    
     @Test
     public void testImportInfo() throws IOException {
         Catalog catalog = getCatalog();

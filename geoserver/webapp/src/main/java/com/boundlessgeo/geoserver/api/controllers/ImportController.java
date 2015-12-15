@@ -97,8 +97,7 @@ public class ImportController extends ApiController {
     public ImportController(GeoServer geoServer, ApplicationContext ctx) {
         super(geoServer);
         
-        this.importer = new Importer(geoServer.getCatalog());
-        this.importer.onApplicationEvent(new ContextLoadedEvent(ctx));
+        this.importer = (Importer) ctx.getBean("composer-importer");
         this.importer.setStyleHandler(new YsldHandler());
         this.hasher = new Hasher(7);
     }
