@@ -6,7 +6,7 @@
     <property name="gs-core.ext.dir"
         value="../externals/geoserver/src/target/release"/>
 
-    <property name="gs-comm.ext.list" value="geopkg,javascript,jdbcconfig,mbtiles,python,hz-cluster"/>
+    <property name="gs-comm.ext.list" value="geopkg,javascript,jdbcconfig,mbtiles,python,hz-cluster,vectortiles"/>
     <property name="gs-comm.ext.dir"
         value="../externals/geoserver/src/community/target/release"/>
 
