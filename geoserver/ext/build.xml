@@ -63,6 +63,7 @@
 
     <target name="unpack-core-ext">
         <property name="extdir" value="${gs-core.ext.dir}"/>
+        <delete dir="target/${ext}"/>
         <mkdir dir="target/${ext}"/>
         <unzip src="${extdir}/geoserver-${gs.version}-${ext}-plugin.zip"
             dest="target/${ext}">
@@ -96,12 +97,14 @@
     </target>
 
     <target name="unpack-ext">
+        <delete dir="target/${ext}"/>
         <mkdir dir="target/${ext}"/>
         <unzip src="${gs-exts.ext.dir}/geoserver-exts-${gs.version}-${ext}.zip"
             dest="target/${ext}"/>
     </target>
 
     <target name="unpack-geomesa-ext">
+        <delete dir="target/geomesa"/>
         <mkdir dir="target/geomesa"/>
         <unzip dest="target/geomesa" stripAbsolutePathSpec="true">
             <fileset dir="../externals/geomesa/geoserver-plugin-dist/target">
