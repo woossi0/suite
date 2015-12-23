@@ -3,40 +3,43 @@
 What's new in |version|
 =======================
 
-**This version is a maintenance release** that contains dozens of bug fixes and performance improvements.
+Each new version of OpenGeo Suite includes numerous fixes and component upgrades.
+
+In addition, OpenGeo Suite |version| includes the following new features:
+
+**Vector tiles output format**
+
+Vector tiles are a way to deliver geographic data to a browser or other client application. Vector tiles are similar to raster tiles but the data is actually a vector representation of the features in the tile. Vector tiles improve the performance of maps fast while offering full client-side design flexibility. 
+
+.. todo:: Need a link to something.
+
+**Improved NetCDF support**
+
+`Network Common Data Form (NetCDF) <http://www.unidata.ucar.edu/software/netcdf/>`_ is a format used to store array-oriented scientific data, such as meteorologic data. This version includes the following enhancements to the NetCDF store for GeoServer:
+
+* Support for reading data in GRIB 1, GRIB 2, NetCDF 3 and 4 with CF (Climate and Forecast) formats
+* Support for output coverages (via WCS)
+
+.. todo:: Need a link to something.
+
+**AWS S3 tile cache for GeoWebCache**
+
+This new tile store option allows for storing tiles in an Amazon Web Services (AWS) Simple Storage Service (S3) bucket, retrieved using a TMS-like URL structure.
+
+.. note:: For more information, please see the `GeoWebCache documentation <http://suite.opengeo.org/docs/latest/geowebcache/configuration/storage.html>`_.
 
 
-Version 4.7 included the following updated features:
+**GeoServer 2.8**
 
-**WPS Builder**
+The most recent branch of GeoServer includes improvements such as Z-order rendering, contrast enhancement, and curve support.
 
-New graphical utility for configuring and executing WPS processes in GeoServer.
+.. note:: For more information, please see the `GeoServer 2.8 release notes <http://blog.geoserver.org/2015/09/30/geoserver-2-8-0-released/>`_.
 
-.. note:: Read more about :ref:`WPS Builder <processing.wpsbuilder>`.
+**Components included**
 
-**Composer / YSLD**
-
-* Added additional supported formats, to match GeoServer import functionality
-* Color swatches for color codes for easier identification
-* Full screen YSLD editing mode
-* Complete YSLD hinter for assistance with syntax
-* Improvements in YSLD syntax
-* Recent alerts dialog for parsing errors
-* Graceful automatic logout
-
-.. note:: Read more about :ref:`Composer <webmaps.composer>` and the :ref:`YSLD <cartography.ysld>` markup language.
-
-**CloudWatch**
-
-New GeoServer extension for integrating GeoServer with Amazon CloudWatch.
-
-.. note:: Read more about the :ref:`CloudWatch extension <sysadmin.cloudwatch>`.
-
-**GeoMesa**
-
-New GeoServer extension for integrating GeoServer with GeoMesa and Accumulo.
-
-**Java**
-
-Java 8 is now supported for OpenGeo Suite on all platforms. Java 7 remains the default. OpenGeo Suite is tested with both Oracle JRE and OpenJDK.
+* GeoServer 2.8
+* GeoWebCache 1.8
+* PostgreSQL 9.3
+* PostGIS 2.1.7
+* OpenLayers 3.7.0
 
