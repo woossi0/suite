@@ -29,6 +29,8 @@ GeoServer :ref:`extensions <intro.extensions>` are distributed as a separate arc
      - Database catalog and configuration extension for GeoServer. Use with ``cluster``.
    * - ``inspire``
      - Additional WMS and WFS metadata configuration for INSPIRE compliance
+   * - ``libjpeg-turbo``
+     - Image rendering enhancement library
    * - ``mongodb``
      - MongoDB data format extension for GeoServer
    * - ``oracle``
@@ -37,6 +39,8 @@ GeoServer :ref:`extensions <intro.extensions>` are distributed as a separate arc
      - Scripting extension for GeoServer
    * - ``sqlserver``
      - SQL Server database extension for GeoServer
+   * - ``vectortiles``
+     - Vector tile output format support
    * - ``wps``
      - Web Processing Service (WPS) extension for GeoServer
 
