@@ -98,6 +98,9 @@ GeoServer Extensions
    * - INSPIRE
      - Additional WMS and WFS metadata configuration for INSPIRE compliance
      - OpenGeo Suite Enterprise only
+   * - libjpeg-turbo
+     - Image rendering enhancement library.
+     - OpenGeo Suite Enterprise only
    * - MongoDB
      - :ref:`MongoDB <dataadmin.mongodb>` database support.
      - OpenGeo Suite Enterprise only
@@ -106,6 +109,9 @@ GeoServer Extensions
      - OpenGeo Suite Enterprise only
    * - SQL Server
      - SQL Server database support.
+     - OpenGeo Suite Enterprise only
+   * - Vector Tiles
+     - Vector tile output format support.
      - OpenGeo Suite Enterprise only
    * - WPS
      - :ref:`Web Processing Service (WPS) <processing>` support.

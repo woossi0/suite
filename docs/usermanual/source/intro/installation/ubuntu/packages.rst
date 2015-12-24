@@ -179,6 +179,9 @@ The following packages are available:
    * - ``geoserver-inspire``
      - Additional WMS and WFS metadata configuration for INSPIRE compliance
      - OpenGeo Suite Enterprise only
+   * - ``geoserver-libjpeg-turbo``
+     - Image rendering enhancement library.
+     - OpenGeo Suite Enterprise only
    * - ``geoserver-mongodb``
      - MongoDB data format extension for GeoServer
      - OpenGeo Suite Enterprise only
@@ -190,6 +193,9 @@ The following packages are available:
      - OpenGeo Suite Enterprise only
    * - ``geoserver-sqlserver``
      - SQL Server database extension for GeoServer
+     - OpenGeo Suite Enterprise only
+   * - ``geoserver-vectortiles``
+     - Vector tile output format support.
      - OpenGeo Suite Enterprise only
    * - ``geoserver-wps``
      - Web Processing Service (WPS) extension for GeoServer
