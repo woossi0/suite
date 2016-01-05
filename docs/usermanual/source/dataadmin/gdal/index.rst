@@ -68,6 +68,8 @@ Windows application server
 
 .. note:: This section is for installing GDAL image formats on a Windows-based installation of OpenGeo Suite for Application Servers (WAR bundle).
 
+.. warning:: OpenGeo Suite for Windows requires `.NET Framework 4.5 <https://www.microsoft.com/en-us/download/details.aspx?id=30653>`_. Installation will fail if not present.
+
 #. Navigate to http://data.boundlessgeo.com/gdal_support/.
 
 #. Download the file with a version number that most closely matches the version of OpenGeo Suite. For example, the file :file:`gdal_win_suite_40.zip` would be appropriate for OpenGeo Suite 4.x.
@@ -88,7 +90,7 @@ Windows application server
 
    #. Edit the file :file:`<TOMCAT_HOME>\\bin\\setenv.bat` and add the following line::
 
-         set PATH='C:\Program Files\GDAL\;%PATH%'
+         set "PATH=C:\Program Files\GDAL\;%PATH%"
  
       replacing :file:`C:\\Program Files\\GDAL\\` with the path where the archive was extracted.
 
@@ -121,7 +123,7 @@ OS X application server
 
 #. Create (or edit) a file called :file:`setenv.sh` located in $TOMCAT_HOME/bin, and add the following line::
 
-      export DYLD_LIBRARY_PATH=/usr/local/lib:$DYLD_LIBRARY_PATH`
+      export DYLD_LIBRARY_PATH=/usr/local/lib:$DYLD_LIBRARY_PATH
 
 #. Restart Tomcat.
 
