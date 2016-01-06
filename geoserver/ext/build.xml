@@ -2,7 +2,7 @@
     <import file="../../build/common.xml"/>
 
     <property name="gs-core.ext.list"
-        value="app-schema,arcsde,control-flow,csw,db2,gdal,inspire,jp2k,libjpeg-turbo,netcdf,netcdf-out,oracle,sqlserver,wps"/>
+        value="app-schema,arcsde,control-flow,csw,db2,gdal,inspire,jp2k,libjpeg-turbo,netcdf,oracle,sqlserver,wps"/>
     <property name="gs-core.ext.dir"
         value="../externals/geoserver/src/target/release"/>
 
@@ -106,13 +106,16 @@
     </target>
     
     <target name="update-exts">
-        <!-- do any condensing or manipulation of GeoServer core/community extensions -->
+        <!-- do any manipulation of GeoServer core/community extensions -->
+
+        <!-- add back when netcdf-out C-lib is supported; combines both netcdf exts
         <move todir="target/netcdf" flatten="true">
           <fileset dir="target/netcdf-out">
             <include name="gs-netcdf-out*.jar"/>
           </fileset>
         </move>
         <delete dir="target/netcdf-out"/>
+        -->
     </target>
 
     <target name="unpack-geomesa-ext">
