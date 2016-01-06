@@ -17,6 +17,7 @@
         <foreach list="${gs-core.ext.list}" target="unpack-core-ext" param="ext"/>
         <foreach list="${gs-comm.ext.list}" target="unpack-comm-ext" param="ext"/>
         <foreach list="${gs-exts.ext.list}" target="unpack-ext" param="ext"/>
+        <antcall target="update-exts"/>
         <antcall target="unpack-geomesa-ext"/>
 
         <antcall target="retrieve"/>
@@ -101,6 +102,16 @@
         <mkdir dir="target/${ext}"/>
         <unzip src="${gs-exts.ext.dir}/geoserver-exts-${gs.version}-${ext}.zip"
             dest="target/${ext}"/>
+    </target>
+    
+    <target name="update-exts">
+        <!-- do any condensing or manipulation of GeoServer core/community extensions -->
+        <move todir="target/netcdf" flatten="true">
+          <fileset dir="target/netcdf-out">
+            <include name="gs-netcdf-out*.jar"/>
+          </fileset>
+        </move>
+        <delete dir="target/netcdf-out"/>
     </target>
 
     <target name="unpack-geomesa-ext">
