@@ -9,9 +9,7 @@ In addition, OpenGeo Suite |version| includes the following new features:
 
 **Vector tiles output format**
 
-Vector tiles are a way to deliver geographic data to a browser or other client application. Vector tiles are similar to raster tiles but the data is actually a vector representation of the features in the tile. Vector tiles improve the performance of maps fast while offering full client-side design flexibility. 
-
-.. todo:: Need a link to something.
+:ref:`Vector tiles <dataadmin.vectortiles>` are a way to deliver geographic data to a browser or other client application. Vector tiles are similar to raster tiles but the data is actually a vector representation of the features in the tile. Vector tiles improve the performance of maps fast while offering full client-side design flexibility. 
 
 **Improved NetCDF support**
 
@@ -28,6 +26,11 @@ This new tile store option allows for storing tiles in an Amazon Web Services (A
 
 .. note:: For more information, please see the `GeoWebCache documentation <http://suite.opengeo.org/docs/latest/geowebcache/configuration/storage.html>`_.
 
+**Improved rendering performance**
+
+The Marlin renderer is an open source Java rendering engine optimized for performance, based on OpenJDK's Pisces implementation. With this, vector rendering is much improved over the standard engine.
+
+In addition, OpenGo Suite Enterprise installs include :ref:`libjpeg-turbo <sysadmin.libjpeg-turbo>`, which provides a significant performance enhancement for JPEG encoding in GeoServer WMS output.
 
 **GeoServer 2.8**
 

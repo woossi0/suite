@@ -1,3 +1,5 @@
+.. _dataadmin.vectortiles:
+
 Using the vector tiles output
 =============================
 
