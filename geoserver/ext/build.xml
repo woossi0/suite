@@ -73,9 +73,10 @@
                 <exclude name="*.TXT"/>
                 <exclude name="*.ini"/>
                 <exclude name="imageio-ext-geocore-*.jar"/>
-                <exclude name="gt-geopkg-12-*.jar"/>
+                <exclude name="gt-geopkg-??-SNAPSHOT.jar"/>
                 <exclude name="sqlite-jdbc-*.jar"/>
                 <exclude name="gt-geojson-*.jar"/>
+                <exclude name="gt-jdbc-h2-*.jar"/>
                 <exclude name="gt-process-??-SNAPSHOT.jar"/>
                 <exclude name="gt-process-feature-*.jar"/>
                 <exclude name="gt-process-raster-*.jar"/>
