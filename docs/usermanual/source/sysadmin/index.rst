@@ -20,3 +20,4 @@ This section will discuss how to manage OpenGeo Suite deployments, including ser
    caching/index
    clustering/index
    cloudwatch/index
+   libjpeg-turbo/index
