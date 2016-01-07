@@ -3,7 +3,7 @@
 Working with libjpeg-turbo
 ==========================
 
-The libjpeg-turbo extension provides a significant performance enhancement for JPEG encoding in GeoServer WMS output.
+The libjpeg-turbo extension provides a significant performance enhancement for JPEG encoding (up to 40% faster in some cases) in GeoServer WMS output than the Native ImageIO.
 
 **This is installed and configured by default in OpenGeo Suite Enterprise installers.** For OpenGeo Suite for Application Servers, the GeoServer extension is installed by default, but the native libraries will need to be manually installed.
 

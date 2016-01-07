@@ -30,7 +30,7 @@ This new tile store option allows for storing tiles in an Amazon Web Services (A
 
 The Marlin renderer is an open source Java rendering engine optimized for performance, based on OpenJDK's Pisces implementation. With this, vector rendering is much improved over the standard engine.
 
-In addition, OpenGo Suite Enterprise installs include :ref:`libjpeg-turbo <sysadmin.libjpeg-turbo>`, which provides a significant performance enhancement for JPEG encoding in GeoServer WMS output.
+In addition, OpenGeo Suite Enterprise installs include :ref:`libjpeg-turbo <sysadmin.libjpeg-turbo>`, which provides a significant performance enhancement for JPEG encoding (up to 40% faster in some cases) in GeoServer WMS output than the Native ImageIO.
 
 **GeoServer 2.8**
 
