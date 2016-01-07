@@ -194,6 +194,11 @@
       <version>${gs.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.geoserver.extension</groupId>
+      <artifactId>gs-libjpeg-turbo</artifactId>
+      <version>${gs.version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.geoserver.importer</groupId>
       <artifactId>gs-importer-web</artifactId>
       <version>${gs.version}</version>
