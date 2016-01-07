@@ -179,12 +179,12 @@ The following packages are available:
    * - ``geoserver-inspire``
      - Additional WMS and WFS metadata configuration for INSPIRE compliance
      - OpenGeo Suite Enterprise only
-   * - ``geoserver-libjpeg-turbo``
-     - Image rendering enhancement library.
-     - OpenGeo Suite Enterprise only
    * - ``geoserver-mongodb``
      - MongoDB data format extension for GeoServer
      - OpenGeo Suite Enterprise only
+   * - ``geoserver-netcdf``
+     - NetCDF data format support (read-only)
+     - All versions
    * - ``geoserver-oracle``
      - Oracle database extension for GeoServer
      - OpenGeo Suite Enterprise only

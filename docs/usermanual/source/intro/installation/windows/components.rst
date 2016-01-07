@@ -88,12 +88,12 @@ GeoServer Extensions
    * - INSPIRE
      - Additional WMS and WFS metadata configuration for INSPIRE compliance
      - OpenGeo Suite Enterprise only
-   * - libjpeg-turbo
-     - Image rendering enhancement library.
-     - OpenGeo Suite Enterprise only
    * - MongoDB
      - :ref:`MongoDB <dataadmin.mongodb>` database support.
      - OpenGeo Suite Enterprise only
+   * - NetCDF
+     - NetCDF data format support (read-only)
+     - All versions
    * - Oracle
      - :ref:`Oracle <dataadmin.oracle>` database support.
      - OpenGeo Suite Enterprise only
