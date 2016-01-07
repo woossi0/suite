@@ -93,22 +93,3 @@ file is located at:
 |postgresql.conf|
 
 .. note:: The :file:`ProgramData` directory is hidden, so it will not display in standard directory listings.
-
-Installing libjpeg-turbo
-------------------------
-
-The libjpeg-turbo extension provides a significant performance enhancement for JPEG encoding in GeoServer WMS output.
-
-It is installed and configured by default in OpenGeo Suite Enterprise installers. For OpenGeo Suite for Application Servers, the GeoServer extension is instlled by default, but the native libraries willl need to be installed manually.
-
-To perform the installation of the libjpeg-turbo native libraries:
-
-#. Download the `latest stable package for your platform <http://sourceforge.net/projects/libjpeg-turbo/files/>`_. Make sure to match the architecture (32 or 64 bit).
-#. Perform the installation.
-#. *(Windows only)* Make sure that the location where the DLL files were installed is added to your system's PATH environment variable.
-#. *(Linux only)* Make sure that the location where the library files were installed is added to your system's LD_LIBRARY_PATH environment variable for the Java process. This may happen automatically.
-#. Restart GeoServer.
-
-.. note:: For more information, please see the `GeoServer documentation <../../../geoserver/extensions/libjpeg-turbo/>`_or the `libjpeg-turbo website <http://libjpeg-turbo.virtualgl.org/>`_.
-
-
