@@ -11,6 +11,10 @@ In addition, OpenGeo Suite |version| includes the following new features:
 
 :ref:`Vector tiles <dataadmin.vectortiles>` are a way to deliver geographic data to a browser or other client application. Vector tiles are similar to raster tiles but the data is actually a vector representation of the features in the tile. Vector tiles improve the performance of maps fast while offering full client-side design flexibility. 
 
+**NetCDF support**
+
+`Network Common Data Form (NetCDF) <http://www.unidata.ucar.edu/software/netcdf/>`_ is a format used to store array-oriented scientific data, such as meteorologic data. This version includes support for reading data in GRIB 1, GRIB 2, NetCDF 3 and 4 with CF (Climate and Forecast) formats.
+
 **AWS S3 tile cache for GeoWebCache**
 
 This new tile store option allows for storing tiles in an Amazon Web Services (AWS) Simple Storage Service (S3) bucket, retrieved using a TMS-like URL structure.
