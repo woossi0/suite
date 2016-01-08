@@ -70,9 +70,11 @@ Windows application server
 
 .. warning:: OpenGeo Suite for Windows requires `.NET Framework 4.5 <https://www.microsoft.com/en-us/download/details.aspx?id=30653>`_. Installation will fail if not present.
 
+#. Download and install the `Visual C++ Redistributable for Visual Studio 2012 Update 4 <https://www.microsoft.com/en-ca/download/details.aspx?id=30679>`_. 
+
 #. Navigate to http://data.boundlessgeo.com/gdal_support/.
 
-#. Download the file with a version number that most closely matches the version of OpenGeo Suite. For example, the file :file:`gdal_win_suite_40.zip` would be appropriate for OpenGeo Suite 4.x.
+#. Download the file with a version number that most closely matches the version of OpenGeo Suite.
 
    .. note:: This file requires a 32-bit Java/Tomcat.
 
