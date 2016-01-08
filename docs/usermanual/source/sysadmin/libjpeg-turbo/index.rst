@@ -13,9 +13,15 @@ Installation
 To perform the installation of the libjpeg-turbo native libraries:
 
 #. Download the `latest stable package for your platform <http://sourceforge.net/projects/libjpeg-turbo/files/>`_. Make sure to match the architecture (32 or 64 bit).
+
+   .. warning:: For Windows, make sure that you download a Visual C++ binary (filename that includes ``-vc.exe`` or ``-vc64.exe``). The default download uses the GCC binaries, which are not sufficient.
+
 #. Perform the installation.
+
 #. *(Windows only)* Make sure that the location where the DLL files were installed is added to your system's PATH environment variable.
+
 #. *(Linux only)* Make sure that the location where the library files were installed is added to your system's LD_LIBRARY_PATH environment variable for the Java process. This may happen automatically.
+
 #. Restart GeoServer.
 
 .. note:: For more information, please see the `GeoServer documentation <../../../geoserver/extensions/libjpeg-turbo/>`_ or the `libjpeg-turbo website <http://libjpeg-turbo.virtualgl.org/>`_.
