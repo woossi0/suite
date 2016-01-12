@@ -7,191 +7,235 @@ GeoServer supports "vector tile" output in addition to the more standard image t
 
 This tutorial will show how to use the GeoServer vector tile output.
 
-.. note:: This tutorial will only show how to generate the output in GeoServer. Rendering the vector tile output requires a custom OpenLayers 3 application, and is not included.
+.. note:: This requires that the Vector Tiles :ref:`extension is installed <intro.extensions>`, which requires **OpenGeo Suite Enterprise**.
 
-.. note:: This requires that the Vector Tiles extension was installed, which requires **OpenGeo Suite Enterprise**.
-
-Adding data
------------
-
-We will start with some simple data that will showcase the features and benefits of vector tiles.
-
-#. Using ``psql`` or **pgAdmin**, create a new PostGIS database named :kbd:`vt`.
-
-   .. note:: For more information, please see the section on :ref:`dataadmin.pgGettingStarted.createdb`.
-
-#. Create a table inside this database called ``simple`` with the following details::
-
-     CREATE TABLE simple (geom geometry, name text, id serial primary key);
-
-#. Insert into the table a polygon with a jagged edge::
-
-     INSERT INTO simple ( geom, name )
-       VALUES ( ST_GeomFromText('POLYGON ((0 0, 0 20, 10 20, 10 10, 14 10, 15 15, 16 10,
-       17 12, 18 10, 19 11, 20 10, 20 0, 0 0))', 4326), 'Polygon with jagged edge');
-
-#. Load this table into GeoServer. You may wish to use :ref:`Composer <webmaps.composer>` or the :ref:`Layer Importer <dataadmin.importer>` for this.
-
-   .. note:: The example below uses a layer name of ``vt:simple`` on a GeoServer hosted at ``http://localhost:8080/geoserver/``.
-
-#. View a standard WMS GetMap output in PNG format::
-
-     http://localhost:8080/geoserver/vt/ows?service=WMS&version=1.1.0&request=GetMap&layers=vt:simple&styles=&width=512&height=512&srs=EPSG:4326&format=image/png&srs=EPSG:4326&bbox=0.0,0.0,20.0,20.0
-
-   .. figure:: img/vt-wms.png
-
-      WMS PNG output
-
-Setting the proper output format
---------------------------------
-
-Typically, WMS output formats will be image formats such as PNG or JPEG, while WFS output formats will be serialized data formats such as GML or GeoJSON.
-
-But with vector tiles, **GeoJSON is available as a WMS output format**. When invoked, some important differences between it and WFS GeoJSON will become clear.
-
-#. Execute a **WFS** GetFeature request with GeoJSON output::
-
-     http://localhost:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=vt:simple&outputFormat=application/json
-
-#. View the output:
-
-   .. code-block:: json
-
-      {"type":"FeatureCollection","totalFeatures":1,"features":[{"type":"Feature",
-       "id":"simple.1","geometry":{"type":"Polygon","coordinates":[[[0,0],[0,20],
-       [10,20],[10,10],[14,10],[15,15],[16,10],[17,12],[18,10],[19,11],[20,10],
-       [20,0],[0,0]]]},"geometry_name":"geom","properties":{"name":"Polygon with 
-       jagged edge"}}],"crs":{"type":"name","properties":
-       {"name":"urn:ogc:def:crs:EPSG::4326"}}}
-
-#. Now in a new tab, execute a **WMS** GetMap request with GeoJSON output. **The output format for vector tiles is** ``FORMAT=application/json;type=geojson``::
-
-     http://localhost:8080/geoserver/vt/ows?service=WMS&version=1.1.0&request=GetMap&layers=vt:simple&styles=&bbox=0.0,0.0,20.0,20.0&width=512&height=512&srs=EPSG:4326&format=application/json;type=geojson
-
-#. Save this output (or leave it in its own browser tab):
-
-   .. code-block:: json
-
-      {"type":"FeatureCollection","totalFeatures":"unknown","features":[{"type":
-       "Feature","id":"simple.1","geometry":{"type":"Polygon","coordinates":[[[0,0],
-       [0,20],[10,20],[10,10],[14,10],[15,15],[16,10],[17,12],[18,10],[19,11],
-       [20,10],[20,0],[0,0]]]},"geometry_name":"geom","properties":{"name":"Polygon 
-       with jagged edge"}}]}
-
-These two outputs are very similar. There are some metadata differences, but the geometries are identical.
-
-Because of this, one might think that there is no reason not to just stick with WFS and have your client-side application consume GeoJSON that way. So to see ways that vector tiles offer an enhanced experience, let's make some changes to our request.
-
-Vector clipping 
----------------
-
-**In an image tile, a rendered feature can be clipped**, with some part of the feature going in one adjacent tile and some in another. When rendered, the image tiles are placed next to each other, and the eye won't notice that the display is coming from different sources.
-
-**In a vector tile, the same clipping happens**. A feature that is split across two different tiles is clipped and split into two features, with one feature in each tile. When the two vector tiles are drawn next to each other, the two features can seamlessly be viewed as a single feature.
-
-The reason why such a scheme requires a special output is that **WFS doesn't clip actual features; it will either fully include or not include them**.
-
-Let's see this in action.
-
-#. Alter the above WMS PNG output to include ``&srsName=EPSG:4326&bbox=-6,0,14,20``. This will exclude the area of the polygon with the jagged edge::
-
-     http://localhost:8080/geoserver/vt/ows?service=WMS&version=1.1.0&request=GetMap&layers=vt:simple&styles=&width=512&height=512&format=image/png&srs=EPSG:4326&bbox=-6,0,14,20
-
-   .. figure:: img/vt-wms-clip.png
-
-      WMS output with clipped feature
-
-#. Execute the equivalent WFS GeoJSON request::
-
-     http://localhost:8080/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=vt:simple&outputFormat=application/json&srsName=EPSG:4326&bbox=-6,0,14,20
-
-#. View the output:
-
-   .. code-block:: json
-
-      {"type":"FeatureCollection","totalFeatures":1,"features":[{"type":"Feature",
-       "id":"simple.1","geometry":{"type":"Polygon","coordinates":[[[0,0],[0,20],
-       [10,20],[10,10],[14,10],[15,15],[16,10],[17,12],[18,10],[19,11],[20,10],
-       [20,0],[0,0]]]},"geometry_name":"geom","properties":{"name":"Polygon with 
-       jagged edge"}}],"crs":{"type":"name","properties":
-       {"name":"urn:ogc:def:crs:EPSG::4326"}}}
-
-   Notice that the output is identical to the WFS GeoJSON request in the previous section. This is expected, because the feature was partially contained in the bounding box, so the result included the entire feature.
-
-#. Now execute the the WMS vector tiles format ``FORMAT=application/json;type=geojson`` with the new bounding box::
-
-     http://localhost:8080/geoserver/vt/ows?service=WMS&version=1.1.0&request=GetMap&layers=vt:simple&styles=&width=512&height=512&format=application/json;type=geojson&srs=EPSG:4326&bbox=-6,0,14,20
-
-#. View the output:
-
-   .. code-block:: json
-
-      {"type":"FeatureCollection","totalFeatures":"unknown","features":[{"type":
-       "Feature","id":"simple.1","geometry":{"type":"Polygon","coordinates":[[[0,0],
-       [0,20],[10,20],[10,10],[14,10],[14,0],[0,0]]]},"geometry_name":"geom",
-       "properties":{"name":"Polygon with jagged edge"}}]}
-
-  In this case, **the actual feature geometry was clipped**. (The attributes were untouched.) This means that if we were to execute another non-overlapping request showing the other piece of the feature, they could be seamlessly rendered together in the client, even though they were generated by separate requests.
-
-.. note::
-
-   To generate the other piece of the feature with a bounding box of the same dimensions, use ``bbox=14,0,24,20``::
-
-     http://localhost:8080/geoserver/vt/ows?service=WMS&version=1.1.0&request=GetMap&layers=vt:simple&styles=&width=512&height=512&format=application/json;type=geojson&srs=EPSG:4326&bbox=14,0,24,20
-    
-Vector simplification
+Why use vector tiles?
 ---------------------
 
-When one "zooms out" on a web map, the features are rendered smaller and, by nature of images being of a fixed resolution, simplified. In other words, there is less detail.
+The advantages of vector tiles are;
 
-With vector output, the infinite resolution of vectors means that all the complexity of the features are rendered at any scale, regardless of whether that detail is even visible.
+* **Rendering is done by the client** (for example, OpenLayers), not by the server. This allows different maps/applications to style a map differently without having to reconfigure GeoServer.
 
-**With vector tiles, the vectors may be simplified** (as in, reduced number of vertices) if the output doesn't support that much detail.
+* **The size of a vector tile is usually smaller** than an image tile, resulting in faster data transfer and lower bandwidth usage.
 
-Let's see this in action.
+* GeoWebCache, embedded with GeoServer efficiently stores the vector tile data. Since styling is done by the client, not the server, **GeoWebCache only needs to store one tile for all different styles**.
 
-#. Zoom out all the way to the full extent of the SRS, and reduce the "size" of the output. We can do this by setting the following parameters: ``&bbox=-180,-90,180,90&width=64&height=64`` Execute a WMS PNG request with these parameters::
+* Because the vector data is available on the client, very **high-resolution maps can be drawn without corresponding increases in bandwidth**.
 
-     http://localhost:8080/geoserver/vt/ows?service=WMS&version=1.1.0&request=GetMap&layers=vt:simple&styles=&bbox=-180,-90,180,90&width=64&height=64&srs=EPSG:4326&format=image/png
+* **The client has native access to the actual feature information** (attributes and geometry), allowing for very sophisticated rendering.
 
-   .. figure:: img/vt-wms-tiny.png
+On the other hand, the main disadvantage of vector tiles is that the geographic data may need to be pre-processed to allow the client to do the drawings it requires (similar to preprocessing data for image maps). With this in mind, **vector tiles should only be used for rendering**.
 
-      WMS output zoomed out and tiny
+Vector tile formats
+-------------------
 
-   This output is effectively too small to have any detail shown. The image is necessarily simplified.
+GeoServer can also produce vector tiles in three formats: GeoJSON, TopoJSON, and MapBox Vector (MVT). These are also supported by OpenLayers 3 and other clients.
 
-#. Now request the vector tiles equivalent of this request::
+* GeoJSON is the most human readable and the recommended format for people new to vector tiles.
+* MVT is the preferred format for production.
 
-     http://localhost:8080/geoserver/vt/ows?service=WMS&version=1.1.0&request=GetMap&layers=vt:simple&styles=&bbox=-180,-90,180,90&width=64&height=64&srs=EPSG:4326&format=application/json;type=geojson
+.. list-table::
+   :header-rows: 1
+   :class: non-responsive
 
-#. View the output:
+   * - Format
+     - MIME
+     - Description
+   * - `GeoJSON <http://geojson.org/>`_
+     - ``application/json;type=geojson``
+     - Human readable, format (not tiles) widely supported
+   * - `MapBox Vector (MVT) <https://github.com/mapbox/vector-tile-spec>`_
+     - ``application/x-protobuf;type=mapbox-vector``
+     - Highly compressed, widely supported by applications, not human readable 
+   * - `TopoJSON <https://github.com/mbostock/topojson/wiki>`_
+     - ``application/json;type=topojson``
+     - Good for polygon coverages, human readable (but complex), not widely supported
 
-   .. code-block:: json
 
-      {"type":"FeatureCollection","totalFeatures":"unknown","features":[{"type":
-       "Feature","id":"simple.1","geometry":{"type":"Polygon","coordinates":[[[0,0],
-       [0,20],[10,20],[10,10],[14,10],[15,15],[16,10],[17,12],[20,10],[20,0],[0,0]]]
-       },"geometry_name":"geom","properties":{"name":"Polygon with jagged edge"}}]}
+Publish vector tiles in GeoWebCache
+-----------------------------------
 
-#. Compare this to the original output from above:
+We'll be publishing our vector tiles through GeoWebCache and publishing the layer in a custom OpenLayers application.
 
-   .. code-block:: json
+For this tutorial, we'll be using the built-in layer ``opengeo:countries`` to show off the capabilities, though with slight modifications, any layer will do.
 
-      {"type":"FeatureCollection","totalFeatures":"unknown","features":[{"type":
-       "Feature","id":"simple.1","geometry":{"type":"Polygon","coordinates":[[[0,0],
-       [0,20],[10,20],[10,10],[14,10],[15,15],[16,10],[17,12],[18,10],[19,11],[20,10],
-       [20,0],[0,0]]]},"geometry_name":"geom","properties":{"name":"Polygon with 
-       jagged edge"}}]}
+#. In the GeoServer admin interface, click :guilabel:`Tile Layers` under :guilabel:`Tile Caching`.
 
-   Notice that two vertices, corresponding to the most jagged part of the jagged edge, have been simplified (removed), as shown in the following diagram:
+   .. figure:: img/tilelayerslink.png
 
-   .. figure:: img/vt-simplified.png
+      Tile Layers
 
-      Original (blue) with simplified polygon (red)
+#. Click :guilabel:`opengeo:countries` in the list of layers.
 
-   .. JTS Builder was used for the above
-   .. Original: POLYGON ((0 0, 0 20, 10 20, 10 10, 14 10, 15 15, 16 10, 17 12, 18 10, 19 11, 20 10, 20 0, 0 0))
-   .. Simplified: POLYGON ((0 0, 0 20, 10 20, 10 10, 14 10, 15 15, 16 10, 17 12, 20 10, 20 0, 0 0))
-      
+#. By default the tile formats are ``image/jpeg`` and ``image/png``. Check the boxes for the following vector tile formats:
 
-   With a more complex feature, the simplification could be even more pronounced.
+   * ``application/json;type=geojson``
+   * ``application/json;type=topojson``
+   * ``application/x-protobuf;type=mapbox-vector``
+
+   .. figure:: img/tileformats.png
+
+      Vector tile formats selected
+
+#. Click :guilabel:`Save`.
+
+Our layer is now ready to be served.
+
+Create OpenLayers application
+-----------------------------
+
+#. Create a :file:`www/vectortiles` directory inside your GeoServer Data Directory.
+
+   .. note:: Please see the :ref:`intro.installation` section for your platform for the location of your GeoServer Data Directory.
+
+#. Download the `latest version of OpenLayers <http://openlayers.org/download/>`_.
+
+#. Extract the following files to from the downloaded archive to the directory created in step 1:
+
+   * :file:`ol.js`
+   * :file:`ol-debug.js`
+   * :file:`ol.css`
+
+#. In a text editor, create a new file with the following content:
+
+   .. code-block:: html
+      :linenos:
+
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Vector tiles</title>
+        <script src="ol.js"></script>
+        <link rel="stylesheet" href="ol.css">
+        <style>
+          html, body {
+            font-family: sans-serif;
+            width: 100%;
+          }
+          .map {
+            height: 500px;
+            width: 100%;
+          }
+        </style>
+      </head>
+      <body>
+        <h3>Mapbox Protobuf - vector tiles</h3>
+        <div id="map" class="map"></div>
+        <script>
+
+        var style_simple = new ol.style.Style({
+          fill: new ol.style.Fill({
+            color: '#ADD8E6'
+          }),
+          stroke: new ol.style.Stroke({
+            color: '#880000',
+            width: 1
+          })
+        });
+
+        function simpleStyle(feature) { 
+          return style_simple;
+        }
+       
+        var layer = 'opengeo:countries';
+        var projection_epsg_no = '900913';
+        var map = new ol.Map({
+          target: 'map',
+          view: new ol.View({
+            center: [0, 0],
+            zoom: 2
+          }),
+          layers: [new ol.layer.VectorTile({
+            style:simpleStyle,
+            source: new ol.source.VectorTile({
+              tilePixelRatio: 1, // oversampling when > 1
+              tileGrid: ol.tilegrid.createXYZ({maxZoom: 19}),
+              format: new ol.format.MVT(),
+              url: '/geoserver/gwc/service/tms/1.0.0/' + layer +
+                  '@EPSG%3A'+projection_epsg_no+'@pbf/{z}/{x}/{-y}.pbf'
+            })
+          })]
+        });
+        </script>
+      </body>
+      </html>
+
+#. Save this file in the directory created above as :file:`index.html`.
+
+#. Navigate to ``http://localhost:8080/geoserver/www/vectortiles/index.html`` and verify that the output shows without any errors.
+
+   .. note:: If your GeoServer is deployed at a server other than ``http://localhost:8080/geoserver/``, then please adjust the above URL.
+
+   .. figure:: img/vectortileoutput.png
+
+      Vector tile output
+
+These tiles are being rendered by the OpenLayers client.
+
+Styling vector tiles
+--------------------
+
+Since these tiles are rendered in the client, we need only change the styling instructions inside the client application. No changes to GeoServer are required, and tiles will not have to be regenerated.
+
+#. Change the fill color to light green:
+
+   .. code-block:: html
+      :lineno-start: 23
+
+      var style_simple = new ol.style.Style({
+        fill: new ol.style.Fill({
+          color: 'lightgreen'
+        }),
+         stroke: new ol.style.Stroke({
+            color: '#880000',
+            width: 1
+          })
+      }) ;
+
+#. Save the file and reload the application.
+
+   .. figure:: img/vectortileoutputgreen.png
+
+      Vector tile output with alternate color
+
+#. We can also do attributed-based styling. This dataset contains has a property (``region_un``) which contains the region the country is in. Let's highlight countries in Africa by adding another style definition below the existing style:
+
+   .. code-block:: html
+      :lineno-start: 33
+
+       var style_highlighted = new ol.style.Style({
+         fill: new ol.style.Fill({
+           color: 'yellow'
+         }),
+         stroke: new ol.style.Stroke({
+           color: '#880000',
+           width: 1
+         })
+       });
+
+#. Replace the existing style function:
+
+   .. code-block:: html
+      :lineno-start: 43
+
+       function simpleStyle(feature) { 
+         return style_simple;
+       }
+
+   with the following:
+
+   .. code-block:: html
+      :lineno-start: 43
+
+       function simpleStyle(feature) { 
+         if (feature.get("region_un") == "Africa") {
+           return style_highlighted;
+         }
+         return style_simple;
+       }
+
+#. Save the file and reload the application.
+
+   .. figure:: img/vectortileoutputafrica.png
+
+      Vector tile output with Africa highlighted
