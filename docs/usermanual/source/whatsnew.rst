@@ -9,7 +9,7 @@ In addition, OpenGeo Suite |version| includes the following new features:
 
 **Vector tiles output format**
 
-:ref:`Vector tiles <dataadmin.vectortiles>` are a way to deliver geographic data to a browser or other client application. Vector tiles are similar to raster tiles but the data is actually a vector representation of the features in the tile. Vector tiles improve the performance of maps fast while offering full client-side design flexibility. 
+:ref:`Vector tiles <dataadmin.vectortiles>` are a way to deliver geographic data to a browser or other client application. Vector tiles are similar to raster tiles but the data is actually a vector representation of the features in the tile. Vector tiles improve the performance of maps while offering full client-side design flexibility. 
 
 **NetCDF support**
 
