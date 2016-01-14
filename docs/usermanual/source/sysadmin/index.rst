@@ -22,3 +22,4 @@ This section will discuss how to manage OpenGeo Suite deployments, including ser
    clustering/index
    cloudwatch/index
    libjpeg-turbo/index
+   marlin/index
