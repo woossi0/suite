@@ -121,11 +121,17 @@ OS X application server
 
 #. Download the file with a version number that most closely matches the version of OpenGeo Suite. For example, the file :file:`gdal_osx_suite_40.zip` would be appropriate for OpenGeo Suite 4.x.
 
-#. Extract the contents of the archive into :file:`/usr/local/lib/`.  The path may not exist, so it may need to be created first.
+#. Extract the contents of the archive to a location of your choosing.
 
-#. Create (or edit) a file called :file:`setenv.sh` located in $TOMCAT_HOME/bin, and add the following line::
+#. Create (or edit) a file called :file:`setenv.sh` located in $TOMCAT_HOME/bin, and add the following line:
 
-      export DYLD_LIBRARY_PATH=/usr/local/lib:$DYLD_LIBRARY_PATH
+   .. code-block:: console
+
+      export DYLD_LIBRARY_PATH=<GDAL_PATH>:$DYLD_LIBRARY_PATH
+
+   replacing <GDAL_PATH> with the directory the archive was extracted to in the previous step.
+
+#. Extract the file :file:`gdal-A.B.C.jar` (where A.B.C is a version number) from the archive. Copy into :file:`<TOMCAT_HOME>\\webapps\\geoserver\\WEB-INF\\lib\\`, where :file:`<TOMCAT_HOME>` is the location where Tomcat is installed (such as :file:`/opt/tomcat/`).
 
 #. Restart Tomcat.
 
