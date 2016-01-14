@@ -10,14 +10,16 @@ But if you want your GeoServer to be usable outside of your own domain, you will
 Jetty
 -----
 
-#. Download the ``jetty-servlets.jar`` from http://repo.maven.apache.org/maven2/org/eclipse/jetty/jetty-servlets/7.6.13.v20130916/jetty-servlets-7.6.13.v20130916.jar.
+.. note::
 
-#. Copy this file to your :file:`jetty/lib` folder:
+   Your copy of Jetty in OpenGeo Suite should include a file called :file:`jetty-servlets.jar`, found in your :file:`jetty/lib` directory. If not, it will need to be downloaded separately.
+
+   Target directories:
 
    * Windows: :file:`C:\\Program Files (x86)\\Boundless\\OpenGeo\\jetty\\lib`
    * OS X: :file:`/Users/<user>/Library/Application Support/GeoServer/jetty/lib`
 
-#. Edit your GeoServer :file:`web.xml` file and add the following content:
+#. Edit your GeoServer :file:`web.xml` file (inside :file:`webapps/geoserver/WEB-INF`) and add the following content:
 
    .. code-block:: xml
 
@@ -38,3 +40,8 @@ Jetty
 #. Save this file.
 
 #. Restart GeoServer.
+
+Tomcat
+------
+
+See http://enable-cors.org/server_tomcat.html for details.
