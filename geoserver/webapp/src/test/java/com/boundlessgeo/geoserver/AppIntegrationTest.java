@@ -785,9 +785,9 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
                 .put("workspace", "cgf");
         
 
-        com.mockrunner.mock.web.MockHttpServletResponse resp =
+        MockHttpServletResponse resp =
             putAsServletResponse("/app/api/maps/cgf/map1/copy", obj.toString(), MediaType.APPLICATION_JSON_VALUE);
-        assertEquals(200,resp.getStatusCode());
+        assertEquals(200,resp.getStatus());
 
         assertNotNull(catalog.getLayerGroupByName("cgf:map2"));
         assertNotNull(catalog.getLayerByName("cgf:renamedLayer"));
@@ -805,9 +805,9 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             .put("name", "PrimitiveGeoFeature")
             .put("workspace", "sf");
 
-        com.mockrunner.mock.web.MockHttpServletResponse resp =
+        MockHttpServletResponse resp =
             postAsServletResponse("/app/api/layers/sf", obj.toString(), MediaType.APPLICATION_JSON_VALUE);
-        assertEquals(201,resp.getStatusCode());
+        assertEquals(201,resp.getStatus());
 
         assertNotNull(catalog.getLayerByName("sf:foo"));
     }
@@ -824,9 +824,9 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             .put("store", "sf")
             .put("workspace", "sf");
 
-        com.mockrunner.mock.web.MockHttpServletResponse resp =
+        MockHttpServletResponse resp =
                 postAsServletResponse("/app/api/layers/sf", obj.toString(), MediaType.APPLICATION_JSON_VALUE);
-        assertEquals(201, resp.getStatusCode());
+        assertEquals(201, resp.getStatus());
 
         assertNotNull(catalog.getLayerByName("sf:foo"));
     }
@@ -844,9 +844,9 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
                 .put("store", "usa")
                 .put("workspace", "cdf");
 
-        com.mockrunner.mock.web.MockHttpServletResponse resp =
+        MockHttpServletResponse resp =
             postAsServletResponse("/app/api/layers/cdf", obj.toString(), MediaType.APPLICATION_JSON_VALUE);
-        assertEquals(201, resp.getStatusCode());
+        assertEquals(201, resp.getStatus());
 
         assertNotNull(catalog.getLayerByName("cdf:foo"));
 
@@ -861,9 +861,9 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         
         String sldName = layer.getDefaultStyle().getName();
         
-        com.mockrunner.mock.web.MockHttpServletResponse resp =
+        MockHttpServletResponse resp =
                 putAsServletResponse("/app/api/layers/sf/PrimitiveGeoFeature/style", "title: ysld", YsldHandler.MIMETYPE);
-        assertEquals(200,resp.getStatusCode());
+        assertEquals(200,resp.getStatus());
 
         layer = catalog.getLayerByName("sf:PrimitiveGeoFeature");
         assertNotNull(layer.getDefaultStyle());

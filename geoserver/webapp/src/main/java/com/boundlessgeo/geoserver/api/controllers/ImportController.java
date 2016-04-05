@@ -272,7 +272,7 @@ public class ImportController extends ApiController {
         
         //Special behavior for SpatialFile - linked files
         FileData srcData = (FileData)t.getData();
-        File srcFile = srcData.getFile();
+        File srcFile = srcData.getFile().file();
         File storeFile;
         
         File destDir;
@@ -281,7 +281,7 @@ public class ImportController extends ApiController {
         
         try {
             destDir = uploadDir(catalog, ws, store);
-            destFile = new File(destDir, srcData.getFile().getName());
+            destFile = new File(destDir, srcData.getFile().file().getName());
             if (srcFile.getAbsoluteFile().equals(destFile.getAbsoluteFile())) {
                 LOG.warning("Trying to move file to itself");
                 return;
@@ -295,7 +295,7 @@ public class ImportController extends ApiController {
                 storeFile = catalog.getResourceLoader().url(((CoverageStoreInfo)store).getURL());
                 //A CoverageStore needs a single file
                 String url = "file:"+Paths.convert(baseDirectory, destFile);
-                if (!(srcData.getFile().getAbsolutePath().equals(storeFile.getAbsolutePath())) ) {
+                if (!(srcData.getFile().file().getAbsolutePath().equals(storeFile.getAbsolutePath())) ) {
                     throw new RuntimeException("CoverageStore file not the same as imported file");
                 }
                 ((CoverageStoreInfo)store).setURL(url);
@@ -311,7 +311,7 @@ public class ImportController extends ApiController {
                  */
                 String url = "file:"+Paths.convert(baseDirectory, destDir);
                 if (!(storeFile.equals(destDir.getAbsoluteFile()) 
-                        || srcData.getFile().getAbsolutePath().startsWith(storeFile.getAbsolutePath())) ) {
+                        || srcData.getFile().file().getAbsolutePath().startsWith(storeFile.getAbsolutePath())) ) {
                     throw new RuntimeException("DataStore file not the same as imported file");
                 }
                 store.getConnectionParameters().put("url", url);
@@ -330,27 +330,27 @@ public class ImportController extends ApiController {
             if (srcData instanceof SpatialFile) {
                 destData = new SpatialFile(destFile);
                 if (((SpatialFile)srcData).getPrjFile() != null) {
-                    File prjFile = new File(destDir, ((SpatialFile)srcData).getPrjFile().getName());
+                    File prjFile = new File(destDir, ((SpatialFile)srcData).getPrjFile().file().getName());
                     if (move) {
-                        Files.move(((SpatialFile)srcData).getPrjFile().toPath(), prjFile.toPath());
+                        Files.move(((SpatialFile)srcData).getPrjFile().file().toPath(), prjFile.toPath());
                     } else{
-                        Files.copy(((SpatialFile)srcData).getPrjFile().toPath(), prjFile.toPath());
+                        Files.copy(((SpatialFile)srcData).getPrjFile().file().toPath(), prjFile.toPath());
                     }
-                    ((SpatialFile)destData).setPrjFile(prjFile);
+                    ((SpatialFile)destData).setPrjFile(org.geoserver.platform.resource.Files.asResource(prjFile));
                 }
-                for (File f : ((SpatialFile)srcData).getSuppFiles()) {
-                    File suppFile = new File(destDir, f.getName());
+                for (Resource r : ((SpatialFile)srcData).getSuppFiles()) {
+                    File suppFile = new File(destDir, r.file().getName());
                     if (move) {
-                        Files.move(f.toPath(), suppFile.toPath());
+                        Files.move(r.file().toPath(), suppFile.toPath());
                     } else {
-                        Files.copy(f.toPath(), suppFile.toPath());
+                        Files.copy(r.file().toPath(), suppFile.toPath());
                     }
-                    ((SpatialFile)destData).getSuppFiles().add(suppFile);
+                    ((SpatialFile)destData).getSuppFiles().add(org.geoserver.platform.resource.Files.asResource(suppFile));
                 }
             } else if (srcData instanceof ASpatialFile) {
-                destData = new ASpatialFile(destFile);
+                destData = new ASpatialFile(org.geoserver.platform.resource.Files.asResource(destFile));
             } else {
-                destData = new FileData(destFile);
+                destData = new FileData(org.geoserver.platform.resource.Files.asResource(destFile));
             }
         } catch (Exception e) {
             //If this occurs, the store files will be in a temporary folder, so we should abort the import
