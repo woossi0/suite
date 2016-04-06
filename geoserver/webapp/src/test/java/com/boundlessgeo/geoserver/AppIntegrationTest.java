@@ -420,7 +420,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         result = ctrl.update("gs", id, getUpdateTasks(result), request);
         result = pollImport(ctrl, "gs", id, "complete", request);
         assertNotNull(result);
-        
+        //Apparently the catalog is time-sensitive now...
+        Thread.sleep(100);
         LayerInfo l = catalog.getLayerByName("gs:point_20space");
         StoreInfo s = catalog.getStoreByName("gs", "point_space", StoreInfo.class);
         assertNotNull(l);
