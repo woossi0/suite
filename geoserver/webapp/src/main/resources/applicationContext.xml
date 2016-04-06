@@ -21,6 +21,10 @@
       <constructor-arg ref="catalog"/>
     </bean>
     
+    <!-- Hide spring mvc MappedInterceptor beans from GeoserverExtensions -->
+    <bean class="com.boundlessgeo.geoserver.MappedInterceptorFilter">
+    </bean>
+    
     <!-- Hide the composer-importer bean from geoserver -->
     <bean class="com.boundlessgeo.geoserver.ComposerImporterFilter">
     </bean>
