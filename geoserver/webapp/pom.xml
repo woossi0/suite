@@ -62,7 +62,7 @@
     <jetty.version>9.2.13.v20150730</jetty.version>
     <spring.version>4.2.5.RELEASE</spring.version>
     <spring.security.version>4.0.4.RELEASE</spring.security.version>
-    <servlet-api.version>3.0.1</servlet-api.version>
+    <servlet-api.version>3.1.0</servlet-api.version>
     <jackson.version>2.1.1</jackson.version>
     <marlin.version>0.7.3-Unsafe</marlin.version>
   </properties>
