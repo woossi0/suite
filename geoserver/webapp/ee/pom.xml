@@ -4,16 +4,16 @@
   <groupId>org.opengeo.geoserver</groupId>
   <artifactId>web-app-ee</artifactId>
   <packaging>jar</packaging>
-  <version>4.8-SNAPSHOT</version>
+  <version>4.9-SNAPSHOT</version>
   <name>OpenGeo Suite Enterprise GeoServer Web App</name>
   <description>Enterprise-only functionality for the OpenGeo Suite Web App</description>
 
   <properties>
-    <gs.version>2.8-SNAPSHOT</gs.version>
-    <gt.version>14-SNAPSHOT</gt.version>
-    <jetty.version>7.6.13.v20130916</jetty.version>
-    <spring.version>3.2.10.RELEASE</spring.version>
-    <spring.security.version>3.2.4.RELEASE</spring.security.version>
+    <gs.version>2.9-SNAPSHOT</gs.version>
+    <gt.version>15-SNAPSHOT</gt.version>
+    <jetty.version>9.2.13.v20150730</jetty.version>
+    <spring.version>4.2.5.RELEASE</spring.version>
+    <spring.security.version>4.0.4.RELEASE</spring.security.version>
   </properties>
 
   <dependencyManagement>
