@@ -18,19 +18,8 @@
       <outputDirectory>webapps/geowebcache</outputDirectory>
     </fileSet>
     <fileSet>
-      <directory>geoexplorer/target/geoexplorer</directory>
-      <outputDirectory>webapps/geoexplorer</outputDirectory>
-      <excludes>
-        <exclude>doc/**</exclude>
-      </excludes>
-    </fileSet>
-    <fileSet>
       <directory>docs/usermanual/target/html</directory>
       <outputDirectory>webapps/opengeo-docs</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>docs/geoexplorer/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/geoexplorer</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>docs/geoserver/target/html</directory>
@@ -43,10 +32,6 @@
     <fileSet>
       <directory>docs/geowebcache/target/html</directory>
       <outputDirectory>webapps/opengeo-docs/geowebcache</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>docs/sdk-api/target/html</directory>
-      <outputDirectory>webapps/opengeo-docs/sdk-api</outputDirectory>
     </fileSet>
     <fileSet>
       <directory>docs/openlayers/target/html</directory>

@@ -12,13 +12,6 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>geoexplorer/target</directory>
-      <outputDirectory>/</outputDirectory>
-      <includes>
-        <include>geoexplorer.war</include>
-      </includes>
-    </fileSet>
-    <fileSet>
       <directory>geowebcache/target</directory>
       <outputDirectory>/</outputDirectory>
       <includes>

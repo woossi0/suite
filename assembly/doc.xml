@@ -6,14 +6,6 @@
   <baseDirectory>opengeo-docs</baseDirectory>
   <fileSets>
     <fileSet>
-      <directory>docs/geoexplorer/target/html</directory>
-      <outputDirectory>geoexplorer</outputDirectory>
-    </fileSet>
-    <fileSet>
-      <directory>docs/sdk-api/target/html</directory>
-      <outputDirectory>sdk-api</outputDirectory>
-    </fileSet>
-    <fileSet>
       <directory>docs/geoserver/target/html</directory>
       <outputDirectory>geoserver</outputDirectory>
     </fileSet>

@@ -1,7 +1,7 @@
 <project name="suite" default="build">
   <import file="build/common.xml"/>
 
-  <property name="modules.list" value="geoserver,geowebcache,geoexplorer,dashboard,jetty,docs,apps"/>
+  <property name="modules.list" value="geoserver,geowebcache,dashboard,jetty,docs,apps"/>
 
   <target name="build" description="Builds project">
     <for list="${modules.list}" param="mod">
@@ -58,9 +58,6 @@
       <fileset dir="geowebcache/target/war" includes="**/*">
         <exclude name="**/imageio-ext-*.jar"/>
       </fileset>
-    </copy>
-    <copy todir="${webappsdir}/geoexplorer">
-      <fileset dir="geoexplorer/target/war" includes="**/*"/>
     </copy>
     <!-- Once WPS Builder issues on r2d2 are resolved this should be re-added to the bin bundle
     <unzip dest="${webappsdir}/wpsbuilder" overwrite="true">

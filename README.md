@@ -165,11 +165,9 @@ The suite repository is composed of the following modules:
 * [apps](apps/README.md)
 * [dashboard](dashboard/README.md)
 * [docs](docs/README.md)
-* [geoexplorer](geoexplorer/README.md)
 * [geoserver](geoserver/README.md)
 * [geowebcache](geowebcache/README.md)
 * [jetty](jetty/README.md)
 * [recipes](recipes/README.md)
-* [webapp-sdk](sdk/README.md)
 
 Consult the module README files for module specific information. 

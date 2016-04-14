@@ -2,7 +2,7 @@
 
     <import file="../build/common.xml"/>
 
-    <property name="docs.modules" value="usermanual,install,geoexplorer,geowebcache,geoserver,sdk-api,postgis,openlayers,qgis"/>
+    <property name="docs.modules" value="usermanual,install,geowebcache,geoserver,postgis,openlayers,qgis"/>
 
     <target name="clean" depends="destroy-target"
         description="Clean project">
