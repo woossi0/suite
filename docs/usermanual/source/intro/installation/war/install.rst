@@ -10,7 +10,7 @@ This section will show how to install OpenGeo Suite for Application Servers. **A
 System requirements
 -------------------
 
-OpenGeo Suite requires the use of **Java 7** or higher. You may use either a JRE or a JDK from Oracle or the OpenJDK project.
+OpenGeo Suite requires the use of **Java 8** or higher. You may use either a JRE or a JDK from Oracle or the OpenJDK project.
 
 .. for reference http://docs.geoserver.org/latest/en/user/installation/java.html
 
@@ -34,9 +34,8 @@ Increasing available memory
 We recommend the following memory allocations in Tomcat:
 
 * Maximum heap size: 1 GB
-* Maximum PermGen size: 128 MB
 
-The Java options for these settings are: ``-Xmx1024m -XX:MaxPermSize=128m``.
+The Java options for these settings are: ``-Xmx1024m``.
 
 Add these options to your application server and then restart.
 

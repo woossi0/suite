@@ -5,7 +5,7 @@ Setting the Oracle JVM
 
 We recommend using the Oracle JVM with OpenGeo Suite, as testing has shown that the Oracle JVM is significantly faster than other JVM implementations.
 
-Specifically, we recommend using **Oracle JRE 7**. Even though it isn't the latest version, it is the most well-tested and stable version of the JVM with GeoServer.
+Specifically, we recommend using **Oracle JRE 8**. The current GeoServer release requires a Java 8 JVM.
 
 Determining the current Java version
 ------------------------------------
@@ -44,16 +44,16 @@ Changing to the Oracle JRE
 Windows and OS X installers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-OpenGeo Suite for Windows and OS X include the Oracle JRE 7 by default, so no action is needed.
+OpenGeo Suite for Windows and OS X include the Oracle JRE 8 by default, so no action is needed.
 
 Linux
 ^^^^^
 
-#. Download the Oracle JRE. In your browser, navigate to `Oracle's download page for JRE 7 <http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html>`_.
+#. Download the Oracle JRE. In your browser, navigate to `Oracle's download page for JRE 8 <http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html>`_.
 
 #. Click the radio box to accept the license agreement and then click the download link that matches your system::
 
-     jre-7u76-linux-x64.tar.gz
+     jre-8u77-linux-x64.tar.gz
 
 #. Extract the download file contents to your temporary directory or desktop.
 
@@ -63,13 +63,13 @@ Linux
 
    .. code-block:: console
 
-      sudo mv jre1.7.0_76 /usr/lib/jvm
+      sudo mv jre1.8.0_77 /usr/lib/jvm
 
 #. *(Optional)* Change your ``JAVA_HOME`` environment variable to point to this new directory:
 
    .. code-block:: console
 
-      export $JAVA_HOME=/usr/lib/jvm/jre1.7.0_76
+      export $JAVA_HOME=/usr/lib/jvm/jre1.8.0_77
       
 #. Ensure your application server is using this new Java. Many application servers will pick up the system ``JAVA_HOME`` environment variable or require that their service definition be modified.
 
@@ -80,9 +80,9 @@ Linux
    .. code-block:: bash
       :emphasize-lines: 3
 
-      OPENGEO_OPTS="-Djava.awt.headless=true -Xms256m -Xmx768m -Xrs -XX:PerfDataSamplingInterval=500 -XX:MaxPermSize=256m -Dorg.geotools.referencing.forceXY=true -DGEOEXPLORER_DATA=/var/lib/opengeo/geoexplorer"
+      OPENGEO_OPTS="-Djava.awt.headless=true -Xms256m -Xmx768m -Xrs -XX:PerfDataSamplingInterval=500 -Dorg.geotools.referencing.forceXY=true -DGEOEXPLORER_DATA=/var/lib/opengeo/geoexplorer"
       JAVA_OPTS="$JAVA_OPTS $OPENGEO_OPTS"
-      JAVA_HOME=/usr/lib/jvm/jre1.7.0_76
+      JAVA_HOME=/usr/lib/jvm/jre1.8.0_77
 
 #. Save and close the file.
 
@@ -105,11 +105,11 @@ Windows application servers
 
 If running OpenGeo Suite for Application Servers on a Windows system:
 
-#. Download the Oracle JRE. In your browser, navigate to `Oracle's download page for JRE 7 <http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html>`_.
+#. Download the Oracle JRE. In your browser, navigate to `Oracle's download page for JRE 8 <http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html>`_.
 
 #. Click the radio box to accept the license agreement and then click the download link that matches your system::
 
-     jre-7u76-windows-x64.exe
+     jre-8u77-windows-x64.exe
 
 #. Use the installer (or manual directions) to update Java.
    
@@ -124,7 +124,7 @@ If running OpenGeo Suite for Application Servers on a Windows system:
       * - Variable name
         - Variable value
       * - JAVA_HOME
-        - :file:`C:\\Program Files\\Java\\jre7`
+        - :file:`C:\\Program Files\\Java\\jre8`
 
 #. Restart your application server.
 
