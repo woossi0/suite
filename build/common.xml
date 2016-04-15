@@ -304,7 +304,7 @@ Common build targets.
       <property name="flags" value=""/>
       
       <echo message="sphinx-build -A suite_version=${suite.version} ${sphinx.flags} ${flags} -b ${builder} -d ${doctrees} ${srcdir} ${outdir}"/>
-      <exec executable="sphinx-build" dir="${dir}">
+      <exec executable="sphinx-build" dir="${dir}" failonerror="true">
         <arg line="-A suite_version=${suite.version} ${sphinx.flags} ${flags} -b ${builder} -d ${doctrees} ${srcdir} ${outdir}"/>
       </exec>
   </target>
