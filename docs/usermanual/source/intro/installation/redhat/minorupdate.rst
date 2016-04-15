@@ -141,11 +141,11 @@ Update process
 
          yum remove gdal-filegdb
 
-#. Be sure to update any additional :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example, to update the :ref:`Boundless SDK <webapps.sdk>`:
+#. Be sure to update any additional :ref:`packages <intro.installation.redhat.packages>` that you installed originally. For example, to update the :ref:`WPS Builder <processing.wpsbuilder>`:
 
    .. code-block:: bash
 
-      yum upgrade opengeo-webapp-sdk
+      yum upgrade opengeo-wpsbuilder
 
 #. Restart the Suite
 

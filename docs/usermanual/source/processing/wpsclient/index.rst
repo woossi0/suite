@@ -5,7 +5,7 @@ Using WPS with OpenLayers and the Boundless SDK
 
 OpenLayers includes a Web Processing Service (WPS) client. With this client you can employ server processes in browser-based mapping applications. For example, you could perform certain geometry manipulations on the server that are not available in a browser environment. The WPS client also supports process chaining, which allows the server to perform more complex operations without the need to return the result to the client at each intermediate step.
 
-This tutorial will describe how to use a WPS process to manipulate a locally-created geometry in the browser, first using OpenLayers, and then by creating an interactive application using the :ref:`Boundless SDK <webapps.sdk>`.
+This tutorial will describe how to use a WPS process to manipulate a locally-created geometry in the browser using OpenLayers.
 
 
 Creating an OpenLayers.WPSClient instance
@@ -202,58 +202,4 @@ The following code block shows how the intersection/buffer example in the previo
     });
 
 In this case, the ``geo:buffer`` process doesn't produce multiple outputs, but it is trivial to replace this process in your code with one that does.
-
-
-Building an interactive application
------------------------------------
-
-Using the :ref:`Boundless SDK <webapps.sdk>`, you can create a lightweight demo application that allows the user to draw geometries and execute the SplitPolygon and Intersection/Buffer processes as created above.
-
-To create our custom application, we must first create a minimal :file:`app.js` file and a custom ``app_wpsdemo`` plugin in its own :file:`WPSDemo.js` file. These files will then be copied into a template application.
-
-app.js
-~~~~~~
-
-The :file:`app.js` file is below (:download:`Download <script/app.js>`). Replace the existing :file:`app.js` file (found at :file:`<sdk_app>/src/app/app.js`) with this one:
-
-.. literalinclude:: script/app.js
-   :language: javascript
-
-The important aspects of this minimal application are the dependencies, the ``app_wpsdemo`` plugin, and the vector layer created from the ``ol`` source. For the vector layer, we require renderers in addition to ``OpenLayers/Layer/Vector.js``:
-
-* ``OpenLayers/Renderer/Canvas.js``
-* ``OpenLayers/Renderer/VML.js``
-
-Both renderers are used here for better compatibility. The Canvas renderer works for all modern desktop and mobile browsers, while VML works for Internet Explorer 8 and older. It is the application developer's decision for which platforms should be supported.
-
-
-WPSDemo.js
-~~~~~~~~~~
-
-The :file:`WPSDemo.js` file is below (:download:`Download <script/WPSDemo.js>`). This file should be saved in the same directory as :file:`app.js` (:file:`<sdk_app>/src/app/WPSDemo.js`):
-
-.. literalinclude:: script/WPSDemo.js
-   :language: javascript
-
-This script creates four action buttons in the ``init`` method:
-
-* Draw
-* Drag
-* Split process
-* Intersection+Buffer process
-
-Both processes are executed when the user finishes drawing a line. The ``split`` and ``intersectBuffer`` methods are responsible for configuring and executing the required processes, and the ``addResult`` method adds the resulting geometries to a map.
-
-Results
-~~~~~~~
-
-After these files have been created and placed in the proper directory, the application can be tested.
-
-.. note:: Please see the :ref:`webapps.sdk.debug` section for more information on launching this application.
-
-After drawing two polygons, splitting them, dragging them around a bit, and then executing two different Intersection/Buffer processes, our map could look like this:
-
-.. figure:: img/wpsdemo.png
-
-   *Sample map showing process output*
 

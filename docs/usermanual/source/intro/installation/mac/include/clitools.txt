@@ -3,7 +3,6 @@ CLI tools
 
 The CLI tools package contains all the command line tools for OpenGeo Suite:
 
-* :ref:`Boundless SDK <webapps.sdk.install>`
 * PostGIS data conversion utilities such as ``shp2pgsql``
 * `GDAL/OGR <http://www.gdal.org/>`_ format translation utilities (including Python modules)
 * `PDAL <http://www.pointcloud.org/>`_ tools for working with LIDAR point cloud data

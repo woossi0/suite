@@ -122,11 +122,11 @@ Update process
         apt-get upgrade opengeo geoserver-* postgis-* postgresql-*-postgis-* --only-upgrade
 
 
-#. Update any other additional :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example, to update the :ref:`Boundless SDK <webapps.sdk>`:
+#. Update any other additional :ref:`packages <intro.installation.ubuntu.packages>` that you installed originally. For example, to update the :ref:`WPS Builder <processing.wpsbuilder>`:
 
    .. code-block:: bash
 
-      apt-get upgrade opengeo-webapp-sdk
+      apt-get upgrade wpsbuilder
 
 After update
 ------------

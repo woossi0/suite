@@ -34,9 +34,6 @@ The following packages are considered "meta" packages that only depend on other 
    * - ``opengeo-client``
      - All client packages
      - ``postgis21`` ``pgadmin3`` ``pdal``
-   * - ``opengeo-webapp-sdk``
-     - Boundless SDK
-     -
 
 Server packages
 ---------------
