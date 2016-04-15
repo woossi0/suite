@@ -14,9 +14,6 @@
       <available file="composer/build.xml"/>
       <then>
         <ant antfile="composer/build.xml" useNativeBasedir="true" />
-        <copy todir="composer/build">
-          <fileset dir="composer/app" includes="LICENSE.txt"/>
-        </copy>
       </then>
     </if>
   </target>
@@ -69,6 +66,11 @@
             <available file="composer/build.xml"/>
             <then>
               <ant antfile="composer/build.xml" target="assemble" useNativeBasedir="true" />
+              <antcall target="assemble-artifact">
+                <param name="dir" value="composer/target"/>
+                <param name="name" value="composer"/>
+                <param name="includes" value="*.war"/>
+              </antcall>
             </then>
           </if>
         </then>
