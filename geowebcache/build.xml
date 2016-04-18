@@ -18,10 +18,14 @@
     <unzip src="target/geowebcache-${gwc.version}.war" 
       dest="${war.dir}"/>
     <copy todir="${webinf.dir}" overwrite="true">
-      <fileset dir="src/main/webapp/WEB-INF" includes="web.xml"/>
+      <fileset dir="src/main/webapp/WEB-INF" includes="web.xml,geowebcache-*-context.xml"/>
     </copy>
     <copy todir="${webinf.dir}/classes">
       <fileset dir="src/main/resources" includes="*.xml"/>
+    </copy>
+    <mkdir dir="${webinf.dir}/classes/com/boundlessgeo/geowebcache/web"/>
+    <copy todir="${webinf.dir}/classes/com/boundlessgeo/geowebcache/web" overwrite="true">
+      <fileset dir="../geoserver/webapp/target/classes/com/boundlessgeo/geowebcache/web/"/>
     </copy>
     <jar destfile="${basedir}/target/geowebcache.war" basedir="${war.dir}"
         includes="**/*" excludes="**/imageio-ext-*.jar"/>
