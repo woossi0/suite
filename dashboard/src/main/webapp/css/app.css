@@ -135,12 +135,6 @@ a:focus, a:active {
 }
 
 .navbar-brand {
-  background: #28728d url(../img/opengeo-logo.png) no-repeat left center;
-  width: 304px;
-  height: 40px;
-}
-
-.navbar-brand.navbar-ee {
   background: #28728d url(../img/opengeo-logo-ee.png) no-repeat left center;
   width: 501px;
   height: 40px;
@@ -149,24 +143,12 @@ a:focus, a:active {
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 192dpi) {
   .navbar-brand {
-    background-image: url(../img/opengeo-logo@2x.png);
-    background-size: 304px 40px;
-    background-repeat: no-repeat;
-    width: 304px;
-    height: 40px;
-  }
-  .navbar-brand.navbar-ee {
     background-image: url(../img/opengeo-logo-ee@2x.png);
     width: 501px;
     height: 40px;
     background-size: 501px 40px;
     background-repeat: no-repeat;
   }
-}
-
-
-.build_profile {
-  display: none;
 }
 
 .composer-screen {
@@ -785,17 +767,7 @@ footer div.boundless-logo:hover {
   }
 }
 
-
-
 @media screen and (max-width: 768px) {
-  .navbar-brand {
-    background: #28728d url(../img/opengeo-logo-small.png) no-repeat left center;
-    width: 242px;
-    height: 32px;
-    margin: 6px 0 0 -10px;
-    padding-left: 0;
-  }
-
   .navbar-inverse .navbar-collapse {
     margin-left: -20px;
     margin-right: -15px;
@@ -887,19 +859,6 @@ footer div.boundless-logo:hover {
     padding: 0 15px;
   }
 
-}
-
-@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2),
-       (min-resolution: 192dpi) {
-  .navbar-brand {
-    background-image: url(../img/opengeo-logo-small@2x.png);
-    background-size: 241px 32px;
-    background-repeat: no-repeat;
-    width: 241px;
-    height: 32px;
-    margin-top: 8px;
-    margin-left: -10px;
-  }
 }
 
 

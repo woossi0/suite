@@ -110,16 +110,6 @@ function onLoad() {
   proj_version = '@suite_version@';
   $('.version').html(proj_version);
 
-  // Add version info to all version spans
-  var build_profile = '@build_profile@';
-  if (build_profile==='ee') {
-    var header = $('#header-tag');
-    header.addClass('navbar-ee');
-    $('.build_profile').show();
-  } else {
-    $('.build_profile').hide();
-  }
-
   // Add version to all docs links
 /*
   var docs_version = "docs/" + proj_version + "/";
