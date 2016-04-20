@@ -23,20 +23,6 @@
         <param name="goals" value="install"/>
         <param name="flags" value="-DskipTests"/>
     </antcall>
-    <if>
-      <equals arg1="${suite.build_profile}" arg2="ee"/>
-      <then>
-
-      </then>
-      <else>
-        <delete>
-          <fileset dir="target/geoserver/WEB-INF/lib">
-            <include name="gs-libjpeg-turbo*.jar"/>
-            <include name="*turbojpeg*.jar"/>
-          </fileset>
-        </delete>
-      </else>
-    </if>
   </target>
 
   <target name="clean" depends="destroy">
@@ -59,22 +45,13 @@
     </copy>
 
     <delete file="${war.file}"/>
-    <if>
-        <equals arg1="${suite.build_profile}" arg2="ee"/>
-        <then>
-          <if>
-            <available file="composer/build.xml"/>
-            <then>
-              <ant antfile="composer/build.xml" target="assemble" useNativeBasedir="true" />
-              <antcall target="assemble-artifact">
-                <param name="dir" value="composer/target"/>
-                <param name="name" value="composer"/>
-                <param name="includes" value="*.war"/>
-              </antcall>
-            </then>
-          </if>
-        </then>
-    </if>
+
+    <ant antfile="composer/build.xml" target="assemble" useNativeBasedir="true" />
+    <antcall target="assemble-artifact">
+      <param name="dir" value="composer/target"/>
+      <param name="name" value="composer"/>
+      <param name="includes" value="*.war"/>
+    </antcall>
 
     <jar destfile="${war.file}" basedir="${war.dir}" />
     <antcall target="assemble-artifact">
