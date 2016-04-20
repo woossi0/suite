@@ -18,7 +18,6 @@
    version="1.1"
    inkscape:version="0.91 r"
    sodipodi:docname="suite-component-header.svg"
-   inkscape:export-filename="/home/smithkm/og-proj/geowebcache/geowebcache/web/src/main/resources/org/geowebcache/bundletest/geowebcache_logo.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -132,24 +131,6 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     inkscape:groupmode="layer"
-     id="layer4"
-     inkscape:label="Text 1"
-     style="display:none"
-     sodipodi:insensitive="true"
-     transform="translate(0,-5.9999993)">
-    <image
-       transform="translate(426.78576,-194.21937)"
-       sodipodi:absref="/home/smithkm/logo2-basic.png"
-       y="200.21935"
-       x="-426.78571"
-       id="image8181"
-       xlink:href="file:///home/smithkm/logo2-basic.png"
-       preserveAspectRatio="none"
-       height="40"
-       width="468" />
-  </g>
   <g
      inkscape:label="Text"
      inkscape:groupmode="layer"
