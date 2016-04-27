@@ -14,6 +14,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
 import com.boundlessgeo.geoserver.util.NameUtil;
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
 
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -76,6 +77,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 
 public class AppIntegrationTest extends GeoServerSystemTestSupport {
@@ -1003,5 +1005,35 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals("unique", NameUtil.unique("unique", pointMap.getClass(), catalog));
         assertEquals("unique", NameUtil.unique("unique", pointStyle.getClass(), catalog));
         
+    }
+    
+    @Test
+    public void testGetRenderingTransforms() throws Exception {
+        JSON json = getAsJSON(("/app/api/serverInfo/renderingTransforms"));
+        if (json instanceof JSONObject) {
+            //getAsJson returned an exception message
+            fail(json.toString());
+        }
+        JSONArray arr = (JSONArray) json;
+        //Make sure we get something from each factory
+        boolean hasHeatmap = false;
+        boolean hasBuffer = false;
+        boolean hasContour = false;
+        
+        for(Object o : arr.toArray()) {
+            String name = ((JSONObject)o).getString("name");
+            if ("vec:Heatmap".equals(name)) {
+                hasHeatmap = true;
+            }
+            if ("geo:buffer".equals(name)) {
+                hasBuffer = true;
+            }
+            if ("ras:Contour".equals(name)) {
+                hasContour = true;
+            }
+        }
+        assertTrue(hasHeatmap);
+        assertTrue(hasBuffer);
+        assertTrue(hasContour);
     }
 }
