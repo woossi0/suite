@@ -65,7 +65,7 @@
     <copy todir="${webappsdir}">
       <fileset dir="docs/target" includes="opengeo-docs/**/*"/>
     </copy>
-    <unzip dest="${webappsdir}/apps" src="apps/target/apps.war"/>
+    <!-- <unzip dest="${webappsdir}/apps" src="apps/target/apps.war"/> -->
     <copy todir="${bindir}/data_dir">
       <fileset dir="geoserver/data_dir/target" includes="**/*">
         <exclude name="*.zip"/>
