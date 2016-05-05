@@ -32,6 +32,7 @@
     <property name="webappsdir" value="${bindir}/webapps"/>
     <delete dir="${bindir}"/>
     <mkdir dir="${bindir}"/>
+    <mkdir dir="jetty/target"/>
     <unzip dest="${bindir}">
       <fileset dir="jetty/target" includes="*.zip"/>
     </unzip>
