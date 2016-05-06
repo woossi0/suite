@@ -68,10 +68,9 @@
 
   <target name="publish">
     <antcall target="publish-artifact"/>
-    <!--antcall target="publish-artifact">
+    <antcall target="publish-artifact">
       <param name="name" value="composer"/>
-      <param name="path" value="composer"/>
-    </antcall-->
+    </antcall>
   </target>
 
   <target name="serve" description="Runs GeoServer">
