@@ -16,7 +16,7 @@
    viewBox="0 0 599.99996 39.999998"
    id="svg4312"
    version="1.1"
-   inkscape:version="0.91 r"
+   inkscape:version="0.48.3.1 r9886"
    sodipodi:docname="suite-component-header.svg"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -82,6 +82,22 @@
         </g>
       </g>
     </symbol>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath16">
+      <path
+         inkscape:connector-curvature="0"
+         d="M 0,792 612,792 612,0 0,0 0,792 z"
+         id="path18" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath16-9">
+      <path
+         inkscape:connector-curvature="0"
+         d="M 0,792 612,792 612,0 0,0 0,792 z"
+         id="path18-7" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -91,21 +107,21 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="2"
-     inkscape:cx="196.10138"
-     inkscape:cy="10.749209"
+     inkscape:cx="321.08895"
+     inkscape:cy="-18.875009"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer6"
      showgrid="true"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:window-width="1920"
-     inkscape:window-height="1041"
+     inkscape:window-height="1024"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
-     inkscape:snap-page="false"
+     inkscape:snap-page="true"
      inkscape:snap-bbox="true"
      inkscape:bbox-paths="true"
      inkscape:bbox-nodes="true"
@@ -114,10 +130,31 @@
      inkscape:guide-bbox="true"
      units="px"
      inkscape:snap-global="true"
-     inkscape:snap-to-guides="false">
+     inkscape:snap-to-guides="true"
+     inkscape:object-paths="true">
     <inkscape:grid
        type="xygrid"
-       id="grid4146" />
+       id="grid4146"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="0.99999581,18.031223"
+       id="guide3085" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="19.125,36.417969"
+       id="guide3087" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="37.410368,18.058844"
+       id="guide3089" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="13.625,0"
+       id="guide3091" />
   </sodipodi:namedview>
   <metadata
      id="metadata4317">
@@ -127,19 +164,34 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Background"
+     sodipodi:insensitive="true">
+    <rect
+       style="color:#000000;fill:#28728d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3022"
+       width="600"
+       height="39.999996"
+       x="0"
+       y="0"
+       transform="translate(-5e-6,0)"
+       rx="0" />
+  </g>
   <g
      inkscape:label="Text"
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(426.78571,-200.21935)"
-     style="display:inline">
+     style="display:none">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.34060287px;line-height:125%;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-size:30.34060287px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Liberation Sans;-inkscape-font-specification:Liberation Sans"
        x="-382.31924"
        y="230.8698"
        id="text4142"
@@ -150,19 +202,47 @@
          id="tspan4144"
          x="-382.31924"
          y="230.8698"
-         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:30.34060287px;font-family:'Proxima Nova';-inkscape-font-specification:'Proxima Nova Semi-Bold';text-align:start;text-anchor:start;fill:#ffffff">GeoServer <tspan
-   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:21.23842049px;font-family:'Proxima Nova';-inkscape-font-specification:'Proxima Nova Light';fill:#ffffff"
+         style="font-size:30.34060287px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;text-anchor:start;fill:#ffffff;font-family:Proxima Nova;-inkscape-font-specification:Proxima Nova Semi-Bold">GeoServer <tspan
+   style="font-size:21.23842049px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;fill:#ffffff;font-family:Proxima Nova;-inkscape-font-specification:Proxima Nova Light"
    id="tspan4148">for </tspan><tspan
    id="tspan4152"
-   style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:21.23842049px;font-family:'Proxima Nova';-inkscape-font-specification:'Proxima Nova Semi-Bold';fill:#ffffff">Boundless Suite<tspan
-   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:'Proxima Nova';-inkscape-font-specification:'Proxima Nova Light'"
+   style="font-size:21.23842049px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;fill:#ffffff;font-family:Proxima Nova;-inkscape-font-specification:Proxima Nova Semi-Bold">Boundless Suite<tspan
+   style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-family:Proxima Nova;-inkscape-font-specification:Proxima Nova Light"
    id="tspan8186" /></tspan></tspan></text>
+    <image
+       y="300.31769"
+       x="-430.78571"
+       id="image3030"
+       xlink:href="file:///home/smithkm/og-proj/suite/dashboard/src/main/webapp/img/opengeo-logo-ee.png"
+       height="39.999996"
+       width="500.99997" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="Text Suite">
+    <text
+       xml:space="preserve"
+       style="font-size:30.34060097px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Liberation Sans;-inkscape-font-specification:Proxima Nova Semi-Bold"
+       x="44.466465"
+       y="30.650446"
+       id="text4142-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="91.942413"
+       inkscape:export-ydpi="91.942413"><tspan
+         sodipodi:role="line"
+         id="tspan4144-4"
+         x="44.466465"
+         y="30.650446"
+         style="font-size:30.34060097px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;text-anchor:start;fill:#ffffff;font-family:Proxima Nova;-inkscape-font-specification:Proxima Nova Semi-Bold">Boundless <tspan
+   style="font-size:30.34060097px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Proxima Nova;-inkscape-font-specification:Proxima Nova Light"
+   id="tspan3166">Suite</tspan></tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="GeoServer"
-     style="display:inline"
+     style="display:none"
      transform="translate(0,-10)">
     <use
        id="use9076"
@@ -170,8 +250,8 @@
        transform="matrix(0.55634672,0,0,0.55634672,-1.1533094,11.79814)"
        x="0"
        y="0"
-       width="100%"
-       height="100%" />
+       width="599.99994"
+       height="39.999996" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -185,7 +265,32 @@
        transform="matrix(0.55634682,0,0,0.55634682,238.44087,-120.05626)"
        x="0"
        y="0"
-       width="100%"
-       height="100%" />
+       width="599.99994"
+       height="39.999996" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="OpenGeoLogo">
+    <g
+       transform="matrix(0.22454468,0,0,-0.22454468,-14.019488,66.737015)"
+       id="g12"
+       style="fill:#ffffff;display:inline">
+      <g
+         id="g14"
+         clip-path="url(#clipPath16-9)"
+         style="fill:#ffffff">
+        <g
+           id="g20"
+           transform="translate(149.5156,138.085)"
+           style="fill:#ffffff">
+          <path
+             inkscape:connector-curvature="0"
+             d="M 0,0 60.492,60.492 19.895,101.092 -17.322,63.876 1.184,45.37 13.447,57.635 6.326,64.758 19.895,78.325 37.729,60.49 0,22.765 -40.824,63.59 l 49.223,49.223 -11.383,11.383 -0.002,0 L -63.591,63.592 0,0 z M 79.525,62.11 C 79.529,53.689 76.324,45.226 69.916,38.814 L 21.736,-9.365 c -6.405,-6.404 -14.862,-9.61 -23.277,-9.61 l -0.016,0 c -8.421,-0.002 -16.878,3.21 -23.277,9.61 l -48.182,48.179 c -6.416,6.416 -9.613,14.892 -9.611,23.315 -0.002,8.414 3.212,16.86 9.609,23.253 l 48.183,48.18 -10e-4,0 c 6.401,6.404 14.858,9.613 23.276,9.611 8.421,0.002 16.887,-3.199 23.296,-9.611 l 48.182,-48.18 c 6.401,-6.401 9.611,-14.857 9.607,-23.272"
+             style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             id="path22" />
+        </g>
+      </g>
+    </g>
   </g>
 </svg>
