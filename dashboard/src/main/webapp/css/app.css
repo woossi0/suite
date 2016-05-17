@@ -129,8 +129,8 @@ a:focus, a:active {
 .navbar {
   background-color: #28728d;
   color: white;
-  height: 70px;
-  padding: 13px 15px 13px 20px;
+  height: 55px;
+  padding: 5px 15px 13px 20px;
   border-radius: 0;
 }
 
@@ -164,7 +164,7 @@ a:focus, a:active {
 h5.version-info {
   font-family: "Proxima Nova", "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 1.5em;
-  margin-top: 11px;
+  margin-top: 9px;
   color: #f3f3f3;
   display: inline-block;
   padding-left: 25%;
