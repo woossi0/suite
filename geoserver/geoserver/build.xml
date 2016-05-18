@@ -8,10 +8,7 @@
  
   <target name="clean" unless="skip.gs" description="Clean GeoServer">
     <delete dir="target"/>
-    <antcall target="mvn">
-      <param name="dir" value="${gs.dir}/src"/>
-      <param name="goals" value="clean"/>
-    </antcall>
+    <!-- Can't run mvn clean here if we have a custom version -->
   </target>
 
   <target name="build" unless="skip.gs" description="Build GeoServer">
@@ -21,12 +18,12 @@
     <antcall target="mvn">
       <param name="dir" value="${gs.dir}/src"/>
       <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -Dbuild.commit.id=${gs.rev} -Prelease,${gs.profile},${gs.exts_core} ${gs.flags} -Dgwc.version=${gwc.version}"/>
-      <param name="goals" value="install assembly:attached"/>
+      <param name="goals" value="clean install assembly:attached"/>
     </antcall>
     <antcall target="mvn">
       <param name="dir" value="${gs.dir}/src/community"/>
-      <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -Dbuild.commit.id=${gs.rev} -Pcommunity-release-module,${gs.exts_comm} ${gs.flags} -Dgwc.version=${gwc.version}"/>
-      <param name="goals" value="install assembly:attached"/>
+      <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -Dbuild.commit.id=${gs.rev} -Pcommunity-release-module,communityRelease,${gs.exts_comm} ${gs.flags} -Dgwc.version=${gwc.version}"/>
+      <param name="goals" value="clean install assembly:attached"/>
     </antcall>
   </target>
 

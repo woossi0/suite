@@ -6,10 +6,7 @@
  
   <target name="clean" unless="skip.gwc" description="Clean GeoWebCache">
     <delete dir="target"/>
-    <antcall target="mvn">
-      <param name="dir" value="${gwc.dir}/geowebcache"/>
-      <param name="goals" value="clean"/>
-    </antcall>
+    <!-- Can't run mvn clean here if we have a custom version -->
   </target>
 
   <target name="build" unless="skip.gwc" description="Build GeoWebCache">
@@ -21,7 +18,7 @@
     <antcall target="mvn">
       <param name="dir" value="${gwc.dir}/geowebcache"/>
       <param name="flags" value="-DskipTests -Dgt.version=${gt.version} -Dbuild.branch=${gwc.branch} -Dbuild.commit.id=${gwc.rev}"/>
-      <param name="goals" value="install"/>
+      <param name="goals" value="clean install"/>
     </antcall>
     <antcall target="mvn">
       <param name="dir" value="${gwc.dir}/geowebcache"/>

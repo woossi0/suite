@@ -6,10 +6,7 @@
 
   <target name="clean" unless="skip.gt" description="Clean GeoTools">
     <delete dir="target"/>
-    <antcall target="mvn">
-      <param name="dir" value="${gt.dir}"/>
-      <param name="goals" value="clean"/>
-    </antcall>
+    <!-- Can't run mvn clean here if we have a custom version -->
   </target>
 
   <target name="build" unless="skip.gt" description="Build GeoTools">
@@ -19,7 +16,7 @@
     <antcall target="mvn">
       <param name="dir" value="${gt.dir}"/>
       <param name="flags" value="-DskipTests -Dall -P ${gt.profile} -Dpostgresql.jdbc.version=${postgresql.jdbc.version} -Dbuild.commit.id=${gt.rev} ${gt.flags}"/>
-      <param name="goals" value="install"/>
+      <param name="goals" value="clean install"/>
     </antcall>
   </target>
 

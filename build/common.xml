@@ -27,6 +27,11 @@ Common build targets.
     <property file="${common.basedir}/local.properties"/>
     <property file="${common.basedir}/build.properties"/>
 
+    <!-- Set up gt/gwc/gs versions based on majer version and suffix -->
+    <property name="gt.version" value="${gt.major_version}${suite.minor_version}"/>
+    <property name="gwc.version" value="${gwc.major_version}${suite.minor_version}"/>
+    <property name="gs.version" value="${gs.major_version}${suite.minor_version}"/>
+
     <taskdef resource="net/sf/antcontrib/antlib.xml">
       <classpath>
         <pathelement location="${common.basedir}/ant-contrib-1.0b3.jar"/>
