@@ -1,14 +1,14 @@
-[submodule "geoserver/externals/geotools"]
-	path = geoserver/externals/geotools
+[submodule "geoserver/geotools/geotools"]
+	path = geoserver/geotools/geotools
 	url = git://github.com/boundlessgeo/geotools.git
-[submodule "geoserver/externals/geoserver"]
-	path = geoserver/externals/geoserver
+[submodule "geoserver/geoserver/geoserver"]
+	path = geoserver/geoserver/geoserver
 	url = git://github.com/boundlessgeo/geoserver.git
-[submodule "geoserver/externals/geowebcache"]
-	path = geoserver/externals/geowebcache
+[submodule "geoserver/geowebcache/geowebcache"]
+	path = geoserver/geowebcache/geowebcache
 	url = git://github.com/boundlessgeo/geowebcache.git
-[submodule "geoserver/externals/geoserver-exts"]
-	path = geoserver/externals/geoserver-exts
+[submodule "geoserver/externals/geoserver-exts/geoserver-exts"]
+	path = geoserver/externals/geoserver-exts/geoserver-exts
 	url = git://github.com/boundlessgeo/geoserver-exts.git
 [submodule "geoserver/externals/geoscript/py"]
 	path = geoserver/externals/geoscript/py
@@ -16,11 +16,11 @@
 [submodule "geoserver/data_dir/externals/suite-data"]
 	path = geoserver/data_dir/externals/suite-data
 	url = https://github.com/boundlessgeo/suite-data.git
-[submodule "geoserver/webapp/composer"]
-	path = geoserver/webapp/composer
+[submodule "composer/composer"]
+	path = composer/composer
 	url = git@github.com:boundlessgeo/composer.git
-[submodule "geoserver/externals/wps-gui"]
-	path = geoserver/externals/wps-gui
+[submodule "wps-builder/wps-gui"]
+	path = wps-builder/wps-gui
 	url = https://github.com/boundlessgeo/wps-gui.git
 [submodule "geoserver/externals/geomesa/geomesa"]
 	path = geoserver/externals/geomesa/geomesa
