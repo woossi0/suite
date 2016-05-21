@@ -57,10 +57,11 @@ Vagrant.configure(2) do |config|
   #config.vm.synced_folder '~/.m2', '/home/vagrant/.m2'
 
   config.vm.provision :shell, privileged: false, inline: <<SCRIPT
+    set -ex
 
-    export sudo DEBIAN_FRONTEND=noninteractive
+    DEBIAN_FRONTEND=noninteractive
 
-    sudo apt-get update
+    sudo apt-get -qq update
 
     # sudo apt-get install -y git
     # sudo mkdir /vagrant
@@ -70,18 +71,36 @@ Vagrant.configure(2) do |config|
     # git submodule update --init --recursive
     # cd ~
 
-    wget --no-check-certificate https://github.com/aglover/ubuntu-equip/raw/master/equip_java7_64.sh && bash equip_java7_64.sh
-    sudo apt-get -y install default-jdk
-    sudo apt-get -y install maven ant ivy
+    # Required for add-apt-repository
+    sudo apt-get install -qqy software-properties-common
+
+    JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+    # Install Java
+    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+    sudo add-apt-repository ppa:webupd8team/java
+    sudo apt-get update -qq
+    sudo apt-get install -qqy oracle-java8-installer unzip
+    sudo rm -rf /var/cache/oracle-jdk8-installer
+
+    # Install Java Cryptography Extension Unlimited Strength Jurisdiction Policy Files
+    wget --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+      http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip
+    sudo unzip -oj jce_policy-8.zip -d $JAVA_HOME/jre/lib/security/
+    rm jce_policy-8.zip
+
+    # Install build dependencies
+    sudo apt-get -qqy install maven ant ivy git
     sudo ln -s  /usr/share/java/ivy.jar /usr/share/ant/lib/ivy.jar
-    sudo apt-get -y install python-setuptools
+    sudo apt-get -qqy install python-setuptools
     sudo easy_install jstools
-    sudo apt-get -y install python-pip python-dev
+    sudo apt-get -qqy install python-pip python-dev
     sudo pip install -U Sphinx
 
     # the standard ubuntu node install doesnt work very well and is VERY old.  Use this one instead
     curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
     sudo  apt-get install -y nodejs
+    sudo npm install -g npm # Update npm
 
     sudo npm install -g bower
     sudo npm install -g grunt-cli
