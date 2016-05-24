@@ -13,6 +13,9 @@
 # 5. To build again from the VM do `~/build`
 #    To build again from the host do `vagrant ssh -c build`
 
+maven_major = '3'
+maven_version = '3.3.9'
+
 Vagrant.configure(2) do |config|
 
   config.vm.provider :virtualbox do |vb, override|
@@ -90,7 +93,21 @@ Vagrant.configure(2) do |config|
     rm jce_policy-8.zip
 
     # Install build dependencies
-    sudo apt-get -qqy install maven ant ivy git
+    sudo apt-get -qqy install ant ivy git
+    sudo mkdir /usr/local/maven
+    curl http://archive.apache.org/dist/maven/maven-#{maven_major}/#{maven_version}/binaries/apache-maven-#{maven_version}-bin.tar.gz \
+      | sudo tar -xzf- -C /usr/local/maven/ --strip 1
+    sudo ln -s /usr/local/maven/bin/mvn /usr/bin/mvn
+    sudo mkdir /etc/maven
+    sudo tee /etc/maven/m2.conf <<EOF
+main is org.apache.maven.cli.MavenCli from plexus.core
+
+set maven.home default \\${user.home}/m2
+
+[plexus.core]
+optionally \\${maven.home}/lib/ext/*.jar
+load       \\${maven.home}/lib/*.jar
+EOF
     sudo ln -s  /usr/share/java/ivy.jar /usr/share/ant/lib/ivy.jar
     sudo apt-get -qqy install python-setuptools
     sudo easy_install jstools
@@ -105,6 +122,7 @@ Vagrant.configure(2) do |config|
     sudo npm install -g bower
     sudo npm install -g grunt-cli
     sudo npm install -g gulp
+    sudo npm install -g coffee-script
     sudo apt-get -y install gdal-bin ### Do we need one from our own repo?
 
     if [ ! -d /vagrant ]; then
