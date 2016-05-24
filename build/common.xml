@@ -75,6 +75,7 @@ Common build targets.
             <!-- hack to strip off origin prefix -->
             <propertyregex property="suite.build_branch"
               input="${env.GIT_BRANCH}" regexp=".*/(.*)" select="\1"/>
+              <echo message="env.GIT_BRANCH = ${env.GIT_BRANCH}"/>
           </then>
         </if>
 
@@ -92,6 +93,8 @@ Common build targets.
             </exec>
           </then>
         </if>
+        <echo message="suite.build_rev = ${suite.build_rev}"/>
+        <echo message="suite.build_branch = ${suite.build_branch}"/>
     </target>
 
       <!--
@@ -141,23 +144,6 @@ Common build targets.
     Initialization task. Every build file should call this.
     -->
     <target name="init" depends="init-buildinfo,init-ant"/>
-
-    <!-- 
-    Ivy dependency retrieval task.
-
-    @param dir Directory to copy dependencies to, defaults to "${basedir}/lib". 
-    @param pattern Retrieval pattern, defaults to "${dir}/[artifact]-[revision].[ext]". 
-    -->
-    <target name="retrieve">
-      <property name="dir" value="lib"/>
-      <property name="type" value="jar,bundle"/>
-      <property name="pattern" value="${dir}/[artifact]-[revision].[ext]"/>
-      <property name="conf" value="*"/>
-      <ivy:configure file="${common.basedir}/ivysettings.xml"/>
-      <ivy:resolve type="${type}" conf="${conf}"/>
-      <ivy:report todir="target/ivy-report"/>
-      <ivy:retrieve pattern="${pattern}" type="${type}" conf="${conf}"/>
-    </target>
 
     <!--
     Destroys the target directory.
