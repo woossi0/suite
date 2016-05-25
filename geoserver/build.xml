@@ -1,7 +1,7 @@
 <project name="geoserver-suite" default="build">
   <import file="../build/common.xml"/>
 
-  <property name="geoserver.modules" value="geotools,geowebcache,geoserver,data_dir,webapp,geoserver-community,externals"/>
+  <property name="geoserver.modules" value="geotools,geowebcache,geoserver,data_dir,externals,geoserver-community,webapp"/>
 
   <target name="clean" description="Cleans project">
     <for list="${geoserver.modules}" param="mod">
