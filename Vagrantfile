@@ -51,9 +51,10 @@ Vagrant.configure(2) do |config|
     }
 
     override.ssh.username = 'ubuntu'
+    override.ssh.forward_agent = true
 
     override.vm.synced_folder '.', '/vagrant', disabled: true
-    override.vm.synced_folder '.', '/mnt/vagrant', type: 'rsync' #, rsync__exclude: '.git/'
+    #override.vm.synced_folder '.', '/mnt/vagrant', type: 'rsync' #, rsync__exclude: '.git/'
   end
 
   # Share host's maven cache. Comment the following line to disable.
@@ -66,13 +67,22 @@ Vagrant.configure(2) do |config|
 
     sudo apt-get -qq update
 
-    # sudo apt-get install -y git
-    # sudo mkdir /vagrant
-    # sudo chown ubuntu /vagrant
-    # git clone https://github.com/boundlessgeo/suite.git /vagrant
-    # cd /vagrant
-    # git submodule update --init --recursive
-    # cd ~
+    if [ ! -d /vagrant ]; then
+      echo 'src does not exist, loading with git'
+      # Add github ssh host
+      mkdir -p ~/.ssh
+      cat <<EOF >> ~/.ssh/known_hosts
+|1|MIwgkhDL5b0kJt26vY4zNR+p4Kc=|B8KFL+0hpvhkCV989BdzoCa6a8Q= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+|1|kdd70i6PaCKKUDqTshdaviel4kM=|7jmuzd0k+8iTeroj9WC412sZ4I8= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+EOF
+      sudo apt-get install -y git
+      sudo mkdir /vagrant
+      sudo chown `whoami` /vagrant
+      git clone https://github.com/boundlessgeo/suite.git /vagrant
+      cd /vagrant
+      git submodule update --init --recursive
+      cd ~
+    fi
 
     # Required for add-apt-repository
     sudo apt-get install -qqy software-properties-common
@@ -125,9 +135,9 @@ EOF
     sudo npm install -g coffee-script
     sudo apt-get -y install gdal-bin ### Do we need one from our own repo?
 
-    if [ ! -d /vagrant ]; then
-      sudo ln -s /mnt/vagrant /vagrant
-    fi
+    # if [ ! -d /vagrant ]; then
+    #   sudo ln -s /mnt/vagrant /vagrant
+    # fi
 
     echo """#!/bin/bash
       cd /vagrant
