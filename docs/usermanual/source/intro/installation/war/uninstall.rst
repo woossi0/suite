@@ -8,7 +8,7 @@ To uninstall OpenGeo Suite for Application Servers:
 #. Undeploy all of the deployed applications. A full list would include:
 
    * ``dashboard``
-   * ``opengeo-docs``
+   * ``suite-docs``
    * ``geoexplorer``
    * ``geoserver``
    * ``geowebcache``

@@ -21,7 +21,7 @@ The following procedure will uninstall OpenGeo Suite. In all cases, the data dir
 
      .. code-block:: bash
 
-        yum remove postgis21-postgresql93 opengeo-tomcat geoserver geowebcache geoexplorer opengeo-dashboard opengeo-docs opengeo-server
+        yum remove postgis21-postgresql93 opengeo-tomcat geoserver geowebcache geoexplorer opengeo-dashboard suite-docs opengeo-server
 
    * For ``opengeo-client``:
 
@@ -33,7 +33,7 @@ The following procedure will uninstall OpenGeo Suite. In all cases, the data dir
 
      .. code-block:: bash
 
-        yum remove postgis21-postgresql93 opengeo-tomcat geoserver geowebcache geoexplorer opengeo-dashboard opengeo-docs postgis21 pgadmin3 postgis21-gui opengeo
+        yum remove postgis21-postgresql93 opengeo-tomcat geoserver geowebcache geoexplorer opengeo-dashboard suite-docs postgis21 pgadmin3 postgis21-gui opengeo
 
    .. note:: If you encounter any errors during the uninstall process, you may need to manually uninstall tomcat 6:
 

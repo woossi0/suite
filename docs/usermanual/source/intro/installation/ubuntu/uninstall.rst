@@ -21,7 +21,7 @@ The following procedure will uninstall OpenGeo Suite. In all cases, the data dir
 
      .. code-block:: bash
 
-        apt-get remove opengeo-tomcat6 opengeo-tomcat7 postgresql-9.3-postgis-2.1 geoserver geowebcache geoexplorer opengeo-dashboard opengeo-docs opengeo-server
+        apt-get remove opengeo-tomcat6 opengeo-tomcat7 postgresql-9.3-postgis-2.1 geoserver geowebcache geoexplorer opengeo-dashboard suite-docs opengeo-server
 
    * For ``opengeo-client``:
 
@@ -33,7 +33,7 @@ The following procedure will uninstall OpenGeo Suite. In all cases, the data dir
 
      .. code-block:: bash
 
-        apt-get remove opengeo-tomcat6 opengeo-tomcat7 postgresql-9.3-postgis-2.1 geoserver geowebcache geoexplorer opengeo-dashboard opengeo-docs postgis-2.1 pgadmin3 opengeo
+        apt-get remove opengeo-tomcat6 opengeo-tomcat7 postgresql-9.3-postgis-2.1 geoserver geowebcache geoexplorer opengeo-dashboard suite-docs postgis-2.1 pgadmin3 opengeo
 
    .. note:: If you encounter any errors during the uninstall process, you may need to manually uninstall tomcat 6:
 

@@ -329,8 +329,8 @@ latex_elements = {
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'http://docs.python.org/': None}
-intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/geoexplorer/': None}
-intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/geoserver/': None}
-intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/geowebcache/': None}
-intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/postgis/': None}
-intersphinx_mapping = {'http://suite.opengeo.org/opengeo-docs/sdk-api/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/suite-docs/geoexplorer/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/suite-docs/geoserver/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/suite-docs/geowebcache/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/suite-docs/postgis/': None}
+intersphinx_mapping = {'http://suite.opengeo.org/suite-docs/sdk-api/': None}

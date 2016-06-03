@@ -64,7 +64,7 @@
       <fileset dir="docs/target/" includes="suite-docs.zip"/>
     </unzip>
     <copy todir="${webappsdir}">
-      <fileset dir="docs/target" includes="opengeo-docs/**/*"/>
+      <fileset dir="docs/target" includes="suite-docs/**/*"/>
     </copy>
     <!-- <unzip dest="${webappsdir}/apps" src="apps/target/apps.war"/> -->
     <copy todir="${bindir}/data_dir">

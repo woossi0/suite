@@ -30,7 +30,7 @@ The following packages are considered "meta" packages that only depend on other 
      - ``opengeo-server`` ``opengeo-client``
    * - ``opengeo-server``
      - All server packages
-     - ``postgis21-postgresql93`` ``geoserver`` ``geowebcache`` ``geoexplorer`` ``opengeo-dashboard`` ``opengeo-docs`` ``opengeo-tomcat``
+     - ``postgis21-postgresql93`` ``geoserver`` ``geowebcache`` ``geoexplorer`` ``opengeo-dashboard`` ``suite-docs`` ``opengeo-tomcat``
    * - ``opengeo-client``
      - All client packages
      - ``postgis21`` ``pgadmin3`` ``pdal``
@@ -73,7 +73,7 @@ The following packages contain the server components of OpenGeo Suite. These pac
    * - ``opengeo-dashboard``
      - OpenGeo Suite Dashboard
      -
-   * - ``opengeo-docs``
+   * - ``suite-docs``
      - OpenGeo Suite documentation
      -
    * - ``opengeo-tomcat``

@@ -99,7 +99,7 @@ html_theme_options = {
   'is_community': True, # Community Docs flag for Suite component docs
   'display_zendesk': True, # Display link to report doc bugs to Suite Zendesk
   'display_version': True,  # Whether to show version number
-  'suite_url': 'geoserver' # the url path within Suite e.g. geoserver for opengeo-docs/geoserver
+  'suite_url': 'geoserver' # the url path within Suite e.g. geoserver for suite-docs/geoserver
 
 }
 
@@ -223,7 +223,7 @@ latex_elements = {
 extlinks = { 
     'wiki': ('https://github.com/geoserver/geoserver/wiki/%s',''),
     'website': ('http://geoserver.org/%s',''),
-    'user': ('http://localhost:8080/opengeo-docs/geoserver/%s',''),
+    'user': ('http://localhost:8080/suite-docs/geoserver/%s',''),
     'developer': ('http://docs.geoserver.org/latest/en/developer/%s',''),
     'geos': ('https://jira.codehaus.org/browse/GEOS-%s','GEOS-'),
     'geot': ('https://jira.codehaus.org/browse/GEOT-%s','GEOT-')

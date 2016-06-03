@@ -3,7 +3,7 @@
   <formats>
     <format>zip</format>
   </formats>
-  <baseDirectory>opengeo-docs</baseDirectory>
+  <baseDirectory>suite-docs</baseDirectory>
   <fileSets>
     <fileSet>
       <directory>docs/geoserver/target/html</directory>
