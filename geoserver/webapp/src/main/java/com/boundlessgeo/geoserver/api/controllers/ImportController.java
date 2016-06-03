@@ -339,7 +339,7 @@ public class ImportController extends ApiController {
                     ((SpatialFile)destData).setPrjFile(prjFile);
                 }
                 for (File f : ((SpatialFile)srcData).getSuppFiles()) {
-                    File suppFile = f;
+                    File suppFile = new File(destDir, f.getName());
                     if (move) {
                         Files.move(f.toPath(), suppFile.toPath());
                     } else {
