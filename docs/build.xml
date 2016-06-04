@@ -64,7 +64,7 @@
       <jar destfile="target/suite-docs.war" basedir="${doc.dir}"/>
 
       <antcall target="assemble-artifact">
-        <param name="name" value="suite-docs-war"/>
+        <param name="name" value="docs-war"/>
         <param name="dir" value="target"/>
         <param name="includes" value="suite-docs.war"/>
       </antcall>
