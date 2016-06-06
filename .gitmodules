@@ -19,8 +19,8 @@
 [submodule "composer/composer"]
 	path = composer/composer
 	url = git@github.com:boundlessgeo/composer.git
-[submodule "wps-builder/wps-gui"]
-	path = wps-builder/wps-gui
+[submodule "wpsbuilder/wps-gui"]
+	path = wpsbuilder/wps-gui
 	url = https://github.com/boundlessgeo/wps-gui.git
 [submodule "geoserver/externals/geomesa/geomesa"]
 	path = geoserver/externals/geomesa/geomesa

@@ -1,4 +1,4 @@
-<project name="wps-builder" default="build">
+<project name="wpsbuilder" default="build">
   <import file="../build/common.xml"/>
 
   <target name="clean" unless="skip.wps-gui"
