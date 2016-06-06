@@ -175,7 +175,7 @@ Common build targets.
         <zip destfile="${artifact_file}">
             <fileset dir="target" includes="version.ini"/>
             <fileset dir="${dir}" includes="${includes}" excludes="${excludes}"/>
-            <fileset dir="${common.basedir}/.." includes="LICENSE.txt"/>
+            <fileset dir="${common.basedir}/.." includes="EULA.txt"/>
         </zip>
     </target>
 
