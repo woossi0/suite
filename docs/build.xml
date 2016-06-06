@@ -93,7 +93,7 @@
   <target name="publish" depends="init">
     <antcall target="publish-artifact"/>
     <antcall target="publish-artifact">
-      <param name="name" value="suite-docs-war"/>
+      <param name="name" value="docs-war"/>
       <param name="path" value="docs"/>
     </antcall>
     <if>
