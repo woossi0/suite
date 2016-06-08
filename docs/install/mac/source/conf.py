@@ -44,7 +44,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Installing OpenGeo Suite for Mac OS X'
-copyright = str(date.today().year) + u' Boundless'
+copyright = u'© ' + str(date.today().year) + u' <a href="http://boundlessgeo.com" class="normal-text">Boundless</a>.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
