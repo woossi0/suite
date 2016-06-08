@@ -129,8 +129,8 @@ a:focus, a:active {
 .navbar {
   background-color: #28728d;
   color: white;
-  height: 55px;
-  padding: 5px 15px 13px 20px;
+  height: 60px;
+  padding: 7px 15px 13px 20px;
   border-radius: 0;
 }
 
