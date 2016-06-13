@@ -129,21 +129,21 @@ a:focus, a:active {
 .navbar {
   background-color: #28728d;
   color: white;
-  height: 55px;
-  padding: 5px 15px 13px 20px;
+  height: 60px;
+  padding: 7px 15px 13px 20px;
   border-radius: 0;
 }
 
 .navbar-brand {
-  background: #28728d url(../img/opengeo-logo-ee.png) no-repeat left center;
-  width: 501px;
+  background: #28728d url(../img/opengeo-logo.png) no-repeat left center;
+  width: 304px;
   height: 40px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 192dpi) {
   .navbar-brand {
-    background-image: url(../img/opengeo-logo-ee@2x.png);
+    background-image: url(../img/opengeo-logo@2x.png);
     width: 501px;
     height: 40px;
     background-size: 501px 40px;
@@ -341,7 +341,9 @@ h5.version-info {
 a.dash-component {
   border-right: solid 1px;
 }
-
+.dash-component.suite {
+   background-image: url(../img/suite_32.png);
+}
 .dash-component.postgis {
    background-image: url(../img/postgis_suite_32.png);
 }
@@ -354,8 +356,8 @@ a.dash-component {
 .dash-component.geowebcache {
    background-image: url(../img/geowebcache_suite_32.png);
 }
-.dash-component.geoexplorer {
-   background-image: url(../img/geoext_suite_32.png);
+.dash-component.wabsdk {
+   background-image: url(../img/wabsdk_suite_32.png);
 }
 .dash-component.boundlesssdk {
    background-image: url(../img/boundlesssdk_suite_32.png);
@@ -742,28 +744,6 @@ footer div.boundless-logo:hover {
   .btn-group.btn-group-justified .btn-group {
     margin-left: -2px;
     margin-right: -2px;
-  }
-}
-
-@media screen and (max-width: 972px) {
-  .navbar-brand.navbar-ee {
-    background: #28728d url(../img/opengeo-logo-ee-small.png) no-repeat left center;
-    width: 242px;
-    height: 32px;
-    margin-top: 1%;
-  }
-}
-
-@media (max-width: 972px) and (-webkit-min-device-pixel-ratio: 2),
-       (min-resolution: 192dpi) {
-  .navbar-brand.navbar-ee {
-    background-image: url(../img/opengeo-logo-ee-small@2x.png);
-    width: 242px;
-    height: 32px;
-    margin-top: 8px;
-    margin-left: -5px;
-    background-size: 242px 32px;
-    background-repeat: no-repeat;
   }
 }
 

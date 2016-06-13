@@ -18,6 +18,9 @@ This User Manual will help you get the most out of OpenGeo Suite.
 :ref:`cartography`
   Visualize your data on the web.
 
+:ref:`webapps`
+  Build complete web-based applications using the Web SDK and OpenLayers.
+
 :ref:`processing`
   Perform server-based spatial analysis.
 
@@ -42,6 +45,7 @@ This User Manual will help you get the most out of OpenGeo Suite.
    intro/index
    webmaps/index
    cartography/index
+   webapps/index
    processing/index
    dataadmin/index
    sysadmin/index

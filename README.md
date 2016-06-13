@@ -179,6 +179,6 @@ The suite repository is composed of the following modules:
 * [docs](docs/README.md)
 * [geoserver](geoserver/README.md)
 * [geowebcache](geowebcache/README.md)
-* [wps-builder](wpsbuilder/README.md)
+* [wpsbuilder](wpsbuilder/README.md)
 
 Consult the module README files for module specific information. 
