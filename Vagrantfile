@@ -122,7 +122,7 @@ EOF
     sudo apt-get -qqy install python-setuptools
     sudo easy_install jstools
     sudo apt-get -qqy install python-pip python-dev
-    sudo pip install -U Sphinx
+    sudo pip install -U Sphinx==1.3.1
 
     # the standard ubuntu node install doesnt work very well and is VERY old.  Use this one instead
     curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
@@ -135,6 +135,9 @@ EOF
     sudo npm install -g coffee-script
     sudo apt-get -y install gdal-bin ### Do we need one from our own repo?
 
+    sudo mkdir -p /var/www/suite
+    sudo chown `whoami` /var/www/suite
+
     # if [ ! -d /vagrant ]; then
     #   sudo ln -s /mnt/vagrant /vagrant
     # fi
@@ -142,7 +145,7 @@ EOF
     echo """#!/bin/bash
       cd /vagrant
       echo 'Starting build.'
-      (ant -v 2>&1) | tee build_output.txt""" > ~/build
+      (ant -v build assemble publish 2>&1) | tee build_output.txt""" > ~/build
     chmod a+rx ~/build
 
     ~/build
