@@ -4,12 +4,12 @@
 
   <property name="docs.modules" value="usermanual,install,geowebcache,geoserver,postgis,openlayers,qgis"/>
 
-  <target name="clean" depends="destroy-target"
+  <target name="clean" depends="destroy-target" unless="skip.docs"
       description="Clean project">
     <foreach list="${docs.modules}" target="clean-mod" param="mod"/>
   </target>
 
-  <target name="build"
+  <target name="build" unless="skip.docs"
       description="Build all documentation modules">
     <foreach list="${docs.modules}" target="build-mod" param="mod"/>
   </target>
@@ -21,7 +21,7 @@
     <ant dir="${mod}"/>
   </target>
 
-  <target name="assemble" depends="init"
+  <target name="assemble" depends="init" unless="skip.docs"
       description="Assmble documentation artifact">
       <property name="doc.dir" value="target/suite-docs"/>
       <delete dir="${doc.dir}"/>
@@ -90,7 +90,7 @@
       </if>
   </target>
 
-  <target name="publish" depends="init">
+  <target name="publish" depends="init" unless="skip.docs">
     <antcall target="publish-artifact"/>
     <antcall target="publish-artifact">
       <param name="name" value="suite-docs-war"/>
