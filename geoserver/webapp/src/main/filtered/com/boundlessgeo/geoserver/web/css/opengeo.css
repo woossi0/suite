@@ -13,6 +13,8 @@ a:link, a:visited {
 #header {
   background-color: #28728D;
   color: #CECECE;
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
 }
 
 #header label {

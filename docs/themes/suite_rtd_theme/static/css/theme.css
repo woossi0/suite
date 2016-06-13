@@ -5064,7 +5064,7 @@ div[class^='highlight'] pre {
   width: 100%;
 }
 #header .suite_logo a {
-  margin: 0.5em 0 0 1em;
+  margin: 0.5em 0 0 0;
   float: left;
   width: 304px;
   height: 40px;
@@ -5091,9 +5091,12 @@ div[class^='highlight'] pre {
   font-size: 28px;
   padding: 0.2em 0.5em 0;
 }
+#header .suite_logo {
+  padding-left: 20px;
+}
 #header .community_logo {
   display: inline-block;
-  padding-left: 15px;
+  padding-left: 20px;
 }
 @media screen and (min-width: 320px) and (max-width: 480px) {
   #header .community_logo {
