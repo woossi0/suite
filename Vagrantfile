@@ -17,6 +17,10 @@ maven_major = '3'
 maven_version = '3.3.9'
 
 Vagrant.configure(2) do |config|
+  if Vagrant.has_plugin?("SyncedFolderRSyncPull")
+    # `vagrant plugin install vagrant-rsync-pull`
+    config.vm.synced_folder 'artifacts', '/var/www/suite/core', create: true, type: 'rsync_pull'
+  end
 
   config.vm.provider :virtualbox do |vb, override|
     override.vm.box = 'ubuntu/trusty64'
