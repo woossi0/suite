@@ -144,9 +144,9 @@ a:focus, a:active {
   (min-resolution: 192dpi) {
   .navbar-brand {
     background-image: url(../img/opengeo-logo@2x.png);
-    width: 501px;
+    width: 304px;
     height: 40px;
-    background-size: 501px 40px;
+    background-size: 304px 40px;
     background-repeat: no-repeat;
   }
 }
