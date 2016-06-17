@@ -44,7 +44,7 @@ master_doc = 'index'
 #project = u'OpenGeo Suite User Manual'
 project = u'OpenGeo Suite'
 manual = u'User Manual'
-copyright = u'© ' + str(date.today().year) + u' <a href="http://boundlessgeo.com" class="normal-text">Boundless</a>.'
+copyright = u'© ' + str(date.today().year) + u' <a href="http://boundlessgeo.com" class="normal-text">Boundless</a>'
 
 version = suite_version
 release = suite_version
