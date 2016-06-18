@@ -42,7 +42,7 @@ master_doc = 'index'
 
 # General information about the project.
 #project = u'OpenGeo Suite User Manual'
-project = u'OpenGeo Suite'
+project = u'Boundless Suite'
 manual = u'User Manual'
 copyright = u'© ' + str(date.today().year) + u' <a href="http://boundlessgeo.com" class="normal-text">Boundless</a>'
 
@@ -131,7 +131,7 @@ html_short_title = project + " " + manual
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = 'opengeo.ico'
+html_favicon = 'suite.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -163,7 +163,7 @@ html_use_index = False
 #html_split_index = False
 
 # If true, the reST sources are included in the HTML build as _sources/<name>.
-html_copy_source = True
+html_copy_source = False
 
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = False
@@ -177,7 +177,7 @@ html_show_sourcelink = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'OpenGeoSuitedoc'
+htmlhelp_basename = 'BoundlessSuitedoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -191,7 +191,7 @@ htmlhelp_basename = 'OpenGeoSuitedoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'OpenGeoSuiteUserManual.tex', u'OpenGeo Suite User Manual',
+  ('index', 'BoundlessSuiteUserManual.tex', u'Boundless Suite User Manual',
    u'Boundless', 'manual'),
 ]
 
