@@ -5,7 +5,7 @@ Creating WPS processes with Java
 
 .. todo:: Split into multiple pages?
 
-Web Processing Service (WPS) processes are able to perform almost any kind of computation. OpenGeo Suite supplies many useful WPS processes built in to GeoServer.
+Web Processing Service (WPS) processes are able to perform almost any kind of computation. Boundless Suite supplies many useful WPS processes built in to GeoServer.
 
 However, for even more capability, GeoServer can be extended by adding new WPS processes. This section describes creating a custom WPS process in Java and how to deploy and run it in GeoServer.
 
@@ -70,14 +70,14 @@ Since a custom WPS process is packaged as a regular JAR file the standard archet
       </dependency>
 
 
-#. In addition, add the following lines inside the ``<properties>`` block (typically beneath the line for ``<project.build.sourceEncoding>``, replacing ``GEOSERVER_VERSION`` and ``GEOTOOLS_VERSION`` with the versions used by OpenGeo Suite:
+#. In addition, add the following lines inside the ``<properties>`` block (typically beneath the line for ``<project.build.sourceEncoding>``, replacing ``GEOSERVER_VERSION`` and ``GEOTOOLS_VERSION`` with the versions used by Boundless Suite:
 
    .. code-block:: xml
 
       <geoserver.version>GEOSERVER_VERSION</geoserver.version>
       <geotools.version>GEOTOOLS_VERSION</geotools.version>
 
-   .. warning:: You must make sure that the GeoServer and GeoTools versions match the ones used by OpenGeo Suite. You can check the versions by navigating to the :guilabel:`About GeoServer` section of the GeoServer admin interface. The GeoServer version will be shown under :guilabel:`Version`, and the GeoTool version will be shown under :guilabel:`GeoTools Version`.
+   .. warning:: You must make sure that the GeoServer and GeoTools versions match the ones used by Boundless Suite. You can check the versions by navigating to the :guilabel:`About GeoServer` section of the GeoServer admin interface. The GeoServer version will be shown under :guilabel:`Version`, and the GeoTool version will be shown under :guilabel:`GeoTools Version`.
 
       .. figure:: img/gt-version.png
 

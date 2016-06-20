@@ -12,7 +12,7 @@ Jetty
 
 .. note::
 
-   Your copy of Jetty in OpenGeo Suite should include a file called :file:`jetty-servlets.jar`, found in your :file:`jetty/lib` directory. If not, it will need to be downloaded separately.
+   Your copy of Jetty in Boundless Suite should include a file called :file:`jetty-servlets.jar`, found in your :file:`jetty/lib` directory. If not, it will need to be downloaded separately.
 
    Target directories:
 

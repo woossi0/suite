@@ -13,8 +13,7 @@ PDAL is a LIDAR conversion library that includes some useful commandline utiliti
 
 .. note:: 
 
-   OpenGeo Suite includes PDAL builds for Linux and OSX, but not yet for Windows. Future releases
-   will include native Windows support.
+   Boundless Suite includes PDAL builds for Linux and OSX, but not yet for Windows. Future releases will include native Windows support.
 
 
 Running ``pdal pipeline``

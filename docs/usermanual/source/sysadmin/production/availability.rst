@@ -116,7 +116,7 @@ In this deployment, the network router sends the request to one of the VRRPd rou
 Summary
 -------
 
-Availability is the amount of uptime during which a system is able to service client requests.  Techniques to increase the availability of OpenGeo Suite deployments include:
+Availability is the amount of uptime during which a system is able to service client requests.  Techniques to increase the availability of Boundless Suite deployments include:
 
 * Use a watchdog process to detect server responsiveness and restart it if necessary
 * Use load balancing to distribute request load across a pool of servers

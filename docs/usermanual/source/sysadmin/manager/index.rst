@@ -5,19 +5,19 @@ Using Tomcat Manager
 
 .. note::
 
-   This section only applies to the following versions of OpenGeo Suite:
+   This section only applies to the following versions of Boundless Suite:
 
-   * OpenGeo Suite for Ubuntu Linux
-   * OpenGeo Suite for Red Hat Linux
-   * OpenGeo Suite for Application Servers (when using **Tomcat**).
+   * Boundless Suite for Ubuntu Linux
+   * Boundless Suite for Red Hat Linux
+   * Boundless Suite for Application Servers (when using **Tomcat**).
 
-   OpenGeo Suite for Windows and OS X use `Jetty <http://www.eclipse.org/jetty/>`_, not Tomcat.
+   Boundless Suite for Windows and OS X use `Jetty <http://www.eclipse.org/jetty/>`_, not Tomcat.
 
-`Apache Tomcat <http://tomcat.apache.org>`_ is the application server used on Linux-based installations of OpenGeo Suite. While Apache Tomcat has a graphical manager for loading and managing web applications, **the Tomcat Manager is not loaded with OpenGeo Suite by default**.
+`Apache Tomcat <http://tomcat.apache.org>`_ is the application server used on Linux-based installations of Boundless Suite. While Apache Tomcat has a graphical manager for loading and managing web applications, **the Tomcat Manager is not loaded with Boundless Suite by default**.
 
 This section will show you how to install and perform basic tasks with Tomcat Manager.
 
-.. note:: The Tomcat service used by OpenGeo Suite is pulled in from standard repository sources, and is not specific to OpenGeo Suite. The same is true for the Tomcat Manager.
+.. note:: The Tomcat service used by Boundless Suite is pulled in from standard repository sources, and is not specific to Boundless Suite. The same is true for the Tomcat Manager.
 
 Installing via package manager
 ------------------------------

@@ -5,7 +5,7 @@ Enabling the Marlin renderer
 
 The Marlin renderer is an open source Java rendering engine optimized for performance, based on OpenJDK's Pisces implementation. With this, vector rendering in GeoServer is much improved over the standard engine.
 
-The Marlin renderer is is installed and configured by default for OpenGeo Suite and OpenGeo Suite Enterprise installers and packages. **You only need to manually enable the Marlin renderer if you are running OpenGeo Suite for Application Servers.**
+The Marlin renderer is is installed and configured by default for Boundless Suite and Boundless Suite Enterprise installers and packages. **You only need to manually enable the Marlin renderer if you are running Boundless Suite for Application Servers.**
 
 Windows application server
 --------------------------

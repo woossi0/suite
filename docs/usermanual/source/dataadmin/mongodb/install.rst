@@ -3,7 +3,7 @@
 Installation
 ============
 
-MongoDB is an extension to OpenGeo Suite, specifically GeoServer. As such it can be enabled through the standard :ref:`extension install <intro.extensions>` process.
+MongoDB is an extension to Boundless Suite, specifically GeoServer. As such it can be enabled through the standard :ref:`extension install <intro.extensions>` process.
 
 * On Windows, the GeoServer Extension is called :guilabel:`MongoDB`.
 * On OS X, the folder that contains the files to copy is called :guilabel:`mongodb`.

@@ -83,5 +83,5 @@ GeoExplorer allows you to publish your map view by generating a small block of H
          <!-- iframe snippet goes here -->
       </body>
    
-   .. note:: URLs that contain "localhost" will not be accessible to anyone other than those on the local machine. Please deploy the OpenGeo Suite onto a server with a web-accessible URL if you would like to share this map beyond your local system. The :ref:`sysadmin` section has more information about deployment.
+   .. note:: URLs that contain "localhost" will not be accessible to anyone other than those on the local machine. Please deploy the Boundless Suite onto a server with a web-accessible URL if you would like to share this map beyond your local system. The :ref:`sysadmin` section has more information about deployment.
 

@@ -7,7 +7,7 @@ GeoServer supports "vector tile" output in addition to the more standard image t
 
 This tutorial will show how to use the GeoServer vector tile output.
 
-.. note:: This requires that the Vector Tiles :ref:`extension is installed <intro.extensions>`, which requires **OpenGeo Suite Enterprise**.
+.. note:: This requires that the Vector Tiles :ref:`extension is installed <intro.extensions>`, which requires **Boundless Suite Enterprise**.
 
 Why use vector tiles?
 ---------------------

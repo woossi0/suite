@@ -15,9 +15,9 @@ Installation
 
 Amazon CloudWatch support isn't enabled by default, so it must be separately installed.
 
-Installing Amazon CloudWatch support is the same as most :ref:`OpenGeo Suite Extensions <intro.extensions>`.
+Installing Amazon CloudWatch support is the same as most :ref:`Boundless Suite Extensions <intro.extensions>`.
 
-.. note:: The CloudWatch extension is only available with `OpenGeo Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
+.. note:: The CloudWatch extension is only available with `Boundless Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on Boundless Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
 
 Windows
 ~~~~~~~
@@ -26,12 +26,12 @@ The CloudWatch extension can be added during the installation process. On the :g
 
 .. todo:: ADD FIGURE
 
-If OpenGeo Suite has already been installed and you wish to install CloudWatch support at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`CloudWatch`. This will add CloudWatch support to the existing OpenGeo Suite installation.
+If Boundless Suite has already been installed and you wish to install CloudWatch support at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`CloudWatch`. This will add CloudWatch support to the existing Boundless Suite installation.
 
 OS X
 ~~~~
 
-The CloudWatch extension can be added to OpenGeo Suite by copying the contents of the :file:`cloudwatch` extension folder (not the folder itself) to the GeoServer library folder. The GeoServer library folder can be found by selecting :guilabel:`Open Webapps Directory` from the GeoServer menu and then navigating to :file:`geoserver/WEB-INF/lib`.
+The CloudWatch extension can be added to Boundless Suite by copying the contents of the :file:`cloudwatch` extension folder (not the folder itself) to the GeoServer library folder. The GeoServer library folder can be found by selecting :guilabel:`Open Webapps Directory` from the GeoServer menu and then navigating to :file:`geoserver/WEB-INF/lib`.
 
    .. figure:: ../../intro/installation/mac/img/ext_webappsmenu.png
 
@@ -42,7 +42,7 @@ Once copied, GeoServer will need to be restarted to take effect.
 Ubuntu Linux
 ~~~~~~~~~~~~
 
-The CloudWatch extension can be added to OpenGeo Suite by installing the ``geoserver-cloudwatch`` package:
+The CloudWatch extension can be added to Boundless Suite by installing the ``geoserver-cloudwatch`` package:
 
 .. code-block:: console
 
@@ -53,7 +53,7 @@ The CloudWatch extension can be added to OpenGeo Suite by installing the ``geose
 Red Hat Linux
 ~~~~~~~~~~~~~
 
-The CloudWatch extension can be added to OpenGeo Suite by installing the ``geoserver-cloudwatch`` package:
+The CloudWatch extension can be added to Boundless Suite by installing the ``geoserver-cloudwatch`` package:
 
 .. code-block:: console
 
@@ -64,7 +64,7 @@ The CloudWatch extension can be added to OpenGeo Suite by installing the ``geose
 Application servers
 ~~~~~~~~~~~~~~~~~~~
 
-The CloudWatch extension can be added to OpenGeo Suite by copying the contents of the :file:`geopackage` extension directory (not the directory itself) to the GeoServer library directory. If GeoServer is installed at :file:`/opt/tomcat/webapps/geoserver`, the GeoServer library directory will be found at :file:`/opt/tomcat/webapps/geoserver/WEB-INF/lib`.
+The CloudWatch extension can be added to Boundless Suite by copying the contents of the :file:`geopackage` extension directory (not the directory itself) to the GeoServer library directory. If GeoServer is installed at :file:`/opt/tomcat/webapps/geoserver`, the GeoServer library directory will be found at :file:`/opt/tomcat/webapps/geoserver/WEB-INF/lib`.
 
 After copying files, the application server or GeoServer will need to be restarted.
 

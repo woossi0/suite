@@ -3,7 +3,7 @@
 Installation
 ============
 
-Boundless has packaged and configured GeoMesa as an extension to OpenGeo Suite and as such it can be enabled through the standard :ref:`extension install <intro.extensions>` process.
+Boundless has packaged and configured GeoMesa as an extension to Boundless Suite and as such it can be enabled through the standard :ref:`extension install <intro.extensions>` process.
 
 * On Windows, the GeoServer Extension is called :guilabel:`GeoMesa`.
 * On OS X, the folder that contains the files to copy is called :guilabel:`geomesa`.

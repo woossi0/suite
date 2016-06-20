@@ -3,9 +3,9 @@
 What's new in |version|
 =======================
 
-Each new version of OpenGeo Suite includes numerous fixes and component upgrades.
+Each new version of Boundless Suite includes numerous fixes and component upgrades.
 
-In addition, OpenGeo Suite |version| includes the following new features:
+In addition, Boundless Suite |version| includes the following new features:
 
 **Vector tiles output format**
 
@@ -25,7 +25,7 @@ This new tile store option allows for storing tiles in an Amazon Web Services (A
 
 The Marlin renderer is an open source Java rendering engine optimized for performance, based on OpenJDK's Pisces implementation. With this, vector rendering is much improved over the standard engine.
 
-In addition, OpenGeo Suite Enterprise installs include :ref:`libjpeg-turbo <sysadmin.libjpeg-turbo>`, which provides a significant performance enhancement for JPEG encoding in GeoServer WMS output (up to 40% faster than with no native libraries, equal or greater performance than with Native ImageIO).
+In addition, Boundless Suite Enterprise installs include :ref:`libjpeg-turbo <sysadmin.libjpeg-turbo>`, which provides a significant performance enhancement for JPEG encoding in GeoServer WMS output (up to 40% faster than with no native libraries, equal or greater performance than with Native ImageIO).
 
 **GeoServer 2.8**
 

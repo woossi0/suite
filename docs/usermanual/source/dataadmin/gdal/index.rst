@@ -5,11 +5,11 @@ Enabling GDAL image formats support
 
 .. note:: This document only concerns the extra image formats that can be made available in GeoServer via GDAL. The GDAL binaries, such as :command:`gdalinfo` are installed separately.
 
-The OpenGeo Suite comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL).  These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
+Boundless Suite comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL).  These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
 
-.. note:: GDAL image formats support is only available with `OpenGeo Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
+.. note:: GDAL image formats support is only available with `Boundless Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on Boundless Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
 
-.. note:: See the :ref:`intro.installation` section for more information on the various ways to install OpenGeo Suite.
+.. note:: See the :ref:`intro.installation` section for more information on the various ways to install Boundless Suite.
 
 Installation
 ------------
@@ -17,7 +17,7 @@ Installation
 Ubuntu packages
 ~~~~~~~~~~~~~~~
 
-.. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with OpenGeo Suite for Application Servers (via a WAR bundle) is not supported.
+.. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with Boundless Suite for Application Servers (via a WAR bundle) is not supported.
 
 #. Install the following package from the Boundless repository.  (See :ref:`intro.installation.ubuntu.install` for instructions on how to add the OpenGeo repository):
 
@@ -38,7 +38,7 @@ Continue reading at the :ref:`dataadmin.gdal.verify` section.
 CentOS / Red Hat
 ~~~~~~~~~~~~~~~~
 
-.. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with OpenGeo Suite for Application Servers (via a WAR bundle) is not supported.
+.. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with Boundless Suite for Application Servers (via a WAR bundle) is not supported.
 
 #. Install the following package from the Boundless repository.  (See :ref:`intro.installation.redhat.install` for instructions on how to add the Boundless repository):
 
@@ -61,20 +61,20 @@ Windows installer
 
 The GDAL image formats can be added during the :ref:`installation <intro.installation.windows.install>` process. On the :guilabel:`Components` page, check the box for :guilabel:`GDAL Image Formats` in the section named :guilabel:`GeoServer Extensions`.
 
-If OpenGeo Suite has already been installed and you wish to install GDAL image formats at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`GDAL Image Formats`. This will add support to the existing OpenGeo Suite installation.
+If Boundless Suite has already been installed and you wish to install GDAL image formats at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`GDAL Image Formats`. This will add support to the existing Boundless Suite installation.
 
 Windows application server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: This section is for installing GDAL image formats on a Windows-based installation of OpenGeo Suite for Application Servers (WAR bundle).
+.. note:: This section is for installing GDAL image formats on a Windows-based installation of Boundless Suite for Application Servers (WAR bundle).
 
-.. warning:: OpenGeo Suite for Windows requires `.NET Framework 4.5 <https://www.microsoft.com/en-us/download/details.aspx?id=30653>`_. Installation will fail if not present.
+.. warning:: Boundless Suite for Windows requires `.NET Framework 4.5 <https://www.microsoft.com/en-us/download/details.aspx?id=30653>`_. Installation will fail if not present.
 
 #. Download and install the `Visual C++ Redistributable for Visual Studio 2012 Update 4 <https://www.microsoft.com/en-ca/download/details.aspx?id=30679>`_. 
 
 #. Navigate to http://data.boundlessgeo.com/gdal_support/.
 
-#. Download the file with a version number that most closely matches the version of OpenGeo Suite.
+#. Download the file with a version number that most closely matches the version of Boundless Suite.
 
    .. note:: This file requires a 32-bit Java/Tomcat.
 
@@ -103,7 +103,7 @@ Continue reading at the :ref:`dataadmin.gdal.verify` section.
 OS X installer
 ~~~~~~~~~~~~~~
 
-The GDAL image formats extension can be added to OpenGeo Suite by copying the contents of the :file:`gdal` extension folder (not the folder itself) to the GeoServer library folder. The GeoServer library folder can be found by selecting :guilabel:`Open Webapps Directory` from the GeoServer menu and then navigating to :file:`geoserver/WEB-INF/lib`.
+The GDAL image formats extension can be added to Boundless Suite by copying the contents of the :file:`gdal` extension folder (not the folder itself) to the GeoServer library folder. The GeoServer library folder can be found by selecting :guilabel:`Open Webapps Directory` from the GeoServer menu and then navigating to :file:`geoserver/WEB-INF/lib`.
 
    .. figure:: ../../intro/installation/mac/img/ext_webappsmenu.png
 
@@ -115,11 +115,11 @@ Once copied, GeoServer will need to be restarted to take effect.
 OS X application server
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: This section is for installing GDAL image formats on an OS X-based installation of OpenGeo Suite for Application Servers (WAR bundle).
+.. note:: This section is for installing GDAL image formats on an OS X-based installation of Boundless Suite for Application Servers (WAR bundle).
 
 #. Navigate to:  http://data.boundlessgeo.com/gdal_support/
 
-#. Download the file with a version number that most closely matches the version of OpenGeo Suite. For example, the file :file:`gdal_osx_suite_40.zip` would be appropriate for OpenGeo Suite 4.x.
+#. Download the file with a version number that most closely matches the version of Boundless Suite. For example, the file :file:`gdal_osx_suite_40.zip` would be appropriate for Boundless Suite 4.x.
 
 #. Extract the contents of the archive to a location of your choosing.
 

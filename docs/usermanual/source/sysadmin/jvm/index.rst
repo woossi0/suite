@@ -3,7 +3,7 @@
 JVM settings
 ============
 
-This section will discuss JVM (Java) settings for use with OpenGeo Suite.
+This section will discuss JVM (Java) settings for use with Boundless Suite.
 
 .. toctree::
    :maxdepth: 2

@@ -3,7 +3,7 @@
 Installing Point Cloud
 ======================
 
-The Point Cloud extension is available as a part of OpenGeo Suite.
+The Point Cloud extension is available as a part of Boundless Suite.
 
 Windows
 -------
@@ -22,7 +22,7 @@ Continue below at :ref:`dataadmin.pointcloud.install.activate`.
 Ubuntu Linux
 ------------
 
-A package for Ubuntu Linux is available called ``postgresql-9.3-pointcloud``. It can be installed via standard package management, assuming the OpenGeo Suite repository has been added. (See the :ref:`Ubuntu installation page <intro.installation.ubuntu.install>` for more information.)
+A package for Ubuntu Linux is available called ``postgresql-9.3-pointcloud``. It can be installed via standard package management, assuming the Boundless Suite repository has been added. (See the :ref:`Ubuntu installation page <intro.installation.ubuntu.install>` for more information.)
 
 .. code-block:: console
 
@@ -34,7 +34,7 @@ Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
 Red Hat-based Linux
 -------------------
 
-A package for Red Hat-based Linux distributions such as RHEL and CentOS is available, called ``pointcloud-postgresql93``. It can be installed via standard package management, assuming the OpenGeo Suite repository has been added. (See the :ref:`Red Hat installation page <intro.installation.redhat.install>` for more information.)
+A package for Red Hat-based Linux distributions such as RHEL and CentOS is available, called ``pointcloud-postgresql93``. It can be installed via standard package management, assuming the Boundless Suite repository has been added. (See the :ref:`Red Hat installation page <intro.installation.redhat.install>` for more information.)
   
 .. code-block:: console
 
@@ -46,7 +46,7 @@ Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
 Application Servers
 -------------------
 
-For installation when using OpenGeo Suite for Application Servers, please `contact us <http://boundlessgeo.com/about/contact-us/>`__.
+For installation when using Boundless Suite for Application Servers, please `contact us <http://boundlessgeo.com/about/contact-us/>`__.
 
 
 .. _dataadmin.pointcloud.install.activate:

@@ -3,7 +3,7 @@
 Introduction
 ============
 
-This section will guide you through the basic functionality of OpenGeo Suite, including installation information and a tour of the various features. More detailed information is available in later sections.
+This section will guide you through the basic functionality of Boundless Suite, including installation information and a tour of the various features. More detailed information is available in later sections.
 
 .. toctree::
    :maxdepth: 2

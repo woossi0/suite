@@ -3,7 +3,7 @@
 System administration
 =====================
 
-This section will discuss how to manage OpenGeo Suite deployments, including server optimization, security, caching, and backup.
+This section will discuss how to manage Boundless Suite deployments, including server optimization, security, caching, and backup.
 
 .. toctree::
    :maxdepth: 2

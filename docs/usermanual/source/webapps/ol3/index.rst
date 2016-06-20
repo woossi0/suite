@@ -66,7 +66,7 @@ Linux::
 
   /usr/share/opengeo/apps/
 
-Next, open that file in a browser. Assuming OpenGeo Suite web applications deployed at ``http://localhost:8080``, this file should be viewable at ``http://localhost:8080/apps/map.html``.
+Next, open that file in a browser. Assuming Boundless Suite web applications deployed at ``http://localhost:8080``, this file should be viewable at ``http://localhost:8080/apps/map.html``.
 
 .. figure:: img/ol3map.png
 

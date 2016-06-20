@@ -11,12 +11,12 @@ These instructions will set up a JNDI connection pool on the Tomcat application 
 
    Tomcat is the application server used in:
 
-   * OpenGeo Suite for Ubuntu Linux
-   * OpenGeo Suite for Red Hat-based Linux
+   * Boundless Suite for Ubuntu Linux
+   * Boundless Suite for Red Hat-based Linux
 
    Tomcat can also be used with:
 
-   * OpenGeo Suite for Application Servers
+   * Boundless Suite for Application Servers
 
 #. Copy the JDBC Driver for your database to :file:`<TOMCAT_HOME>/lib`. The JDBC driver can often be found on the website of your DBMS provider, or in the installed version of your database. 
 

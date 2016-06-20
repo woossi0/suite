@@ -10,7 +10,7 @@ This section shows how to set the Java system properties used during startup.
 Jetty
 -----
 
-OpenGeo Suite for Windows and OS X both use the Jetty application server. Startup flags are all contained in a file called :file:`start.ini`.
+Boundless Suite for Windows and OS X both use the Jetty application server. Startup flags are all contained in a file called :file:`start.ini`.
 
 On Windows, this file is contained in :file:`jetty\\start.ini` inside the root of the installation directory. For example, :file:`C:\\Program Files\\Boundless\\OpenGeo\\jetty\\start.ini`.
 
@@ -37,7 +37,7 @@ For example, to revert to the legacy handling of CRS values in GeoJSON WFS outpu
 Tomcat
 ------
 
-When using OpenGeo Suite with Tomcat, we recommend you add the startup options to the :file:`setenv.sh` (Linux) or :file:`setenv.bat` (Windows) script file. This file is typically found in the :file:`bin` directory of the Tomcat installation, for example :file:`/usr/share/tomcat7/bin`.
+When using Boundless Suite with Tomcat, we recommend you add the startup options to the :file:`setenv.sh` (Linux) or :file:`setenv.bat` (Windows) script file. This file is typically found in the :file:`bin` directory of the Tomcat installation, for example :file:`/usr/share/tomcat7/bin`.
 
 .. note:: If this file doesn't exist, you can create it in the same directory as the other Tomcat startup scripts such as :file:`catalina.sh` (Linux) or :file:`catalina.bat` (Windows).
 

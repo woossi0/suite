@@ -1,16 +1,16 @@
 
-OpenGeo Suite is a full geospatial software stack that helps you compose, style, publish, and manage maps and data with ease.
+Boundless Suite is a full geospatial software stack that helps you compose, style, publish, and manage maps and data with ease.
 
-OpenGeo Suite User Manual
--------------------------
+Boundless Suite User Manual
+---------------------------
 
-This User Manual will help you get the most out of OpenGeo Suite.
+This User Manual will help you get the most out of Boundless Suite.
 
 :ref:`whatsnew`
-  See what's new in OpenGeo Suite |version|.
+  See what's new in Boundless Suite |version|.
 
 :ref:`intro`
-  Get started with OpenGeo Suite.
+  Get started with Boundless Suite.
 
 :ref:`webmaps`
   Publish your maps and data on the web.
@@ -28,10 +28,10 @@ This User Manual will help you get the most out of OpenGeo Suite.
   Load and manage your data.
 
 :ref:`sysadmin`
-  Manage and optimize your OpenGeo Suite installation.
+  Manage and optimize your Boundless Suite installation.
 
 :ref:`qgis`
-  Connect to OpenGeo Suite from your desktop with QGIS.
+  Connect to Boundless Suite from your desktop with QGIS.
 
 **Additional Documentation**
 

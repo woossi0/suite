@@ -3,7 +3,7 @@
 Setting the Oracle JVM
 ======================
 
-We recommend using the Oracle JVM with OpenGeo Suite, as testing has shown that the Oracle JVM is significantly faster than other JVM implementations.
+We recommend using the Oracle JVM with Boundless Suite, as testing has shown that the Oracle JVM is significantly faster than other JVM implementations.
 
 Specifically, we recommend using **Oracle JRE 8**. The current GeoServer release requires a Java 8 JVM.
 
@@ -12,7 +12,7 @@ Determining the current Java version
 
 You may wish the verify the version of Java you are currently using.
 
-.. warning:: On Linux, packages may pull in multiple versions of the JRE, so just running ``java -version`` may not accurately reflect the version of the JRE being used by OpenGeo Suite.
+.. warning:: On Linux, packages may pull in multiple versions of the JRE, so just running ``java -version`` may not accurately reflect the version of the JRE being used by Boundless Suite.
 
 To confirm the version of Java used:
 
@@ -44,7 +44,7 @@ Changing to the Oracle JRE
 Windows and OS X installers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-OpenGeo Suite for Windows and OS X include the Oracle JRE 8 by default, so no action is needed.
+Boundless Suite for Windows and OS X include the Oracle JRE 8 by default, so no action is needed.
 
 Linux
 ^^^^^
@@ -73,7 +73,7 @@ Linux
       
 #. Ensure your application server is using this new Java. Many application servers will pick up the system ``JAVA_HOME`` environment variable or require that their service definition be modified.
 
-#. If using OpenGeo Suite packages (or just using Tomcat) open :file:`/etc/default/tomcat7` in a text editor.
+#. If using Boundless Suite packages (or just using Tomcat) open :file:`/etc/default/tomcat7` in a text editor.
 
 #. Scroll down to the end of the file where the ``JAVA_HOME`` variable is set. Add the line:
 
@@ -88,7 +88,7 @@ Linux
 
 #. Restart Tomcat. 
 
-#. OpenGeo Suite should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
+#. Boundless Suite should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
 
    .. figure:: img/jvm_serverstatusoracle.png
 
@@ -96,14 +96,14 @@ Linux
 
 #. On the line named :guilabel:`JVM Version`, you should see the Oracle JRE. (For historical reasons, it will be shown as "Java HotSpot.")
 
-.. note:: Read more about :ref:`running OpenGeo Suite in Production <sysadmin.production>`.
+.. note:: Read more about :ref:`running Boundless Suite in Production <sysadmin.production>`.
 
 Windows application servers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: As mentioned above, OpenGeo Suite for Windows automatically includes the appropriate JRE. No action is needed.
+.. note:: As mentioned above, Boundless Suite for Windows automatically includes the appropriate JRE. No action is needed.
 
-If running OpenGeo Suite for Application Servers on a Windows system:
+If running Boundless Suite for Application Servers on a Windows system:
 
 #. Download the Oracle JRE. In your browser, navigate to `Oracle's download page for JRE 8 <http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html>`_.
 
@@ -130,7 +130,7 @@ If running OpenGeo Suite for Application Servers on a Windows system:
 
 #. Make sure that your application server is using this new Java. It may be reading the ``JAVA_HOME`` environment variable, or you may need to consult your application server documentation.
 
-#. OpenGeo Suite should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
+#. Boundless Suite should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
 
    .. figure:: img/jvm_serverstatuswindows.png
       
@@ -138,4 +138,4 @@ If running OpenGeo Suite for Application Servers on a Windows system:
 
 #. On the line named :guilabel:`JVM Version`, you should see the Oracle JRE. (For historical reasons, it will be shown as "Java HotSpot.")
 
-.. note:: Read more about :ref:`running OpenGeo Suite in Production <sysadmin.production>`.
+.. note:: Read more about :ref:`running Boundless Suite in Production <sysadmin.production>`.

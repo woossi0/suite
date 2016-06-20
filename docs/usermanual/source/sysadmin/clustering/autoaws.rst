@@ -1,7 +1,7 @@
 .. _sysadmin.clustering.autoaws:
 
-How to set up an OpenGeo Suite cluster on AWS
-=============================================
+How to set up a Boundless Suite cluster on AWS
+==============================================
 
 This page will show how to automatically set up and configure a cluster of servers on Amazon Web Services (AWS).
 

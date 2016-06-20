@@ -3,11 +3,11 @@
 Enabling MrSID image support
 ============================
 
-The OpenGeo Suite comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL). These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
+The Boundless Suite comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL). These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
 
-`MrSID <http://www.gdal.org/frmt_mrsid.html>`_ is available as an optional extension as well, but due to licensing issues, it is not enabled by default. The steps to enable support will differ depending on how the OpenGeo Suite is installed, and on what platform.
+`MrSID <http://www.gdal.org/frmt_mrsid.html>`_ is available as an optional extension as well, but due to licensing issues, it is not enabled by default. The steps to enable support will differ depending on how the Boundless Suite is installed, and on what platform.
 
-.. note:: MrSID support is only available with `OpenGeo Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on OpenGeo Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
+.. note:: MrSID support is only available with `Boundless Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on Boundless Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
 
 Find the method of installation below and continue there.
 
@@ -17,7 +17,7 @@ Installation
 Ubuntu
 ~~~~~~
 
-.. note:: By default, OpenGeo Suite for Applications Servers (WAR bundle) will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of installation, please see the section on :ref:`dataadmin.gdal`. This section assumes that the GDAL image formats are already enabled.
+.. note:: By default, Boundless Suite for Applications Servers (WAR bundle) will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of installation, please see the section on :ref:`dataadmin.gdal`. This section assumes that the GDAL image formats are already enabled.
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
@@ -34,7 +34,7 @@ Continue at the :ref:`dataadmin.mrsid.verify` section.
 CentOS / Red Hat
 ~~~~~~~~~~~~~~~~
 
-.. note:: By default, the OpenGeo Suite for Application Servers will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of install, please see the section on :ref:`dataadmin.gdal`. This section assumes that the GDAL image formats are already enabled.
+.. note:: By default, the Boundless Suite for Application Servers will not show **any** of the GDAL image formats at all. To enable GDAL image formats in this type of install, please see the section on :ref:`dataadmin.gdal`. This section assumes that the GDAL image formats are already enabled.
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
@@ -67,7 +67,7 @@ MrSID support is enabled during the installation process.
 
 #. Click :guilabel:`Next` and continue the installation process.
 
-.. note:: If you have already installed OpenGeo Suite but not this component, you and can re-run the installer and select only this option.
+.. note:: If you have already installed Boundless Suite but not this component, you and can re-run the installer and select only this option.
 
 Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 
@@ -76,7 +76,7 @@ Windows (Application server)
 
 #. Navigate to:  http://data.boundlessgeo.com/gdal_support/ .
 
-#. Download the file that matches the version of the OpenGeo Suite (e.g. :file:`mrsid_win_30.zip` for version 3.0).
+#. Download the file that matches the version of the Boundless Suite (e.g. :file:`mrsid_win_30.zip` for version 3.0).
 
    .. note:: This file requires 32-bit Java/Tomcat.
 

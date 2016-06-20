@@ -3,9 +3,9 @@
 Load your data with GeoExplorer
 ===============================
 
-The first step is to load data into OpenGeo Suite. These are many tools and methods to accomplish this (see the :ref:`dataadmin` section), but the simplest way is to use **GeoExplorer**. GeoExplorer allows you to create web maps based on layers served through GeoServer and a variety of other sources. When deployed alongside GeoServer and PostGIS, GeoExplorer will convert spatial files into PostGIS tables, and then serve that data through GeoServer. This process is seamless; all you need to do is supply the data.
+The first step is to load data into Boundless Suite. These are many tools and methods to accomplish this (see the :ref:`dataadmin` section), but the simplest way is to use **GeoExplorer**. GeoExplorer allows you to create web maps based on layers served through GeoServer and a variety of other sources. When deployed alongside GeoServer and PostGIS, GeoExplorer will convert spatial files into PostGIS tables, and then serve that data through GeoServer. This process is seamless; all you need to do is supply the data.
 
-#. First, make sure OpenGeo Suite is running.
+#. First, make sure Boundless Suite is running.
 
 #. Run GeoExplorer by clicking :guilabel:`GeoExplorer` in the :ref:`intro.dashboard` or by navigating to its direct URL (such as ``http://localhost:8080/geoexplorer``).
 
