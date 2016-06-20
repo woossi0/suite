@@ -60,7 +60,7 @@ Loading data
 
 #. Make sure Boundless Suite is running and launch pgShapeloader.
 
-#. Click :guilabel:`View connection details` and enter the connection information in the :guilabel:`PostGIS Connection` section. This information will depend on how the Boundless Suite was installed, and whether ``pgShapeloader`` is running locally or remotely. For a default local installation, the following connection info may be used:
+#. Click :guilabel:`View connection details` and enter the connection information in the :guilabel:`PostGIS Connection` section. This information will depend on how Boundless Suite was installed, and whether ``pgShapeloader`` is running locally or remotely. For a default local installation, the following connection info may be used:
 
    .. list-table::
 
