@@ -23,18 +23,18 @@
     <repository>
       <id>boundless</id>
       <name>Boundless Maven Repository</name>
-      <url>https://boundless.artifactoryonline.com/boundless/snapshot/</url>
+      <url>https://repo.boundlessgeo.com/snapshot/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
     </repository>
-    
+
     <repository>
       <id>boundless-libs-release-local</id>
       <name>Boundless Libs-Release-Local Maven Repository</name>
-      <url>https://boundless.artifactoryonline.com/boundless/libs-release-local/</url>
+      <url>https://repo.boundlessgeo.com/artifactory/libs-release-local/</url>
       <snapshots>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
       </snapshots>
     </repository>
 
