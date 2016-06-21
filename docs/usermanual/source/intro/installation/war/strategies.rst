@@ -10,10 +10,8 @@ Sandbox
 
 If your application server is configured to sandbox web applications, you will need to grant additional permissions allowing GeoServer and GeoWebCache access to both environmental variables and the file system. These permissions are used to locate the GeoServer data directory.
 
-#. For Tomcat, open the :file:`$CATALINA_BASE/conf/catalina.policy` file and add:
-  
-   .. code-block:: ini
-  
+#. For Tomcat, open the :file:`$CATALINA_BASE/conf/catalina.policy` file and add::
+    
       # OpenGeo Suite permissions used to access Env Variables and GEOSERVER_DATA_DIRECTORY
       grant codeBase "file:${catalina.base}/webapps/geoserver/WEB-INF/libs/-" {
          permission java.security.AllPermission;

@@ -23,7 +23,7 @@ Jetty
 
    .. code-block:: xml
 
-      <web-app ...>
+      <web-app>
           ...
           <filter>
               <filter-name>cross-origin</filter-name>
