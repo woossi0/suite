@@ -2,7 +2,7 @@
 
   <import file="../build/common.xml"/>
 
-  <property name="docs.modules" value="usermanual,install,geowebcache,geoserver,postgis,openlayers,qgis"/>
+  <property name="docs.modules" value="usermanual,geowebcache,geoserver,postgis,openlayers,qgis"/>
 
   <target name="clean" depends="destroy-target" unless="skip.docs"
       description="Clean project">
@@ -40,9 +40,6 @@
           <if>
             <and>
               <not>
-                <equals arg1="@{mod}" arg2="install"/>
-              </not>
-              <not>
                 <equals arg1="@{mod}" arg2="usermanual"/>
               </not>
             </and>
@@ -68,26 +65,6 @@
         <param name="dir" value="target"/>
         <param name="includes" value="suite-docs.war"/>
       </antcall>
-      <if>
-        <available file="README-mac.pdf" filepath="install/mac/target/latex/"/>
-        <then>
-          <antcall target="assemble-artifact">
-            <param name="name" value="osx-readme"/>
-            <param name="dir" value="install/mac/target/latex/"/>
-            <param name="includes" value="README*.pdf"/>
-          </antcall>
-        </then>
-      </if>
-      <if>
-        <available file="README-windows.pdf" filepath="install/windows/target/latex/"/>
-        <then>
-          <antcall target="assemble-artifact">
-            <param name="name" value="win-readme"/>
-            <param name="dir" value="install/windows/target/latex/"/>
-            <param name="includes" value="README*.pdf"/>
-          </antcall>
-        </then>
-      </if>
   </target>
 
   <target name="publish" depends="init" unless="skip.docs">
@@ -96,24 +73,6 @@
       <param name="name" value="docs-war"/>
       <param name="path" value="docs"/>
     </antcall>
-    <if>
-      <available file="suite-osx-readme-${suite.build_rev}.zip" filepath="target"/>
-        <then>
-          <antcall target="publish-artifact">
-            <param name="name" value="osx-readme"/>
-            <param name="path" value="docs"/>
-          </antcall>
-        </then>
-    </if>
-    <if>
-      <available file="suite-win-readme-${suite.build_rev}.zip" filepath="target"/>
-        <then>
-          <antcall target="publish-artifact">
-            <param name="name" value="win-readme"/>
-            <param name="path" value="docs"/>
-          </antcall>
-      </then>
-    </if>
   </target>
 
 </project>
