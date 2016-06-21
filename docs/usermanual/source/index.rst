@@ -30,9 +30,6 @@ This User Manual will help you get the most out of Boundless Suite.
 :ref:`sysadmin`
   Manage and optimize your Boundless Suite installation.
 
-:ref:`qgis`
-  Connect to Boundless Suite from your desktop with QGIS.
-
 **Additional Documentation**
 
 :ref:`glossary`
@@ -49,5 +46,4 @@ This User Manual will help you get the most out of Boundless Suite.
    processing/index
    dataadmin/index
    sysadmin/index
-   qgis/index
    glossary
