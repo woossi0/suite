@@ -112,8 +112,14 @@
         <exclude name="gt-process-geometry-*.jar"/>
         <exclude name="gt-process-raster-*.jar"/>
         <exclude name="gt-xsd-kml-*.jar"/>
+        <exclude name="httpclient-*.jar"/>
+        <exclude name="httpcore-*.jar"/>
         <exclude name="imageio-ext-geocore-*.jar"/>
         <exclude name="imageio-ext-imagereadmt-*.jar"/>
+        <exclude name="jackson-annotations-*.jar"/>
+        <exclude name="jackson-core-*.jar"/>
+        <exclude name="jackson-databind-*.jar"/>
+        <exclude name="joda-time-*.jar"/>
         <exclude name="json-simple-*.jar"/>
         <exclude name="sqlite-jdbc-*.jar"/>
       </patternset>

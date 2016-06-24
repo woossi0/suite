@@ -41,6 +41,20 @@
   <target name="unpack-ext">
     <delete dir="target/${ext}"/>
     <mkdir dir="target/${ext}"/>
-    <unzip src="${gs-exts.dir}/target/geoserver-exts-${gs.version}-${ext}.zip" dest="target/${ext}"/>
+    <unzip src="${gs-exts.dir}/target/geoserver-exts-${gs.version}-${ext}.zip" dest="target/${ext}">
+    <!-- exclude non-jar files and any jars that are already provided by the core webapp -->
+      <patternset>
+        <exclude name="*.txt"/>
+        <exclude name="*.TXT"/>
+        <exclude name="*.ini"/>
+        <exclude name="httpclient-*.jar"/>
+        <exclude name="httpcore-*.jar"/>
+        <exclude name="jackson-annotations-*.jar"/>
+        <exclude name="jackson-core-*.jar"/>
+        <exclude name="jackson-databind-*.jar"/>
+        <exclude name="joda-time-*.jar"/>
+        <exclude name="json-simple-*.jar"/>
+      </patternset>
+    </unzip>
   </target>
 </project>
