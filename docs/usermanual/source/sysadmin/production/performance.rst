@@ -62,10 +62,6 @@ The memory made available for image processing is controlled in the GeoServer Ad
 
 The JAI and JAI Image I/O APIs provide both Java and native code implementations for most operating system platforms. GeoServer will use the native code implementations by default if they are present.
 
-.. only:: Enterprise
-
-   Boundless Suite Enterprise provides an optional native code extension providing you the best possible performance.
-
 JDK and JAI Performance Comparison
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

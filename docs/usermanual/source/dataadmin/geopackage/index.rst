@@ -17,14 +17,6 @@ Windows
 
 The GeoPackage extension can be added during the installation process. On the :guilabel:`Components` page, check the box for :guilabel:`GeoPackage` in the section named :guilabel:`GeoServer Extensions`.
 
-   .. figure:: img/geopackage_components.png
-
-      GeoPackage in the components list (Boundless Suite)
-
-   .. figure:: img/geopackage_enterprise_components.png
-
-      GeoPackage in the components list (Boundless Suite Enterprise)
-
 If Boundless Suite has already been installed and you wish to install GeoPackage support at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`GeoPackage`. This will add GeoPackage support to the existing Boundless Suite installation.
 
 OS X

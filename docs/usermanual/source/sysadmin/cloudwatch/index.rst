@@ -17,8 +17,6 @@ Amazon CloudWatch support isn't enabled by default, so it must be separately ins
 
 Installing Amazon CloudWatch support is the same as most :ref:`Boundless Suite Extensions <intro.extensions>`.
 
-.. note:: The CloudWatch extension is only available with `Boundless Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on Boundless Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
-
 Windows
 ~~~~~~~
 

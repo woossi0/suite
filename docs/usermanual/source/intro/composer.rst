@@ -9,6 +9,4 @@ Boundless Suite Composer is a tool for creating, styling and publishing maps. It
 
    Boundless Suite Composer
 
-**Composer is available only with Boundless Suite Enterprise**.
-
 For more information about Composer please see the section on :ref:`webmaps.composer`.

@@ -9,10 +9,6 @@ The Dashboard is a single interface that allows you to access all components of 
 
    Boundless Suite Dashboard
 
-.. figure:: img/dashboard-ee.png
-
-   Boundless Suite Enterprise Dashboard
-
 Contained in the dashboard are brief introductions to each of the components of Boundless Suite, including links to documentation and common tools.
 
 The Dashboard contains a Getting Started page, which is designed to show options for common tasks performed with Boundless Suite.

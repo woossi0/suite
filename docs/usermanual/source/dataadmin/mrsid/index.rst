@@ -7,8 +7,6 @@ Boundless Suite comes with support for publishing data from many formats support
 
 `MrSID <http://www.gdal.org/frmt_mrsid.html>`_ is available as an optional extension as well, but due to licensing issues, it is not enabled by default. The steps to enable support will differ depending on how Boundless Suite is installed, and on what platform.
 
-.. note:: MrSID support is only available with `Boundless Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on Boundless Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
-
 Find the method of installation below and continue there.
 
 Installation

@@ -5,8 +5,6 @@ Working with Oracle data
 
 Boundless Suite can read and publish data from an Oracle Spatial database. Any table that has a valid geometry column can be published as a layer in GeoServer.
 
-.. note:: Oracle format support is only available with `Boundless Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on Boundless Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
-
 .. todo:: Caveats?
 
 .. todo:: System requirements? What versions of Oracle?

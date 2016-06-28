@@ -7,8 +7,6 @@ Enabling GDAL image formats support
 
 Boundless Suite comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL).  These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
 
-.. note:: GDAL image formats support is only available with `Boundless Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on Boundless Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
-
 .. note:: See the :ref:`intro.installation` section for more information on the various ways to install Boundless Suite.
 
 Installation

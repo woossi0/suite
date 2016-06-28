@@ -13,8 +13,6 @@ Also included only with Composer is the ability to style layers with :ref:`YSLD 
 
 This section will detail how to use Composer.
 
-.. note:: Composer is only available with `Boundless Suite Enterprise <http://boundlessgeo.com/solutions/opengeo-suite/>`_. For more information on Boundless Suite Enterprise, please `contact us <http://boundlessgeo.com/about/contact-us/sales/>`_.
-
 .. warning:: Composer should not be used in a clustered environment. If you do attempt to use Composer with a :ref:`GeoServer cluster <sysadmin.clustering>`, please note that you will need a shared data directory, and be sure to verify any changes made.
 
 .. toctree::
