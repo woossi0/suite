@@ -99,9 +99,9 @@ Create OpenLayers application
 #. In a text editor, create a new file with the following content:
 
    .. code-block:: html
-      :linenos:
-
-      <!DOCTYPE html>
+      :emphasize-lines: 5
+      
+      <!DOCTYPE html -->
       <html>
       <head>
         <title>Vector tiles</title>
@@ -180,7 +180,7 @@ Since these tiles are rendered in the client, we need only change the styling in
 #. Change the fill color to light green:
 
    .. code-block:: html
-      :lineno-start: 23
+      :emphasize-lines: 3
 
       var style_simple = new ol.style.Style({
         fill: new ol.style.Fill({
@@ -201,7 +201,7 @@ Since these tiles are rendered in the client, we need only change the styling in
 #. We can also do attributed-based styling. This dataset contains has a property (``region_un``) which contains the region the country is in. Let's highlight countries in Africa by adding another style definition below the existing style:
 
    .. code-block:: html
-      :lineno-start: 33
+      :emphasize-lines: 3
 
        var style_highlighted = new ol.style.Style({
          fill: new ol.style.Fill({
@@ -216,7 +216,7 @@ Since these tiles are rendered in the client, we need only change the styling in
 #. Replace the existing style function:
 
    .. code-block:: html
-      :lineno-start: 43
+      :emphasize-lines: 2
 
        function simpleStyle(feature) { 
          return style_simple;
@@ -225,7 +225,7 @@ Since these tiles are rendered in the client, we need only change the styling in
    with the following:
 
    .. code-block:: html
-      :lineno-start: 43
+      :emphasize-lines: 2-5
 
        function simpleStyle(feature) { 
          if (feature.get("region_un") == "Africa") {

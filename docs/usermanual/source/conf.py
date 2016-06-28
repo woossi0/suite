@@ -29,7 +29,7 @@ extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage'
               'sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 
 # Add any paths that contain templates here, relative to this directory.
-#templates_path = ['../../opengeotheme/_templates']
+#templates_path = ['../../themes']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -41,7 +41,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-#project = u'OpenGeo Suite User Manual'
+#project = u'Boundless Suite User Manual'
 project = u'Boundless Suite'
 manual = u'User Manual'
 copyright = u'© ' + str(date.today().year) + u' <a href="http://boundlessgeo.com" class="normal-text">Boundless</a>'
@@ -197,7 +197,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = "../../themes/suite_rtd_theme/static/img/opengeo-logo-only-blue.png"
+latex_logo = "../../themes/suite_rtd_theme/static/img/suite-logo-only-blue.png"
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -247,7 +247,7 @@ latex_show_urls = 'inline'
 #      \lstset
 # 7. Remove blank pages
 #    \let\cleardoublepage\clearpage
-# 8. Add OpenGeo logo to some headers
+# 8. Add Boundless Suite logo to some headers
 #    \fancyhead
 # 9. Remove headers in 8. from the title page
 #    \pagestyle{empty}
@@ -268,7 +268,7 @@ latex_preamble = """
 \\newlength{\\somewidth}
 \\renewcommand{\\includegraphics}[1]{
   \\settowidth{\\somewidth}{\\OLDincludegraphics{#1}}
-  \\ifnum\\pdfstrcmp{#1}{opengeo-logo-only-blue.png}=0
+  \\ifnum\\pdfstrcmp{#1}{suite-logo-only-blue.png}=0
     \\OLDincludegraphics{#1}
   \\else
     \\ifthenelse{\\lengthtest{\\somewidth>4in}}{
@@ -303,7 +303,7 @@ latex_preamble = """
 \\usepackage{fancyhdr}
 \\fancypagestyle{plain}{
     \\fancyhead{}
-    \\fancyhead[R]{OpenGeo Suite User Manual}
+    \\fancyhead[R]{Boundless Suite User Manual}
 }
 \\pagestyle{plain}
 
