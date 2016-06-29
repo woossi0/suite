@@ -18,9 +18,8 @@ body {padding-top: 55px;}
 	top: 0;
 	left: 0;
 	right: 0;
-	height: 50px;
-	padding-top: 5px;
+	height: 60px;
 	padding-left: 20px;
 }
 
-#logo img {border-width: 0; height: 40px; width: 600px;}
+#logo img {border-width: 0; height: 40px; width: 600px; padding-top: 8px;}
