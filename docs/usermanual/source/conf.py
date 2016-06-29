@@ -29,7 +29,7 @@ extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage'
               'sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 
 # Add any paths that contain templates here, relative to this directory.
-#templates_path = ['../../opengeotheme/_templates']
+#templates_path = ['../../themes']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -41,8 +41,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-#project = u'OpenGeo Suite User Manual'
-project = u'OpenGeo Suite'
+#project = u'Boundless Suite User Manual'
+project = u'Boundless Suite'
 manual = u'User Manual'
 copyright = u'© ' + str(date.today().year) + u' <a href="http://boundlessgeo.com" class="normal-text">Boundless</a>'
 
@@ -131,7 +131,7 @@ html_short_title = project + " " + manual
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = 'opengeo.ico'
+html_favicon = 'suite.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -163,7 +163,7 @@ html_use_index = False
 #html_split_index = False
 
 # If true, the reST sources are included in the HTML build as _sources/<name>.
-html_copy_source = True
+html_copy_source = False
 
 # If true, links to the reST sources are added to the pages.
 html_show_sourcelink = False
@@ -177,7 +177,7 @@ html_show_sourcelink = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'OpenGeoSuitedoc'
+htmlhelp_basename = 'BoundlessSuitedoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -191,13 +191,13 @@ htmlhelp_basename = 'OpenGeoSuitedoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'OpenGeoSuiteUserManual.tex', u'OpenGeo Suite User Manual',
+  ('index', 'BoundlessSuiteUserManual.tex', u'Boundless Suite User Manual',
    u'Boundless', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = "../../themes/suite_rtd_theme/static/img/opengeo-logo-only-blue.png"
+latex_logo = "../../themes/suite_rtd_theme/static/img/suite-logo-only-blue.png"
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -247,7 +247,7 @@ latex_show_urls = 'inline'
 #      \lstset
 # 7. Remove blank pages
 #    \let\cleardoublepage\clearpage
-# 8. Add OpenGeo logo to some headers
+# 8. Add Boundless Suite logo to some headers
 #    \fancyhead
 # 9. Remove headers in 8. from the title page
 #    \pagestyle{empty}
@@ -268,7 +268,7 @@ latex_preamble = """
 \\newlength{\\somewidth}
 \\renewcommand{\\includegraphics}[1]{
   \\settowidth{\\somewidth}{\\OLDincludegraphics{#1}}
-  \\ifnum\\pdfstrcmp{#1}{opengeo-logo-only-blue.png}=0
+  \\ifnum\\pdfstrcmp{#1}{suite-logo-only-blue.png}=0
     \\OLDincludegraphics{#1}
   \\else
     \\ifthenelse{\\lengthtest{\\somewidth>4in}}{
@@ -303,7 +303,7 @@ latex_preamble = """
 \\usepackage{fancyhdr}
 \\fancypagestyle{plain}{
     \\fancyhead{}
-    \\fancyhead[R]{OpenGeo Suite User Manual}
+    \\fancyhead[R]{Boundless Suite User Manual}
 }
 \\pagestyle{plain}
 
