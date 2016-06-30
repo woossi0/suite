@@ -62,7 +62,7 @@ The CloudWatch extension can be added to Boundless Suite by installing the ``geo
 Application servers
 ~~~~~~~~~~~~~~~~~~~
 
-The CloudWatch extension can be added to Boundless Suite by copying the contents of the :file:`geopackage` extension directory (not the directory itself) to the GeoServer library directory. If GeoServer is installed at :file:`/opt/tomcat/webapps/geoserver`, the GeoServer library directory will be found at :file:`/opt/tomcat/webapps/geoserver/WEB-INF/lib`.
+The CloudWatch extension can be added to Boundless Suite by copying the contents of the :file:`cloudwatch` extension directory (not the directory itself) to the GeoServer library directory. If GeoServer is installed at :file:`/opt/tomcat/webapps/geoserver`, the GeoServer library directory will be found at :file:`/opt/tomcat/webapps/geoserver/WEB-INF/lib`.
 
 After copying files, the application server or GeoServer will need to be restarted.
 
