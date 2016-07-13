@@ -16,15 +16,8 @@
 
   <target name="clean" depends="destroy" />
 
-  <target name="assemble">
-    <available file="${data.dir}/global.xml" property="dataDirIsAvailable"/>
-    <fail message="Data dir ${data.dir} not present, build ../data_dir first"
-      unless="dataDirIsAvailable"/>  
-
-    <mkdir dir="${war.dir}/data"/>
-    <copy todir="${war.dir}/data">
-      <fileset dir="${data.dir}" excludes="*.zip"/>
-    </copy>
+  <target name="assemble"> 
+    <delete dir="${war.dir}/data"/>
 
     <delete file="${war.file}"/>
 
