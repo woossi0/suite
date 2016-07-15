@@ -11,5 +11,6 @@ This section describes how to install or upgrade Boundless Suite on Windows. Ple
    :maxdepth: 2
 
    war
+   extensions
    vm
 

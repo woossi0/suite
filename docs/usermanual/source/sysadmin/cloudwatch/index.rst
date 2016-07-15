@@ -26,17 +26,6 @@ The CloudWatch extension can be added during the installation process. On the :g
 
 If Boundless Suite has already been installed and you wish to install CloudWatch support at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`CloudWatch`. This will add CloudWatch support to the existing Boundless Suite installation.
 
-OS X
-~~~~
-
-The CloudWatch extension can be added to Boundless Suite by copying the contents of the :file:`cloudwatch` extension folder (not the folder itself) to the GeoServer library folder. The GeoServer library folder can be found by selecting :guilabel:`Open Webapps Directory` from the GeoServer menu and then navigating to :file:`geoserver/WEB-INF/lib`.
-
-   .. figure:: ../../intro/installation/mac/img/ext_webappsmenu.png
-
-      Opening the webapps directory from the GeoServer menu
-
-Once copied, GeoServer will need to be restarted to take effect.
-
 Ubuntu Linux
 ~~~~~~~~~~~~
 

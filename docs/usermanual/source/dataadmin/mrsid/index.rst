@@ -19,7 +19,7 @@ Ubuntu
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
-#. Install the following package from the OpenGeo repository. (See :ref:`intro.installation.ubuntu.install` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository. (See :ref:`intro.installation.ubuntu.packages` for instructions on how to add the OpenGeo repository)::
 
       apt-get install gdal-mrsid
 
@@ -36,7 +36,7 @@ CentOS / Red Hat
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
-#. Install the following package from the OpenGeo repository. (See :ref:`intro.installation.redhat.install` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository. (See :ref:`intro.installation.redhat.packages` for instructions on how to add the OpenGeo repository)::
 
       yum install gdal-mrsid
 
@@ -47,25 +47,6 @@ MrSID support is provided by a separate package called **gdal-mrsid**.
    .. note:: You may need to replace ``tomcat6`` with ``tomcat5`` in the above path depending on the server configuration.
 
 #. Restart Tomcat.
-
-Continue reading at the :ref:`dataadmin.mrsid.verify` section.
-
-Windows (Installer)
-~~~~~~~~~~~~~~~~~~~
-
-MrSID support is enabled during the installation process.
-
-#. Navigate through the installer until you reach the :guilabel:`Choose Components` page.
-
-#. Scroll down to the :guilabel:`GeoServer Extensions` option, and expand the tree.
-
-#. Check the box for :guilabel:`GDAL Image Formats`.
-
-   .. note:: See the section on :ref:`intro.installation.windows.components` for more information.
-
-#. Click :guilabel:`Next` and continue the installation process.
-
-.. note:: If you have already installed Boundless Suite but not this component, you and can re-run the installer and select only this option.
 
 Continue reading at the :ref:`dataadmin.mrsid.verify` section.
 

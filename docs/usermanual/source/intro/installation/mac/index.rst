@@ -11,5 +11,5 @@ This section describes how to install or upgrade Boundless Suite on Mac OS X. Pl
    :maxdepth: 2
 
    war
+   extensions
    vm
-

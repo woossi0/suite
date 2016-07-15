@@ -3,8 +3,5 @@
 Installing packages on Red Hat
 ==============================
 
-New installation
-----------------
-
 Upgrading
 ---------
