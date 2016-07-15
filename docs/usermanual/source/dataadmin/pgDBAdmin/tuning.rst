@@ -11,7 +11,7 @@ postgresql.conf
 The database configuration parameters are available to edit (using a text editor) in the :file:`postgresql.conf` file. The location of this file differs based on platform.
 
 * :ref:`Windows <sysadmin.windows>`
-* :ref:`Mac <sysadmin.osx>`
+* :ref:`Mac <sysadmin.mac>`
 * :ref:`Ubuntu <sysadmin.ubuntu>`
 * :ref:`CentOS/Red Hat <sysadmin.redhat>`
 

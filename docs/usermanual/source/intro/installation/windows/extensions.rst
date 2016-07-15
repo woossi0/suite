@@ -2,3 +2,6 @@
 
 Installing extensions on Windows
 ================================
+
+Extension List
+--------------
