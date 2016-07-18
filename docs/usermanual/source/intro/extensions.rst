@@ -7,8 +7,8 @@ Boundless Suite comes with a number of optional extensions or "add-ons". These a
 
 These optional components can be selected in different ways depending on your operating system:
 
-* **Windows**: Extensions can be selected during the :ref:`Windows installation process <intro.installation.windows.components>` or by rerunning the installer after Boundless Suite is installed.
-* **OS X**: Extensions can be added by :ref:`manually copying the extension files <intro.installation.mac.install.extensions>` after Boundless Suite is installed.
+* **Windows**: Extensions can be added by :ref:`manually copying the extension files <intro.installation.windows.extensions>` after Boundless Suite is installed.
+* **OS X**: Extensions can be added by :ref:`manually copying the extension files <intro.installation.mac.extensions>` after Boundless Suite is installed.
 * **Ubuntu Linux**: Extensions can be installed via :ref:`packages <intro.installation.ubuntu.packages>`.
 * **Red Hat-based Linux**: Extensions can be installed by via :ref:`packages <intro.installation.redhat.packages>`.
 

@@ -17,7 +17,7 @@ Ubuntu packages
 
 .. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with Boundless Suite for Application Servers (via a WAR bundle) is not supported.
 
-#. Install the following package from the Boundless repository.  (See :ref:`intro.installation.ubuntu.install` for instructions on how to add the OpenGeo repository):
+#. Install the following package from the Boundless repository.  (See :ref:`intro.installation.ubuntu.packages` for instructions on how to add the Boundless repository):
 
    .. code-block:: console
 
@@ -38,7 +38,7 @@ CentOS / Red Hat
 
 .. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with Boundless Suite for Application Servers (via a WAR bundle) is not supported.
 
-#. Install the following package from the Boundless repository.  (See :ref:`intro.installation.redhat.install` for instructions on how to add the Boundless repository):
+#. Install the following package from the Boundless repository.  (See :ref:`intro.installation.redhat.packages` for instructions on how to add the Boundless repository):
 
    .. code-block:: console
 
@@ -53,13 +53,6 @@ CentOS / Red Hat
       service tomcat7 restart
 
 Continue reading at the :ref:`dataadmin.gdal.verify` section.
-
-Windows installer
-~~~~~~~~~~~~~~~~~
-
-The GDAL image formats can be added during the :ref:`installation <intro.installation.windows.install>` process. On the :guilabel:`Components` page, check the box for :guilabel:`GDAL Image Formats` in the section named :guilabel:`GeoServer Extensions`.
-
-If Boundless Suite has already been installed and you wish to install GDAL image formats at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`GDAL Image Formats`. This will add support to the existing Boundless Suite installation.
 
 Windows application server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -97,18 +90,6 @@ Windows application server
    #. Restart Tomcat.
 
 Continue reading at the :ref:`dataadmin.gdal.verify` section.
-
-OS X installer
-~~~~~~~~~~~~~~
-
-The GDAL image formats extension can be added to Boundless Suite by copying the contents of the :file:`gdal` extension folder (not the folder itself) to the GeoServer library folder. The GeoServer library folder can be found by selecting :guilabel:`Open Webapps Directory` from the GeoServer menu and then navigating to :file:`geoserver/WEB-INF/lib`.
-
-   .. figure:: ../../intro/installation/mac/img/ext_webappsmenu.png
-
-      Opening the webapps directory from the GeoServer menu
-
-Once copied, GeoServer will need to be restarted to take effect.
-
 
 OS X application server
 ~~~~~~~~~~~~~~~~~~~~~~~

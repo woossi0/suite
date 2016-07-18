@@ -20,34 +20,15 @@ Installing Oracle support
 Windows
 ~~~~~~~
 
-#. The Oracle extension can be added during the installation process. On the :guilabel:`Components` page, check the box for :guilabel:`Oracle`, in the section named :guilabel:`GeoServer Extensions`.
+#. The Oracle extension can be added to Boundless Suite by copying the contents of the :file:`oracle` extension folder (not the folder itself) to the GeoServer library directory. If GeoServer is installed at :file:`/opt/tomcat/webapps/geoserver`, the GeoServer library directory will be found at :file:`/opt/tomcat/webapps/geoserver/WEB-INF/lib`.
 
-   .. figure:: img/oracle_components.png
-
-      Oracle in the components list
-
-   .. note:: If Boundless Suite has already been installed, and you wish to install Oracle support at a later time, simply run the installer once more and uncheck all other items except for :guilabel:`Oracle`. This will add Oracle support to the existing Boundless Suite installation.
-
-#. Next, copy the Oracle JDBC driver from your Oracle installation to the GeoServer library directory. This file, often named :file:`ojdbc##.jar`, can be found either on the installation media or by doing a search on the system that includes Oracle. To find the target, open the directory that contains your Boundless Suite installation (typically something like :file:`C:\\Program Files\\Boundless\\OpenGeo\\`), navigate to the :ref:`intro.installation.windows.postinstall.datadir` and then to :menuselection:`jetty --> webapps --> geoserver --> WEB-INF --> lib`.
+#. Next, copy the Oracle JDBC driver from your Oracle installation to the GeoServer library directory. This file, often named :file:`ojdbc##.jar`, can be found either on the installation media or by doing a search on the system that includes Oracle. To find the target, open the directory that contains your Boundless Suite installation.typically something like :file:`C:\\Program Files\\Boundless\\Suite\\`), navigate to :menuselection:`webapps --> geoserver --> WEB-INF --> lib`.
 
    .. figure:: img/oracle_jar.png
 
       Oracle JAR file copied to the correct location
 
 #. After the file is copied, restart GeoServer. This can be done from the Start Menu by navigating to :menuselection:`All Programs --> Boundless Suite` and using the :guilabel:`Stop` and then :guilabel:`Start` shortcuts, or by restarting the :guilabel:`OpenGeo Jetty` service in the Windows :guilabel:`Services` dialog.
-
-OS X
-~~~~
-
-#. The Oracle extension can be added to Boundless Suite by copying the contents of the :file:`oracle` extension folder (not the folder itself) to the GeoServer library folder. The GeoServer library folder can be found by selecting :guilabel:`Open Webapps Directory` from the GeoServer menu and then navigating to :menuselection:`geoserver --> WEB-INF --> lib`.
-
-   .. figure:: ../../intro/installation/mac/img/ext_webappsmenu.png
-
-      Opening the webapps directory from the GeoServer menu
-
-#. Next, copy the Oracle JDBC driver from your Oracle installation to the same directory. This file, often named :file:`ojdbc##.jar`, can be found either on the installation media or by doing a search on the system that includes Oracle.
-
-#. Restart GeoServer. The easiest way to do this is to select :guilabel:`Quit GeoServer` from the :guilabel:`GeoServer` menu and then relaunch the application.
 
 Ubuntu Linux
 ~~~~~~~~~~~~
