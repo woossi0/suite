@@ -1,0 +1,64 @@
+Setup and Installation
+^^^^^^^^^^^^^^^^^^^^^^
+
+These instructions provide a **virtual machine** which has been already configured with Boundless Suite, eliminating the need to install Boundless Suite directly on your machine.
+
+To make things easier, all interaction with Boundless Suite will still be done through your host's standard browser or a terminal connection. **There is no need to interact directly with the virtual machine console once it is running.**
+
+.. _Boundless Suite 4.9 virtual machine: http://training-files.boundlessgeo.com/geoserver_1/Boundless_GeoServer_I_64_2015-12-24.ova
+
+.. _VirtualBox: https://www.virtualbox.org/wiki/Downloads
+
+Prerequisites:
+
+* Please disable any programs on your system that use either port 2020 or 8080. (If this is not possible, please ask for alternative connection options.)
+* We strongly recommend you use a recent version of `Firefox <http://www.mozilla.org/en-US/firefox/new/>`_ as the browser on your host system. Using `Chrome <https://www.google.com/intl/en/chrome/browser/>`_ is acceptable, though an XML viewer extension such as `XV <https://chrome.google.com/webstore/detail/xv-%E2%80%94-xml-viewer/eeocglpgjdpaefaedpblffpeebgmgddk?hl=en>`_ will be useful for previewing XML and JSON output.
+* Make sure you have administrative rights (Windows) or super-user privileges (Linux and OS X) on your system.
+
+Next we will install the Boundless Suite virtual machine. This virtual machine will run inside `VirtualBox`_ in the background of your system.
+
+#. Download the `Boundless Suite 4.9 virtual machine`_:
+
+   .. note:: You must be able to run a 64-bit virtual machine. 32-bit machines are not supported.
+
+#. Download and install the latest `VirtualBox`_. You may keep all defaults during the install.
+
+#. Double-click the VM image file that you downloaded above (with the :file:`.ova` file extension). This will import the virtual machine into VirtualBox.
+
+   .. figure:: /vm/img/vboxwin_import.png
+
+      Virtual machine details
+
+#. Click :guilabel:`Agree` to accept the Boundless Suite license agreement.
+   
+   .. figure:: /vm/img/vboxwin_eula.png
+      
+      Boundless Suite License
+
+#. Click :guilabel:`Import` to accept the defaults.
+
+   .. figure:: /vm/img/vboxwin_importing.png
+
+      Importing the virtual machine into VirtualBox
+
+#. You will now see the :guilabel:`Boundless Suite` entry in the list of virtual machines in VirtualBox.
+
+   .. figure:: /vm/img/vboxwin_imported.png
+
+      A successful import of the training virtual machine
+
+#. Click to select the virtual machine and then click :guilabel:`Shared Folders`.
+
+#. In order to facilitate copying files from your host system to the virtual machine, we recommend creating a shared folder such that any files copied there will be accessible inside the virtual machine. Right-click the blank area of the dialog and select :guilabel:`Add shared folder` (or press :kbd:`Insert`).
+
+   .. figure:: /vm/img/vboxwin_sharedfolderlink.png
+
+      Right-click to add a new shared folder
+
+#. Fill out the form:
+
+   * For :guilabel:`Folder Path`, select a directory that will serve as the shared folder. One good option for this directory would be the desktop (:file:`/users/<username>/Desktop`).
+   * For :guilabel:`Folder Name`, enter :kbd:`share`. 
+   * Check :guilabel:`Auto-mount`.
+
+#. When finished, click :guilabel:`OK`, then click :guilabel:`OK` again to close the :guilabel:`Settings` page.

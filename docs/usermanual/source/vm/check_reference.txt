@@ -1,0 +1,50 @@
+Virtual Machine Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Useful commands
+"""""""""""""""
+
+When connected to your virtual machine, the following commands may be useful:
+
+* **Start GeoServer**:
+
+  .. code-block:: console
+
+     sudo service tomcat7 start
+
+* **Stop GeoServer**:
+
+  .. code-block:: console
+
+     sudo service tomcat7 stop
+
+* **Shut down the virtual machine**:
+
+  .. code-block:: console
+
+     sudo poweroff
+
+Useful paths
+""""""""""""
+
+The following paths will be referenced on multiple occasions:
+
+* **GeoServer data directory**
+
+  .. code-block:: console
+
+     /var/lib/opengeo/geoserver/
+
+* **GeoServer application directory**
+
+  .. code-block:: console
+
+     /usr/share/opengeo/geoserver/
+
+* **Shared VM directory (default)**
+
+  .. code-block:: console
+
+     /media/sf_share/
+
+  .. note:: If you named your shared directory something other than ``share``, the shared folder will be named :file:`/media/sf_<name>`.

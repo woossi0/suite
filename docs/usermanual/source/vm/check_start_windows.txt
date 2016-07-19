@@ -1,0 +1,37 @@
+Start the virtual machine
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+It is important to test that the virtual machine installed in the previous exercise is running correctly.
+
+
+#. Start the virtual machine by clicking the :menuselection:`Start --> Headless Start` toolbar button (or by using the application menu :menuselection:`Machine --> Start --> Headless Start`).
+
+   .. figure:: /vm/img/vboxwin_start.png
+
+      Starting the virtual machine
+
+   .. note:: Occasionally, the virtual machine can not be started. In most of these cases, this can be solved by going into your machine's BIOS and enabling **hardware virtualization**. Please check with your hardware manufacturer for information on how to enable this.
+
+#. If you see any Windows Firewall warnings, you may accept them.
+
+#. It may take a few minutes for the virtual machine to load. You will know that the virtual machine is ready when you see the preview pause and ask for a login:
+
+   .. figure:: /vm/img/check_vmready.png
+
+      Virtual machine ready
+      
+   .. note::
+      
+      If you accidentally used :guilabel:`Normal Start` instead of :guilabel:`Headless Start`, a console window will be opened. This window captures keyboard and mouse input, which can be a hindrance to working with the virtual machine.
+      
+      * If you just see a blank screen, click in the window, press :kbd:`Enter`
+
+      * If you ever lose your mouse or are unable to type, press the :kbd:`Right Ctrl` key to reclaim focus back from the virtual machine.
+    
+      We recommend not interacting with this window, but instead using a terminal connection, described below.
+
+#. Once you see the above screen, open a browser and navigate to http://localhost:8080/dashboard. You should see the Boundless Suite Dashboard.
+
+   .. figure:: /vm/img/setup_dashboard.png
+
+      Boundless Suite Dashboard
