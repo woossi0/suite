@@ -1,0 +1,42 @@
+Terminal setup
+^^^^^^^^^^^^^^
+
+Most interaction with Boundless Suite will be done through a browser, but occasionally we will want to run commands directly on the virtual machine. To do this, we will use a terminal client.
+
+.. note:: Do not log in directly to the virtual machine console. Using :guilabel:`Headless Start` will prevent the virtual machine console from even being shown.
+
+We will use the following connection parameters to connect to the virtual machine via the terminal:
+
+* **Host name**: ``localhost``
+* **Port**: ``2020``
+* **User**: ``suite``
+* **Password**: (blank)
+
+For **Windows** systems, we recommend using the **PuTTY** terminal utility.
+
+#. Download `PuTTY <http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe>`_.
+
+#. Double-click ``putty.exe``.
+
+#. In the :guilabel:`Host Name (or IP address)` box, enter :kbd:`localhost`.
+
+#. In the :guilabel:`Port` box, enter :kbd:`2020`.
+
+   .. figure:: /vm/img/setup_putty.png
+
+      PuTTY connection parameters
+
+#. Click :guilabel:`Open`.
+
+#. When asked for a user name, enter :kbd:`training` and leave the password blank.
+
+#. Check the shared directory to confirm that files can be shared between the host and the virtual machine:
+
+.. code-block:: console
+
+   cd /media/sf_share
+   ls -l
+
+You should see the contents of your shared directory.
+
+.. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.

@@ -1,0 +1,60 @@
+Create a snapshot
+^^^^^^^^^^^^^^^^^
+
+We highly recommend that you create a snapshot of the virtual machine now and at every major milestone of the course (such as at the beginning/end of every module). We'll start by taking an initial snapshot.
+
+.. admonition:: Exercise
+
+   #. Shut down the virtual machine using your terminal application:
+
+      .. code-block:: console
+
+         sudo poweroff
+
+   #. In the VirtualBox Manager, select the Boundless GeoServer VM if it isn't already selected, and click the :guilabel:`Snapshots` button on the top right of the console. 
+
+      .. figure:: /vm/img/vboxwin_snapshotsbutton.png
+
+         Snapshots button
+
+   #. Click the :guilabel:`Take Snapshot` button (the camera icon on the left).
+
+      .. figure:: /vm/img/vboxwin_snapshots.png
+
+         Take Snapshot button
+
+   #. Enter a snapshot name. A useful name would include the current position in the course materials. For example: :kbd:`Beginning of GeoServer I course`
+
+      .. figure:: /vm/img/vboxwin_newsnapshot.png
+
+         Creating a new snapshot
+
+   #. Click :guilabel:`OK`.
+
+   #. Restart the virtual machine.
+
+Repeat this process at the start/end of each module.
+
+Reverting to a previous snapshot
+""""""""""""""""""""""""""""""""
+
+Should you ever encounter a system error that you are unable to recover from, you can always revert the virtual machine to a recent snapshot and restart the course from that position. **This should only be done if all other troubleshooting options have been exhausted.**
+
+To revert to a previous snapshot:
+
+#. Shut down the virtual machine.
+
+#. Click the :guilabel:`Snapshots` button on the top right of the console. 
+
+   .. figure:: /vm/img/vboxwin_snapshotsbutton.png
+
+      Snapshots button
+
+#. Click to select the snapshot in the list, then click the :guilabel:`Restore Snapshot` button.
+
+   .. figure:: /vm/img/check_restore.png
+
+      Restore snapshot
+
+#. The snapshot will be restored, and you can start the virtual machine again. 
+
