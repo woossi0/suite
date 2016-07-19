@@ -9,8 +9,8 @@ We will use the following connection parameters to connect to the virtual machin
 
 * **Host name**: ``localhost``
 * **Port**: ``2020``
-* **User**: ``training``
-* **Password**: (blank)
+* **User**: ``suite``
+* **Password**: ``suite``
 
 **Linux and OS X** systems have a built-in terminal utility with the ability to run SSH commands.
 

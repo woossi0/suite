@@ -55,7 +55,7 @@ Next we will install the Boundless Suite virtual machine. This virtual machine w
 
    .. figure:: /vm/img/vboxwin_imported.png
 
-      A successful import of the training virtual machine
+      A successful import of the virtual machine
 
 #. Click to select the virtual machine and then click :guilabel:`Shared Folders`.
 

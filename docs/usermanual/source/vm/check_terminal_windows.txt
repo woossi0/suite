@@ -9,7 +9,7 @@ We will use the following connection parameters to connect to the virtual machin
 
 * **Host name**: ``localhost``
 * **Port**: ``2020``
-* **User**: ``training``
+* **User**: ``suite``
 * **Password**: (blank)
 
 For **Windows** systems, we recommend using the **PuTTY** terminal utility.
