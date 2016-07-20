@@ -28,6 +28,32 @@
       <fileset dir="${geomesa.dir}/geomesa-gs-plugin/geomesa-accumulo-gs-plugin/target"
                includes="geomesa-accumulo-gs-plugin-*-install.tar.gz"/>
       <patternset>
+        <!-- exclude non-jar files and any jars that are already provided by the core webapp -->
+        <exclude name="*.txt"/>
+        <exclude name="*.TXT"/>
+        <exclude name="*.ini"/>
+        <exclude name="commons-pool-*.jar"/>
+        <exclude name="gt-app-schema-resolver-*.jar"/>
+        <exclude name="gt-complex-*.jar"/>
+        <exclude name="gt-geojson-*.jar"/>
+        <exclude name="gt-geopkg-??-SNAPSHOT.jar"/>
+        <exclude name="gt-jdbc-h2-*.jar"/>
+        <exclude name="gt-process-??-SNAPSHOT.jar"/>
+        <exclude name="gt-process-feature-*.jar"/>
+        <exclude name="gt-process-geometry-*.jar"/>
+        <exclude name="gt-process-raster-*.jar"/>
+        <exclude name="gt-xsd-kml-*.jar"/>
+        <exclude name="httpclient-*.jar"/>
+        <exclude name="httpcore-*.jar"/>
+        <exclude name="imageio-ext-geocore-*.jar"/>
+        <exclude name="imageio-ext-imagereadmt-*.jar"/>
+        <exclude name="jackson-annotations-*.jar"/>
+        <exclude name="jackson-core-*.jar"/>
+        <exclude name="jackson-databind-*.jar"/>
+        <exclude name="joda-time-*.jar"/>
+        <exclude name="json-simple-*.jar"/>
+        <exclude name="sqlite-jdbc-*.jar"/>
+        <!-- exclude conflicting jars between geomesa and other extensions -->
         <exclude name="gt-imageio-ext-gdal-*.jar"/>
       </patternset>
     </untar>
