@@ -27,6 +27,9 @@
     <untar compression="gzip" dest="target/geomesa-accumulo">
       <fileset dir="${geomesa.dir}/geomesa-gs-plugin/geomesa-accumulo-gs-plugin/target"
                includes="geomesa-accumulo-gs-plugin-*-install.tar.gz"/>
+      <patternset>
+        <exclude name="gt-imageio-ext-gdal-*.jar"/>
+      </patternset>
     </untar>
     <!-- Copy excluded dependencies -->
     <copy todir="target/geomesa-accumulo" overwrite="true">
