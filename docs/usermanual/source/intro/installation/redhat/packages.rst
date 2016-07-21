@@ -9,6 +9,8 @@ This page describes how to perform a package installation of **Boundless Suite**
 
 .. include:: include/sysreq.txt
 
+.. _intro.installation.redhat.packages.install:
+
 New installation
 ----------------
 
@@ -39,9 +41,9 @@ See the :ref:`intro.installation.redhat.packages.list` for details about the pos
 
    .. warning:: VERIFY SERVER
 
-     Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
+   Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
-     .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__ if you have purchased Boundless Suite and do not have a user name and password.
+   .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__ if you have purchased Boundless Suite and do not have a user name and password.
 
 #. Search for Boundless packages to verify that the repository list is correct. 
 
@@ -80,9 +82,11 @@ See the :ref:`intro.installation.redhat.packages.list` for details about the pos
 Upgrade
 -------
 
-This section describes how to perform a minor update from Boundless Suite 4.x to |version| on Red Hat-based Linux distributions.
+This section describes how to upgrade Boundless Suite 4.x to |version| on Red Hat-based Linux distributions.
 
-.. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of Boundless Suite (such as PostgreSQL) please remove them before installing Boundless Suite.
+Because of the package changes involved, if you have any version earlier than 4.9, it will need to be uninstalled first.
+
+.. note:: The data directory at ``/var/lib/opengeo/geoserver`` will not be removed.
 
 #. Change to the ``root`` user:
 
@@ -90,50 +94,15 @@ This section describes how to perform a minor update from Boundless Suite 4.x to
 
       sudo su -
 
-#. Add the Boundless Suite repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents::
-
-     [boundless-third-party]
-     name=Boundless Spatial Third Party Repo
-     baseurl=http://<username>:<password>@SERVER
-     enabled=1
-     gpgcheck=0
-     [boundless-suite-test-centos]
-     name=Boundless Spatial Suite Test Centos
-     baseurl=http://<username>:<password>@SERVER
-     enabled=1
-     gpgcheck=0
-
-   .. warning:: VERIFY SERVER
-
-     Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
-
-     .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__ if you have purchased Boundless Suite and do not have a user name and password.
-
-#. Search for Boundless packages to verify that the repository list is correct. If the command does not return any results, examine the output of the ``yum`` command for any errors or warnings.
+#. Perform the uninstall command
 
    .. code-block:: bash
 
-      yum search suite-
+      yum remove PACKAGES
 
-#. Do extra steps.
+   .. warning:: NEED PACKAGE LIST
 
-   .. warning:: ADD INFO HERE
-
-#. Restart the server.
-
-   .. code-block:: bash
-
-      service tomcat8 restart
-
-#. Verify that the installation succeeded by opening your browser and navigating to the following URL:
-
-   * http://localhost:8080/dashboard
-
-   .. warning:: ADD IMAGE
-
-#. If you see the above image, then Boundless Suite was installed correctly.
-
-#. Please see the section on :ref:`sysadmin.redhat` for best practices and additional information.
+#. Continue above in the :ref:`intro.installation.redhat.packages.install` section.
 
 .. _intro.installation.redhat.packages.list:
 
