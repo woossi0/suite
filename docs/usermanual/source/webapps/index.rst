@@ -9,5 +9,6 @@ This section discuss how to build complete web mapping applications from scratch
    :maxdepth: 3
 
    sdk
+   quickview/index
    ol3/index
 
