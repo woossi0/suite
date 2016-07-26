@@ -38,23 +38,6 @@ Backing up the PostGIS database system
 
 The PostGIS databases can be backed up with the built-in utilities `pg_dump <http://www.postgresql.org/docs/9.3/static/app-pgdump.html>`_ (for a single database) and `pg_dumpall <http://www.postgresql.org/docs/9.3/static/app-pg-dumpall.html>`_ (for multiple databases).
 
-Miscellaneous backup tasks
---------------------------
-
-GeoExplorer saves its map configurations in a file called :file:`geoexplorer.db`.  
-By default this file is located at:
-
-.. list-table::
-
-   * - Windows
-     - ``C:\\ProgramData\\Boundless\\OpenGeo\\geoexplorer``
-   * - Mac
-     - ``~/Library/Application Support/GeoServer/data_dir``
-   * - Linux
-     - ``/var/lib/opengeo/geoexplorer``
-
-This file can be safely backed up and restored as necessary without any special utilities.
-
 Custom content
 --------------
 

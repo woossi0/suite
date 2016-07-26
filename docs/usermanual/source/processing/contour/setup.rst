@@ -17,7 +17,7 @@ Example data
 
 You should start with an appropriate dataset. Any raster data set that contains a band where contouring is possible will work.
 
-Load this dataset into GeoServer. The simplest way is to use :ref:`Composer <webmaps.composer>`, but you can also use the :ref:`GeoServer Layer Importer <dataadmin.importer>` or `GeoExplorer <../../geoexplorer>`_ and its Upload Layers functionality.
+Load this dataset into GeoServer. The simplest way is to use :ref:`Composer <webmaps.composer>`, but you can also use the :ref:`GeoServer Layer Importer <dataadmin.importer>`.
 
 .. figure:: img/composer_raster.png
 

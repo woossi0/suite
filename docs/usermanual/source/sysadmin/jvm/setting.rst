@@ -80,7 +80,7 @@ Linux
    .. code-block:: bash
       :emphasize-lines: 3
 
-      OPENGEO_OPTS="-Djava.awt.headless=true -Xms256m -Xmx768m -Xrs -XX:PerfDataSamplingInterval=500 -Dorg.geotools.referencing.forceXY=true -DGEOEXPLORER_DATA=/var/lib/opengeo/geoexplorer"
+      OPENGEO_OPTS="-Djava.awt.headless=true -Xms256m -Xmx768m -Xrs -XX:PerfDataSamplingInterval=500 -Dorg.geotools.referencing.forceXY=true 
       JAVA_OPTS="$JAVA_OPTS $OPENGEO_OPTS"
       JAVA_HOME=/usr/lib/jvm/jre1.8.0_77
 

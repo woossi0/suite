@@ -116,7 +116,7 @@ The following layers are available in the Medford dataset:
 
 .. figure:: img/medford.png
 
-   Medford zoning data viewed in GeoExplorer
+   Medford zoning data
 
 The Medford layers are in a geographic projection (EPSG:4326) with an approximate spatial extent of ``-122.904, 42.231, -123.042, 42.438`` (west, south, east, north).
 
@@ -166,13 +166,3 @@ The :guilabel:`world:urbanareas1_1` layer was obtained from the `Nordpil world d
 The :guilabel:`world:cities` layer was derived from public domain data obtained from the `Natural Earth <http://www.naturalearthdata.com/>`_ website. The :guilabel:`world:borders` layer was downloaded from the `Mapping Hacks <http://www.mappinghacks.com/data>`_ website. The original data was derived from public domain sources.
 
 For further information, please refer to the :file:`Readme.txt` file included with the data.
-
-Base Maps
-~~~~~~~~~
-
-GeoExplorer provides a link to the MapQuest OpenStreetMap (OSM) web service, providing a general map of the world as a base map.
-
-.. figure:: ../webmaps/easypublish/img/load_geoexplorer.png
-
-   OSM world map in GeoExplorer
-
