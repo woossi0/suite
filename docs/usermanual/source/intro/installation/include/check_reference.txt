@@ -1,31 +1,25 @@
 Virtual Machine Reference
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Useful commands
-"""""""""""""""
-
 When connected to your virtual machine, the following commands may be useful:
 
 * **Start GeoServer**:
 
   .. code-block:: console
 
-     sudo service tomcat7 start
+     sudo service tomcat8 start
 
 * **Stop GeoServer**:
 
   .. code-block:: console
 
-     sudo service tomcat7 stop
+     sudo service tomcat8 stop
 
 * **Shut down the virtual machine**:
 
   .. code-block:: console
 
      sudo poweroff
-
-Useful paths
-""""""""""""
 
 The following paths will be referenced on multiple occasions:
 

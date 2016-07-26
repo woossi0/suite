@@ -3,22 +3,22 @@
 Installing the virtual machine on Ubuntu
 ========================================
 
-We provide a virtual machine of Boundless Suite intended for training courses and evaluation. This virtual machine provides a ready-to-use services for use with the client tools provided by Boundless Desktop.
+This section will install the Boundless Suite virtual machine on an Ubuntu host.
 
 Installation
 ------------
 
-.. include:: /vm/setup.txt
+.. include:: ../include/setup.txt
 
 Post-installation
 -----------------
 
 A few more steps are required before you are ready to proceed.
 
-.. include:: /vm/check_start.txt
+.. include:: ../include/check_start.txt
 
-.. include:: /vm/check_terminal.txt
+.. include:: ../include/check_terminal.txt
 
-.. include:: /vm/check_snapshot.txt
+.. include:: ../include/check_snapshot.txt
 
-.. include:: /vm/check_reference.txt
+.. include:: ../include/check_reference.txt

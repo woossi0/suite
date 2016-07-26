@@ -94,7 +94,7 @@ Because of the package changes involved, if you have any version earlier than 4.
 
       sudo su -
 
-#. Perform the uninstall command
+#. Uninstall old packages:
 
    .. code-block:: bash
 

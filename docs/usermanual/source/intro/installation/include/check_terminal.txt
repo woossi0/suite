@@ -3,7 +3,7 @@ Terminal setup
 
 Most interaction with Boundless Suite will be done through a browser, but occasionally we will want to run commands directly on the virtual machine. To do this, we will use a terminal client.
 
-.. note:: Do not log in directly to the virtual machine console. Using :guilabel:`Headless Start` will prevent the virtual machine console from even being shown.
+.. note:: Use :guilabel:`Headless Start` to prevent the virtual machine console from even being shown.
 
 We will use the following connection parameters to connect to the virtual machine via the terminal:
 

@@ -1,0 +1,55 @@
+These instructions provide a **virtual machine** which has been already configured with Boundless Suite, eliminating the need to install Boundless Suite directly on your machine.
+
+To make things easier, all interaction with Boundless Suite will still be done through your host's standard browser or a terminal connection. **There is no need to interact directly with the virtual machine console once it is running.**
+
+This virtual machine is designed to run inside `VirtualBox <http://virtualbox.com>`_.
+
+.. note:: 
+
+   Prerequisites:
+
+   * Please disable any programs on your system that use either port 2020 or 8080.
+   * Make sure you have administrative / super-user privileges on your system.
+   * You must be able to run a 64-bit virtual machine. 32-bit machines are not supported.
+
+#. Install `VirtualBox <http://virtualbox.com>`_. You may keep all defaults during the install.
+
+#. Run VirtualBox. Navigate to :menuselection:`File --> Import Appliance`.
+
+   .. warning:: FIGURE NEEDED
+
+#. Select the Boundless Suite virtual machine file.
+
+   .. warning:: FIGURE NEEDED
+
+#. The virtual machine will be imported into VirtualBox.
+
+   .. warning:: FIGURE NEEDED
+
+#. Click :guilabel:`Agree` to accept the Boundless Suite license agreement.
+   
+   .. warning:: FIGURE NEEDED
+
+#. Click :guilabel:`Import` to accept the defaults.
+
+   .. warning:: FIGURE NEEDED
+
+#. You will now see the :guilabel:`Boundless Suite` entry in the list of virtual machines in VirtualBox.
+
+   .. warning:: FIGURE NEEDED
+
+#. Click to select the virtual machine and then click :guilabel:`Shared Folders`.
+
+   .. warning:: FIGURE NEEDED
+
+#. In order to facilitate copying files from your host system to the virtual machine, we recommend creating a shared folder such that any files copied there will be accessible inside the virtual machine. Right-click the blank area of the dialog and select :guilabel:`Add shared folder` (or press :kbd:`Insert`).
+
+   .. warning:: FIGURE NEEDED
+
+#. Fill out the form:
+
+   * For :guilabel:`Folder Path`, select a directory on the host machine that will serve as the shared folder. One good option for this directory would be the Desktop.
+   * For :guilabel:`Folder Name`, enter :kbd:`share`. 
+   * Check :guilabel:`Auto-mount`.
+
+#. When finished, click :guilabel:`OK`, then click :guilabel:`OK` again to close the :guilabel:`Settings` page.

@@ -3,7 +3,7 @@ Terminal setup
 
 Most interaction with Boundless Suite will be done through a browser, but occasionally we will want to run commands directly on the virtual machine. To do this, we will use a terminal client.
 
-.. note:: Do not log in directly to the virtual machine console. Using :guilabel:`Headless Start` will prevent the virtual machine console from even being shown.
+.. note:: Use :guilabel:`Headless Start` to prevent the virtual machine console from even being shown.
 
 We will use the following connection parameters to connect to the virtual machine via the terminal:
 
@@ -22,13 +22,11 @@ For **Windows** systems, we recommend using the **PuTTY** terminal utility.
 
 #. In the :guilabel:`Port` box, enter :kbd:`2020`.
 
-   .. figure:: /vm/img/setup_putty.png
-
-      PuTTY connection parameters
+   .. warning:: FIGURE NEEDED
 
 #. Click :guilabel:`Open`.
 
-#. When asked for a user name, enter :kbd:`training` and leave the password blank.
+#. When asked for a user name, enter :kbd:`suite` and leave the password blank.
 
 #. Check the shared directory to confirm that files can be shared between the host and the virtual machine:
 
