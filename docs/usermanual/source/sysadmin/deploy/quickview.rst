@@ -1,4 +1,4 @@
-.. _sysadmin.deploy.gwc:
+.. _sysadmin.deploy.quickview:
 
 Quickview Checklist
 ===================

@@ -1,4 +1,4 @@
-.. _sysadmin.production.strategies:
+.. _sysadmin.deploy.strategies:
 
 Application Server Strategies
 =============================

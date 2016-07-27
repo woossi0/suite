@@ -1,4 +1,4 @@
-.. _sysadmin.deploy.gwc:
+.. _sysadmin.deploy.composer:
 
 Composer Checklist
 ==================
