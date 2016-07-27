@@ -13,7 +13,7 @@ This section will discuss how to manage Boundless Suite deployments, including s
    redhat/index
    ubuntu/index
    windows/index
-   mac/index
+   mac/index   
    jvm/index
    manager/index
    jndi/index
@@ -23,6 +23,7 @@ This section will discuss how to manage Boundless Suite deployments, including s
    backup
    virtualservices/index
    caching/index
+   deploy/index
    clustering/index
    cloudwatch/index
    libjpeg-turbo/index
