@@ -45,9 +45,9 @@ Data directory:
 
 * Contents of suite-data-directory.zip should be unpacked to a suitable location:
   
-  * Windows: 
+  * Windows: ``C:\\ProgramData\\Boundless\\geoserver\\data``
   * Linux: ``/var/opt/boundless/geoserver/data/``
-  * OSX:
+  * OSX: ``~/Library/Application Support/GeoServer/data_dir``
   
 Installation:
 
