@@ -9,7 +9,7 @@ Downloads:
 
 Installation:
 
-* ``webapp/wpsbuilder``
+* ``/usr/share/tomcat8/webapps/wpsbuilder``
 
 Environment:
 

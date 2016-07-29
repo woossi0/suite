@@ -9,5 +9,5 @@ Downloads:
 
 Installation:
 
-* ``webapp/suite-docs``
+* ``/usr/share/tomcat8/webapps/suite-docs``
 

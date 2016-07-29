@@ -9,7 +9,7 @@ Downloads:
 
 Installation:
 
-* ``webapp/dashboard``
+* ``/usr/share/tomcat8/webapps/dashboard``
 
 Environment:
 

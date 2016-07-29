@@ -9,7 +9,7 @@ Downloads:
 
 Installation:
 
-* ``webapp/geowebcache``
+* ``/usr/share/tomcat8/webapps/geowebcache``
 * ``/var/opt/boundless/geowebcache/config/``
 * ``/var/opt/boundless/geowebcache/tilecache/``
 

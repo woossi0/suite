@@ -9,7 +9,7 @@ Downloads:
 
 Installation:
 
-* ``webapp/quickview``
+* ``/usr/share/tomcat8/webapps/quickview``
 
 Environment:
 

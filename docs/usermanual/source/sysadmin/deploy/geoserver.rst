@@ -10,7 +10,7 @@ Download:
 
 Installation:
 
-* ``webapps/geoserver``
+* ``/usr/share/tomcat8/webapps/geoserver``
 * ``/var/opt/boundless/geoserver/data/`` - geoserver configuration files
 * ``/var/opt/boundless/geoserver/data/gwc/`` - embbeded geowebcache configuration files
 * ``/var/opt/boundless/geoserver/data/logs/`` - geoserver log file and reporting level
@@ -45,7 +45,7 @@ Data directory:
 
 * Contents of suite-data-directory.zip should be unpacked to a suitable location:
   
-  * Windows: ``C:\\ProgramData\\Boundless\\geoserver\\data``
+  * Windows: ``C:\ProgramData\Boundless\geoserver\data``
   * Linux: ``/var/opt/boundless/geoserver/data/``
   * OSX: ``~/Library/Application Support/GeoServer/data_dir``
   
