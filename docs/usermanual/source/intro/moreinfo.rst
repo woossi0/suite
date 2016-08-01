@@ -5,8 +5,8 @@ More Information
 
 Below are links to various resources to help you learn more about Boundless Suite.
 
-Project details
----------------
+Component details
+-----------------
 
 For more information on individual components, please see Boundless's project pages:
 

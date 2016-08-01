@@ -1,4 +1,4 @@
-.. _intro.installation.redhat:
+.. _install.redhat:
 
 Installing Boundless Suite on Red Hat
 =====================================

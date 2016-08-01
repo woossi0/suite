@@ -1,4 +1,4 @@
-.. _intro.installation.redhat.war:
+.. _install.redhat.war:
 
 Installing the application server bundle on Red Hat
 ===================================================

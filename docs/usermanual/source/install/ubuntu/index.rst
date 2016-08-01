@@ -1,4 +1,4 @@
-.. _intro.installation.ubuntu:
+.. _install.ubuntu:
 
 Installing Boundless Suite on Ubuntu
 ====================================

@@ -1,4 +1,4 @@
-.. _intro.installation.windows.war:
+.. _install.windows.war:
 
 Installing the application server bundle on Windows 
 ===================================================

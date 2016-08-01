@@ -1,4 +1,4 @@
-.. _intro.installation.windows.extensions:
+.. _install.windows.extensions:
 
 Installing extensions on Windows
 ================================

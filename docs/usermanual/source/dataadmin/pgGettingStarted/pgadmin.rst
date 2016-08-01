@@ -8,13 +8,13 @@ There are a number of front-end tools available for connecting to, and working w
 
 Any data querying and manipulation you can do with ``pgAdmin`` can also be done at the command line with ``psql``.
 
-.. note:: This section uses the graphical utility ``pgAdmin`` which may not be automatically present, depending on the type of installation of Boundless Suite. Please see the :ref:`intro.installation` section for information on how to install these tools for your platform.
+.. note:: This section uses the graphical utility ``pgAdmin`` which may not be automatically present, depending on the type of installation of Boundless Suite. Please see the :ref:`install` section for information on how to install these tools for your platform.
 
 
 Launching pgAdmin
 -----------------
 
-Depending on how Boundless Suite was installed pgAdmin may or may not have been installed. See the :ref:`intro.installation` section for installation instructions. Once installed follow the instructions below for your platform. 
+Depending on how Boundless Suite was installed pgAdmin may or may not have been installed. See the :ref:`install` section for installation instructions. Once installed follow the instructions below for your platform. 
 
 Windows
 ^^^^^^^

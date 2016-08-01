@@ -1,4 +1,4 @@
-.. _intro.installation.mac.war:
+.. _install.mac.war:
 
 Installing the application server bundle on Mac OS X 
 ====================================================

@@ -1,9 +1,9 @@
-.. _intro.installation.redhat.vm:
+.. _install.ubuntu.vm:
 
-Installing the virtual machine on Red Hat
-=========================================
+Installing the virtual machine on Ubuntu
+========================================
 
-This section will install the Boundless Suite virtual machine on a Red Hat-based Linux host.
+This section will install the Boundless Suite virtual machine on an Ubuntu host.
 
 Installation
 ------------

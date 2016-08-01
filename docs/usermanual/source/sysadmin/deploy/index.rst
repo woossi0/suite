@@ -7,7 +7,7 @@ In addition to being available through packages, Boundless Suite web application
 
 The main benefit of using individual application server bundle is its flexibility. This section will cover installation requirements needed for each application, and explore some common deployment scenarios.
 
-The following check lists for each application can be used as a during installation. For more detailed step-by-step installation instructions review the "Tomcat Installation" :ref:`installation instructions for each platform <intro.installation>`.
+The following check lists for each application can be used as a during installation. For more detailed step-by-step installation instructions review the "Tomcat Installation" :ref:`installation instructions for each platform <install>`.
 
 .. toctree::
    :maxdepth: 1

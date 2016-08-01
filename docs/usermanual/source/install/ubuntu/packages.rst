@@ -1,22 +1,22 @@
-.. _intro.installation.ubuntu.packages:
+.. _install.ubuntu.packages:
 
 Installing packages on Ubuntu
 =============================
 
 This page describes how to perform a package installation of **Boundless Suite** |version| on Ubuntu Linux.
 
-.. note:: For upgrades, see the below section on :ref:`Upgrading <intro.installation.ubuntu.packages.upgrade>`.
+.. note:: For upgrades, see the below section on :ref:`Upgrading <install.ubuntu.packages.upgrade>`.
 
 .. include:: include/sysreq.txt
 
-.. _intro.installation.ubuntu.packages.install:
+.. _install.ubuntu.packages.install:
 
 New installation
 ----------------
 
 This section describes how to perform a clean package installation of **Boundless Suite** |version| on Ubuntu Linux.
 
-See the :ref:`intro.installation.ubuntu.packages.list` for details about the possible packages to install.
+See the :ref:`install.ubuntu.packages.list` for details about the possible packages to install.
 
 .. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of Boundless Suite (such as PostgreSQL) please remove them before installing Boundless Suite.
 
@@ -68,7 +68,7 @@ See the :ref:`intro.installation.ubuntu.packages.list` for details about the pos
 
    .. warning:: NEED PACKAGE LIST
 
-   .. note::  See the :ref:`intro.installation.ubuntu.packages.list` for details of individual packages.
+   .. note::  See the :ref:`install.ubuntu.packages.list` for details of individual packages.
 
 #. Restart the server.
 
@@ -86,7 +86,7 @@ See the :ref:`intro.installation.ubuntu.packages.list` for details about the pos
 
 #. Please see the section on :ref:`sysadmin.ubuntu` for best practices and additional information.
 
-.. _intro.installation.ubuntu.packages.upgrade:
+.. _install.ubuntu.packages.upgrade:
 
 Upgrade
 -------
@@ -111,9 +111,9 @@ Because of the package changes involved, if you have any version earlier than 4.
 
    .. warning:: NEED PACKAGE LIST
 
-#. Continue above in the :ref:`intro.installation.ubuntu.packages.install` section.
+#. Continue above in the :ref:`install.ubuntu.packages.install` section.
 
-.. _intro.installation.ubuntu.packages.list:
+.. _install.ubuntu.packages.list:
 
 Package list
 ------------

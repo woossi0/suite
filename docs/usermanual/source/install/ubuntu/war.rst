@@ -1,4 +1,4 @@
-.. _intro.installation.ubuntu.war:
+.. _install.ubuntu.war:
 
 Installing the application server bundle on Ubuntu
 ==================================================

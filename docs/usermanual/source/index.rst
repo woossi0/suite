@@ -10,8 +10,11 @@ This User Manual will help you get the most out of Boundless Suite.
   See what's new in Boundless Suite |version|.
 
 :ref:`intro`
-  Get started with Boundless Suite.
+  Introduction and tour of Boundless Suite.
 
+:ref:`install`
+  Installation of Boundless Suite.
+  
 :ref:`webmaps`
   Publish your maps and data on the web.
 
@@ -40,6 +43,7 @@ This User Manual will help you get the most out of Boundless Suite.
 
    whatsnew
    intro/index
+   install/index
    webmaps/index
    cartography/index
    webapps/index
