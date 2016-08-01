@@ -1,4 +1,4 @@
-.. _intro.installation.mac.extensions:
+.. _install.mac.extensions:
 
 Installing Extensions on Mac
 ============================

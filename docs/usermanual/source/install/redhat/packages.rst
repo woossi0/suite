@@ -1,22 +1,22 @@
-.. _intro.installation.redhat.packages:
+.. _install.redhat.packages:
 
 Installing packages on Red Hat
 ==============================
 
 This page describes how to perform a package installation of **Boundless Suite** |version| on Red hat-based Linux distributions.
 
-.. note:: For upgrades, see the below section on :ref:`Upgrading <intro.installation.redhat.packages.upgrade>`.
+.. note:: For upgrades, see the below section on :ref:`Upgrading <install.redhat.packages.upgrade>`.
 
 .. include:: include/sysreq.txt
 
-.. _intro.installation.redhat.packages.install:
+.. _install.redhat.packages.install:
 
 New installation
 ----------------
 
 This section describes how to perform a clean package installation of **Boundless Suite** |version| on Red hat-based Linux distributions.
 
-See the :ref:`intro.installation.redhat.packages.list` for details about the possible packages to install.
+See the :ref:`install.redhat.packages.list` for details about the possible packages to install.
 
 .. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of Boundless Suite (such as PostgreSQL) please remove them before installing Boundless Suite.
 
@@ -59,7 +59,7 @@ See the :ref:`intro.installation.redhat.packages.list` for details about the pos
 
       yum install -y suite-composer suite-dashboard suite-docs suite-geoserver suite-geowebcache suite-quickview suite-wpsbuilder suite-gs-*
 
-   .. note::  See the :ref:`intro.installation.redhat.packages.list` for details of individual packages.
+   .. note::  See the :ref:`install.redhat.packages.list` for details of individual packages.
 
 #. Restart the server.
 
@@ -77,7 +77,7 @@ See the :ref:`intro.installation.redhat.packages.list` for details about the pos
 
 #. Please see the section on :ref:`sysadmin.redhat` for best practices and additional information.
 
-.. _intro.installation.redhat.packages.upgrade:
+.. _install.redhat.packages.upgrade:
 
 Upgrade
 -------
@@ -102,9 +102,9 @@ Because of the package changes involved, if you have any version earlier than 4.
 
    .. warning:: NEED PACKAGE LIST
 
-#. Continue above in the :ref:`intro.installation.redhat.packages.install` section.
+#. Continue above in the :ref:`install.redhat.packages.install` section.
 
-.. _intro.installation.redhat.packages.list:
+.. _install.redhat.packages.list:
 
 Package list
 ------------

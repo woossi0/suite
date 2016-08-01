@@ -7,7 +7,7 @@ Enabling GDAL image formats support
 
 Boundless Suite comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL).  These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
 
-.. note:: See the :ref:`intro.installation` section for more information on the various ways to install Boundless Suite.
+.. note:: See the :ref:`install` section for more information on the various ways to install Boundless Suite.
 
 Installation
 ------------
@@ -17,7 +17,7 @@ Ubuntu packages
 
 .. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with Boundless Suite for Application Servers (via a WAR bundle) is not supported.
 
-#. Install the following package from the Boundless repository.  (See :ref:`intro.installation.ubuntu.packages` for instructions on how to add the Boundless repository):
+#. Install the following package from the Boundless repository.  (See :ref:`install.ubuntu.packages` for instructions on how to add the Boundless repository):
 
    .. code-block:: console
 
@@ -38,7 +38,7 @@ CentOS / Red Hat
 
 .. note:: GDAL image formats are only available on Linux using Boundless packages. Installing with Boundless Suite for Application Servers (via a WAR bundle) is not supported.
 
-#. Install the following package from the Boundless repository.  (See :ref:`intro.installation.redhat.packages` for instructions on how to add the Boundless repository):
+#. Install the following package from the Boundless repository.  (See :ref:`install.redhat.packages` for instructions on how to add the Boundless repository):
 
    .. code-block:: console
 

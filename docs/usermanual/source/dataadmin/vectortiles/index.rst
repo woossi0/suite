@@ -86,7 +86,7 @@ Create OpenLayers application
 
 #. Create a :file:`www/vectortiles` directory inside your GeoServer Data Directory.
 
-   .. note:: Please see the :ref:`intro.installation` section for your platform for the location of your GeoServer Data Directory.
+   .. note:: Please see the :ref:`install` section for your platform for the location of your GeoServer Data Directory.
 
 #. Download the `latest version of OpenLayers <http://openlayers.org/download/>`_.
 

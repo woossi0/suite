@@ -1,9 +1,9 @@
-.. _intro.installation.windows.vm:
+.. _install.redhat.vm:
 
-Installing the virtual machine on Windows 
+Installing the virtual machine on Red Hat
 =========================================
 
-This section will install the Boundless Suite virtual machine on a Windows host.
+This section will install the Boundless Suite virtual machine on a Red Hat-based Linux host.
 
 Installation
 ------------
@@ -15,9 +15,9 @@ Post-installation
 
 A few more steps are required before you are ready to proceed.
 
-.. include:: ../vm/check_start_windows.txt
+.. include:: ../vm/check_start.txt
 
-.. include:: ../vm/check_terminal_windows.txt
+.. include:: ../vm/check_terminal.txt
 
 .. include:: ../vm/check_snapshot.txt
 

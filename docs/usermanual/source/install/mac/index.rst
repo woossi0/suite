@@ -1,4 +1,4 @@
-.. _intro.installation.mac:
+.. _install.mac:
 
 Installing Boundless Suite on Mac OS X
 ======================================

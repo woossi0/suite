@@ -1,4 +1,4 @@
-.. _intro.installation.windows:
+.. _install.windows:
 
 Installing Boundless Suite on Windows
 =====================================

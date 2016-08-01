@@ -19,7 +19,7 @@ Ubuntu
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
-#. Install the following package from the OpenGeo repository. (See :ref:`intro.installation.ubuntu.packages` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository. (See :ref:`install.ubuntu.packages` for instructions on how to add the OpenGeo repository)::
 
       apt-get install gdal-mrsid
 
@@ -36,7 +36,7 @@ CentOS / Red Hat
 
 MrSID support is provided by a separate package called **gdal-mrsid**.
 
-#. Install the following package from the OpenGeo repository. (See :ref:`intro.installation.redhat.packages` for instructions on how to add the OpenGeo repository)::
+#. Install the following package from the OpenGeo repository. (See :ref:`install.redhat.packages` for instructions on how to add the OpenGeo repository)::
 
       yum install gdal-mrsid
 
