@@ -3,7 +3,7 @@
 Installing Extensions
 =====================
 
-Instructions for unzipping .
+.. Instructions for unzipping BoundlessSuite-ext.zip.
 
 BoundlessSuite Extension Bundle
 -------------------------------
@@ -21,31 +21,18 @@ Unpacking an web application distribution into a suitable location:
 Extension List
 --------------
 
-(insert big table of extensions here, link to feature overview in intro)
-
-
-* JPEG 2000: jp2k
+.. (insert big table of extensions here, link to feature overview in intro)
 
 
 JPEG 2000
 ---------
 
-To install:
+Installation
+~~~~~~~~~~~~
 
-1. unzip instructions
+.. include:: ../../include/ext/jp2k_install_win.txt
 
-TO verify:
+Verifying installation
+~~~~~~~~~~~~~~~~~~~~~~
 
-.. include common text thing to verify functionality
-
-
-MBTiles
--------
-
-To install:
-
-1. unzip instructions
-
-To verify installation:;
-
-.. include common text to verify MBTiles functionality 
+.. include:: ../../include/ext/jp2k_verify.txt
