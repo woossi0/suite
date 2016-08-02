@@ -94,6 +94,11 @@ extlinks = {
     'geoserver': ('/../geoserver/%s','')
 }
 
+# Common substitutions
+# rst_prolog = """
+# .. |download| replace:: `http://priv-repo.boundlessgeo.com/ <
+# """
+
 
 # -- Options for HTML output ---------------------------------------------------
 
