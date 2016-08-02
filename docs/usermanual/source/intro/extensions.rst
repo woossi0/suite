@@ -136,6 +136,12 @@ The INSPIRE extension provides additional metadata information for WMS and WFS s
 
 For information on configuring WMS and WFS services, please see the `GeoServer INSPIRE documentation <../geoserver/extensions/inspire/>`_.
 
+.. _intro.extensions.jp2k:
+
+JPEG 2000
+---------
+
+The JPEG 2000 extension adds the ability for GeoServer to publish data from `JPEG 2000 <https://jpeg.org/jpeg2000/index.html>`_ sources. This image format utilizes wavelet compression for more efficient storage. Once this extension is added, GeoServer will show JPEG 2000 ("JP2K") as one of its available data sources when adding a new store.
 
 .. _intro.extensions.mongodb:
 
