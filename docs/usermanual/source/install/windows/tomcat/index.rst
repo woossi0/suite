@@ -11,3 +11,4 @@ Windows Tomcat Boundless Suite Install
    data
    tomcat
    install
+   extensions

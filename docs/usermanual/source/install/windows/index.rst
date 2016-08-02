@@ -11,6 +11,5 @@ This section describes how to install or upgrade Boundless Suite on Windows. Ple
    :maxdepth: 2
 
    tomcat/index
-   extensions
    vm
 
