@@ -99,7 +99,6 @@ extlinks = {
 # .. |download| replace:: `http://priv-repo.boundlessgeo.com/ <
 # """
 
-
 # -- Options for HTML output ---------------------------------------------------
 
 # The style sheet to use for HTML and HTML Help pages. A file of that name
