@@ -29,6 +29,6 @@ Verifying installation
 
 .. include:: ../../install/include/ext/jp2k_verify.txt
 
-For more information on adding a store and publishing layers, please see the `GeoServer documentation for JPEG 2000 <../../geoserver/extensions/jp2k/>`_.
+For more information on adding a store and publishing layers, please see the :geoserver:`GeoServer documentation for JPEG 2000 <extensions/jp2k/>`.
 
 .. Add tutorials here
