@@ -3,11 +3,11 @@
 Suite Installation
 ==================
 
-.. note:: During installation we will be editing text files that require Administrator access to modify. We recommend the :guilabel:`Notepad++`
+.. note:: During installation we will be editing text files that require Administrator access to modify. We recommend the :guilabel:`Notepad++`.
 
 Unpacking an web application distribution into a suitable locat ion (such as your :file:`Download` folder):
 
-1. Open :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+1. Download :download:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
 2. Right click :file:`BoundlessSuite-war.zip` and select :file :menuselection:`Extract All`.
 

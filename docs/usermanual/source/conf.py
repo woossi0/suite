@@ -26,7 +26,7 @@ from datetime import date
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage',
-              'sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+              'sphinx.ext.autodoc', 'sphinx.ext.extlinks', 'sphinx.ext.viewcode']
 
 # Add any paths that contain templates here, relative to this directory.
 #templates_path = ['../../themes']
@@ -88,6 +88,16 @@ pygments_style = 'sphinx'
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
+extlinks = { 
+    'connect': ('https://connect.boundlessgeo.com/%s',''),
+    'download': ('http://priv-repo.boundlessgeo.com/%s',''),
+    'geoserver': ('/../geoserver/%s','')
+}
+
+# Common substitutions
+# rst_prolog = """
+# .. |download| replace:: `http://priv-repo.boundlessgeo.com/ <
+# """
 
 # -- Options for HTML output ---------------------------------------------------
 

@@ -3,7 +3,6 @@
 Windows Tomcat Boundless Suite Install
 ======================================
 
-
 .. toctree::
    :maxdepth: 2
 
