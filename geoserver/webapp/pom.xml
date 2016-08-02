@@ -64,7 +64,6 @@
     <spring.security.version>4.0.4.RELEASE</spring.security.version>
     <servlet-api.version>3.1.0</servlet-api.version>
     <jackson.version>2.1.1</jackson.version>
-    <marlin.version>0.7.3-Unsafe</marlin.version>
   </properties>
 
   <dependencyManagement>
@@ -288,12 +287,6 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.marlin</groupId>
-      <artifactId>marlin</artifactId>
-      <version>${marlin.version}</version>
-    </dependency>
-
 
     <!-- jars shared between various extensions -->
     <dependency>
