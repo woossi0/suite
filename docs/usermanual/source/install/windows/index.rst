@@ -10,7 +10,7 @@ This section describes how to install or upgrade Boundless Suite on Windows. Ple
 .. toctree::
    :maxdepth: 2
 
-   war
+   tomcat/index
    extensions
    vm
 
