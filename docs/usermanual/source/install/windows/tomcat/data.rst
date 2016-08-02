@@ -8,21 +8,23 @@ New installations
 
 Unpacking an empty geoserver data directory into :file:`C:\\ProgramData\\Boundless\\geoserver\\data`:
 
-1. Open :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+1. Download :download:`suite-data-dir.zip <war-archive/suite-data-dir.zip>` and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
-2. Right click :file:`suite-data-dir.zip` and select :file :menuselection:`Extract All`.
+2. Open :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+
+3. Right click :file:`suite-data-dir.zip` and select :file :menuselection:`Extract All`.
 
    .. figure:: img/data_extract_all.png
       
       Extract all
 
-3. Type in the following extract location :file:`C:\\ProgramData\\Boundless\\geoserver\\data`.
+4. Type in the following extract location :file:`C:\\ProgramData\\Boundless\\geoserver\\data`.
 
    .. figure:: img/data_extract_destination.png
       
       Extract destination
 
-4. The new data directory is now ready for use. This location will be referred to as ``GEOSERVER_DATA_DIRECTORY`` in subsequent documentation.
+5. The new data directory is now ready for use. This location will be referred to as ``GEOSERVER_DATA_DIRECTORY`` in subsequent documentation.
 
    .. figure:: img/data_default.png
       

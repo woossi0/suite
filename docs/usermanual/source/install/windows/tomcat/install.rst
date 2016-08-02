@@ -5,9 +5,14 @@ Suite Installation
 
 .. note:: During installation we will be editing text files that require Administrator access to modify. We recommend the :guilabel:`Notepad++`.
 
-Unpacking an web application distribution into a suitable locat ion (such as your :file:`Download` folder):
+BoundlessSuite War Bundle
+-------------------------
 
-1. Download :download:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+Unpacking an web application distribution into a suitable location:
+
+1. Download :download:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to :file:`Downloads` folder):
+
+2. Open and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
 2. Right click :file:`BoundlessSuite-war.zip` and select :file :menuselection:`Extract All`.
 
@@ -114,3 +119,11 @@ Suite Documentation Install
    .. figure:: img/suite-docs.png
       
       Boundless Suite User Manual
+      
+Suite Dashboard Install
+-----------------------
+
+1. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
+
+2. Copy the :file:`suite-docs.war` into :file:`webapps` to deploy.
+
