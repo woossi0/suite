@@ -89,7 +89,9 @@ pygments_style = 'sphinx'
 #modindex_common_prefix = []
 
 extlinks = { 
-    'geoserver': ('/geoserver/%s',''),
+    'connect': ('https://connect.boundlessgeo.com/%s',''),
+    'download': ('http://priv-repo.boundlessgeo.com/%s',''),
+    'geoserver': ('/../geoserver/%s','')
 }
 
 
