@@ -8,7 +8,7 @@ New installations
 
 Unpacking an empty geoserver data directory into :file:`C:\\ProgramData\\Boundless\\geoserver\\data`:
 
-1. Download :download:`suite-data-dir.zip <war-archive/suite-data-dir.zip>` and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+1. Download :suite:`suite-data-dir.zip <war-archive/suite-data-dir.zip>` and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
 2. Open :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 

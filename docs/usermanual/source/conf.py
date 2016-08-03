@@ -90,13 +90,13 @@ pygments_style = 'sphinx'
 
 extlinks = { 
     'connect': ('https://connect.boundlessgeo.com/%s',''),
-    'download': ('http://priv-repo.boundlessgeo.com/%s',''),
+    'suite': ('http://priv-repo.boundlessgeo.com/%s',''),
     'geoserver': ('/../geoserver/%s','')
 }
 
 # Common substitutions
 # rst_prolog = """
-# .. |download| replace:: `http://priv-repo.boundlessgeo.com/ <
+# .. |suite| replace:: `http://priv-repo.boundlessgeo.com/ <
 # """
 
 # -- Options for HTML output ---------------------------------------------------

@@ -10,7 +10,7 @@ BoundlessSuite War Bundle
 
 Unpacking an web application distribution into a suitable location:
 
-1. Download :download:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to :file:`Downloads` folder):
+1. Download :suite:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to :file:`Downloads` folder):
 
 2. Open and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 

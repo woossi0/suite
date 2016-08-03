@@ -10,7 +10,7 @@ BoundlessSuite Extension Bundle
 
 Unpacking an web application distribution into a suitable location:
 
-1. Download :download:`BoundlessSuite-ext.zip <war-archive/BoundlessSuite-ext.zip>` to :file:`Downloads` folder):
+1. Download :suite:`BoundlessSuite-ext.zip <war-archive/BoundlessSuite-ext.zip>` to :file:`Downloads` folder):
 
 2. Open and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
