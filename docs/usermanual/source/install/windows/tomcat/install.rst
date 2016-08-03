@@ -127,6 +127,12 @@ Dashboard Install
 
 2. Copy the :file:`dashboard.war` into :file:`webapps` to deploy.
 
+3. Use your browser to open the web application at `localhost:8080/dashboard <http://localhost:8080/dashboard/>`__.
+   
+   .. figure:: /img/dashboard.png
+      
+      Boundless Suite Dashboard
+
 GeoWebCache Install
 -------------------
 
@@ -135,3 +141,9 @@ GeoWebCache Install
 1. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
 2. Copy the :file:`geowebcache.war` into :file:`webapps` to deploy.
+
+3. Use your browser to open the web application at `localhost:8080/geowebcache <http://localhost:8080/geowebcache/>`__.
+
+   .. figure:: /img/gwc.png
+      
+      GeoWebCache

@@ -5,7 +5,7 @@ Dashboard
 
 The Dashboard is a single interface that allows you to access all components of Boundless Suite, including links to common tasks, configuration, and management. It runs as web application in the same container as GeoServer, accessible at ``http://localhost:8080/dashboard/``.
 
-.. figure:: img/dashboard.png
+.. figure:: /img/dashboard.png
 
    Boundless Suite Dashboard
 
