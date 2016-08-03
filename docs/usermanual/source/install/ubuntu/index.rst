@@ -9,5 +9,5 @@ This section describes how to install or upgrade Boundless Suite on Ubuntu. Plea
    :maxdepth: 2
 
    packages
-   war
+   tomcat/index
    vm

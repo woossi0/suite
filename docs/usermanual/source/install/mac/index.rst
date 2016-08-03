@@ -10,6 +10,5 @@ This section describes how to install or upgrade Boundless Suite on Mac OS X. Pl
 .. toctree::
    :maxdepth: 2
 
-   war
-   extensions
+   tomcat/index
    vm

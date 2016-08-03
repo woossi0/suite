@@ -120,10 +120,18 @@ Suite Documentation Install
       
       Boundless Suite User Manual
       
-Suite Dashboard Install
------------------------
+Dashboard Install
+-----------------
 
 1. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
-2. Copy the :file:`suite-docs.war` into :file:`webapps` to deploy.
+2. Copy the :file:`dashboard.war` into :file:`webapps` to deploy.
 
+GeoWebCache Install
+-------------------
+
+.. note:: GeoServer includes an built-in copy of this application, installation of stand-alone GeoWebCache may be considered for for caching external WMS services. For more information see :ref:`sysadmin.deploy.strategies`.
+
+1. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
+
+2. Copy the :file:`geowebcache.war` into :file:`webapps` to deploy.

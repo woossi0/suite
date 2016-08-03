@@ -1,7 +1,7 @@
 .. _install.windows.tomcat:
 
-Windows Tomcat Boundless Suite Install
-======================================
+Windows Tomcat Suite Install
+============================
 
 .. toctree::
    :maxdepth: 2

@@ -1,4 +1,4 @@
-.. _install.redhat.war:
+.. _install.redhat.tomcat:
 
 Installing the application server bundle on Red Hat
 ===================================================

@@ -1,4 +1,4 @@
-.. _install.ubuntu.war:
+.. _install.ubuntu.tomcat:
 
 Installing the application server bundle on Ubuntu
 ==================================================

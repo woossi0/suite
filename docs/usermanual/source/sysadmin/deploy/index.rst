@@ -1,7 +1,7 @@
 .. _sysadmin.deploy:
 
-Application Server
-==================
+Deployment
+==========
 
 In addition to being available through packages, Boundless Suite web applications are available individually for use in a custom deployment or on your own application server.
 
