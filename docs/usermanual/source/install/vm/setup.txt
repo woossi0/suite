@@ -1,6 +1,6 @@
 These instructions provide a **virtual machine** which has been already configured with Boundless Suite, eliminating the need to install Boundless Suite directly on your machine.
 
-To make things easier, all interaction with Boundless Suite will still be done through your host's standard browser or a terminal connection. **There is no need to interact directly with the virtual machine console once it is running.**
+**All interaction with Boundless Suite will still be done through your host's standard browser or a terminal connection.** There is no need to interact directly with the virtual machine console once it is running.
 
 This virtual machine is designed to run inside `VirtualBox <http://virtualbox.com>`_.
 
@@ -14,7 +14,17 @@ This virtual machine is designed to run inside `VirtualBox <http://virtualbox.co
 
 #. Install `VirtualBox <http://virtualbox.com>`_. You may keep all defaults during the install.
 
-#. Run VirtualBox. Navigate to :menuselection:`File --> Import Appliance`.
+   .. figure:: /install/include/vbox/img/vbox_welcome.png
+
+      Installing VirtualBox
+
+   .. note:: You may see a warning about network interfaces being temporarily disabled. This is okay.
+
+      .. figure:: /install/include/vbox/img/vbox_warningnetwork.png
+
+         Warning about network interfaces
+
+#. After installation, run VirtualBox. Navigate to :menuselection:`File --> Import Appliance`.
 
    .. figure:: /install/include/vbox/img/vbox_importlink.png
 
@@ -46,7 +56,7 @@ This virtual machine is designed to run inside `VirtualBox <http://virtualbox.co
 
       Accessing the shared folder menu
 
-#. In order to facilitate copying files from your host system to the virtual machine, we recommend creating a shared folder such that any files copied there will be accessible inside the virtual machine. Right-click the blank area of the dialog and select :guilabel:`Add shared folder` (or press :kbd:`Insert`).
+#. In order to facilitate copying files from your host system to the virtual machine, we recommend creating a shared folder such that any files copied to that folder  will be accessible inside the virtual machine. Right-click the blank area of the dialog and select :guilabel:`Add shared folder` (or press :kbd:`Insert`).
 
    .. figure:: /install/include/vbox/img/vbox_sharedfoldermenu.png
 

@@ -7,13 +7,19 @@ It is important to test that the virtual machine installed in the previous exerc
 
    .. note:: "Normal Start" will spawn a console window, while "Headless Start" will not. We recommend using "Headless Start" and interacting with the server via a local SSH connection.
 
-   .. note:: Occasionally, the virtual machine can not be started. In most of these cases, this can be solved by going into your machine's BIOS and enabling **hardware virtualization**. Please check with your hardware manufacturer for information on how to enable this.
+   .. figure:: /install/include/vbox/img/vbox_headless.png
+
+      Headless Start
+
+   .. note:: Occasionally, the virtual machine can not be started. In many cases, this can be solved by going into your machine's BIOS and enabling **hardware virtualization**. Please check with your hardware manufacturer for information on how to enable this.
 
 #. If you see any Windows Firewall warnings, you may accept them.
 
 #. It may take a few minutes for the virtual machine to load. You will know that the virtual machine is ready when you see the preview pause and ask for a login:
 
-   .. warning:: FIGURE NEEDED
+   .. figure:: /install/include/vbox/img/vbox_preview.png
+
+      Login screen on the preview pane in VirtualBox
 
    .. note:: If you chose :guilabel:`Normal Start`, a console window will be opened. This window captures keyboard and mouse input, which can be a hindrance to working with the virtual machine.
       
@@ -23,4 +29,7 @@ It is important to test that the virtual machine installed in the previous exerc
     
 #. Once you see the above screen, open a browser and navigate to http://localhost:8080/dashboard. You should see the Boundless Suite Dashboard.
 
-   .. warning:: FIGURE NEEDED
+   .. figure:: /intro/img/dashboard.png
+
+      Boundless Suite Dashboard
+

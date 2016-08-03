@@ -129,7 +129,7 @@ Dashboard Install
 
 3. Use your browser to open the web application at `localhost:8080/dashboard <http://localhost:8080/dashboard/>`__.
    
-   .. figure:: /img/dashboard.png
+   .. figure:: /intro/img/dashboard.png
       
       Boundless Suite Dashboard
 

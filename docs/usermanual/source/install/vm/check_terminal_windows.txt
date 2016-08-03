@@ -10,11 +10,9 @@ We will use the following connection parameters to connect to the virtual machin
 * **Host name**: ``localhost``
 * **Port**: ``2020``
 * **User**: ``suite``
-* **Password**: (blank)
+* **Password**: ``boundless``
 
-For **Windows** systems, we recommend using the **PuTTY** terminal utility.
-
-#. Download `PuTTY <http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe>`_.
+For **Windows** systems, we recommend using the `PuTTY <http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe>`_ terminal utility.
 
 #. Double-click ``putty.exe``.
 
@@ -22,19 +20,23 @@ For **Windows** systems, we recommend using the **PuTTY** terminal utility.
 
 #. In the :guilabel:`Port` box, enter :kbd:`2020`.
 
-   .. warning:: FIGURE NEEDED
+   .. figure:: /install/include/vbox/img/putty_config.png
+
+      Configuring PuTTY for console access
 
 #. Click :guilabel:`Open`.
 
-#. When asked for a user name, enter :kbd:`suite` and leave the password blank.
+#. When asked for a user name, enter :kbd:`suite` and press :kbd:`Enter`.
+
+#. When asked for a password, enter :kbd:`boundless` and press :kbd:`Enter`.
 
 #. Check the shared directory to confirm that files can be shared between the host and the virtual machine:
 
-.. code-block:: console
+   .. code-block:: console
 
-   cd /media/sf_share
-   ls -l
+      cd /media/sf_share
+      ls -l
 
-You should see the contents of your shared directory.
+   You should see the contents of your shared directory.
 
-.. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.
+   .. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.
