@@ -5,6 +5,8 @@ Installing the virtual machine on Ubuntu
 
 This section will install the Boundless Suite virtual machine on an Ubuntu host.
 
+.. note:: While the screenshots shown below may not match your operating system exactly, the functionality should be identical.
+
 Installation
 ------------
 

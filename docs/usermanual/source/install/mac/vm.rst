@@ -5,6 +5,8 @@ Installing the virtual machine on Mac OS X
 
 This section will install the Boundless Suite virtual machine on a Mac OS X host.
 
+.. note:: While the screenshots shown below may not match your operating system exactly, the functionality should be identical.
+
 Installation
 ------------
 
