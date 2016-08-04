@@ -20,7 +20,7 @@ For **Windows** systems, we recommend using the `PuTTY <http://the.earth.li/~sgt
 
 #. In the :guilabel:`Port` box, enter :kbd:`2020`.
 
-   .. figure:: /install/include/vbox/img/putty_config.png
+   .. figure:: /install/include/vbox/img/vbox_puttyconfig.png
 
       Configuring PuTTY for console access
 
