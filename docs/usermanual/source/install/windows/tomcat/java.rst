@@ -1,6 +1,6 @@
 .. _install.windows.tomcat.java:
 
-Java installation
+Java Installation
 =================
 
 Install Java on your system:
@@ -18,12 +18,14 @@ Install Java on your system:
 2. Run the installer, agreeing to the license terms provided to install.
 
    .. figure:: img/java_install.png
+      :scale: 50%
       
       Java Installation
 
 3. Wait while Java installs
 
    .. figure:: img/java_wait.png
+      :scale: 50%
       
       Java Installation
    
@@ -32,6 +34,7 @@ Install Java on your system:
 4. When complete java is available in :file:`C:\\Program Files (x86)\\Java`. This location will be referred to as ``JRE_HOME`` in subsequent documentation.
 
    .. figure:: img/java_done.png
+      :scale: 50%
       
       Java Installation
 

@@ -8,7 +8,7 @@ New installations
 
 Unpacking an empty geoserver data directory into :file:`C:\\ProgramData\\Boundless\\geoserver\\data`:
 
-1. Download :suite:`suite-data-dir.zip <war-archive/suite-data-dir.zip>` and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+1. Download :suite:`suite-data-dir.zip <war-archive/suite-data-dir.zip>` into the :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
 2. Open :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
@@ -37,7 +37,7 @@ When upgrading from prior versions be advised that the data directory contents w
 
 We advise making a backup of this configuration folder prior to upgrading:
 
-1. Using :guilabel:`Windows Explorer` navigate to :file:`C:\\ProgramData\\Boundless\\\\geoserver` to show your :file:`data` directory.
+1. Using :guilabel:`Windows Explorer` navigate to :file:`C:\\ProgramData\\Boundless\\geoserver` to show your :file:`data` directory.
 
      .. figure:: img/upgrade_data.png
       
@@ -60,7 +60,7 @@ We advise making a backup of this configuration folder prior to upgrading:
 Upgrading from OpenGeo Suite
 ----------------------------
 
-.. warning:: These installation instructions the does not cover the migration of PostGIS databases at this time.
+.. warning:: These installation instructions do not cover the migration of PostGIS databases at this time.
 
 We advise making a backup of this configuration folder prior to upgrading:
 

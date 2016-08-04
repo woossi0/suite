@@ -10,7 +10,7 @@ BoundlessSuite War Bundle
 
 Unpacking an web application distribution into a suitable location:
 
-1. Download :suite:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to :file:`Downloads` folder):
+1. Download :suite:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to :file:`Downloads` folder
 
 2. Open and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
@@ -61,7 +61,7 @@ GeoServer Install
        
        Deploy of geoserver.war
    
-6. The :file:`geoserver.war` is extracted into the running :guilabel:`geoserver` web application visibile in the :file:`webapps` folder.
+6. The :file:`geoserver.war` is extracted into the running :guilabel:`geoserver` web application visible in the :file:`webapps` folder.
 
 7. Using your browser navigate to `localhost:8080/geoserver <http://localhost:8080/geoserver>`__. At the top of the screen fill in the default credentials of:
 
@@ -81,6 +81,7 @@ GeoServer Install
 9. Confirm that the :guilabel:`Data directory` is listed correctly.
 
    .. figure:: img/geoserver_status_page.png
+      :scale: 75%
       
       Server Status Data directory
       
@@ -114,6 +115,8 @@ Suite Documentation Install
 
 2. Copy the :file:`suite-docs.war` into :file:`webapps` to deploy.
 
+  .. note:: Remember to restart your application server
+
 3. Use your browser to open the web application at `localhost:8080/suite-docs <http://localhost:8080/suite-docs/>`__.
 
    .. figure:: img/suite-docs.png
@@ -126,6 +129,8 @@ Dashboard Install
 1. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
 2. Copy the :file:`dashboard.war` into :file:`webapps` to deploy.
+
+  .. note:: Remember to restart your application server
 
 3. Use your browser to open the web application at `localhost:8080/dashboard <http://localhost:8080/dashboard/>`__.
    
@@ -141,6 +146,8 @@ GeoWebCache Install
 1. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
 2. Copy the :file:`geowebcache.war` into :file:`webapps` to deploy.
+
+  .. note:: Remember to restart your application server
 
 3. Use your browser to open the web application at `localhost:8080/geowebcache <http://localhost:8080/geowebcache/>`__.
 
