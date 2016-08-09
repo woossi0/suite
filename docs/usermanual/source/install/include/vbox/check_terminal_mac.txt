@@ -35,4 +35,4 @@ We will use the following connection parameters to connect to the virtual machin
 
    You should see the contents of your shared directory.
 
-   .. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.
+.. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.
