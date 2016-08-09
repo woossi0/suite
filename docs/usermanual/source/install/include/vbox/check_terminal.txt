@@ -12,19 +12,15 @@ We will use the following connection parameters to connect to the virtual machin
 * **User**: ``suite``
 * **Password**: ``boundless``
 
-For **Windows** systems, we recommend using the `PuTTY <http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe>`_ terminal utility.
+**Linux and OS X** systems have a built-in terminal utility with the ability to run SSH commands.
 
-#. Double-click ``putty.exe``.
+#. Enter the following command on a terminal:
 
-#. In the :guilabel:`Host Name (or IP address)` box, enter :kbd:`localhost`.
+   .. code-block:: console
 
-#. In the :guilabel:`Port` box, enter :kbd:`2020`.
+      ssh -p 2020 suite@localhost
 
-   .. figure:: /install/include/vbox/img/vbox_puttyconfig.png
-
-      Configuring PuTTY for console access
-
-#. Click :guilabel:`Open`.
+#. The first time connecting to the virtual machine will fail (as the "ECDSA key fingerprint" used for a secure connection is not trusted). Enter :kbd:`yes` to add ``localhost:2020`` to the listed of known hosts.
 
 #. When asked for a user name, enter :kbd:`suite` and press :kbd:`Enter`.
 
@@ -39,4 +35,4 @@ For **Windows** systems, we recommend using the `PuTTY <http://the.earth.li/~sgt
 
    You should see the contents of your shared directory.
 
-   .. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.
+.. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.
