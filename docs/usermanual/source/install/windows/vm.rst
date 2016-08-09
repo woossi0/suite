@@ -10,17 +10,26 @@ Installation
 
 .. include:: ../include/vbox/setup_intro.txt
 
-* Install `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_. You may keep all defaults during the install.
+#. Install `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_. You may keep all defaults during the install.
 
    .. figure:: img/welcome.png
 
       Installing VirtualBox
 
-.. note:: You may see a warning about network interfaces being temporarily disabled. This is okay.
+   .. note:: You may see a warning about network interfaces being temporarily disabled. This is okay.
 
-   .. figure:: img/warningnetwork.png
+      .. figure:: img/warningnetwork.png
 
-      Warning about network interfaces
+         Warning about network interfaces
+
+#. After installation, run VirtualBox. Navigate to :menuselection:`File --> Import Appliance`.
+
+   .. figure:: ../include/vbox/img/vbox_importlink.png
+
+      Import Appliance link
+
+Import the VM
+^^^^^^^^^^^^^
 
 .. include:: ../include/vbox/setup.txt
 
@@ -119,6 +128,6 @@ For **Windows** systems, we recommend using the `PuTTY <http://the.earth.li/~sgt
 
    .. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.
 
-.. include:: ../vm/check_snapshot.txt
+.. include:: ../include/vbox/check_snapshot.txt
 
-.. include:: ../vm/check_reference.txt
+.. include:: ../include/vbox/check_reference.txt

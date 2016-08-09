@@ -2,7 +2,7 @@ These instructions provide a **virtual machine** which has been already configur
 
 **All interaction with Boundless Suite will still be done through your host's standard browser or a terminal connection.** There is no need to interact directly with the virtual machine console once it is running.
 
-This virtual machine is designed to run inside `VirtualBox <https://www.virtualbox.org>`_.
+This virtual machine is designed to run inside `VirtualBox <https://www.virtualbox.org/>`__.
 
 .. note:: 
 

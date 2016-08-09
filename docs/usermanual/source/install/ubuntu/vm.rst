@@ -10,17 +10,17 @@ This section will install the Boundless Suite virtual machine on an Ubuntu host.
 Installation
 ------------
 
-.. include:: ../vm/setup.txt
+.. include:: ../include/vbox/setup_intro.txt
 
 Post-installation
 -----------------
 
 A few more steps are required before you are ready to proceed.
 
-.. include:: ../vm/check_start.txt
+    .. include:: ../include/vbox/check_start.txt
 
-.. include:: ../vm/check_terminal.txt
+    .. include:: ../include/vbox/check_terminal.txt
 
-.. include:: ../vm/check_snapshot.txt
+    .. include:: ../include/vbox/check_snapshot.txt
 
-.. include:: ../vm/check_reference.txt
+    .. include:: ../include/vbox/check_reference.txt
