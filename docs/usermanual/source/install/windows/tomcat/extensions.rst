@@ -3,12 +3,8 @@
 Installing Extensions
 =====================
 
-.. Instructions for unzipping BoundlessSuite-ext.zip.
+Extensions are included in a separate bundle from the main application server bundle. The extensions bundle will have a file name of :file:`BoundlessSuite-ext.zip`.
 
-BoundlessSuite Extension Bundle
--------------------------------
-
-Unpacking a web application distribution into a suitable location:
 
 1. Download :suite:`BoundlessSuite-ext.zip <war-archive/BoundlessSuite-ext.zip>` to :file:`Downloads` folder
 
@@ -25,14 +21,15 @@ Extension List
 
 
 JPEG 2000
----------
-
-Installation
-~~~~~~~~~~~~
+~~~~~~~~~
 
 .. include:: ../../include/ext/jp2k_install_win.txt
 
-Verifying installation
-~~~~~~~~~~~~~~~~~~~~~~
-
 .. include:: ../../include/ext/jp2k_verify.txt
+
+MBTiles
+~~~~~~~
+
+.. include:: ../../include/ext/mbtiles_install_win.txt
+
+.. include:: ../../include/ext/mbtiles_verify.txt

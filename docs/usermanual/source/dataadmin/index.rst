@@ -18,6 +18,7 @@ This section describes some strategies on how to work with your data using Bound
    geomesa/index
    gdal/index
    jp2k/index
+   mbtiles/index
    mrsid/index
    geopackage/index
    vectortiles/index

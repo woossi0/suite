@@ -143,6 +143,13 @@ JPEG 2000
 
 The JPEG 2000 extension adds the ability for GeoServer to publish data from `JPEG 2000 <https://jpeg.org/jpeg2000/index.html>`_ sources. This image format utilizes wavelet compression for more efficient storage. Once this extension is added, GeoServer will show JPEG 2000 ("JP2K") as one of its available data sources when adding a new store.
 
+.. _intro.extensions.mbtiles:
+
+MBTiles
+-------
+
+The MBTiles extension add the ability for GeoServer to publish data saved in `MBTiles <https://www.mapbox.com/help/an-open-platform/#mbtiles>`_ format, which is an efficient format for storing millions of tiles in a single SQLite database.
+
 .. _intro.extensions.mongodb:
 
 MongoDB
