@@ -11,6 +11,12 @@ Extension List
 
 .. (insert big table of extensions here, link to feature overview in intro)
 
+GRIB
+~~~~
+
+.. include:: ../../include/ext/grib_install.txt
+
+.. include:: ../../include/ext/grib_verify.txt
 
 JPEG 2000
 ~~~~~~~~~

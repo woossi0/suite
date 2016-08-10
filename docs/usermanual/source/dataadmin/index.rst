@@ -26,6 +26,7 @@ GeoServer topics
    pointcloud/index
    oracle/index
    geomesa/index
+   grib/index
    gdal/index
    jp2k/index
    mbtiles/index

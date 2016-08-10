@@ -127,6 +127,14 @@ The GeoScript extension adds support for the use of Python in GeoServer. Spatial
 For more information on scripting in Boundless Suite, please see the :ref:`processing.scripting` section.
 
 
+.. _intro.extensions.grib:
+
+GRIB
+----
+
+The GRIB extension adds support for GeoServer to publish data in `GRIB <https://en.wikipedia.org/wiki/GRIB>`_ format. GRIB is a data format commonly used in meteorology to store weather data, both historical and predicted.
+
+
 .. _intro.extensions.inspire:
 
 INSPIRE
