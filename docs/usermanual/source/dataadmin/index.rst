@@ -15,6 +15,7 @@ PostGIS topics
    pgBasics/index
    pgAdvanced/index
    pgDBAdmin/index
+   pointcloud/index
 
 GeoServer topics
 ----------------
@@ -23,7 +24,6 @@ GeoServer topics
    :maxdepth: 1
 
    importer/index
-   pointcloud/index
    oracle/index
    geomesa/index
    grib/index
@@ -32,5 +32,6 @@ GeoServer topics
    mbtiles/index
    mongodb/index
    mrsid/index
+   netcdf/index
    geopackage/index
    vectortiles/index

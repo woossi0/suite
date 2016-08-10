@@ -7,6 +7,8 @@ Boundless Suite supports data saved in `GRIB <https://en.wikipedia.org/wiki/GRIB
 
 This data can be loaded and published through GeoServer. Both GRIB 1 and GRIB 2 formats are supported.
 
+.. note:: :ref:`NetCDF <dataadmin.netcdf>` is also supported via a separate extension. 
+
 Installing GRIB support
 -----------------------
 
@@ -24,6 +26,6 @@ For more information on adding a store and publishing layers, please see the :ge
 Caveats
 -------
 
-Because of its relation to NetCDF, installing the GRIB extension will also add support for the NetCDF store as well.
+Because of its relation to NetCDF, installing the GRIB extension will also add support for the :ref:`NetCDF <dataadmin.netcdf>` store as well.
 
 .. Add tutorials here
