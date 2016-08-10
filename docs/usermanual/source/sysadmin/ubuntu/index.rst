@@ -157,9 +157,7 @@ To enable this fix:
 Update GeoJSON output
 ^^^^^^^^^^^^^^^^^^^^^
  
-GeoServer GeoJSON output is now provided in x/y/z order as required by the specification. In addition, the ``crs``  output has changed to support full URN representation of spatial reference systems:
-   
-   .. code-block:: json
+GeoServer GeoJSON output is now provided in x/y/z order as required by the specification. In addition, the ``crs``  output has changed to support full URN representation of spatial reference systems::
 
       "crs": {
          "type": "name",
@@ -170,9 +168,7 @@ GeoServer GeoJSON output is now provided in x/y/z order as required by the speci
 
 .. note::
 
-   Previously, the output was:
-
-      .. code-block:: json
+   Previously, the output was::
    
          "crs": {
             "type": "EPSG",

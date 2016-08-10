@@ -17,10 +17,10 @@ Post-installation
 
 A few more steps are required before you are ready to proceed.
 
-    .. include:: ../include/vbox/check_start.txt
+.. include:: ../include/vbox/check_start.txt
 
-    .. include:: ../include/vbox/check_terminal.txt
+.. include:: ../include/vbox/check_terminal.txt
 
-    .. include:: ../include/vbox/check_snapshot.txt
+.. include:: ../include/vbox/check_snapshot.txt
 
-    .. include:: ../include/vbox/check_reference.txt
+.. include:: ../include/vbox/check_reference.txt

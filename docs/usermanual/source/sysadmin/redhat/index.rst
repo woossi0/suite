@@ -167,9 +167,7 @@ To point GeoServer to an alternate location using a servlet parameter:
 
    Navigate to :file:`/usr/share/tomcat8/webapps` and edit the file :file:`geoserver/WEB-INF/web.xml`.
 
-#. Search for ``GEOSERVER_DATA_DIR`` section, uncomment, and change its value accordingly.
-   
-   .. code-block:: xml
+#. Search for ``GEOSERVER_DATA_DIR`` section, uncomment, and change its value accordingly::
       
        <context-param>
           <param-name>GEOSERVER_DATA_DIR</param-name>
@@ -200,9 +198,7 @@ To enable this fix:
 Update GeoJSON output
 ^^^^^^^^^^^^^^^^^^^^^
  
-GeoServer GeoJSON output is now provided in x/y/z order as required by the specification. In addition, the ``crs``  output has changed to support full URN representation of spatial reference systems:
-   
-   .. code-block:: json
+GeoServer GeoJSON output is now provided in x/y/z order as required by the specification. In addition, the ``crs``  output has changed to support full URN representation of spatial reference systems::
 
       "crs": {
          "type": "name",
@@ -213,10 +209,8 @@ GeoServer GeoJSON output is now provided in x/y/z order as required by the speci
 
 .. note::
 
-   Previously, the output was:
+   Previously, the output was::
 
-      .. code-block:: json
-   
          "crs": {
             "type": "EPSG",
             "properties": {
