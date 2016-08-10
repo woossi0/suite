@@ -105,7 +105,12 @@ The Tomcat Application server is used to host the Boundless Suite web applicatio
     .. note:: You may wish to increase the above recommendation when working with raster data, or on a larger machine.
 
 13. Add the following additional :guilabel:`Java Options` to optimize memory management for the larger requests expected when working with geospatial data.
-
+    
+    * :guilabel:`Java Options`::
+          
+          -XX:SoftRefLRUPolicyMSPerMB=36000
+          -XX:-UsePerfData
+    
     .. figure:: img/tomcat_optimize.png
        :scale: 50% 
        
