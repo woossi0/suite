@@ -10,7 +10,7 @@ Installation
 
 .. include:: ../include/vbox/setup_intro.txt
 
-#. Install `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_. You may keep all defaults during the install.
+#. Install `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`__. You may keep all defaults during the install.
 
    .. figure:: img/welcome.png
 
@@ -128,6 +128,12 @@ For **Windows** systems, we recommend using the `PuTTY <http://the.earth.li/~sgt
 
    .. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.
 
+Create a snapshot
+^^^^^^^^^^^^^^^^^
+
 .. include:: ../include/vbox/check_snapshot.txt
+
+Virtual Machine Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. include:: ../include/vbox/check_reference.txt
