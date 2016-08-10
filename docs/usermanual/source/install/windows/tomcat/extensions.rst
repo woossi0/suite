@@ -35,7 +35,7 @@ We recommend making use of the Marlin Rasterizer for improved WMS performance:
    * :file:`C:\Program Files (x86)\Apache Software Foundation\Tomcat 8\bin\marlin-0.7.3-Unsafe.jar`
    
    .. figure:: img/marlin_install.png
-      :scale:80%
+      :scale: 80%
       
       Marlin Install
       
