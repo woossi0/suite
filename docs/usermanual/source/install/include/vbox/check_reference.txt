@@ -1,6 +1,3 @@
-Virtual Machine Reference
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
 When connected to your virtual machine, the following commands may be useful:
 
 * **Start GeoServer**:

@@ -8,9 +8,9 @@ This section will install the Boundless Suite virtual machine on a Mac OS X host
 Installation
 ------------
 
-.. include:: ../include/vbox/setup_intro_mac.txt
+.. include:: ../include/vbox/setup_intro.txt
 
-#. Install `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_. You may keep all defaults during the install.
+#. Install `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`__. You may keep all defaults during the install.
 
    .. figure:: img/vbox_welcome_mac.png
 
@@ -74,10 +74,22 @@ Post-installation
 
 A few more steps are required before you are ready to proceed.
 
+Start the virtual machine
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. include:: ../include/vbox/check_start_mac.txt
 
-.. include:: ../include/vbox/check_terminal_mac.txt
+Terminal setup
+^^^^^^^^^^^^^^
 
-.. include:: ../include/vbox/check_snapshot_mac.txt
+.. include:: ../include/vbox/check_terminal.txt
 
-.. include:: ../include/vbox/check_reference_mac.txt
+Create a snapshot
+^^^^^^^^^^^^^^^^^
+
+.. include:: ../include/vbox/check_snapshot.txt
+
+Virtual Machine Reference
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. include:: ../include/vbox/check_reference.txt

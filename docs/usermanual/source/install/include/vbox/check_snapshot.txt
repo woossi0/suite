@@ -1,6 +1,3 @@
-Create a snapshot
-^^^^^^^^^^^^^^^^^
-
 While not required, it can be useful to create a snapshot of the virtual machine now and at various other times (say, before a major configuration change). This can help reduce downtime if there is a server issue. We'll start by taking an initial snapshot.
 
 #. Shut down the virtual machine.

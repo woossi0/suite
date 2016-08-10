@@ -1,6 +1,3 @@
-Start the virtual machine
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
 It is important to test that the virtual machine installed in the previous exercise is running correctly.
 
 #. Start the virtual machine by clicking the :guilabel:`Start` toolbar button.

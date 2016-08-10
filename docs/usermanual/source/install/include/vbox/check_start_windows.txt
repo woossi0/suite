@@ -1,11 +1,8 @@
-Start the virtual machine
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
 It is important to test that the virtual machine installed in the previous exercise is running correctly.
 
 #. Start the virtual machine by clicking the :guilabel:`Start` toolbar button.
 
-   .. note:: "Normal Start" will spawn a console window, while "Headless Start" will not. We recommend using "Headless Start" and interacting with the server via a local SSH connection.
+   .. note:: :guilabel:`Normal Start` will spawn a console window, while :guilabel:`Headless Start` will not. We recommend using `Headless Start` and interacting with the server via a local SSH connection.
 
    .. figure:: /install/include/vbox/img/vbox_headless.png
 
@@ -15,7 +12,7 @@ It is important to test that the virtual machine installed in the previous exerc
 
 #. If you see any Windows Firewall warnings, you may accept them.
 
-#. It may take a few minutes for the virtual machine to load. You will know that the virtual machine is ready when you see the preview pause and ask for a login:
+#. It may take a few minutes for the virtual machine to load. You will know that the virtual machine is ready when you see the :guilabel:`Preview` pane in the VirtualBox Manager pause and ask for a login:
 
    .. figure:: /install/include/vbox/img/vbox_preview.png
 
