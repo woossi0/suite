@@ -8,3 +8,8 @@ New installation
 
 Upgrading
 ---------
+
+.. _install.redhat.tomcat.extensions:
+
+Extensions
+----------

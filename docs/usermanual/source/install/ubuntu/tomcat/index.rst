@@ -8,3 +8,8 @@ New installation
 
 Upgrading
 ---------
+
+.. _install.ubuntu.tomcat.extensions:
+
+Extensions
+----------
