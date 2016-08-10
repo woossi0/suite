@@ -66,9 +66,6 @@ Installation
 
 #. When finished, click :guilabel:`OK`, then click :guilabel:`OK` again to close the :guilabel:`Settings` page.
 
-
-
-
 Post-installation
 -----------------
 
