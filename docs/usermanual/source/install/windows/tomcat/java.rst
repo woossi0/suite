@@ -47,11 +47,13 @@ We recommend installing the Java Cryptography Extension Unlimited Strength Juris
 1. Download the :guilabel:`Java Cryptography Extension Unlimited Strength Jurisdiction Policy Files` listed under :guilabel:`Additional Resources` on the `download page <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`__ .
    
    .. figure:: img/java_cryptography.png
+      :scale: 75%
       
       Java Cryptography Extension (JCE) Policy Files
    
-2. Unzip the two jar files :file:`local_policy.jar` and :file:`US_export_policy.jar` file into your ``JRE_HOME`` :file:`lib` directory.  For Java 1.8.0 the file:`lib` directory is located in :file:`C:\\Program Files (x86)\\Java\\jre1.8.0_101\\lib`.
+2. Unzip the two jar files :file:`local_policy.jar` and :file:`US_export_policy.jar` file into your ``JRE_HOME`` :file:`lib` directory.  For Java 1.8.0 the file:`lib\\security` directory is located in :file:`C:\\Program Files (x86)\\Java\\jre1.8.0_101\\lib\\security`.
    
    .. figure:: img/java_cryptography_install.png
+      :scale: 50%
       
       Installation of local_policy.jar and US_export_policy.jar
