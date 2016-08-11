@@ -33,7 +33,6 @@ GeoServer Install
 
 #. Change to the :guilabel:`Java` tab and add the following :guilabel:`Java Options`::
      
-     -DGEOSERVER_DATA_DIR=C:\ProgramData\Boundless\geoserver\data
      -Dorg.geotools.referencing.forceXY=true
      -Dorg.geotoools.render.lite.scale.unitCompensation=true
       

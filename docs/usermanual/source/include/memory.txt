@@ -1,0 +1,3 @@
+-Xms=256m -Xmx=756m
+# Appropriate performance configuration
+-XX:SoftRefLRUPolicyMSPerMB=36000

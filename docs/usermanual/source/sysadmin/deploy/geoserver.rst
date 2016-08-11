@@ -3,94 +3,153 @@
 GeoServer Installation Checklist
 ================================
 
-Download:
+Downloads:
 
-* suite-geoserver.war
-* suite-data-directory.zip
+* :suite:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>`
+* :suite:`suite-data-dir.zip <war-archive/suite-data-dir-latest.zip>`
+* :suite:`BoundlessSuite-ext.zip <war-archive/BoundlessSuite-latest-ext.zip>`
 
-Installation:
+Installation Locations:
 
-* ``/usr/share/tomcat8/webapps/geoserver``
-* ``/var/opt/boundless/geoserver/data/`` - geoserver configuration files
-* ``/var/opt/boundless/geoserver/data/gwc/`` - embbeded geowebcache configuration files
-* ``/var/opt/boundless/geoserver/data/logs/`` - geoserver log file and reporting level
-* ``/var/opt/boundless/geoserver/tilecache/``
+============================================================= =======================
+location                                                      description
+============================================================= =======================
+``/usr/share/tomcat8/conf/Catalina/localhost/geoserver.xml``  context-parameter definition
+``/usr/share/tomcat8/conf/Catalina/bin/setenv.sh``            java system-properties definition
+``/usr/share/tomcat8/webapps/geoserver``                      web application
+``/var/opt/boundless/geoserver/data/``                        geoserver configuration files
+``/var/opt/boundless/geoserver/data/gwc/``                    embbeded geowebcache configuration files
+``/var/opt/boundless/geoserver/tilecache/``                   embedded geowebcache cache location
+``/var/opt/boundless/geoserver/logs/``                        geoserver log file and reporting level
+============================================================= =======================
 
 Application environment:
 
-* Application Server supporting with Servlet 3.0.
-* Java 8
+* Application Server supporting with Servlet 3.0 (Tomcat 7 or newer)
+* Java 8 (Java 9 unsupported at this time)
 * (Recommended) Java Cryptography Extension policy files
+* Java system properties
+
+  .. note:: Each application server has a different way of configuring java options including available memory.
+     
+     On Tomcat system properties are defined by the ``JAVA_OPTS`` environmental variable defined in the :download:`tomcat8/bin/setenv.sh </include/setenv.sh>` (or in the :file:`tomcat8` service definition):
+
+    .. literalinclude:: /include/setenv.sh
+       :language: bash
+       :end-before: # geoserver settings
+       
+
 * (Optional) Appropriate memory allocation. The default memory allocation is 1/4 system memory which may be appropriate for your use.
   
-  Each application server has a different way of configuring available memory, setting for Tomcat 8 outlined below.::
+  .. literalinclude:: /include/memory.txt
+     :language: bash
+     :lines: 1
+     
+* Required memory management:
   
-     -Xms=256m  -Xmx=756m
-* Appropriate memory management::
+  .. literalinclude:: /include/memory.txt
+     :language: bash
+     :lines: 3
+     
+* Recommended - Disable JVM performance monitoring:
+
+  .. literalinclude:: /include/performance.txt
+     :language: bash
   
-     -XX:SoftRefLRUPolicyMSPerMB=36000
-* (Recommended) Disable JVM performance monitoring::
-
-    -XX:-UsePerfData
-
-* (Recommended) Boot classpath modification for Marlin rasterizer::
+* Recommended - Boot classpath modification for Marlin rasterizer (allowing GeoServer WMS to effectively use machines with more than 8 cpu cores):
    
-     -Xbootclasspath/a:geoserver/WEB-INF/lib/marlin-0.7.3-Unsafe.jar
-     -Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine
-     -Dsun.java2d.renderer.useThreadLocal=false
-  
-  This allows GeoServer WMS to effectively use machines with more than 8 cpu cores.
+  .. literalinclude:: /include/marlin.txt
+     :language: bash
 
 Data directory:
 
-* Contents of suite-data-directory.zip should be unpacked to a suitable location:
-  
+* Contents of :file:`suite-data-directory.zip` should be unpacked to a suitable location:  
   * Windows: ``C:\ProgramData\Boundless\geoserver\data``
   * Linux: ``/var/opt/boundless/geoserver/data/``
   * OSX: ``~/Library/Application Support/GeoServer/data_dir``
   
-Installation:
+Installation
+------------
+
+Context parameters:
+
+* Use your application server's facilities for defining context-parameters.
+  
+  .. warning:: The ``web.xml`` provides the default context-parameter value definitions.
+  
+     Editing context-parameters directly in the ``web.xml`` is not recommended (as you would need to reapply your changes when upgrading).
+
+  .. note:: On Tomcat the :download:`tomcat8/conf/Catalina/localhost/geoserver.xml </include/geoserver.xml>` file used define context-parameter values:
+   
+     .. literalinclude:: /include/geoserver.xml
+        :language: xml
+
+* Fill in required context parameters for GeoServer:
+
+  * GEOSERVER_DATA_DIR - location of the GeoServer configuration directory::
+       
+       /var/opt/boundless/suite/geoserver/data
+       
+  * GEOSERVER_REQUIRE_FILE - prevent GeoServer from loading if data directory is unavailable.::
+        
+        /var/opt/boundless/suite/geoserver/data/global.xml
+    
+    You can list additiona file and folder locations here to confirm the presense of any required network shares.
+
+* Recommended context-parameters:
+  
+  * GEOWEBCACHE_CACHE_DIR - location of GeoWebCache Cache directory::
+  
+       /var/opt/boundless/suite/geoserver/gwc
+      
+* Optional context-parameters:
+  
+  * GEOSERVER_GWC_CONFIG_DIR - alternate location for GeoWebCache configuration::
+
+       /var/opt/boundless/geoserver/gwc/
+   
+  * GEOSERVER_LOG_LOCATION - location where geoserver logs are stored::
+
+       /var/opt/boundless/geoserver/logs/
+
+Java system properties:
+
+* .. note:: On Tomcat system properties are defined by the ``JAVA_OPTS`` environmental variable defined in the :download:`tomcat8/bin/setenv.sh </include/setenv.sh>` (or in the :file:`tomcat8` service definition):
+
+    .. literalinclude:: /include/setenv.sh
+       :language: bash
+       :prepend: #! /bin/sh
+       :start-after: # geoserver settings
+
+* Required system properties:
+  
+  .. literalinclude:: /include/geoserver.txt
+     :language: bash
+     :lines: 1
+  
+* Recommended system properties:
+   
+  .. literalinclude:: /include/geoserver.txt
+     :language: bash
+     :lines: 2
+
+Web application:
 
 * Deploy the geoserver.war to your application server:
   
   * Tomcat 8 provides a management console that can be used for deploy, you will need to increase the size limit before use.
-  * Tomcat 8 webapps folder is monitored for new war files, copy geoserver.war into this folder to deploy. You may wish to remove the geoserver.war file after it has been unpacked by the application server to save space.
+  * Tomcat 8 webapps folder is monitored for new war files, copy geoserver.war into this folder to deploy. You may wish to remove the :file:`geoserver.war` file after it has been unpacked by the application server to save space.
 
-* Specify location of GeoServer Data Directory::
+* (Optional) GeoServer requires write access to environmental variables, if operating in a restricted environment you will need to grant GeoServer additional permissions to allow this access.
+
+  .. note:: On Tomcat the :file:`tomcat8/conf/catalina.policy` file can be used to sandbox web applications.
   
-    -DGEOSERVER_DATA_DIRECTORY=/var/opt/boundless/geoserver/data/
-    
-* Prevent GeoServer from loading if data directory is unavailable::
-
-    -DGEOSERVER_DATA_DIRECTORY=/var/opt/boundless/geoserver/data/global.xml
-  
-  .. note:: You can add additional file and folder locations here to confirm the presense of any required network shares.
-
-* Required system properties::
-  
-     -Dorg.geotools.referencing.forceXY=true
-  
-* Recommended system properties::
-   
-     -Dorg.geotoools.render.lite.scale.unitCompensation=true
-
-* (Recommended) Specify location of GeoWebCache Cache directory::
-
-      -DGEOSERVER_GWC_CACHE_DIR=/var/opt/boundless/geoserver/tilecache/
-
-* (Optional) Specify alternate location for GeoWebCache configuration::
-
-      -DGEOSERVER_GWC_CONFIG_DIR=/var/opt/boundless/geoserver/gwc/
-   
-* (Optional) Specify the location where geoserver logs are stored::
-
-      -DGEOSERVER_AUDIT_PATH=/var/opt/boundless/geoserver/logs/
-
-   This setting is often used to allow each node in a cluster to store logs to a distinct location.
-
-* (Optional) GeoServer requires write access to the data directory location, if operating in a restricted environment you will need to grant GeoServer additional permissions to allow this access.
-
-* (Optional) The web.xml file can be used for configuration when deploying several several geoserver instances onto the same application server. Review the contents of {{web.xml}} for details.
+     If your organization employees this facility the restriction can be relaxed for access to the data directory using::
+         
+        grant codeBase "file:${catalina.base}/webapps/geoserver/-" {
+          permission java.security.AllPermission;
+        };
+        
 
 NetCDF Extension
 ----------------
