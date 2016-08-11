@@ -31,6 +31,12 @@ GeoServer Install
 
 #. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`.
 
+#. Change to the :guilabel:`General` tab and click :guilabel:`Stop` to stop the service
+   
+   .. figure:: img/tomcat_stop.png
+      
+      Stop Tomcat Service
+      
 #. Change to the :guilabel:`Java` tab and add the following :guilabel:`Java Options`:
   
    .. literalinclude:: include/java_opts.txt
@@ -55,12 +61,6 @@ GeoServer Install
    .. literalinclude:: include/geoserver.xml
       :language: xml
    
-#. Change to the :guilabel:`General` tab and restart the service using :guilabel:`Stop` and :guilabel:`Start` buttons.
-   
-   .. figure:: img/tomcat_start.png
-      
-      Start Tomcat Sercice
-      
 #. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory, open the :file:`webapps` directory.
    
    Copy the :file:`geoserver.war` into this folder to deploy.
@@ -69,9 +69,15 @@ GeoServer Install
        
        Deploy of geoserver.war
 
-  .. note:: It will take a moment for Tomcat to notice the web application and make it available, there is no need to restart your application server.
-
+#. Change to the :guilabel:`General` tab and restart the service using the :guilabel:`Start` button.
+   
+   .. figure:: img/tomcat_start.png
+      
+      Start Tomcat Service
+      
 #. The :file:`geoserver.war` is extracted into the running :guilabel:`geoserver` web application visible in the :file:`webapps` folder.
+
+  .. note:: It will take a moment for Tomcat to notice the web application and make it available.
 
 #. Using your browser navigate to `localhost:8080/geoserver <http://localhost:8080/geoserver>`__. At the top of the screen fill in the default credentials of:
 
@@ -95,7 +101,7 @@ GeoServer Install
       
       Server Status Data directory
       
-   .. note:: If the data directory is incorrectly located in :file:`webapps/geoserver/data` the ``GEOSERVER_DATA_DIR`` setting has not taken effect. Double check the java options, and that the service has restarted to correct.
+   .. note:: If the data directory is incorrectly located in :file:`webapps/geoserver/data` the ``GEOSERVER_DATA_DIR`` setting has not taken effect. Double check the :file:`geoserver.xml` file, and confirm that the service has restarted.
 
 Suite Documentation Install
 ---------------------------

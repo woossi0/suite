@@ -1,6 +1,4 @@
-<Context displayName="suite-geoserver"
-         docBase="/opt/boundless/suite/geoserver/"
-         path="/suite-geoserver">
+<Context docBase="geoserver.war">
 
   <!-- The location of the GeoServer configuration directory -->
   <Parameter name="GEOSERVER_DATA_DIR"
