@@ -72,12 +72,14 @@ The Tomcat Application server is used to host the Boundless Suite web applicatio
 9. To confirm the application is working select :menuselection:`Start --> Apache Tomcat --> Tomcat Welcome`.
 
    .. figure:: img/tomcat_welcome.png
+      :scale: 50% 
       
       Tomcat welcome
 
 10. After the service has started you can monitor application status using the taskbar.
 
     .. figure:: img/tomcat_taskbar.png
+       :scale: 50% 
       
        Monitor Tomcat
       

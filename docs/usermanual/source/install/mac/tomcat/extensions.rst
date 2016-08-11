@@ -32,3 +32,28 @@ MBTiles
 
 .. include:: ../../include/ext/mbtiles_verify.txt
 
+NetCDF
+------
+
+.. note:: There are two different extensions for NetCDF: one for reading data and one for providing an output format (writing data).
+
+Data store support
+~~~~~~~~~~~~~~~~~~
+
+.. include:: ../../include/ext/netcdf_install.txt
+
+.. include:: ../../include/ext/netcdf_verify.txt
+
+Output format
+~~~~~~~~~~~~~
+
+.. include:: ../../include/ext/netcdf-out_install.txt
+
+.. include:: ../../include/ext/netcdf-out_verify.txt
+
+Oracle
+------
+
+.. include:: ../../include/ext/oracle_install.txt
+
+.. include:: ../../include/ext/oracle_verify.txt

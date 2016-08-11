@@ -21,7 +21,13 @@
 
     <delete file="${war.file}"/>
 
-    <jar destfile="${war.file}" basedir="${war.dir}" />
+    <jar destfile="${war.file}">
+      <fileset dir="${war.dir}">
+        <!-- Exclude these jars which contain a security vulnerability. We are still pulling in the fixed / hacked versions from gs-main-->
+        <exclude name="**/lib/commons-beanutils-1.7.0.jar"/>
+        <exclude name="**/lib/org.restlet-1.0.8.jar"/>
+      </fileset>
+    </jar>
     <antcall target="assemble-artifact">
       <param name="includes" value="*.war"/>
     </antcall>

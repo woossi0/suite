@@ -132,7 +132,7 @@ For more information on scripting in Boundless Suite, please see the :ref:`proce
 GRIB
 ----
 
-The GRIB extension adds support for GeoServer to publish data in `GRIB <https://en.wikipedia.org/wiki/GRIB>`_ format. GRIB is a data format commonly used in meteorology to store weather data, both historical and predicted.
+The GRIB extension adds support for GeoServer to publish data in `GRIB <https://en.wikipedia.org/wiki/GRIB>`_ format. GRIB is a data format commonly used in meteorology to store weather data, both historical and predicted. This version includes support for reading data in GRIB 1 and GRIB 2 formats.
 
 
 .. _intro.extensions.inspire:
