@@ -50,7 +50,7 @@ GeoServer Install
    
       Tomcat Program Directory
 
-#. Use **Windows Directory** to open the :file:`conf\Catalina\localhost\` directory, and create a :file:`geoserver.xml`:
+#. Use **Windows Directory** to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geoserver.xml <include/geoserver.xml>`:
    
    .. literalinclude:: include/geoserver.xml
       :language: xml
