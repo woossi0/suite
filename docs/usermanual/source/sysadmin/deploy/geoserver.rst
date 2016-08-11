@@ -116,6 +116,10 @@ Context parameters:
 
        /var/opt/boundless/geoserver/logs/
 
+  * PROXY_BASE_URL - adjust capabilities output to reflect proxy configuration.::
+      
+       http://my.custom.com/geoserver
+      
 Java system properties:
 
 * .. note:: On Tomcat system properties are defined by the ``JAVA_OPTS`` environmental variable defined in the :download:`tomcat8/bin/setenv.sh </include/setenv.sh>` (or in the :file:`tomcat8` service definition):
