@@ -98,3 +98,9 @@ Output format
 
 .. include:: ../../include/ext/netcdf-out_verify.txt
 
+Oracle
+------
+
+.. include:: ../../include/ext/oracle_install_win.txt
+
+.. include:: ../../include/ext/oracle_verify.txt
