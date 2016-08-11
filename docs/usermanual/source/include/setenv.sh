@@ -2,7 +2,6 @@
 export JAVA_OPTS="$JAVA_OPTS -Xms=256m -Xmx=756m"
 export JAVA_OPTS="$JAVA_OPTS -XX:SoftRefLRUPolicyMSPerMB=36000"
 export JAVA_OPTS="$JAVA_OPTS -XX:-UsePerfData"
-export JAVA_OPTS="$JAVA_OPTS -XX:-UsePerfData"
 
 # marlin-renderer
 export JAVA_OPTS="$JAVA_OPTS -Xbootclasspath/a:/usr/share/tomcat8/bin/marlin-0.7.3-Unsafe.jar"

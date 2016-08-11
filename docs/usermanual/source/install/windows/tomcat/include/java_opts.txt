@@ -1,0 +1,4 @@
+# geoserver
+-Dorg.geotools.referencing.forceXY=true
+-Dorg.geotoools.render.lite.scale.unitCompensation=true
+# geoserver end

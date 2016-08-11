@@ -41,20 +41,24 @@ Application environment:
 
 * (Optional) Appropriate memory allocation. The default memory allocation is 1/4 system memory which may be appropriate for your use.
   
-  .. literalinclude:: /include/memory.txt
+  .. literalinclude:: /include/java_opts.txt
      :language: bash
-     :lines: 1
+     :start-after: # memory
+     :end-before: # memory management
      
 * Required memory management:
-  
-  .. literalinclude:: /include/memory.txt
+
+  .. literalinclude:: /include/java_opts.txt
      :language: bash
-     :lines: 3
+     :start-after: # memory management
+     :end-before: # performance
      
 * Recommended - Disable JVM performance monitoring:
 
-  .. literalinclude:: /include/performance.txt
+  .. literalinclude:: /include/java_opts.txt
      :language: bash
+     :start-after: # performance
+     :end-before: # geoserver
   
 * Recommended - Boot classpath modification for Marlin rasterizer (allowing GeoServer WMS to effectively use machines with more than 8 cpu cores):
    
@@ -123,15 +127,18 @@ Java system properties:
 
 * Required system properties:
   
-  .. literalinclude:: /include/geoserver.txt
+  .. literalinclude:: /include/java_opts.txt
      :language: bash
-     :lines: 1
+     :start-after: # geoserver
+     :end-before: # geoserver recommended
+
   
 * Recommended system properties:
    
-  .. literalinclude:: /include/geoserver.txt
+  .. literalinclude:: /include/java_opts.txt
      :language: bash
-     :lines: 2
+     :start-after: # geoserver recommended
+     :end-before: # geowebcache
 
 Web application:
 

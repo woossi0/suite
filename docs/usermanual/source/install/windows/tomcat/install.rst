@@ -10,17 +10,17 @@ BoundlessSuite War Bundle
 
 Unpacking an web application distribution into a suitable location:
 
-1. Download :suite:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to :file:`Downloads` folder
+#. Download :suite:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to :file:`Downloads` folder
 
-2. Open and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+#. Open and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
-2. Right click :file:`BoundlessSuite-war.zip` and select :file :menuselection:`Extract All`.
+#. Right click :file:`BoundlessSuite-war.zip` and select :file :menuselection:`Extract All`.
 
    .. figure:: img/war_extract.png
       
       Extract all
 
-3. Extract to the default :file:`Download` folder location.
+#. Extract to the default :file:`Download` folder location.
 
    .. figure:: img/war_contents.png
       
@@ -31,11 +31,13 @@ GeoServer Install
 
 #. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`.
 
-#. Change to the :guilabel:`Java` tab and add the following :guilabel:`Java Options`::
+#. Change to the :guilabel:`Java` tab and add the following :guilabel:`Java Options`:
+  
+   .. literalinclude:: include/java_opts.txt
+      :language: bash
+      :start-after: # geoserver
+      :end-before: # geoserver end
      
-     -Dorg.geotools.referencing.forceXY=true
-     -Dorg.geotoools.render.lite.scale.unitCompensation=true
-      
    Press :guilabel:`Apply`.
 
    .. figure:: img/geoserver_system_properties.png
