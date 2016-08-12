@@ -1,4 +1,4 @@
-<Context docBase="geoserver">
+<Context docBase="geoserver.war">
   <Parameter name="GEOSERVER_DATA_DIR"
              value="/var/opt/boundless/suite/geoserver/data"
              override="false"/>
