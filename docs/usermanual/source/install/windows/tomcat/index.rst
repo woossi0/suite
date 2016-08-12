@@ -7,7 +7,8 @@ Windows Tomcat Suite Install
    :maxdepth: 2
 
    java
-   data
    tomcat
+   bundle
+   data
    install
    extensions

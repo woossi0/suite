@@ -1,0 +1,5 @@
+<Context docBase="geoserver.war">
+  <Parameter name="GEOSERVER_DATA_DIR"
+             value="C:\ProgramData\Boundless\OpenGeo\geoserver"
+             override="false"/>
+</Context>

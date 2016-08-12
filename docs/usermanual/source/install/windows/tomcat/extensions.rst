@@ -3,25 +3,6 @@
 Installing Extensions
 =====================
 
-BoundlessSuite Extension Bundle
--------------------------------
-
-Extensions are included in a separate bundle from the main application server bundle. The extensions bundle will have a file name of :file:`BoundlessSuite-ext.zip`.
-
-
-Unpacking a web application distribution into a suitable location:
-
-1. Download :suite:`BoundlessSuite-ext.zip <war-archive/BoundlessSuite-ext.zip>` to :file:`Downloads` folder
-
-2. Open and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
-
-3. Right click :file:`BoundlessSuite-ext.zip` and select :file :menuselection:`Extract All`.
-
-4. Extract to the default :file:`Download` folder location.
-
-Extension List
---------------
-
 .. (insert big table of extensions here, link to feature overview in intro)
 
 GRIB
