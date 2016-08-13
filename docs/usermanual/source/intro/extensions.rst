@@ -8,7 +8,7 @@ Boundless Suite comes with a number of optional extensions or "add-ons". These a
 These optional components can be selected in different ways depending on your operating system:
 
 * **Windows**: Extensions can be added by :ref:`manually copying the extension files <install.windows.tomcat.geoserver>` after Boundless Suite is installed.
-* **OS X**: Extensions can be added by :ref:`manually copying the extension files <install.mac.tomcat.extensions>` after Boundless Suite is installed.
+* **OS X**: Extensions can be added by manually copying the extension files after Boundless Suite is installed.
 * **Ubuntu Linux**: Extensions can be installed via :ref:`packages <install.ubuntu.packages>`.
 * **Red Hat-based Linux**: Extensions can be installed by via :ref:`packages <install.redhat.packages>`.
 

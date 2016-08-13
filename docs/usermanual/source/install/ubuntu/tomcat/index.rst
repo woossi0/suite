@@ -1,15 +1,21 @@
 .. _install.ubuntu.tomcat:
 
-Installing the application server bundle on Ubuntu
-==================================================
+Ubuntu Tomcat Suite Install
+============================
 
-New installation
-----------------
+.. toctree::
+   :maxdepth: 1
 
-Upgrading
----------
-
-.. _install.ubuntu.tomcat.extensions:
-
-Extensions
-----------
+   java
+   tomcat
+   bundle
+   data
+   geoserver
+   dashboard
+   docs
+   composer
+   quickview
+   geowebcache   
+   wpsbuilder
+   
+.. note:: For more information on Boundless Suite operation on windows see :ref:`sysadmin.ubuntu`.

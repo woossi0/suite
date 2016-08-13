@@ -80,10 +80,8 @@ We recommend making use of the Marlin Rasterizer for improved WMS performance:
      -Dsun.java2d.renderer.useThreadLocal=false
   
   Press :guilabel:`Apply`.
-
-4. From the :guilabel:`General` tab and restart the service using :guilabel:`Stop` and :guilabel:`Start` buttons.
-
-5. After Tomcat has restarted login to the GeoServer application and visit the :guilabel:`Server Status` page to confirm the use of the Marlin Rasterizer. The :guilabel:`Java Rendering Engine` should be listed as ``org.marlin.pisces.PiscesRenderingEngine``.
+  
+.. note:: Once GeoServer is installed visit the :guilabel:`Server Status` page to confirm the use of the Marlin Rasterizer. The :guilabel:`Java Rendering Engine` should be listed as ``org.marlin.pisces.PiscesRenderingEngine``.
 
    .. figure:: img/geoserver_marlin.png
       

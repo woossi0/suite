@@ -40,13 +40,15 @@ GeoServer Install
       .. literalinclude:: include/geoserver_upgrade.xml
          :language: xml
 
+#. Create the folder :file:`C:\ProgramData\Boundless\geoserver\tilecache` referenced above.
+
 #. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory, open the :file:`webapps` directory.
    
    Copy the :file:`geoserver.war` into this folder to deploy.
 
    .. figure:: img/geoserver_deploy.png
        
-       Deploy of geoserver.war
+      Deploy of geoserver.war
 
 #. Change to the :guilabel:`General` tab and restart the service using the :guilabel:`Start` button.
    
@@ -81,6 +83,14 @@ GeoServer Install
       Server Status Data directory
       
    .. note:: If the data directory is incorrectly located in :file:`webapps/geoserver/data` the ``GEOSERVER_DATA_DIR`` setting has not taken effect. Double check the :file:`geoserver.xml` file, and confirm that the service has restarted.
+
+
+.. _install.windows.tomcat.geoserver.gdal:
+
+GDAL Extension
+--------------
+
+..note:: The file:`GDAL-suite4.9.zip` is available as part of Boundless
 
 
 .. _install.windows.tomcat.geoserver.grib:
