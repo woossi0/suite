@@ -6,43 +6,41 @@ Installing Extensions
 Extensions are included in a separate bundle from the main application server bundle. The extensions bundle will have a file name of :file:`BoundlessSuite-ext.zip`.
 
 
-Extension List
---------------
 
-.. (insert big table of extensions here, link to feature overview in intro)
+GeoMesa extension
+-----------------
 
-
-GeoMesa
-~~~~~~~
-
-.. include:: /install/include/ext/geomesa_install_win.txt
+.. include:: /install/include/ext/geomesa_install.txt
 
 .. include:: /install/include/ext/geomesa_verify.txt
 
 
-GRIB
-~~~~
+GRIB extension
+--------------
 
 .. include:: ../../include/ext/grib_install.txt
 
 .. include:: ../../include/ext/grib_verify.txt
 
-JPEG 2000
-~~~~~~~~~
+
+JPEG 2000 extension
+-------------------
 
 .. include:: ../../include/ext/jp2k_install.txt
 
 .. include:: ../../include/ext/jp2k_verify.txt
 
-MBTiles
-~~~~~~~
+
+MBTiles extension
+-----------------
 
 .. include:: ../../include/ext/mbtiles_install.txt
 
 .. include:: ../../include/ext/mbtiles_verify.txt
 
-NetCDF
-------
+
+NetCDF extension
+----------------
 
 .. note:: There are two different extensions for NetCDF: one for reading data and one for providing an output format (writing data).
 
@@ -60,9 +58,18 @@ Output format
 
 .. include:: ../../include/ext/netcdf-out_verify.txt
 
-Oracle
-------
+
+Oracle extension
+----------------
 
 .. include:: ../../include/ext/oracle_install.txt
 
 .. include:: ../../include/ext/oracle_verify.txt
+
+
+Vector tiles extension
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /install/include/ext/vectortiles_install.txt
+
+.. include:: /install/include/ext/vectortiles_verify.txt

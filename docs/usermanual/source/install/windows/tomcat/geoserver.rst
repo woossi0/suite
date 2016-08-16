@@ -162,3 +162,14 @@ Oracle Extension
 .. include:: /install/include/ext/oracle_install_win.txt
 
 .. include:: /install/include/ext/oracle_verify.txt
+
+
+.. _install.windows.tomcat.geoserver.vectortiles:
+
+Vector tiles extension
+----------------------
+
+.. include:: /install/include/ext/vectortiles_install_win.txt
+
+.. include:: /install/include/ext/vectortiles_verify.txt
+
