@@ -92,7 +92,14 @@ GDAL extension
 
 ..note:: The file:`GDAL-suite4.9.zip` is available as part of Boundless
 
+.. _install.windows.tomcat.geoserver.geopackage:
 
+GeoPackage extension
+--------------------
+
+.. include:: /install/include/ext/geopackage_install_win.txt
+
+.. include:: /install/include/ext/geopackage_verify.txt
 
 .. _install.windows.tomcat.geoserver.geomesa:
 

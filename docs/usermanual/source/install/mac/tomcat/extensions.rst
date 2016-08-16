@@ -5,7 +5,17 @@ Installing Extensions
 
 Extensions are included in a separate bundle from the main application server bundle. The extensions bundle will have a file name of :file:`BoundlessSuite-ext.zip`.
 
+.. _install.mac.tomcat.geoserver.geopackage:
 
+GeoPackage extension
+--------------------
+
+.. include:: /install/include/ext/geopackage_install.txt
+
+.. include:: /install/include/ext/geopackage_verify.txt
+
+
+.. _install.mac.tomcat.geoserver.geomesa:
 
 GeoMesa extension
 -----------------
@@ -15,6 +25,8 @@ GeoMesa extension
 .. include:: /install/include/ext/geomesa_verify.txt
 
 
+.. _install.mac.tomcat.geoserver.grib:
+
 GRIB extension
 --------------
 
@@ -22,6 +34,8 @@ GRIB extension
 
 .. include:: ../../include/ext/grib_verify.txt
 
+
+.. _install.mac.tomcat.geoserver.jp2k:
 
 JPEG 2000 extension
 -------------------
@@ -31,6 +45,8 @@ JPEG 2000 extension
 .. include:: ../../include/ext/jp2k_verify.txt
 
 
+.. _install.mac.tomcat.geoserver.mbtiles:
+
 MBTiles extension
 -----------------
 
@@ -38,6 +54,8 @@ MBTiles extension
 
 .. include:: ../../include/ext/mbtiles_verify.txt
 
+
+.. _install.mac.tomcat.geoserver.netcdf:
 
 NetCDF extension
 ----------------
@@ -59,6 +77,8 @@ Output format
 .. include:: ../../include/ext/netcdf-out_verify.txt
 
 
+.. _install.mac.tomcat.geoserver.oracle:
+
 Oracle extension
 ----------------
 
@@ -66,6 +86,8 @@ Oracle extension
 
 .. include:: ../../include/ext/oracle_verify.txt
 
+
+.. _install.mac.tomcat.geoserver.vectortiles:
 
 Vector tiles extension
 ~~~~~~~~~~~~~~~~~~~~~~
