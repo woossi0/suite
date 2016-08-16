@@ -87,15 +87,26 @@ GeoServer Install
 
 .. _install.windows.tomcat.geoserver.gdal:
 
-GDAL Extension
+GDAL extension
 --------------
 
 ..note:: The file:`GDAL-suite4.9.zip` is available as part of Boundless
 
 
+
+.. _install.windows.tomcat.geoserver.geomesa:
+
+GeoMesa extension
+-----------------
+
+.. include:: /install/include/ext/geomesa_install_win.txt
+
+.. include:: /install/include/ext/geomesa_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.grib:
 
-GRIB Extension
+GRIB extension
 --------------
 
 .. include:: /install/include/ext/grib_install_win.txt
@@ -105,7 +116,7 @@ GRIB Extension
 
 .. _install.windows.tomcat.geoserver.j2k:
 
-JPEG 2000 Extension
+JPEG 2000 extension
 -------------------
 
 .. include:: /install/include/ext/jp2k_install_win.txt
@@ -115,7 +126,7 @@ JPEG 2000 Extension
 
 .. _install.windows.tomcat.geoserver.mbtiles:
 
-MBTiles Extension
+MBTiles extension
 -----------------
 
 .. include:: /install/include/ext/mbtiles_install_win.txt

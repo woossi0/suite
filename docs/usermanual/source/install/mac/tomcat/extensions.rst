@@ -11,6 +11,15 @@ Extension List
 
 .. (insert big table of extensions here, link to feature overview in intro)
 
+
+GeoMesa
+~~~~~~~
+
+.. include:: /install/include/ext/geomesa_install_win.txt
+
+.. include:: /install/include/ext/geomesa_verify.txt
+
+
 GRIB
 ~~~~
 
