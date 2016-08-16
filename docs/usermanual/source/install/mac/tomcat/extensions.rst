@@ -55,6 +55,16 @@ MBTiles extension
 .. include:: ../../include/ext/mbtiles_verify.txt
 
 
+.. _install.mac.tomcat.geoserver.mongodb:
+
+MongoDB extension
+-----------------
+
+.. include:: ../../include/ext/mongodb_install.txt
+
+.. include:: ../../include/ext/mongodb_verify.txt
+
+
 .. _install.mac.tomcat.geoserver.netcdf:
 
 NetCDF extension

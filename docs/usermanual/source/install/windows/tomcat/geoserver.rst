@@ -140,6 +140,17 @@ MBTiles extension
 
 .. include:: /install/include/ext/mbtiles_verify.txt
 
+
+.. _install.windows.tomcat.geoserver.mongodb:
+
+MongoDB extension
+-----------------
+
+.. include:: ../../include/ext/mongodb_install_win.txt
+
+.. include:: ../../include/ext/mongodb_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.netcdf:
 
 NetCDF Extension

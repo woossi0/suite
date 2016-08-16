@@ -16,4 +16,4 @@ To verify that the extension has been installed properly:
 
       GeoPackage in the list of raster stores
 
-  If you don't see eitehr of these entries, the extension did not install correctly.
+  If you don't see either of these entries, the extension did not install correctly.
