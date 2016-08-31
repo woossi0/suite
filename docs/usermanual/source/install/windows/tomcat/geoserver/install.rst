@@ -38,15 +38,17 @@ GeoServer WAR Install
       .. literalinclude:: ../include/geoserver_upgrade.xml
          :language: xml
 
-#. Create the folder :file:`C:\ProgramData\Boundless\geoserver\tilecache` referenced above.
+#. Create the folder :file:`C:\\ProgramData\\Boundless\\geoserver\\tilecache` referenced above.
 
 #. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory, open the :file:`webapps` directory.
    
-   Copy the :file:`geoserver.war` into this folder to deploy.
+   Copy the :file:`geoserver.war` into the :file:`webapps` folder to deploy.
 
    .. figure:: ../img/geoserver_deploy.png
        
       Deploy of geoserver.war
+   
+   .. note:: The :file:`geoserver.war` is included in the *BoundlessSuite War Bundle* downloaded previously (see :ref:`install.windows.tomcat.bundle`).
 
 #. Change to the :guilabel:`General` tab and restart the service using the :guilabel:`Start` button.
    
@@ -54,7 +56,7 @@ GeoServer WAR Install
       
       Start Tomcat Service
       
-#. The :file:`geoserver.war` is extracted into the running :guilabel:`geoserver` web application visible in the :file:`webapps` folder.
+#. The :file:`geoserver.war` is deployed into a :guilabel:`geoserver` folder visible in the :file:`webapps` folder.
 
   .. note:: It will take a moment for Tomcat to notice the web application and make it available.
 

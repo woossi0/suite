@@ -3,33 +3,12 @@
 Windows Tomcat Suite Install
 ============================
 
-1. :ref:`install.windows.tomcat.java`
-
-2. :ref:`install.windows.tomcat.tomcat`
-
-3. :ref:`install.windows.tomcat.bundle`
-
-4. :ref:`install.windows.tomcat.geoserver`
-
-5. :ref:`install.windows.tomcat.dashboard` 
-
-6. :ref:`install.windows.tomcat.docs` 
-
-7. :ref:`install.windows.tomcat.composer`
-
-8. :ref:`install.windows.tomcat.quickview`
-
-9. :ref:`install.windows.tomcat.gwc`
-
-10. :ref:`install.windows.tomcat.wpsbuilder`
-
-**Additional Documentation**
-
-:ref:`glossary`
+Step-by-step instructions for setting up Java, the Tomcat Application Server and Boundless Suite applications on windows.
 
 .. toctree::
-   :hidden:
-
+   :maxdepth: 3
+   
+   before
    java
    tomcat
    bundle
@@ -40,5 +19,9 @@ Windows Tomcat Suite Install
    quickview
    geowebcache/index
    wpsbuilder
-   
-.. note:: For more information on Boundless Suite operation on windows see :ref:`sysadmin.windows`.
+
+**Additional Documentation**
+
+:ref:`glossary`
+
+:ref:`sysadmin.windows`
