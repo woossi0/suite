@@ -21,8 +21,10 @@ Install Java on your system:
       :scale: 50%
       
       Java Installation
+      
+   .. note:: During the installation process the installer may ask permission to uninstall prior versions of Java.
 
-3. Wait while Java installs
+3. Wait while Java installs.
 
    .. figure:: img/java_wait.png
       :scale: 50%

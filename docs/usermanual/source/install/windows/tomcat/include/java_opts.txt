@@ -1,3 +1,8 @@
+# memory 
+-XX:SoftRefLRUPolicyMSPerMB=36000
+-XX:-UsePerfData
+# memory end
+
 # geoserver
 -Dorg.geotools.referencing.forceXY=true
 -Dorg.geotoools.render.lite.scale.unitCompensation=true

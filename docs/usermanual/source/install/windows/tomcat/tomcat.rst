@@ -3,6 +3,8 @@
 Tomcat Installation
 ===================
 
+.. note:: During installation we will be editing text files that require Administrator access to modify. We recommend the :guilabel:`Notepad++` ( `notepad-plus-plus.org <https://notepad-plus-plus.org/>`__ ).
+
 The Tomcat Application server is used to host the Boundless Suite web applications. Tomcat itself is a Java application, and some care will be required to configure it appropriately for use.
 
 1. Download :guilabel:`32-bit/64-bit Windows Service Installer` from the Apache website:
@@ -69,14 +71,16 @@ The Tomcat Application server is used to host the Boundless Suite web applicatio
    
       Completing Apache Tomcat Setup
 
-9. To confirm the application is working select :menuselection:`Start --> Apache Tomcat --> Tomcat Welcome`.
+9. To confirm the application is working use your browser navigate to `localhost:8080 <http://localhost:8080>`__ for the welcome page.
 
    .. figure:: img/tomcat_welcome.png
       :scale: 50% 
       
       Tomcat welcome
+      
+   .. note:: You can also open the welcome page using :menuselection:`Start --> Apache Tomcat --> Welcome`.
 
-10. After the service has started you can monitor application status using the taskbar.
+10. After the service has started you can monitor application status using :guilabel:`Tomcat` icon in the system tray.
 
     .. figure:: img/tomcat_taskbar.png
        :scale: 50% 
@@ -106,7 +110,7 @@ The Tomcat Application server is used to host the Boundless Suite web applicatio
        
     .. note:: You may wish to increase the above recommendation when working with raster data, or on a larger machine.
 
-13. Add the following additional :guilabel:`Java Options` to optimize memory management for the larger requests expected when working with geospatial data.
+13. Append the following additional :guilabel:`Java Options` to optimize memory management for the larger requests expected when working with geospatial data.
     
     * :guilabel:`Java Options`::
           
@@ -118,21 +122,25 @@ The Tomcat Application server is used to host the Boundless Suite web applicatio
        
        Java options
        
-14. Press :guilabel:`OK` to save the configuration, and use the taskbar to :guilabel:`Stop service` and :guilabel:`Start service` to restart Tomcat with these new settings.
+14. Press :guilabel:`Apply` to save the configuration, switch to the :guilabel:`General` tab to :guilabel:`Stop` and :guilabel:`Start` the service with these new settings.
 
-15. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Manager` to open the manager application.
+15. Use your browser to open `localhost:8080/manager/html <http://localhost:8080/manager/html>`__ for the :guilabel:`Tomcat Manager`.
     
     .. figure:: img/tomcat_login.png
        :scale: 50% 
+
+    .. note:: This application is available in :menuselection:`Start --> Apache Tomcat --> Tomcat Manager`.
        
-       Login to Tomcat Manager
+16. Login to Tomcat Manager
 
     .. figure:: img/tomcat_manager.png
        
        Tomcat Web Application Manager
-    
+
     .. note:: If you missed providing providing a ``manager-gui`` user earlier you can manually provide one now:
        
        From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory`. Open the directory :file:`config` and edit the :file:`tomcat-users.xml` with an additional user::
            
            <user username="admin" password="******" roles="manager-gui" />
+       
+       .. note:: Several examples are provided as comments, please double check you are not editing a comment.
