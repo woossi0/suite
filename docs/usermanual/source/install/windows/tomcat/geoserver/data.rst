@@ -1,7 +1,7 @@
-.. _install.windows.tomcat.data:
+.. _install.windows.tomcat.geoserver.data:
 
-Data Directory
-==============
+GeoServer Data Directory
+========================
 
 New installations
 -----------------
@@ -12,21 +12,21 @@ Unpacking an empty geoserver data directory into :file:`C:\\ProgramData\\Boundle
 
 2. Right click :file:`suite-data-dir.zip` and select :file :menuselection:`Extract All`.
 
-   .. figure:: img/data_extract_all.png
+   .. figure:: ../img/data_extract_all.png
       :scale: 80% 
       
       Extract all
 
 3. Type in the following extract location :file:`C:\\ProgramData\\Boundless\\geoserver\\data`.
 
-   .. figure:: img/data_extract_destination.png
+   .. figure:: ../img/data_extract_destination.png
       :scale: 80% 
       
       Extract destination
 
 4. The new data directory is now ready for use. This location will be referred to as ``GEOSERVER_DATA_DIRECTORY`` in subsequent documentation.
 
-   .. figure:: img/data_default.png
+   .. figure:: ../img/data_default.png
       :scale: 80% 
       
       New data directory
@@ -40,21 +40,21 @@ We advise making a backup of this configuration folder prior to upgrading:
 
 1. Using :guilabel:`Windows Explorer` navigate to :file:`C:\\ProgramData\\Boundless\\geoserver` to show your :file:`data` directory.
 
-   .. figure:: img/upgrade_data.png
+   .. figure:: ../img/upgrade_data.png
       :scale: 80% 
       
       Boundless Suite Data directory
 
 2. Select the ``GEOSERVER_DATA_DIRECTORY`` folder and right click for the :menuselection:`Send to --> Compressed (zipped) folder` action.
 
-   .. figure:: img/upgrade_compressed.png
+   .. figure:: ../img/upgrade_compressed.png
       :scale: 80% 
       
       Compressed (zipped) folder
       
 3. Confirm the file name for your new backup.
 
-   .. figure:: img/upgrade_backup.png
+   .. figure:: ../img/upgrade_backup.png
       :scale: 80% 
       
       Backup data directory

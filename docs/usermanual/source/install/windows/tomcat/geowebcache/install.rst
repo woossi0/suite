@@ -1,19 +1,17 @@
-.. _install.windows.tomcat.gwc:
+.. _install.windows.tomcat.gwc.install:
 
-GeoWebCache Install
--------------------
+GeoWebCache WAR Install
+-----------------------
 
 .. note:: GeoServer includes an built-in copy of this application, installation of stand-alone GeoWebCache may be considered for for caching external WMS services. For more information see :ref:`sysadmin.deploy.strategies`.
 
-#. Create the folder :file:`C:\ProgramData\Boundless\geowebcache\tilecache`.
-
 #. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`. Change to the :guilabel:`General` tab and click :guilabel:`Stop` to stop the service
 
-#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory. Use **Windows Directory** to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geowebcache.xml <include/geowebcache.xml>`:
+#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory. Use **Windows Directory** to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geowebcache.xml <../include/geowebcache.xml>`:
    
-   .. literalinclude:: include/geowebcache.xml
+   .. literalinclude:: ../include/geowebcache.xml
       :language: xml
-            
+
 #. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
 #. Copy the :file:`geowebcache.war` into :file:`webapps` to deploy.
@@ -32,6 +30,6 @@ GeoWebCache Install
 
 #. Confirm the :guilabel:`Storage Locations` are those configured above.
    
-   .. figure:: img/gwc_storage_locations.png
+   .. figure:: ../img/gwc_storage_locations.png
    
    .. note:: If the :guilabel:`Local storage` is listed as :file:`C:\Windows\TEMP\geowebcache` double check that the folder exists, the :file:`geowebcache.xml` file, and that Tomcat has restarted.

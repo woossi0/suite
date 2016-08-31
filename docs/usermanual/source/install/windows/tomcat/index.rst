@@ -4,18 +4,17 @@ Windows Tomcat Suite Install
 ============================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    java
    tomcat
    bundle
-   data
-   geoserver
+   geoserver/index
    dashboard
    docs
    composer
    quickview
-   geowebcache   
+   geowebcache/index
    wpsbuilder
    
 .. note:: For more information on Boundless Suite operation on windows see :ref:`sysadmin.windows`.
