@@ -8,11 +8,11 @@ BoundlessSuite War Bundle
 
 Unpack the web application distribution into a suitable location:
 
-#. Download :suite:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to :file:`Downloads` folder
+#. Download :suite:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to your :file:`Downloads` folder
 
-#. Open and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+#. Open the :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
-#. Right click :file:`BoundlessSuite-war.zip` and select :file :menuselection:`Extract All`.
+#. Right click :file:`BoundlessSuite-war.zip` and select :file:menuselection:`Extract All`.
 
    .. figure:: img/war_extract.png
       
@@ -24,19 +24,19 @@ Unpack the web application distribution into a suitable location:
       
       Boundless WAR Bundle
 
-#. In addition to web applications, the :file:`suite-data-dir.zip` is included for GeoServer installation.
+#. In addition to web applications, a sample ``GEOSERVER_DATA_DIR`` :file:`suite-data-dir.zip` is included for the GeoServer installation.
 
 BoundlessSuite Extension Bundle
 -------------------------------
 
-Extensions are included in a separate bundle from the main application server bundle. The extensions bundle will have a file name of :file:`BoundlessSuite-ext.zip`.
+Geoserver extensions are included in a separate bundle from the main application server bundle. The extensions bundle is in the :file:`BoundlessSuite-ext.zip` file.
 
-Unpacking a web application distribution into a suitable location:
+Unpack the Geoserver extensions into a suitable location:
 
-1. Download :suite:`BoundlessSuite-ext.zip <war-archive/BoundlessSuite-ext.zip>` to :file:`Downloads` folder
+1. Download :suite:`BoundlessSuite-ext.zip <war-archive/BoundlessSuite-ext.zip>` to your :file:`Downloads` folder
 
-2. Open and :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+2. Open the :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
-3. Right click :file:`BoundlessSuite-ext.zip` and select :file :menuselection:`Extract All`.
+3. Right click on :file:`BoundlessSuite-ext.zip` and select :file:menuselection:`Extract All`.
 
 4. Extract to the default :file:`Download` folder location.
