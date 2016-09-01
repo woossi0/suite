@@ -9,12 +9,12 @@ When upgrading care must be taken to locate and backup the data directory and re
 
 .. include:: include/sysreq.txt
 
-Upgrading from OpenGeo Suite
-----------------------------
+Upgrading from OpenGeo Suite 4.8 and earlier
+--------------------------------------------
 
 .. warning:: These installation instructions do not cover the migration of PostGIS databases at this time.
 
-We advise making a backup of this configuration folder prior to upgrading:
+We advise making a backup of all your data and configuration prior to upgrading:
 
 1. Shutdown all OpenGeo Suite services by navigating to :menuselection:`Start Menu --> All Programs --> OpenGeo Suite` and using the :guilabel:`Stop` shortcuts. 
 
@@ -24,23 +24,25 @@ We advise making a backup of this configuration folder prior to upgrading:
 
 4. Confirm the file name for your new backup.
 
-5. Navigate to :menuselection:`Start Menu --> Programs --> OpenGeo Suite --> Uninstall`.
+5. Backup this .zip file
+
+6. Navigate to :menuselection:`Start Menu --> Programs --> OpenGeo Suite --> Uninstall`.
 
    .. note:: Uninstallation is also available via the standard Windows program removal workflow (**Programs and Features** Control Panel entry for Windows 7/Vista.)
 
-6. Uninstalling will not delete your settings and data, which by default is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo`:
+7. Uninstalling will not delete your settings and data, which by default is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo`:
    
-   * Your ``GEOSERVER_DATA_DIRECTORY`` in :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver` can be used as is, the configuration files will be updated in place the first time GeoServer runs.
+   * Your ``GEOSERVER_DATA_DIRECTORY`` in :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver` can be used as-is, the configuration files will be updated in place the first time GeoServer runs.  When you set your ``GEOSERVER_DATA_DIRECTORY`` later, use this directory.
    * Optionally, your ``GEOSERVER_DATA_DIRECTORY`` can be moved to :file:`C:\\ProgramData\\Boundless\\geoserver\\data`. If you take this step please review and correct any absolute file references to spatial data stored in ``GEOSERVER_DATA_DIRECTORY``.
 
-Upgrading from Boundless Suite
-------------------------------
+Upgrading from Boundless Suite 4.9 and above
+--------------------------------------------
 
 When upgrading from a **prior version** be advised that the data directory contents will updated in place when GeoServer is first started. 
 
-We advise making a backup of this configuration folder prior to upgrading:
+We advise making a backup of all your data and configuration prior to upgrading:
 
-1. Using :guilabel:`Windows Explorer` navigate to :file:`C:\\ProgramData\\Boundless\\geoserver` to show your :file:`data` directory.
+1. Using :guilabel:`Windows Explorer` navigate to your ``GEOSERVER_DATA_DIRECTORY`` (usually :file:`C:\\ProgramData\\Boundless\\geoserver`) to show your :file:`data` directory.
 
    .. figure:: img/upgrade_data.png
       :scale: 80% 
@@ -61,4 +63,6 @@ We advise making a backup of this configuration folder prior to upgrading:
       
       Backup data directory
 
-4. Your ``GEOSERVER_DATA_DIRECTORY`` in :file:`C:\\ProgramData\\Boundless\\geoserver\\data` can be used as is, the configuration files will be updated in place the first time GeoServer runs.
+4. Backup this .zip file
+
+5. Your ``GEOSERVER_DATA_DIRECTORY`` in :file:`C:\\ProgramData\\Boundless\\geoserver\\data` can be used as is, the configuration files will be updated in place the first time GeoServer runs.
