@@ -3,44 +3,44 @@
 GeoServer WAR Install
 =====================
 
-#. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`. Change to the :guilabel:`General` tab and click :guilabel:`Stop` to stop the service
+#. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`. Switch to the :guilabel:`General` tab and click :guilabel:`Stop` to stop the service
    
    .. figure:: ../img/tomcat_stop.png
       
       Stop Tomcat Service
       
-#. Change to the :guilabel:`Java` tab and add the following :guilabel:`Java Options`:
+#. Switch to the :guilabel:`Java` tab and add the following to the :guilabel:`Java Options`:
   
    .. literalinclude:: ../include/java_opts.txt
       :language: bash
       :start-after: # geoserver
       :end-before: # geoserver end
      
-   Press :guilabel:`Apply`.
+   Then press :guilabel:`Apply`.
 
    .. figure:: ../img/geoserver_system_properties.png
    
       Java system properties
 
-#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory.
+#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory.  You can also use :guilabel:`Windows Explorer` to open the Tomcat Program Directory :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8.5`
    
    .. figure:: ../img/tomcat_program_directory.png
    
       Tomcat Program Directory
 
-#. Use **Windows Directory** to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geoserver.xml <../include/geoserver.xml>`:
+#. Use :guilabel:`Windows Explorer` to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geoserver.xml <../include/geoserver.xml>` with the following content:
    
    .. literalinclude:: ../include/geoserver.xml
       :language: xml
    
-   .. note:: When upgrading from OpenGeo Suie make use of your existing GEOSERVER_DATA_DIRECTORY setting.
+   .. note:: When upgrading from OpenGeo Suite make use of your existing ``GEOSERVER_DATA_DIRECTORY`` location.
    
       .. literalinclude:: ../include/geoserver_upgrade.xml
          :language: xml
 
 #. Create the folder :file:`C:\\ProgramData\\Boundless\\geoserver\\tilecache` referenced above.
 
-#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory, open the :file:`webapps` directory.
+#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory, then open the :file:`webapps` directory.
    
    Copy the :file:`geoserver.war` into the :file:`webapps` folder to deploy.
 
@@ -50,17 +50,17 @@ GeoServer WAR Install
    
    .. note:: The :file:`geoserver.war` is included in the *BoundlessSuite War Bundle* downloaded previously (see :ref:`install.windows.tomcat.bundle`).
 
-#. Change to the :guilabel:`General` tab and restart the service using the :guilabel:`Start` button.
+#. Change to the :guilabel:`General` tab and start the service using the :guilabel:`Start` button.
    
    .. figure:: ../img/tomcat_start.png
       
       Start Tomcat Service
       
-#. The :file:`geoserver.war` is deployed into a :guilabel:`geoserver` folder visible in the :file:`webapps` folder.
+#. Tomcat will deploy the :file:`geoserver.war` into a :guilabel:`geoserver` folder visible in the :file:`webapps` folder.
 
   .. note:: It will take a moment for Tomcat to notice the web application and make it available.
 
-#. Using your browser navigate to `localhost:8080/geoserver <http://localhost:8080/geoserver>`__. At the top of the screen fill in the default credentials of:
+#. Using your browser navigate to `localhost:8080/geoserver <http://localhost:8080/geoserver>`__. At the top of the screen fill in the default geoserver credentials:
 
    * :guilabel:`Username`: ``admin``
    * :guilabel:`Password`: ``geoserver``
@@ -75,7 +75,7 @@ GeoServer WAR Install
        
       Page Navigation
 
-#. Confirm that the :guilabel:`Data directory` is listed correctly.
+#. Confirm that the :guilabel:`Data directory` (``GEOSERVER_DATA_DIRECTORY``) is correct.
 
    .. figure:: ../img/geoserver_status_page.png
       :scale: 75%
