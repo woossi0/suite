@@ -99,4 +99,4 @@ The LibJPEGTurbo Extension greatly speeds up the creation of JPG images.
 6. Go to the Geoserver main page and logon
 7. Got to the  `Geoserver Detailed Status page <http://localhost:8080/geoserver/rest/about/status>`__
 8. Search for Libjpeg on the page and verify it is enable
-       .. figure:: ../../../include/ext/img/libjpeg.png
+       .. figure:: ../../include/ext/img/libjpeg.png
