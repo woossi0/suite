@@ -63,3 +63,10 @@ We recommend making use of the Marlin Rasterizer for improved WMS performance:
    .. figure:: ../img/geoserver_marlin.png
       
       Server Status Marlin rendering Engine
+
+LibJPEGTurbo Extension
+----------------------
+
+The LibJPEGTurbo Extension greatly speeds up the creation of JPG images.
+
+
