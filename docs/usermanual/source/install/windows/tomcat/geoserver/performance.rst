@@ -81,7 +81,7 @@ The LibJPEGTurbo Extension greatly speeds up the creation of JPEG images.
        #. Click "Environment Variables"
        #. In the **System Variables** section, select "Path"
        #. Press "Edit..."
-       #. Add :file:`c:\libjpeg-turbo` to the variable
+       #. Add :file:`c:\\libjpeg-turbo` to the variable
        #. Press "OK" and then "OK" again
        
    On Windows 10     
@@ -92,7 +92,7 @@ The LibJPEGTurbo Extension greatly speeds up the creation of JPEG images.
        #. In the **System Variables** section, select "Path"
        #. Press "Edit..."
        #. Press "New"
-       #. Type in :file:`c:\libjpeg-turbo`
+       #. Type in :file:`c:\\libjpeg-turbo`
        #. Press "OK" and then "OK" again
 
 5. Stop and Start the Tomcat Service using the Tomcat icon in the System Tray
