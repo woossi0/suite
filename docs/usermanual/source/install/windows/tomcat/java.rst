@@ -33,7 +33,7 @@ Install Java on your system:
    
    During installation Java may detect any prior versions and offer to uninstall.
    
-4. When complete java is available in :file:`C:\\Program Files (x86)\\Java`. This location will be referred to as ``JRE_HOME`` in subsequent documentation.
+4. When complete java is available in a subdirectory inside :file:`C:\\Program Files (x86)\\Java`. This location will be referred to as ``JRE_HOME`` in subsequent documentation (for example :file:`C:\\Program Files (x86)\\Java\\jre1.8.0_101`).
 
    .. figure:: img/java_done.png
       :scale: 50%
