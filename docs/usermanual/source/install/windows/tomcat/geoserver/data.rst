@@ -12,7 +12,7 @@ Unpacking the sample geoserver data directory into :file:`C:\\ProgramData\\Bound
 
 1. Using :guilabel:`Windows Explorer`, locate the :file:`suite-data-dir.zip` from the WAR bundle.
 
-2. Right click :file:`suite-data-dir.zip` and select :file:menuselection:`Extract All`.
+2. Right click :file:`suite-data-dir.zip` and select :menuselection:`Extract All`.
 
    .. figure:: ../img/data_extract_all.png
       :scale: 80% 
