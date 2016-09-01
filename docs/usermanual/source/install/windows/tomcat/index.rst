@@ -1,7 +1,7 @@
 .. _install.windows.tomcat:
 
-Windows Tomcat Suite Install
-============================
+Windows WAR-based Install
+=========================
 
 Step-by-step instructions for setting up Java, the Tomcat Application Server and Boundless Suite applications on windows.
 
