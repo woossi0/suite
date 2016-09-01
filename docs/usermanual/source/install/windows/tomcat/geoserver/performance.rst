@@ -95,6 +95,8 @@ The LibJPEGTurbo Extension greatly speeds up the creation of JPG images.
        #. Type in :file:`c:\libjpeg-turbo`
        #. Press "OK" and then "OK" again
 
-5. Stop and Start the Tomcat Service using the Tomcat icon in the System Tray.
-6. Go to the Geoserver main and logon
-7. 
+5. Stop and Start the Tomcat Service using the Tomcat icon in the System Tray
+6. Go to the Geoserver main page and logon
+7. Got to the  `Geoserver Detailed Status page <http://localhost:8080/geoserver/rest/about/status>`__
+8. Search for Libjpeg on the page and verify it is enable
+       .. figure:: /install/include/ext/img/libjpeg.png
