@@ -73,6 +73,7 @@ The LibJPEGTurbo Extension greatly speeds up the creation of JPG images.
 2. Double click on the :file:`libjpeg-turbo-1.4.2-vc.exe` installer
 3. Install LibJPEGTurbo in the default location (:file:`c:\\libjpeg-turbo`).
 4. Add this directory to the system PATH
+
       #. aaa
       #. bbb
 
