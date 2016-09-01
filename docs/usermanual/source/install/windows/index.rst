@@ -11,4 +11,4 @@ This section describes how to install or upgrade Boundless Suite on Windows. Ple
    tomcat/index
    vm
 
-.. note:: Installers are no longer available for Windows. To install the latest version of Boundless Suite, you will need to convert your installation to either a WAR-based install or a virtual machine.
+.. note:: Installers are no longer available for Windows. To install the latest version of Boundless Suite, you will need to perform either a WAR-based install or install the virtual machine.
