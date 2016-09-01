@@ -37,6 +37,6 @@ Unpack the Geoserver extensions into a suitable location:
 
 2. Open the :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
-3. Right click on :file:`BoundlessSuite-ext.zip` and select :file:menuselection:`Extract All`.
+3. Right click on :file:`BoundlessSuite-ext.zip` and select :menuselection:`Extract All`.
 
 4. Extract to the default :file:`Download` folder location.
