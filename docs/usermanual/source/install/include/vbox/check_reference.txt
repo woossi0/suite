@@ -24,13 +24,13 @@ The following paths will be referenced on multiple occasions:
 
   .. code-block:: console
 
-     /var/lib/opengeo/geoserver/
+     /var/opt/boundless/suite/geoserver/data/
 
 * **GeoServer application directory**
 
   .. code-block:: console
 
-     /usr/share/opengeo/geoserver/
+     /opt/boundless/suite/geoserver/
 
 * **Shared VM directory (default)**
 
