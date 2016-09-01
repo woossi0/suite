@@ -12,7 +12,7 @@ Unpack the web application distribution into a suitable location:
 
 #. Open the :file:`Downloads` folder using :guilabel:`Windows Explorer`.
 
-#. Right click :file:`BoundlessSuite-war.zip` and select :file:menuselection:`Extract All`.
+#. Right click :file:`BoundlessSuite-war.zip` and select :menuselection:`Extract All`.
 
    .. figure:: img/war_extract.png
       
