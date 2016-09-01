@@ -74,9 +74,27 @@ The LibJPEGTurbo Extension greatly speeds up the creation of JPG images.
 3. Install LibJPEGTurbo in the default location (:file:`c:\\libjpeg-turbo`).
 4. Add this directory to the system PATH
 
-      #. aaa
-      #. bbb
+   On Windows 2012 Server
 
- 
+       #. Open the Start menu and type "system environment"
+       #. Select "Edit the system environment variables"
+       #. Click "Environment Variables"
+       #. In the **System Variables** section, select "Path"
+       #. Press "Edit..."
+       #. Add :file:`c:\libjpeg-turbo` to the variable
+       #. Press "OK" and then "OK" again
+       
+   On Windows 10     
+   
+       #. Open the Start menu and type "system environment"
+       #. Select "Edit the system environment variables"
+       #. Click "Environment Variables"
+       #. In the **System Variables** section, select "Path"
+       #. Press "Edit..."
+       #. Press "New"
+       #. Type in :file:`c:\libjpeg-turbo`
+       #. Press "OK" and then "OK" again
 
-
+5. Stop and Start the Tomcat Service using the Tomcat icon in the System Tray.
+6. Go to the Geoserver main and logon
+7. 
