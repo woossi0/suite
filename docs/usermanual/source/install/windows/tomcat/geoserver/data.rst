@@ -3,7 +3,7 @@
 GeoServer Data Directory
 ========================
 
-.. info:: If you have an existing geoserver, follow the "Upgrading" instructions, below.
+.. note:: If you have an existing geoserver, follow the "Upgrading" instructions, below.
 
 New installations
 -----------------
