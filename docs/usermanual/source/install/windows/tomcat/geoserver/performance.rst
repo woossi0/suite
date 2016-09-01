@@ -67,10 +67,10 @@ We recommend making use of the Marlin Rasterizer for improved WMS performance:
 LibJPEGTurbo Extension
 ----------------------
 
-The LibJPEGTurbo Extension greatly speeds up the creation of JPG images.
+The LibJPEGTurbo Extension greatly speeds up the creation of JPEG images.
 
-1. From the :file:`BoundlessSuite-ext` download open the :file:`windows` folder.
-2. Double click on the :file:`libjpeg-turbo-1.4.2-vc.exe` installer
+1. From the :file:`BoundlessSuite-ext` downloaded earlier, open the :file:`windows` folder.
+2. Double click the :file:`libjpeg-turbo-1.4.2-vc.exe` installer
 3. Install LibJPEGTurbo in the default location (:file:`c:\\libjpeg-turbo`).
 4. Add this directory to the system PATH
 
@@ -97,7 +97,7 @@ The LibJPEGTurbo Extension greatly speeds up the creation of JPG images.
 
 5. Stop and Start the Tomcat Service using the Tomcat icon in the System Tray
 6. Go to the Geoserver main page and logon
-7. Got to the  `Geoserver Detailed Status page <http://localhost:8080/geoserver/rest/about/status>`__ 
+7. Go to the  `Geoserver Detailed Status Page <http://localhost:8080/geoserver/rest/about/status>`__ 
 8. Search for Libjpeg on the page and verify it is enable
 
        .. figure:: ../../../include/ext/img/libjpeg.png
