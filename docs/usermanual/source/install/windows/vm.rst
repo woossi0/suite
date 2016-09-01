@@ -1,7 +1,9 @@
 .. _install.windows.vm:
 
-Installing the virtual machine on Windows 
-=========================================
+Installing Suite via a virtual machine on Windows 
+=================================================
+
+.. warning:: The virtual machine install of Suite is **not** recommended for production.
 
 This section will install the Boundless Suite virtual machine on a Windows host.
 
