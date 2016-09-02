@@ -10,6 +10,6 @@ GeoServer Installation
 
    data
    install
-   performance
    adminpassword
+   performance
    extension
