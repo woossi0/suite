@@ -7,9 +7,9 @@ GeoWebCache WAR Install
 
 #. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`. Change to the :guilabel:`General` tab and click :guilabel:`Stop` to stop the service
 
-#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory. Use **Windows Directory** to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geowebcache.xml <../include/geowebcache.xml>`:
+#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory. Use **Windows Directory** to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geowebcache.xml <../include/geowebcache_WINDOWS.xml>`:
    
-   .. literalinclude:: ../include/geowebcache.xml
+   .. literalinclude:: ../include/geowebcache_WINDOWS.xml
       :language: xml
 
 #. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
@@ -32,4 +32,4 @@ GeoWebCache WAR Install
    
    .. figure:: ../img/gwc_storage_locations.png
    
-   .. note:: If the :guilabel:`Local storage` is listed as :file:`C:\Windows\TEMP\geowebcache` double check that the folder exists, the :file:`geowebcache.xml` file, and that Tomcat has restarted.
+   .. note:: If the :guilabel:`Local storage` is listed as :file:`C:\\Windows\\TEMP\\geowebcache` double check that the :file:`C:\\ProgramData\\Boundless\\geowebcache\\tilecache` folder exists, the :file:`geowebcache.xml` file, and that Tomcat has been restarted.
