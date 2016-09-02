@@ -24,7 +24,7 @@
        
 *On Windows 10*     
    
-      #. Open the Start menu and type :guilabel:`system environment`
+       #. Open the Start menu and type :guilabel:`system environment`
        #. Select :guilabel:`Edit the system environment variables`
        
         .. figure:: /install/windows/include/edit_system_enviro.png
