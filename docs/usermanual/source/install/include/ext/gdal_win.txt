@@ -20,3 +20,5 @@ GDAL install for Windows
 6. Restart Tomcat
 7. Go to the `Geoserver Detailed Status Page <http://localhost:8080/geoserver/rest/about/status>`__
 8. Verify that GDAL is available
+
+   .. image:: /source/install/include/ext/img/gdal_rest.png
