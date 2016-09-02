@@ -28,9 +28,9 @@ GeoServer WAR Install
    
       Tomcat Program Directory
 
-#. Use :guilabel:`Windows Explorer` to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geoserver.xml <../include/geoserver.xml>` with the following content:
+#. Use :guilabel:`Windows Explorer` to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geoserver.xml <../include/geoserver_WINDOWS.xml>` with the following content:
    
-   .. literalinclude:: ../include/geoserver.xml
+   .. literalinclude:: ../include/geoserver_WINDOWS.xml
       :language: xml
    
    .. note:: When upgrading from OpenGeo Suite make use of your existing ``GEOSERVER_DATA_DIRECTORY`` location.
