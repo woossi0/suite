@@ -33,9 +33,9 @@ GeoServer WAR Install
    .. literalinclude:: ../include/geoserver_WINDOWS.xml
       :language: xml
    
-   .. note:: When upgrading from OpenGeo Suite make use of your existing ``GEOSERVER_DATA_DIRECTORY`` location.
+   .. note:: When upgrading from OpenGeo Suite make use of your existing ``GEOSERVER_DATA_DIRECTORY`` location with a different :download:`geoserver.xml <../include/geoserver_upgrade_WINDOWS.xml>`.
    
-      .. literalinclude:: ../include/geoserver_upgrade.xml
+      .. literalinclude:: ../include/geoserver_upgrade_WINDOWS.xml
          :language: xml
 
 4. Create the folder :file:`C:\\ProgramData\\Boundless\\geoserver\\tilecache` referenced above.
