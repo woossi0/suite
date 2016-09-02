@@ -40,6 +40,9 @@ GeoServer WAR Install
 
 #. Create the folder :file:`C:\\ProgramData\\Boundless\\geoserver\\tilecache` referenced above.
 
+     .. image:: ../img/geoserver_maindir.png
+
+
 #. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory, then open the :file:`webapps` directory.
    
    Copy the :file:`geoserver.war` into the :file:`webapps` folder to deploy.
