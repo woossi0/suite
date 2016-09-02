@@ -5,14 +5,14 @@ GDAL install for Windows
 
         .. include:: /install/windows/include/updatePATH.txt
         
-3. Verify install by opening :gui:`Command Prompt` and running  :gui:`gdalinfo --formats`
+3. Verify install by opening :guilabel:`Command Prompt` and running  :guilabel:`gdalinfo --formats`
      
      Should see a big list of formats
      
-4. Tomcat Config, :gui:`Java` :gui:`Java Options`
+4. Tomcat Config, :guilabel:`Java` :guilabel:`Java Options`
      Add "-Djava.library.path=C:\GDAL" and Apply changes
      
-     .. note:: If you already have an existing  "-Djava.library.path=" in your gui:`Java Options`, just append this path (separated by a semicolon).  For example, "-Djava.library.path=C:\Program Files (x86)\netCDF 4.4.0\bin;C:\GDAL"
+     .. note:: If you already have an existing  "-Djava.library.path=" in your :guilabel:`Java Options`, just append this path (separated by a semicolon).  For example, "-Djava.library.path=C:\Program Files (x86)\netCDF 4.4.0\bin;C:\GDAL"
      
 5. move the files from ext zip, gdal dir, into C:\Program Files (x86)\Apache Software Foundation\Tomcat 8.5\webapps\geoserver\WEB-INF\lib   (your directory maybe slightly different)
 
