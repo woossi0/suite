@@ -1,7 +1,7 @@
 GDAL install for Windows
 
-1. From the ext zip, windows dir, GDAL-suite4.9-windows.zip, Extract All...  into a directory (C:\GDAL)
-2. Add :file:`C:\GDAL` to your path
+1. From the ext zip, windows dir, GDAL-suite4.9-windows.zip, Extract All...  into a directory (C:\\GDAL)
+2. Add :file:`C:\\GDAL` to your path
 
         .. include:: /install/windows/include/updatePATH.txt
         
