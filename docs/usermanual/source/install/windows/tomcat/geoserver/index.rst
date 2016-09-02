@@ -11,4 +11,5 @@ GeoServer Installation
    data
    install
    performance
+   adminpassword
    extension
