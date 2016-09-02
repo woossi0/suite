@@ -5,7 +5,7 @@ GeoWebCache Folder Setup
 
 1. Using :guilabel:`Windows Explorer`, navigate to the following location :file:`C:\\ProgramData\\Boundless\\geowebcache`.
 
-   .. info:: You may need to create the :file:`Boundless` and :file:`geowebcache` directories
+   .. note:: You may need to create the :file:`Boundless` and :file:`geowebcache` directories
 
 2. Create the following folders:
    
