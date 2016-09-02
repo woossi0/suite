@@ -2,42 +2,45 @@
 
 *On Windows 2012 Server*
 
-       #. Open the Start menu and type :guilabel:`system environment`
-       #. Select :guilabel:`Edit the system environment variables`
-       
+       1. Open the Start menu and type :guilabel:`system environment`
+       2. Select :guilabel:`Edit the system environment variables`
+
         .. figure:: /install/windows/include/edit_system_enviro.png
-       
-       #. Click :guilabel:`Environment Variables`
-       
+
+       3. Click :guilabel:`Environment Variables`
+
          .. figure:: /install/windows/include/click_enviro_var.png
-       
-       #. In the :guilabel:`System Variables` section, select :guilabel:`Path`
-       #. Press :guilabel:`Edit...`
-       
+
+       4. In the :guilabel:`System Variables` section, select :guilabel:`Path`
+       5. Press :guilabel:`Edit...`
+
         .. figure:: /install/windows/include/edit_path.png
-       
-       #. Add the new directory (from above) to the beginning of the :guilabel:`Path` :guilabel:`Variable value`, and ensure you end it with a :guilabel:`semicolon`
-       
+
+       6. Add the new directory (from above) to the beginning of the :guilabel:`Path` :guilabel:`Variable value`, and ensure you end it with a :guilabel:`semicolon`
+
        .. figure:: /install/windows/include/add_path.png
-       
-       #. Press :guilabel:`OK` and then :guilabel:`OK` again
+
+       8. Press :guilabel:`OK` and then :guilabel:`OK` again
        
 *On Windows 10*     
    
-       #. Open the Start menu and type :guilabel:`system environment`
-       #. Select :guilabel:`Edit the system environment variables`
+       1. Open the Start menu and type :guilabel:`system environment`
+       2. Select :guilabel:`Edit the system environment variables`
        
         .. figure:: /install/windows/include/edit_system_enviro.png
        
-       #. Click :guilabel:`Environment Variables`
+       3. Click :guilabel:`Environment Variables`
        
          .. figure:: /install/windows/include/click_enviro_var.png
        
-       #. In the :guilabel:`System Variables` section, select :guilabel:`Path`
-       #. Press :guilabel:`Edit...`
+       4. In the :guilabel:`System Variables` section, select :guilabel:`Path`
+       5. Press :guilabel:`Edit...`
        
         .. figure:: /install/windows/include/edit_path.png
 
-       #. Press "New"
-       #. Type in :file:`c:\\libjpeg-turbo`
-       #. Press "OK" and then "OK" again
+       6. Press :guilabel:`New`
+       7. Type in the new directory (from above) 
+
+	.. figure:: /install/windows/include/win10_edit.png
+
+       8. Press :guilabel:`OK` and then :guilabel:`OK` again
