@@ -1,5 +1,4 @@
-Adding to the Windows PATH
---------------------------
+
 
 *On Windows 2012 Server*
 
