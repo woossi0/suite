@@ -32,4 +32,4 @@ GeoWebCache WAR Install
    
    .. figure:: ../img/gwc_storage_locations.png
    
-   .. note:: If the :guilabel:`Local storage` is listed as :file:`C:\\Windows\\TEMP\\geowebcache` double check that the :file:`C:\\ProgramData\\Boundless\\geowebcache\\tilecache` folder exists, the :file:`geowebcache.xml` file, and that Tomcat has been restarted.
+   .. note:: If the :guilabel:`Local storage` or :guilabel:`Config file` are listed in :file:`C:\\Windows\\TEMP\\`, double check that the :file:`C:\\ProgramData\\Boundless\\geowebcache\\tilecache` and :file:`C:\\ProgramData\\Boundless\\geowebcache\\config` folders exists, the :file:`geowebcache.xml` is correct, and that Tomcat has been restarted.
