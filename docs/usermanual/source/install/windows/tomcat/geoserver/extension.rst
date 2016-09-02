@@ -8,7 +8,7 @@ The following extensions are optional, each adds additional functionality to the
 GDAL extension
 --------------
 
-..note:: The file:`GDAL-suite4.9.zip` is available as part of Boundless
+   .. include:: /install/include/ext/gdal_win.txt
 
 .. _install.windows.tomcat.geoserver.geopackage:
 
