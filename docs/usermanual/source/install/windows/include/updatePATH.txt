@@ -5,11 +5,11 @@
        #. Open the Start menu and type :guilabel:`system environment`
        #. Select :guilabel:`Edit the system environment variables`
        
-        .. figure:: /install/windows/include/edit_system_enviro_var.png
+        .. figure:: /install/windows/include/edit_system_enviro.png
        
        #. Click :guilabel:`Environment Variables`
        
-         .. figure:: /install/windows/include/click_enviro.png
+         .. figure:: /install/windows/include/click_enviro_var.png
        
        #. In the :guilabel:`System Variables` section, select :guilabel:`Path`
        #. Press :guilabel:`Edit...`
@@ -25,12 +25,14 @@
 *On Windows 10*     
    
       #. Open the Start menu and type :guilabel:`system environment`
-      #. Select :guilabel:`Edit the system environment variables`
+       #. Select :guilabel:`Edit the system environment variables`
        
-        .. figure:: /install/windows/include/edit_system_enviro_Var.png
+        .. figure:: /install/windows/include/edit_system_enviro.png
        
        #. Click :guilabel:`Environment Variables`
- 
+       
+         .. figure:: /install/windows/include/click_enviro_var.png
+       
        #. In the :guilabel:`System Variables` section, select :guilabel:`Path`
        #. Press :guilabel:`Edit...`
        
