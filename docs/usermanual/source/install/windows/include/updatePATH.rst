@@ -11,7 +11,13 @@ Adding to the Windows PATH
        #. Click :guilabel:`Environment Variables`
        #. In the :guilabel:`System Variables` section, select :guilabel:`Path`
        #. Press :guilabel:`Edit...`
-       #. Add :file:`c:\\libjpeg-turbo` to the variable
+       
+        .. figure:: edit_path.png
+       
+       #. Add :file:`c:\\libjpeg-turbo` to the beginning of the :guilabel:`Variable value`, and ensure you end it with a :guilabel:`semicolon`
+       
+       .. figure:: add_path.png
+       
        #. Press :guilabel:`OK` and then :guilabel:`OK` again
        
 *On Windows 10*     
