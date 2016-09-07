@@ -14,7 +14,9 @@ In order to output in NETCDF-4 format, you must *also* install the native NETCDF
 
 5. Return to :guilabel:`Apache Tomcat Properties`, switch to the :guilabel:`Java` tab, and add the following additional :guilabel:`Java Options`:
 
-  :file:`-Djna.library.path=C:\Program Files (x86)\netCDF 4.4.0\bin`
+  :file:`-Djna.library.path=C:\\Program Files (x86)\\netCDF 4.4.0\\bin`
+  
+  .. image:: /install/include/ext/img/ncdf4-config-win.png
    
    .. warning:: Please adjust the example below to match the location of your version of the NETCDF binary 
 
