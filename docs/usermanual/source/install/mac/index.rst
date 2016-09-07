@@ -8,7 +8,7 @@ This section describes how to install or upgrade Boundless Suite on Mac OS X. Pl
 .. note:: Installers are no longer available for Mac OS X. To install the latest version of Boundless Suite, you will need to convert your installation to either a WAR-based install or a virtual machine.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    tomcat/index
    vm

@@ -12,7 +12,7 @@ GeoServer WAR Install
 
 #. Edit the :file:`/Library/Tomcat/bin/setenv.sh` file to add the following to :guilabel:`Java Options`:
 
-  .. literalinclude:: ../include/java_opts.txt
+  .. literalinclude:: ../../../../include/java_opts.txt
      :language: bash
      :start-after: # geoserver
      :end-before: # geoserver end
@@ -35,14 +35,14 @@ GeoServer WAR Install
     
       cp ~/Downloads/BoundlessSuite-4.9-war/geoserver.war /Library/Tomcat/webapps/
       
-#. Start the Tomcat service, Tomcat will deploy the :file:`geoserver.war` into a :guilable:`geoserver` folder visible in the :file:`webapps` folder.
+#. Start the Tomcat service, Tomcat will deploy the :file:`geoserver.war` into a :guilabel:`geoserver` folder visible in the :file:`webapps` folder.
 
 #. Using your browser navigate to `localhost:8080/geoserver <http://localhost:8080/geoserver>`__. At the top of the screen fill in the default geoserver credentials:
 
    * :guilabel:`Username`: ``admin``
    * :guilabel:`Password`: ``geoserver``
 
-#. Visit the :guilable:`Server Status` page, under :guilabel:`About & Status` on the left-hand side of the page.
+#. Visit the :guilabel:`Server Status` page, under :guilabel:`About & Status` on the left-hand side of the page.
     add img
 
 #. Confirm the :guilabel:`Data Directory` (GEOSERVER_DATA_DIRECTORY) is correct.

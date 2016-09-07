@@ -8,8 +8,9 @@ Step-by-step instructions for setting up Java, the Tomcat Application Server and
 .. toctree::
    :maxdepth: 3
 
+   before
    java
-   data
    tomcat
-   install
+   bundle
+   geoserver/index
    extensions
