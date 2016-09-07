@@ -94,6 +94,15 @@ Output format
 
 .. include:: /install/include/ext/netcdf-out_verify.txt
 
+
+NetCDF-4 output format
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /install/include/ext/netcdf4-out_win.txt
+
+.. include:: /install/include/ext/netcdf4-out_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.oracle:
 
 Oracle Extension
