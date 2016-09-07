@@ -1,1 +1,33 @@
-netcdf4-out_win.txt
+In order to output in NETCDF-4 format, you must *also* install the native NETCDF library.
+
+1. In the WAR EXT zip file (available from connect, see above), there is a :file:`windows` directory. Double click on the :file:`netCDF4.4.1-NC4-32.exe` installer.
+
+2. Step through the install and make sure you "Add netCDF to the system PATH for all users" and install to the default directory.
+
+  .. image:: /install/include/ext/img/netcd4_path_win.png
+
+3. Open a :guilabel:`Command Prompt` by going to :guilabel:`Start` and typing :guilabel:`Command`
+
+4. In the :guilabel:`Command Prompt`, type :guilabel:`ncdump`.  You should see the following;
+
+  .. image:: /install/include/ext/img/ncdf4-cmd-win.png
+
+5. Return to :guilabel:`Apache Tomcat Properties`, switch to the :guilabel:`Java` tab, and add the following additional :guilabel:`Java Options`:
+
+  :file:`-Djna.library.path=C:\\Program Files (x86)\\netCDF 4.4.0\\bin`
+  
+  .. image:: /install/include/ext/img/ncdf4-config-win.png
+   
+  .. warning:: Please adjust the example below to match the location of your version of the NETCDF binary 
+
+6. Press :guilabel:`Apply`
+
+7. Stop and start Tomcat.
+
+8. Navigate to the GeoServer web application and login using the admin credentials.
+
+9. Navigate to the GeoServer Detailed Status Page at http://localhost:8080/geoserver/rest/about/status.
+
+10. Search for "NetCDF Output" on the page and verify that the binary is available.
+
+   .. figure:: ../../../include/ext/img/ncdf4-status.png
