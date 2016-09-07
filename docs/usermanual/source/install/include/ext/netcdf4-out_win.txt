@@ -28,4 +28,4 @@ In order to output in NETCDF-4 format, you must *also* install the native NETCDF
 
 10. Search for "NetCDF Output" on the page and verify that the binary is available.
 
-   .. figure:: ../../../include/ext/img/netcdf4-status.png
+   .. figure:: ../../../include/ext/img/ncdf4-status.png
