@@ -13,4 +13,9 @@ Step-by-step instructions for setting up Java, the Tomcat Application Server and
    tomcat
    bundle
    geoserver/index
+   composer
+   quickview
+   wpsbuilder
+   geowebcache
+   docs
    extensions
