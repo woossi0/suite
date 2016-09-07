@@ -18,7 +18,7 @@ In order to output in NETCDF-4 format, you must *also* install the native NETCDF
   
   .. image:: /install/include/ext/img/ncdf4-config-win.png
    
-   .. warning:: Please adjust the example below to match the location of your version of the NETCDF binary 
+  .. warning:: Please adjust the example below to match the location of your version of the NETCDF binary 
 
 6. Press :guilabel:`Apply`
 
