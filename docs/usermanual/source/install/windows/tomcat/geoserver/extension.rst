@@ -113,3 +113,11 @@ Vector tiles extension
 
 .. include:: /install/include/ext/vectortiles_verify.txt
 
+.. _install.windows.tomcat.geoserver.wps:
+
+WPS extension
+-------------
+
+.. include:: /install/include/ext/wps_install_win.txt
+
+.. include:: /install/include/ext/wps_verify.txt
