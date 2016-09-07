@@ -12,7 +12,9 @@ Please choose the extensions that match the your desired functionality. These ex
 GDAL extension
 --------------
 
-.. include:: /install/include/ext/gdal_win.txt
+.. include:: /install/include/ext/gdal_install_win.txt
+
+.. include:: /install/include/ext/gdal_verify.txt
 
 .. _install.windows.tomcat.geoserver.geopackage:
 
