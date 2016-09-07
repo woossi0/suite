@@ -3,12 +3,16 @@
 GeoServer Extensions
 ====================
 
-The following extensions are optional, each adds additional functionality to the GeoServer application.
+The following extensions are optional. Each adds additional functionality to the GeoServer application.
+
+Please choose the extensions that match the your desired functionality. These extensions can also be installed at a later date.
+
+.. _install.windows.tomcat.geoserver.gdal:
 
 GDAL extension
 --------------
 
-   .. include:: /install/include/ext/gdal_win.txt
+.. include:: /install/include/ext/gdal_win.txt
 
 .. _install.windows.tomcat.geoserver.geopackage:
 

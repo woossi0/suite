@@ -1,148 +1,137 @@
 .. _install.windows.tomcat.tomcat:
 
-Tomcat Installation
-===================
+Installing Tomcat
+=================
 
-.. note:: During installation we will be editing text files that require Administrator access to modify. We recommend using :guilabel:`Notepad++` (from `notepad-plus-plus.org <https://notepad-plus-plus.org/>`__ ).
+.. note:: During installation we will be editing text files that require Administrator access to modify. We recommend using `Notepad++ <https://notepad-plus-plus.org/>`__, though any text editor will do.
 
-The Tomcat Application server is used to host the Boundless Suite web applications. Tomcat itself is a Java application, and some care will be required to configure it appropriately for use.
+The Apache Tomcat application server is used to host the Boundless Suite web applications. Tomcat itself is a Java application, and some care will be required to configure it appropriately for use.
 
-1. Download the :guilabel:`32-bit/64-bit Windows Service Installer` from the Apache website:
-   
-   * `Tomcat Windows Service Installer <http://tomcat.apache.org/download-80.cgi>`_ 
+#. Download the :guilabel:`32-bit/64-bit Windows Service Installer` from the `Tomcat website <http://tomcat.apache.org/download-80.cgi>`_:
    
    .. figure:: img/tomcat_download.png
-      :scale: 75% 
       
-      Tomcat Service Download (32-bit)
+      Tomcat Service Installer download
    
-   .. note:: This download will work on both Windows 32-bit and Windows 64-bit machines, we will be installing the 32-bit service to match the 32-bit Java Runtime installed previously.
+   .. warning: Boundless Suite requires Tomcat version 7 or above. It must support "Servlet Spec 3.0".
    
-   .. warning: Boundless Suite requires a recent version of Tomcat supporting Servlet 3.
-   
-2. Run the tomcat installer.
+#. Run the Tomcat installer:
 
    .. figure:: img/tomcat_install.png
-      :scale: 50% 
       
-      Apache Tomcat Setup
+      Apache Tomcat installer welcome page
 
-3. Tomcat is an open source project, distributed using the Apache Software License.
+#. Accept the license:
 
    .. figure:: img/tomcat_license.png
-      :scale: 50% 
       
-      Apache license
+      Tomcat license page
       
-4. Select :guilabel:`Tomcat` from the list of components, this will include :guilabel:`Service Startup` and :guilabel:`Native` components during installation.
+#. Select :guilabel:`Tomcat` from the list of components, and make sure that :guilabel:`Service Startup` and :guilabel:`Native` components are checked.
 
    .. figure:: img/tomcat_components.png
-      :scale: 50% 
    
-      Service Startup and Native component installation
+      Service Startup and Native components
 
-5. During Tomcat configuration supply a :guilabel:`User Name` and :guilabel:`Password` used for Tomcat administrator login.
+#. Supply a :guilabel:`User Name` and :guilabel:`Password` used for Tomcat administrator login. This will be used for the Tomcat Manager application.
 
    .. figure:: img/tomcat_config.png
-      :scale: 50% 
    
       User Name and Password configuration
    
-   .. note:: The Tomcat administrator role ``manager-gui`` is required to interact with the :guilabel:`Tomcat Manager` used to monitor Boundless Suite web applications and the Tomcat server.
+   .. note:: The account will be given the Tomcat administrator role ``manager-gui``, which is required to interact with the :guilabel:`Tomcat Manager` application, used to monitor Boundless Suite web applications and the Tomcat server.
 
-6. Browse, if required, to the location of the Java 8 Java Runtime Environment installed previously.
+#. If requested, browse to the location of the Java 8 JRE installed previously.
 
    .. figure:: img/tomcat_jre.png
-      :scale: 50% 
    
       Java Runtime Environment
       
-7. Accept the default Tomcat install location and click :guilabel:`Install` to proceed.
+#. Accept the default Tomcat install location and click :guilabel:`Install` to proceed.
 
    .. figure:: img/tomcat_location.png
-      :scale: 50% 
    
       Install location
 
-8. When installation is completed click :guilabel:`Finish` to run the application.
+#. When installation is completed click :guilabel:`Finish` to run the application.
 
    .. figure:: img/tomcat_done.png
-      :scale: 50% 
    
-      Completing Apache Tomcat Setup
+      Completing Tomcat setup
 
-9. To confirm the application is working use your browser navigate to `localhost:8080 <http://localhost:8080>`__ for the welcome page.
+#. To confirm the application is working, navigate in your browser to `http://localhost:8080/ <http://localhost:8080>`__. You should see the Welcome page.
 
    .. figure:: img/tomcat_welcome.png
-      :scale: 50% 
       
       Tomcat welcome
       
    .. note:: You can also open the welcome page using :menuselection:`Start --> Apache Tomcat --> Welcome`.
 
-10. After the service has started you can monitor application status using the :guilabel:`Tomcat` icon in the system tray.
+#. After the service has started you can monitor application status using the :guilabel:`Monitor Tomcat` applicationl, available at :menuselection:`Start --> Apache Tomcat --> Monitor Tomcat`.
 
-    .. figure:: img/tomcat_taskbar.png
-       :scale: 50% 
-      
-       Monitor Tomcat
-      
-    .. note:: This application is also available in :menuselection:`Start --> Apache Tomcat --> Monitor Tomcat`.
+   .. note:: The application is also availabe in the System Tray:
 
-11. Right click on Monitor Tomcat icon in the system tray and select :menuselection:`Configure` to open :guilabel:`Apache Tomcat Properties`.
-    
+      .. figure:: img/tomcat_taskbar.png
+      
+         Monitor Tomcat
+
+#. Configure the Tomcat application using the :guilabel:`Configure Tomcat` application, available at :menuselection:`Start --> Apache Tomcat --> Configure Tomcat`.
+
     .. figure:: img/tomcat_properties.png
-       :scale: 50% 
        
        Configure Tomcat
     
-    .. note:: This application is available in :menuselection:`Start --> Apache Tomcat --> Configure Tomcat`.
-    
-12. Change to the the :guilabel:`Java` tab to configure available memory:
+#. Change to the the :guilabel:`Java` tab to configure available memory:
     
     * Set :guilabel:`Initial memory pool` to 256 MB
-    * Set :guilabel:`Maxium memory pool` to 756 MB
+    * Set :guilabel:`Maximum memory pool` to 756 MB
     
     .. figure:: img/tomcat_memory.png
-       :scale: 50% 
-       
+
        Available memory
-       
-    .. note:: You may wish to increase the above recommendation when working with raster data, or on a larger machine.
 
-13. Append the following additional :guilabel:`Java Options` to optimize memory management for the larger requests needed when working with geospatial data.
-    
-    * :guilabel:`Java Options`:
-    
-      .. literalinclude:: include/java_opts.txt
-         :language: bash
-         :start-after: # memory
-         :end-before: # memory end
-    
-    .. figure:: img/tomcat_optimize.png
-       :scale: 50% 
-       
-       Java options
-       
-14. Press :guilabel:`Apply` to save the configuration, switch to the :guilabel:`General` tab. :guilabel:`Stop` then :guilabel:`Start` the service with these new settings.
+    .. note:: You may wish to increase the above memory settings, especially when working with raster data, or if you encounter memory issues.
 
-15. Use your browser to open `localhost:8080/manager/html <http://localhost:8080/manager/html>`__ for the :guilabel:`Tomcat Manager`.  Use the User Name and Password you configured, above.
+#. Append the following additional :guilabel:`Java Options` to optimize memory management for the larger requests needed when working with geospatial data.
     
-    .. figure:: img/tomcat_login.png
-       :scale: 50% 
-
-    .. note:: This application is available in :menuselection:`Start --> Apache Tomcat --> Tomcat Manager`.
+   .. literalinclude:: include/java_opts.txt
+      :language: none
+      :start-after: # memory
+      :end-before: # memory end
+    
+   .. figure:: img/tomcat_optimize.png
+      
+      Java Options
        
-16. Login to the Tomcat Manager
+#. Click :guilabel:`Apply` to save the configuration.
+
+#. Switch to the :guilabel:`General` tab. :guilabel:`Stop` then :guilabel:`Start` the service with these new settings.
+
+#. Navigate to http://localhost:8080/manager/html to launch the :guilabel:`Tomcat Manager`. Use the user name and password chosen during the installation process.
+    
+   .. figure:: img/tomcat_login.png
+
+   .. note:: This application is also available at :menuselection:`Start --> Apache Tomcat --> Tomcat Manager`.
+
+   .. note::
+
+      If you didn't create an administrator user name and password during the installation process, you can do this manually:
+       
+      #. Navigate to :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory`.
+
+      #. Open the :file:`config` directory and edit the :file:`tomcat-users.xml` with an additional user::
+           
+           <user username="admin" password="******" roles="manager-gui" />
+
+         making sure to replace the ``******`` with your password.
+
+      #. Save the file.
+
+      If you encounter issues logging in, please ensure that your edits to the file are not contained inside a comment block.
+
+       
+#. View the Tomcat Manager.
 
     .. figure:: img/tomcat_manager.png
        
        Tomcat Web Application Manager
-
-    .. note:: If you missed providing providing a ``manager-gui`` user earlier you can manually provide one now:
-       
-       From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory`. Open the directory :file:`config` and edit the :file:`tomcat-users.xml` with an additional user::
-           
-           <user username="admin" password="******" roles="manager-gui" />
-       
-       .. note:: Several examples user are provided as comments, please double check you are not editing inside a comment.

@@ -3,35 +3,26 @@
 GeoServer Data Directory
 ========================
 
-.. note:: If you have an existing geoserver, follow the "Upgrading" instructions, below.
+.. note:: If you have an existing GeoServer, follow the "Upgrading" instructions below.
 
 New installations
 -----------------
 
-Unpacking the sample geoserver data directory into :file:`C:\\ProgramData\\Boundless\\geoserver\\data`:
-
-1. Using :guilabel:`Windows Explorer`, locate the :file:`suite-data-dir.zip` from the WAR bundle.
-
-2. Right click :file:`suite-data-dir.zip` and select :menuselection:`Extract All`.
+#. Extract the contents of the sample GeoServer data directory (included in the Boundless WAR bundle as :file:`suite-data-dir.zip`) into :file:`C:\\ProgramData\\Boundless\\geoserver\\data`. You can right-click the file and select :menuselection:`Extract All`.
 
    .. figure:: ../img/data_extract_all.png
-      :scale: 80% 
       
       Extract all
 
-3. Type in the following extract directory :file:`C:\\ProgramData\\Boundless\\geoserver\\data`.
-   
-   .. warning:: Ensure that you are extracting to the correct directory.
-   
    .. figure:: ../img/data_extract_destination.png
-      :scale: 80% 
       
       Extract destination
 
-4. The new data directory is now ready for use. This location will be referred to as the ``GEOSERVER_DATA_DIRECTORY`` in subsequent documentation.
+#. The new data directory is now ready for use with Boundless Suite.
+
+   .. note:: This location will sometimes be referred to as the ``GEOSERVER_DATA_DIRECTORY`` or ``GEOSERVER_DATA_DIR``.
 
    .. figure:: ../img/data_default.png
-      :scale: 80% 
       
       New data directory
 
@@ -40,14 +31,9 @@ Upgrading
 
 .. warning:: Please uninstall previous releases before proceeding, and be sure to backup your data directory. For more information see :ref:`install.windows.tomcat.before`.
 
-When upgrading make use of your existing data directory:
+When upgrading, you will want to make use of your existing data directory:
 
-* Upgrading from OpenGeo Suite 4.8 and earlier:
-   
-   * Your ``GEOSERVER_DATA_DIRECTORY`` in :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver` can be used as is, the configuration files will be updated in place the first time GeoServer runs.
-   * Optionally, your ``GEOSERVER_DATA_DIRECTORY`` can be moved to :file:`C:\\ProgramData\\Boundless\\geoserver\\data`. If you take this step please review and correct any absolute file references to spatial data stored in ``GEOSERVER_DATA_DIRECTORY``.
+* OpenGeo Suite 4.8 and earlier stored the geoServer data directory in :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver`. This can be used as-is. The directory can be moved to :file:`C:\\ProgramData\\Boundless\\geoserver\\data`, which is the expected location for Boundless Suite. If you take this step please review and correct any file references that may have changed.
 
-* Upgrading from an earlier version of Boundless Suite 4.9 and above:
-  
-  * Your ``GEOSERVER_DATA_DIRECTORY`` in :file:`C:\\ProgramData\\Boundless\\geoserver\\data` can be used as is, the configuration files will be updated in place the first time GeoServer runs.
+* Boundless Suite 4.9 and later data directories can be used as-is, with no modifications. This directory is typically found at :file:`C:\\ProgramData\\Boundless\\geoserver\\data`.
 

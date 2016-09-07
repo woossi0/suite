@@ -1,86 +1,86 @@
 .. _install.windows.tomcat.geoserver.performance:
 
-GeoServer Performance Extensions
+GeoServer performance extensions
 ================================
 
-The following extensions make changes to the GeoServer execution environment unlocking new capabilities and performance.
+The following extensions make changes to the GeoServer execution environment unlocking new capabilities and improving performance. These steps are strongly recommended.
 
-These extensions are *strongly* recommended.
-
-Java Cryptography Extension
----------------------------
+Java Cryptography
+-----------------
 
 We recommend installing the Java Cryptography Extension Unlimited Strength Jurisdiction Policy File files.
 
-1. Download the :guilabel:`Java Cryptography Extension Unlimited Strength Jurisdiction Policy Files` listed under :guilabel:`Additional Resources` on the Oracle `download page <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`__ .
+#. Download the :guilabel:`Java Cryptography Extension Unlimited Strength Jurisdiction Policy Files` listed under :guilabel:`Additional Resources` on the Oracle `download page <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`__.
    
    .. figure:: ../img/java_cryptography.png
-      :scale: 75%
       
       Java Cryptography Extension (JCE) Policy Files
    
-2. Extract the two jar files (:file:`local_policy.jar` and :file:`US_export_policy.jar`) from the downloaded zip into your ``JRE_HOME`` :file:`lib` directory.  For Java 1.8.0 the file:`lib\\security` directory is located in :file:`C:\\Program Files (x86)\\Java\\jre1.8.0_101\\lib\\security`.
+#. Extract the two files (:file:`local_policy.jar` and :file:`US_export_policy.jar`) from the archive into your ``JRE_HOME`` :file:`lib\\security` directory. For example, this directory might be :file:`C:\\Program Files (x86)\\Java\\jre1.8.0_101\\lib\\security`.
    
-   These files will overwrite the existing policy files.
-   
+   .. note:: These files will overwrite the existing policy files.
+
    .. figure:: ../img/java_cryptography_install.png
-      :scale: 50%
       
       Installation of local_policy.jar and US_export_policy.jar
-  
-  .. note:: You may find it easier to cut-and-paste the two files into the correct folder.
 
-3. Using the Tomcat Manager, start and stop the Tomcat service.  Log into into the  (`Geoserver web application <http://localhost:8080/geoserver>`__ ) - you will see a ``"Strong cryptography available`` message.
+#. Using the Tomcat Manager, start and stop the Tomcat service.
 
-Marlin Rasterizer Extension
----------------------------
+#. Navigate to the GeoServer web application at http://localhost:8080/geoserver and you should see a :guilabel:`Strong cryptography available` message.
+
+Marlin Rasterizer
+-----------------
 
 We recommend making use of the Marlin Rasterizer for improved WMS performance:
 
-1. From the :file:`BoundlessSuite-ext` download open the :file:`marlin` folder.
-2. Copy the :file:`marlin-0.7.3-Unsafe.jar` to your Tomcat :file:`bin` folder. The file will be located in:
-   
-   * :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8\\bin\\marlin-0.7.3-Unsafe.jar`
+#. From the Boundless extension bundle, open the :file:`marlin` folder.
+
+#. Copy the :file:`marlin-0.7.3-Unsafe.jar` to your Tomcat :file:`bin` folder. This file will be located in :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8\\bin\\marlin-0.7.3-Unsafe.jar`.
    
    .. figure:: ../img/marlin_install.png
-      :scale: 50%
       
-      Marlin Install
+      Marlin install
       
-3. Return to :guilabel:`Apache Tomcat Properties`, switch to the :guilabel:`Java` tab, and add the following additional :guilabel:`Java Options`:
+#. Return to :guilabel:`Apache Tomcat Properties`, switch to the :guilabel:`Java` tab, and add the following additional :guilabel:`Java Options`:
    
    .. warning:: Please adjust the example below to match the location of your version of tomcat (i.e. Tomcat 8.5)
    
    .. literalinclude:: ../include/java_opts.txt
-      :language: bash
+      :language: none
       :start-after: # marlin
       :end-before: # marlin end
   
-  Press :guilabel:`Apply`.
-  
-4. Once GeoServer is restarted, visit the :guilabel:`Server Status` page to confirm the use of the Marlin Rasterizer. The :guilabel:`Java Rendering Engine` will be listed as ``org.marlin.pisces.PiscesRenderingEngine``.
+#. Click :guilabel:`Apply`.
+
+#. Stop and start Tomcat.
+
+#. Navigate to the GeoServer web application and click :guilabel:`Server Status`. To confirm the use of the Marlin Rasterizer, the :guilabel:`Java Rendering Engine` will be listed as ``org.marlin.pisces.PiscesRenderingEngine``.
 
    .. figure:: ../img/geoserver_marlin.png
       
       Server Status Marlin rendering Engine
 
-LibJPEGTurbo Extension
-----------------------
+LibJPEG Turbo
+-------------
 
-The LibJPEGTurbo Extension greatly speeds up the creation of JPEG images.
+The LibJPEG Turbo Extension greatly speeds up the creation of JPEG images.
 
-1. From the :file:`BoundlessSuite-ext` downloaded earlier, open the :file:`windows` folder.
-2. Double click the :file:`libjpeg-turbo-1.4.2-vc.exe` installer
-3. Install LibJPEGTurbo in the default location (:file:`c:\\libjpeg-turbo`).
-4. Add this directory (:file:`c:\\libjpeg-turbo`) to the system PATH
+#. From the Boundless extension bundle, open the :file:`windows` folder.
+
+#. Double click the :file:`libjpeg-turbo-1.4.2-vc.exe` installer.
+
+#. Install LibJPEG Turbo in the default location (:file:`c:\\libjpeg-turbo`).
+
+#. Add this directory (:file:`c:\\libjpeg-turbo`) to the system PATH:
 
    .. include:: /install/windows/include/updatePATH.txt
 
+#. Stop and start the Tomcat service.
 
+#. Navigate to the GeoServer web application and login using the admin credentials.
 
-5. Stop and Start the Tomcat Service using the Tomcat icon in the System Tray
-6. Go to the `Geoserver main page <http://localhost:8080/geoserver/>`__ and logon
-7. Go to the `Geoserver Detailed Status Page <http://localhost:8080/geoserver/rest/about/status>`__ 
-8. Search for Libjpeg on the page and verify it is enable and available
+#. Naviaget to the GeoServer Detailed Status Page at http://localhost:8080/geoserver/rest/about/status.
 
-       .. figure:: ../../../include/ext/img/libjpeg.png
+#. Search for "libjpeg" on the page and verify it is enabled and available.
+
+   .. figure:: ../../../include/ext/img/libjpeg.png

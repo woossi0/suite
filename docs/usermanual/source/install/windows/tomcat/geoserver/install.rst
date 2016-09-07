@@ -1,93 +1,95 @@
 .. _install.windows.tomcat.geoserver.install:
 
-GeoServer WAR Install
+GeoServer WAR install
 =====================
 
-1. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`. Switch to the :guilabel:`General` tab and click :guilabel:`Stop` to stop the service
+The next step is to install the GeoServer web application.
+
+#. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`. Switch to the :guilabel:`General` tab and click :guilabel:`Stop` to stop the service
    
    .. figure:: ../img/tomcat_stop.png
       
-      Stop Tomcat Service
+      Stopping Tomcat service
       
-2. Switch to the :guilabel:`Java` tab and add the following to the :guilabel:`Java Options`:
+#. Switch to the :guilabel:`Java` tab and add the following to the :guilabel:`Java Options`:
   
    .. literalinclude:: ../include/java_opts.txt
-      :language: bash
+      :language: none
       :start-after: # geoserver
       :end-before: # geoserver end
      
-   Then press :guilabel:`Apply`.
+#. Click :guilabel:`Apply`.
 
    .. figure:: ../img/geoserver_system_properties.png
    
       Java system properties
 
-#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory.  You can also use :guilabel:`Windows Explorer` to open the Tomcat Program Directory :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8.5`
+#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory. You can also use :guilabel:`Windows Explorer` to open the Tomcat Program Directory (such as: :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8.5`)
    
    .. figure:: ../img/tomcat_program_directory.png
    
-      Tomcat Program Directory
+      Tomcat program directory
 
-3. Use :guilabel:`Windows Explorer` to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geoserver.xml <../include/geoserver_WINDOWS.xml>` with the following content:
+#. Use :guilabel:`Windows Explorer` to open the :file:`conf\\Catalina\\localhost\\` directory, and create a :download:`geoserver.xml <../include/geoserver_WINDOWS.xml>` with the following content:
    
    .. literalinclude:: ../include/geoserver_WINDOWS.xml
       :language: xml
    
-   .. note:: When upgrading from OpenGeo Suite make use of your existing ``GEOSERVER_DATA_DIRECTORY`` location with a different :download:`geoserver.xml <../include/geoserver_upgrade_WINDOWS.xml>`.
+   .. note:: When upgrading from OpenGeo Suite you can make  use of your existing ``GEOSERVER_DATA_DIRECTORY`` location with a different :download:`geoserver.xml <../include/geoserver_upgrade_WINDOWS.xml>`.
    
       .. literalinclude:: ../include/geoserver_upgrade_WINDOWS.xml
          :language: xml
 
-4. Create the folder :file:`C:\\ProgramData\\Boundless\\geoserver\\tilecache` referenced above.
+#. Create the folder :file:`C:\\ProgramData\\Boundless\\geoserver\\tilecache` as referenced above.
 
-     .. image:: ../img/geoserver_maindir.png
+     .. figure:: ../img/geoserver_maindir.png
 
+        Creating the tilecache folder
 
-5. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory, then open the :file:`webapps` directory.
-   
-   Copy the :file:`geoserver.war` into the :file:`webapps` folder to deploy.
+#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory, then open the :file:`webapps` directory.
+
+#. Copy the :file:`geoserver.war` into the :file:`webapps` folder to deploy it.
 
    .. figure:: ../img/geoserver_deploy.png
        
-      Deploy of geoserver.war
+      Deploy of GeoServer
    
-   .. note:: The :file:`geoserver.war` is included in the *BoundlessSuite War Bundle* downloaded previously (see :ref:`install.windows.tomcat.bundle`).
+   .. note:: The :file:`geoserver.war` file is included in the Boundless Suite WAR bundle (see :ref:`install.windows.tomcat.bundle`).
 
-6. Change to the :guilabel:`General` tab and start the service using the :guilabel:`Start` button.
+#. Change to the :guilabel:`General` tab and start the service using the :guilabel:`Start` button.
    
    .. figure:: ../img/tomcat_start.png
       
       Start Tomcat Service
       
-7. Tomcat will deploy the :file:`geoserver.war` into a :guilabel:`geoserver` folder visible in the :file:`webapps` folder.
+#. Tomcat will deploy the :file:`geoserver.war` into a :guilabel:`geoserver` folder visible in the :file:`webapps` folder.
 
-  .. note:: It will take a moment for Tomcat to notice the web application and make it available.
+   .. note:: It will take a few moments for Tomcat to complete this process.
 
-8. Using your browser navigate to `localhost:8080/geoserver <http://localhost:8080/geoserver>`__. At the top of the screen fill in the default geoserver credentials:
+#. Navigate to http://localhost:8080/geoserver.
 
-   * :guilabel:`Username`: ``admin``
-   * :guilabel:`Password`: ``geoserver``
+#. Log in at the top of the screen by filling in the admin credentials (which are by default :kbd:`admin` / :kbd:`geoserver`):
 
    .. figure:: ../img/geoserver_login.png
        
       Login to GeoServer application
       
-9. Using the right hand side page navigation, visit the :guilabel:`Server Status` page.
+#. Click :guilabel:`Server Status`.
 
    .. figure:: ../img/geoserver_status.png
        
-      Page Navigation
+      Page navigation
 
-10. Confirm that the :guilabel:`Data directory` (``GEOSERVER_DATA_DIRECTORY``) is correct.
+#. Confirm that the :guilabel:`Data directory` is correct.
 
    .. figure:: ../img/geoserver_status_page.png
-      :scale: 75%
       
-      Server Status Data directory
+      Server Status showing data directory
       
    .. note:: If the data directory is incorrectly located in :file:`webapps/geoserver/data` the ``GEOSERVER_DATA_DIR`` setting has not taken effect. Double check the :file:`geoserver.xml` file, and confirm that the service has restarted.
 
-11. Go to the `Geoserver Imbedded GeoWebCache Main Page <http://localhost:8080/geoserver/gwc>`__ to ensure the tile cache directory is correctly set.
+#. Navigate to http://localhost:8080/geoserver/gwc and ensure that the :guilabel:`Local Storage` value is set to the tilecache directory set above.
 
-   .. image:: ../img/imbedded_gwc.png
+   .. image:: ../img/embedded_gwc.png
 
+.. warning:: It is strongly recommended to change the GeoServer master password.  Please see :ref:`sysadmin.security.masterpwd` for more details on how to do this. Failure to change this password could cause a security issue with your GeoServer instance. 

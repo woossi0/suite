@@ -1,15 +1,17 @@
 .. _install.windows.tomcat.dashboard:
 
-Dashboard Install
+Dashboard install
 =================
 
-1. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
+The :ref:`Boundless Suite Dashboard <intro.dashboard>` contains links and tips to working with Boundless Suite.
 
-2. Copy the :file:`dashboard.war` into :file:`webapps` to deploy.
+#. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
-  .. note:: It will take a moment for Tomcat to notice the web application and make it available, there is no need to restart your application server.
+#. Copy the :file:`dashboard.war` file from the Boundless WAR bundle into the :file:`webapps` directory.
 
-3. Use your browser to open the web application at `localhost:8080/dashboard <http://localhost:8080/dashboard/>`__.
+   .. note:: It will take a few moments for Tomcat to deploy the web application.
+
+#. Navigate to http://localhost:8080/dashboard to verify that the application deployed successfully.
    
    .. figure:: /intro/img/dashboard.png
       

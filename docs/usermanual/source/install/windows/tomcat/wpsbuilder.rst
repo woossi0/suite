@@ -1,19 +1,22 @@
 .. _install.windows.tomcat.wpsbuilder:
 
-WPS Builder Install
+WPS Builder install
 ===================
 
-1. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
+WPS Builder is a graphical application for building and executing WPS process chains.
 
-2. Copy the :file:`wpsbuilder.war` into :file:`webapps` to deploy.
+.. note:: The WPS Builder requires GeoServer and the GeoServer WPS extension to be installed.
 
-  .. note:: It will take a moment for Tomcat to notice the web application and make it available, there is no need to restart your application server.
+#. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
-3. Use your browser to open the web application at `localhost:8080/wpsbuilder <http://localhost:8080/wpsbuilder/>`__. 
+#. Copy the :file:`suite-docs.war` file from the Boundless WAR bundle into the :file:`webapps` directory.
+
+   .. note:: It will take a few moments for Tomcat to deploy the web application.
+
+#. Navigate to http://localhost:8080/wpsbuilder to verify that the documentation deployed successfully.
    
    .. figure:: /install/include/war/img/wpsbuilder.png
       
       WPS Builder
-      
-   .. note:: The WPS Builder requires the GeoServer WPS Extension has been installed prior to use.
 
+   If you see processes listed in the left column, WPS Builder is installed correctly.

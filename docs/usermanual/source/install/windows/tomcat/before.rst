@@ -3,66 +3,56 @@
 Before you start
 ================
 
-These instructions cover the installation of Java, the Tomcat Application Server and Boundless Suite components.
-
-When upgrading care must be taken to locate and backup the data directory and remove prior versions of the application.
+If you are upgrading from a previous version, please be aware that you must ** locate and backup the data directory and remove prior versions of the application** first.
 
 .. include:: include/sysreq.txt
 
-Upgrading from OpenGeo Suite 4.8 and earlier
---------------------------------------------
+Upgrading from OpenGeo Suite 4.8 or earlier
+-------------------------------------------
 
-.. warning:: These installation instructions do not cover the migration of PostGIS databases at this time.
+.. warning:: PostGIS is not available with the application server-based installation of Boundless Suite. These installation instructions do not cover the migration of PostGIS databases at this time.
 
-We advise making a backup of all your data and configuration prior to upgrading:
+#. Please make a backup of all your data and configuration prior to upgrading.
 
-1. Shutdown all OpenGeo Suite services by navigating to :menuselection:`Start Menu --> All Programs --> OpenGeo Suite` and using the :guilabel:`Stop` shortcuts. 
+#. Shutdown all OpenGeo Suite services by navigating to :menuselection:`Start --> All Programs --> OpenGeo Suite` and using the :guilabel:`Stop` shortcuts. 
 
-2. Using :guilabel:`Windows Explorer` navigate to your existing ``GEOSERVER_DATA_DIRECTORY`` located in :file:`C:\\ProgramData\\Boundless\\OpenGeo` .
+#. Navigate to your existing GeoServer data directory located inside :file:`C:\\ProgramData\\Boundless\\OpenGeo\\`.
 
-3. Select the ``GEOSERVER_DATA_DIRECTORY`` folder :file:`geoserver` and right click for the :menuselection:`Send to --> Compressed (zipped) folder` action.
+   .. note:: The :file:`C:\\ProgramData` directory is hidden, but accessible.
 
-4. Confirm the file name for your new backup.
+#. Create an archive of the :file:`geoserver` folder. You can do this by selecting the :file:`geoserver` folder and right click to :menuselection:`Send to --> Compressed (zipped) folder` action.
 
-5. Backup this .zip file
+#. Backup this archive to a safe location.
 
-6. Navigate to :menuselection:`Start Menu --> Programs --> OpenGeo Suite --> Uninstall`.
+#. Navigate to :menuselection:`Start --> Programs --> OpenGeo Suite --> Uninstall`.
 
-   .. note:: Uninstallation is also available via the standard Windows program removal workflow (**Programs and Features** Control Panel entry for Windows 7/Vista.)
+   .. note:: Uninstallation is also available via the standard Windows program removal workflow (**Programs and Features** Control Panel entry.)
 
-7. Uninstalling will not delete your settings and data, which by default is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo`:
-   
-   * Your ``GEOSERVER_DATA_DIRECTORY`` in :file:`C:\\ProgramData\\Boundless\\OpenGeo\\geoserver` can be used as-is, the configuration files will be updated in place the first time GeoServer runs.  When you set your ``GEOSERVER_DATA_DIRECTORY`` later, use this directory.
-   * Optionally, your ``GEOSERVER_DATA_DIRECTORY`` can be moved to :file:`C:\\ProgramData\\Boundless\\geoserver\\data`. If you take this step please review and correct any absolute file references to spatial data stored in ``GEOSERVER_DATA_DIRECTORY``.
+#. Uninstalling will not delete your settings and data, which by default is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo`
+
+   .. note:: Your existing data directory can be used with Boundless Suite as-is. The default location will be at :file:` C:\\ProgramData\\Boundless\\geoserver\\data`, though this can be change. If you copy your existing data directory to this new directory, please review and correct any references to spatial data stored in your data directory.
 
 Upgrading from Boundless Suite 4.9 and above
 --------------------------------------------
 
-When upgrading from a **prior version** be advised that the data directory contents will updated in place when GeoServer is first started. 
+When upgrading from a **prior version**, your GeoServer data directory can be used as-is, without migration. The configuration files will be updated in place the first time GeoServer runs.
 
-We advise making a backup of all your data and configuration prior to upgrading:
+However, we advise making a backup of all your data and configuration prior to upgrading:
 
-1. Using :guilabel:`Windows Explorer` navigate to your ``GEOSERVER_DATA_DIRECTORY`` (usually :file:`C:\\ProgramData\\Boundless\\geoserver`) to show your :file:`data` directory.
+#. Using :guilabel:`Windows Explorer` navigate to your Boundless Suite data directory (usually :file:`C:\\ProgramData\\Boundless\\geoserver`) to show your :file:`data` directory, which is the GeoServer data directory.
 
    .. figure:: img/upgrade_data.png
-      :scale: 80% 
       
-      Boundless Suite Data directory
+      Boundless Suite data directory
 
-2. Select the ``GEOSERVER_DATA_DIRECTORY`` folder and right click for the :menuselection:`Send to --> Compressed (zipped) folder` action.
+#. Select the :file:`data` folder and right click to :menuselection:`Send to --> Compressed (zipped) folder`.
 
    .. figure:: img/upgrade_compressed.png
-      :scale: 80% 
       
       Compressed (zipped) folder
-      
-3. Confirm the file name for your new backup.
+
+#. Confirm the file name for your new backup and store this file in a safe location.
 
    .. figure:: img/upgrade_backup.png
-      :scale: 80% 
       
       Backup data directory
-
-4. Backup this .zip file
-
-5. Your ``GEOSERVER_DATA_DIRECTORY`` in :file:`C:\\ProgramData\\Boundless\\geoserver\\data` can be used as is, the configuration files will be updated in place the first time GeoServer runs.

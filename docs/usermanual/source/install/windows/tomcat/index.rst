@@ -1,9 +1,11 @@
 .. _install.windows.tomcat:
 
-Windows WAR-based Install
-=========================
+Windows web application server (Tomcat)
+=======================================
 
-Step-by-step instructions for setting up Java, the Tomcat Application Server and Boundless Suite applications on windows.
+This section will show how to install Boundless Suite for Windows using the application server (WAR) bundle. This includes instructions for setting up Java and Apache Tomcat on the server.
+
+.. note:: These instructions assume Apache Tomcat will be used as the application server.
 
 .. toctree::
    :maxdepth: 3
@@ -12,16 +14,16 @@ Step-by-step instructions for setting up Java, the Tomcat Application Server and
    java
    tomcat
    bundle
-   geoserver/index
    dashboard
-   docs
+   geoserver/index
    composer
    quickview
-   geowebcache/index
    wpsbuilder
+   geowebcache
+   docs
 
 **Additional Documentation**
 
-:ref:`glossary`
+* :ref:`glossary`
 
-:ref:`sysadmin.windows`
+* :ref:`sysadmin.windows`

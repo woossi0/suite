@@ -1,20 +1,21 @@
 .. _install.windows.tomcat.composer:
 
-Composer Install
+Composer install
 ================
 
-You must install GeoServer prior to installing Composer:
+:ref:`webmaps.composer` is a tool for creating and styling web maps.
 
-1. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
+.. note:: You must install GeoServer prior to installing Composer.
 
-2. Copy the :file:`composer.war` into :file:`webapps` to deploy.
+#. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
-  .. note:: It will take a moment for Tomcat to notice the web application and make it available, there is no need to restart your application server.
+#. Copy the :file:`composer.war` file from the Boundless WAR bundle into the :file:`webapps` directory.
 
-3. Use your browser to open the web application at `localhost:8080/composer <http://localhost:8080/composer/>`__.  Login using the default credentials of:
+   .. note:: It will take a few moments for Tomcat to deploy the web application.
 
-   * :guilabel:`Username`: ``admin``
-   * :guilabel:`Password`: ``geoserver``
+#. Navigate to http://localhost:8080/composer to verify that the application deployed successfully.
+
+#. Log in using admin credentials (default is ``admin`` / ``geoserver``).
    
    .. figure:: /install/include/war/img/composer_login.png
       

@@ -1,18 +1,21 @@
 .. _install.windows.tomcat.bundle:
 
-Suite Download
-==============
+Boundless Suite bundles
+=======================
 
-BoundlessSuite War Bundle
--------------------------
+There are two bundles (files) that comprise a Boundless Suite installation for an application server:
 
-Unpack the web application distribution into a suitable location:
+* **WAR bundle**, containing applications and a sample GeoServer data directory
+* **Extension bundle**, containing optional extensions to add functionality to GeoServer
 
-#. Download :suite:`BoundlessSuite-war.zip <war-archive/BoundlessSuite-latest-war.zip>` to your :file:`Downloads` folder
+WAR bundle
+----------
 
-#. Open the :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+#. Download the :file:`BoundlessSuite-war.zip` file.
 
-#. Right click :file:`BoundlessSuite-war.zip` and select :menuselection:`Extract All`.
+   .. note:: You can get this file through Boundless Connect.
+
+#. Extract the contents by right-clicking the file and selecting :menuselection:`Extract All`.
 
    .. figure:: img/war_extract.png
       
@@ -22,21 +25,19 @@ Unpack the web application distribution into a suitable location:
 
    .. figure:: img/war_contents.png
       
-      Boundless WAR Bundle
+      Boundless WAR bundle
 
-#. In addition to web applications, a sample ``GEOSERVER_DATA_DIR`` :file:`suite-data-dir.zip` is included for the GeoServer installation.
+#. In addition to web applications, a sample GeoServer data directory in the file :file:`suite-data-dir.zip` is included for the GeoServer installation.
 
-BoundlessSuite Extension Bundle
--------------------------------
+Extension bundle
+----------------
 
-Geoserver extensions are included in a separate bundle from the main application server bundle. The extensions bundle is in the :file:`BoundlessSuite-ext.zip` file.
+GeoServer extensions are included in a separate bundle. Each extension is included in its own folder in the bundle. Please see the section on extensions as the installation instructions differ for each extension.
 
-Unpack the Geoserver extensions into a suitable location:
+#. Download the :file:`BoundlessSuite-ext.zip` file.
 
-1. Download :suite:`BoundlessSuite-ext.zip <war-archive/BoundlessSuite-ext.zip>` to your :file:`Downloads` folder
+   .. note:: You can get this file through Boundless Connect.
 
-2. Open the :file:`Downloads` folder using :guilabel:`Windows Explorer`.
+#. Extract the contents by right-clicking the file and selecting :menuselection:`Extract All`.
 
-3. Right click on :file:`BoundlessSuite-ext.zip` and select :menuselection:`Extract All`.
-
-4. Extract to the default :file:`Download` folder location.
+#. Extract to the default :file:`Download` folder location.
