@@ -98,8 +98,8 @@ We will use the following connection parameters to connect to the virtual machin
 
 * **Host name**: ``localhost``
 * **Port**: ``2020``
-* **User**: ``suite``
-* **Password**: ``boundless``
+* **User**: ``root``
+* **Password**: ``boundless123``
 
 For **Windows** systems, we recommend using the `PuTTY <http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe>`_ terminal utility.
 
@@ -115,9 +115,9 @@ For **Windows** systems, we recommend using the `PuTTY <http://the.earth.li/~sgt
 
 #. Click :guilabel:`Open`.
 
-#. When asked for a user name, enter :kbd:`suite` and press :kbd:`Enter`.
+#. When asked for a user name, enter :kbd:`root` and press :kbd:`Enter`.
 
-#. When asked for a password, enter :kbd:`boundless` and press :kbd:`Enter`.
+#. When asked for a password, enter :kbd:`boundless123` and press :kbd:`Enter`.
 
 #. Check the shared directory to confirm that files can be shared between the host and the virtual machine:
 
