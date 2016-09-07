@@ -24,7 +24,7 @@ The Tomcat Application server is used to host the Boundless Suite web applicatio
 
       Apache Tomcat unpacked
 
-#. Open the :guilabel:`Terminal application available in :menuselection:`Applications --> Utilities` folder.
+#. Open the :guilabel:`Terminal` application available in :menuselection:`Applications --> Utilities` folder.
 
     .. figure:: img/terminal_app_mac.png
 
