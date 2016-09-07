@@ -79,7 +79,7 @@ The LibJPEG Turbo Extension greatly speeds up the creation of JPEG images.
 
 #. Navigate to the GeoServer web application and login using the admin credentials.
 
-#. Naviaget to the GeoServer Detailed Status Page at http://localhost:8080/geoserver/rest/about/status.
+#. Navigate to the GeoServer Detailed Status Page at http://localhost:8080/geoserver/rest/about/status.
 
 #. Search for "libjpeg" on the page and verify it is enabled and available.
 
