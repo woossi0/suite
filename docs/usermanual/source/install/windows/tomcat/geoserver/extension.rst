@@ -138,7 +138,7 @@ MongoDB extension
 
 .. _install.windows.tomcat.geoserver.netcdf:
 
-NetCDF Extension
+NetCDF extension
 ----------------
 
 .. note:: There are different extensions for NetCDF: one for reading data, one for providing output formats (writing data), and one for providing NetCDF 4 specifically as an output format (writing data).
@@ -164,14 +164,25 @@ NetCDF 4 output format
 
 .. include:: /install/include/ext/netcdf4-out_verify.txt
 
+
 .. _install.windows.tomcat.geoserver.oracle:
 
-Oracle Extension
+Oracle extension
 ----------------
 
 .. include:: /install/include/ext/oracle_install_win.txt
 
 .. include:: /install/include/ext/oracle_verify.txt
+
+
+.. _install.windows.tomcat.geoserver.sqlserver:
+
+SQL Server extension
+--------------------
+
+.. include:: /install/include/ext/sqlserver_install_win.txt
+
+.. include:: /install/include/ext/sqlserver_verify.txt
 
 
 .. _install.windows.tomcat.geoserver.vectortiles:
