@@ -62,9 +62,9 @@ Marlin Renderer
 
 1. Find the :file:`marlin-0.7.3-Unsafe.jar` inside the BoundlessSuite-4.9.0-ext zip file (available from connect) and move to your Tomcat :file:`lib` directory (:file:`$CATALINA_HOME/lib`)
 2. Add the following options to tomcat
-     a) -Xbootclasspath/a:/usr/share/tomcat8/lib/marlin-0.7.3-Unsafe.jar  (your location maybe slightly different)
-     b) -Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine
-     c) -Dsun.java2d.renderer.useThreadLocal=false
+    a) guilabel:`-Xbootclasspath/a:/usr/share/tomcat8/lib/marlin-0.7.3-Unsafe.jar` (your location maybe slightly different)
+    b) guilabel:`-Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine`
+    c) guilabel:`-Dsun.java2d.renderer.useThreadLocal=false`
 3. Restart tomcat, logon to the Geoserver mainpage, and natigate to :guilabel:`Server Status`
 4. Verify that, under :guilabel:`Java Rendering Engine` that it says :guilabel:`org.marlin.pisces.PiscesRenderingEngine`
 
