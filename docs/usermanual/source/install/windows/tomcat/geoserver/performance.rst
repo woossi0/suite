@@ -79,7 +79,7 @@ The LibJPEG Turbo Extension greatly speeds up the creation of JPEG images.
 
 #. Under :guilabel:`Java Options`, add the following line::
 
-     -Djava.library.path=c:\\libjpeg-turbo
+     -Djava.library.path=c:\libjpeg-turbo
     
 
 #. Click :guilabel:`Apply`.
