@@ -37,7 +37,7 @@ Overview of installing Suite with Tomcat
 	             override="false"/>
 	</Context>
 
-   .. info:: Make sure your guilabel:`GEOWEBCACHE_CACHE_DIR` exists.
+   .. note:: Make sure your guilabel:`GEOWEBCACHE_CACHE_DIR` exists.
 
 
  6. Copy geoserver.war to :file:`$CATALINA_HOME/webapps`
