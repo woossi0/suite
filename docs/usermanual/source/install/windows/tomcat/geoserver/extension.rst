@@ -7,6 +7,16 @@ The following extensions are optional. Each adds additional functionality to the
 
 Please choose the extensions that match the your desired functionality. These extensions can also be installed at a later date.
 
+.. _install.windows.tomcat.geoserver.appschema:
+
+Application Schema extension
+----------------------------
+
+.. include:: /install/include/ext/appschema_install_win.txt
+
+.. include:: /install/include/ext/appschema_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.gdal:
 
 GDAL extension
