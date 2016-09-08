@@ -80,7 +80,7 @@ MongoDB extension
 NetCDF Extension
 ----------------
 
-.. note:: There are two different extensions for NetCDF: one for reading data and one for providing an output format (writing data).
+.. note:: There are different extensions for NetCDF: one for reading data, one for providing output formats (writing data), and one for providing NetCDF 4 specifically as an output format (writing data).
 
 Data store support
 ~~~~~~~~~~~~~~~~~~
@@ -89,19 +89,19 @@ Data store support
 
 .. include:: /install/include/ext/netcdf_verify.txt
 
-Output format
-~~~~~~~~~~~~~
+NetCDF output format
+~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /install/include/ext/netcdf-out_install_win.txt
 
 .. include:: /install/include/ext/netcdf-out_verify.txt
 
-
-NetCDF-4 output format
+NetCDF 4 output format
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: /install/include/ext/netcdf4-out_win.txt
+.. include:: /install/include/ext/netcdf4-out_install_win.txt
 
+.. include:: /install/include/ext/netcdf4-out_verify.txt
 
 .. _install.windows.tomcat.geoserver.oracle:
 
