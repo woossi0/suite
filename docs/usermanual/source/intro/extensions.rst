@@ -144,6 +144,15 @@ The INSPIRE extension provides additional metadata information for WMS and WFS s
 
 For information on configuring WMS and WFS services, please see the `GeoServer INSPIRE documentation <../geoserver/extensions/inspire/>`_.
 
+
+.. _intro.extensions.jdbcstore:
+
+JDBCStore
+---------
+
+The JDBCStore extension allows efficient sharing of configuration data in a clustered deployment of GeoServer. It allows externalizing the storage of all configuration to a database, rather than using the default file-based data directory.
+
+
 .. _intro.extensions.jp2k:
 
 JPEG 2000

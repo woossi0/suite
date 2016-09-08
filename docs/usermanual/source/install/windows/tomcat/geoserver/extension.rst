@@ -106,6 +106,16 @@ INSPIRE extension
 .. include:: /install/include/ext/inspire_verify.txt
 
 
+.. _install.windows.tomcat.geoserver.jdbcstore:
+
+JDBCStore extension
+-------------------
+
+.. include:: /install/include/ext/jdbcstore_install_win.txt
+
+.. include:: /install/include/ext/jdbcstore_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.j2k:
 
 JPEG 2000 extension
