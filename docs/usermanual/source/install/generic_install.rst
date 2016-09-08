@@ -21,7 +21,13 @@ Overview of installing Suite with Tomcat
        e) :guilabel:`-Dorg.geotools.referencing.forceXY=true`
        f) :guilabel:`-Dorg.geotoools.render.lite.scale.unitCompensation=true`
 
-5. Add a Geoserver Context file (geoserver.xml) to :file:`$CATALINA_HOME/conf/Catalina/localhost/`
+5. If you do **not** have an existing :guilabel:`GEOSERVER_DATA_DIR`, you can create one using the :file:`suite-data-dir.zip` inside :file:`BoundlessSuite-4.9.0-war.zip`.  Your :guilabel:`GEOSERVER_DATA_DIR` will be :file:`/var/opt/boundless/suite/geoserver/data`
+
+      .. code-block::
+          mkdir -p /var/opt/boundless/suite/geoserver/data
+          unzip suite-data-dir.zip -d /var/opt/boundless/suite/geoserver/data
+
+6. Add a Geoserver Context file (geoserver.xml) to :file:`$CATALINA_HOME/conf/Catalina/localhost/` with the following content;
 
     .. code-block:: xml
     
@@ -40,13 +46,13 @@ Overview of installing Suite with Tomcat
    .. note:: Make sure your :guilabel:`GEOWEBCACHE_CACHE_DIR` exists.
 
 
- 6. Copy geoserver.war to :file:`$CATALINA_HOME/webapps`
+ 7. Copy geoserver.war to :file:`$CATALINA_HOME/webapps`
 
- 7. Start Tomcat, go to <http://localhost:8080/geoserver>__ and verify the :guilabel:`GEOSERVER_DATA_DIR` is correct, and you are using the expected Java JRE
+ 8. Start Tomcat, go to <http://localhost:8080/geoserver>__ and verify the :guilabel:`GEOSERVER_DATA_DIR` is correct, and you are using the expected Java JRE
 
- 8. Go to the `GWC Main Page <http://localhost:8080/geoserver/gwc>`__ and verify the Local Storage (GEOWEBCACHE_CACHE_DIR) is correct.
+ 9. Go to the `GWC Main Page <http://localhost:8080/geoserver/gwc>`__ and verify the Local Storage (GEOWEBCACHE_CACHE_DIR) is correct.
 
- 9. It is strongly recommened to change your geoserver's master password - see Managing the master password 
+ 10. It is strongly recommened to change your geoserver's master password - see Managing the master password 
 
 
 Recommended Performance Extensions
