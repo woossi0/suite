@@ -23,17 +23,18 @@ Overview of installing Suite with Tomcat
 
 5. Add a Geoserver Context file (geoserver.xml) to :file:`$CATALINA_HOME/conf/Catalina/localhost/`
 
-<Context docBase="geoserver.war">
-  <!-- The location of the GeoServer configuration directory -->
-  <Parameter name="GEOSERVER_DATA_DIR"
-             value="...location of your data dir..."
-             override="false"/> 
-
-  <!-- The default location of the GWC tile cache -->
-  <Parameter name="GEOWEBCACHE_CACHE_DIR"
-             value="...location of your Geoserver imbedded GWC cache dir..."
-             override="false"/>
-</Context>
+    .. code-block:: xml
+	<Context docBase="geoserver.war">
+	  <!-- The location of the GeoServer configuration directory -->
+	  <Parameter name="GEOSERVER_DATA_DIR"
+	             value="...location of your data dir..."
+	             override="false"/> 
+	
+	  <!-- The default location of the GWC tile cache -->
+	  <Parameter name="GEOWEBCACHE_CACHE_DIR"
+	             value="...location of your Geoserver imbedded GWC cache dir..."
+	             override="false"/>
+	</Context>
 
    .. info:: Make sure your guilabel:`GEOWEBCACHE_CACHE_DIR` exists.
 
