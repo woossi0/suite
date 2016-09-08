@@ -1,0 +1,22 @@
+.. _install.mac.tomcat.composer:
+
+Composer install
+================
+
+:ref:`webmaps.composer` is a tool for creating and styling web maps.
+
+.. note:: You must install GeoServer prior to installing Composer.
+
+#. Navigate to the :file:`/Library/Tomcat/webapps` folder.
+
+#. Copy the :file:`composer.war` file from the Boundless WAR bundle into the :file:`webapps` directory.
+
+   .. note:: It will take a few moments for Tomcat to deploy the web application.
+
+#. Navigate to http://localhost:8080/composer to verify that the application deployed successfully.
+
+#. Log in using admin credentials (default is ``admin`` / ``geoserver``).
+   
+   .. figure:: /install/include/war/img/composer_login.png
+      
+      Login to Composer application
