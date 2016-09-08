@@ -75,6 +75,21 @@ The LibJPEG Turbo Extension greatly speeds up the creation of JPEG images.
 
    .. include:: /install/windows/include/updatePATH.txt
 
+#. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`. Switch to the :guilabel:`Java` tab.
+
+#. Under :guilabel:`Java Options`, add the following line::
+
+     -Djava.library.path=c:\libjpeg-turbo
+    
+
+#. Click :guilabel:`Apply`.
+     
+   .. note::
+
+      If you already have an existing ``-Djava.library.path=`` entry in your :guilabel:`Java Options`, append the new path to the end of the line, separated by a semicolon. For example::
+
+        -Djava.library.path=C:\Program Files (x86)\netCDF 4.4.0\bin;c:\libjpeg-turbo
+        
 #. Stop and start the Tomcat service.
 
 #. Navigate to the GeoServer web application and login using the admin credentials.
