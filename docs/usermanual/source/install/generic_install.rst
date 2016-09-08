@@ -24,6 +24,7 @@ Overview of installing Suite with Tomcat
 5. Add a Geoserver Context file (geoserver.xml) to :file:`$CATALINA_HOME/conf/Catalina/localhost/`
 
     .. code-block:: xml
+    
 	<Context docBase="geoserver.war">
 	  <!-- The location of the GeoServer configuration directory -->
 	  <Parameter name="GEOSERVER_DATA_DIR"
@@ -74,7 +75,7 @@ LibJPEGTurbo
 
 1. Install the :file:`libjpeg-turbo-official` package (version 1.4.2) from the Boundless Third Party Repository.
 
- .. info:: Alternatively, download version 1.4.2 of `LibJPEGTurbo <https://sourceforge.net/projects/libjpeg-turbo/files/1.4.2/>`__ and install
+ .. note:: Alternatively, download version 1.4.2 of `LibJPEGTurbo <https://sourceforge.net/projects/libjpeg-turbo/files/1.4.2/>`__ and install
 
 2. In Tomcat's config either create or add to the :guilabel:`-Djava.library.path` variable to point to libjpeg-turbo's lib directory (usually :file:`/opt/libjpeg-turbo/lib64`)
 
