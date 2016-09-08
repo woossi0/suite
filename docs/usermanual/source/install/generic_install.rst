@@ -14,12 +14,12 @@ Overview of installing Suite with Tomcat
 
 4. Setup basic Tomcat with the following options;
      
-       a) guilabel:`-Xms256m`   
-       b) guilabel:`-Xmx756m`  (higher if you have more available memory)
-       c) guilabel:`-XX:SoftRefLRUPolicyMSPerMB=36000`
-       d) guilabel:`-XX:-UsePerfData`
-       e) guilabel:`-Dorg.geotools.referencing.forceXY=true`
-	   f) guilabel:`-Dorg.geotoools.render.lite.scale.unitCompensation=true`
+       a) :guilabel:`-Xms256m`   
+       b) :guilabel:`-Xmx756m`  (higher if you have more available memory)
+       c) :guilabel:`-XX:SoftRefLRUPolicyMSPerMB=36000`
+       d) :guilabel:`-XX:-UsePerfData`
+       e) :guilabel:`-Dorg.geotools.referencing.forceXY=true`
+       f) :guilabel:`-Dorg.geotoools.render.lite.scale.unitCompensation=true`
 
 5. Add a Geoserver Context file (geoserver.xml) to :file:`$CATALINA_HOME/conf/Catalina/localhost/`
 
@@ -64,9 +64,9 @@ Marlin Renderer
 
 1. Find the :file:`marlin-0.7.3-Unsafe.jar` inside the BoundlessSuite-4.9.0-ext zip file (available from connect) and move to your Tomcat :file:`lib` directory (:file:`$CATALINA_HOME/lib`)
 2. Add the following options to tomcat
-    a) guilabel:`-Xbootclasspath/a:/usr/share/tomcat8/lib/marlin-0.7.3-Unsafe.jar` (your location maybe slightly different)
-    b) guilabel:`-Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine`
-    c) guilabel:`-Dsun.java2d.renderer.useThreadLocal=false`
+    a) :guilabel:`-Xbootclasspath/a:/usr/share/tomcat8/lib/marlin-0.7.3-Unsafe.jar` (your location maybe slightly different)
+    b) :guilabel:`-Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine`
+    c) :guilabel:`-Dsun.java2d.renderer.useThreadLocal=false`
 3. Restart tomcat, logon to the Geoserver mainpage, and natigate to :guilabel:`Server Status`
 4. Verify that, under :guilabel:`Java Rendering Engine` that it says :guilabel:`org.marlin.pisces.PiscesRenderingEngine`
 
