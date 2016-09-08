@@ -96,6 +96,16 @@ GRIB extension
 .. include:: /install/include/ext/grib_verify.txt
 
 
+.. _install.windows.tomcat.geoserver.inspire:
+
+INSPIRE extension
+-----------------
+
+.. include:: /install/include/ext/inspire_install_win.txt
+
+.. include:: /install/include/ext/inspire_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.j2k:
 
 JPEG 2000 extension
