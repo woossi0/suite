@@ -48,6 +48,16 @@ CSW extension
 .. include:: /install/include/ext/csw_verify.txt
 
 
+.. _install.windows.tomcat.geoserver.db2:
+
+DB2 extension
+-------------
+
+.. include:: /install/include/ext/db2_install_win.txt
+
+.. include:: /install/include/ext/db2_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.gdal:
 
 GDAL extension
