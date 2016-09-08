@@ -38,6 +38,16 @@ Cloudwatch extension
 .. include:: /install/include/ext/cloudwatch_verify.txt
 
 
+.. _install.windows.tomcat.geoserver.csw:
+
+CSW extension
+-------------
+
+.. include:: /install/include/ext/csw_install_win.txt
+
+.. include:: /install/include/ext/csw_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.gdal:
 
 GDAL extension
