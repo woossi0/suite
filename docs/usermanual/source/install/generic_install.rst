@@ -2,7 +2,7 @@
 Overview of installing Suite with Tomcat
 ========================================
 
-.. info:: Suite requires Java 1.8 and Tomcat 8
+.. note:: Suite requires Java 1.8 and Tomcat 8
 
 1. If you have an existing Suite or Geoserver install, backup your configuration (:guilabel:`GEOSERVER_DATA_DIR`) and data.  Uninstall Suite 4.8 or earlier.
 
@@ -10,7 +10,7 @@ Overview of installing Suite with Tomcat
 
 3. Install `Tomcat 8 <http://tomcat.apache.org/download-80.cgi>`__ 
 
-  .. info:: Ensure tomcat is using the Java 8 runtime.
+  .. note:: Ensure tomcat is using the Java 8 runtime.
 
 4. Setup basic Tomcat with the following options;
      
