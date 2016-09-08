@@ -55,7 +55,7 @@ GeoServer WAR Install
         GeoServer status page
 
 
-#. Confirm the :guilabel:`Data Directory` ``GEOSERVER_DATA_DIRECTORY`` is correct.
+#. Confirm the :guilabel:`Data Directory` is correct.
 
     .. figure:: ../img/gs_data_dir_mac.png
 
