@@ -117,16 +117,6 @@ GeoPackage
 The GeoPackage extension adds the ability for GeoServer to publish data from `GeoPackage <http://www.geopackage.org/>`_ sources (a data format based on `SQLite <http://www.sqlite.org/>`_). Once this extension is added, GeoServer will show GeoPackage as one of its available data sources when adding a new store.
 
 
-.. _intro.extensions.script:
-
-GeoScript
----------
-
-The GeoScript extension adds support for the use of Python in GeoServer. Spatial capabilities are added to Python allowing for the quick generation of custom processes.
-
-For more information on scripting in Boundless Suite, please see the :ref:`processing.scripting` section.
-
-
 .. _intro.extensions.grib:
 
 GRIB
@@ -193,6 +183,16 @@ Oracle
 ------
 
 The :ref:`Oracle extension <dataadmin.oracle>` adds the ability for GeoServer to publish data from Oracle Spatial databases. Once this extension is added, GeoServer will show Oracle as one of its available data sources when adding a new vector store.
+
+
+.. _intro.extensions.script:
+
+Scripting
+---------
+
+The scripting extension provides a number of extension points called “hooks” throughout GeoServer. Each hook provides a way to plug in functionality via a script.
+
+For more information on scripting, please see the :ref:`processing.scripting` section, and the `GeoServer scripting documentation <../geoserver/community/scripting/>`_.
 
 
 .. _intro.extensions.sqlserver:

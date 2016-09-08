@@ -185,6 +185,16 @@ Oracle extension
 .. include:: /install/include/ext/oracle_verify.txt
 
 
+.. _install.windows.tomcat.geoserver.script:
+
+Scripting extension
+-------------------
+
+.. include:: /install/include/ext/script_install_win.txt
+
+.. include:: /install/include/ext/script_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.sqlserver:
 
 SQL Server extension
