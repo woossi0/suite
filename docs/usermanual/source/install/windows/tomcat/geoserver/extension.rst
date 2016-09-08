@@ -28,6 +28,16 @@ ArcSDE extension
 .. include:: /install/include/ext/arcsde_verify.txt
 
 
+.. _install.windows.tomcat.geoserver.cloudwatch:
+
+Cloudwatch extension
+--------------------
+
+.. include:: /install/include/ext/cloudwatch_install_win.txt
+
+.. include:: /install/include/ext/cloudwatch_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.gdal:
 
 GDAL extension
