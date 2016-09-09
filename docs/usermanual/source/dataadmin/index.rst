@@ -5,8 +5,8 @@ Working with your data
 
 This section describes some strategies on how to work with your data using Boundless Suite, including connecting from databases and using the GeoServer Layer Importer.
 
-PostGIS topics
---------------
+Working with PostGIS
+--------------------
 
 .. toctree::
    :maxdepth: 2
@@ -17,21 +17,38 @@ PostGIS topics
    pgDBAdmin/index
    pointcloud/index
 
-GeoServer topics
-----------------
+Working with GeoServer
+----------------------
 
 .. toctree::
    :maxdepth: 1
 
    importer/index
-   oracle/index
-   geomesa/index
+   vectortiles/index
+
+Working with raster data in GeoServer
+-------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
    grib/index
    gdal/index
    jp2k/index
    mbtiles/index
-   mongodb/index
    mrsid/index
    netcdf/index
+   
+Working with external databases in GeoServer
+--------------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
    geopackage/index
-   vectortiles/index
+   oracle/index
+   geomesa/index
+   mongodb/index
+
+
+
