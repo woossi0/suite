@@ -5,7 +5,7 @@ Package install on Ubuntu
 
 This page describes how to perform a package installation of **Boundless Suite** |version| on Ubuntu Linux.
 
-.. note:: For upgrades, see the below section on :ref:`Upgrading <install.ubuntu.packages.upgrade>`.
+.. note:: For upgrades, see the section on :ref:`Upgrading <install.ubuntu.packages.upgrade>` below.
 
 .. include:: include/sysreq.txt
 
@@ -28,13 +28,10 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
 #. Add the Boundless repository:
 
-   * **Ubuntu 14**:
+   .. code-block:: bash
 
-     .. code-block:: bash
-
-        echo "deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/suite-test-debian/amd64 ./" > /etc/apt/sources.list.d/boundless.list
-        echo "deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/third-party-debian/amd64 ./" > /etc/apt/sources.list.d/boundless.list
-
+      echo "deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/suite-test-debian/amd64 ./" > /etc/apt/sources.list.d/boundless.list
+      echo "deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/third-party-debian/amd64 ./" > /etc/apt/sources.list.d/boundless.list
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
@@ -54,45 +51,45 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    If the command does not return any results, examine the output of the ``apt-cache`` command for any errors or warnings.
 
-#. You have options on what packages to install. A simple installation including geoserver, documentation, and dashboard is as follows:
+#. You have options on what packages to install.
 
-   .. code-block:: bash
 
-      apt-get install suite-geoserver suite-docs suite-dashboard 
-
-   A more complete install, including all the suite web applications, Postgresql/Postgres, GDAL, and NetCDF, is as follow:
-
-   .. code-block:: bash
-
-     apt-get install suite-dashboard \
-                 suite-geoserver \
-                 suite-geowebcache \
-                 suite-composer \
-                 suite-docs \
-                 suite-quickview  \
-                 suite-wpsbuilder \
-                 postgresql-9.3-postgis-2.1 \
-                 suite-gs-gdal \
-                 suite-gs-netcdf \
-                 suite-gs-netcdf-out 
-
-   .. note::  See the :ref:`install.ubuntu.packages.list` for details of individual packages.
-
-#. Restart the server.
+   * A simple installation including GeoServer, documentation, and the :ref:`intro.dashboard`:
 
      .. code-block:: bash
 
-        service tomcat8 restart
+        apt-get install suite-geoserver suite-docs suite-dashboard 
 
-#. Verify that the installation succeeded by opening your browser and navigating to the following URL:
+   * A more complete install, including all the web applications, PostGIS, GDAL, and NetCDF:
+
+     .. code-block:: bash
+
+        apt-get install suite-dashboard \
+                        suite-geoserver \
+                        suite-geowebcache \
+                        suite-composer \
+                        suite-docs \
+                        suite-quickview  \
+                        suite-wpsbuilder \
+                        postgresql-9.3-postgis-2.1 \
+                        suite-gs-gdal \
+                        suite-gs-netcdf \
+                        suite-gs-netcdf-out 
+
+     .. note::  See the :ref:`install.ubuntu.packages.list` for details of individual packages.
+
+#. Restart the server.
+
+   .. code-block:: bash
+
+      service tomcat8 restart
+
+#. Verify that the installation succeeded by opening your browser and navigating to one of the following URLs:
 
    * http://localhost:8080/dashboard
+   * http://localhost:8080/geoserver
 
-   .. image:: /install/include/ext/img/dashboard.png
-
-#. If you see the above image, then Boundless Suite was installed correctly.
-
-#. Please see the section on :ref:`sysadmin.ubuntu` for best practices and additional information.
+   .. note:: Please see the section on :ref:`sysadmin.ubuntu` for additional information and best practices.
 
 .. _install.ubuntu.packages.upgrade:
 
@@ -101,9 +98,11 @@ Upgrade
 
 This section describes how to upgrade Boundless Suite 4.x to |version| on Ubuntu Linux.
 
-Because of the major package changes involved, if you have any version earlier than 4.9, it **must** be uninstalled first.
+.. warning::
 
-.. note:: The data directory at ``/var/lib/opengeo/geoserver`` will not be removed.
+   Because of the major package changes involved, if you have any version earlier than 4.9, it must be uninstalled first.
+
+   The data directory at ``/var/lib/opengeo/geoserver`` will not be removed during uninstallation.
 
 #. Backup your configuration and data
 
@@ -115,61 +114,59 @@ Because of the major package changes involved, if you have any version earlier t
 
 #. Uninstall old packages:
 
-   .. note:: This will uninstall several packages (including tomcat7).  Verify that removing these packages will not interfer with other applications running on your system.  Ensure you do not have another tomcat (or other server) on port 8080.
+   .. note:: This will uninstall several packages (including ``tomcat7``). Verify that removing these packages will not interfere with other applications running on your system. Ensure you do not have another Tomcat (or other server) on port 8080.
 
    .. code-block:: bash
 
-       apt-get remove tomcat7   \
-          geoexplorer \
-          libgeos-3.5.0 \
-          libgeos-c1  \
-          libgeos-dev \
-          libgeos-doc \
-          geoserver \
-          geoserver-* \
-          geowebcache \
-          libght \
-          libght-dev  \
-          laszip \
-          laszip-dev  \
-          libgeotiff  \
-          libgeotiff-dev \
-          libjpeg-turbo-official  \
-          opengeo \
-          opengeo-*  \
-          pdal \
-          pdal-dev \
-          pgadmin3 \
-          pgadmin3-data \
-          postgresql-9.3-pointcloud\
-          postgis-2.1 \
-          postgresql-9.3-postgis-2.1\
-          libpq5 \
-          postgresql-9.3   \
-          postgresql-client-9.3 \
-          postgresql-client-common  \
-          postgresql \
-          libproj0 \
-          libproj-dev \
-          proj\
-          proj-bin  \
-          proj-data  \
-          libgdal-opengeo-dev \
-          libgdal-opengeo \
-          gdal-mrsid    
+       apt-get remove tomcat7 \
+                      geoexplorer \
+                      libgeos-3.5.0 \
+                      libgeos-c1 \
+                      libgeos-dev \
+                      libgeos-doc \
+                      geoserver \
+                      geoserver-* \
+                      geowebcache \
+                      libght \
+                      libght-dev \
+                      laszip \
+                      laszip-dev \
+                      libgeotiff \
+                      libgeotiff-dev \
+                      libjpeg-turbo-official \
+                      opengeo \
+                      opengeo-* \
+                      pdal \
+                      pdal-dev \
+                      pgadmin3 \
+                      pgadmin3-data \
+                      postgresql-9.3-pointcloud \
+                      postgis-2.1 \
+                      postgresql-9.3-postgis-2.1 \
+                      libpq5 \
+                      postgresql-9.3 \
+                      postgresql-client-9.3 \
+                      postgresql-client-common \
+                      postgresql \
+                      libproj0 \
+                      libproj-dev \
+                      proj \
+                      proj-bin \
+                      proj-data \
+                      libgdal-opengeo-dev \
+                      libgdal-opengeo \
+                      gdal-mrsid    
+       apt-get autoremove
 
-
-     apt-get autoremove
-
-#. Remove the reference to the Suite 4.8 repository
+#. Remove the reference to the Suite 4.8 repository:
 
    .. code-block:: bash
 
-     rm /etc/apt/sources.list.d/opengeo.list
+      rm /etc/apt/sources.list.d/opengeo.list
 
-#. Continue above in the :ref:`install.ubuntu.packages.install` section.  When finished the Boundless Suite install, change your :guilabel:`GEOSERVER_DATA_DIR` to :file:`/var/lib/opengeo/geoserver`.
+#. Continue above in the :ref:`install.ubuntu.packages.install` section. When finished, change your :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to the correct location.
 
-   .. note:: When you install Boundless Suite, it will install a sample :guilabel:`GEOSERVER_DATA_DIR`.  Make sure you update you :guilabel:`GEOSERVER_DATA_DIR` to point to your old data directory - see :ref:`intro.installation.ubuntu.postinstall.geoserver`
+   .. note:: A default installation of Boundless Suite, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory if desired. See :ref:`intro.installation.ubuntu.postinstall.geoserver` for more details.
 
 .. _install.ubuntu.packages.list:
 
@@ -184,7 +181,8 @@ The packages are managed through the standard package management system for Ubun
 
 where ``<package>`` is any one of the package names listed below.
 
-Main Suite Web Applications
+Boundless Suite web applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -210,6 +208,8 @@ Main Suite Web Applications
    * - ``suite-tomcat8``
      - Apache Tomcat application server (automatically installed by these packages)
 
+Boundless Suite GeoServer extensions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following packages add additional functionality to GeoServer. After installing any of these packages, you will need to restart Tomcat:
 
@@ -219,8 +219,6 @@ The following packages add additional functionality to GeoServer. After installi
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
-The following Geoserver extension packages are available:
-
 .. list-table::
    :header-rows: 1
    :widths: 30 70
@@ -229,7 +227,7 @@ The following Geoserver extension packages are available:
    * - Package
      - Description
    * - ``suite-gs-arcsde``
-     - ArcSDE middleware extension
+     - ArcSDE extension
    * - ``suite-gs-app-schema``
      - Application Schema support
    * - ``suite-gs-cloudwatch``
@@ -275,7 +273,10 @@ The following Geoserver extension packages are available:
    * - ``suite-gs-wps``
      - Web Processing Service (WPS) extension
 
-The following major Binary Packages are available;
+Binary packages
+~~~~~~~~~~~~~~~
+
+The following major binary packages are available:
 
 .. list-table::
    :header-rows: 1
