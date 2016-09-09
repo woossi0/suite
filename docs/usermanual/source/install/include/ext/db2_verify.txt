@@ -6,7 +6,7 @@ To verify that the extension has been installed properly:
 
 #. In the list of :guilabel:`Vector Data Stores`, you should see an entry for :guilabel:`DB2`.
 
-   .. figure:: /install/include/ext/img/DB2_storelink.png
+   .. figure:: /install/include/ext/img/db2_storelink.png
 
       DB2 in the list of stores
 
