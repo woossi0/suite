@@ -126,6 +126,8 @@ The packages are managed through the standard package management system for Ubun
 
 where ``<package>`` is any one of the package names listed below.
 
+Main Suite Web Applications
+
 .. list-table::
    :header-rows: 1
    :widths: 30 70
@@ -145,12 +147,11 @@ where ``<package>`` is any one of the package names listed below.
      - GeoWebCache application
    * - ``suite-quickview``
      - QuickView application showcasing the :ref:`WebSDK <webapps.sdk>`
-   * - ``suite-tomcat8``
-     - Apache Tomcat application server
    * - ``suite-wpsbuilder``
      - :ref:`Graphical utility <processing.wpsbuilder>` for executing WPS processes
+   * - ``suite-tomcat8``
+     - Apache Tomcat application server (automatically installed by these packages)
 
-.. warning:: NEED MORE PACKAGE NAMES
 
 The following packages add additional functionality to GeoServer. After installing any of these packages, you will need to restart Tomcat:
 
@@ -160,7 +161,7 @@ The following packages add additional functionality to GeoServer. After installi
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
-The following packages are available:
+The following Geoserver extension packages are available:
 
 .. list-table::
    :header-rows: 1
@@ -185,7 +186,7 @@ The following packages are available:
      - GDAL extension
    * - ``suite-gs-geomesa-accumulo``
      - :ref:`GeoMesa <dataadmin.geomesa>` data source support
-   * - ``suite-gs-geopackage``
+   * - ``suite-gs-geopkg``
      - GeoPackage extension
    * - ``suite-gs-grib``
      - GRIB data format extension
@@ -216,4 +217,38 @@ The following packages are available:
    * - ``suite-gs-wps``
      - Web Processing Service (WPS) extension
 
-.. warning:: NEED MORE PACKAGE NAMES
+The following major Binary Packages are available;
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+   :class: non-responsive
+
+   * - Package
+     - Description
+   * - ``libgdal``
+     - Main GDAL/OGR binary package
+   * - ``libgdal-java``
+     - Java support for GDAL
+   * - ``libgdal-dev``
+     - Development support for GDAL
+   * - ``gdal-mrsid``
+     - MrSID plugin for GDAL
+   * - ``libjpeg-turbo-official``
+     - Libjpeg turbo binaries (version 1.4.2)
+   * - ``netcdf-bin``
+     - NetCDF Binary packages 
+   * - ``netcdf-dev``
+     - Development support for the NetCDF Binary 
+   * - ``postgresql-9.3-postgis-2.1``
+     - Postgresql 9.3 and PostGIS 2.1
+   * - ``postgresql-9.3-pointcloud``
+     - Pointcloud for postgresql 
+   * - ``pdal``
+     - PDAL (Point Data Abstraction Library)
+   * - ``pdal-dev``
+     - Development support for PDAL
+   * - ``proj``
+     - PROJ.4 libary
+   * - ``libgeos-3.5.0``
+     - GEOS (Geometry Engine, Open Source) Library
