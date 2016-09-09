@@ -119,6 +119,8 @@ Because of the major package changes involved, if you have any version earlier t
 
 #. Uninstall old packages:
 
+   .. note:: This will uninstall several packages (including tomcat7).  Verify that removing these packages will not interfer with other applications running on your system.  Ensure you do not have another tomcat (or other server) on port 8080.
+
    .. code-block:: bash
 
        apt-get remove tomcat7   \
