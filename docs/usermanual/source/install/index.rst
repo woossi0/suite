@@ -8,9 +8,7 @@ This section describes how to install Boundless Suite on your platform. Both new
 .. toctree::
    :maxdepth: 2
 
-   generic_install
    ubuntu/index
    redhat/index
    windows/index
    mac/index
-   

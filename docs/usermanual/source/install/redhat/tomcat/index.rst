@@ -1,13 +1,10 @@
 .. _install.redhat.tomcat:
 
-Installing the application server bundle on Red Hat
-===================================================
+Tomcat install on Red Hat
+=========================
 
-New installation
-----------------
+.. toctree::
+   :maxdepth: 1
 
-Upgrading
----------
-
-Extensions
-----------
+   geoserver
+   extensions

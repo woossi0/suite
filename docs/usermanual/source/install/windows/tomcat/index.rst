@@ -1,7 +1,7 @@
 .. _install.windows.tomcat:
 
-Windows web application server (Tomcat)
-=======================================
+Tomcat install on Windows
+=========================
 
 This section will show how to install Boundless Suite for Windows using the application server (WAR) bundle. This includes instructions for setting up Java and Apache Tomcat on the server.
 
@@ -22,8 +22,4 @@ This section will show how to install Boundless Suite for Windows using the appl
    geowebcache
    docs
 
-**Additional Documentation**
-
-* :ref:`glossary`
-
-* :ref:`sysadmin.windows`
+.. note:: For more information on Boundless Suite operation on windows see :ref:`sysadmin.windows`.

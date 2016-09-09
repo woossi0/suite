@@ -8,10 +8,10 @@
 
    .. include:: /install/windows/include/updatePATH.txt
      
-#. Create create a new :guilabel:`System Variable` called :guilabel:`GDAL_DATA` that has the value :file:`C:\\GDAL\\gdal_data`
+#. Create a new :guilabel:`System Variable` called :guilabel:`GDAL_DATA` that has the value :file:`C:\\GDAL\\gdal_data`:
 
-   .. image:: /install/include/ext/img/gdal_data_win.png
-        
+   .. figure:: /install/include/ext/img/gdal_data_win.png
+
 #. Verify installation by opening a :guilabel:`Command Prompt` and typing ``gdalinfo --version``. You should see the version information of the utility.
 
 #. Use :menuselection:`Start --> Apache Tomcat --> Configure Tomcat` to open :guilabel:`Apache Tomcat Properties`. Switch to the :guilabel:`Java` tab.

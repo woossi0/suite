@@ -1,7 +1,7 @@
 .. _install.ubuntu.tomcat:
 
-Ubuntu Tomcat Suite Install
-============================
+Tomcat install on Ubuntu
+========================
 
 .. toctree::
    :maxdepth: 1
@@ -11,6 +11,7 @@ Ubuntu Tomcat Suite Install
    bundle
    data
    geoserver
+   extensions
    dashboard
    docs
    composer

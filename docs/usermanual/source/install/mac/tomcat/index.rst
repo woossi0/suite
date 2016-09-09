@@ -1,7 +1,7 @@
 .. _install.mac.tomcat:
 
-Mac Tomcat Suite Install
-========================
+Tomcat install on Mac OS X
+==========================
 
 Step-by-step instructions for setting up Java, the Tomcat Application Server and Boundless Suite applications on Mac OS X.
 
@@ -12,7 +12,7 @@ Step-by-step instructions for setting up Java, the Tomcat Application Server and
    java
    tomcat
    bundle
-   geoserver/index
+   geoserver
    composer
    quickview
    wpsbuilder
