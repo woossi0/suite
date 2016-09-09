@@ -1,7 +1,7 @@
 .. _install.windows.vm:
 
-Installing Suite via a virtual machine on Windows 
-=================================================
+Virtual machine install on Windows
+==================================
 
 .. warning:: The virtual machine install of Suite is **not** recommended for production.
 

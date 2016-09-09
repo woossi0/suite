@@ -1,7 +1,7 @@
 .. _install.ubuntu.vm:
 
-Installing the virtual machine on Ubuntu
-========================================
+Virtual machine install on Ubuntu
+=================================
 
 This section will install the Boundless Suite virtual machine on an Ubuntu host.
 
