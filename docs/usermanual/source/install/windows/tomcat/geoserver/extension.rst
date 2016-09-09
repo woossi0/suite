@@ -106,6 +106,16 @@ INSPIRE extension
 .. include:: /install/include/ext/inspire_verify.txt
 
 
+.. _install.windows.tomcat.geoserver.jdbcconfig:
+
+JDBCConfig extension
+--------------------
+
+.. include:: /install/include/ext/jdbcconfig_install_win.txt
+
+.. include:: /install/include/ext/jdbcconfig_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.jdbcstore:
 
 JDBCStore extension

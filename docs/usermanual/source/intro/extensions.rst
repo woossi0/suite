@@ -54,19 +54,7 @@ Clustering
 
 The Clustering extension for GeoServer adds the ability to automatically set up multiple instances of GeoServer that can pool resources.
 
-This extension consists of two parts:
-
-* Database-backed configuration
-* Server connection and communication
-
-.. note::
-
-   On Windows, this extension is known simply as "Clustering". However, on Linux, it is divided into two separate packages, both required:
-
-   * ``geoserver-jdbcconfig``
-   * ``geoserver-clustering``
-
-For more information about Clustering, please see the :ref:`sysadmin.clustering` section.
+For more information about clustering, please see the :ref:`sysadmin.clustering` section.
 
 
 .. _intro.extensions.csw:
@@ -133,6 +121,14 @@ INSPIRE
 The INSPIRE extension provides additional metadata information for WMS and WFS services as required by the European Commission's `INSPIRE directive <http://inspire.ec.europa.eu>`__.
 
 For information on configuring WMS and WFS services, please see the `GeoServer INSPIRE documentation <../geoserver/extensions/inspire/>`_.
+
+
+.. _intro.extensions.jdbcconfig:
+
+JDBCConfig
+----------
+
+The JDBCConfig module enhances the scalability performance of the GeoServer catalog, by externalizing the storage of the catalog configuration objects (such as workspaces, stores, layers) to a database, rather than using xml files in the GeoServer data directory.
 
 
 .. _intro.extensions.jdbcstore:
