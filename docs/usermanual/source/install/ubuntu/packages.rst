@@ -171,7 +171,9 @@ Because of the major package changes involved, if you have any version earlier t
 
      rm /etc/apt/sources.list.d/opengeo.list
 
-#. Continue above in the :ref:`install.ubuntu.packages.install` section, and use :file:`/var/lib/opengeo/geoserver` as your :guilabel:`GEOSERVER_DATA_DIR`
+#. Continue above in the :ref:`install.ubuntu.packages.install` section.  When finished the Boundless Suite install, change your :guilabel:`GEOSERVER_DATA_DIR` to :file:`/var/lib/opengeo/geoserver`.
+
+   .. note:: When you install Boundless Suite, it will install a sample :guilabel:`GEOSERVER_DATA_DIR`.  Make sure you update you :guilabel:`GEOSERVER_DATA_DIR` to point to your old data directory - see :ref:`intro.installation.ubuntu.postinstall.geoserver`
 
 .. _install.ubuntu.packages.list:
 
