@@ -38,6 +38,16 @@ Cloudwatch extension
 .. include:: /install/include/ext/cloudwatch_verify.txt
 
 
+.. _install.windows.tomcat.geoserver.clustering:
+
+Clustering extension
+--------------------
+
+.. include:: /install/include/ext/cluster_install_win.txt
+
+.. include:: /install/include/ext/cluster_verify.txt
+
+
 .. _install.windows.tomcat.geoserver.csw:
 
 CSW extension
@@ -66,6 +76,7 @@ GDAL extension
 .. include:: /install/include/ext/gdal_install_win.txt
 
 .. include:: /install/include/ext/gdal_verify.txt
+
 
 .. _install.windows.tomcat.geoserver.geopackage:
 
