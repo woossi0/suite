@@ -28,19 +28,17 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
 #. Add the Boundless repository:
 
-   * **Ubuntu 12**:
-
-     .. code-block:: bash
-
-        echo "deb https://<username>:<password>@SERVER precise main" > /etc/apt/sources.list.d/boundless.list
-
    * **Ubuntu 14**:
 
      .. code-block:: bash
 
         echo "deb https://<username>:<password>@SERVER trusty main" > /etc/apt/sources.list.d/boundless.list
+        echo "deb https://<username>:<password>@SERVER trusty main" > /etc/apt/sources.list.d/boundless.list
 
-   .. warning:: VERIFY SERVER
+        
+        deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/suite-test-debian/amd64 ./
+        deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/third-party-debian/amd64 ./
+
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
@@ -56,17 +54,31 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      apt-get search suite-
+      apt-cache search suite-
 
-   If the command does not return any results, examine the output of the ``apt-get`` command for any errors or warnings.
+   If the command does not return any results, examine the output of the ``apt-cache`` command for any errors or warnings.
 
-#. You have options on what packages to install. A standard installation including common packages is as follows:
+#. You have options on what packages to install. A simple installation including geoserver, documentation, and dashboard is as follows:
 
    .. code-block:: bash
 
-      apt-get install PACKAGES
+      apt-get install suite-geoserver suite-docs suite-dashboard 
 
-   .. warning:: NEED PACKAGE LIST
+   A more complete install, including all the suite web applications, Postgresql/Postgres, GDAL, and NetCDF, is as follow:
+
+   .. code-block:: bash
+
+     apt-get install suite-dashboard \
+                 suite-geoserver \
+                 suite-geowebcache \
+                 suite-composer \
+                 suite-docs \
+                 suite-quickview  \
+                 suite-wpsbuilder \
+                 postgresql-9.3-postgis-2.1 \
+                 suite-gs-gdal \
+                 suite-gs-netcdf \
+                 suite-gs-netcdf-out 
 
    .. note::  See the :ref:`install.ubuntu.packages.list` for details of individual packages.
 
@@ -80,7 +92,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    * http://localhost:8080/dashboard
 
-   .. warning:: ADD IMAGE
+   .. image:: /install/include/ext/img/dashboard.png
 
 #. If you see the above image, then Boundless Suite was installed correctly.
 
