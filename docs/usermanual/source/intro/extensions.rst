@@ -5,15 +5,7 @@ Boundless Suite extensions
 
 Boundless Suite comes with a number of optional extensions or "add-ons". These add functionality to Boundless Suite, but may not be needed by most users. We recommend that you choose only the extensions that you need.
 
-These optional components can be selected in different ways depending on your operating system:
-
-* **Windows**: Extensions can be added by :ref:`manually copying the extension files <install.windows.tomcat.geoserver>` after Boundless Suite is installed.
-* **OS X**: Extensions can be added by manually copying the extension files after Boundless Suite is installed.
-* **Ubuntu Linux**: Extensions can be installed via :ref:`packages <install.ubuntu.packages>`.
-* **Red Hat-based Linux**: Extensions can be installed by via :ref:`packages <install.redhat.packages>`.
-
-For users of Boundless Suite for Application Servers, please `contact Boundless <http://boundlessgeo.com/about-us/contact/>`_ to receive access to the extensions and information on how to install them.
-  
+These optional components can be installed in different ways depending on your operating system. Please see the appropriate :ref:`installation <install>` section.
 
 .. _intro.extensions.appschema:
 

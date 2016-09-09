@@ -36,7 +36,7 @@ Medford
 
 The city of Medford, in the United States state of Oregon, has generously shared some of their public domain municipal data.
 
-.. note:: To install the data download `medford.zip <http://data.opengeo.org/medford.zip>`_ and unpack it into the root of the GeoServer data directory.
+.. note:: To install the data download `medford.zip <http://data.boundlessgeo.com/medford.zip>`_ and unpack it into the root of the GeoServer data directory.
 
 The following layers are available in the Medford dataset:
 
@@ -127,7 +127,7 @@ World
 
 A variety of world wide datasets compiled from a number of sources.
 
-.. note:: To install the data download `world.zip <http://data.opengeo.org/world.zip>`_ and unpack it into the root of the GeoServer data directory.
+.. note:: To install the data download `world.zip <http://data.boundlessgeo.com/world.zip>`_ and unpack it into the root of the GeoServer data directory.
 
 .. note:: The world data bundle contains styles that require the GeoServer WPS extensions.
 
