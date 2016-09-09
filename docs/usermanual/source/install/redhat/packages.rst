@@ -1,7 +1,7 @@
 .. _install.redhat.packages:
 
-Installing packages on Red Hat
-==============================
+Package install on Red Hat
+==========================
 
 This page describes how to perform a package installation of **Boundless Suite** |version| on Red hat-based Linux distributions.
 

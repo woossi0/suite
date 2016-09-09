@@ -1,7 +1,7 @@
 .. _install.mac.vm:
 
-Installing the virtual machine on Mac OS X 
-==========================================
+Virtual machine install on Mac OS X
+===================================
 
 This section will install the Boundless Suite virtual machine on a Mac OS X host.
 

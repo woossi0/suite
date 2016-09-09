@@ -1,7 +1,7 @@
 .. _install.redhat.vm:
 
-Installing the virtual machine on Red Hat
-=========================================
+Virtual machine install on Red Hat
+==================================
 
 This section will install the Boundless Suite virtual machine on a Red Hat-based Linux host.
 

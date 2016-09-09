@@ -1,7 +1,7 @@
 .. _install.ubuntu.packages:
 
-Installing packages on Ubuntu
-=============================
+Package install on Ubuntu
+=========================
 
 This page describes how to perform a package installation of **Boundless Suite** |version| on Ubuntu Linux.
 
