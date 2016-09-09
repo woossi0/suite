@@ -32,12 +32,8 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
      .. code-block:: bash
 
-        echo "deb https://<username>:<password>@SERVER trusty main" > /etc/apt/sources.list.d/boundless.list
-        echo "deb https://<username>:<password>@SERVER trusty main" > /etc/apt/sources.list.d/boundless.list
-
-        
-        deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/suite-test-debian/amd64 ./
-        deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/third-party-debian/amd64 ./
+        echo "deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/suite-test-debian/amd64 ./" > /etc/apt/sources.list.d/boundless.list
+        echo "deb http://jenkins:Thae9suv@priv-repo.boundlessgeo.com/third-party-debian/amd64 ./" > /etc/apt/sources.list.d/boundless.list
 
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
