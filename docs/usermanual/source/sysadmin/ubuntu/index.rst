@@ -83,7 +83,7 @@ If you wish to use the Oracle Java 8 JRE (rather than the OpenJDK 8 installed by
 
 #. Download and install Oracle Java 8 JRE.
 
-#. Open :file:`/etc/default/tomcat8` and update the ``JAVA_HOME`` environment variable.
+#. Open :file:`/etc/tomcat8/tomcat8.conf` and update the ``JAVA_HOME`` environment variable.
 
    .. note:: Make sure the line is uncommented (does not start with ``#``).
 
@@ -98,19 +98,27 @@ You can add other system or application-specific parameters that will be picked 
 
 #. The :file:`/etc/sysconfig/tomcat8` is responsible for the tomcat service.
 
-   * To provide an environmental variable open :file:`/etc/sysconfig/tomcat8` in a text editor, add the desired parameters to the bottom of the file.
+   * To provide an environmental variable open :file:`/etc/tomcat8/tomcat8.conf` in a text editor, add the desired parameters to the bottom of the file.
      
-     Environmental variables defined at the end of :file:`/etc/tomcat8/tomcat8`::
+     Environmental variables defined at the end of :file:`/etc/tomcat8/tomcat8.conf`::
         
       GDAL_DATA=/usr/share/gdal
-      GEOSERVER_DATA_DIR=/opt/boundless/suite/geoserver-data/
-      GEOWEBCACHE_CACHE_DIR=/opt/boundless/suite/geowebcache-data/
    
    * System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/` (to make these settings easier to manage).
      
      Example :file:`/etc/tomcat8/suite-opts/memory`::
          
          -Xmx2G
+
+   * Context Paramaters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag.
+
+     GeoServer Data Dir context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml`:
+
+     .. code-block:: xml
+
+        <Parameter name="GEOSERVER_DATA_DIR" 
+          value="/var/opt/boundless/suite/geoserver/data" override="false"/>
+
 
 #. Restart Tomcat.
 
@@ -122,7 +130,7 @@ Working with GeoServer
 GeoServer Data Directory
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/lib/opengeo/geoserver`. 
+The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/opt/boundless/suite/geoserver/data`. 
 
 To point GeoServer to an alternate location:
 
@@ -132,10 +140,8 @@ To point GeoServer to an alternate location:
    
    .. code-block:: xml
       
-       <context-param>
-          <param-name>GEOSERVER_DATA_DIR</param-name>
-           <param-value>/var/opt/boundless/geoserver/data/</param-value>
-       </context-param> 
+      <Parameter name="GEOSERVER_DATA_DIR" 
+        value="/var/opt/boundless/suite/geoserver/data" override="false"/>
 
 #. Restart Tomcat.
 
@@ -182,11 +188,8 @@ To restore the previous ``crs`` representation for compatibility reasons (especi
 #. Add a context parameter to :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml`:
 
    .. code-block:: xml
-      
-       <context-param>
-           <param-name>GEOSERVER_GEOJSON_LEGACY_CRS</param-name>
-           <param-value>true</param-value>
-       </context-param>
+
+      <Parameter name="GEOSERVER_GEOJSON_LEGACY_CRS" value="true" override="false"/>
 
 #. Restart Tomcat.
 
