@@ -105,9 +105,11 @@ Upgrade
 
 This section describes how to upgrade Boundless Suite 4.x to |version| on Ubuntu Linux.
 
-Because of the package changes involved, if you have any version earlier than 4.9, it will need to be uninstalled first.
+Because of the major package changes involved, if you have any version earlier than 4.9, it **must** be uninstalled first.
 
 .. note:: The data directory at ``/var/lib/opengeo/geoserver`` will not be removed.
+
+#. Backup your configuration and data
 
 #. Change to the ``root`` user:
 
@@ -117,13 +119,59 @@ Because of the package changes involved, if you have any version earlier than 4.
 
 #. Uninstall old packages:
 
+   .. note:: This will uninstall several packages (including tomcat7).  Verify that removing these packages will not interfer with other applications running on your system.  Ensure you do not have another tomcat (or other server) on port 8080.
+
    .. code-block:: bash
 
-      yum remove PACKAGES
+       apt-get remove tomcat7   \
+          geoexplorer \
+          libgeos-3.5.0 \
+          libgeos-c1  \
+          libgeos-dev \
+          libgeos-doc \
+          geoserver \
+          geoserver-* \
+          geowebcache \
+          libght \
+          libght-dev  \
+          laszip \
+          laszip-dev  \
+          libgeotiff  \
+          libgeotiff-dev \
+          libjpeg-turbo-official  \
+          opengeo \
+          opengeo-*  \
+          pdal \
+          pdal-dev \
+          pgadmin3 \
+          pgadmin3-data \
+          postgresql-9.3-pointcloud\
+          postgis-2.1 \
+          postgresql-9.3-postgis-2.1\
+          libpq5 \
+          postgresql-9.3   \
+          postgresql-client-9.3 \
+          postgresql-client-common  \
+          postgresql \
+          libproj0 \
+          libproj-dev \
+          proj\
+          proj-bin  \
+          proj-data  \
+          libgdal-opengeo-dev \
+          libgdal-opengeo \
+          gdal-mrsid    
 
-   .. warning:: NEED PACKAGE LIST
 
-#. Continue above in the :ref:`install.ubuntu.packages.install` section.
+     apt-get autoremove
+
+#. Remove the reference to the Suite 4.8 repository
+
+   .. code-block:: bash
+
+     rm /etc/apt/sources.list.d/opengeo.list
+
+#. Continue above in the :ref:`install.ubuntu.packages.install` section, and use :file:`/var/lib/opengeo/geoserver` as your :guilabel:`GEOSERVER_DATA_DIR`
 
 .. _install.ubuntu.packages.list:
 
