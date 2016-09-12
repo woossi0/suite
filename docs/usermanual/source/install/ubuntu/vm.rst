@@ -98,7 +98,12 @@ Create a snapshot
 
 .. include:: ../include/vbox/check_snapshot.txt
 
-Virtual Machine Reference
+Extensions
+^^^^^^^^^^
+
+.. include:: ../include/vbox/extensions.txt
+
+Virtual Machine reference
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. include:: ../include/vbox/check_reference.txt
