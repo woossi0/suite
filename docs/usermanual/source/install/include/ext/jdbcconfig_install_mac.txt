@@ -5,3 +5,11 @@ To install :ref:`JDBCConfig <intro.extensions.jdbcconfig>` support in GeoServer,
 #. Copy the contents of the :file:`jdbcconfig` directory into the library directory (:file:`WEB-INF/lib`) of your GeoServer instance. For example, if your GeoServer application is located at :file:`/Library/Tomcat/webapps/geoserver`, copy the files to :file:`/Library/Tomcat/webapps/geoserver/WEB-INF/lib`.
 
 #. Restart the server.
+
+#. On startup, JDBCConfig will create a configuration directory ``jdbcconfig`` in the GeoServer data directory. Verify this directory exists then stop the server.
+
+   .. note:: If unsure of the location of the GeoServer data directory, log in to the GeoServer web interface and click :guilabel:`Server Status`. The location of the :guilabel:`Data directory` will be displayed at the top.
+
+#. In the :file:`jdbcconfig` directory, edit the :file:`jdbcconfig.properties` file to enable JDBCConfig. Be being sure to set ``enabled``, ``initdb``, and ``import`` to ``true``, and to provide the connection information for an empty database. For more information, refer to :geoserver:`JDBCConfig Configuration </community/jdbcconfig/configuration.html>` in the GeoServer documentation.
+
+#. Restart the server again. This time JDBCConfig will connect to the specified database, initialize it, import the old catalog into it, and take over from the old catalog. Subsequent start ups will skip the initialize and import steps unless you re-enable them in :file:`jdbcconfig.properties`.
