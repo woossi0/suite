@@ -31,7 +31,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
    .. code-block:: bash
 
       echo "deb http://<username>:<password>@priv-repo.boundlessgeo.com/suite-test-debian/amd64 ./" > /etc/apt/sources.list.d/boundless.list
-      echo "deb http://<username>:<password>@priv-repo.boundlessgeo.com/third-party-debian/amd64 ./" > /etc/apt/sources.list.d/boundless.list
+      echo "deb http://<username>:<password>@priv-repo.boundlessgeo.com/third-party-debian/amd64 ./" >> /etc/apt/sources.list.d/boundless.list
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
@@ -96,11 +96,13 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 Upgrade
 -------
 
-This section describes how to upgrade Boundless Suite 4.x to |version| on Ubuntu Linux.
+This section describes how to upgrade Boundless Suite 4.8 and earlier to |version| on Ubuntu Linux.
+
+.. warning:: We do **not** recommend upgrading Boundless Suite on a production server.  Instead, do a new install on new machine, then transfer your data and settings to the new machine.  
 
 .. warning::
 
-   Because of the major package changes involved, if you have any version earlier than 4.9, it must be uninstalled first.
+   Because of the major package changes involved, if you have any version earlier than 4.9, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system. 
 
    The data directory at ``/var/lib/opengeo/geoserver`` will not be removed during uninstallation.
 
@@ -114,7 +116,7 @@ This section describes how to upgrade Boundless Suite 4.x to |version| on Ubuntu
 
 #. Uninstall old packages:
 
-   .. note:: This will uninstall several packages (including ``tomcat7``). Verify that removing these packages will not interfere with other applications running on your system. Ensure you do not have another Tomcat (or other server) on port 8080.
+   .. warning:: This will uninstall many packages (including ``tomcat7``, ``posgresql/postgis``, and other common GIS tools). Verify that removing these packages will **not** interfere with other applications running on your system. Ensure you do not have another Tomcat (or other service) on port 8080.
 
    .. code-block:: bash
 
@@ -127,6 +129,13 @@ This section describes how to upgrade Boundless Suite 4.x to |version| on Ubuntu
                       geoserver \
                       geoserver-* \
                       geowebcache \
+                      laszip \
+                      laszip-dev \
+                      libgeotiff \
+                      libgeotiff-dev \
+                      libpq5 \
+                      libgdal-opengeo \
+                      libgdal-opengeo-dev \
                       libght \
                       libght-dev \
                       laszip \
@@ -140,6 +149,7 @@ This section describes how to upgrade Boundless Suite 4.x to |version| on Ubuntu
                       pdal-dev \
                       pgadmin3 \
                       pgadmin3-data \
+                      pgadmin3-data \
                       postgresql-9.3-pointcloud \
                       postgis-2.1 \
                       postgresql-9.3-postgis-2.1 \
@@ -147,6 +157,7 @@ This section describes how to upgrade Boundless Suite 4.x to |version| on Ubuntu
                       postgresql-9.3 \
                       postgresql-client-9.3 \
                       postgresql-client-common \
+                      postgresql-common \
                       postgresql \
                       libproj0 \
                       libproj-dev \
@@ -166,7 +177,7 @@ This section describes how to upgrade Boundless Suite 4.x to |version| on Ubuntu
 
 #. Continue above in the :ref:`install.ubuntu.packages.install` section. When finished, change your :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to the correct location.
 
-   .. note:: A default installation of Boundless Suite, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory if desired. See :ref:`intro.installation.ubuntu.postinstall.geoserver` for more details.
+   .. note:: A default installation of Boundless Suite, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory, if desired. See :ref:`intro.installation.ubuntu.postinstall.geoserver` for more details.
 
 .. _install.ubuntu.packages.list:
 
