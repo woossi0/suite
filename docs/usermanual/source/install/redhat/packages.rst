@@ -3,7 +3,7 @@
 Package install on Red Hat
 ==========================
 
-This page describes how to perform a package installation of **Boundless Suite** |version| on Red hat-based Linux distributions.
+This page describes how to perform a package installation of Boundless Suite** |version| on Red hat-based Linux distributions.
 
 .. note:: For upgrades, see the below section on :ref:`Upgrading <install.redhat.packages.upgrade>`.
 
@@ -39,8 +39,6 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
      enabled=1
      gpgcheck=0
 
-   .. warning:: VERIFY SERVER
-
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
    .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__ if you have purchased Boundless Suite and do not have a user name and password.
@@ -66,16 +64,16 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
      .. code-block:: bash
 
         yum install suite-dashboard \
-                        suite-geoserver \
-                        suite-geowebcache \
-                        suite-composer \
-                        suite-docs \
-                        suite-quickview  \
-                        suite-wpsbuilder \
-                        postgis21-postgresql93 \
-                        suite-gs-gdal \
-                        suite-gs-netcdf \
-                        suite-gs-netcdf-out 
+                    suite-geoserver \
+                    suite-geowebcache \
+                    suite-composer \
+                    suite-docs \
+                    suite-quickview  \
+                    suite-wpsbuilder \
+                    postgis21-postgresql93 \
+                    suite-gs-gdal \
+                    suite-gs-netcdf \
+                    suite-gs-netcdf-out 
 
    .. note::  See the :ref:`install.redhat.packages.list` for details of individual packages.
 
@@ -91,7 +89,7 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
    * http://localhost:8080/geoserver
 
 
-#. Please see the section on :ref:`sysadmin.redhat` for best practices and additional information.
+   .. note:: Please see the section on :ref:`sysadmin.redhat` for additional information and best practices.
 
 .. _install.redhat.packages.upgrade:
 
@@ -100,7 +98,7 @@ Upgrade
 
 This section describes how to upgrade Boundless Suite 4.x to |version| on Red Hat-based Linux distributions.
 
-.. warning:: We do **not** recommend upgrading Boundless Suite on a production server.  Instead, do a new install on new machine, then transfer your data and settings to the new machine.  
+.. warning:: We do **not** recommend upgrading Boundless Suite on a production server. Instead, do a new install on new machine, then transfer your data and settings to the new machine.
 
 .. warning::
 
@@ -122,18 +120,18 @@ This section describes how to upgrade Boundless Suite 4.x to |version| on Red Ha
 
    .. code-block:: bash
 
-       yum  --setopt=clean_requirements_on_remove=1 remove \
+      yum --setopt=clean_requirements_on_remove=1 remove \
                       tomcat \
-                      "tomcat-*" \
+                      tomcat-* \
                       geoexplorer \
                       geos-* \
                       geoserver \
-                      "geoserver-*" \
+                      geoserver-* \
                       geowebcache \
                       laszip \
                       laszip-devel \
                       gdal-devel \
-                      gdal-mrsid  \
+                      gdal-mrsid \
                       gdal \
                       ght \
                       ght-devel \
@@ -158,7 +156,6 @@ This section describes how to upgrade Boundless Suite 4.x to |version| on Red Ha
                       wxBase \
                       wxGTK \
                       wxGTK-*
-                                                                  
  
 #. Remove the reference to the Suite 4.8 repository:
 
@@ -168,7 +165,7 @@ This section describes how to upgrade Boundless Suite 4.x to |version| on Red Ha
 
 #. Continue above in the :ref:`install.redhat.packages.install` section. When finished, change your :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to the correct location.
 
-   .. note:: A default installation of Boundless Suite, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory, if desired. See :ref:`intro.installation.redhat.postinstall.geoserver` for more details.
+   .. note:: A default installation of Boundless Suite, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory, if desired.
 
 
 .. _install.redhat.packages.list:
@@ -313,4 +310,4 @@ The following major binary packages are available:
    * - ``proj``
      - PROJ.4 libary
    * - ``geos-3.5.0``
-     - GEOS (Geometry Engine, Open Source) Library
+     - GEOS (Geometry Engine, Open Source) library

@@ -53,7 +53,6 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
 #. You have options on what packages to install.
 
-
    * A simple installation including GeoServer, documentation, and the :ref:`intro.dashboard`:
 
      .. code-block:: bash
@@ -98,7 +97,7 @@ Upgrade
 
 This section describes how to upgrade Boundless Suite 4.8 and earlier to |version| on Ubuntu Linux.
 
-.. warning:: We do **not** recommend upgrading Boundless Suite on a production server.  Instead, do a new install on new machine, then transfer your data and settings to the new machine.  
+.. warning:: We do **not** recommend upgrading Boundless Suite on a production server. Instead, do a new install on new machine, then transfer your data and settings to the new machine.
 
 .. warning::
 
@@ -120,52 +119,52 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 
    .. code-block:: bash
 
-       apt-get remove tomcat7 \
-                      geoexplorer \
-                      libgeos-3.5.0 \
-                      libgeos-c1 \
-                      libgeos-dev \
-                      libgeos-doc \
-                      geoserver \
-                      geoserver-* \
-                      geowebcache \
-                      laszip \
-                      laszip-dev \
-                      libpq5 \
-                      libgdal-opengeo \
-                      libgdal-opengeo-dev \
-                      libght \
-                      libght-dev \
-                      laszip \
-                      laszip-dev \
-                      libgeotiff \
-                      libgeotiff-dev \
-                      libjpeg-turbo-official \
-                      opengeo \
-                      opengeo-* \
-                      pdal \
-                      pdal-dev \
-                      pgadmin3 \
-                      pgadmin3-data \
-                      pgadmin3-docs \
-                      postgresql-9.3-pointcloud \
-                      postgis-2.1 \
-                      postgresql-9.3-postgis-2.1 \
-                      libpq5 \
-                      postgresql-9.3 \
-                      postgresql-client-9.3 \
-                      postgresql-client-common \
-                      postgresql-common \
-                      postgresql \
-                      libproj0 \
-                      libproj-dev \
-                      proj \
-                      proj-bin \
-                      proj-data \
-                      libgdal-opengeo-dev \
-                      libgdal-opengeo \
-                      gdal-mrsid    
-       apt-get autoremove
+      apt-get remove tomcat7 \
+                     geoexplorer \
+                     libgeos-3.5.0 \
+                     libgeos-c1 \
+                     libgeos-dev \
+                     libgeos-doc \
+                     geoserver \
+                     geoserver-* \
+                     geowebcache \
+                     laszip \
+                     laszip-dev \
+                     libpq5 \
+                     libgdal-opengeo \
+                     libgdal-opengeo-dev \
+                     libght \
+                     libght-dev \
+                     laszip \
+                     laszip-dev \
+                     libgeotiff \
+                     libgeotiff-dev \
+                     libjpeg-turbo-official \
+                     opengeo \
+                     opengeo-* \
+                     pdal \
+                     pdal-dev \
+                     pgadmin3 \
+                     pgadmin3-data \
+                     pgadmin3-docs \
+                     postgresql-9.3-pointcloud \
+                     postgis-2.1 \
+                     postgresql-9.3-postgis-2.1 \
+                     libpq5 \
+                     postgresql-9.3 \
+                     postgresql-client-9.3 \
+                     postgresql-client-common \
+                     postgresql-common \
+                     postgresql \
+                     libproj0 \
+                     libproj-dev \
+                     proj \
+                     proj-bin \
+                     proj-data \
+                     libgdal-opengeo-dev \
+                     libgdal-opengeo \
+                     gdal-mrsid
+      apt-get autoremove
 
 #. Remove the reference to the Suite 4.8 repository:
 
@@ -175,7 +174,8 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 
 #. Continue above in the :ref:`install.ubuntu.packages.install` section. When finished, change your :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to the correct location.
 
-   .. note:: A default installation of Boundless Suite, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory, if desired. See :ref:`intro.installation.ubuntu.postinstall.geoserver` for more details.
+   .. note:: A default installation of Boundless Suite, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory, if desired.
+
 
 .. _install.ubuntu.packages.list:
 
@@ -319,4 +319,4 @@ The following major binary packages are available:
    * - ``proj``
      - PROJ.4 libary
    * - ``libgeos-3.5.0``
-     - GEOS (Geometry Engine, Open Source) Library
+     - GEOS (Geometry Engine, Open Source) library
