@@ -131,8 +131,6 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
                       geowebcache \
                       laszip \
                       laszip-dev \
-                      libgeotiff \
-                      libgeotiff-dev \
                       libpq5 \
                       libgdal-opengeo \
                       libgdal-opengeo-dev \
@@ -149,7 +147,7 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
                       pdal-dev \
                       pgadmin3 \
                       pgadmin3-data \
-                      pgadmin3-data \
+                      pgadmin3-docs \
                       postgresql-9.3-pointcloud \
                       postgis-2.1 \
                       postgresql-9.3-postgis-2.1 \

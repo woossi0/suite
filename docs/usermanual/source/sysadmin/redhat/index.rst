@@ -127,11 +127,12 @@ You can add other system or application-specific parameters that will be picked 
 
 #. Restart Tomcat.
 
-.. _intro.installation.redhat.postinstall.geoserver:
-
    .. code-block:: bash
 
         service tomcat8 restart
+
+
+.. _intro.installation.redhat.postinstall.geoserver:
 
 Working with GeoServer
 ----------------------
