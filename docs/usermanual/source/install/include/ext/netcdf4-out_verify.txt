@@ -6,4 +6,7 @@ To verify that the NetCDF native library extension has been installed properly:
 
 #. Search for "NetCDF Output" on the page and verify that the binary is available.
 
-   .. figure:: ../../../include/ext/img/ncdf4-status.png
+   .. figure:: /install/include/ext/img/ncdf4-status.png
+
+      NetCDF 4 output settings
+

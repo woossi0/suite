@@ -11,7 +11,7 @@ This data can be loaded and published through GeoServer. Both NetCDF 3 and NetCD
 
 GeoServer also has the ability to add NetCDF as an output format.
 
-.. note:: There are two different extensions for NetCDF: One to create a **data store** (reading) and one to provide an **output format** (writing).
+.. note:: There are different extensions for NetCDF: One to create a **data store** (reading), one to provide an **output format**, and one to provide an output format specifically for **NetCDF 4**.
 
 Installing NetCDF support
 -------------------------
@@ -27,6 +27,38 @@ Verifying installation
 
 .. include:: ../../install/include/ext/netcdf-out_verify.txt
 
+.. include:: ../../install/include/ext/netcdf4-out_verify.txt
+
 For more information on adding a store and publishing layers, please see the :geoserver:`GeoServer documentation for NetCDF <extensions/netcdf/netcdf.html>`.
 
-.. Add tutorials here
+Uninstallation
+--------------
+
+When you install NetCDF-out, your :file:`global.xml` file is edited. This file is located in the root of your GeoServer data directory.
+
+When uninstalling NetCDF-out, the information in this file needs to be removed manually.
+
+.. warning:: Failure to manually edit the :file:`global.xml` file to remove the NetCDF-out content may result in GeoServer failing to load.
+
+#. Open :file:`global.xml` in a text editor.
+
+#. Find the section containing ``NetCDFOutput.Key`` and delete it. It will look something like this:
+
+   .. code-block:: xml
+
+      <metadata>
+        <map>
+          <entry>
+            <string>NetCDFOutput.Key</string>
+            <netCDFSettings>
+              <compressionLevel>0</compressionLevel>
+              <shuffle>true</shuffle>
+              <dataPacking>NONE</dataPacking>
+            </netCDFSettings>
+          </entry>
+        </map>
+      </metadata>
+
+#. Save and close the file.
+
+#. Restart the server.
