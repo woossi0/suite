@@ -4,6 +4,9 @@ To verify that the extension has been installed properly:
 
    .. note:: If unsure of the location of the GeoServer data directory, log in to the GeoServer web interface and click :guilabel:`Server Status`. The location of the :guilabel:`Data directory` will be displayed at the top.
 
-#. There should be a directory called :file:`jdbcstore` which contains files of the form :file:`jdbcstore.properties.*`.
+#. Open the file :file:`logs/geoserver.log`. The last two lines should look similar to::
 
-   If you don't see this directory or these files, the extension did not install correctly.
+      2016-09-12 22:05:19,315 INFO [geoserver.jdbcloader] - JDBCConfig using JDBC DataSource Optional.of(jdbc:postgresql://localhost:5432/gsdata)
+      2016-09-12 22:05:19,560 INFO [jdbcstore.internal] - Initializing Resource Store Database.
+
+   If this is not the case, the extension did not install correctly.
