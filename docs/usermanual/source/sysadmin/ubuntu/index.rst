@@ -110,7 +110,7 @@ You can add other system or application-specific parameters that will be picked 
          
          -Xmx2G
 
-   * Context Paramaters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag.
+   * Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag.
 
      GeoServer Data Dir context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml`:
 
