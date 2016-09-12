@@ -4,7 +4,7 @@ To verify that the GDAL native library extension has been installed properly:
 
 #. Navigate to the GeoServer Detailed Status Page at http://localhost:8080/geoserver/rest/about/status.
 
-#. Verify that the GDAL extension is available (:guilabel:`Enabled` and :guilabel:`Available`both set to :guilabel:`true`):
+#. Verify that the GDAL extension is available (:guilabel:`Enabled` and :guilabel:`Available` both set to :guilabel:`true`):
 
    .. figure:: /install/include/ext/img/gdal_rest.png
 

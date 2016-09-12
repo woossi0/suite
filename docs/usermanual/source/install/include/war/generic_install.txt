@@ -91,3 +91,7 @@ LibJPEG Turbo
    * ``-Djava.library.path=<path/to/libjpeg-turbo>/lib`` (often :file:`/opt/libjpeg-turbo/lib64`)
 
 #. Restart Tomcat, navigate to the GeoServer Detailed Status page at http://localhost:8080/geoserver/rest/about/status, and search for :guilabel:`libjpeg` to verify it is :guilabel:`Enabled` and :guilabel:`Available`.
+
+
+
+.. include:: /install/include/war/generic_binaries.txt
