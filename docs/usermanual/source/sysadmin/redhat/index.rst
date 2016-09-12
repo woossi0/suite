@@ -92,7 +92,7 @@ If you wish to use the Oracle Java 8 JRE (rather than the OpenJDK 8 installed by
 
 #. Download and install Oracle Java 8 JRE.
 
-#. Open :file:`/etc/sysconfig/tomcat8` and update the ``JAVA_HOME`` environment variable.
+#. Open :file:`/etc/tomcat8/tomcat8.conf` and update the ``JAVA_HOME`` environment variable.
 
    .. note:: Make sure the line is uncommented (does not start with ``#``).
 
