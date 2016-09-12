@@ -5,9 +5,7 @@ Connecting to PostgreSQL on Linux for the first time
 
 .. note:: This section uses the command line utility ``psql`` and optionally the graphical utility ``pgAdmin``. These client tools are provided as Boundless Desktop.
 
-On Windows and OS X, PostgreSQL is configured to be accessed immediately. No further configuration is required. The user name is ``postgres`` and password is ``postgres``.
-
-However, on Linux, both on Ubuntu and Red Hat-based systems, additional work needs to be undertaken. This is because the default PostgreSQL configuration on both Ubuntu and Red Hat-based systems has connections turned off for the ``postgres`` user by default.
+on Linux, both on Ubuntu and Red Hat-based systems, the default PostgreSQL configuration has connections turned off for the ``postgres`` user by default.
 
 So after install of Boundless Suite, if you try to connect to PostgreSQL via the :command:`psql` command-line utility or through :command:`pgAdmin`, you will get the following connection error::
 
@@ -23,7 +21,7 @@ For more information, please see the `Ubuntu documentation on PostgreSQL <https:
 Setting a password for the ``postgres`` user
 --------------------------------------------
 
-On Windows and OS X, the default password is ``postgres``. But on Linux systems, there is no default password set.
+On Linux systems, there is no default password set.
 
 To set the default password:
 
@@ -78,9 +76,17 @@ To allow this:
 
 #. Restart PostgreSQL:
 
-   .. code-block:: console
+   * Ubuntu:
 
-      sudo service postgresql restart  
+     .. code-block:: console
+
+        sudo service postgresql restart  
+
+   * Red Hat:
+
+     .. code-block:: console
+
+        sudo service postgresql-9.3 restart 
 
 #. To test your connection using :command:`psql`, run the following command:
 
@@ -139,9 +145,17 @@ The details are similar to that of allowing local connections, with some slight 
 
 #. Restart PostgreSQL:
 
-   .. code-block:: console
+   * Ubuntu:
 
-      sudo service postgresql restart  
+     .. code-block:: console
+
+        sudo service postgresql restart  
+
+   * Red Hat:
+
+     .. code-block:: console
+
+        sudo service postgresql-9.3 restart 
 
 #. To test your connection using :command:`pgAdmin`, connect to the database at the IP address or host name of the system that hosts the database. Enter the user name ``postgres`` and the password supplied.
 
