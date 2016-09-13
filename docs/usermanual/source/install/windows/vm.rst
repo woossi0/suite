@@ -130,6 +130,11 @@ For **Windows** systems, we recommend using the `PuTTY <http://the.earth.li/~sgt
 
    .. note:: If you named your shared directory something other than "share", the shared folder will be named :file:`/media/sf_<name>`.
 
+Using the shared folder
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. include:: ../include/vbox/copy_shared_file.txt
+
 Create a snapshot
 ^^^^^^^^^^^^^^^^^
 
@@ -139,6 +144,8 @@ Extensions
 ^^^^^^^^^^
 
 .. include:: ../include/vbox/extensions.txt
+
+
 
 Virtual Machine reference
 ^^^^^^^^^^^^^^^^^^^^^^^^^

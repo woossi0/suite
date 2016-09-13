@@ -98,6 +98,11 @@ Terminal setup
 
 .. include:: ../include/vbox/check_terminal.txt
 
+Using the shared folder
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. include:: ../include/vbox/copy_shared_file.txt
+
 Create a snapshot
 ^^^^^^^^^^^^^^^^^
 
