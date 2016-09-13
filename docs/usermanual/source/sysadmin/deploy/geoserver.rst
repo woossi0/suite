@@ -169,7 +169,6 @@ NetCDF Extension
 * Extract into `webapps/geoserver/WEB-INF/libs`.
 * Windows::
 
-    -Djava.library.path='C:\Program Files (x86)\netCDF 4.4.0\bin'
     -Djna.library.path='C:\Program Files (x86)\netCDF 4.4.0\bin'
 
 GeoServer GDAL Extension

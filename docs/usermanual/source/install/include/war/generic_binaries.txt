@@ -20,6 +20,7 @@ GDAL
 
 	      apt-get install libgdal libgdal-java 
 
+.. note:: You can also install the :file:`gdal-mrsid` package for Mr.SID and JP2K support.
 
 #. Verify the GDAL install by running :file:`gdalinfo --formats` to see a long list of supported formats and :file:`gdalinfo --version` to verify the version (1.11.2).  Also verify that the :file:`gdal.jar` file is in :file:`/usr/share/java`
 
@@ -35,6 +36,8 @@ GDAL
 
 NetCDF-4 Output
 ~~~~~~~~~~~~~~~
+
+#. Install the NetCDF-output extension by copying the :file:`.jar` files from the :file:`netcdf-out` directory inside the Boundless Suite extensions bundle (available from Boundless Connect) into the :file:`WEB-INF/lib` directory of your Geoserver web application. 
 
 #. Install, from the Boundless Repository, the NetCDF package.
 

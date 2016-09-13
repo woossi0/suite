@@ -20,10 +20,4 @@ To output specifically in NetCDF 4 format, you must install the NetCDF output fo
    
 #. Click :guilabel:`Apply`.
      
-   .. note::
-
-      If you already have an existing ``-Djava.library.path=`` entry in your :guilabel:`Java Options`, append the new path to the end of the line, separated by a semicolon. For example::
-
-        -Djava.library.path=C:\GDAL;C:\Program Files (x86)\netCDF 4.4.1\bin
-
 #. Stop and start the server.
