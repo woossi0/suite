@@ -1,10 +1,10 @@
 Binaries
-========
+--------
 
 Some Geoserver extensions require non-java (binary) support libraries.  
 
 GDAL
-----
+~~~~
 
 #. Install, from the Boundless Repository, the GDAL and GDAL-java packages.
 
@@ -34,7 +34,7 @@ GDAL
 .. include:: /install/include/ext/gdal_verify.txt
 
 NetCDF-4 Output
----------------
+~~~~~~~~~~~~~~~
 
 #. Install, from the Boundless Repository, the NetCDF package.
 
