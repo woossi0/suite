@@ -47,7 +47,7 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      yum list suite-
+      yum list suite-*
 
    If the command does not return any results, examine the output of the ``yum`` command for any errors or warnings.
 
