@@ -23,9 +23,9 @@ Server Mode
 
 For production use, Boundless Suite should be run using the **Server mode** of the JVM.  This mode is used by default on some platforms (such as Linux and Solaris), but not on others (such as Windows or OS X).   The ``-server`` JVM option forces the use of the Server VM.  To determine the default JVM mode, run ``java -version``, and the output should be as follows::
 
-  java version "1.7.0_71"
-  Java(TM) SE Runtime Environment (build 1.7.0_71-b13)
-  Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
+	openjdk version "1.8.0_101"
+	OpenJDK Runtime Environment (build 1.8.0_101-b13)
+	OpenJDK 64-Bit Server VM (build 25.101-b13, mixed mode)
 
 Note that the final line says ``Server VM``.
 
@@ -38,7 +38,7 @@ Certain JVM operating characteristics can be tuned to optimize performance when 
 * ``-Xms2048m -Xmx2048m`` sets the JVM to use 2048 megabytes (2 GB) of memory for the heap, and allocates it all on startup (the heap size should be adjusted to fit the actual memory available)
 * ``-XX:NewRatio=2`` tunes the JVM for handling a large number of short-lived objects
   
-The method of setting these parameters is container-specific.  For example, in Boundless Suite the service :file:`tomcat7`, parameters are configured by defining them in the ``OPENGEO_OPTS`` variable in a ``setenv`` script file located in the installation ``bin`` directory. In ``OpenGeo Jetty`` service they are configured in :file:`C:\\Program Files (x86)\\Boundless\\OpenGeo\\jetty\\start.ini`.
+The method of setting these parameters is container-specific.  For example, in Boundless Suite, the :file:`tomcat8` parameters are configured by defining them in :file:`/usr/share/tomcat8/conf/suite-opts` (see :ref:`sysadmin.startup`).
 
 JAI and JAI Image I/O
 ---------------------
