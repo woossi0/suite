@@ -57,7 +57,7 @@ Changing the Tomcat port
 
 To change the Tomcat port:
 
-#. Edit the file :file:`/etc/tomcat8/server.xml`. 
+#. Edit the file :file:`/usr/share/tomcat8/conf/server.xml`. 
 
 #. Search for "8080" and change the ``port`` attribute to the desired value.
 
@@ -92,7 +92,7 @@ If you wish to use the Oracle Java 8 JRE (rather than the OpenJDK 8 installed by
 
 #. Download and install Oracle Java 8 JRE.
 
-#. Open :file:`/etc/tomcat8/tomcat8.conf` and update the ``JAVA_HOME`` environment variable.
+#. Open :file:`/usr/share/tomcat8/conf/tomcat8.conf` and update the ``JAVA_HOME`` environment variable.
 
    .. note:: Make sure the line is uncommented (does not start with ``#``).
 
@@ -207,7 +207,7 @@ GeoServer GeoJSON output is now provided in x/y/z order as required by the speci
    
 To restore the previous ``crs`` representation for compatibility reasons (especially when working with OpenLayers 3):
 
-#. Navigate to :file:`/usr/share/tomcat8/webapps` and edit the file :file:`geoserver/WEB-INF/web.xml`.
+#. Navigate to :file:`/opt/boundless/suite/geoserver` and edit the file :file:`WEB-INF/web.xml`.
 
 #. Add the following context parameter to  :file:`web.xml`:
 
