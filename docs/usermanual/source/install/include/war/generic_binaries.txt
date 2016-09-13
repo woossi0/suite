@@ -20,6 +20,7 @@ GDAL
 
 	      apt-get install libgdal libgdal-java 
 
+.. note:: You can also install the :file:`gdal-mrsid` package for Mr.SID and JP2K support.
 
 #. Verify the GDAL install by running :file:`gdalinfo --formats` to see a long list of supported formats and :file:`gdalinfo --version` to verify the version (1.11.2).  Also verify that the :file:`gdal.jar` file is in :file:`/usr/share/java`
 

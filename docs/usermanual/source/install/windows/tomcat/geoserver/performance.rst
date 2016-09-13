@@ -79,7 +79,7 @@ The LibJPEG Turbo Extension greatly speeds up the creation of JPEG images.
 
 #. Under :guilabel:`Java Options`, add the following line::
 
-     -Djava.library.path=c:\libjpeg-turbo
+     -Djava.library.path=c:\libjpeg-turbo\bin
     
 
 #. Click :guilabel:`Apply`.
@@ -88,7 +88,7 @@ The LibJPEG Turbo Extension greatly speeds up the creation of JPEG images.
 
       If you already have an existing ``-Djava.library.path=`` entry in your :guilabel:`Java Options`, append the new path to the end of the line, separated by a semicolon. For example::
 
-        -Djava.library.path=C:\Program Files (x86)\netCDF 4.4.0\bin;c:\libjpeg-turbo
+        -Djava.library.path=C:\GDAL;C:\libjpeg-turbo\bin
         
 #. Stop and start the Tomcat service.
 
