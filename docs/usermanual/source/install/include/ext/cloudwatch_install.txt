@@ -4,7 +4,7 @@ To install :ref:`Cloudwatch <intro.extensions.cloudwatch>` support in GeoServer,
 
 #. Copy the contents of the :file:`cloudwatch` directory into the library directory (:file:`WEB-INF/lib`) of your GeoServer instance. For example, if your GeoServer application is located at :file:`/usr/share/tomcat/webapps/geoserver`, copy the files to :file:`/usr/share/tomcat/webapps/geoserver/WEB-INF/lib`.
 
-#. Generate an AWS access key in the AWS console
+#. Generate an AWS access key in the AWS console:
 
 #. Append the following environment variables to the Tomcat 8 configuration file located at :file:`/etc/tomcat8/tomcat8.conf`:
 
@@ -38,10 +38,10 @@ To install :ref:`Cloudwatch <intro.extensions.cloudwatch>` support in GeoServer,
       #GS_CW_WATCH_WCS111="true"
       #GS_CW_WATCH_WCS20="true"
 
-#. Insert the generated AWS access key and secret key on lines 5 an 6
+#. Insert the generated AWS access key and secret key on lines 5 and 6.
 
 #. Optionally edit the instance ID or autoscaling group name (lines 8-13).
 
 #. Uncomment any desired metrics (lines 15-26). If no metrics are uncommented, Cloudwatch will not report any metrics.
 
-#. Restart the server.
+#. Save the file and restart the server.
