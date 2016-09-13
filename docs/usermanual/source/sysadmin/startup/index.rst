@@ -10,11 +10,11 @@ This section shows how to set the Java system properties used during startup.
 Jetty
 -----
 
-Boundless Suite for Windows and OS X both use the Jetty application server. Startup flags are all contained in a file called :file:`start.ini`.
+.. warning:: We do **not** recommend using Jetty for a production deployment.
+
+Startup flags are all contained in a file called :file:`start.ini`.
 
 On Windows, this file is contained in :file:`jetty\\start.ini` inside the root of the installation directory. For example, :file:`C:\\Program Files\\Boundless\\OpenGeo\\jetty\\start.ini`.
-
-To access the :file:`start.ini` file on OS X, click :guilabel:`Open Webapps` from the GeoServer menu. The file is one level up in the directory tree.
 
 .. figure:: img/startini.png
 
@@ -37,26 +37,33 @@ For example, to revert to the legacy handling of CRS values in GeoJSON WFS outpu
 Tomcat
 ------
 
-When using Boundless Suite with Tomcat, we recommend you add the startup options to the :file:`setenv.sh` (Linux) or :file:`setenv.bat` (Windows) script file. This file is typically found in the :file:`bin` directory of the Tomcat installation, for example :file:`/usr/share/tomcat7/bin`.
+.. note:: You can view java options (:guilabel:`system-properties`) and environment variables (:guilabel:`system-environment`) on the `GeoServer Detailed Status Page <http://localhost:8080/geoserver/rest/about/status>`__.
 
-.. note:: If this file doesn't exist, you can create it in the same directory as the other Tomcat startup scripts such as :file:`catalina.sh` (Linux) or :file:`catalina.bat` (Windows).
 
-Inside this file, the startup options will be added to the ``JAVA_OPTS`` environment variable so they will be picked up during the startup process. 
+Linux (via the Boundless Suite Packages)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To set Java Options, create a file in the :file:`/usr/share/tomcat8/conf/suite-opts` directory.  
 
 For example, to revert to the legacy handling of CRS values in GeoJSON WFS output:
 
-#. Open :file:`setenv.sh` (Linux) or :file:`setenv.bat` (Windows) in a text editor. (You will need to open it with administrator privileges.)
+    #. Create the file :file:`legacyCRS` in :file:`/usr/share/tomcat8/conf/suite-opts`
+    #. In the file, put :guilabel:`-DGEOSERVER_GEOJSON_LEGACY_CRS=true`
+    #. Restart tomcat with :guilabel:`service tomcat8 restart`
 
-#. Add the following line:
 
-   * Linux::
+Windows (via the Tomcat8 Configuration Manager)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-       export JAVA_OPTS="$JAVA_OPTS -DGEOSERVER_GEOJSON_LEGACY_CRS=true"
+To set Java Options, use the Windows Tomcat8 Configuration Manager (:ref:`install.windows.tomcat`), :guilabel:`Java` Tab, :guilabel:`Java Options` section.  
 
-   * Windows::
+For example, to revert to the legacy handling of CRS values in GeoJSON WFS output:
 
-       set JAVA_OPTS=%JAVA_OPTS% -DGEOSERVER_GEOJSON_LEGACY_CRS=true
+    #. Open the Windows Tomcat8 Configuration Manager and go to the :guilabel:`Java` Tab
 
-#. Save and close the file.
+    #. In the :guilabel:`Java Options` add :guilabel:`-DGEOSERVER_GEOJSON_LEGACY_CRS=true`, then press :guilabel:`Apply`
 
-#. Restart GeoServer.
+         .. image:: /sysadmin/startup/img/win_tomcat_add_java_opt.png
+
+    #. Stop and Start Tomcat (:guilabel:`General` Tab)
+
