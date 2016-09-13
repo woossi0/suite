@@ -36,6 +36,8 @@ GDAL
 NetCDF-4 Output
 ---------------
 
+#. Install the NetCDF-output extension by copying the :file:`.jar` files from the :file:`netcdf-out` directory inside the Boundless Suite extensions bundle (available from Boundless Connect) into the :file:`WEB-INF/lib` directory of your Geoserver web application. 
+
 #. Install, from the Boundless Repository, the NetCDF package.
 
     On RedHat:
