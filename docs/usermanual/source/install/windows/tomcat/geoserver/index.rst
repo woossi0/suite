@@ -13,4 +13,4 @@ GeoServer is a primary component of Boundless Suite. This section will detail ho
    data
    install
    performance
-   extension
+   extensions

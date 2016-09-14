@@ -5,7 +5,7 @@ Installing Extensions
 
 Extensions are included in a separate bundle from the main application server bundle. The extensions bundle will have a file name of :file:`BoundlessSuite-ext.zip`.
 
-.. _install.mac.tomcat.geoserver.geopackage:
+.. _install.mac.tomcat.extensions.geopackage:
 
 GeoPackage extension
 --------------------
@@ -15,7 +15,7 @@ GeoPackage extension
 .. include:: /install/include/ext/geopackage_verify.txt
 
 
-.. _install.mac.tomcat.geoserver.geomesa:
+.. _install.mac.tomcat.extensions.geomesa:
 
 GeoMesa extension
 -----------------
@@ -25,7 +25,7 @@ GeoMesa extension
 .. include:: /install/include/ext/geomesa_verify.txt
 
 
-.. _install.mac.tomcat.geoserver.grib:
+.. _install.mac.tomcat.extensions.grib:
 
 GRIB extension
 --------------
@@ -35,7 +35,7 @@ GRIB extension
 .. include:: ../../include/ext/grib_verify.txt
 
 
-.. _install.mac.tomcat.geoserver.jp2k:
+.. _install.mac.tomcat.extensions.jp2k:
 
 JPEG 2000 extension
 -------------------
@@ -45,7 +45,7 @@ JPEG 2000 extension
 .. include:: ../../include/ext/jp2k_verify.txt
 
 
-.. _install.mac.tomcat.geoserver.mbtiles:
+.. _install.mac.tomcat.extensions.mbtiles:
 
 MBTiles extension
 -----------------
@@ -55,7 +55,7 @@ MBTiles extension
 .. include:: ../../include/ext/mbtiles_verify.txt
 
 
-.. _install.mac.tomcat.geoserver.mongodb:
+.. _install.mac.tomcat.extensions.mongodb:
 
 MongoDB extension
 -----------------
@@ -65,7 +65,7 @@ MongoDB extension
 .. include:: ../../include/ext/mongodb_verify.txt
 
 
-.. _install.mac.tomcat.geoserver.netcdf:
+.. _install.mac.tomcat.extensions.netcdf:
 
 NetCDF extension
 ----------------
@@ -87,7 +87,7 @@ Output format
 .. include:: ../../include/ext/netcdf-out_verify.txt
 
 
-.. _install.mac.tomcat.geoserver.oracle:
+.. _install.mac.tomcat.extensions.oracle:
 
 Oracle extension
 ----------------
@@ -97,7 +97,7 @@ Oracle extension
 .. include:: ../../include/ext/oracle_verify.txt
 
 
-.. _install.mac.tomcat.geoserver.vectortiles:
+.. _install.mac.tomcat.extensions.vectortiles:
 
 Vector tiles extension
 ~~~~~~~~~~~~~~~~~~~~~~

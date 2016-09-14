@@ -1,4 +1,4 @@
-.. _install.redhat.tomcat.geoserver.extensions:
+.. _install.redhat.tomcat.extensions:
 
 GeoServer extensions
 ====================
@@ -8,7 +8,7 @@ The following extensions are optional. Each adds additional functionality to the
 Please choose the extensions that match the your desired functionality. These extensions can also be installed at a later date.
 
 
-.. _install.redhat.tomcat.geoserver.appschema:
+.. _install.redhat.tomcat.extensions.appschema:
 
 Application Schema extension
 ----------------------------
@@ -18,7 +18,7 @@ Application Schema extension
 .. include:: /install/include/ext/appschema_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.arcsde:
+.. _install.redhat.tomcat.extensions.arcsde:
 
 ArcSDE extension
 ----------------
@@ -28,7 +28,7 @@ ArcSDE extension
 .. include:: /install/include/ext/arcsde_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.cloudwatch:
+.. _install.redhat.tomcat.extensions.cloudwatch:
 
 Cloudwatch extension
 --------------------
@@ -38,7 +38,7 @@ Cloudwatch extension
 .. include:: /install/include/ext/cloudwatch_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.clustering:
+.. _install.redhat.tomcat.extensions.clustering:
 
 Clustering extension
 --------------------
@@ -48,7 +48,7 @@ Clustering extension
 .. include:: /install/include/ext/cluster_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.csw:
+.. _install.redhat.tomcat.extensions.csw:
 
 CSW extension
 -------------
@@ -58,7 +58,7 @@ CSW extension
 .. include:: /install/include/ext/csw_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.db2:
+.. _install.redhat.tomcat.extensions.db2:
 
 DB2 extension
 -------------
@@ -68,7 +68,7 @@ DB2 extension
 .. include:: /install/include/ext/db2_verify.txt
 
 
-.. .. _install.redhat.tomcat.geoserver.gdal:
+.. .. _install.redhat.tomcat.extensions.gdal:
 
 .. GDAL extension
 .. --------------
@@ -78,7 +78,7 @@ DB2 extension
 .. .. include:: /install/include/ext/gdal_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.geopackage:
+.. _install.redhat.tomcat.extensions.geopackage:
 
 GeoPackage extension
 --------------------
@@ -87,7 +87,7 @@ GeoPackage extension
 
 .. include:: /install/include/ext/geopackage_verify.txt
 
-.. _install.redhat.tomcat.geoserver.geomesa:
+.. _install.redhat.tomcat.extensions.geomesa:
 
 GeoMesa extension
 -----------------
@@ -97,7 +97,7 @@ GeoMesa extension
 .. include:: /install/include/ext/geomesa_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.grib:
+.. _install.redhat.tomcat.extensions.grib:
 
 GRIB extension
 --------------
@@ -107,7 +107,7 @@ GRIB extension
 .. include:: /install/include/ext/grib_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.inspire:
+.. _install.redhat.tomcat.extensions.inspire:
 
 INSPIRE extension
 -----------------
@@ -117,7 +117,7 @@ INSPIRE extension
 .. include:: /install/include/ext/inspire_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.jdbcconfig:
+.. _install.redhat.tomcat.extensions.jdbcconfig:
 
 JDBCConfig extension
 --------------------
@@ -127,7 +127,7 @@ JDBCConfig extension
 .. include:: /install/include/ext/jdbcconfig_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.jdbcstore:
+.. _install.redhat.tomcat.extensions.jdbcstore:
 
 JDBCStore extension
 -------------------
@@ -137,7 +137,7 @@ JDBCStore extension
 .. include:: /install/include/ext/jdbcstore_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.j2k:
+.. _install.redhat.tomcat.extensions.j2k:
 
 JPEG 2000 extension
 -------------------
@@ -147,7 +147,7 @@ JPEG 2000 extension
 .. include:: /install/include/ext/jp2k_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.mbtiles:
+.. _install.redhat.tomcat.extensions.mbtiles:
 
 MBTiles extension
 -----------------
@@ -157,7 +157,7 @@ MBTiles extension
 .. include:: /install/include/ext/mbtiles_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.mongodb:
+.. _install.redhat.tomcat.extensions.mongodb:
 
 MongoDB extension
 -----------------
@@ -167,7 +167,7 @@ MongoDB extension
 .. include:: /install/include/ext/mongodb_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.netcdf:
+.. _install.redhat.tomcat.extensions.netcdf:
 
 NetCDF extension
 ----------------
@@ -196,7 +196,7 @@ NetCDF output format
 .. .. include:: /install/include/ext/netcdf4-out_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.oracle:
+.. _install.redhat.tomcat.extensions.oracle:
 
 Oracle extension
 ----------------
@@ -206,7 +206,7 @@ Oracle extension
 .. include:: /install/include/ext/oracle_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.script:
+.. _install.redhat.tomcat.extensions.script:
 
 Scripting extension
 -------------------
@@ -216,7 +216,7 @@ Scripting extension
 .. include:: /install/include/ext/script_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.sqlserver:
+.. _install.redhat.tomcat.extensions.sqlserver:
 
 SQL Server extension
 --------------------
@@ -226,7 +226,7 @@ SQL Server extension
 .. include:: /install/include/ext/sqlserver_verify.txt
 
 
-.. _install.redhat.tomcat.geoserver.vectortiles:
+.. _install.redhat.tomcat.extensions.vectortiles:
 
 Vector tiles extension
 ----------------------
@@ -235,7 +235,7 @@ Vector tiles extension
 
 .. include:: /install/include/ext/vectortiles_verify.txt
 
-.. _install.redhat.tomcat.geoserver.wps:
+.. _install.redhat.tomcat.extensions.wps:
 
 WPS extension
 -------------

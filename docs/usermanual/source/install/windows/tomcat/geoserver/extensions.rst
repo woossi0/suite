@@ -1,4 +1,4 @@
-.. _install.windows.tomcat.geoserver.extensions:
+.. _install.windows.tomcat.extensions:
 
 GeoServer Extensions
 ====================
@@ -8,7 +8,7 @@ The following extensions are optional. Each adds additional functionality to the
 Please choose the extensions that match the your desired functionality. These extensions can also be installed at a later date.
 
 
-.. _install.windows.tomcat.geoserver.appschema:
+.. _install.windows.tomcat.extensions.appschema:
 
 Application Schema extension
 ----------------------------
@@ -18,7 +18,7 @@ Application Schema extension
 .. include:: /install/include/ext/appschema_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.arcsde:
+.. _install.windows.tomcat.extensions.arcsde:
 
 ArcSDE extension
 ----------------
@@ -28,7 +28,7 @@ ArcSDE extension
 .. include:: /install/include/ext/arcsde_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.cloudwatch:
+.. _install.windows.tomcat.extensions.cloudwatch:
 
 Cloudwatch extension
 --------------------
@@ -38,7 +38,7 @@ Cloudwatch extension
 .. include:: /install/include/ext/cloudwatch_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.clustering:
+.. _install.windows.tomcat.extensions.clustering:
 
 Clustering extension
 --------------------
@@ -48,7 +48,7 @@ Clustering extension
 .. include:: /install/include/ext/cluster_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.csw:
+.. _install.windows.tomcat.extensions.csw:
 
 CSW extension
 -------------
@@ -58,7 +58,7 @@ CSW extension
 .. include:: /install/include/ext/csw_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.db2:
+.. _install.windows.tomcat.extensions.db2:
 
 DB2 extension
 -------------
@@ -68,7 +68,7 @@ DB2 extension
 .. include:: /install/include/ext/db2_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.gdal:
+.. _install.windows.tomcat.extensions.gdal:
 
 GDAL extension
 --------------
@@ -78,7 +78,7 @@ GDAL extension
 .. include:: /install/include/ext/gdal_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.geopackage:
+.. _install.windows.tomcat.extensions.geopackage:
 
 GeoPackage extension
 --------------------
@@ -87,7 +87,7 @@ GeoPackage extension
 
 .. include:: /install/include/ext/geopackage_verify.txt
 
-.. _install.windows.tomcat.geoserver.geomesa:
+.. _install.windows.tomcat.extensions.geomesa:
 
 GeoMesa extension
 -----------------
@@ -97,7 +97,7 @@ GeoMesa extension
 .. include:: /install/include/ext/geomesa_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.grib:
+.. _install.windows.tomcat.extensions.grib:
 
 GRIB extension
 --------------
@@ -107,7 +107,7 @@ GRIB extension
 .. include:: /install/include/ext/grib_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.inspire:
+.. _install.windows.tomcat.extensions.inspire:
 
 INSPIRE extension
 -----------------
@@ -117,7 +117,7 @@ INSPIRE extension
 .. include:: /install/include/ext/inspire_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.jdbcconfig:
+.. _install.windows.tomcat.extensions.jdbcconfig:
 
 JDBCConfig extension
 --------------------
@@ -127,7 +127,7 @@ JDBCConfig extension
 .. include:: /install/include/ext/jdbcconfig_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.jdbcstore:
+.. _install.windows.tomcat.extensions.jdbcstore:
 
 JDBCStore extension
 -------------------
@@ -137,7 +137,7 @@ JDBCStore extension
 .. include:: /install/include/ext/jdbcstore_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.j2k:
+.. _install.windows.tomcat.extensions.j2k:
 
 JPEG 2000 extension
 -------------------
@@ -147,7 +147,7 @@ JPEG 2000 extension
 .. include:: /install/include/ext/jp2k_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.mbtiles:
+.. _install.windows.tomcat.extensions.mbtiles:
 
 MBTiles extension
 -----------------
@@ -157,7 +157,7 @@ MBTiles extension
 .. include:: /install/include/ext/mbtiles_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.mongodb:
+.. _install.windows.tomcat.extensions.mongodb:
 
 MongoDB extension
 -----------------
@@ -167,7 +167,7 @@ MongoDB extension
 .. include:: /install/include/ext/mongodb_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.netcdf:
+.. _install.windows.tomcat.extensions.netcdf:
 
 NetCDF extension
 ----------------
@@ -196,7 +196,7 @@ NetCDF 4 output format
 .. include:: /install/include/ext/netcdf4-out_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.oracle:
+.. _install.windows.tomcat.extensions.oracle:
 
 Oracle extension
 ----------------
@@ -206,7 +206,7 @@ Oracle extension
 .. include:: /install/include/ext/oracle_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.script:
+.. _install.windows.tomcat.extensions.script:
 
 Scripting extension
 -------------------
@@ -216,7 +216,7 @@ Scripting extension
 .. include:: /install/include/ext/script_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.sqlserver:
+.. _install.windows.tomcat.extensions.sqlserver:
 
 SQL Server extension
 --------------------
@@ -226,7 +226,7 @@ SQL Server extension
 .. include:: /install/include/ext/sqlserver_verify.txt
 
 
-.. _install.windows.tomcat.geoserver.vectortiles:
+.. _install.windows.tomcat.extensions.vectortiles:
 
 Vector tiles extension
 ----------------------
@@ -235,7 +235,7 @@ Vector tiles extension
 
 .. include:: /install/include/ext/vectortiles_verify.txt
 
-.. _install.windows.tomcat.geoserver.wps:
+.. _install.windows.tomcat.extensions.wps:
 
 WPS extension
 -------------
