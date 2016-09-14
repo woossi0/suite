@@ -40,19 +40,19 @@ To change the Tomcat port after installation:
 
 #. Restart Tomcat.
 
-.. note:: Changing the port on the virtual machine is the same as with :ref:`Ubuntu <sysadmin.ubuntu>`.
+.. note:: To change the port on the Boundless Suite Virtual Machine, connect to the virtual machine with a Terminal, and follow the  :ref:`Ubuntu <sysadmin.ubuntu>` instructions.
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: The Boundless PostgreSQL service is only available through the :ref:`virtual machine <install.mac.vm>`. Changing the port is the same as with :ref:`Ubuntu <sysadmin.ubuntu>`.
+.. note:: The Boundless PostgreSQL service is only available through the :ref:`virtual machine <install.mac.vm>`.  To change the port on the Boundless Suite Virtual Machine, connect to the virtual machine with a Terminal, and follow the  :ref:`Ubuntu <sysadmin.ubuntu>` instructions. 
 
 GeoServer data directory
 ------------------------
 
 The **GeoServer data directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data.
 
-By default, this directory is located at :file:`~/Library/Application Support/GeoServer`.
+By default, this directory is located at :file:`~/Library/Application Support/GeoServer` (or :file:`/Library/Application Support/GeoServer`).
 
 To point GeoServer to an alternate location:
 
@@ -63,5 +63,5 @@ To point GeoServer to an alternate location:
    .. code-block:: xml
       
       <Parameter name="GEOSERVER_DATA_DIR" 
-        value="/var/opt/boundless/suite/geoserver/data" override="false"/>
+        value="/Library/Application Support/GeoServer" override="false"/>
 

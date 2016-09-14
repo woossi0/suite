@@ -44,12 +44,12 @@ To change the Tomcat port after installation:
 
 #. Restart Tomcat.
 
-.. note:: Changing the port on the virtual machine is the same as with :ref:`Ubuntu <sysadmin.ubuntu>`.
+.. note:: To change the port on the Boundless Suite Virtual Machine, connect to the virtual machine with a Terminal, and follow the  :ref:`Ubuntu <sysadmin.ubuntu>` instructions.
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: The Boundless PostgreSQL service is only available through the :ref:`virtual machine <install.windows.vm>`. Changing the port is the same as with :ref:`Ubuntu <sysadmin.ubuntu>`.
+.. note:: The Boundless PostgreSQL service is only available through the :ref:`virtual machine <install.windows.vm>`. Connect to the virtual machine with a terminal, and follow the :ref:`Ubuntu <sysadmin.ubuntu>` instructions.
 
 .. _intro.installation.windows.postinstall.datadir:
 
@@ -62,6 +62,15 @@ By default, this directory is located at :file:`C:\\ProgramData\\Boundless\\geos
 
 To point GeoServer to an alternate location:
 
-#. Change the Tomcat Java Options to point at the new location. This can be done via the Tomcat Configuration application.
+#. Edit the :file:`geoserver.xml` file in your Tomcat configuration directory - :file:`conf\\Catalina\\localhost`.  This is usually located in :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8.0`.
+
+   Define GEOSERVER_DATA_DIR with an appropriate value accordingly.
+
+   .. code-block:: xml
+
+      <Parameter name="GEOSERVER_DATA_DIR"
+          value="C:\ProgramData\Boundless\geoserver\data" override="false"/>   
 
 #. Restart the Tomcat service.
+
+.. note:: For more information, see :ref:`install.windows.tomcat.geoserver.install`

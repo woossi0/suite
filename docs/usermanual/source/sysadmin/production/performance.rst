@@ -18,6 +18,8 @@ The performance optimizations available for each JVM release change. If you are 
    
 .. note:: For more information, please see the section on :ref:`sysadmin.jvm.setting`.
 
+.. note:: Geoserver 2.9+ and Boundless Suite 4.9+ **require** Java 8.
+
 Server Mode
 -----------
 

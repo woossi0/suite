@@ -42,7 +42,7 @@ A watchdog can be implemented using a full-featured monitoring application such 
    # Set up script variables
    PID_FILE=/var/run/tomcat8.pid
    HTTP_URL=http://localhost:8080/geoserver
-   GeoServer_LOG=/var/opt/boundless/suite/geoserver/data/logs/GeoServer.log
+   GeoServer_LOG=/var/opt/boundless/suite/geoserver/data/logs/geoserver.log
    CATALINA_LOG=/usr/share/tomcat8/logs/catalina.out
    LOG_COPY=/home/tomcat
    PID=`cat $PID_FILE`

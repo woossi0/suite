@@ -106,7 +106,7 @@ You can add other system or application-specific parameters that will be picked 
 
 * To provide an environmental variable, open :file:`/etc/tomcat8/tomcat8.conf` in a text editor, add the desired parameters to the bottom of the file, such as ``GDAL_DATA=/usr/share/gdal``.
    
-* System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``.
+* System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``.   See :ref:`sysadmin.startup`
 
 * Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag. For example, the GeoServer data directory context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml` looks like this:
 
@@ -178,22 +178,19 @@ GeoServer GeoJSON output is now provided in x/y/z order as required by the speci
    
 To restore the previous ``crs`` representation for compatibility reasons (especially when working with OpenLayers 3):
 
-#. Navigate to :file:`/opt/boundless/suite/geoserver` and edit the file :file:`WEB-INF/web.xml`.
+#. Navigate to :file:`/etc/tomcat8/Catalina/localhost/` and edit the file :file:`geoserver.xml`.
 
-#. Add the following context parameter to :file:`web.xml`:
+#. Add the following context parameter to :file:`geoserver.xml`:
 
    .. code-block:: xml
-      
-       <context-param>
-           <param-name>GEOSERVER_GEOJSON_LEGACY_CRS</param-name>
-           <param-value>true</param-value>
-       </context-param>
+
+     <Parameter name="GEOSERVER_GEOJSON_LEGACY_CRS" value="true" override="false"/>
 
 #. Restart Tomcat.
 
 PostgreSQL configuration
 ------------------------
 
-PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located at :file:`/etc/postgresql/9.3/main/postgresql.conf`. 
+PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located at :file:`/var/lib/pgsql/9.3/data/postgresql.conf`. 
 
 You will want to ensure that you can connect to the database. Please see the section on :ref:`dataadmin.pgGettingStarted.firstconnect` to set this up.
