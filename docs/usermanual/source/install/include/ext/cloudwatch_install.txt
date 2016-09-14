@@ -4,7 +4,7 @@ To install :ref:`Cloudwatch <intro.extensions.cloudwatch>` support in GeoServer,
 
 #. Copy the contents of the :file:`cloudwatch` directory into the library directory (:file:`WEB-INF/lib`) of your GeoServer instance. For example, if your GeoServer application is located at :file:`/usr/share/tomcat/webapps/geoserver`, copy the files to :file:`/usr/share/tomcat/webapps/geoserver/WEB-INF/lib`.
 
-#. Generate an AWS access key in the AWS console:
+#. Generate an AWS access key in the AWS console. To generate AWS credentials, please see the `AWS documentation <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html>`_.
 
 #. Append the following environment variables to the Tomcat 8 configuration file located at :file:`/etc/tomcat8/tomcat8.conf`:
 
