@@ -3,7 +3,7 @@
 GeoWebCache Install
 -------------------
 
-.. note:: GeoServer includes an built-in copy of this application, installation of stand-alone GeoWebCache may be considered for for caching external WMS services. For more information see :ref:`sysadmin.deploy.strategies`.
+.. note:: GeoServer includes an built-in copy of this application, installation of stand-alone GeoWebCache may be considered for for caching external WMS services. 
 
 #. Create the folder :file:`C/var/opt/boundless/geowebcache/tilecache/` for the tomcat8 user.::
        

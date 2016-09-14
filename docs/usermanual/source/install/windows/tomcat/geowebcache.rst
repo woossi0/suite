@@ -5,7 +5,7 @@ GeoWebCache install
 
 GeoWebCache is a map image caching application and server.
 
-.. note:: GeoServer includes an built-in copy of GeoWebCache. Installation of this *separate* stand-alone GeoWebCache may be considered for caching external WMS services. For more information see :ref:`sysadmin.deploy.strategies`.
+.. note:: GeoServer includes an built-in copy of GeoWebCache. Installation of this *separate* stand-alone GeoWebCache may be considered for caching external WMS services. For more information see :ref:`sysadmin.deploy`.
 
 .. note:: During installation we will be editing text files that require Administrator access to modify. We recommend using `Notepad++ <https://notepad-plus-plus.org/>`__, though any text editor will do.
 
