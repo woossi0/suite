@@ -7,7 +7,7 @@ GeoServer allows global configuration settings to be provided as Java system pro
 
 This section shows how to set the Java system properties used during startup.
 
-.. note:: We recommend using Tomcat for deployment. Other application servers may have similar configuration though.
+.. note:: We recommend using Tomcat for deployment. Other application servers may have similar configuration.
 
 .. note:: You can view existing Java options (:guilabel:`system-properties`) and environment variables (:guilabel:`system-environment`) on the GeoServer Detailed Status Page at http://localhost:8080/geoserver/rest/about/status.
 

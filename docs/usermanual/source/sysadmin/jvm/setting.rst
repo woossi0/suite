@@ -12,7 +12,7 @@ Determining the current Java version
 
 You may wish the verify the version of Java you are currently using.
 
-.. warning:: On Linux, packages may pull in multiple versions of the JRE, so just running ``java -version`` may not accurately reflect the version of the JRE being used by Boundless Suite.
+.. warning:: It is possible to have multiple versions of the JRE installed, so just running ``java -version`` may not accurately reflect the version of the JRE being used by Boundless Suite.
 
 To confirm the version of Java used:
 
@@ -60,16 +60,18 @@ Linux
       
 #. Ensure your application server is using this new Java. Many application servers will pick up the system ``JAVA_HOME`` environment variable or require that their service definition be modified.
 
-#. If using Boundless Suite packages (or just using Tomcat) open :file:`/etc/default/tomcat7` in a text editor.
+#. If using Boundless Suite packages (or just using Tomcat) open :file:`/etc/tomcat8/tomcat8.conf` in a text editor.
 
-#. Scroll down to the end of the file where the ``JAVA_HOME`` variable is set. Add the line:
+#. Near the top of the file, the ``JAVA_HOME`` variable is set. Change it to:
 
    .. code-block:: bash
       :emphasize-lines: 3
 
-      OPENGEO_OPTS="-Djava.awt.headless=true -Xms256m -Xmx768m -Xrs -XX:PerfDataSamplingInterval=500 -Dorg.geotools.referencing.forceXY=true 
-      JAVA_OPTS="$JAVA_OPTS $OPENGEO_OPTS"
+      # This is the $JAVA_HOME of JDK, not JRE. not needed if you've setup
+      # the file "/etc/profile.d/java.sh" with this variable.
       JAVA_HOME=/usr/lib/jvm/jre1.8.0_77
+
+   .. note:: Make sure the line is uncommented (does not start with ``#``).
 
 #. Save and close the file.
 
