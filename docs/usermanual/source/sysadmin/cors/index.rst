@@ -10,7 +10,7 @@ But if you want your GeoServer to be usable outside of your own domain, you will
 Tomcat
 ------
 
-#. Edit the file :file:`$CATALINA_BASE/conf/web.xml` .
+#. Edit the file :file:`$CATALINA_BASE/conf/web.xml` (typically :file:`/etc/tomcat8/web.xml`) .
 #. Add the following filter:
    
    .. code-block:: xml
