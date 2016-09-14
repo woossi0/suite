@@ -10,8 +10,8 @@ This section will discuss how to manage Boundless Suite deployments, including s
 
    startup/index
    production/index
-   redhat/index
    ubuntu/index
+   redhat/index
    windows/index
    mac/index   
    jvm/index

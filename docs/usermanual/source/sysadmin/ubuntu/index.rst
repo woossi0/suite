@@ -1,18 +1,18 @@
 .. _sysadmin.ubuntu:
 
-Ubuntu Suite Administration
-============================
+Administration on Ubuntu
+========================
 
 This document contains information about various tasks specific to Boundless Suite for Ubuntu Linux. For more details, please see the :ref:`sysadmin` section.
 
-.. note:: This section is also applicable to those running a Boundless Suite in a Virtual Machine.
+.. note:: This section is also applicable to those running a Boundless Suite in a virtual machine on any operating system.
 
 Starting and stopping Boundless Suite services
 ----------------------------------------------
 
 Boundless Suite is comprised of two main services:
 
-#. The `Tomcat <http://tomcat.apache.org/>`_ web server that contains all the web applications such as GeoServer, GeoWebCache, and GeoExplorer. 
+#. The `Tomcat <http://tomcat.apache.org/>`_ web server that contains all the web applications such as GeoServer and GeoWebCache. 
 
 #. The `PostgreSQL <http://www.postgresql.org/>`_ database server with the PostGIS spatial extensions.
 
@@ -21,30 +21,30 @@ Boundless Suite is comprised of two main services:
 Controlling the Tomcat service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To start/stop/restart the Tomcat service:
+To start|stop|restart the Tomcat service:
 
-  .. code-block:: bash
+.. code-block:: bash
  
-     sudo service tomcat8 start|stop|restart
+   service tomcat8 start|stop|restart
 
 Other options in addition to the above are ``try-restart``, ``force-restart``, and ``status``.
 
 Controlling the PostgreSQL service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To start/stop/restart the PostgreSQL service:
+To start|stop|restart the PostgreSQL service:
 
-  .. code-block:: bash
+.. code-block:: bash
  
-     sudo service postgresql start|stop|restart
+   service postgresql start|stop|restart
 
 Other options in addition to the above are ``reload``, ``force-reload``, and ``status``.
 
-  .. note:: If you have multiple versions of PostgresSQL installed you can specify which version to control with a third argument. For example:
+.. note:: If you have multiple versions of PostgresSQL installed you can specify which version to control with a third argument. For example:
 
-     .. code-block:: bash
+   .. code-block:: bash
 
-         sudo service postgresql start 9.3 
+      sudo service postgresql start 9.3 
 
 Service port configuration
 --------------------------
@@ -58,9 +58,17 @@ To change the Tomcat port:
 
 #. Edit the file :file:`/etc/tomcat8/server.xml`. 
 
-#. Search for ``8080`` (around line 71) and change the ``port`` attribute to the desired value.
+#. Search for the following line::
+
+    <Connector port="8080" protocol="HTTP/1.1"
+
+#. Change the port value.
+
+#. Save the file.
 
 #. Restart Tomcat.
+
+.. note:: If you are using a virtual machine, you will need to adjust the port forwarding settings in your virtualization software to ensure that the new port is accessible to the host machine.
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -72,6 +80,8 @@ To change the PostgreSQL port:
 #. Search or the ``port`` property (around line 63) and change it to the desired value.
 
 #. Restart PostgreSQL.
+
+.. note:: If you are using a virtual machine, you will need to adjust the port forwarding settings in your virtualization software to ensure that the new port is accessible to the host machine.
 
 Working with Tomcat
 -------------------
@@ -96,41 +106,26 @@ Adding other system parameters
 
 You can add other system or application-specific parameters that will be picked up upon restart.
 
-#. The :file:`/etc/sysconfig/tomcat8` is responsible for the tomcat service.
-
-   * To provide an environmental variable open :file:`/etc/tomcat8/tomcat8.conf` in a text editor, add the desired parameters to the bottom of the file.
-     
-     Environmental variables defined at the end of :file:`/etc/tomcat8/tomcat8.conf`::
-        
-      GDAL_DATA=/usr/share/gdal
+* To provide an environmental variable, open :file:`/etc/tomcat8/tomcat8.conf` in a text editor, add the desired parameters to the bottom of the file, such as ``GDAL_DATA=/usr/share/gdal``.
    
-   * System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/` (to make these settings easier to manage).
-     
-     Example :file:`/etc/tomcat8/suite-opts/memory`::
-         
-         -Xmx2G
+* System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``.
 
-   * Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag.
+* Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag. For example, the GeoServer data directory context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml` looks like this:
 
-     GeoServer Data Dir context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml`:
+  .. code-block:: xml
 
-     .. code-block:: xml
-
-        <Parameter name="GEOSERVER_DATA_DIR" 
+     <Parameter name="GEOSERVER_DATA_DIR" 
           value="/var/opt/boundless/suite/geoserver/data" override="false"/>
 
-
-#. Restart Tomcat.
-
-.. _intro.installation.ubuntu.postinstall.geoserver:
+When finished, restart Tomcat.
 
 Working with GeoServer
 ----------------------
 
-GeoServer Data Directory
+GeoServer data directory
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/opt/boundless/suite/geoserver/data`. 
+The **GeoServer data directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/opt/boundless/suite/geoserver/data`. 
 
 To point GeoServer to an alternate location:
 
@@ -185,15 +180,18 @@ GeoServer GeoJSON output is now provided in x/y/z order as required by the speci
    
 To restore the previous ``crs`` representation for compatibility reasons (especially when working with OpenLayers 3):
 
-#. Add a context parameter to :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml`:
+#. Navigate to :file:`/opt/boundless/suite/geoserver` and edit the file :file:`WEB-INF/web.xml`.
+
+#. Add the following context parameter to :file:`web.xml`:
 
    .. code-block:: xml
-
-      <Parameter name="GEOSERVER_GEOJSON_LEGACY_CRS" value="true" override="false"/>
+      
+       <context-param>
+           <param-name>GEOSERVER_GEOJSON_LEGACY_CRS</param-name>
+           <param-value>true</param-value>
+       </context-param>
 
 #. Restart Tomcat.
-
-.. _intro.installation.ubuntu.postinstall.pgconfig:
 
 PostgreSQL configuration
 ------------------------

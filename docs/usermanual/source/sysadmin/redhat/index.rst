@@ -1,17 +1,16 @@
 .. _sysadmin.redhat:
 
-RedHat Suite Administration
-===========================
+Administration on Red Hat
+=========================
 
-
-This document contains information about various tasks specific to Boundless Suite for Ubuntu Linux. For more details, please see the :ref:`sysadmin` section.
+This document contains information about various tasks specific to Boundless Suite for Red Hat Linux-based systems. For more details, please see the :ref:`sysadmin` section.
 
 Starting and stopping Boundless Suite services
 ----------------------------------------------
 
 Boundless Suite is comprised of two main services:
 
-#. The `Tomcat <http://tomcat.apache.org/>`_ web server that contains all the Boundless web applications such as GeoServer, GeoWebCache, and GeoExplorer. 
+#. The `Tomcat <http://tomcat.apache.org/>`_ web server that contains all the web applications such as GeoServer and GeoWebCache. 
 
 #. The `PostgreSQL <http://www.postgresql.org/>`_ database server with the PostGIS spatial extensions.
 
@@ -20,32 +19,34 @@ Boundless Suite is comprised of two main services:
 Controlling the Tomcat service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To start/stop/restart the Tomcat service:
+To start|stop|restart the Tomcat service:
 
-  .. code-block:: bash
+.. code-block:: bash
  
-     service tomcat8 start|stop|restart
+   service tomcat8 start|stop|restart
+
+Other options in addition to the above are ``try-restart``, ``force-restart``, and ``status``.
 
 .. note:: Depending on the distribution and version the service name may be one of "tomcat", "tomcat8", or "tomcat9". Use the :command:`service` command to determine which one is installed:
 
-  .. code-block:: bash
+.. code-block:: bash
 
-     service --status-all | grep tomcat
+   service --status-all | grep tomcat
 
 Controlling the PostgreSQL service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Before PostgreSQL service can be started it must first be initialized:
 
-  .. code-block:: bash
+.. code-block:: bash
 
-     service postgresql-9.3 initdb
+   service postgresql-9.3 initdb
 
-To start/stop/restart the PostgreSQL service:
+To start|stop|restart the PostgreSQL service:
 
-  .. code-block:: bash
+.. code-block:: bash
  
-     service postgresql-9.3 start|stop|restart
+   service postgresql-9.3 start|stop|restart
 
 Service port configuration
 --------------------------
@@ -57,15 +58,15 @@ Changing the Tomcat port
 
 To change the Tomcat port:
 
-#. Edit the file :file:`/etc/tomcat8/server.xml`. 
+#. Edit the file :file:`/etc/tomcat8/conf/server.xml`. 
 
-#. Search for "8080" and change the ``port`` attribute to the desired value.
+#. Search for the following line::
 
-#. Restart tomcat. 
+    <Connector port="8080" protocol="HTTP/1.1"
 
-   .. code-block:: bash
+#. Change the port value.
 
-        service tomcat8 restart
+#. Restart Tomcat.
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -78,10 +79,6 @@ To change the PostgreSQL port:
 
 #. Restart PostgreSQL.
 
-   .. code-block:: bash
-
-       service postgresql-9.3 restart
-
 Working with Tomcat
 -------------------
 
@@ -92,7 +89,7 @@ If you wish to use the Oracle Java 8 JRE (rather than the OpenJDK 8 installed by
 
 #. Download and install Oracle Java 8 JRE.
 
-#. Open :file:`/etc/tomcat8/tomcat8.conf` and update the ``JAVA_HOME`` environment variable.
+#. Open :file:`/etc/tomcat8/conf/tomcat8.conf` and update the ``JAVA_HOME`` environment variable.
 
    .. note:: Make sure the line is uncommented (does not start with ``#``).
 
@@ -100,55 +97,31 @@ If you wish to use the Oracle Java 8 JRE (rather than the OpenJDK 8 installed by
 
 #. Restart Tomcat.
 
-   .. code-block:: bash
-
-        service tomcat8 restart
-
 Adding other system parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can add other system or application-specific parameters that will be picked up upon restart.
 
-#. The :file:`/etc/sysconfig/tomcat8` is responsible for the tomcat service.
-
-   * To provide an environmental variable open :file:`/etc/tomcat8/tomcat8.conf` in a text editor, add the desired parameters to the bottom of the file.
-     
-     Environmental variables defined at the end of :file:`/etc/tomcat8/tomcat8.conf`::
-        
-      GDAL_DATA=/usr/share/gdal
+* To provide an environmental variable, open :file:`/etc/tomcat8/tomcat8.conf` in a text editor, add the desired parameters to the bottom of the file, such as ``GDAL_DATA=/usr/share/gdal``.
    
-   * System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/` (to make these settings easier to manage).
-     
-     Example :file:`/etc/tomcat8/suite-opts/memory`::
-         
-         -Xmx2G
+* System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``.
 
-   * Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag.
+* Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag. For example, the GeoServer data directory context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml` looks like this:
 
-     GeoServer Data Dir context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml`:
+  .. code-block:: xml
 
-     .. code-block:: xml
-
-        <Parameter name="GEOSERVER_DATA_DIR" 
+     <Parameter name="GEOSERVER_DATA_DIR" 
           value="/var/opt/boundless/suite/geoserver/data" override="false"/>
 
-
-#. Restart Tomcat.
-
-   .. code-block:: bash
-
-        service tomcat8 restart
-
-
-.. _intro.installation.redhat.postinstall.geoserver:
+When finished, restart Tomcat.
 
 Working with GeoServer
 ----------------------
 
-GeoServer Data Directory
+GeoServer data directory
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The **GeoServer Data Directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/opt/boundless/suite/geoserver/data`. 
+The **GeoServer data directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/opt/boundless/suite/geoserver/data`. 
 
 To point GeoServer to an alternate location:
 
@@ -178,10 +151,6 @@ To enable this fix:
 
 #. Restart Tomcat.
 
-   .. code-block:: bash
-
-        service tomcat8 restart
-
 Update GeoJSON output
 ^^^^^^^^^^^^^^^^^^^^^
  
@@ -207,9 +176,9 @@ GeoServer GeoJSON output is now provided in x/y/z order as required by the speci
    
 To restore the previous ``crs`` representation for compatibility reasons (especially when working with OpenLayers 3):
 
-#. Navigate to :file:`/usr/share/tomcat8/webapps` and edit the file :file:`geoserver/WEB-INF/web.xml`.
+#. Navigate to :file:`/opt/boundless/suite/geoserver` and edit the file :file:`WEB-INF/web.xml`.
 
-#. Add the following context parameter to  :file:`web.xml`:
+#. Add the following context parameter to :file:`web.xml`:
 
    .. code-block:: xml
       
@@ -219,12 +188,6 @@ To restore the previous ``crs`` representation for compatibility reasons (especi
        </context-param>
 
 #. Restart Tomcat.
-
-   .. code-block:: bash
-
-        service tomcat8 restart
-        
-.. _intro.installation.redhat.postinstall.pgconfig:
 
 PostgreSQL configuration
 ------------------------
