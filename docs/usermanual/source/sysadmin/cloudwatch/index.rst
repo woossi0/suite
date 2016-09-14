@@ -19,7 +19,7 @@ Installing Amazon CloudWatch support is the same as most :ref:`Boundless Suite E
 
 Installation instructions are dependent on your operating system and method of install:
 
-* **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.geoserver.cloudwatch>`, :ref:`Red Hat<install.redhat.tomcat.geoserver.cloudwatch>`, :ref:`Windows <install.windows.tomcat.geoserver.cloudwatch>`, :ref:`OS X <install.mac.tomcat.extensions>`
+* **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.extensions.cloudwatch>`, :ref:`Red Hat<install.redhat.tomcat.extensions.cloudwatch>`, :ref:`Windows <install.windows.tomcat.extensions.cloudwatch>`, :ref:`OS X <install.mac.tomcat.extensions>`
 * **Packages**: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
 
 .. note:: The Boundless Suite virtual machine has most extensions pre-installed.
