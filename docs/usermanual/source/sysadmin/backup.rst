@@ -11,7 +11,7 @@ Backing up is a vital task of any system administrator.  It should be done on a 
 Backing up the GeoServer Data Directory
 ---------------------------------------
 
-The GeoServer data directory is located by default here:
+The GeoServer data directory (:guilabel:`GEOSERVER_DATA_DIR`) is located by default here:
 
 .. list-table::
    :header-rows: 1
@@ -19,13 +19,9 @@ The GeoServer data directory is located by default here:
    * - Installation Target
      - GeoServer Data directory
    * - Windows
-     - ``C:\\ProgramData\\Boundless\\OpenGeo\\geoserver``
-   * - Mac
-     - ``~/Library/Application Support/GeoServer/data_dir``
+     - ``C:\ProgramData\Boundless\geoserver\data``
    * - Linux
-     - ``/var/lib/opengeo/geoserver``
-   * - War Install
-     - ``<SERVLET_ROOT>/webapps/geoserver/data/``
+     - ``/var/opt/boundless/suite/geoserver/data``
 
 In general, the directory can safely be copied or archived to another location, and can be restored by reversing the process.  Please be sure to shut down GeoServer before making any backups or restores.
 
