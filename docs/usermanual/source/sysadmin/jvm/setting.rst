@@ -41,11 +41,6 @@ To confirm the version of Java used:
 Changing to the Oracle JRE
 --------------------------
 
-Windows and OS X installers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Boundless Suite for Windows and OS X include the Oracle JRE 8 by default, so no action is needed.
-
 Linux
 ^^^^^
 
