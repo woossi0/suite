@@ -12,13 +12,15 @@ If your application server is configured to sandbox web applications, you will n
 
 #. For Tomcat, open the :file:`$CATALINA_BASE/conf/catalina.policy` file and add::
     
-      # OpenGeo Suite permissions used to access Env Variables and GEOSERVER_DATA_DIRECTORY
+      # Boundless Suite permissions used to access Env Variables and GEOSERVER_DATA_DIRECTORY
       grant codeBase "file:${catalina.base}/webapps/geoserver/WEB-INF/libs/-" {
          permission java.security.AllPermission;
       };
       grant codeBase "file:${catalina.base}/geowebcache/geoserver/WEB-INF/libs/-" {
          permission java.security.AllPermission;
       };
+
+.. note:: Replace the directories, above, with your WAR install locations.
   
 #. Start Tomcat with the ``-security`` option to use :file:`catalina.policy`.
 
