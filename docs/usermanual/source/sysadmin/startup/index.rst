@@ -15,11 +15,11 @@ This section shows how to set the Java system properties used during startup.
 Linux packages
 --------------
 
-To set Java options, create a file in the :file:`/usr/share/tomcat8/conf/suite-opts` directory.  
+To set Java options, create a file in the :file:`/etc/tomcat8/suite-opts` directory.  
 
 For example, to revert to the legacy handling of CRS values in GeoJSON WFS output:
 
-#. Create the file :file:`legacyCRS` in :file:`/usr/share/tomcat8/conf/suite-opts`
+#. Create the file :file:`legacyCRS` in :file:`/etc/tomcat8/suite-opts`
 
 #. Add the line :guilabel:`-DGEOSERVER_GEOJSON_LEGACY_CRS=true`
 

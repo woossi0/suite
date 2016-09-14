@@ -38,7 +38,7 @@ Certain JVM operating characteristics can be tuned to optimize performance when 
 * ``-Xms2048m -Xmx2048m`` sets the JVM to use 2048 megabytes (2 GB) of memory for the heap, and allocates it all on startup (the heap size should be adjusted to fit the actual memory available)
 * ``-XX:NewRatio=2`` tunes the JVM for handling a large number of short-lived objects
   
-The method of setting these parameters is container-specific.  For example, in Boundless Suite, the :file:`tomcat8` parameters are configured by defining them in :file:`/usr/share/tomcat8/conf/suite-opts` (see :ref:`sysadmin.startup`).
+The method of setting these parameters is container-specific.  For example, in Boundless Suite, the :file:`tomcat8` parameters are configured by defining them in :file:`/etc/tomcat8/suite-opts` (see :ref:`sysadmin.startup`).
 
 JAI and JAI Image I/O
 ---------------------

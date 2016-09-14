@@ -117,7 +117,7 @@ Application Server Thread Limit
 
 The simplest way to control concurrent requests is to to limit the number of server threads available to process requests.  Application servers usually provide a setting to control this.  Note that the default setting may be too high for GeoServer's potentially long processing times and large response sizes.  It is recommended that GeoServer instances be limited to around 20 concurrent requests.
 
-Each application server provides its own way of limiting available threads, typically via a configuration parameter setting.  For example, Apache Tomcat uses the ``maxThreads`` parameter in ``/usr/share/tomcat8/conf/server.xml``. By default, Tomcat allows 200 concurrent requests.  The following snippet shows this reduced to the recommended 20::
+Each application server provides its own way of limiting available threads, typically via a configuration parameter setting.  For example, Apache Tomcat uses the ``maxThreads`` parameter in ``/etc/tomcat8/server.xml``. By default, Tomcat allows 200 concurrent requests.  The following snippet shows this reduced to the recommended 20::
 
     <Server port="8005" shutdown="SHUTDOWN">
       ...
