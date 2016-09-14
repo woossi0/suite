@@ -8,3 +8,4 @@ Tomcat install on Red Hat
 
    geoserver
    extensions
+   otherWebApps
