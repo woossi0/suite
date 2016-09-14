@@ -9,16 +9,15 @@ In addition, Boundless Suite |version| includes the following new features:
 
 * A new name! OpenGeo Suite is now **Boundless Suite**.
 
+* New deployment option: **Boundless Suite virtual machine** contains all components configured and ready to use. Available for all OSs, this replaces the installers previous available for Windows and OS X. *This is the easiest way to test out Boundless Suite.*
 
-* New deployment option: **Boundless Suite virtual machine** containing all components configured and ready to use. Available for all OSs, this replaces the installers previous available for Windows and OS X.
+* New **QuickView** application, a sample application of the kind one can build using the new WebSDK. :ref:`Learn more about Quickview <webapps.sdk.quickview>`.
 
-* New **QuickView** application for previewing layers. Application is built using the new WebSDK. This replaces the GeoExplorer application.
-
-* **Composer** is now its own web application (it was previously part of GeoServer).
+* **Composer** is now its own web application (it was previously part of GeoServer). :ref:`Learn more about Composer <webmaps.composer>`.
 
 * **Java 8** and **Tomcat 8** are now required.
 
-* New **GeoServer Detailed Status Page**, useful for troubleshooting and determining module status. Available directly at ``http://<SERVER>/rest/about/status`` (example: ``http://localhost:8080/geoserver/rest/about/status``)
+* New **GeoServer Detailed Status Page**, useful for troubleshooting and determining module status. If your server is running on ``http://localhost:8080``, the page is available at ``http://localhost:8080/geoserver/rest/about/status``.
 
 * **GeoServer UI now displays layer Title**, making layer retrieval more efficient. 
 
@@ -41,6 +40,7 @@ In addition, Boundless Suite |version| includes the following new features:
 
 * As part of a product realignment, **Boundless Suite now focuses on server components**, and as such will not include desktop utilities such as pgAdmin. Users wanting pgAdmin from Boundless should use Boundless Desktop.
 
+* GeoExplorer has been deprecated and is no longer packaged with Boundless Suite.
 
 **Components included**
 
