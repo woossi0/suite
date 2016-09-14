@@ -30,14 +30,6 @@ To confirm the version of Java used:
       
       JVM Version showing OpenJDK 7
 
-.. note::
-
-   When using Tomcat, an alternate way of checking the JRE is to log into the :ref:`sysadmin.manager` and view the settings there.
-
-   .. figure:: img/jvm_tomcat.png
-
-      JVM settings in Tomcat
-
 Changing to the Oracle JRE
 --------------------------
 

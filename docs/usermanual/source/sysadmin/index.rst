@@ -15,7 +15,6 @@ This section will discuss how to manage Boundless Suite deployments, including s
    windows/index
    mac/index   
    jvm/index
-   manager/index
    jndi/index
    cors/index
    security/index
