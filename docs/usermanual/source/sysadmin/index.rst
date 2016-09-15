@@ -25,5 +25,3 @@ This section will discuss how to manage Boundless Suite deployments, including s
    deploy/index
    clustering/index
    cloudwatch/index
-   libjpeg-turbo/index
-   marlin/index

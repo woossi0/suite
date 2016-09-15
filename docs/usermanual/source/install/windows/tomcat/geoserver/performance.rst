@@ -31,7 +31,7 @@ We recommend installing the Java Cryptography Extension Unlimited Strength Juris
 Marlin Rasterizer
 -----------------
 
-We recommend making use of the Marlin Rasterizer for improved WMS performance:
+The Marlin renderer is an open source Java rendering engine optimized for performance, based on OpenJDK’s Pisces implementation. With this, vector rendering in GeoServer is much improved over the standard engine.
 
 #. From the Boundless extension bundle, open the :file:`marlin` folder.
 
@@ -63,7 +63,7 @@ We recommend making use of the Marlin Rasterizer for improved WMS performance:
 LibJPEG Turbo
 -------------
 
-The LibJPEG Turbo Extension greatly speeds up the creation of JPEG images.
+The libjpeg-turbo extension provides a significant performance enhancement for JPEG encoding in GeoServer WMS output (up to 40% faster than with no native libraries, equal or greater performance than with Native ImageIO).
 
 #. From the Boundless extension bundle, open the :file:`windows` folder.
 

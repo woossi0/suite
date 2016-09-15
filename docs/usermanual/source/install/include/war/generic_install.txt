@@ -70,6 +70,8 @@ Java Cryptography
 Marlin Renderer
 ~~~~~~~~~~~~~~~
 
+The Marlin renderer is an open source Java rendering engine optimized for performance, based on OpenJDK’s Pisces implementation. With this, vector rendering in GeoServer is much improved over the standard engine.
+
 #. Copy the :file:`marlin-0.7.3-Unsafe.jar` file inside the :file:`marlin` directory in the Boundless extension bundle :file:`BoundlessSuite-ext.zip` file to your Tomcat :file:`$CATALINA_HOME/lib` directory.
 
 #. Add the following options to Tomcat:
@@ -82,6 +84,8 @@ Marlin Renderer
 
 LibJPEG Turbo
 ~~~~~~~~~~~~~
+
+The libjpeg-turbo extension provides a significant performance enhancement for JPEG encoding in GeoServer WMS output (up to 40% faster than with no native libraries, equal or greater performance than with Native ImageIO).
 
 #. Download and install `LibJPEG Turbo <http://libjpeg-turbo.virtualgl.org/>`_.
 
