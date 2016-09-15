@@ -7,10 +7,10 @@ The Same Origin Policy enforced by browsers is designed to prevent a malicious s
 
 But if you want your GeoServer to be usable outside of your own domain, you will want to enable Cross-Origin Resource Sharing (CORS).
 
-Tomcat
-------
+.. note:: These instructions will cover Tomcat only.
 
 #. Edit the file :file:`$CATALINA_BASE/conf/web.xml` (typically :file:`/etc/tomcat8/web.xml`) .
+
 #. Add the following filter:
    
    .. code-block:: xml
@@ -24,7 +24,9 @@ Tomcat
         <url-pattern>/*</url-pattern>
       </filter-mapping>
 
-#. For more information see:
+#. Save the file and restart the server.
+
+For more information see:
    
-   * http://tomcat.apache.org/tomcat-8.0-doc/config/filter.html#CORS_Filter
-   * http://enable-cors.org/server_tomcat.html for details.
+* http://tomcat.apache.org/tomcat-8.0-doc/config/filter.html#CORS_Filter
+* http://enable-cors.org/server_tomcat.html

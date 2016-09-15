@@ -7,9 +7,9 @@ In addition to being available through packages, Boundless Suite web application
 
 The main benefit of using individual application server bundle is its flexibility. This section will cover installation requirements needed for each application, and explore some common deployment scenarios.
 
-The following check lists for each application can be used as a during installation. For more detailed step-by-step installation instructions review the "Tomcat Installation" :ref:`installation instructions for each platform <install>`.
+The following checklists for each application can be used as a test during installation. For more detailed step-by-step installation instructions review the :ref:`Tomcat installation instructions <install>` for each supported platform.
 
-Application Server Strategies
+Application server strategies
 -----------------------------
 
 The main benefit of the application server bundle is its flexibility. It is up to you determine the exact deployment that suits your needs. The following describes some common deployment scenarios.
@@ -20,7 +20,7 @@ Sandbox
 If your application server is configured to sandbox web applications, you will need to grant additional permissions allowing GeoServer and GeoWebCache access to both environmental variables and the file system. These permissions are used to locate the GeoServer data directory.
 
 #. For Tomcat, open the :file:`$CATALINA_BASE/conf/catalina.policy` file and add::
-    
+
       # Boundless Suite permissions used to access Env Variables and GEOSERVER_DATA_DIRECTORY
       grant codeBase "file:${catalina.base}/webapps/geoserver/WEB-INF/libs/-" {
          permission java.security.AllPermission;
@@ -29,7 +29,7 @@ If your application server is configured to sandbox web applications, you will n
          permission java.security.AllPermission;
       };
 
-.. note:: Replace the directories, above, with your WAR install locations.
+   .. note:: Replace the directories, above, with your WAR install locations.
   
 #. Start Tomcat with the ``-security`` option to use :file:`catalina.policy`.
 

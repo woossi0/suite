@@ -10,9 +10,9 @@ Boundless services
 
 Boundless Suite is comprised of two services:
 
-#. **Tomcat** - This contains all the Boundless web applications such as GeoServer and GeoWebCache. 
+#. The `Tomcat <http://tomcat.apache.org/>`_ web server that contains all the web applications such as GeoServer and GeoWebCache.
 
-#. **PostgreSQL** - The `PostgreSQL <http://www.postgresql.org/>`_ database server with the PostGIS spatial extensions.
+#. The `PostgreSQL <http://www.postgresql.org/>`_ database server with the PostGIS spatial extensions.
 
    .. note:: The Boundless PostgreSQL service is only available through the :ref:`virtual machine <install.mac.vm>`.
 
@@ -40,12 +40,12 @@ To change the Tomcat port after installation:
 
 #. Restart Tomcat.
 
-.. note:: To change the port on the Boundless Suite Virtual Machine, connect to the virtual machine with a Terminal, and follow the  :ref:`Ubuntu <sysadmin.ubuntu>` instructions.
+.. note:: To change the port on the Boundless Suite virtual machine, connect to the virtual machine with a Terminal, and follow the :ref:`Ubuntu <sysadmin.ubuntu>` instructions.
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: The Boundless PostgreSQL service is only available through the :ref:`virtual machine <install.mac.vm>`.  To change the port on the Boundless Suite Virtual Machine, connect to the virtual machine with a Terminal, and follow the  :ref:`Ubuntu <sysadmin.ubuntu>` instructions. 
+.. note:: The Boundless PostgreSQL service is only available through the :ref:`virtual machine <install.mac.vm>`. To change the port on the Boundless Suite Virtual Machine, connect to the virtual machine with a Terminal, and follow the :ref:`Ubuntu <sysadmin.ubuntu>` instructions. 
 
 GeoServer data directory
 ------------------------
@@ -58,7 +58,7 @@ To point GeoServer to an alternate location:
 
 #. Edit the :file:`geoserver.xml` file inside your Tomcat configuration.
 
-   Define ``GEOSERVER_DATA_DIR`` with an appropriate value accordingly.
+#. Define ``GEOSERVER_DATA_DIR`` with an appropriate value accordingly.
    
    .. code-block:: xml
       

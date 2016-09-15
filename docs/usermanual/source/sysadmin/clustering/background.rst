@@ -53,6 +53,4 @@ This broadcasting also allows for HTTP session sharing, which is how multiple Ge
 Technical details
 -----------------
 
-The clustering extension is technically not one extension, but two: **JDBCConfig**, which provides the support for data directories in a database, and **Cluster**, which handles the broadcasting. JDBCConfig is a community GeoServer extension. Cluster is exclusive to Boundless Suite.
-
-Cluster uses `Hazelcast <http://hazelcast.com>`_, a library that allows nodes in a cluster to link together automatically.
+The :ref:`clustering extension <intro.extensions.clustering>` when used properly also used the :ref:`JDBCConfig extension <intro.extensions.jdbcconfig>` , which provides the support for data directories in a database. Clustering uses `Hazelcast <http://hazelcast.com>`_, a library that allows nodes in a cluster to link together automatically.

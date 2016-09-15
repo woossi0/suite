@@ -106,7 +106,7 @@ You can add other system or application-specific parameters that will be picked 
 
 * To provide an environmental variable, open :file:`/etc/tomcat8/tomcat8.conf` in a text editor, add the desired parameters to the bottom of the file, such as ``GDAL_DATA=/usr/share/gdal``.
    
-* System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``.   See :ref:`sysadmin.startup`
+* System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``. See the section on :ref:`sysadmin.startup`.
 
 * Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag. For example, the GeoServer data directory context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml` looks like this:
 
@@ -115,7 +115,7 @@ You can add other system or application-specific parameters that will be picked 
      <Parameter name="GEOSERVER_DATA_DIR" 
           value="/var/opt/boundless/suite/geoserver/data" override="false"/>
 
-When finished, restart Tomcat.
+After making any changes, be sure to restart Tomcat.
 
 Working with GeoServer
 ----------------------

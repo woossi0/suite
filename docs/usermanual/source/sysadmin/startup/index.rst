@@ -3,7 +3,10 @@
 How to add startup parameters for GeoServer
 ===========================================
 
-GeoServer allows global configuration settings to be provided as Java system properties for use during the startup process. Java system properties can be supplied on the command line using ``-D`` (and are of the form ``-Dproperty=value`` or ``-D property=value``).
+GeoServer allows global configuration settings to be provided as Java system properties for use during the startup process. Java system properties can be supplied on the command line using ``-D`` and are of one of the following forms:
+
+* ``-Dproperty=value``
+* ``-D property=value``
 
 This section shows how to set the Java system properties used during startup.
 
@@ -23,7 +26,7 @@ For example, to revert to the legacy handling of CRS values in GeoJSON WFS outpu
 
 #. Add the line :guilabel:`-DGEOSERVER_GEOJSON_LEGACY_CRS=true`
 
-#. Save the file and restart Tomcat with :guilabel:`service tomcat8 restart`
+#. Save the file and restart Tomcat.
 
 Windows Tomcat
 --------------
@@ -38,5 +41,5 @@ For example, to revert to the legacy handling of CRS values in GeoJSON WFS outpu
 
     .. figure:: /sysadmin/startup/img/win_tomcat_add_java_opt.png
 
-#. Stop and Start Tomcat (via the :guilabel:`General` tab)
+#. Stop and Start Tomcat (via the :guilabel:`General` tab).
 

@@ -16,9 +16,9 @@ The performance optimizations available for each JVM release change. If you are 
 
 .. note:: Oracle Java 7 provides very detailed memory management and performance tuning options that can be tuned for specific workloads. For details see `Java HotSpot VM Options <http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html>`_. Oracle's `Java SE 6 Performance White Paper <http://www.oracle.com/technetwork/java/6-performance-137236.html>`_ describes the JVM improvements that were introduced in Java SE 6 (specifically see `Section 2.3 - Ergonomics in the 6.0 Virtual Machine <http://www.oracle.com/technetwork/java/6-performance-137236.html#2.3>`_). Java 7 has introduced Oracle's `Garbage-First Collector <http://docs.oracle.com/javase/7/docs/technotes/guides/vm/G1.html>`_ that should be considered for installations working with 6GB or lager heap space. Java 8 introduces `Metaspace <https://blogs.oracle.com/poonam/entry/about_g1_garbage_collector_permanent>`_ as a replacement for the ``PermGen`` settings used to manage application size.
    
-.. note:: For more information, please see the section on :ref:`sysadmin.jvm.setting`.
+.. note:: For more information, please see the section on :ref:`sysadmin.jvm`.
 
-.. note:: Geoserver 2.9+ and Boundless Suite 4.9+ **require** Java 8.
+.. warning:: Boundless Suite requires **Java 8**.
 
 Server Mode
 -----------
