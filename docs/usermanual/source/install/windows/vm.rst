@@ -140,6 +140,8 @@ Create a snapshot
 
 .. include:: ../include/vbox/check_snapshot.txt
 
+.. _install.windows.vm.extensions:
+
 Extensions
 ^^^^^^^^^^
 

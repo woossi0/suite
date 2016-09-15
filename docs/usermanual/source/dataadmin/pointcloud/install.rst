@@ -8,16 +8,7 @@ The Point Cloud extension is available as a part of Boundless Suite.
 Windows
 -------
 
-The Point Cloud extension is already installed by default on Windows when PostGIS is installed. No further configuration is necessary.
-
-Continue below at :ref:`dataadmin.pointcloud.install.activate`.
-
-OS X
-----
-
-The Point Cloud extension is already installed by default on OS X when PostGIS is installed. No further configuration is necessary.
-
-Continue below at :ref:`dataadmin.pointcloud.install.activate`.
+Point Cloud is available in the Boundless Suite Virtual Machine.  Use a terminal to connect to your Virtual Machine and follow the Ubuntu instructions, below.  For more details, see :ref:`VM Extension Installation <install.windows.vm.extensions>`.
 
 Ubuntu Linux
 ------------
