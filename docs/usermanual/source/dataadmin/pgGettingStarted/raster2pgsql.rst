@@ -255,3 +255,47 @@ You can also add rasters and raster tables directly to the database. A typical w
 
    .. note:: Pre-2.0 versions of PostGIS raster were based on the envelope rather than the convex hull. To ensure spatial indexes work correctly in PostGIS 2.0, drop any existing envelope indexes and replace them with convex hull based indexes.
 
+Enabling GDAL inside PostGIS
+----------------------------
+
+By default, PostGIS is not setup to use the GDAL libraries. To enable it;
+
+   RedHat:
+  
+        #. Edit the :file:`/var/lib/pgsql/.bash_profile` file
+
+        #. Add the following lines;
+	
+            .. code-block:: bash
+  
+                POSTGIS_GDAL_ENABLED_DRIVERS=ENABLE_ALL
+                export POSTGIS_GDAL_ENABLED_DRIVERS
+
+        #. Restart postgresql
+
+           .. code-block:: bash
+
+                service postgresql-9.3 restart
+
+
+
+   Ubuntu: 
+
+        #. Edit the :file:`/etc/postgresql/9.3/main/environment` file
+
+        #. Add the following lines;
+
+            .. code-block:: bash
+
+                POSTGIS_GDAL_ENABLED_DRIVERS=ENABLE_ALL
+                export POSTGIS_GDAL_ENABLED_DRIVERS
+
+        #. Restart postgresql
+
+           .. code-block:: bash
+
+                service postgresql restart
+
+
+To verify that this is working, execute "SELECT st_GDALDrivers();".  This should give you a long list of supported GDAL format drivers.
+
