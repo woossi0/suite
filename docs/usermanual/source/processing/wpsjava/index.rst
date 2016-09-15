@@ -345,9 +345,8 @@ Build and deploy
 
    Typical paths for this directory:
 
-   * Windows: :file:`C:\\Program Files\\Boundless\\OpenGeo\\jetty\\webapps\\geoserver\\WEB-INF\\lib`
-   * OS X: :file:`~/Library/Application\ Support/GeoServer/jetty/webapps/geoserver/WEB-INF/lib`
-   * Linux: :file:`/usr/share/opengeo/geoserver/WEB-INF/lib`
+   * Windows: :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8.0\\webapps\\geoserver\\WEB-INF\\lib`
+   * Linux: :file:`/opt/boundless/suite/geoserver/WEB-INF/lib` or :file:`/usr/share/tomcat8/webapps/WEB-INF/lib`.
 
 Test the process
 ----------------
