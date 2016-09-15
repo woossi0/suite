@@ -32,6 +32,8 @@ GDAL
 
 #. In your Tomcat config, create a :guilabel:`GDAL_DATA` environment variable that points to :file:`/usr/share/gdal`
 
+Also see :ref:`dataadmin.mrsid`.
+
 .. include:: /install/include/ext/gdal_verify.txt
 
 NetCDF-4 Output
