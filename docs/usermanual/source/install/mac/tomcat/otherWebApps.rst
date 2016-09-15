@@ -1,3 +1,5 @@
+.. _install.mac.othertomcat:
+
 Other Boundless Suite WebApps
 =============================
 

@@ -1,3 +1,5 @@
+.. _install.ubuntu.othertomcat:
+
 Other Boundless Suite WebApps
 =============================
 

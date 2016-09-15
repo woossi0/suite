@@ -1,3 +1,5 @@
+.. _install.redhat.othertomcat:
+
 Other Boundless Suite WebApps
 =============================
 

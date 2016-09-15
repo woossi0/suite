@@ -16,9 +16,25 @@ Web SDK can be obtained from `Boundless Connect <https://connect.boundlessgeo.co
 Demo Applications
 -----------------
 
-Boundless Suite includes Web SDK Quickview, a demo application built using Web SDK. Quickview is a basic map viewer that can be used to view and modify layers and maps. Quickview is accessible at ``http://localhost:8080/quickview/``.
+Boundless Suite includes Web SDK Quickview, a demo application built using Web SDK. Quickview is a basic map viewer that can be used to view and modify layers and maps. Quickview is accessible at ``http://localhost:8080/quickview/``.  
 
 For more information about using quickview, see :ref:`webapps.sdk.quickview`.
+
+QuickView Installation
+^^^^^^^^^^^^^^^^^^^^^^
+
+**RedHat Package**:  Install the :file:`suite-quickview` package.  For details, see :ref:`RedHat Packages <install.redhat.packages>`.
+
+**Ubuntu Package**:  Install the :file:`suite-quickview` package.  For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
+
+**RedHat WAR**: See Quickview in :ref:`Installing Other Web Applications <install.redhat.othertomcat>`.
+
+**Ubuntu WAR**: See Quickview in :ref:`Installing Other Web Applications <install.ubuntu.othertomcat>`.
+
+**OS X WAR**: See Quickview in :ref:`Installing Other Web Applications <install.mac.othertomcat>`.
+
+**Windows WAR**: :ref:`install.windows.tomcat.quickview`
+
 
 .. API Documentation
 .. -----------------
