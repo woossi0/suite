@@ -240,8 +240,6 @@ For more information, please see the section on :ref:`GeoServer extensions <intr
      - DB2 database extension
    * - ``suite-gs-gdal``
      - GDAL extension
-   * - ``suite-gs-geomesa-accumulo``
-     - :ref:`GeoMesa <dataadmin.geomesa>` data source support
    * - ``suite-gs-geopkg``
      - GeoPackage extension
    * - ``suite-gs-grib``

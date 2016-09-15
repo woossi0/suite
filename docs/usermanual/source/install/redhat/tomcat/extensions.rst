@@ -89,14 +89,6 @@ GeoPackage extension
 
 .. _install.redhat.tomcat.extensions.geomesa:
 
-GeoMesa extension
------------------
-
-.. include:: /install/include/ext/geomesa_install.txt
-
-.. include:: /install/include/ext/geomesa_verify.txt
-
-
 .. _install.redhat.tomcat.extensions.grib:
 
 GRIB extension

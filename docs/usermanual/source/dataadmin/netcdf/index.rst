@@ -11,14 +11,22 @@ This data can be loaded and published through GeoServer. Both NetCDF 3 and NetCD
 
 GeoServer also has the ability to add NetCDF as an output format.
 
-.. note:: There are different extensions for NetCDF: One to create a **data store** (reading), one to provide an **output format**, and one to provide an output format specifically for **NetCDF 4**.
+.. note:: There are different extensions for NetCDF: One to create a **data store** (reading), one to provide an **output format**, and a binar extension to provide an output format specifically for **NetCDF 4**.
 
 Installing NetCDF support
 -------------------------
 
 NetCDF support isn't enabled by default, so it must be separately installed through an extension.
 
-.. include:: ../include/ext_install_links.txt
+**RedHat Package**:  Install the :file:`suite-gs-netcdf` and :file:`suite-gs-netcdf-out` packages.  For details, see :ref:`RedHat Packages <install.redhat.packages>`.
+
+**Ubuntu Package**:  Install the :file:`suite-gs-netcdf` and :file:`suite-gs-netcdf-out` packages.  For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
+
+**RedHat WAR**: :ref:`Installing Binaries <install.redhat.tomcat.geoserver.binary>`.
+
+**Ubuntu WAR**: :ref:`Installing Binaries <install.ubuntu.tomcat.geoserver.binary>`.
+
+**Windows WAR**: :ref:`Installing GDAL <install.windows.tomcat.extensions.netcdf>`.
 
 Verifying installation
 ----------------------
@@ -30,6 +38,8 @@ Verifying installation
 .. include:: ../../install/include/ext/netcdf4-out_verify.txt
 
 For more information on adding a store and publishing layers, please see the :geoserver:`GeoServer documentation for NetCDF <extensions/netcdf/netcdf.html>`.
+
+.. _dataadmin.netcdf.uninstall:
 
 Uninstallation
 --------------

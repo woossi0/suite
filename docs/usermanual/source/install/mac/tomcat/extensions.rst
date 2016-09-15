@@ -15,18 +15,6 @@ GeoPackage extension
 .. include:: /install/include/ext/geopackage_verify.txt
 
 
-.. _install.mac.tomcat.extensions.geomesa:
-
-GeoMesa extension
------------------
-
-.. include:: /install/include/ext/geomesa_install_mac.txt
-
-.. include:: /install/include/ext/geomesa_verify.txt
-
-
-.. _install.mac.tomcat.extensions.grib:
-
 GRIB extension
 --------------
 
