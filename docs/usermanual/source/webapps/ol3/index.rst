@@ -56,15 +56,11 @@ To view this example, create a new file called :file:`map.html`, copy the conten
 
 Windows::
 
-  C:\Program Files\Boundless\OpenGeo\jetty\webapps\apps\
-
-Mac OS X::
-
-   ~/Library/Application Support/GeoServer/jetty/webapps/apps/
+  C:\Program Files (x86)\Apache Software Foundation\Tomcat 8.0\webapps
 
 Linux::
 
-  /usr/share/opengeo/apps/
+  /usr/share/tomcat8/webapps
 
 Next, open that file in a browser. Assuming Boundless Suite web applications deployed at ``http://localhost:8080``, this file should be viewable at ``http://localhost:8080/apps/map.html``.
 

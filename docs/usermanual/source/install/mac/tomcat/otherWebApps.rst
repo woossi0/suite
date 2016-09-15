@@ -1,4 +1,4 @@
-.. _install.redhat.othertomcat:
+.. _install.mac.othertomcat:
 
 Other Boundless Suite WebApps
 =============================

@@ -4,7 +4,7 @@ Tomcat install on Red Hat
 =========================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
 
    geoserver
    extensions
