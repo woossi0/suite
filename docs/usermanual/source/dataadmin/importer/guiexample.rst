@@ -38,7 +38,7 @@ The following example will import a zipped shapefile :file:`roads.zip` in the ``
 
 #. Click :guilabel:`Next` to continue.
 
-#. The file will be analyzed by the Layer Importer. On the next page, the layer will be displayed and selected for import. Click :guilabel:`Import` to complete to the process. 
+#. The file will be analyzed by the Layer Importer. On the next page, the layer will be displayed. Select the layer for import, then click :guilabel:`Import` to complete to the process. 
 
    .. figure:: img/guiexample_shpready.png
 
@@ -87,7 +87,7 @@ The following example will load a directory of shapefiles in the ``opengeo`` wor
 
 #. Click :guilabel:`Next` to continue.
 
-#. The contents of the directory will be analyzed by the Layer Importer. On the next page, all layers found will be displayed and selected for import. Click :guilabel:`Import` to complete to the process. 
+#. The contents of the directory will be analyzed by the Layer Importer. On the next page, all layers found will be displayed.  Select the layers for import, then click :guilabel:`Import` to complete to the process. 
 
    .. figure:: img/layerlist_select.png
 
@@ -142,7 +142,7 @@ The following example will load a directory of shapefiles in the ``opengeo`` wor
 
 #. Click :guilabel:`Next` to continue.
 
-#. The file will be analyzed by the Layer Importer. On the next page, the layer will be displayed and selected for import. Click :guilabel:`Import` to complete to the process. 
+#. The file will be analyzed by the Layer Importer. On the next page, the layer will be displayed. Select the layer for import, then click :guilabel:`Import` to complete to the process. 
 
    .. figure:: img/guiexample_geotiffready.png
 
