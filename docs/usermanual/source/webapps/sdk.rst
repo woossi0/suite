@@ -23,17 +23,19 @@ For more information about using quickview, see :ref:`webapps.sdk.quickview`.
 QuickView Installation
 ^^^^^^^^^^^^^^^^^^^^^^
 
-**RedHat Package**:  Install the :file:`suite-quickview` package.  For details, see :ref:`RedHat Packages <install.redhat.packages>`.
+Please choose the appropriate installation method for your platform:
 
-**Ubuntu Package**:  Install the :file:`suite-quickview` package.  For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
+* **RedHat Package**: Install the :file:`suite-quickview` package. For details, see :ref:`RedHat Packages <install.redhat.packages>`.
 
-**RedHat WAR**: See Quickview in :ref:`Installing Other Web Applications <install.redhat.othertomcat>`.
+* **Ubuntu Package**: Install the :file:`suite-quickview` package. For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
 
-**Ubuntu WAR**: See Quickview in :ref:`Installing Other Web Applications <install.ubuntu.othertomcat>`.
+* **RedHat WAR**: See QuickView in :ref:`install.redhat.tomcat.otherapps`.
 
-**OS X WAR**: See Quickview in :ref:`Installing Other Web Applications <install.mac.othertomcat>`.
+* **Ubuntu WAR**: See QuickView in :ref:`install.ubuntu.tomcat.otherapps`.
 
-**Windows WAR**: :ref:`install.windows.tomcat.quickview`
+* **OS X WAR**: See QuickView in :ref:`install.mac.tomcat.otherapps`.
+
+* **Windows WAR**: See :ref:`install.windows.tomcat.quickview`
 
 
 .. API Documentation
