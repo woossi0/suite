@@ -8,19 +8,19 @@ GDAL
 
 #. Install, from the Boundless Repository, the GDAL and GDAL-java packages.
 
-    On RedHat:
+   On Red Hat:
 
-	    .. code-block:: bash
+   .. code-block:: bash
 
-	      yum install gdal gdal-java
+      yum install gdal gdal-java
 
-	On ubuntu:
+   On Ubuntu:
 
-	    .. code-block:: bash
+   .. code-block:: bash
 
-	      apt-get install libgdal libgdal-java 
+      apt-get install libgdal libgdal-java 
 
-.. note:: You can also install the :file:`gdal-mrsid` package for Mr.SID and JP2K support.
+.. note:: You can also install the :file:`gdal-mrsid` package for MrSID and JP2K support.
 
 #. Verify the GDAL install by running :file:`gdalinfo --formats` to see a long list of supported formats and :file:`gdalinfo --version` to verify the version (1.11.2).  Also verify that the :file:`gdal.jar` file is in :file:`/usr/share/java`
 
@@ -45,17 +45,17 @@ NetCDF-4 Output
 
 #. Install, from the Boundless Repository, the NetCDF package.
 
-    On RedHat:
+   On Red Hat:
 
-	    .. code-block:: bash
+   .. code-block:: bash
 
-	      yum install netcdf
+      yum install netcdf
 
-	On ubuntu:
+   On Ubuntu:
 
-	    .. code-block:: bash
+   .. code-block:: bash
 
-	      apt-get install netcdf-bin
+      apt-get install netcdf-bin
 
 #. Verify the NetCDF install by running :file:`ncdump` to verify the version (4.3.3.1)
 

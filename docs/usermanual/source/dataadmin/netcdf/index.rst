@@ -18,15 +18,12 @@ Installing NetCDF support
 
 NetCDF support isn't enabled by default, so it must be separately installed through an extension.
 
-**RedHat Package**:  Install the :file:`suite-gs-netcdf` and :file:`suite-gs-netcdf-out` packages.  For details, see :ref:`RedHat Packages <install.redhat.packages>`.
+Installation instructions are dependent on your operating system and method of install:
 
-**Ubuntu Package**:  Install the :file:`suite-gs-netcdf` and :file:`suite-gs-netcdf-out` packages.  For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
+* **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.geoserver.binary>`, :ref:`Red Hat <install.redhat.tomcat.geoserver.binary>`, :ref:`Windows <install.windows.tomcat.extensions.netcdf>`
+* **Packages**: Install the :file:`suite-gs-netcdf` and :file:`suite-gs-netcdf-out` packages: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
 
-**RedHat WAR**: :ref:`Installing Binaries <install.redhat.tomcat.geoserver.binary>`.
-
-**Ubuntu WAR**: :ref:`Installing Binaries <install.ubuntu.tomcat.geoserver.binary>`.
-
-**Windows WAR**: :ref:`Installing GDAL <install.windows.tomcat.extensions.netcdf>`.
+.. note:: The Boundless Suite virtual machine has most extensions pre-installed.
 
 Verifying installation
 ----------------------

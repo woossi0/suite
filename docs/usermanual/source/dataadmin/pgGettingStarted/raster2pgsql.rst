@@ -7,7 +7,7 @@ Loading raster data into PostGIS from the Command Line
 
 PostGIS provides a ``raster2pgsql`` tool for converting raster data sources into database tables. This section describes how to use this tool to load a single or multiple raster files.
 
-.. note:: This section uses the command line utility ``raster2pgsql`` and optionally the graphical utility :command:`pgAdmin`. These tools may not be automatically present, depending on the type of installation of Boundless Suite. Please see the :ref:`install` section for information on how to install these tools for your platform.
+.. note:: This section uses the command line utility ``raster2pgsql`` and optionally the graphical utility :command:`pgAdmin`. ``raster2pgsql`` is included with the Boundless Suite PostGIS package. ``pgAdmin`` is provided as part of Boundless Desktop.
 
 How It Works
 ------------
@@ -23,7 +23,7 @@ Preparation
 
 #. Identify the SRID ("projection") of your data. If available, this information is accessed via the layer metadata in GeoServer.
 
-#. Either identify the target database where you would like to load the data, or  ref:`create a new database <dataadmin.pgGettingStarted.createdb>`. 
+#. Either identify the target database where you would like to load the data, or  :ref:`create a new database <dataadmin.pgGettingStarted.createdb>`. 
 
 Loading data
 ------------
@@ -133,6 +133,8 @@ Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as
    for %%f in (*.sql) do psql -d <DATABASE> -f %%f
 
 Run this batch file to load all the selected raster files into the database.
+
+.. note:: If you are running the Boundless Suite virtual machine on Windows, connect to the virtual machine and follow the Bash instructions.
 
 Bash
 ~~~~

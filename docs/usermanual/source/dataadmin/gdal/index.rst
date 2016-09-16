@@ -12,17 +12,12 @@ Boundless Suite comes with support for publishing data from many formats support
 Installation
 ------------
 
+Installation instructions are dependent on your operating system and method of install:
 
-**RedHat Package**:  Install the :file:`suite-gs-gdal` package.  For details, see :ref:`RedHat Packages <install.redhat.packages>`.
+* **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.geoserver.binary>`, :ref:`Red Hat <install.redhat.tomcat.geoserver.binary>`, :ref:`Windows <install.windows.tomcat.extensions.gdal>`
+* **Packages**: Install the ``suite-gs-gdal`` package: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
 
-**Ubuntu Package**:  Install the :file:`suite-gs-gdal` package.  For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
-
-**RedHat WAR**: :ref:`Installing Binaries <install.redhat.tomcat.geoserver.binary>`.
-
-**Ubuntu WAR**: :ref:`Installing Binaries <install.ubuntu.tomcat.geoserver.binary>`.
-
-**Windows WAR**: :ref:`Installing GDAL <install.windows.tomcat.extensions.gdal>`.
-
+.. note:: The Boundless Suite virtual machine has most extensions pre-installed.
 
 .. _dataadmin.gdal.verify:
 

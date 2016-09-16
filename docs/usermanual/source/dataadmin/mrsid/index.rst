@@ -12,11 +12,12 @@ Find the method of installation below and continue there.
 Installation
 ------------
 
-**RedHat**: Install the :file:`gdal-mrsid` package and restart tomcat. For details, see :ref:`RedHat Packages <install.redhat.packages>`. 
+Installation instructions are dependent on your operating system and method of install:
 
-**Ubuntu**: Install the :file:`gdal-mrsid` package and restart tomcat. For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
+* **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.geoserver.binary>`, :ref:`Red Hat <install.redhat.tomcat.geoserver.binary>`, :ref:`Windows <install.windows.tomcat.extensions.gdal>`
+* **Packages**: Install the ``gdal-mrsid`` package: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
 
-**Windows WAR**:  MrSID support is install by default with GDAL.  See  :ref:`Installing GDAL <install.windows.tomcat.extensions.gdal>`.
+.. note:: The Boundless Suite virtual machine has most extensions pre-installed.
 
 
 Verification

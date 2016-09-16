@@ -14,7 +14,6 @@ This section describes how to get started with the PostGIS database included in 
    pgadmin
    createdb
    shp2pgsql
-   pgshapeloader
    raster2pgsql
    restload
    basicsql
