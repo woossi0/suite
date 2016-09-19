@@ -19,7 +19,7 @@ Verifying installation
 
 .. include:: ../../install/include/ext/oracle_verify.txt
 
-For more information on adding a store and publishing layers, please see the `GeoServer documentation for Oracle <data/database/oracle.html>`_.
+For more information on adding a store and publishing layers, please see the `GeoServer documentation for Oracle <../../geoserver/data/database/oracle.html>`_.
 
 Caveats
 -------

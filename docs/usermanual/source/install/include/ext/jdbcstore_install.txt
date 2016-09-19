@@ -14,6 +14,6 @@ To install :ref:`JDBCStore <intro.extensions.jdbcstore>` support in GeoServer, y
 
 #. Stop the server.
 
-#. In the :file:`jdbcstore` directory, edit the :file:`jdbcstore.properties` file to enable JDBCStore. Be being sure to set ``enabled``, ``initdb``, and ``import`` to ``true``, and to provide the connection information for an empty database. For more information, refer to `JDBCStore Configuration <../../../../community/jdbcstore/configuration.html>`_ in the GeoServer documentation.
+#. In the :file:`jdbcstore` directory, edit the :file:`jdbcstore.properties` file to enable JDBCStore. Be being sure to set ``enabled``, ``initdb``, and ``import`` to ``true``, and to provide the connection information for an empty database. For more information, refer to `JDBCStore Configuration <../../../../geoerver/community/jdbcstore/configuration.html>`_ in the GeoServer documentation.
 
 #. Restart the server again. This time JDBCStore will connect to the specified database, initialize it, import the old GeoServer data directory into it, and take over from the old GeoServer data directory. Subsequent start ups will skip the initialize and import steps unless you re-enable them in :file:`jdbcstore.properties`.

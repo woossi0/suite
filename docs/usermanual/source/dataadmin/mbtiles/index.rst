@@ -19,7 +19,7 @@ Verifying installation
 
 .. include:: ../../install/include/ext/mbtiles_verify.txt
 
-For more information on adding a store and publishing layers, please see the `GeoServer documentation for MBTiles <../../community/mbtiles/>`_.
+For more information on adding a store and publishing layers, please see the `GeoServer documentation for MBTiles <../../geoserver/community/mbtiles/>`_.
 
 Caveats
 -------
