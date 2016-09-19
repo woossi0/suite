@@ -15,7 +15,7 @@ We will use the following connection parameters to connect to the virtual machin
 
    .. code-block:: console
 
-      ssh -p 2020 suite@localhost
+      ssh -p 2020 root@localhost
 
 #. The first time connecting to the virtual machine will fail (as the "ECDSA key fingerprint" used for a secure connection is not trusted). Enter :kbd:`yes` to add ``localhost:2020`` to the listed of known hosts.
 
