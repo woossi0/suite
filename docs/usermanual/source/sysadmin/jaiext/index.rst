@@ -11,4 +11,4 @@ If you are using the :ref:`Ubuntu<install.ubuntu.packages>` or :ref:`Red Hat<ins
    
    JAI/JAIEXT Setup panel
 
-If you are using the Boundless Suite application server (WAR) bundle, **JAI-EXT** operations will be disabled. Refer to the `GeoServer documentation<../../configuration/image_processing/index.html#jai-ext>`_ for instructions on how to enable **JAI-EXT**.
+If you are using the Boundless Suite application server (WAR) bundle, **JAI-EXT** operations will be disabled. Refer to the `GeoServer documentation <../../configuration/image_processing/index.html#jai-ext>`_ for instructions on how to enable **JAI-EXT**.
