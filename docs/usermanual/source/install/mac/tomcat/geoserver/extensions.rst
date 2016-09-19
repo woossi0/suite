@@ -28,16 +28,6 @@ ArcSDE extension
 .. include:: /install/include/ext/arcsde_verify.txt
 
 
-.. _install.mac.tomcat.extensions.cloudwatch:
-
-Cloudwatch extension
---------------------
-
-.. include:: /install/include/ext/cloudwatch_install.txt
-
-.. include:: /install/include/ext/cloudwatch_verify.txt
-
-
 .. _install.mac.tomcat.extensions.clustering:
 
 Clustering extension
