@@ -154,6 +154,13 @@ NetCDF
 
 `Network Common Data Form (NetCDF) <http://www.unidata.ucar.edu/software/netcdf/>`_ is a format used to store array-oriented scientific data, such as meteorologic data. This version includes support for reading data in GRIB 1, GRIB 2, NetCDF 3 and 4 with CF (Climate and Forecast) formats.
 
+.. _intro.extensions.netcdf-out:
+
+NetCDF-Out
+----------
+
+This extension includes support for writing Multidimentional NetCDF files with WCS 2.0.1.  NetCDF-3 and NetCDF-4 (with the NetCDF-4 native library) are supported.  Please see the :ref:`Install Instructions <install>` for your Operating System.
+
 
 .. _intro.extensions.oracle:
 
