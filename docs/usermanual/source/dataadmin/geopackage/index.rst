@@ -19,4 +19,4 @@ Verifying installation
 
 .. include:: ../../install/include/ext/geopackage_verify.txt
 
-For more information on GeoPackage, please see the :geoserver:`GeoServer documentation for GeoPackage <community/geopackage/>`.
+For more information on GeoPackage, please see the `GeoServer documentation for GeoPackage <../../community/geopackage/>`_.

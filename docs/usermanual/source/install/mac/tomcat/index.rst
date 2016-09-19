@@ -9,5 +9,5 @@ This section will show how to install GeoServer, related extensions, and the oth
    :maxdepth: 1
 
    geoserver
-   extensions
+   geoserver/extensions
    otherapps

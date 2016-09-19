@@ -21,7 +21,7 @@ Verifying installation
 
 .. include:: ../../install/include/ext/grib_verify.txt
 
-For more information on adding a store and publishing layers, please see the :geoserver:`GeoServer documentation for GRIB <extensions/grib/grib.html>`.
+For more information on adding a store and publishing layers, please see the `GeoServer documentation for GRIB <../../extensions/grib/grib.html>`_.
 
 Caveats
 -------
