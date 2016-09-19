@@ -28,7 +28,7 @@ In addition, Boundless Suite |version| includes the following new features:
 
 **New data stores**
 
-* **NetCDF** and **GRIB**. Available via extensions. Also available is NetCDF 3/4 as a **WMS output format**.
+* **NetCDF** and **GRIB**. Available via extensions. Also available is NetCDF 3/4 as a **WCS output format**.
 
 * **JPEG 2000** for more efficient storage of raster data. Available via an extension.
 
