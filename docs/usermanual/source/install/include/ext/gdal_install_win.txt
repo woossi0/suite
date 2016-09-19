@@ -6,6 +6,10 @@
 
 #. Add :file:`C:\\GDAL` to your path:
 
+   .. note:: This example shows how to add :file:`C:\\NEW_DIRECTORY` to your Path.  Instead of adding :file:`C:\\NEW_DIRECTORY`, add :file:`C:\\GDAL` to your Path.
+
+
+
    .. include:: /install/windows/include/updatePATH.txt
      
 #. Create a new :guilabel:`System Variable` called :guilabel:`GDAL_DATA` that has the value :file:`C:\\GDAL\\gdal_data`:
