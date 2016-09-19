@@ -30,6 +30,7 @@ This section will discuss how to manage Boundless Suite deployments, including s
    backup
    virtualservices/index
    caching/index
+   jaiext/index
    deploy/index
    clustering/index
    cloudwatch/index
