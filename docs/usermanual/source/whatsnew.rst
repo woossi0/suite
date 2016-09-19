@@ -17,7 +17,7 @@ In addition, Boundless Suite |version| includes the following new features:
 
 * **Java 8** and **Tomcat 8** are now required.
 
-* New **GeoServer Detailed Status Page**, useful for troubleshooting and determining module status. If your server is running on ``http://localhost:8080``, the page is available at ``http://localhost:8080/geoserver/rest/about/status``.
+* New **GeoServer Detailed Status Page**, useful for troubleshooting and determining module status. The page is usually available at ``http://localhost:8080/geoserver/rest/about/status``.
 
 * **GeoServer UI now displays layer Title**, making layer retrieval more efficient. 
 
@@ -28,19 +28,19 @@ In addition, Boundless Suite |version| includes the following new features:
 
 **New data stores**
 
-* **JDBCStore** for efficient sharing of configuration in a clustered deployment of GeoServer. Works with **JDBCConfig**. Available via an extension.
-
 * **NetCDF** and **GRIB**. Available via extensions. Also available is NetCDF 1-4 as a **WMS output format**.
 
 * **JPEG 2000** for more efficient storage of raster data. Available via an extension.
 
 * **MBTiles** for storing millions of tiles in a single SQLite database. Available via an extension.
 
+* **JDBCStore** *(experimental)* for efficient sharing of configuration in a clustered deployment of GeoServer. Works with **JDBCConfig**. Available via an extension.
+
 **Other changes**
 
 * As part of a product realignment, **Boundless Suite now focuses on server components**, and as such will not include desktop utilities such as pgAdmin. Users wanting pgAdmin from Boundless should use Boundless Desktop.
 
-* GeoExplorer has been deprecated and is no longer packaged with Boundless Suite.
+* GeoExplorer has been deprecated (and replace by the WebSDK) and is no longer packaged with Boundless Suite.
 
 **Components included**
 
