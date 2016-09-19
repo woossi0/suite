@@ -34,7 +34,7 @@ Verifying installation
 
 .. include:: ../../install/include/ext/netcdf4-out_verify.txt
 
-For more information on adding a store and publishing layers, please see the :geoserver:`GeoServer documentation for NetCDF <extensions/netcdf/netcdf.html>`.
+For more information on adding a store and publishing layers, please see the `GeoServer documentation for NetCDF <../../extensions/netcdf/netcdf.html>`_.
 
 .. _dataadmin.netcdf.uninstall:
 

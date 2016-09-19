@@ -56,9 +56,9 @@ CSW
 
 The CSW extension adds the ability for GeoServer to publish information conforming to the Catalog Service for the Web (CSW) protocol.
 
-For more information about CSW in GeoServer, please see the :geoserver:`GeoServer CSW documentation <services/csw/>`.
+For more information about CSW in GeoServer, please see the `GeoServer CSW documentation <../services/csw/>`_.
 
-.. warning:: The installation instructions in the :geoserver:`GeoServer documentation <services/csw/installing.html>` do not apply to users of Boundless Suite. Users of Boundless Suite can install the extension in the standard way as indicated above.
+.. warning:: The installation instructions in the `GeoServer documentation <../services/csw/installing.html>`_ do not apply to users of Boundless Suite. Users of Boundless Suite can install the extension in the standard way as indicated above.
 
 
 .. _intro.extensions.db2:

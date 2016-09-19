@@ -90,8 +90,7 @@ pygments_style = 'sphinx'
 
 extlinks = { 
     'connect': ('https://connect.boundlessgeo.com/%s',''),
-    'suite': ('http://priv-repo.boundlessgeo.com/%s',''),
-    'geoserver': ('/geoserver/%s','')
+    'suite': ('http://priv-repo.boundlessgeo.com/%s','')
 }
 
 # Common substitutions
