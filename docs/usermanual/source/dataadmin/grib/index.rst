@@ -28,4 +28,6 @@ Caveats
 
 Because of its relation to NetCDF, installing the GRIB extension will also add support for the :ref:`NetCDF <dataadmin.netcdf>` store as well.
 
+GRIB2 files on a latitude/longitude grid (GDS template 0) now have longitudes in the range (0, 360). Previous releases presented these longitudes as being in the range (-180, 180).
+
 .. Add tutorials here
