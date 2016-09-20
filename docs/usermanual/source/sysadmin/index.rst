@@ -31,6 +31,7 @@ This section will discuss how to manage Boundless Suite deployments, including s
    virtualservices/index
    caching/index
    jaiext/index
+   modulestatus/index
    deploy/index
    clustering/index
    cloudwatch/index
