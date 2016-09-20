@@ -7,9 +7,10 @@ Standard installation
 
 #. Uninstall any old versions.
 
-#. Install Java 1.8.
+#. Install Java 1.8. (Boundless Suite requires Java 1.8)
 
    .. note:: We recommend downloading from `Oracle <https://java.com/en/download/manual.jsp>`__.
+   .. note:: See :ref:`sysadmin.jvm` for dealing with multiple versions of java on your machine.
 
 #. Install `Tomcat 8 <http://tomcat.apache.org/download-80.cgi>`__ and ensure Tomcat is using the Java 8 runtime.
 

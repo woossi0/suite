@@ -1,6 +1,6 @@
 .. _sysadmin.jvm:
 
-Setting the Oracle JVM
+Setting the JVM
 ======================
 
 This section will discuss JVM (Java) settings for use with Boundless Suite.
@@ -130,3 +130,37 @@ If running Boundless Suite in an application server on a Windows system:
 .. note:: Read more about :ref:`running Boundless Suite in Production <sysadmin.production>`.
 
 .. note:: Read more about :ref:`installing Java on Windows <install.windows.tomcat.java>`.
+
+Setting the default JVM using *update-alternatives*
+---------------------------------------------------
+
+If you used linux packages to install different versions of java and are using the Boundless Suite packages you can use the *update-alternatives* command to set the *default* java for your system.  
+
+.. note:: This method may change the java version other applications are using on your server.  This may cause issues.
+
+#. Run the command;
+
+    .. code-block:: bash
+      
+        update-alternatives --config java
+
+#. You will be presented with a list of installed Java versions.  Choose the one you would like to use.
+
+    .. code-block:: bash
+
+        There are 2 programs which provide 'java'.
+        
+           Selection    Command
+        -----------------------------------------------
+         *+ 1           /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java
+            2           /usr/java/jre1.8.0_101/bin/java
+
+
+#. Verify by running;
+
+   .. code-block:: bash
+
+        java -version
+
+#. Restart Tomcat
+
