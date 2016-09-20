@@ -146,7 +146,7 @@ If you used linux packages to install different versions of java and are using t
 
 #. You will be presented with a list of installed Java versions.  Choose the one you would like to use.
 
-    .. code-block:: bash
+    .. code-block:: none 
 
         There are 2 programs which provide 'java'.
         
@@ -155,6 +155,7 @@ If you used linux packages to install different versions of java and are using t
          *+ 1           /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java
             2           /usr/java/jre1.8.0_101/bin/java
 
+        Enter to keep the current selection[+], or type selection number:
 
 #. Verify by running;
 
