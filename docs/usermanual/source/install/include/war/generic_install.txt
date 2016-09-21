@@ -3,6 +3,8 @@ Standard installation
 
 .. note:: Boundless Suite requires Java 1.8 and Tomcat 8.
 
+.. note:: See the :ref:`sysadmin` section for installation and administration help.
+
 #. If you have an existing OpenGeo Suite, Boundless Suite, or GeoServer install, backup your configuration (specifically your GeoServer data directory) and data.
 
 #. Uninstall any old versions.
@@ -23,7 +25,7 @@ Standard installation
    * ``-Dorg.geotools.referencing.forceXY=true``
    * ``-Dorg.geotoools.render.lite.scale.unitCompensation=true``
 
-#. If you don't have an existing GeoServer data directory, you can use the :file:`suite-data-dir.zip` inside the Boundless WAR bundle :file:`BoundlessSuite-war.zip`. You can set the environment variable ``GEOSERVER_DATA_DIR`` to the desired location.
+#. If you don't have an existing GeoServer data directory, you can use the :file:`suite-data-dir.zip` inside the Boundless WAR bundle :file:`BoundlessSuite-war.zip`. 
 
    .. note:: A suggested location would be :file:`/var/opt/boundless/suite/geoserver/data`:
 
@@ -62,9 +64,11 @@ Recommended performance extensions
 Java Cryptography
 ~~~~~~~~~~~~~~~~~
 
+.. note:: This is only applicable if you are using the Oracle JRE (OpenJDK includes this by default).
+
 #. Download the :guilabel:`Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files for JDK/JRE 8` from `Oracle <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`__.   
 
-#. Copy the JAR files to your :file:`$JRE_HOME/lib/security` directory (overwriting the existing files).
+#. Copy the two JAR files to your :file:`$JRE_HOME/lib/security` directory (overwriting the existing jar files).
 
 #. Restart Tomcat, navigate to the GeoServer welcome page, and verify that it says :guilabel:`Strong cryptography available`.
 
@@ -73,7 +77,7 @@ Marlin Renderer
 
 The Marlin renderer is an open source Java rendering engine optimized for performance, based on OpenJDK’s Pisces implementation. With this, vector rendering in GeoServer is much improved over the standard engine.
 
-#. Copy the :file:`marlin-0.7.3-Unsafe.jar` file inside the :file:`marlin` directory in the Boundless extension bundle :file:`BoundlessSuite-ext.zip` file to your Tomcat :file:`$CATALINA_HOME/lib` directory.
+#. Copy the :file:`marlin-0.7.3-Unsafe.jar` file inside the :file:`marlin` directory in the Boundless extension bundle (:file:`BoundlessSuite-ext.zip`) to your Tomcat :file:`$CATALINA_HOME/lib` directory.
 
 #. Add the following options to Tomcat:
 
@@ -88,7 +92,7 @@ LibJPEG Turbo
 
 The libjpeg-turbo extension provides a significant performance enhancement for JPEG encoding in GeoServer WMS output (up to 40% faster than with no native libraries, equal or greater performance than with Native ImageIO).
 
-#. Download and install `LibJPEG Turbo <http://libjpeg-turbo.virtualgl.org/>`_.
+#. Download and install `LibJPEG Turbo <http://libjpeg-turbo.virtualgl.org/>`__ (also available from the Boundless Ubuntu/Red Hat repositories)
 
 #. Add the following option to Tomcat:
 

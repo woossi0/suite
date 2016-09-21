@@ -84,6 +84,8 @@ The instructions for enabling these formats may require a few additional steps f
 GeoPackage
 ----------
 
+.. note:: This extension also install the WPS extension.
+
 The GeoPackage extension adds the ability for GeoServer to publish data from `GeoPackage <http://www.geopackage.org/>`_ sources (a data format based on `SQLite <http://www.sqlite.org/>`_). Once this extension is added, GeoServer will show GeoPackage as one of its available data sources when adding a new store.
 
 
@@ -133,6 +135,8 @@ The JPEG 2000 extension adds the ability for GeoServer to publish data from `JPE
 MBTiles
 -------
 
+.. note:: This extension also install the WPS extension.
+
 The MBTiles extension add the ability for GeoServer to publish data saved in `MBTiles <https://www.mapbox.com/help/an-open-platform/#mbtiles>`_ format, which is an efficient format for storing millions of tiles in a single SQLite database.
 
 .. _intro.extensions.mongodb:
@@ -174,6 +178,8 @@ The :ref:`Oracle extension <dataadmin.oracle>` adds the ability for GeoServer to
 
 Scripting
 ---------
+
+.. note:: This extension also install the WPS extension.
 
 The scripting extension provides a number of extension points called “hooks” throughout GeoServer. Each hook provides a way to plug in functionality via a script.
 
