@@ -53,4 +53,4 @@ This broadcasting also allows for HTTP session sharing, which is how multiple Ge
 Technical details
 -----------------
 
-The :ref:`clustering extension <intro.extensions.clustering>` when used properly also used the :ref:`JDBCConfig extension <intro.extensions.jdbcconfig>` , which provides the support for data directories in a database. Clustering uses `Hazelcast <http://hazelcast.com>`_, a library that allows nodes in a cluster to link together automatically.
+The clustering extension when used properly also uses the :ref:`JDBCConfig extension <intro.extensions.jdbcconfig>` , which provides the support for data directories in a database. Clustering uses `Hazelcast <http://hazelcast.com>`_, a library that allows nodes in a cluster to link together automatically.

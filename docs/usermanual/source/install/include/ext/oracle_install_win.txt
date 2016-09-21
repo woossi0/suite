@@ -1,4 +1,4 @@
-To install :ref:`Oracle <intro.extensions.oracle>` support in GeoServer, you will need to copy some files to the proper location. The first set of files to be copied are inside the Boundless Suite extensions bundle (:file:`BoundlessSuite-ext.zip`).
+To install :ref:`Oracle <dataadmin.oracle>` support in GeoServer, you will need to copy some files to the proper location. The first set of files to be copied are inside the Boundless Suite extensions bundle (:file:`BoundlessSuite-ext.zip`).
 
 #. Inside the Boundless Suite extensions bundle, navigate to the :file:`oracle` directory.
 
