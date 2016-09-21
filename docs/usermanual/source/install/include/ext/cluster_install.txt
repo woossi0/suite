@@ -1,4 +1,4 @@
-To install :ref:`Clustering <intro.extensions.clustering>` support in GeoServer, you will need to copy some files to the proper location. The files to be copied are inside the Boundless Suite extensions bundle (:file:`BoundlessSuite-ext.zip`).
+To install :ref:`Clustering <sysadmin.clustering>` support in GeoServer, you will need to copy some files to the proper location. The files to be copied are inside the Boundless Suite extensions bundle (:file:`BoundlessSuite-ext.zip`).
 
 .. note:: The Clustering extension requires JDBCConfig to be installed and enabled. Refer to the instructions further down this page for installing these extensions before proceeding.
 
