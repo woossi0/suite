@@ -41,7 +41,7 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
-   .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/sales>`__ if you have purchased Boundless Suite and do not have a user name and password.
+   .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/>`__ if you have purchased Boundless Suite and do not have a user name and password.
 
 #. Search for Boundless packages to verify that the repository list is correct. 
 
