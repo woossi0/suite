@@ -1,4 +1,6 @@
-To install :ref:`NetCDF output <intro.extensions.netcdf>` support in GeoServer, you will need to copy some files to the proper location. The files to be copied are inside the Boundless Suite extensions bundle (:file:`BoundlessSuite-ext.zip`).
+To install :ref:`NetCDF output <intro.extensions.netcdf>` support in GeoServer, you will need to copy some files to the proper location. The files to be copied are inside the Boundless Suite extensions bundle (:file:`BoundlessSuite-ext.zip`).  
+
+.. note:: For NetCDF-4 output, you must install the native libraries - see :ref:`install`.
 
 #. Inside the Boundless Suite extensions bundle, navigate to the :file:`netcdf-out` directory.
 

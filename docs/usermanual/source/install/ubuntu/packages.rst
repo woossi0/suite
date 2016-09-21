@@ -228,57 +228,8 @@ The following packages add additional functionality to GeoServer. After installi
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
-.. list-table::
-   :header-rows: 1
-   :widths: 30 70
-   :class: non-responsive
+.. include:: /install/include/suite-gs-packages.txt
 
-   * - Package
-     - Description
-   * - ``suite-gs-arcsde``
-     - ArcSDE extension
-   * - ``suite-gs-app-schema``
-     - Application Schema support
-   * - ``suite-gs-cloudwatch``
-     - Connection to :ref:`Amazon CloudWatch <sysadmin.cloudwatch>` monitoring
-   * - ``suite-gs-cluster``
-     - Clustering extension. Use with ``suite-gs-jdbcconfig``.
-   * - ``suite-gs-csw``
-     - Catalogue Service for Web (CSW) extension
-   * - ``suite-gs-db2``
-     - DB2 database extension
-   * - ``suite-gs-gdal``
-     - GDAL extension
-   * - ``suite-gs-geopkg``
-     - GeoPackage extension
-   * - ``suite-gs-grib``
-     - GRIB data format extension
-   * - ``suite-gs-inspire``
-     - Additional WMS and WFS metadata configuration for INSPIRE compliance
-   * - ``suite-gs-jdbcconfig``
-     - Database catalog and configuration extension. Use with ``suite-gs-cluster``.
-   * - ``suite-gs-jdbcstore``
-     - JDBCStore extension
-   * - ``suite-gs-jp2k``
-     - JPEG2000 extension
-   * - ``suite-gs-mbtiles``
-     - MBTiles extension
-   * - ``suite-gs-mongodb``
-     - MongoDB data format extension
-   * - ``suite-gs-netcdf``
-     - NetCDF data format support (read-only)
-   * - ``suite-gs-netcdf-out``
-     - NetCDF data format support (output)
-   * - ``suite-gs-oracle``
-     - Oracle database extension
-   * - ``suite-gs-script``
-     - Scripting (Python) extension
-   * - ``suite-gs-sqlserver``
-     - SQL Server database extension
-   * - ``suite-gs-vectortiles``
-     - Vector tiles extension
-   * - ``suite-gs-wps``
-     - Web Processing Service (WPS) extension
 
 Binary packages
 ~~~~~~~~~~~~~~~
