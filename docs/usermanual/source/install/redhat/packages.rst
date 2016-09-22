@@ -3,7 +3,7 @@
 Package install on Red Hat
 ==========================
 
-This page describes how to perform a package installation of Boundless Suite** |version| on Red hat-based Linux distributions.
+This page describes how to perform a package installation of **Boundless Suite** |version| on Red hat-based Linux distributions.
 
 .. note:: For upgrades, see the below section on :ref:`Upgrading <install.redhat.packages.upgrade>`.
 
