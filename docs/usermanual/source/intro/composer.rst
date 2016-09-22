@@ -3,7 +3,7 @@
 Composer
 ========
 
-Boundless Suite Composer is a tool for creating, styling and publishing maps. It runs in the same container as GeoServer, accessible at ``/composer/``. So if GeoServer exists at ``http://localhost:8080/geoserver/``, Composer is available at ``http://localhost:8080/geoserver/composer/``
+Boundless Suite Composer is a tool for creating, styling and publishing maps. It requires geoserver, but runs as a standalone web application. Composer can be accessed at ``http://localhost:8080/composer/`` in a typical Suite install.
 
 .. figure:: ../webmaps/composer/img/composer.png
 
