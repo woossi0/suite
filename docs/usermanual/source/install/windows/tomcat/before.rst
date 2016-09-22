@@ -3,7 +3,7 @@
 Before you start
 ================
 
-If you are upgrading from a previous version, please be aware that you must ** locate and backup the data directory and remove prior versions of the application** first.
+If you are upgrading from a previous version, please be aware that you must **locate and backup the data directory and remove prior versions of the application** first.
 
 .. include:: include/sysreq.txt
 
@@ -30,7 +30,7 @@ Upgrading from OpenGeo Suite 4.8 or earlier
 
 #. Uninstalling will not delete your settings and data, which by default is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo`
 
-   .. note:: Your existing data directory can be used with Boundless Suite as-is. The default location will be at :file:` C:\\ProgramData\\Boundless\\geoserver\\data`, though this can be change. If you copy your existing data directory to this new directory, please review and correct any references to spatial data stored in your data directory.
+   .. note:: Your existing data directory can be used with Boundless Suite as-is. The default location will be at :file:`C:\\ProgramData\\Boundless\\geoserver\\data`, though this can be change. If you copy your existing data directory to this new directory, please review and correct any references to spatial data stored in your data directory.
 
 Upgrading from Boundless Suite 4.9 and above
 --------------------------------------------
