@@ -7,7 +7,7 @@ This section will show you how to deploy a simple web mapping application using 
 
 OpenLayers is a JavaScript library that allows for putting a dynamic map in any web page. It can display map tiles and markers loaded from any source.
 
-The latest version of OpenLayers, `OpenLayers 3 <http://ol3js.org>`_, consists of a full rewrite of the code, greatly simplifying syntax and making map creation easier.
+The latest version of OpenLayers, `OpenLayers 3 <http://openlayers.org>`_, consists of a full rewrite of the code, greatly simplifying syntax and making map creation easier.
 
 Complete working example
 ------------------------
@@ -19,14 +19,14 @@ Here is a complete working example of a map on a web page.
     <!doctype html>
     <html lang="en">
       <head>
-        <link rel="stylesheet" href="http://ol3js.org/en/v3.0.0-beta.1/build/ol.css" type="text/css">
+        <link rel="stylesheet" href="http://openlayers.org/en/latest/css/ol.css" type="text/css">
         <style>
           .map {
             height: 400px;
             width: 100%;
           }
         </style>
-        <script src="http://ol3js.org/en/v3.0.0-beta.1/build/ol.js" type="text/javascript"></script>
+        <script src="http://openlayers.org/en/latest/build/ol.js" type="text/javascript"></script>
         <title>OpenLayers 3 example</title>
       </head>
       <body>
@@ -82,7 +82,7 @@ Include the OpenLayers library
 
 .. code-block:: html
 
-   <script src="http://ol3js.org/en/v3.0.0-beta.1/build/ol.js" type="text/javascript"></script>
+   <script src="http://openlayers.org/en/latest/build/ol.js" type="text/javascript"></script>
 
 The first step is to include the JavaScript library. For the purpose of this tutorial, here we simply point to the library hosted at ``ol3js.org``. In a production environment, we would build a custom version of the library including only the module needed for our application.
 
@@ -145,7 +145,7 @@ The ``layers: [ ... ]`` array is used to define the list of layers available in 
       })
     ]
 
-Layers in OpenLayers 3 are defined with a type (Image, Tile or Vector) which contains a source. The source is the protocol used to get the map tiles. You can consult the `list of available layer sources <http://ol3js.org/en/v3.0.0-beta.1/apidoc/ol.source.html>`_.
+Layers in OpenLayers 3 are defined with a type (Image, Tile or Vector) which contains a source. The source is the protocol used to get the map tiles. You can consult the `list of available layer sources <http://openlayers.org/en/latest/apidoc/ol.source.html>`_.
 
 The next part of the ``Map`` object is the ``View``. The view allows you to specify the center, resolution, and rotation of the map. Currently, only ``View2D`` is supported. The simplest way to define a view is to define a center point and a zoom level. Note that zoom level ``0`` means zoomed out.
 
@@ -161,4 +161,4 @@ You will notice that the ``center`` specified is in lat/lon coordinates (EPSG:43
 Where to find OpenLayers 3
 --------------------------
 
-For more information on OpenLayers 3 including full source code and documentation, please go to `ol3js.org <http://ol3js.org>`_.
+For more information on OpenLayers 3 including full source code and documentation, please go to `openlayers.org <http://openlayers.org>`_.

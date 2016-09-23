@@ -3,11 +3,11 @@
 Layers
 ======
 
-All maps created with Quickview consist of some number of layers. The layers tab allows you add, remove, and reorder these layers.
+All maps created with QuickView consist of some number of layers. The layers tab allows you add, remove, and reorder these layers.
 
 .. figure:: img/layers.png
 
-Quickview starts out with an unmodifiable Base Map layer in the layer list. This layer serves as the background of your map. All other layers are displayed atop the basemap. You can switch between different basemaps by using the radio buttons, and can disable or enable the basemap by toggling the checkbox.
+QuickView starts out with an unmodifiable Base Map layer in the layer list. This layer serves as the background of your map. All other layers are displayed atop the basemap. You can switch between different basemaps by using the radio buttons, and can disable or enable the basemap by toggling the checkbox.
 
 Adding Layers
 -------------
@@ -16,7 +16,7 @@ Layers can be added to the map using the :guilabel:`Add Layers` button to the bo
 
 .. figure:: img/addlayer.png
 
-Quickvew can add any layers that are published by a GeoServer. By default, Quickview lists layers from the local GeoServer (assuming a local GeoServer exists and is available). You can list layers from a remote GeoServer by entering the URL to the GeoServer WMS endpoint into the appropriate text box and clicking :guilabel:`Connect`. For example, to add layers from `demo.opengeo.org <http://demo.opengeo.org/geoserver/web>`_, you would enter ``http://demo.opengeo.org/geoserver/wms``.
+Quickvew can add any layers that are published by a GeoServer. By default, QuickView lists layers from the local GeoServer (assuming a local GeoServer exists and is available). You can list layers from a remote GeoServer by entering the URL to the GeoServer WMS endpoint into the appropriate text box and clicking :guilabel:`Connect`. For example, to add layers from `demo.opengeo.org <http://demo.opengeo.org/geoserver/web>`_, you would enter ``http://demo.opengeo.org/geoserver/wms``.
 
 .. figure:: img/layerlist.png
    :scale: 75%

@@ -3,7 +3,7 @@
 WPS Builder install
 ===================
 
-WPS Builder is a graphical application for building and executing WPS process chains.
+:ref:`WPS Builder <processing.wpsbuilder>` is a graphical application for building and executing WPS process chains.
 
 .. note:: The WPS Builder requires GeoServer and the GeoServer WPS extension to be installed.
 

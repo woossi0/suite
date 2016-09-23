@@ -6,7 +6,7 @@ Installing Boundless Suite on Windows
 This section describes how to install or upgrade Boundless Suite on Windows. Please select the type of install below.
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    tomcat/index
    vm

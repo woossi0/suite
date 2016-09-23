@@ -26,20 +26,25 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
       sudo su -
 
-#. Add the Boundless Suite repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents::
+#. Download the Boundless key
 
-     [boundless-third-party]
-     name=Boundless Spatial Third Party Repo
-     baseurl=http://<username>:<password>@SERVER
-     enabled=1
-     gpgcheck=0
-     [boundless-suite-test-centos]
-     name=Boundless Spatial Suite Test Centos
-     baseurl=http://<username>:<password>@SERVER
-     enabled=1
-     gpgcheck=0
+   .. code-block:: bash
 
-   Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
+       mkdir -p /etc/pki/boundless
+       wget -O /etc/pki/boundless/RPM-GPG-KEY-OpenGeo_Suite https://yum.boundlessgeo.com/RPM-GPG-KEY-OpenGeo_Suite
+
+#. Add the Boundless Suite repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents:
+
+    .. code-block:: none
+
+         [boundless-suite]
+         name=Boundless Suite Repository
+         baseurl=https://<username>:<password>@yum-ee.boundlessgeo.com/suite/v49/el6/$releasever/$basearch
+         enabled=1
+         gpgcheck=1
+         gpgkey=/etc/pki/boundless/RPM-GPG-KEY-OpenGeo_Suite
+
+   Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you.  
 
    .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/>`__ if you have purchased Boundless Suite and do not have a user name and password.
 
