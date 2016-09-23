@@ -88,10 +88,7 @@ pygments_style = 'sphinx'
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
-extlinks = { 
-    'connect': ('https://connect.boundlessgeo.com/%s',''),
-    'suite': ('http://priv-repo.boundlessgeo.com/%s','')
-}
+extlinks = { }
 
 # Common substitutions
 # rst_prolog = """
