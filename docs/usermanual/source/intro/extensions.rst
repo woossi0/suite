@@ -120,7 +120,7 @@ The JDBCConfig module enhances the scalability performance of the GeoServer cata
 JDBCStore
 ---------
 
-The JDBCStore extension allows efficient sharing of configuration data in a clustered deployment of GeoServer. It allows externalizing the storage of all configuration to a database, rather than using the default file-based data directory.
+JDBCStore is an *experimental* extension that allows efficient sharing of configuration data in a clustered deployment of GeoServer. It allows externalizing the storage of all configuration to a database, rather than using the default file-based data directory.
 
 
 .. _intro.extensions.jp2k:
