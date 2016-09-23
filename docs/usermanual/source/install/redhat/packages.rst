@@ -26,20 +26,46 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
       sudo su -
 
-#. Add the Boundless Suite repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents::
+#. Download the Boundless and Fedora GPG keys:
 
-     [boundless-third-party]
-     name=Boundless Spatial Third Party Repo
-     baseurl=http://<username>:<password>@SERVER
-     enabled=1
-     gpgcheck=0
-     [boundless-suite-test-centos]
-     name=Boundless Spatial Suite Test Centos
-     baseurl=http://<username>:<password>@SERVER
-     enabled=1
-     gpgcheck=0
+   .. code-block:: bash
 
-   Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
+      wget https://yum.boundlessgeo.com/RPM-GPG-KEY-OpenGeo_Suite
+      wget https://getfedora.org/static/0608B895.txt
+
+#. Verify the fingerprint of each certificate:
+
+    .. code-block:: bash
+
+      gpg --quiet --with-fingerprint ./RPM-GPG-KEY-OpenGeo_Suite
+
+    .. code-block:: none
+
+      pub  2048R/E2DD3C77 2015-06-05 OpenGeo Suite <contact@boundlessgeo.com>
+           Key fingerprint = DEF2 E3C7 75C7 5037 97F5  9111 6E26 79DC E2DD 3C77
+      sub  2048R/D8FEF4BF 2015-06-05
+
+    .. code-block:: bash
+
+      gpg --quiet --with-fingerprint ./0608B895.txt
+      
+    .. code-block:: none
+
+      pub  4096R/0608B895 2010-04-23 EPEL (6) <epel@fedoraproject.org>
+           Key fingerprint = 8C3B E96A F230 9184 DA5C  0DAE 3B49 DF2A 0608 B895
+
+#. Add the Boundless Suite repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents:
+
+    .. code-block:: none
+
+         [boundless-suite]
+         name=Boundless Suite Repository
+         baseurl=https://<username>:<password>@yum-ee.boundlessgeo.com/suite/v49/<OS>/$releasever/$basearch
+         enabled=1
+         gpgcheck=1
+         gpgkey=https://<username>:<password>@yum-ee.boundlessgeo.com/RPM-GPG-KEY-OpenGeo_Suite,https://getfedora.org/static/0608B895.txt
+
+   Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you.  Also replace ``<OS>`` with either ``centos`` or ``rhel`` based on your distribution.
 
    .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/>`__ if you have purchased Boundless Suite and do not have a user name and password.
 

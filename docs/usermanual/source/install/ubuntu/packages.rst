@@ -26,12 +26,17 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
       sudo su -
 
+#. Import the Boundless GPG key:
+
+   .. code-block:: bash
+
+      wget -qO- https://apt.boundlessgeo.com/gpg.key | apt-key add -
+
 #. Add the Boundless repository:
 
    .. code-block:: bash
 
-      echo "deb http://<username>:<password>@priv-repo.boundlessgeo.com/suite-test-debian/amd64 ./" > /etc/apt/sources.list.d/boundless.list
-      echo "deb http://<username>:<password>@priv-repo.boundlessgeo.com/third-party-debian/amd64 ./" >> /etc/apt/sources.list.d/boundless.list
+      echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v49/ubuntu/ trusty main" > /etc/apt/sources.list.d/boundless.list
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
