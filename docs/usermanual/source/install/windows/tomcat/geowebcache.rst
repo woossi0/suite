@@ -3,7 +3,7 @@
 GeoWebCache install
 ===================
 
-GeoWebCache is a map image caching application and server.
+`GeoWebCache <../../../../geowebcache>`_ is a map image caching application and server.
 
 .. note:: GeoServer includes an built-in copy of GeoWebCache. Installation of this *separate* stand-alone GeoWebCache may be considered for caching external WMS services. For more information see :ref:`sysadmin.deploy`.
 

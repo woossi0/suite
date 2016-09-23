@@ -1,9 +1,8 @@
 .. _install.windows.tomcat.quickview:
 
-Quickview install
+QuickView install
 =================
-
-Quickview is an application designed to view layers and maps easily. It is built using the WebSDK.
+:ref:`QuickView <webapps.sdk.quickview>` is an application designed to view layers and maps easily. It is built using the WebSDK.
 
 #. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
@@ -15,4 +14,4 @@ Quickview is an application designed to view layers and maps easily. It is built
   
    .. figure:: /install/include/war/img/quickview.png
       
-      Quickview
+      QuickView
