@@ -11,7 +11,7 @@ It makes use of the `JavaScript React framework <https://facebook.github.io/reac
 Install Web SDK
 ---------------
 
-Web SDK can be obtained from `Boundless Connect <https://connect.boundlessgeo.com>`_.
+Web SDK can be obtained from Boundless Connect.
 
 Demo Applications
 -----------------

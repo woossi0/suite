@@ -4,7 +4,7 @@ Edit
 ====
 
 The edit tab provides functionality for altering the attributes and geometry of vector layers in the map.
-In order to use any of the functionality on this tab, `WFS Transactional must be enabled in geoserver <../../geoserver/services/wfs/webadmin.html#service-levels>`_.
+In order to use any of the functionality on this tab, `WFS Transactional must be enabled in GeoServer <../../geoserver/services/wfs/webadmin.html#service-levels>`_.
 
 .. figure:: img/edit.png
    :scale: 80%
