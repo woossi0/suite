@@ -12,7 +12,6 @@ This section will discuss spatial processing and analysis tools using Boundless 
    intro
    wpsbuilder/index
    wpsjava/index
-   wpsclient/index
    scripting/index
    contour/index
    management/index
