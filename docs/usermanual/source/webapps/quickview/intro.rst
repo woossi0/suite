@@ -3,11 +3,11 @@
 Overview
 ========
 
-The Web SDK Quickview application has three main zones. On the right is the map window, which displays a map and provides navigation controls. Along the top is the top bar, which contains several buttons. On the left is the side panel, which provides much of the core functionality of the Quickview application.
+The Web SDK QuickView application has three main zones. On the right is the map window, which displays a map and provides navigation controls. Along the top is the top bar, which contains several buttons. On the left is the side panel, which provides much of the core functionality of the QuickView application.
 
 .. figure:: img/quickview.png
 
-   Web SDK Quickview
+   Web SDK QuickView
 
 Map Window
 ----------

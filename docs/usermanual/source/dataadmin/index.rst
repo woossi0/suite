@@ -21,7 +21,7 @@ Working with GeoServer
 ----------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    importer/index
    vectortiles/index
@@ -30,7 +30,7 @@ Working with raster data in GeoServer
 -------------------------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    grib/index
    gdal/index
@@ -43,7 +43,7 @@ Working with external databases in GeoServer
 --------------------------------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    geopackage/index
    oracle/index

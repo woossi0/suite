@@ -11,7 +11,7 @@ In addition, Boundless Suite |version| includes the following new features:
 
 * New deployment option: **Boundless Suite virtual machine** contains all components configured and ready to use. Available for all OSs, this replaces the installers previously available for Windows and OS X. *This is the easiest way to test out Boundless Suite.*
 
-* New **QuickView** application, a sample application of the kind one can build using the new WebSDK. :ref:`Learn more about Quickview <webapps.sdk.quickview>`.
+* New **QuickView** application, a sample application of the kind one can build using the new WebSDK. :ref:`Learn more about QuickView <webapps.sdk.quickview>`.
 
 * **Composer** is now its own web application (it was previously part of GeoServer). :ref:`Learn more about Composer <webmaps.composer>`.
 

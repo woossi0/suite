@@ -3,7 +3,7 @@
 Composer install
 ================
 
-:ref:`webmaps.composer` is a tool for creating and styling web maps.
+:ref:`Composer<webmaps.composer>` is a tool for creating and styling web maps.
 
 .. note:: You must install GeoServer prior to installing Composer.
 
@@ -15,7 +15,7 @@ Composer install
 
 #. Navigate to http://localhost:8080/composer to verify that the application deployed successfully.
 
-#. Log in using admin credentials (default is ``admin`` / ``geoserver``).
+#. Log in using the GeoServer admin credentials (default is ``admin`` / ``geoserver``).
    
    .. figure:: /install/include/war/img/composer_login.png
       

@@ -20,7 +20,7 @@
    * - ``suite-gs-gdal``
      - GDAL extension
    * - ``suite-gs-geopkg``
-     - GeoPackage extension  (**NOTE:** Also install WPS)
+     - GeoPackage extension  (**NOTE:** Also installs WPS)
    * - ``suite-gs-grib``
      - GRIB data format extension
    * - ``suite-gs-inspire``
@@ -32,7 +32,7 @@
    * - ``suite-gs-jp2k``
      - JPEG2000 extension
    * - ``suite-gs-mbtiles``
-     - MBTiles extension (**NOTE:** Also install WPS)
+     - MBTiles extension (**NOTE:** Also installs WPS)
    * - ``suite-gs-mongodb``
      - MongoDB data format extension
    * - ``suite-gs-netcdf``
@@ -42,7 +42,7 @@
    * - ``suite-gs-oracle``
      - Oracle database extension
    * - ``suite-gs-script``
-     - Scripting (Python) extension  (**NOTE:** Also install WPS)
+     - Scripting (Python) extension  (**NOTE:** Also installs WPS)
    * - ``suite-gs-sqlserver``
      - SQL Server database extension
    * - ``suite-gs-vectortiles``
