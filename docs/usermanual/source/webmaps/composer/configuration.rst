@@ -102,7 +102,7 @@ The :guilabel:`Map Settings` page allows details about the map to be entered:
 * :guilabel:`Description`, for long-form information about the map
 * :guilabel:`Render Timeout`, for canceling long-running map requests when styling the map. 
 
-  .. note:: If a map request exceeds its `timeout <../../../geoserver/services/wms/vendor.html#format-options>`_, a `partial image <../../../geoserver/services/wms/reference.html#exceptions>`_ may be returned.
+  .. note:: If a map request exceeds its `timeout <../../geoserver/services/wms/vendor.html#format-options>`_, a `partial image <../../geoserver/services/wms/reference.html#exceptions>`_ may be returned.
 
 .. figure:: img/mapsettings.png
 
