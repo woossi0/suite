@@ -11,3 +11,4 @@ Two virtual machines are available. These instructions assume you are using the 
    * Please disable any programs on your system that use ports 2020, 5432, 8080, or 8433.
    * Make sure you have administrative / super-user privileges on your system.
    * You must be able to run a 64-bit virtual machine. 32-bit machines are not supported.
+   * You must have at least 2GB of memory and 4GB of free disk space (plus extra space for any loaded data).
