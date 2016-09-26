@@ -124,51 +124,44 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 
    .. code-block:: bash
 
-      apt-get remove tomcat7 \
+      apt-get remove gdal-mrsid \
                      geoexplorer \
-                     libgeos-3.5.0 \
-                     libgeos-c1 \
-                     libgeos-dev \
-                     libgeos-doc \
                      geoserver \
                      geoserver-* \
                      geowebcache \
                      laszip \
                      laszip-dev \
-                     libpq5 \
                      libgdal-opengeo \
                      libgdal-opengeo-dev \
-                     libght \
-                     libght-dev \
-                     laszip \
-                     laszip-dev \
+                     libgeos-3.5.0 \
+                     libgeos-c1 \
+                     libgeos-dev \
+                     libgeos-doc \
                      libgeotiff \
                      libgeotiff-dev \
+                     libght \
+                     libght-dev \
                      libjpeg-turbo-official \
+                     libpq5 \
+                     libproj-dev \
+                     libproj0 \
                      opengeo \
                      opengeo-* \
                      pdal \
                      pdal-dev \
                      pgadmin3 \
                      pgadmin3-data \
-                     pgadmin3-docs \
-                     postgresql-9.3-pointcloud \
                      postgis-2.1 \
-                     postgresql-9.3-postgis-2.1 \
-                     libpq5 \
                      postgresql-9.3 \
+                     postgresql-9.3-pointcloud \
+                     postgresql-9.3-postgis-2.1 \
                      postgresql-client-9.3 \
                      postgresql-client-common \
                      postgresql-common \
-                     postgresql \
-                     libproj0 \
-                     libproj-dev \
                      proj \
                      proj-bin \
                      proj-data \
-                     libgdal-opengeo-dev \
-                     libgdal-opengeo \
-                     gdal-mrsid
+                     tomcat7
       apt-get autoremove
 
 #. Remove the reference to the Suite 4.8 repository:
