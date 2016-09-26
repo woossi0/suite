@@ -131,6 +131,8 @@ If running Boundless Suite in an application server on a Windows system:
 
 .. note:: Read more about :ref:`installing Java on Windows <install.windows.tomcat.java>`.
 
+.. _sysadmin.jvm.alternatives:
+
 Setting the default JVM using *update-alternatives*
 ---------------------------------------------------
 

@@ -80,7 +80,9 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
                         suite-gs-netcdf \
                         suite-gs-netcdf-out 
 
-     .. note::  See the :ref:`install.ubuntu.packages.list` for details of individual packages.
+   .. note::  See the :ref:`install.ubuntu.packages.list` for details of individual packages.
+
+   .. note::  If you already have an existing JVM installed, you may need to change the *default* java. Run ``java -version`` to check the default java version. If it is less than 1.8, use :ref:`update-alternatives<sysadmin.jvm.alternatives>` to change the default to the newly installed java 8 JVM.
 
 #. Restart the server.
 
