@@ -30,7 +30,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      wget -qO- https://apt.boundlessgeo.com/gpg.key | apt-key add -
+      wget -qO- https://yum.boundlessgeo.com/GPG-KEY-Boundless_Suite | apt-key add -
 
 #. Add the Boundless repository:
 

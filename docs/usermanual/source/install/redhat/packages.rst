@@ -30,19 +30,19 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-       mkdir -p /etc/pki/boundless
-       wget -O /etc/pki/boundless/RPM-GPG-KEY-OpenGeo_Suite https://yum.boundlessgeo.com/RPM-GPG-KEY-OpenGeo_Suite
+      mkdir -p /etc/pki/boundless
+      wget -O /etc/pki/boundless/GPG-KEY-Boundless_Suite https://yum.boundlessgeo.com/GPG-KEY-Boundless_Suite
 
 #. Add the Boundless Suite repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents:
 
-    .. code-block:: none
+   .. code-block:: none
 
-         [boundless-suite]
-         name=Boundless Suite Repository
-         baseurl=https://<username>:<password>@yum-ee.boundlessgeo.com/suite/v49/el6/$releasever/$basearch
-         enabled=1
-         gpgcheck=1
-         gpgkey=/etc/pki/boundless/RPM-GPG-KEY-OpenGeo_Suite
+      [boundless-suite]
+      name=Boundless Suite Repository
+      baseurl=https://<username>:<password>@yum-ee.boundlessgeo.com/suite/v49/el6/$releasever/$basearch
+      enabled=1
+      gpgcheck=1
+      gpgkey=/etc/pki/boundless/GPG-KEY-Boundless_Suite
 
    Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you.  
 
