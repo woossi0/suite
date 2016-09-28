@@ -42,7 +42,7 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
       baseurl=https://<username>:<password>@yum-ee.boundlessgeo.com/suite/v49/el6/$releasever/$basearch
       enabled=1
       gpgcheck=1
-      gpgkey=/etc/pki/boundless/GPG-KEY-Boundless_Suite
+      gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless_Suite
 
    Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you.  
 
