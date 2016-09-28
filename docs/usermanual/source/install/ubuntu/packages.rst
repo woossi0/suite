@@ -122,7 +122,7 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 
 #. Uninstall old packages:
 
-   .. warning:: This will uninstall many packages (including ``tomcat7``, ``posgresql/postgis``, and other common GIS tools). Verify that removing these packages will **not** interfere with other applications running on your system. Ensure you do not have another Tomcat (or other service) on port 8080.
+   .. warning:: This will uninstall many packages (including ``tomcat7``, ``postgresql/postgis``, and other common GIS tools). Verify that removing these packages will **not** interfere with other applications running on your system. Ensure you do not have another Tomcat (or other service) on port 8080.
 
    .. code-block:: bash
 
