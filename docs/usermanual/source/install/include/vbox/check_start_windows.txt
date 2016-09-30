@@ -30,3 +30,8 @@ It is important to test that the virtual machine installed in the previous exerc
 
       Boundless Suite Dashboard
 
+   .. note:: 
+
+      If you are using a different hypervisor such as `VMware <http://www.vmware.com/>`__, you may need to replace ``localhost`` with the IP address of your VM.  Execute ``ifconfig`` inside the console of the VM to find the IP address.
+
+
