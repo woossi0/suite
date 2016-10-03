@@ -5049,10 +5049,6 @@ div[class^='highlight'] pre {
   background-color: #00a78d !important;
 }
 
-.qgis-header {
-  background-color: #00a78d !important;
-}
-
 #header {
   position: fixed;
   height: 60px;
@@ -5155,13 +5151,6 @@ div[class^='highlight'] pre {
     width: 204px;
   }
 }
-#header .qgis_logo a {
-  background: url("../img/qgis-logo.png") no-repeat;
-  width: 144px;
-  height: 40px;
-  display: inline-block;
-  margin: 0.6em 0 0;
-}
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
   #header .suite_logo a {
     background: url("../img/suite-logo@2x.png") no-repeat;
@@ -5217,12 +5206,6 @@ div[class^='highlight'] pre {
     margin-left: 10px;
     margin-top: 0.8em;
     width: 204px;
-  }
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5 / 1), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
-  #header .qgis_logo a {
-    background: url("../img/qgis-logo@2x.png") no-repeat;
-    background-size: 144px 40px;
   }
 }
 #header .component_version_info {
