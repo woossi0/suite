@@ -2,7 +2,7 @@
 
   <import file="../build/common.xml"/>
 
-  <property name="docs.modules" value="usermanual,geowebcache,geoserver,postgis,openlayers,qgis"/>
+  <property name="docs.modules" value="usermanual,geowebcache,geoserver,postgis,openlayers"/>
 
   <target name="clean" depends="destroy-target" unless="skip.docs"
       description="Clean project">
@@ -31,9 +31,6 @@
         <fileset dir="target" includes="version.ini"/>
       </copy>
       <mkdir dir="${doc.dir}"/>
-      <copy todir="${doc.dir}/_static">
-        <fileset dir="qgis/target/html/_static" includes="**/*"/>
-      </copy>
 
       <for list="${docs.modules}" param="mod">
         <sequential>
