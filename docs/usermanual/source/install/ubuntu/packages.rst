@@ -36,7 +36,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      echo "deb https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v49/ubuntu/ trusty main" > /etc/apt/sources.list.d/boundless.list
+      echo "deb [arch=amd64] https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v49/ubuntu/ trusty main" > /etc/apt/sources.list.d/boundless.list
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
@@ -253,9 +253,9 @@ The following major binary packages are available:
      - MrSID plugin for GDAL
    * - ``libjpeg-turbo-official``
      - Libjpeg turbo binaries (version 1.4.2)
-   * - ``netcdf-bin``
+   * - ``libnetcdf-bin``
      - NetCDF Binary packages 
-   * - ``netcdf-dev``
+   * - ``libnetcdf-dev``
      - Development support for the NetCDF Binary 
    * - ``postgresql-9.3-postgis-2.1``
      - Postgresql 9.3 and PostGIS 2.1
