@@ -2,9 +2,9 @@ These instructions provide a **virtual machine** which has been already configur
 
 **All interaction with Boundless Suite will still be done through your host's standard browser or a terminal connection.** There is no need to interact directly with the virtual machine console once it is running.
 
-Two virtual machines are available. These instructions assume you are using the one designed to run inside `VirtualBox <https://www.virtualbox.org/>`__. This machine has VirtalBox Guest Additions installed, which is required for functionality such as shared folders. If you are instead using the generic virtual machine, you will have to manually set up guest-host integration by following the instructions for the virtualization application you are using.
+These instructions assume that you are using `VirtualBox <https://www.virtualbox.org/>`__. This machine has VirtalBox Guest Additions installed, which is required for functionality such as shared folders. 
 
-.. note:: 
+.. note::
 
    Prerequisites:
 
