@@ -2,7 +2,7 @@ These instructions provide a **virtual machine** which has been already configur
 
 **All interaction with Boundless Suite will still be done through your host's standard browser or a terminal connection.** There is no need to interact directly with the virtual machine console once it is running.
 
-These instructions assume that you are using `VirtualBox <https://www.virtualbox.org/>`__. This machine has VirtalBox Guest Additions installed, which is required for functionality such as shared folders. 
+These instructions should only be used with `VirtualBox <https://www.virtualbox.org/>`__. This machine has VirtualBox Guest Additions installed, which is required for functionality such as shared folders. 
 
 .. note::
 
