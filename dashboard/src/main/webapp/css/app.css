@@ -135,18 +135,18 @@ a:focus, a:active {
 }
 
 .navbar-brand {
-  background: #28728d url(../img/opengeo-logo.png) no-repeat left center;
-  width: 304px;
+  background: #28728d url(../img/suite-logo.png) no-repeat left center;
+  width: 300px;
   height: 40px;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 192dpi) {
   .navbar-brand {
-    background-image: url(../img/opengeo-logo@2x.png);
-    width: 304px;
+    background-image: url(../img/suite-logo@2x.png);
+    width: 300px;
     height: 40px;
-    background-size: 304px 40px;
+    background-size: 300px 40px;
     background-repeat: no-repeat;
   }
 }
