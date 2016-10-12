@@ -130,7 +130,7 @@ a:focus, a:active {
   background-color: #28728d;
   color: white;
   height: 60px;
-  padding: 7px 15px 13px 20px;
+  padding: 9px 15px 13px 20px;
   border-radius: 0;
 }
 
@@ -174,10 +174,6 @@ h5.version-info {
 
 .version {
   display: inline;
-}
-
-.navbar-nav.navbar-right:last-child {
-  padding-top: 3px;
 }
 
 .navbar-nav > li > a.tablink {
