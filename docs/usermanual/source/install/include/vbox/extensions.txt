@@ -12,4 +12,6 @@ To install an extension:
 
    .. note:: See :ref:`install.ubuntu.packages.list` for a list of package names.
 
+   .. warning:: You may receive a warning that packages cannot be authenticated. This is expected, and you may safely proceed.
+
 #. Depending on the extension, you may need to restart the server.
