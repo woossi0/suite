@@ -51,3 +51,5 @@ The following paths will be referenced on multiple occasions:
      /media/sf_share/
 
   .. note:: If you named your shared directory something other than ``share``, the shared folder will be named :file:`/media/sf_<name>`.
+
+The virtual machine is running Ubuntu, so please read more about :ref:`sysadmin.ubuntu` for more information.
