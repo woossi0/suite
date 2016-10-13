@@ -12,6 +12,18 @@ When connected to your virtual machine, the following commands may be useful:
 
      $ sudo service tomcat8 stop
 
+* **Start PostgreSQL/PostGIS**:
+
+  .. code-block:: console
+
+     $ sudo service postgresql start
+
+* **Stop PostgreSQL/PostGIS**:
+
+  .. code-block:: console
+
+     $ sudo service postgresql stop
+
 * **Shut down the virtual machine**:
 
   .. code-block:: console
