@@ -4,8 +4,8 @@ To install :ref:`SQL Server <intro.extensions.sqlserver>` support in GeoServer, 
 
 #. Copy the contents of the :file:`sqlserver` directory into the library directory (:file:`WEB-INF/lib`) of your GeoServer instance. For example, if your GeoServer application is located at :file:`/usr/share/tomcat/webapps/geoserver`, copy the files to :file:`/usr/share/tomcat/webapps/geoserver/WEB-INF/lib`.
 
-Because of licensing issues, **an additional file is required to be installed**.
+Because of licensing issues, **an additional file is required to be installed**. This file can be found as part of the `Microsoft JDBC Drivers for SQL Server <https://www.microsoft.com/en-us/download/details.aspx?id=11774>`_ archive available from Microsoft.
 
-#. Copy :file:`sqljdbc.jar` from the SQL Server installation media to the same directory specified above.
+#. Copy :file:`sqljdbc4.jar` to the same directory specified above.
 
 #. Restart the server.
