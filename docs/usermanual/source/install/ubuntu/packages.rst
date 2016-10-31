@@ -102,13 +102,54 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 Upgrade
 -------
 
+Upgrading from 4.9.0 to |version|
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubuntu Linux.
+
+.. note::
+   
+   If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
+
+#. Remove the 4.9.0 packages:
+   
+   .. code-block:: bash
+
+      apt-get remove suite-*
+
+   Make note of which packages were removed this way. 
+
+#. Replace the 4.9.0 repo definition with the new repo definition. Open ``/etc/apt/sources.list.d/boundless.list`` and replace the contents with:
+
+   .. code-block:: none
+
+      deb [arch=amd64] https://<username>:<password>@TODO_CONNECT_URL trusty main
+
+   Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
+
+#. Refresh the apt repo data:
+
+   .. code-block:: bash
+
+      apt-get update
+
+#. Install all Boundless Sutie 4.9.1 packages corresponding to the ``suite-*`` packages which were removed in step 1. For example:
+
+   .. code-block:: bash
+
+      apt-get install suite-geoserver suite-docs suite-dashboard 
+
+
+Upgrading from 4.8 and older
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 This section describes how to upgrade Boundless Suite 4.8 and earlier to |version| on Ubuntu Linux.
 
 .. warning:: We do **not** recommend upgrading Boundless Suite on a production server. Instead, do a new install on new machine, then transfer your data and settings to the new machine.
 
 .. warning::
 
-   Because of the major package changes involved, if you have any version earlier than 4.9, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system. 
+   Because of the major package changes involved, if you have any version earlier than 4.9.0, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system. 
 
    The data directory at ``/var/lib/opengeo/geoserver`` will not be removed during uninstallation.
 

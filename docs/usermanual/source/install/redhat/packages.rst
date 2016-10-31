@@ -103,13 +103,59 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 Upgrade
 -------
 
-This section describes how to upgrade Boundless Suite 4.x to |version| on Red Hat-based Linux distributions.
+Upgrading from 4.9.0 to |version|
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red Hat-based Linux distributions.
+
+.. note::
+   
+   If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
+
+#. Remove the 4.9.0 packages:
+   
+   .. code-block:: bash
+
+      yum remove suite-*
+
+   Make note of which packages were removed this way. 
+
+#. Replace the 4.9.0 repo definition with the new repo definition. Open ``/etc/yum.repo.d/Boundless.repo`` and replace the contents with:
+
+   .. code-block:: none
+
+      [boundless-suite]
+      name=Boundless Suite Repository
+      baseurl=https://<username>:<password>@TODO_CONNECT_URL
+      enabled=1
+      gpgcheck=1
+      gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless_Suite
+
+   Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
+
+#. Refresh the yum repo data:
+
+   .. code-block:: bash
+
+      yum clean all
+
+#. Install all Boundless Sutie 4.9.1 packages corresponding to the ``suite-*`` packages which were removed in step 1. For example:
+
+   .. code-block:: bash
+
+      yum install suite-geoserver suite-docs suite-dashboard 
+
+
+Upgrading from 4.8 and older
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section describes how to upgrade Boundless Suite 4.8 and earlier to |version| on Red Hat-based Linux distributions.
 
 .. warning:: We do **not** recommend upgrading Boundless Suite on a production server. Instead, do a new install on new machine, then transfer your data and settings to the new machine.
 
 .. warning::
 
-   Because of the major package changes involved, if you have any version earlier than 4.9, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system. 
+   Because of the major package changes involved, if you have any version earlier than 4.9.0, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system. 
 
    The data directory at ``/var/lib/opengeo/geoserver`` will not be removed during uninstallation.
 
