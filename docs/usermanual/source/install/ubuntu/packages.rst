@@ -30,15 +30,17 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      wget -qO- https://yum.boundlessgeo.com/GPG-KEY-Boundless_Suite | apt-key add -
+      wget -qO- https://downloads-repo.boundlessgeo.com/GPG-KEY-Boundless | apt-key add -
 
 #. Add the Boundless repository:
 
    .. code-block:: bash
 
-      echo "deb [arch=amd64] https://<username>:<password>@apt-ee.boundlessgeo.com/suite/v49/ubuntu/ trusty main" > /etc/apt/sources.list.d/boundless.list
+      echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.9.1/ubuntu trusty main" > /etc/apt/sources.list.d/boundless.list
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
+
+   .. note:: Your username is your email address. When entering your username into the ``boundless.list`` file, replace the ``@`` in your username with ``%40``.
 
    .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/>`__ if you have purchased Boundless Suite and do not have a user name and password.
 
@@ -111,6 +113,12 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
    
    If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
 
+#. Change to the ``root`` user:
+
+   .. code-block:: bash
+
+      sudo su -
+
 #. Remove the 4.9.0 packages:
    
    .. code-block:: bash
@@ -119,13 +127,21 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
 
    Make note of which packages were removed this way. 
 
+#. Import the Boundless GPG key:
+
+   .. code-block:: bash
+
+      wget -qO- https://downloads-repo.boundlessgeo.com/GPG-KEY-Boundless | apt-key add -
+
 #. Replace the 4.9.0 repo definition with the new repo definition. Open ``/etc/apt/sources.list.d/boundless.list`` and replace the contents with:
 
    .. code-block:: none
 
-      deb [arch=amd64] https://<username>:<password>@TODO_CONNECT_URL trusty main
+      deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.9.1/ubuntu trusty main
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
+
+   .. note:: Your username is your email address. When entering your username into the ``boundless.list`` file, replace the ``@`` in your username with ``%40``.
 
 #. Refresh the apt repo data:
 
