@@ -134,7 +134,7 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red 
 
       wget -O /etc/pki/boundless/GPG-KEY-Boundless https://downloads-repo.boundlessgeo.com/GPG-KEY-Boundless
 
-#. Replace the 4.9.0 repo definition with the new repo definition. Open ``/etc/yum.repo.d/Boundless.repo`` and replace the contents with:
+#. Replace the 4.9.0 repo definition with the new repo definition. Open ``/etc/yum.repos.d/Boundless.repo`` and replace the contents with:
 
    .. code-block:: none
 
