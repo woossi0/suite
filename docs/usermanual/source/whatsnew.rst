@@ -5,7 +5,7 @@ What's new in |version|
 
 Boundless Suite |version| has some minor changes:
 
-* Boundless Suite is now integrated with **Boundless Connect** for easier access to support, documentation, and community.
+* Boundless Suite is now integrated with **Boundless Connect** for easier access to support, documentation, and community.  See the upgrade instructions for your platform.
 
 * New product **logos** and branding
 
@@ -14,7 +14,7 @@ Boundless Suite |version| has some minor changes:
 * Minor **bug** fixes
 
 What's new in 4.9.0
-===================
+-------------------
 Each new version of Boundless Suite includes numerous fixes and component upgrades.
 
 In addition, Boundless Suite |version| includes the following new features:
