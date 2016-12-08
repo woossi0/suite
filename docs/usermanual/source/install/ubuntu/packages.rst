@@ -50,7 +50,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
       apt-get update
 
-#. Search for Boundless packages to verify that the repository list is correct. 
+#. Search for Boundless packages to verify that the repository list is correct.
 
    .. code-block:: bash
 
@@ -64,7 +64,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
      .. code-block:: bash
 
-        apt-get install suite-geoserver suite-docs suite-dashboard 
+        apt-get install suite-geoserver suite-docs suite-dashboard
 
    * A more complete install, including all the web applications, PostGIS, GDAL, and NetCDF:
 
@@ -80,7 +80,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
                         postgresql-9.3-postgis-2.1 \
                         suite-gs-gdal \
                         suite-gs-netcdf \
-                        suite-gs-netcdf-out 
+                        suite-gs-netcdf-out
 
    .. note::  See the :ref:`install.ubuntu.packages.list` for details of individual packages.
 
@@ -110,7 +110,7 @@ Upgrading from 4.9.0 to |version|
 This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubuntu Linux.
 
 .. note::
-   
+
    If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
 
 #. Change to the ``root`` user:
@@ -120,12 +120,12 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
       sudo su -
 
 #. Remove the 4.9.0 packages:
-   
+
    .. code-block:: bash
 
       apt-get remove suite-*
 
-   Make note of which packages were removed this way. 
+   Make note of which packages were removed this way.
 
 #. Import the Boundless GPG key:
 
@@ -149,11 +149,11 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
 
       apt-get update
 
-#. Install all Boundless Sutie 4.9.1 packages corresponding to the ``suite-*`` packages which were removed in step 1. For example:
+#. Install all Boundless Suite 4.9.1 packages corresponding to the ``suite-*`` packages which were removed in step 1. For example:
 
    .. code-block:: bash
 
-      apt-get install suite-geoserver suite-docs suite-dashboard 
+      apt-get install suite-geoserver suite-docs suite-dashboard
 
 
 Upgrading from 4.8 and older
@@ -165,7 +165,7 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 
 .. warning::
 
-   Because of the major package changes involved, if you have any version earlier than 4.9.0, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system. 
+   Because of the major package changes involved, if you have any version earlier than 4.9.0, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system.
 
    The data directory at ``/var/lib/opengeo/geoserver`` will not be removed during uninstallation.
 
@@ -311,13 +311,13 @@ The following major binary packages are available:
    * - ``libjpeg-turbo-official``
      - Libjpeg turbo binaries (version 1.4.2)
    * - ``libnetcdf-bin``
-     - NetCDF Binary packages 
+     - NetCDF Binary packages
    * - ``libnetcdf-dev``
-     - Development support for the NetCDF Binary 
+     - Development support for the NetCDF Binary
    * - ``postgresql-9.3-postgis-2.1``
      - Postgresql 9.3 and PostGIS 2.1
    * - ``postgresql-9.3-pointcloud``
-     - Pointcloud for postgresql 
+     - Pointcloud for postgresql
    * - ``pdal``
      - PDAL (Point Data Abstraction Library)
    * - ``pdal-dev``
