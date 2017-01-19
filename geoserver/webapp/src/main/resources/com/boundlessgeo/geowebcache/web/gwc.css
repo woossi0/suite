@@ -10,7 +10,7 @@ table.stats tbody + tbody tr + tr * {padding-top: inherit;}
 table.stats th[scope=row] {text-align: right;}
 table.stats th[scope=col] {text-align: left;}
 
-body {padding-top: 55px;}
+body {padding-top: 75px;}
 
 #pageHeader {
 	background-color: #28728d;
