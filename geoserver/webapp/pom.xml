@@ -59,6 +59,7 @@
   <properties>
     <gs.version>2.11-SNAPSHOT</gs.version>
     <gt.version>17-SNAPSHOT</gt.version>
+    <imageio.ext.version>1.1.17</imageio.ext.version>
     <jetty.version>9.2.13.v20150730</jetty.version>
     <spring.version>4.2.5.RELEASE</spring.version>
     <spring.security.version>4.0.4.RELEASE</spring.security.version>
@@ -258,7 +259,7 @@
     <dependency>
       <groupId>it.geosolutions.imageio-ext</groupId>
       <artifactId>imageio-ext-imagereadmt</artifactId>
-      <version>1.1.11</version>
+      <version>${imageio.ext.version}</version>
     </dependency>
     <dependency>
      <groupId>com.mockrunner</groupId>
