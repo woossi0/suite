@@ -77,7 +77,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
                         suite-docs \
                         suite-quickview  \
                         suite-wpsbuilder \
-                        postgresql-9.3-postgis-2.1 \
+                        postgresql-9.6-postgis-2.3 \
                         suite-gs-gdal \
                         suite-gs-netcdf \
                         suite-gs-netcdf-out
@@ -210,11 +210,11 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
                      pdal-dev \
                      pgadmin3 \
                      pgadmin3-data \
-                     postgis-2.1 \
-                     postgresql-9.3 \
-                     postgresql-9.3-pointcloud \
-                     postgresql-9.3-postgis-2.1 \
-                     postgresql-client-9.3 \
+                     postgis-2.3 \
+                     postgresql-9.6 \
+                     postgresql-9.6-pointcloud \
+                     postgresql-9.6-postgis-2.3 \
+                     postgresql-client-9.6 \
                      postgresql-client-common \
                      postgresql-common \
                      proj \
@@ -314,9 +314,9 @@ The following major binary packages are available:
      - NetCDF Binary packages
    * - ``libnetcdf-dev``
      - Development support for the NetCDF Binary
-   * - ``postgresql-9.3-postgis-2.1``
-     - Postgresql 9.3 and PostGIS 2.1
-   * - ``postgresql-9.3-pointcloud``
+   * - ``postgresql-9.6-postgis-2.3``
+     - PostgreSQL and PostGIS
+   * - ``postgresql-9.6-pointcloud``
      - Pointcloud for postgresql
    * - ``pdal``
      - PDAL (Point Data Abstraction Library)

@@ -40,13 +40,13 @@ Before PostgreSQL service can be started it must first be initialized:
 
 .. code-block:: bash
 
-   service postgresql-9.3 initdb
+   service postgresql-9.6 initdb
 
 To start|stop|restart the PostgreSQL service:
 
 .. code-block:: bash
  
-   service postgresql-9.3 start|stop|restart
+   service postgresql-9.6 start|stop|restart
 
 Service port configuration
 --------------------------
@@ -58,7 +58,7 @@ Changing the Tomcat port
 
 To change the Tomcat port:
 
-#. Edit the file :file:`/etc/tomcat8/conf/server.xml`. 
+#. Edit the file :file:`/etc/tomcat8/conf/server.xml`.
 
 #. Search for the following line::
 
@@ -73,9 +73,9 @@ Changing the PostgreSQL port
 
 To change the PostgreSQL port:
 
-#. Edit the file :file:`/var/lib/pgsql/9.3/data/postgresql.conf`.
+#. Edit the file :file:`/var/lib/pgsql/9.6/data/postgresql.conf`.
 
-#. Search or the ``port`` property (around line 63), uncomment and change it to the desired value.
+#. Search or the ``port`` property, uncomment and change it to the desired value.
 
 #. Restart PostgreSQL.
 
@@ -123,7 +123,7 @@ Working with GeoServer
 GeoServer data directory
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The **GeoServer data directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/opt/boundless/suite/geoserver/data`. 
+The **GeoServer data directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/opt/boundless/suite/geoserver/data`.
 
 To point GeoServer to an alternate location:
 
@@ -191,6 +191,6 @@ To restore the previous ``crs`` representation for compatibility reasons (especi
 PostgreSQL configuration
 ------------------------
 
-PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located at :file:`/var/lib/pgsql/9.3/data/postgresql.conf`. 
+PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located at :file:`/var/lib/pgsql/9.6/data/postgresql.conf`.
 
 You will want to ensure that you can connect to the database. Please see the section on :ref:`dataadmin.pgGettingStarted.firstconnect` to set this up.

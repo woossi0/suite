@@ -32,7 +32,7 @@ Backing up the PostGIS database system
 
 .. note:: Please see the :ref:`install` section for your particular operating system if backing up in preparation for an upgrade to Boundless Suite 4.x.
 
-The PostGIS databases can be backed up with the built-in utilities `pg_dump <http://www.postgresql.org/docs/9.3/static/app-pgdump.html>`_ (for a single database) and `pg_dumpall <http://www.postgresql.org/docs/9.3/static/app-pg-dumpall.html>`_ (for multiple databases).
+The PostGIS databases can be backed up with the built-in utilities `pg_dump <http://www.postgresql.org/docs/9.6/static/app-pgdump.html>`_ (for a single database) and `pg_dumpall <http://www.postgresql.org/docs/9.6/static/app-pg-dumpall.html>`_ (for multiple databases).
 
 Custom content
 --------------

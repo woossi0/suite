@@ -42,7 +42,7 @@ Loading data
 
                   postgis_version
       ---------------------------------------
-       2.0 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
+       2.3 USE_GEOS=1 USE_PROJ=1 USE_STATS=1
 
    .. note:: These examples use the default port (5432), but substitute your own PostGIS port if different with the ``-p`` option.
 
@@ -277,13 +277,13 @@ By default, PostGIS is not setup to use the GDAL libraries. To enable it;
 
            .. code-block:: bash
 
-                service postgresql-9.3 restart
+                service postgresql-9.6 restart
 
 
 
    Ubuntu: 
 
-        #. Edit the :file:`/etc/postgresql/9.3/main/environment` file
+        #. Edit the :file:`/etc/postgresql/9.6/main/environment` file
 
         #. Add the following lines;
 
