@@ -44,7 +44,7 @@ Other options in addition to the above are ``reload``, ``force-reload``, and ``s
 
    .. code-block:: bash
 
-      sudo service postgresql start 9.3 
+      sudo service postgresql start 9.6
 
 Service port configuration
 --------------------------
@@ -75,9 +75,9 @@ Changing the PostgreSQL port
 
 To change the PostgreSQL port:
 
-#. Edit the file :file:`/etc/postgresql/9.3/main/postgresql.conf`.
+#. Edit the file :file:`/etc/postgresql/9.6/main/postgresql.conf`.
 
-#. Search or the ``port`` property (around line 63) and change it to the desired value.
+#. Search or the ``port`` property and change it to the desired value.
 
 #. Restart PostgreSQL.
 
@@ -195,6 +195,6 @@ To restore the previous ``crs`` representation for compatibility reasons (especi
 PostgreSQL configuration
 ------------------------
 
-PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located at :file:`/etc/postgresql/9.3/main/postgresql.conf`. 
+PostgreSQL configuration is controlled within the ``postgresql.conf`` file. This file is located at :file:`/etc/postgresql/9.6/main/postgresql.conf`. 
 
 You will want to ensure that you can connect to the database. Please see the section on :ref:`dataadmin.pgGettingStarted.firstconnect` to set this up.

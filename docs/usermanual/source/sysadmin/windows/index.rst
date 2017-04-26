@@ -5,10 +5,6 @@ Administration on Windows
 
 This document contains information about various tasks specific to Boundless Suite for Windows. 
 
-.. |postgresql.conf| replace:: :file:`C:\\ProgramData\\Boundless\\OpenGeo\\pgsql\\9.3\\postgresql.conf`
-
-.. todo:: Might want to make the PG version a global var.
-
 Boundless services
 ------------------
 

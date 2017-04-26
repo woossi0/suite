@@ -13,11 +13,11 @@ Point Cloud is available in the Boundless Suite Virtual Machine.  Use a terminal
 Ubuntu Linux
 ------------
 
-A package for Ubuntu Linux is available called ``postgresql-9.3-pointcloud``. It can be installed via standard package management, assuming the Boundless Suite repository has been added. (See the :ref:`Ubuntu installation page <install.ubuntu.packages>` for more information.)
+A package for Ubuntu Linux is available called ``postgresql-9.6-pointcloud``. It can be installed via standard package management, assuming the Boundless Suite repository has been added. (See the :ref:`Ubuntu installation page <install.ubuntu.packages>` for more information.)
 
 .. code-block:: console
 
-   apt-get install postgresql-9.3-pointcloud
+   apt-get install postgresql-9.6-pointcloud
    apt-get install pdal
 
 Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
@@ -25,11 +25,11 @@ Then continue below at :ref:`dataadmin.pointcloud.install.activate`.
 Red Hat-based Linux
 -------------------
 
-A package for Red Hat-based Linux distributions such as RHEL and CentOS is available, called ``pointcloud-postgresql93``. It can be installed via standard package management, assuming the Boundless Suite repository has been added. (See the :ref:`Red Hat installation page <install.redhat.packages>` for more information.)
+A package for Red Hat-based Linux distributions such as RHEL and CentOS is available, called ``pointcloud-postgresql96``. It can be installed via standard package management, assuming the Boundless Suite repository has been added. (See the :ref:`Red Hat installation page <install.redhat.packages>` for more information.)
   
 .. code-block:: console
 
-   yum install pointcloud-postgresql93
+   yum install pointcloud-postgresql96
    yum install pdal
 
 Then continue below at :ref:`dataadmin.pointcloud.install.activate`.

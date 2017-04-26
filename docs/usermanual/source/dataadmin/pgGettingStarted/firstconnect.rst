@@ -52,7 +52,7 @@ The file :file:`pg_hba.conf` governs the basic constraints underlying connection
 
 To allow this:
 
-#. As a super user, open :file:`/etc/postgresql/9.3/main/pg_hba.conf` (Ubuntu) or :file:`/var/lib/pgsql/9.3/data/pg_hba.conf` (Red Hat) in a text editor.
+#. As a super user, open :file:`/etc/postgresql/9.6/main/pg_hba.conf` (Ubuntu) or :file:`/var/lib/pgsql/9.6/data/pg_hba.conf` (Red Hat) in a text editor.
 
 #. Scroll down to the line that describes local socket connections. It may look like this:
 
@@ -80,13 +80,13 @@ To allow this:
 
      .. code-block:: console
 
-        sudo service postgresql restart  
+        sudo service postgresql restart
 
    * Red Hat:
 
      .. code-block:: console
 
-        sudo service postgresql-9.3 restart 
+        sudo service postgresql-9.6 restart
 
 #. To test your connection using :command:`psql`, run the following command:
 
@@ -113,7 +113,7 @@ In order to allow connections from remote systems, some slightly different confi
 
 The details are similar to that of allowing local connections, with some slight differences.
 
-#. As a super user, open :file:`/etc/postgresql/9.3/main/pg_hba.conf` (Ubuntu) or :file:`/var/lib/pgsql/9.3/data/pg_hba.conf` (Red Hat) in a text editor.
+#. As a super user, open :file:`/etc/postgresql/9.6/main/pg_hba.conf` (Ubuntu) or :file:`/var/lib/pgsql/9.6/data/pg_hba.conf` (Red Hat) in a text editor.
 
 #. Scroll down to the line that describes local socket connections. It may look like this:
 
@@ -149,13 +149,13 @@ The details are similar to that of allowing local connections, with some slight 
 
      .. code-block:: console
 
-        sudo service postgresql restart  
+        sudo service postgresql restart
 
    * Red Hat:
 
      .. code-block:: console
 
-        sudo service postgresql-9.3 restart 
+        sudo service postgresql-9.6 restart
 
 #. To test your connection using :command:`pgAdmin`, connect to the database at the IP address or host name of the system that hosts the database. Enter the user name ``postgres`` and the password supplied.
 

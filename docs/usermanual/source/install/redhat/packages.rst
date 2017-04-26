@@ -77,7 +77,7 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
                     suite-docs \
                     suite-quickview  \
                     suite-wpsbuilder \
-                    postgis21-postgresql93 \
+                    postgis23-postgresql96 \
                     suite-gs-gdal \
                     suite-gs-netcdf \
                     suite-gs-netcdf-out
@@ -215,11 +215,11 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
                       pdal-devel \
                       pgadmin3 \
                       pgadmin3-docs \
-                      pointcloud-postgresql93 \
-                      postgis21 \
-                      postgis21-* \
-                      postgresql93 \
-                      postgresql93-* \
+                      pointcloud-postgresql96 \
+                      postgis23 \
+                      postgis23-* \
+                      postgresql96 \
+                      postgresql96-* \
                       proj-* \
                       proj \
                       wxBase \
@@ -316,9 +316,9 @@ The following major binary packages are available:
      - NetCDF Binary packages
    * - ``netcdf-devel``
      - Development support for the NetCDF Binary
-   * - ``postgis21-postgresql93``
-     - Postgresql 9.3 and PostGIS 2.1
-   * - ``pointcloud-postgresql93``
+   * - ``postgis23-postgresql96``
+     - Postgresql and PostGIS
+   * - ``pointcloud-postgresql96``
      - Pointcloud for postgresql
    * - ``pdal``
      - PDAL (Point Data Abstraction Library)

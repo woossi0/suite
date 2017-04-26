@@ -13,21 +13,17 @@ By default, the database is typically located in the following locations:
 
    * - Operating system
      - File path
-   * - Windows
-     - :file:`C:\\ProgramData\\Boundless\\OpenGeo\\pgsql\\9.3`
-   * - OS X
-     - :file:`~/Library/Application\\ Support/PostGIS`
    * - Ubuntu Linux
-     - :file:`/var/lib/postgresql/9.3/main`
+     - :file:`/var/lib/postgresql/9.6/main`
    * - Red Hat / CentOS Linux
-     - :file:`/var/lib/pgsql/9.3/data`
+     - :file:`/var/lib/pgsql/9.6/data`
 
 Please see the instructions specific to your operating system.
 
 Windows
 -------
 
-.. note:: PostgreSQL is no longer available from Boundless Suite for Windows. These instructions will only apply if you have a PostgreSQL installation from an older version of Suite. If you are using the Boundless Suite virtual machine on Windows, log into the VM and follow the Ubuntu instructions.
+.. note:: PostgreSQL is no longer available from Boundless Suite for Windows. These instructions will only apply if you have a PostgreSQL installation from an older version. If you are using the Boundless Suite virtual machine on Windows, log into the VM and follow the Ubuntu instructions.
 
 #. Open Windows Services (typically :menuselection:`Control Panel --> Administrative Tools --> Services` or :menuselection:`Start --> Run --> services.msc`) and stop the :guilabel:`OpenGeo PostgreSQL` service.
 
@@ -79,13 +75,13 @@ Using a symlink:
 
 #. Move the location of the data directory::
 
-     sudo mv /var/lib/postgresql/9.3/main <NEWPATH>
+     sudo mv /var/lib/postgresql/9.6/main <NEWPATH>
 
    where ``<NEWPATH>`` would be the desired path (such as ``/opt/pgdata``)
 
 #. Create a symlink from the old path the new one::
 
-     ln -s /var/lib/postgresql/9.3/main <NEWPATH>
+     ln -s /var/lib/postgresql/9.6/main <NEWPATH>
 
 #. Start the PostgreSQL service::
 
@@ -99,13 +95,13 @@ Editing the configuration file:
 
 #. Move the location of the data directory::
 
-     sudo mv /var/lib/postgresql/9.3/main <NEWPATH>
+     sudo mv /var/lib/postgresql/9.6/main <NEWPATH>
 
    where ``<NEWPATH>`` would be the desired path (such as ``/opt/pgdata``)
 
-#. Open :file:`/etc/postgresql/9.3/main/postgresql.conf` in a text editor (with super user privileges).
+#. Open :file:`/etc/postgresql/9.6/main/postgresql.conf` in a text editor (with super user privileges).
 
-#. Find the line that reads ``data_directory=/var/lib/postgresql/9.3/main`` and change the path to the ``<NEWPATH>`` determined above.
+#. Find the line that reads ``data_directory=/var/lib/postgresql/9.6/main`` and change the path to the ``<NEWPATH>`` determined above.
 
 #. Save and close the file.
 
@@ -122,35 +118,35 @@ Using a symlink:
 
 #. Stop the PostgreSQL service::
 
-     sudo service postgresql-9.3 stop
+     sudo service postgresql-9.6 stop
 
 #. Move the location of the data directory::
 
-      sudo mv /var/lib/pgsql/9.3/data <NEWPATH>
+      sudo mv /var/lib/pgsql/9.6/data <NEWPATH>
 
    where ``<NEWPATH>`` would be the desired path (such as ``/opt/pgdata``)
 
 #. Create a symlink from the old path the new one::
 
-      ln -s /var/lib/pgsql/9.3/data <NEWPATH>
+      ln -s /var/lib/pgsql/9.6/data <NEWPATH>
 
 #. Start the PostgreSQL service::
 
-      sudo service postgresql-9.3 start
+      sudo service postgresql-9.6 start
 
 Editing the configuration file:
 
 #. Stop the PostgreSQL service::
 
-     sudo service postgresql-9.3 stop
+     sudo service postgresql-9.6 stop
 
 #. Move the location of the data directory::
 
-      sudo mv /var/lib/pgsql/9.3/data <NEWPATH>
+      sudo mv /var/lib/pgsql/9.6/data <NEWPATH>
 
    where ``<NEWPATH>`` would be the desired path (such as ``/opt/pgdata``)
 
-#. Open :file:`/etc/rc.d/init.d/postgresql-9.3` in a text editor (with super user privileges).
+#. Open :file:`/etc/rc.d/init.d/postgresql-9.6` in a text editor (with super user privileges).
 
 #. Find the line that starts with ``PGDATA`` and and change the path to the ``<NEWPATH>`` determined above.
 
