@@ -215,11 +215,10 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
                       pdal-devel \
                       pgadmin3 \
                       pgadmin3-docs \
-                      pointcloud-postgresql96 \
-                      postgis23 \
-                      postgis23-* \
-                      postgresql96 \
-                      postgresql96-* \
+                      pointcloud-* \
+                      postgis2* \
+                      postgresql \
+                      postgresql* \
                       proj-* \
                       proj \
                       wxBase \
@@ -318,12 +317,6 @@ The following major binary packages are available:
      - Development support for the NetCDF Binary
    * - ``postgis23-postgresql96``
      - Postgresql and PostGIS
-   * - ``pointcloud-postgresql96``
-     - Pointcloud for postgresql
-   * - ``pdal``
-     - PDAL (Point Data Abstraction Library)
-   * - ``pdal-devel``
-     - Development support for PDAL
    * - ``proj``
      - PROJ.4 libary
    * - ``geos-3.5.0``
