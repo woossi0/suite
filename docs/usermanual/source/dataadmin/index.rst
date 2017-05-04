@@ -15,7 +15,6 @@ Working with PostGIS
    pgBasics/index
    pgAdvanced/index
    pgDBAdmin/index
-   pointcloud/index
 
 Working with GeoServer
 ----------------------
