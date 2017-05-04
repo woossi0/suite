@@ -259,71 +259,70 @@ latex_show_urls = 'inline'
 #    \pagestyle{empty}
 #
 
-latex_preamble = """
-
-\\usepackage[scaled]{helvet}
-\\renewcommand*\\familydefault{\\sfdefault}
-\\usepackage[T1]{fontenc}
-
-\\usepackage{ifthen}
-\\setlength\\fboxsep{0pt}
-\\setlength\\fboxrule{1pt}
-
-\\usepackage{fancybox, graphicx}
-\\let\\OLDincludegraphics\\includegraphics
-\\newlength{\\somewidth}
-\\renewcommand{\\includegraphics}[1]{
-  \\settowidth{\\somewidth}{\\OLDincludegraphics{#1}}
-  \\ifnum\\pdfstrcmp{#1}{suite-logo-only-color.png}=0
-    \\OLDincludegraphics{#1}
-  \\else
-    \\ifthenelse{\\lengthtest{\\somewidth>4in}}{
-      \\shadowbox{\\OLDincludegraphics[width=4in]{#1}}}{
-      \\shadowbox{\\OLDincludegraphics{#1}}}
-  \\fi
-}
-
-\\usepackage{float}
-
-\\let\\origfigure=\\figure
-\\renewenvironment{figure}[6]{
-  \\origfigure[H]}
-{\\endlist}
-
-\\setcounter{secnumdepth}{3}
-\\setcounter{tocdepth}{2}
-
-\\usepackage{moreverb}
-\\usepackage{listings}
-\\lstset{
-  numbers=none,
-  basicstyle=\\small\\ttfamily,
-  columns=flexible,
-  keepspaces=true,
-  breakatwhitespace=false,
-  breaklines=true
-}
-
-\\let\\cleardoublepage\\clearpage
-
-\\usepackage{fancyhdr}
-\\fancypagestyle{plain}{
-    \\fancyhead{}
-    \\fancyhead[R]{Boundless Suite User Manual}
-}
-\\pagestyle{plain}
-
-\\if@titlepage
-  \\pagestyle{empty}
-\\fi
-
-\\raggedright
-
-"""
 
 latex_elements = {
 	'classoptions': ',oneside',
 	'babel': '\\usepackage[english]{babel}',
+  'preamble':
+    """
+      \\usepackage[scaled]{helvet}
+      \\renewcommand*\\familydefault{\\sfdefault}
+      \\usepackage[T1]{fontenc}
+
+      \\usepackage{ifthen}
+      \\setlength\\fboxsep{0pt}
+      \\setlength\\fboxrule{1pt}
+
+      \\usepackage{fancybox, graphicx}
+      \\let\\OLDincludegraphics\\includegraphics
+      \\newlength{\\somewidth}
+      \\renewcommand{\\includegraphics}[1]{
+        \\settowidth{\\somewidth}{\\OLDincludegraphics{#1}}
+        \\ifnum\\pdfstrcmp{#1}{suite-logo-only-color.png}=0
+          \\OLDincludegraphics{#1}
+        \\else
+          \\ifthenelse{\\lengthtest{\\somewidth>4in}}{
+            \\shadowbox{\\OLDincludegraphics[width=4in]{#1}}}{
+            \\shadowbox{\\OLDincludegraphics{#1}}}
+        \\fi
+      }
+
+      \\usepackage{float}
+
+      \\let\\origfigure=\\figure
+      \\renewenvironment{figure}[6]{
+        \\origfigure[H]}
+      {\\endlist}
+
+      \\setcounter{secnumdepth}{3}
+      \\setcounter{tocdepth}{2}
+
+      \\usepackage{moreverb}
+      \\usepackage{listings}
+      \\lstset{
+        numbers=none,
+        basicstyle=\\small\\ttfamily,
+        columns=flexible,
+        keepspaces=true,
+        breakatwhitespace=false,
+        breaklines=true
+      }
+
+      \\let\\cleardoublepage\\clearpage
+
+      \\usepackage{fancyhdr}
+      \\fancypagestyle{plain}{
+          \\fancyhead{}
+          \\fancyhead[R]{Boundless Suite User Manual}
+      }
+      \\pagestyle{plain}
+
+      \\if@titlepage
+        \\pagestyle{empty}
+      \\fi
+
+      \\raggedright
+    """
 }
 
 # Documents to append as an appendix to all manuals.
