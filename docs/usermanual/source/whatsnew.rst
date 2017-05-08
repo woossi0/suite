@@ -44,7 +44,7 @@ Version 4.9.0 included the following new and updated features:
 
 **Other changes**
 
-* As part of a product realignment, **Boundless Suite now focuses on server components**, and as such will not include desktop utilities such as pgAdmin. Users wanting pgAdmin from Boundless should use Boundless Desktop.
+* As part of a product realignment, **Boundless Suite now focuses on server components**, and as such will not include desktop utilities such as pgAdmin. Users wanting pgAdmin from Boundless should use :desktop:`Boundless Desktop <what_is_bd.html>`.
 
 * GeoExplorer has been deprecated (and replace by the WebSDK) and is no longer packaged with Boundless Suite.
 

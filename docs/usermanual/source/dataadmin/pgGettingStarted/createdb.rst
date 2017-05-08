@@ -6,7 +6,7 @@ Creating a spatial database
 
 This section describes the process of creating a new spatially enabled PostGIS database.
 
-.. note:: This section uses the command line utility ``createdb`` and optionally the graphical utility ``pgAdmin``. ``createdb`` is included with the Boundless Suite PostgreSQL package. ``pgAdmin`` is provided as part of Boundless Desktop.
+.. note:: This section uses the command line utility ``createdb`` and optionally the graphical utility ``pgAdmin``. ``createdb`` is included with the Boundless Suite PostgreSQL package. ``pgAdmin`` is provided as part of :desktop:`Boundless Desktop <what_is_bd.html>`.
 
 #. Expand the :guilabel:`Databases` item in the :guilabel:`Object browser` to reveal the available databases. 
 
