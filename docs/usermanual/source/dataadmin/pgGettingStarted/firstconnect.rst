@@ -3,7 +3,7 @@
 Connecting to PostgreSQL on Linux for the first time
 ====================================================
 
-.. note:: This section uses the command line utility ``psql`` and optionally the graphical utility ``pgAdmin``.  ``psql`` is included with the Boundless Suite PostgreSQL package. ``pgAdmin`` is provided as part of Boundless Desktop.
+.. note:: This section uses the command line utility ``psql`` and optionally the graphical utility ``pgAdmin``.  ``psql`` is included with the Boundless Suite PostgreSQL package. ``pgAdmin`` is provided as part of :desktop:`Boundless Desktop <what_is_bd.html>`.
 
 on Linux, both on Ubuntu and Red Hat-based systems, the default PostgreSQL configuration has connections turned off for the ``postgres`` user by default.
 

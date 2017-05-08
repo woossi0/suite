@@ -7,7 +7,7 @@ Loading raster data into PostGIS from the Command Line
 
 PostGIS provides a ``raster2pgsql`` tool for converting raster data sources into database tables. This section describes how to use this tool to load a single or multiple raster files.
 
-.. note:: This section uses the command line utility ``raster2pgsql`` and optionally the graphical utility :command:`pgAdmin`. ``raster2pgsql`` is included with the Boundless Suite PostGIS package. ``pgAdmin`` is provided as part of Boundless Desktop.
+.. note:: This section uses the command line utility ``raster2pgsql`` and optionally the graphical utility :command:`pgAdmin`. ``raster2pgsql`` is included with the Boundless Suite PostGIS package. ``pgAdmin`` is provided as part of :desktop:`Boundless Desktop <what_is_bd.html>`.
 
 How It Works
 ------------

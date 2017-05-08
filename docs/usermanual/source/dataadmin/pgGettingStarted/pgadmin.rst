@@ -8,7 +8,7 @@ There are a number of front-end tools available for connecting to, and working w
 
 Any data querying and manipulation you can do with :command:`pgAdmin` can also be done at the command line with ``psql``.
 
-.. note:: This section uses the client tool :command:`pgAdmin`, a graphical utility provided as part of Boundless Desktop.
+.. note:: This section uses the client tool :command:`pgAdmin`, a graphical utility provided as part of :desktop:`Boundless Desktop <what_is_bd.html>`.
 
 Working with pgAdmin
 --------------------
