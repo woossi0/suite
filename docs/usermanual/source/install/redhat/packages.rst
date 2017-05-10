@@ -183,9 +183,17 @@ This section describes how to upgrade Boundless Suite 4.9.x to |version| on Red 
 
 #. Initialize the new database:
 
+   *CentOS/RHEL 6*:
+
    .. code-block:: bash
 
       service postgresql-9.6 initdb
+
+   *CentOS/RHEL 7*:
+
+   .. code-block:: bash
+
+      sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
 
 #. Start the new database:
 
