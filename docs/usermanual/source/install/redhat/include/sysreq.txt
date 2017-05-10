@@ -5,6 +5,7 @@ The following distributions are supported:
 
 * CentOS 7 (64-bit)
 * CentOS 6 (64-bit)
+* RHEL 7 (64-bit)
 * RHEL 6 (64-bit)
 
 Boundless Suite for Red Hat has the following system requirements:

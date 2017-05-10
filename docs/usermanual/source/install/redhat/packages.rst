@@ -109,8 +109,6 @@ Upgrading from 4.9.x to |version|
 
 This section describes how to upgrade Boundless Suite 4.9.x to |version| on Red Hat-based Linux distributions.
 
-.. note:: If you made changes to the Tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
-
 .. note:: This upgrade moved from PostgreSQL 9.3 to 9.6. If you are using the database aspect of Boundless Suite, a migration will need to occur.
 
 #. Change to the ``root`` user:
@@ -176,14 +174,6 @@ This section describes how to upgrade Boundless Suite 4.9.x to |version| on Red 
       yum install postgresql96 postgresql96-server postgresql96-libs postgis23-postgresql96
 
    .. note:: If prompted for a configuration conflict, choose the first option to take the maintainer's version.
-
-#. Change existing legacy PostgreSQL server to run on different port by editing :file:`/etc/init.d/postgresql-9.3` in a text editor and specifying a different port.
-
-   ::
-
-     PGPORT=5433
-
-   Save and close the file when done.
 
 #. Restart the legacy database:
 
