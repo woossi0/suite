@@ -36,7 +36,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.9.1/ubuntu trusty main" > /etc/apt/sources.list.d/boundless.list
+      echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.10/ubuntu trusty main" > /etc/apt/sources.list.d/boundless.list
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
@@ -104,14 +104,14 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 Upgrade
 -------
 
-Upgrading from 4.9.0 to |version|
+Upgrading from 4.9.x to |version|
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubuntu Linux.
+This section describes how to upgrade Boundless Suite 4.9.x to |version| on Ubuntu Linux.
 
-.. note::
+.. note:: If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
 
-   If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
+.. note:: This upgrade moved from PostgreSQL 9.3 to 9.6. If you are using the database aspect of Boundless Suite, a migration will need to occur.
 
 #. Change to the ``root`` user:
 
@@ -119,7 +119,7 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
 
       sudo su -
 
-#. Remove the 4.9.0 packages:
+#. Remove the 4.9.x packages:
 
    .. code-block:: bash
 
@@ -133,7 +133,7 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
 
       wget -qO- https://downloads-repo.boundlessgeo.com/GPG-KEY-Boundless | apt-key add -
 
-#. Replace the 4.9.0 repo definition with the new repo definition. Open ``/etc/apt/sources.list.d/boundless.list`` and replace the contents with:
+#. Replace the 4.9.x repo definition with the new repo definition. Open ``/etc/apt/sources.list.d/boundless.list`` and replace the contents with:
 
    .. code-block:: none
 
@@ -149,11 +149,85 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
 
       apt-get update
 
-#. Install all Boundless Suite 4.9.1 packages corresponding to the ``suite-*`` packages which were removed in step 1. For example:
+#. Verify repository is available:
+
+   .. code-block:: bash
+
+      apt-cache search suite-
+
+   If the command does not return any results, examine the output of the yum command for any errors or warnings.
+
+#. Install all Boundless Suite |version| packages corresponding to the ``suite-*`` packages which were removed in step 1. For example:
 
    .. code-block:: bash
 
       apt-get install suite-geoserver suite-docs suite-dashboard
+
+#. Install PostgreSQL 9.6
+
+   .. code-block:: bash
+
+      apt-get install postgresql-9.6-postgis-2.3 libgdal1h postgresql-9.6 postgresql-client-9.6
+
+   .. note:: If prompted for a configuration conflict, choose the first option to take the maintainer's version.
+
+#. Change existing legacy PostgreSQL server to run on different port by editing :file:`/etc/postgresql/9.3/main/postgresql.conf`:
+
+   ::
+
+      port = 5433
+
+   Save and close the file when done.
+
+#. Make sure the new database is running on the proper port by editing :file:`/etc/postgresql/9.3/main/postgresql.conf`:
+
+   ::
+
+      port = 5432
+
+   Save and close the file when done.
+
+#. Restart the legacy database:
+
+   .. code-block:: bash
+
+      service postgresql restart
+
+   .. note:: It may require an additional restart for Trusty to fully swap the ports.
+
+#. Perform dump of old database:
+
+   .. code-block:: bash
+
+      sudo su - postgres
+      pg_dumpall -c -h localhost -p 5433 > db.out
+
+#. Import dump into new database:
+
+   .. code-block:: bash
+
+      psql -f db.out postgres
+
+#. Update remaining packages:
+
+   .. code-block:: bash
+
+      apt-get upgrade suite-geoserver
+
+#. Restart Tomcat:
+
+   .. code-block:: bash
+
+      service tomcat8 restart
+
+#. *(Optional)* Remove legacy database:
+
+   .. code-block:: bash
+
+      apt-get remove postgresql-client-9.3 postgresql-9.3
+      rm -rf /var/lib/postgresql/9.3/
+
+.. note:: Repeat steps previously run as needed to enable connections to database as shown in the :ref:`dataadmin.pgGettingStarted.firstconnect` section.
 
 
 Upgrading from 4.8 and older
@@ -165,7 +239,7 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 
 .. warning::
 
-   Because of the major package changes involved, if you have any version earlier than 4.9.0, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system.
+   Because of the major package changes involved, if you have any version earlier than 4.9.x, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system.
 
    The data directory at ``/var/lib/opengeo/geoserver`` will not be removed during uninstallation.
 

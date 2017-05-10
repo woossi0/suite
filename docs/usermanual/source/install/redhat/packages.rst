@@ -35,16 +35,16 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
 #. Add the Boundless Suite repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents:
 
-   .. code-block:: none
+   ::
 
       [boundless-suite]
       name=Boundless Suite Repository
-      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.9.1/el/6/x86_64
+      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.10/el/<version>/x86_64
       enabled=1
       gpgcheck=1
       gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
 
-   Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you.
+   Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you, and ``<version>`` with either ``6`` or ``7``, depending on the OS.
 
    .. note:: Your username is your email address. When entering your username into the ``Boundless.repo`` file, replace the ``@`` in your username with ``%40``.
 
@@ -84,7 +84,7 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
    .. note::  See the :ref:`install.redhat.packages.list` for details of individual packages.
 
-   .. note::  If you already have an existing JVM installed, you may need to change the *default* java. Run ``java -version`` to check the default java version. If it is less than 1.8, use :ref:`update-alternatives<sysadmin.jvm.alternatives>` to change the default to the newly installed java 8 JVM.
+   .. note::  If you already have an existing JVM installed, you may need to change the *default* java. Run ``java -version`` to check the default java version. If it is less than 1.8, use :ref:`update-alternatives<sysadmin.jvm.alternatives>` to change the default to the newly installed Java 8 JVM.
 
 #. Restart the server.
 
@@ -97,7 +97,6 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
    * http://localhost:8080/dashboard
    * http://localhost:8080/geoserver
 
-
    .. note:: Please see the section on :ref:`sysadmin.redhat` for additional information and best practices.
 
 .. _install.redhat.packages.upgrade:
@@ -105,14 +104,14 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 Upgrade
 -------
 
-Upgrading from 4.9.0 to |version|
+Upgrading from 4.9.x to |version|
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red Hat-based Linux distributions.
+This section describes how to upgrade Boundless Suite 4.9.x to |version| on Red Hat-based Linux distributions.
 
-.. note::
+.. note:: If you made changes to the Tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
 
-   If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
+.. note:: This upgrade moved from PostgreSQL 9.3 to 9.6. If you are using the database aspect of Boundless Suite, a migration will need to occur.
 
 #. Change to the ``root`` user:
 
@@ -120,13 +119,13 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red 
 
       sudo su -
 
-#. Remove the 4.9.0 packages:
+#. Remove the 4.9.x packages:
 
    .. code-block:: bash
 
       yum remove suite-*
 
-   Make note of which packages were removed this way.
+   .. note:: You may wish to make note of which packages were removed this way.
 
 #. Download the Boundless key:
 
@@ -134,18 +133,18 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red 
 
       wget -O /etc/pki/boundless/GPG-KEY-Boundless https://downloads-repo.boundlessgeo.com/GPG-KEY-Boundless
 
-#. Replace the 4.9.0 repo definition with the new repo definition. Open ``/etc/yum.repos.d/Boundless.repo`` and replace the contents with:
+#. Replace the 4.9.x repo definition with the new repo definition. Open ``/etc/yum.repos.d/Boundless.repo`` and replace the contents with:
 
    .. code-block:: none
 
       [boundless-suite]
       name=Boundless Suite Repository
-      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.9.1/el/6/x86_64
+      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.10/el/<version>/x86_64
       enabled=1
       gpgcheck=1
       gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
 
-   Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
+   Make sure to replace ``<username>`` and ``<password>`` with the user name and password supplied to you, and ``<version>`` with either ``6`` or ``7``, depending on the OS.
 
    .. note:: Your username is your email address. When entering your username into the ``Boundless.repo`` file, replace the ``@`` in your username with ``%40``.
 
@@ -155,12 +154,94 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red 
 
       yum clean all
 
-#. Install all Boundless Suite 4.9.1 packages corresponding to the ``suite-*`` packages which were removed in step 1. For example:
+#. Verify the new repository is available:
+
+   .. code-block:: bash
+
+      yum list suite-*
+
+   If the command does not return any results, examine the output of the yum command for any errors or warnings.
+
+#. Install all Boundless Suite |version| packages corresponding to the ``suite-*`` packages which were removed above. For example:
 
    .. code-block:: bash
 
       yum install suite-geoserver suite-docs suite-dashboard
 
+#. Install PostgreSQL 9.6:
+
+   .. code-block:: bash
+
+      yum erase postgis21
+      yum install postgresql96 postgresql96-server postgresql96-libs postgis23-postgresql96
+
+   .. note:: If prompted for a configuration conflict, choose the first option to take the maintainer's version.
+
+#. Change existing legacy PostgreSQL server to run on different port by editing :file:`/etc/init.d/postgresql-9.3` in a text editor and specifying a different port.
+
+   ::
+
+     PGPORT=5433
+
+   Save and close the file when done.
+
+#. Restart the legacy database:
+
+   .. code-block:: bash
+
+      service postgresql-9.3 restart
+
+#. Initialize the new database:
+
+   .. code-block:: bash
+
+      service postgresql-9.6 initdb
+
+#. Start the new database:
+
+   .. code-block:: bash
+
+      service postgresql-9.6 restart
+
+#. Set the new database to start on boot:
+
+   .. code-block:: bash
+
+      chkconfig postgresql-9.6 on
+
+#. Perform dump of legacy database:
+
+   .. code-block:: bash
+
+      sudo su - postgres
+      pg_dumpall -c -h localhost -p 5433 > db.out
+
+#. Import dump into new database:
+
+   .. code-block:: bash
+
+      psql -f db.out postgres
+
+#. Update remaining packages:
+
+   .. code-block:: bash
+
+      yum update suite-*
+
+#. Restart Tomcat:
+
+   .. code-block:: bash
+
+      service tomcat8 restart
+
+#. *(Optional)* Remove legacy database:
+
+   .. code-block:: bash
+
+      yum erase postgresql93 postgresql93-libs postgresql93-server
+      rm -rf /var/lib/pgsql/9.3/
+
+.. note:: Repeat steps previously run as needed to enable connections to database as shown in the :ref:`dataadmin.pgGettingStarted.firstconnect` section.
 
 Upgrading from 4.8 and older
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -171,7 +252,7 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 
 .. warning::
 
-   Because of the major package changes involved, if you have any version earlier than 4.9.0, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system.
+   Because of the major package changes involved, if you have any version earlier than 4.9.x, it must be uninstalled first.  Make sure you backup your data, configuration, your old 4.8 install, and any other data/software on the system.
 
    The data directory at ``/var/lib/opengeo/geoserver`` will not be removed during uninstallation.
 
