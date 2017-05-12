@@ -18,7 +18,7 @@ GDAL
 
    .. code-block:: bash
 
-      apt-get install libgdal libgdal-java 
+      apt-get install libgdal1h libgdal1-java
 
    .. note:: You can also install the :file:`gdal-mrsid` package for MrSID and JP2K support.
 
@@ -57,7 +57,7 @@ NetCDF-4 Output
 
       apt-get install netcdf-bin
 
-#. Verify the NetCDF install by running :file:`ncdump` to verify the version (4.3.3.1)
+#. Verify the NetCDF install by running :file:`ncdump` to verify the version (4.4.0).
 
 #. In your Tomcat config, make sure that :guilabel:`-Djna.library.path` includes the NetCDF libaries - :file:`/usr/lib64`,  :file:`/usr/lib`.
 

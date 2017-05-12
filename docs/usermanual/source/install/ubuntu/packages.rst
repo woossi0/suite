@@ -369,11 +369,11 @@ The following major binary packages are available:
 
    * - Package
      - Description
-   * - ``libgdal``
+   * - ``libgdal1h``
      - Main GDAL/OGR binary package
-   * - ``libgdal-java``
+   * - ``libgdal1-java``
      - Java support for GDAL
-   * - ``libgdal-dev``
+   * - ``libgdal1-dev``
      - Development support for GDAL
    * - ``gdal-mrsid``
      - MrSID plugin for GDAL

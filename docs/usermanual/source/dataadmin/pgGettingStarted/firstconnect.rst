@@ -121,7 +121,7 @@ The details are similar to that of allowing local connections, with some slight 
 
       local   all             all                                      peer
 
-#. Change to:
+#. Add the following line:
 
    .. code-block:: console
 
