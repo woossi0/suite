@@ -10,10 +10,10 @@ Component details
 
 For more information on individual components, please see the Boundless project pages:
 
-* `PostGIS <http://boundlessgeo.com/solutions/solutions-software/postgis/>`_
-* `GeoServer <http://boundlessgeo.com/solutions/solutions-software/geoserver/>`_
-* `GeoWebCache <http://boundlessgeo.com/solutions/solutions-software/geowebcache/>`_
-* `OpenLayers <http://boundlessgeo.com/solutions/solutions-software/openlayers/>`_
+* `PostGIS <http://boundlessgeo.com/postgis/>`_
+* `GeoServer <http://boundlessgeo.com/geoserver/>`_
+* `GeoWebCache <http://boundlessgeo.com/geowebcache/>`_
+* `OpenLayers <http://boundlessgeo.com//openlayers/>`_
 
 About Boundless
 ---------------
