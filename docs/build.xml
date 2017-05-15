@@ -49,6 +49,11 @@
         </sequential>
       </for>
 
+      <mkdir dir="${doc.dir}/geoserver/api"/>
+      <copy todir="${doc.dir}/geoserver/api">
+        <fileset dir="../geoserver/geoserver/geoserver/doc/en/api" includes="**/*"/>
+      </copy>
+
       <antcall target="assemble-artifact">
         <param name="dir" value="target"/>
         <param name="includes" value="suite-docs/**/*"/>

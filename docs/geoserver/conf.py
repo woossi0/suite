@@ -225,10 +225,11 @@ latex_elements = {
 extlinks = { 
     'wiki': ('https://github.com/geoserver/geoserver/wiki/%s',''),
     'website': ('http://geoserver.org/%s',''),
-    'user': ('http://localhost:8080/suite-docs/geoserver/%s',''),
+    'user': ('/suite-docs/geoserver/%s',''),
     'developer': ('http://docs.geoserver.org/latest/en/developer/%s',''),
     'geos': ('https://jira.codehaus.org/browse/GEOS-%s','GEOS-'),
-    'geot': ('https://jira.codehaus.org/browse/GEOT-%s','GEOT-')
+    'geot': ('https://jira.codehaus.org/browse/GEOT-%s','GEOT-'),
+    'api': ('/suite-docs/geoserver/api/#/1.0.0/%s','')
 }
 
 # Common substitutions
