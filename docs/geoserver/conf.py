@@ -26,7 +26,8 @@ from datetime import date
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.todo']
+extensions = ['sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage',
+              'sphinx.ext.autodoc', 'sphinx.ext.extlinks', 'sphinx.ext.viewcode']
 
 #todo_include_todos = True
 
@@ -229,7 +230,7 @@ extlinks = {
     'developer': ('http://docs.geoserver.org/latest/en/developer/%s',''),
     'geos': ('https://jira.codehaus.org/browse/GEOS-%s','GEOS-'),
     'geot': ('https://jira.codehaus.org/browse/GEOT-%s','GEOT-'),
-    'api': ('/suite-docs/geoserver/api/#/1.0.0/%s','')
+    'api': ('/suite-docs/geoserver/api/#1.0.0/%s','')
 }
 
 # Common substitutions
