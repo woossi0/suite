@@ -15,8 +15,7 @@ This version contains numerous component upgrades and bug fixes. Highlights incl
 
 * **GeoServer catalog optimizations** for faster startup, faster runtime, and better scalability for servers with large numbers of layers.
 
-* New **module status page** for showing information and status about installed extensions. Find it at ``http://[GEOSERVER_URL]/rest/about/status/``.
-
+* New **module status page** in the UI for showing information and status about installed GeoServer extensions. Find it at the new :guilabel:`Modules` tab on the :guilabel:`Server Status` page.
 
 **Components included:**
 
@@ -25,4 +24,4 @@ This version contains numerous component upgrades and bug fixes. Highlights incl
 * GeoTools 17
 * PostgreSQL 9.6
 * PostGIS 2.3
-* GDAL - 1.11.5
+* GDAL 1.11.5
