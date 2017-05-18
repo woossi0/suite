@@ -170,6 +170,34 @@ To build suite with a specific minor version assigned to geotools, geowebcache, 
         % ant -f build/versions.xml set-versions -Dsuite.minor_version=-beta1
         % ant all -Dsuite.minor_version=-beta1
 
+To undo this action and reset te versions back to -SNAPSHOT:
+
+       % git reset --hard HEAD
+       % git submodule foreach --recursive git reset --hard
+
+### Custom-building a GeoServer extension for Support
+
+Occasionally, we will have to build (or re-build) an extension or jar after a suite release has gone out.
+I will be using Suite 4.9.1 as the suite version for the purposes of this example.
+
+1. Checkout the correct suite branch and update submodules:
+
+        % git checkout r4.9.1
+        % git submodule update --init --recursive
+
+1. Set the suite version for the geoserver artifacts:
+
+        % ant -f build/versions.xml set-versions -Dsuite.minor_version=-suite-4.9.1
+
+1. If you are building an extension that does not normally ship with suite, modify `build/build.properties` and add that module to `gs.exts_core` or `gs.exts_comm` (depending upon whether or not it is a community module).
+
+1. Change to the `geoserver` directory and run a build.
+
+        % cd geoserver
+        % ant clean build assemble -Dsuite.minor_version=-suite-4.9.1
+
+1. The geoserver artifacts will be in `geoserver/geoserver/src/target/release`. The suite war will be in `webapp/target`.
+
 ## Modules
 
 The suite repository is composed of the following modules:
