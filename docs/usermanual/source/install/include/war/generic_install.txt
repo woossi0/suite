@@ -16,6 +16,8 @@ Standard installation
 
 #. Install `Tomcat 8 <http://tomcat.apache.org/download-80.cgi>`__ and ensure Tomcat is using the Java 8 runtime.
 
+   .. note:: We suggest setting up Tomcat as a service. `This guide from Ubuntu <https://help.ubuntu.com/lts/serverguide/tomcat.html>`_ may be helpful here.
+
 #. Setup Tomcat with the following options:
      
    * ``-Xms256m``
@@ -46,7 +48,7 @@ Standard installation
       
         <!-- The default location of the GWC tile cache -->
         <Parameter name="GEOWEBCACHE_CACHE_DIR"
-                   value="var/opt/boundless/suite/geoserver/tilecache"
+                   value="/var/opt/boundless/suite/geoserver/tilecache"
                    override="false"/>
       </Context>
 
