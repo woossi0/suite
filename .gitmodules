@@ -26,3 +26,6 @@
 	path = geoserver/externals/geomesa/geomesa
 	url = https://github.com/boundlessgeo/geomesa.git
 	branch = opengeo_suite_4.8
+[submodule "geoserver/externals/gsr/gsr"]
+	path = geoserver/externals/gsr/gsr
+	url = https://github.com/boundlessgeo/gsr.git
