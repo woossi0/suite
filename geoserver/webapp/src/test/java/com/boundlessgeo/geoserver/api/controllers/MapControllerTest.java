@@ -105,7 +105,7 @@ public class MapControllerTest {
         obj.putObject("proj").put("srs", "EPSG:4326");
         obj.putArray("layers").addObject().put("name", "one");
 
-        MockHttpServletRequestBuilder req = post("/api/maps/foo")
+        MockHttpServletRequestBuilder req = post("/app/api/maps/foo")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
 
@@ -131,7 +131,7 @@ public class MapControllerTest {
         obj.putObject("proj").put("srs", "EPSG:4326");
         obj.putArray("layers").addObject().put("name", "one");
 
-        MockHttpServletRequestBuilder reqBuilder = post("/api/maps/foo")
+        MockHttpServletRequestBuilder reqBuilder = post("/app/api/maps/foo")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
 
@@ -163,7 +163,7 @@ public class MapControllerTest {
         obj.put("name", "bar");
         obj.put("copylayers", "false");
         
-        MockHttpServletRequestBuilder req = put("/api/maps/foo/map/copy")
+        MockHttpServletRequestBuilder req = put("/app/api/maps/foo/map/copy")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
 
@@ -194,7 +194,7 @@ public class MapControllerTest {
               .layer("four").featureType().defaults()
           .geoServer().build(geoServer);
 
-        MvcResult result = mvc.perform(get("/api/maps/foo"))
+        MvcResult result = mvc.perform(get("/app/api/maps/foo"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andReturn();
@@ -238,7 +238,7 @@ public class MapControllerTest {
         LayerGroupInfo l = gs.getCatalog().getLayerGroupByName("map");
         l.getMetadata().put("timeout", 1000);
         
-        MvcResult result = mvc.perform(get("/api/maps/foo/map"))
+        MvcResult result = mvc.perform(get("/app/api/maps/foo/map"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
@@ -287,7 +287,7 @@ public class MapControllerTest {
                     .layer("two").style().point().layer().featureType().defaults().store("store_two")
             .geoServer().build(geoServer);
 
-        MvcResult result = mvc.perform(get("/api/maps/foo/map/layers"))
+        MvcResult result = mvc.perform(get("/app/api/maps/foo/map/layers"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andReturn();
@@ -320,7 +320,7 @@ public class MapControllerTest {
             .geoServer().build(geoServer);
 
         JSONObj obj = new JSONObj().put("title", "new title").put("proj", "EPSG:4326").put("timeout", 1000);
-        MockHttpServletRequestBuilder req = put("/api/maps/foo/map")
+        MockHttpServletRequestBuilder req = put("/app/api/maps/foo/map")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
 
@@ -350,7 +350,7 @@ public class MapControllerTest {
         arr.addObject().put("name", "two");
         arr.addObject().put("name", "one");
 
-        MockHttpServletRequestBuilder req = put("/api/maps/foo/map/layers")
+        MockHttpServletRequestBuilder req = put("/app/api/maps/foo/map/layers")
             .contentType(MediaType.APPLICATION_JSON)
             .content(arr.toString());
 
@@ -389,19 +389,19 @@ public class MapControllerTest {
         MockHttpServletRequestBuilder req;
 
         obj = new JSONObj().put("title", "new title");
-        req = put("/api/maps/foo/map3")
+        req = put("/app/api/maps/foo/map3")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
         mvc.perform(req).andExpect(status().isOk()).andReturn();
         
         obj = new JSONObj().put("title", "new title");
-        req = put("/api/maps/foo/map2")
+        req = put("/app/api/maps/foo/map2")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
         mvc.perform(req).andExpect(status().isOk()).andReturn();
         
         obj = new JSONObj().put("title", "new title");
-        req = put("/api/maps/foo/map1")
+        req = put("/app/api/maps/foo/map1")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
         mvc.perform(req).andExpect(status().isOk()).andReturn();

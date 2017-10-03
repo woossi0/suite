@@ -77,7 +77,7 @@ public class WorkspaceControllerTest {
         Catalog catalog = geoServer.getCatalog();
         when(catalog.getResourceLoader()).thenReturn(resourceLoader);
 
-        MvcResult result = mvc.perform(get("/api/workspaces"))
+        MvcResult result = mvc.perform(get("/app/api/workspaces"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andReturn();
@@ -117,7 +117,7 @@ public class WorkspaceControllerTest {
         Catalog catalog = geoServer.getCatalog();
         when(catalog.getResourceLoader()).thenReturn(resourceLoader);
 
-        MvcResult result = mvc.perform(get("/api/workspaces/foo"))
+        MvcResult result = mvc.perform(get("/app/api/workspaces/foo"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andReturn();
@@ -131,7 +131,7 @@ public class WorkspaceControllerTest {
         assertEquals(1, obj.integer("layers").intValue());
         assertEquals(0, obj.integer("stores").intValue());
 
-        result = mvc.perform(get("/api/workspaces/bar"))
+        result = mvc.perform(get("/app/api/workspaces/bar"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
@@ -148,7 +148,7 @@ public class WorkspaceControllerTest {
 
         JSONObj obj = new JSONObj().put("name", "foo").put("uri", "http://foo.org");
 
-        MockHttpServletRequestBuilder request = post("/api/workspaces")
+        MockHttpServletRequestBuilder request = post("/app/api/workspaces")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
 
@@ -172,7 +172,7 @@ public class WorkspaceControllerTest {
 
         JSONObj obj = new JSONObj().put("name", "blah");
 
-        MockHttpServletRequestBuilder request = put("/api/workspaces/foo")
+        MockHttpServletRequestBuilder request = put("/app/api/workspaces/foo")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
 
@@ -196,7 +196,7 @@ public class WorkspaceControllerTest {
             .workspace("foo", "http://scratch.org", true).catalog()
             .geoServer().build(geoServer);
 
-        mvc.perform(delete("/api/workspaces/foo"))
+        mvc.perform(delete("/app/api/workspaces/foo"))
             .andExpect(status().isNoContent())
             .andReturn();
 

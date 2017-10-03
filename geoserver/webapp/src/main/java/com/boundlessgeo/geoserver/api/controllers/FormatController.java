@@ -30,6 +30,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
 import static com.google.common.base.Predicates.instanceOf;
 import static com.google.common.base.Predicates.not;
 import static com.google.common.collect.Iterables.concat;
@@ -43,8 +44,8 @@ import static com.google.common.collect.Iterables.transform;
  * 
  * @see <a href="https://github.com/boundlessgeo/suite/wiki/Stores-API">Store API</a> (Wiki)
  */
- @Controller
- @RequestMapping("/api/formats")
+ @Controller("apiFormatController")
+ @RequestMapping(API_PATH+"/formats")
  public class FormatController extends ApiController {
      static Logger LOG = Logging.getLogger(FormatController.class);
 

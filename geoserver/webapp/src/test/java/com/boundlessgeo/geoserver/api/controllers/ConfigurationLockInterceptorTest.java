@@ -28,9 +28,9 @@ public class ConfigurationLockInterceptorTest {
 
     void assertLock(LockType expected, String method) throws Exception {
         HttpServletRequest req = new MockHttpServletRequest(method, "");
-        interceptor.preHandle(req, null, null);
+        interceptor.init(req, null);
         assertEquals(expected, interceptor.THREAD_LOCK.get());
-        interceptor.afterCompletion(req, null, null, null);
+        interceptor.finished(req, null);
         assertEquals(null, interceptor.THREAD_LOCK.get());
     }
 

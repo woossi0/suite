@@ -16,11 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
 /**
  * Sends back session info after a successful login.
  */
-@Controller
-@RequestMapping("/api/login")
+@Controller("apiLoginController")
+@RequestMapping(API_PATH+"/login")
 public class LoginController {
 
     /**

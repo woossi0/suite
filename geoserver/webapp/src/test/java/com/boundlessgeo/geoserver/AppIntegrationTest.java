@@ -645,7 +645,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals("created", Resource.Type.RESOURCE, r.getType() );
         
         // test delete
-        MockHttpServletRequestBuilder delete = delete("/api/icons/cite/icon.png");
+        MockHttpServletRequestBuilder delete = delete("/app/api/icons/cite/icon.png");
         ctrl.delete("cite","STYLE.PROPERTIES");
         
         r = catalog.getResourceLoader().get("workspaces/cite/styles/STYLE.PROPERTIES");
@@ -669,7 +669,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals("created", Resource.Type.RESOURCE, r.getType() );
         
         // test delete
-        delete = delete("/api/icons/icon.png");
+        delete = delete("/app/api/icons/icon.png");
         ctrl.delete("STYLE.PROPERTIES");
         
         r = catalog.getResourceLoader().get("styles/STYLE.PROPERTIES");
@@ -996,14 +996,14 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertNotNull(catalog.getStyleByName(pointStyle.prefixedName()));
         
         //Test unique against existing catalog entries
-        assertEquals(points.getName()+"0", NameUtil.unique(points.getName(), points.getClass(), catalog));
-        assertEquals(pointMap.getName()+"0", NameUtil.unique(pointMap.getName(), pointMap.getClass(), catalog));
-        assertEquals(pointStyle.getName()+"0", NameUtil.unique(pointStyle.getName(), pointStyle.getClass(), catalog));
+        assertEquals(points.getName()+"0", NameUtil.unique(points.getName(), LayerInfo.class, catalog));
+        assertEquals(pointMap.getName()+"0", NameUtil.unique(pointMap.getName(), LayerGroupInfo.class, catalog));
+        assertEquals(pointStyle.getName()+"0", NameUtil.unique(pointStyle.getName(), StyleInfo.class, catalog));
         
         //Test unique with no existing entries
-        assertEquals("unique", NameUtil.unique("unique", points.getClass(), catalog));
-        assertEquals("unique", NameUtil.unique("unique", pointMap.getClass(), catalog));
-        assertEquals("unique", NameUtil.unique("unique", pointStyle.getClass(), catalog));
+        assertEquals("unique", NameUtil.unique("unique",LayerInfo.class, catalog));
+        assertEquals("unique", NameUtil.unique("unique", LayerGroupInfo.class, catalog));
+        assertEquals("unique", NameUtil.unique("unique", StyleInfo.class, catalog));
         
     }
     

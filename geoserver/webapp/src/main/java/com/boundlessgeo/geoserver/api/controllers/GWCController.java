@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 
-@Controller
-@RequestMapping("/api/gwc")
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
+@Controller("apiGwcController")
+@RequestMapping(API_PATH+"/gwc")
 public class GWCController extends ApiController {
     
     final GWC mediator = GWC.get();

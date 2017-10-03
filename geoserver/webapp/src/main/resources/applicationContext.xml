@@ -53,14 +53,9 @@
     <context:component-scan base-package="com.boundlessgeo.geoserver"/>
 
     <mvc:interceptors>
-        <!-- intercept all /api/** routes and lock the catalog appropriately -->
+        <!-- intercept all /app/api/** routes and disable caching -->
         <mvc:interceptor>
-            <mvc:mapping path="/api/**"/>
-            <bean class="com.boundlessgeo.geoserver.api.controllers.ConfigurationLockInterceptor" />
-        </mvc:interceptor>
-        <!-- intercept all /api/** routes and disable caching -->
-        <mvc:interceptor>
-            <mvc:mapping path="/api/**"/>
+            <mvc:mapping path="/app/api/**"/>
             <bean class="org.springframework.web.servlet.mvc.WebContentInterceptor" >
               <property name="cacheSeconds" value="0"/>
               <property name="useExpiresHeader" value="true"/>
@@ -69,13 +64,5 @@
             </bean>
         </mvc:interceptor>
     </mvc:interceptors>
-
-    <mvc:annotation-driven>
-        <mvc:message-converters register-defaults="true">
-            <bean class="com.boundlessgeo.geoserver.api.converters.JSONMessageConverter"/>
-            <bean class="com.boundlessgeo.geoserver.api.converters.YsldMessageConverter"/>
-            <bean class="com.boundlessgeo.geoserver.api.converters.ResourceMessageConverter"/>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
 </beans>
 

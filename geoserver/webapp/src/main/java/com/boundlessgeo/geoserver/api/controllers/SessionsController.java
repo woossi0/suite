@@ -18,8 +18,10 @@ import com.boundlessgeo.geoserver.AppSessionDebugger;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 
-@Controller
-@RequestMapping("/api/sessions")
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
+@Controller("apiSessionsController")
+@RequestMapping(API_PATH+"/sessions")
 public class SessionsController {
 
     @RequestMapping(method= RequestMethod.GET)

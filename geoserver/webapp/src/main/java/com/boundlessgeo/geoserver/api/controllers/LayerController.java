@@ -3,6 +3,7 @@
  */
 package com.boundlessgeo.geoserver.api.controllers;
 
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
 import static org.geoserver.catalog.Predicates.equal;
 
 import java.io.BufferedReader;
@@ -92,8 +93,8 @@ import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.google.common.io.ByteSource;
 
-@Controller
-@RequestMapping("/api/layers")
+@Controller("apiLayerController")
+@RequestMapping(API_PATH+"/layers")
 public class LayerController extends ApiController {
 
     static Logger LOG = Logging.getLogger(LayerController.class);

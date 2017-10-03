@@ -4,13 +4,16 @@
 package com.boundlessgeo.geoserver.api.converters;
 
 import org.apache.commons.io.IOUtils;
+import org.geoserver.platform.ExtensionPriority;
 import org.geoserver.platform.resource.Resource;
+import org.geoserver.rest.converters.BaseMessageConverter;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.AbstractHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +21,8 @@ import java.io.InputStream;
 /**
  * Message converter that can encode GeoServer resources.
  */
-public class ResourceMessageConverter extends AbstractHttpMessageConverter<Resource> {
+@Component
+public class ResourceMessageConverter extends BaseMessageConverter<Resource> {
 
     public ResourceMessageConverter() {
         super(MediaType.ALL);
@@ -42,5 +46,10 @@ public class ResourceMessageConverter extends AbstractHttpMessageConverter<Resou
         finally {
             IOUtils.closeQuietly(in);
         }
+    }
+
+    @Override
+    public int getPriority() {
+        return ExtensionPriority.HIGHEST;
     }
 }

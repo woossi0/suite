@@ -30,11 +30,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
 /**
  * Summarizes information about the GeoServer instance.
  */
-@Controller
-@RequestMapping("/api/serverInfo")
+@Controller("apiServerInfoController")
+@RequestMapping(API_PATH+"/serverInfo")
 public class ServerInfoController extends ApiController {
 
     @Autowired

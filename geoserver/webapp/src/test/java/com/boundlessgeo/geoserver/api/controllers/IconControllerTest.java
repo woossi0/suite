@@ -93,7 +93,7 @@ public class IconControllerTest {
       assertEquals( d.getType(), Type.DIRECTORY );
       assertEquals( 3, d.list().size() );
       
-      MvcResult result = mvc.perform(get("/api/icons/list/foo"))
+      MvcResult result = mvc.perform(get("/app/api/icons/list/foo"))
               .andExpect(status().isOk())
               .andExpect(content().contentType(MediaType.APPLICATION_JSON))
               .andReturn();
@@ -117,7 +117,7 @@ public class IconControllerTest {
       assertEquals( d.getType(), Type.DIRECTORY );
       assertEquals( 1, d.list().size() );
       
-      result = mvc.perform(get("/api/icons/list"))
+      result = mvc.perform(get("/app/api/icons/list"))
               .andExpect(status().isOk())
               .andExpect(content().contentType(MediaType.APPLICATION_JSON))
               .andReturn();
@@ -142,7 +142,7 @@ public class IconControllerTest {
               .style().ysld("one.yaml")
         .geoServer().build(geoServer);
 
-      MvcResult result = mvc.perform(get("/api/icons/foo/icon.png"))
+      MvcResult result = mvc.perform(get("/app/api/icons/foo/icon.png"))
               .andExpect(status().isOk())
               .andExpect(content().contentType(MediaType.IMAGE_PNG_VALUE))
               .andReturn();
@@ -152,7 +152,7 @@ public class IconControllerTest {
       assertEquals("PNG8",raw);
       
       //Global styles directory
-      result = mvc.perform(get("/api/icons/global.png"))
+      result = mvc.perform(get("/app/api/icons/global.png"))
               .andExpect(status().isOk())
               .andExpect(content().contentType(MediaType.IMAGE_PNG_VALUE))
               .andReturn();

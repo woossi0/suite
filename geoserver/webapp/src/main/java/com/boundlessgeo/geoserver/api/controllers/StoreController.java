@@ -3,6 +3,7 @@
  */
 package com.boundlessgeo.geoserver.api.controllers;
 
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
 import static org.geoserver.catalog.Predicates.equal;
 
 import java.io.IOException;
@@ -71,8 +72,8 @@ import com.boundlessgeo.geoserver.json.JSONObj;
  * 
  * @see <a href="https://github.com/boundlessgeo/suite/wiki/Stores-API">Store API</a> (Wiki)
  */
- @Controller
- @RequestMapping("/api/stores")
+ @Controller("apiStoreController")
+ @RequestMapping(API_PATH+"/stores")
  public class StoreController extends ApiController {
      static Logger LOG = Logging.getLogger(StoreController.class);
 

@@ -3,6 +3,7 @@
  */
 package com.boundlessgeo.geoserver.api.controllers;
 
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
 import static org.geoserver.catalog.Predicates.equal;
 
 import java.io.IOException;
@@ -68,8 +69,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.vividsolutions.jts.geom.Envelope;
 
-@Controller
-@RequestMapping("/api/maps")
+@Controller("apiMapController")
+@RequestMapping(API_PATH+"/maps")
 public class MapController extends ApiController {
     static Logger LOG = Logging.getLogger(MapController.class);
 

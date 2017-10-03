@@ -49,8 +49,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
 
-@Controller
-@RequestMapping("/api/workspaces")
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
+@Controller("apiWorkspaceController")
+@RequestMapping(API_PATH+"/workspaces")
 public class WorkspaceController extends ApiController {
 
     public static final String APPLICATION_ZIP_VALUE = "application/zip";

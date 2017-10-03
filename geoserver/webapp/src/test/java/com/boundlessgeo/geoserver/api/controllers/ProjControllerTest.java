@@ -44,7 +44,7 @@ public class ProjControllerTest {
 
     @Test
     public void testGet() throws Exception {
-        MvcResult result = mvc.perform(get("/api/projections/epsg:3005"))
+        MvcResult result = mvc.perform(get("/app/api/projections/epsg:3005"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
@@ -56,7 +56,7 @@ public class ProjControllerTest {
 
     @Test
     public void testRecent() throws Exception {
-        MvcResult result = mvc.perform(get("/api/projections/recent"))
+        MvcResult result = mvc.perform(get("/app/api/projections/recent"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();

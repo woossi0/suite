@@ -119,7 +119,7 @@ public class LayerControllerTest {
         when(catalog.count(eq(LayerInfo.class), eq(Predicates.and(Predicates.equal("resource.namespace.prefix",
                 "foo"), Predicates.fullTextSearch(""))))).thenReturn(layers.size());
         
-        MvcResult result = mvc.perform(get("/api/layers/foo"))
+        MvcResult result = mvc.perform(get("/app/api/layers/foo"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andReturn();
@@ -146,12 +146,12 @@ public class LayerControllerTest {
         });
         
         //Meaningless to test sort order here, since iterator is provided by mockup
-        result = mvc.perform(get("/api/layers/foo?page=0&count=10&sort=name:asc&filter=o"))
+        result = mvc.perform(get("/app/api/layers/foo?page=0&count=10&sort=name:asc&filter=o"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
         
-        result = mvc.perform(get("/api/layers/foo?page=0&count=10&sort=invalidparameter:badrequest&filter=o"))
+        result = mvc.perform(get("/app/api/layers/foo?page=0&count=10&sort=invalidparameter:badrequest&filter=o"))
                 .andExpect(status().isBadRequest())
                 .andReturn();
 
@@ -171,7 +171,7 @@ public class LayerControllerTest {
         LayerInfo l = gs.getCatalog().getLayerByName("foo:one");
         l.getMetadata().put("timeout", 1000);
         gs.getCatalog().save(l);
-        MvcResult result = mvc.perform(get("/api/layers/foo/one"))
+        MvcResult result = mvc.perform(get("/app/api/layers/foo/one"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andReturn();
@@ -219,7 +219,7 @@ public class LayerControllerTest {
               .style().point()
           .geoServer().build(geoServer);
 
-        MvcResult result = mvc.perform(get("/api/layers/foo/one/style"))
+        MvcResult result = mvc.perform(get("/app/api/layers/foo/one/style"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(YsldMessageConverter.MEDIA_TYPE))
             .andReturn();
@@ -241,7 +241,7 @@ public class LayerControllerTest {
                 .style().ysld("one.yaml")
           .geoServer().build(geoServer);
 
-        MvcResult result = mvc.perform(get("/api/layers/foo/one/style"))
+        MvcResult result = mvc.perform(get("/app/api/layers/foo/one/style"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(YsldMessageConverter.MEDIA_TYPE))
                 .andReturn();
@@ -262,7 +262,7 @@ public class LayerControllerTest {
             .geoServer().build(geoServer);
 
 
-        MockHttpServletRequestBuilder req = put("/api/layers/foo/one/style")
+        MockHttpServletRequestBuilder req = put("/app/api/layers/foo/one/style")
             .contentType(YsldMessageConverter.MEDIA_TYPE)
             .content("title: raw");
 
@@ -285,7 +285,7 @@ public class LayerControllerTest {
                      .style().ysld("one.yaml")
             .geoServer().build(geoServer);
 
-        MockHttpServletRequestBuilder req = put("/api/layers/foo/one/style")
+        MockHttpServletRequestBuilder req = put("/app/api/layers/foo/one/style")
             .contentType(YsldMessageConverter.MEDIA_TYPE)
             .content("title: raw\nbad");
 
@@ -318,7 +318,7 @@ public class LayerControllerTest {
                 .featureType().store("foo")
                 .geoServer().build(geoServer);
 
-        mvc.perform(delete("/api/layers/foo/one"))
+        mvc.perform(delete("/app/api/layers/foo/one"))
             .andExpect(status().isNoContent())
             .andReturn();
 
@@ -336,7 +336,7 @@ public class LayerControllerTest {
                 .geoServer().build(geoServer);
 
         JSONObj obj = new JSONObj().put("title", "new title").put("proj", "EPSG:4326").put("timeout", 1000);
-        MockHttpServletRequestBuilder req = put("/api/layers/foo/one")
+        MockHttpServletRequestBuilder req = put("/app/api/layers/foo/one")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
 
@@ -356,7 +356,7 @@ public class LayerControllerTest {
                 .geoServer().build(geoServer);
 
         JSONObj obj = new JSONObj().put("name", "newname");
-        MockHttpServletRequestBuilder req = put("/api/layers/foo/one")
+        MockHttpServletRequestBuilder req = put("/app/api/layers/foo/one")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(obj.toString());
 
@@ -389,19 +389,19 @@ public class LayerControllerTest {
         JSONObj obj;
         MockHttpServletRequestBuilder req;
         obj = new JSONObj().put("title", "new title");
-        req = put("/api/layers/foo/layer3")
+        req = put("/app/api/layers/foo/layer3")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
         mvc.perform(req).andExpect(status().isOk()).andReturn();
         
         obj = new JSONObj().put("title", "new title");
-        req = put("/api/layers/foo/layer2")
+        req = put("/app/api/layers/foo/layer2")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
         mvc.perform(req).andExpect(status().isOk()).andReturn();
         
         obj = new JSONObj().put("title", "new title");
-        req = put("/api/layers/foo/layer1")
+        req = put("/app/api/layers/foo/layer1")
             .contentType(MediaType.APPLICATION_JSON)
             .content(obj.toString());
         mvc.perform(req).andExpect(status().isOk()).andReturn();

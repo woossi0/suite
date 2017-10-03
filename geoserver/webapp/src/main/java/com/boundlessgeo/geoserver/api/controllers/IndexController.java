@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.geoserver.config.GeoServer;
 import org.geoserver.ows.util.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,17 +21,19 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
 
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
 /**
  * Summarizes information about the available API endpoints.
  */
-@Controller
-@RequestMapping("/api")
+@Controller("apiIndexController")
+@RequestMapping(API_PATH)
 public class IndexController extends ApiController {
     
     private final RequestMappingHandlerMapping handlerMapping;
     
     @Autowired
-    public IndexController(GeoServer geoServer, RecentObjectCache recent, RequestMappingHandlerMapping handlerMapping) {
+    public IndexController(GeoServer geoServer, RecentObjectCache recent, @Qualifier("requestMappingHandlerMapping") RequestMappingHandlerMapping handlerMapping) {
         super(geoServer, recent);
         this.handlerMapping = handlerMapping;
     }

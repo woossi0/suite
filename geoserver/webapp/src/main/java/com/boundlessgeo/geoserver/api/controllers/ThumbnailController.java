@@ -49,8 +49,10 @@ import com.boundlessgeo.geoserver.catalog.ThumbnailInvalidatingCatalogListener;
 import com.google.common.io.Closeables;
 import com.google.common.util.concurrent.Striped;
 
-@Controller
-@RequestMapping("/api/thumbnails")
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
+@Controller("apiThumbnailController")
+@RequestMapping(API_PATH+"/thumbnails")
 public class ThumbnailController extends ApiController {
     
     private static Logger LOG = Logging.getLogger(ThumbnailController.class);

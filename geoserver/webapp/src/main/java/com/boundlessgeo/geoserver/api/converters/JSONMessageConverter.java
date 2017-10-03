@@ -4,19 +4,23 @@
 package com.boundlessgeo.geoserver.api.converters;
 
 import com.boundlessgeo.geoserver.json.JSONWrapper;
+import org.geoserver.platform.ExtensionPriority;
+import org.geoserver.rest.converters.BaseMessageConverter;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.AbstractHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 /**
  * Parses/encodes JSON.
  */
-public class JSONMessageConverter extends AbstractHttpMessageConverter<JSONWrapper> {
+@Component
+public class JSONMessageConverter extends BaseMessageConverter<JSONWrapper> {
 
     public JSONMessageConverter() {
         super(MediaType.APPLICATION_JSON);
@@ -35,5 +39,10 @@ public class JSONMessageConverter extends AbstractHttpMessageConverter<JSONWrapp
     @Override
     protected void writeInternal(JSONWrapper obj, HttpOutputMessage message) throws IOException, HttpMessageNotWritableException {
         JSONWrapper.write(obj, message.getBody());
+    }
+
+    @Override
+    public int getPriority() {
+        return ExtensionPriority.HIGHEST;
     }
 }

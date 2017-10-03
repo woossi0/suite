@@ -20,8 +20,10 @@ import com.boundlessgeo.geoserver.api.exceptions.NotFoundException;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 
-@Controller
-@RequestMapping("/api/projections")
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
+@Controller("apiProjController")
+@RequestMapping(API_PATH+"/projections")
 public class ProjController extends ApiController {
 
     @Autowired

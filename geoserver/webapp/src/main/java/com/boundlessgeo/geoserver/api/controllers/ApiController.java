@@ -35,6 +35,8 @@ import org.opengis.filter.sort.SortBy;
 public abstract class ApiController {
     public static final int DEFAULT_PAGESIZE = 25;
 
+    public static final String API_PATH = "/app/api";
+
     protected GeoServer geoServer;
 
     protected RecentObjectCache recent;

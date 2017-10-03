@@ -65,8 +65,10 @@ import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.boundlessgeo.geoserver.util.StyleAdaptor;
 
-@Controller
-@RequestMapping("/api/icons")
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
+@Controller("apiIconController")
+@RequestMapping(API_PATH+"/icons")
 public class IconController extends ApiController {
 
     static final Logger LOG = Logging.getLogger(IconController.class);

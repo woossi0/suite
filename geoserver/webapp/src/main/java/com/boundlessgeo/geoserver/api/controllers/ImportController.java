@@ -81,8 +81,10 @@ import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Controller
-@RequestMapping("/api/imports")
+import static com.boundlessgeo.geoserver.api.controllers.ApiController.API_PATH;
+
+@Controller("apiImportController")
+@RequestMapping(API_PATH+"/imports")
 public class ImportController extends ApiController {
 
     Importer importer;
