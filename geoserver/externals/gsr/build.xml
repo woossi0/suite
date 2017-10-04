@@ -1,0 +1,37 @@
+<project name="geoserver.gsr" default="build">
+
+  <import file="../../../build/common.xml"/>
+
+  <property name="gsr.dir" value="gsr"/>
+
+  <target name="clean" unless="skip.gsr" description="Clean GSR">
+    <delete dir="target"/>
+    <antcall target="mvn">
+      <param name="dir" value="${gsr.dir}"/>
+      <param name="goals" value="clean"/>
+    </antcall>
+  </target>
+
+  <target name="build" unless="skip.gsr" description="Build GSR">
+    <antcall target="mvn">
+      <param name="dir" value="${gsr.dir}"/>
+      <param name="flags" value="-DskipTests"/>
+      <param name="goals" value="install"/>
+    </antcall>
+  </target>
+
+  <target name="assemble" unless="skip.gsr" description="Assemble GSR">
+    <copy todir="target/gsr" flatten="true">
+      <fileset dir="${gsr.dir}/target">
+        <include name="gsr*.jar"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="publish" unless="skip.gsr">
+    <ant dir="${gsr.gs-plugin-dist.dir}" target="publish" inheritAll="false"/>
+    <antcall target="publish-artifact" inheritAll="false">
+      <param name="name" value="gsr"/>
+    </antcall>
+  </target>
+</project>
