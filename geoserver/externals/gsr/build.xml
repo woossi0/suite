@@ -26,11 +26,13 @@
         <include name="gsr*.jar"/>
       </fileset>
     </copy>
+    <antcall target="assemble-extension" inheritAll="false">
+      <param name="name" value="gsr"/>
+    </antcall>
   </target>
 
   <target name="publish" unless="skip.gsr">
-    <ant dir="${gsr.gs-plugin-dist.dir}" target="publish" inheritAll="false"/>
-    <antcall target="publish-artifact" inheritAll="false">
+    <antcall target="publish-extension" inheritAll="false">
       <param name="name" value="gsr"/>
     </antcall>
   </target>
