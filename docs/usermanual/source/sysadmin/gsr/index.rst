@@ -1,7 +1,7 @@
 .. _sysadmin.gsr:
 
 GeoServices REST API
-===============
+====================
 
 The GeoServices REST API extension allows limited compatiblity with ArcGIS clients.
 
@@ -20,8 +20,8 @@ http://localhost:8080/geoserver/gsr/services/topp/FeatureServer/
 
 Where topp is the workspace name.
 
-Compatibility
--------------
+Compatible
+----------
 
 - MapServer: export, identify, generateKml, layerOrTable, legend
 - FeatureServer: query, feature, identify
