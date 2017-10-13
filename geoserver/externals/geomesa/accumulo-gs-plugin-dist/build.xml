@@ -25,8 +25,8 @@
     <mkdir dir="target/geomesa-accumulo"/>
     <!-- Extract main plugin jars -->
     <untar compression="gzip" dest="target/geomesa-accumulo">
-      <fileset dir="${geomesa.dir}/geomesa-gs-plugin/geomesa-accumulo-gs-plugin/target"
-               includes="geomesa-accumulo-gs-plugin-*-install.tar.gz"/>
+      <fileset dir="${geomesa.dir}/geomesa-accumulo/geomesa-accumulo-gs-plugin/target"
+               includes="geomesa-accumulo-gs-plugin*-install.tar.gz"/>
       <patternset>
         <!-- exclude non-jar files and any jars that are already provided by the core webapp -->
         <exclude name="*.txt"/>
