@@ -1,4 +1,6 @@
 .DS_Store
+.idea
+*.iml
 *.pyc
 local.properties
 target/
@@ -18,6 +20,7 @@ jetty/lib
 /geoserver/web/app/src/main/
 /data_dir
 geoserver/webapp/proxy.json
+geoserver/webapp/src/main/webapp/data
 /build_output.txt
 /artifacts
 *~
