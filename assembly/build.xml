@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="assembly" default="build" basedir=".">
 
-  <property name="data" value="http://data.opengeo.org/suite"/>
+  <property name="data" value="http://data.opengeo.org/server"/>
 
   <target name="build"> 
     <tstamp/>
@@ -10,17 +10,17 @@
     <antcall target="geoserver-war-jboss"/>
   </target>
 
-  <target name="suite-docs-war">
-    <mkdir dir="target/suite-docs"/>
-    <copy todir="target/suite-docs">
+  <target name="boundless-server-docs-war">
+    <mkdir dir="target/boundless-server-docs"/>
+    <copy todir="target/boundless-server-docs">
       <fileset dir="../docs">
         <include name="**/target/html/**"/>
       </fileset>
       <mapper type="regexp" from="^(.*)/target/html/(.*)$$" to="\1/\2"/>
     </copy>
-    <copy todir="target/suite-docs" file="../docs/index.html"/>
-    <jar destfile="target/suite-docs.war">
-       <fileset dir="target/suite-docs"/>
+    <copy todir="target/boundless-server-docs" file="../docs/index.html"/>
+    <jar destfile="target/boundless-server-docs.war">
+       <fileset dir="target/boundless-server-docs"/>
     </jar>
   </target>
 

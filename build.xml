@@ -1,4 +1,4 @@
-<project name="suite" default="build">
+<project name="server" default="build">
   <import file="build/common.xml"/>
 
   <property name="modules.list" value="geoserver,geowebcache,composer,wpsbuilder,dashboard,docs"/>
@@ -40,7 +40,7 @@
       <fileset dir="dashboard/target/war" includes="**/*"/>
     </copy>
     <unzip dest="geoserver/webapp/target/" overwrite="true">
-      <fileset dir="geoserver/webapp/target/" includes="suite-geoserver.zip"/>
+      <fileset dir="geoserver/webapp/target/" includes="boundless-server-geoserver.zip"/>
     </unzip>
     <unzip dest="${webappsdir}/geoserver" overwrite="true">
       <fileset dir="geoserver/webapp/target" includes="geoserver.war">
@@ -61,10 +61,10 @@
     -->
     <mkdir dir="docs/target"/>
     <unzip dest="docs/target" overwrite="true">
-      <fileset dir="docs/target/" includes="suite-docs.zip"/>
+      <fileset dir="docs/target/" includes="boundless-server-docs.zip"/>
     </unzip>
     <copy todir="${webappsdir}">
-      <fileset dir="docs/target" includes="suite-docs/**/*"/>
+      <fileset dir="docs/target" includes="boundless-server-docs/**/*"/>
     </copy>
     <!-- <unzip dest="${webappsdir}/apps" src="apps/target/apps.war"/> -->
     <copy todir="${bindir}/data_dir">

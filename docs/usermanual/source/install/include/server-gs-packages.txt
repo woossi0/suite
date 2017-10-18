@@ -5,47 +5,47 @@
 
    * - Package
      - Description
-   * - ``server-gs-arcsde``
+   * - ``boundless-server-gs-arcsde``
      - ArcSDE extension
-   * - ``server-gs-app-schema``
+   * - ``boundless-server-gs-app-schema``
      - Application Schema support
-   * - ``server-gs-cloudwatch``
+   * - ``boundless-server-gs-cloudwatch``
      - Connection to :ref:`Amazon CloudWatch <sysadmin.cloudwatch>` monitoring
-   * - ``server-gs-cluster``
-     - Clustering extension. Use with ``server-gs-jdbcconfig``.
-   * - ``server-gs-csw``
+   * - ``boundless-server-gs-cluster``
+     - Clustering extension. Use with ``boundless-server-gs-jdbcconfig``.
+   * - ``boundless-server-gs-csw``
      - Catalogue Service for Web (CSW) extension
-   * - ``server-gs-db2``
+   * - ``boundless-server-gs-db2``
      - DB2 database extension
-   * - ``server-gs-gdal``
+   * - ``boundless-server-gs-gdal``
      - GDAL extension
-   * - ``server-gs-geopkg``
+   * - ``boundless-server-gs-geopkg``
      - GeoPackage extension  (**NOTE:** Also installs WPS)
-   * - ``server-gs-grib``
+   * - ``boundless-server-gs-grib``
      - GRIB data format extension
-   * - ``server-gs-inspire``
+   * - ``boundless-server-gs-inspire``
      - Additional WMS and WFS metadata configuration for INSPIRE compliance
-   * - ``server-gs-jdbcconfig``
-     - Database catalog and configuration extension. Use with ``server-gs-cluster``.
-   * - ``server-gs-jdbcstore``
+   * - ``boundless-server-gs-jdbcconfig``
+     - Database catalog and configuration extension. Use with ``boundless-server-gs-cluster``.
+   * - ``boundless-server-gs-jdbcstore``
      - JDBCStore extension
-   * - ``server-gs-jp2k``
+   * - ``boundless-server-gs-jp2k``
      - JPEG2000 extension
-   * - ``server-gs-mbtiles``
+   * - ``boundless-server-gs-mbtiles``
      - MBTiles extension (**NOTE:** Also installs WPS)
-   * - ``server-gs-mongodb``
+   * - ``boundless-server-gs-mongodb``
      - MongoDB data format extension
-   * - ``server-gs-netcdf``
+   * - ``boundless-server-gs-netcdf``
      - NetCDF data format support (read-only)
-   * - ``server-gs-netcdf-out``
+   * - ``boundless-server-gs-netcdf-out``
      - NetCDF data format support (output)
-   * - ``server-gs-oracle``
+   * - ``boundless-server-gs-oracle``
      - Oracle database extension
-   * - ``server-gs-script``
+   * - ``boundless-server-gs-script``
      - Scripting (Python) extension  (**NOTE:** Also installs WPS)
-   * - ``server-gs-sqlserver``
+   * - ``boundless-server-gs-sqlserver``
      - SQL Server database extension
-   * - ``server-gs-vectortiles``
+   * - ``boundless-server-gs-vectortiles``
      - Vector tiles extension
-   * - ``server-gs-wps``
+   * - ``boundless-server-gs-wps``
      - Web Processing Service (WPS) extension

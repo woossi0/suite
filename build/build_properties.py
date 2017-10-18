@@ -3,7 +3,7 @@ import os
 from StringIO import StringIO
 from ConfigParser import ConfigParser
 
-__all__ = ['suite_version', 'suite_version_short', 'gs_version', 'gs_version_short', 
+__all__ = ['server_version', 'server_version_short', 'gs_version', 'gs_version_short', 
            'gwc_version', 'gwc_version_short', 'pg_version', 'pg_version_short']
 
 bpfile = open(os.path.join(os.path.dirname(__file__), 'build.properties'))
@@ -24,8 +24,8 @@ def short_version(ver):
 def x_version(ver):
     return ver + '.x'
 
-suite_version = clean_snapshot(cp.get('build', 'suite.version'))
-suite_version_short = short_version(cp.get('build', 'suite.version'))
+server_version = clean_snapshot(cp.get('build', 'server.version'))
+server_version_short = short_version(cp.get('build', 'server.version'))
 
 gs_version = x_version(cp.get('build', 'gs.major_version'))
 gs_version_short = cp.get('build', 'gs.major_version')

@@ -21,7 +21,7 @@ NetCDF support isn't enabled by default, so it must be separately installed thro
 Installation instructions are dependent on your operating system and method of install:
 
 * **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.geoserver.binary>`, :ref:`Red Hat <install.redhat.tomcat.geoserver.binary>`, :ref:`Windows <install.windows.tomcat.extensions.netcdf>`
-* **Packages**: Install the :file:`server-gs-netcdf` and :file:`server-gs-netcdf-out` packages: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
+* **Packages**: Install the :file:`boundless-server-gs-netcdf` and :file:`boundless-server-gs-netcdf-out` packages: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
 
 .. note:: The Boundless Server virtual machine has most extensions pre-installed.
 

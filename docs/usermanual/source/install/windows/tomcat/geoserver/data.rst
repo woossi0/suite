@@ -8,7 +8,7 @@ GeoServer Data Directory
 New installations
 -----------------
 
-#. Extract the contents of the sample GeoServer data directory (included in the Boundless WAR bundle as :file:`server-data-dir.zip`) into :file:`C:\\ProgramData\\Boundless\\geoserver\\data`. You can right-click the file and select :menuselection:`Extract All`.
+#. Extract the contents of the sample GeoServer data directory (included in the Boundless WAR bundle as :file:`boundless-server-data-dir.zip`) into :file:`C:\\ProgramData\\Boundless\\geoserver\\data`. You can right-click the file and select :menuselection:`Extract All`.
 
    .. figure:: ../img/data_extract_all.png
       

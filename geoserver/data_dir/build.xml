@@ -1,7 +1,7 @@
 <project name="geoserver.data_dir" default="build">
   <import file="../../build/common.xml"/>
 
-  <property name="datapack.dir" value="externals/suite-data/default"/>
+  <property name="datapack.dir" value="externals/server-data/default"/>
 
   <target name="clean" depends="destroy">
     <ant dir="${datapack.dir}" target="clean"/>
@@ -9,7 +9,7 @@
   </target>
 
   <target name="build" depends="init"
-   description="assemble data directory from suite-data/default">
+   description="assemble data directory from server-data/default">
     <ant dir="${datapack.dir}"/>
     <ant dir="${datapack.dir}" target="assemble"/>
 

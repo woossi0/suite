@@ -27,14 +27,14 @@ Standard installation
    * ``-Dorg.geotools.referencing.forceXY=true``
    * ``-Dorg.geotoools.render.lite.scale.unitCompensation=true``
 
-#. If you don't have an existing GeoServer data directory, you can use the :file:`server-data-dir.zip` inside the Boundless WAR bundle :file:`BoundlessSuite-war.zip`. 
+#. If you don't have an existing GeoServer data directory, you can use the :file:`boundless-server-data-dir.zip` inside the Boundless WAR bundle :file:`BoundlessSuite-war.zip`. 
 
    .. note:: A suggested location would be :file:`/var/opt/boundless/server/geoserver/data`:
 
    .. code-block:: none
 
       mkdir -p /var/opt/boundless/server/geoserver/data
-      unzip server-data-dir.zip -d /var/opt/boundless/server/geoserver/data
+      unzip boundless-server-data-dir.zip -d /var/opt/boundless/server/geoserver/data
 
 #. Add a GeoServer context file (:file:`geoserver.xml`) to :file:`$CATALINA_HOME/conf/Catalina/localhost/` with the following content:
 

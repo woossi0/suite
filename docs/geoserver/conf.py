@@ -91,7 +91,7 @@ pygments_style = 'sphinx'
 # given in html_static_path.
 html_style = 'css/theme.css'
 
-html_theme = 'suite_rtd_theme'
+html_theme = 'server_rtd_theme'
 html_theme_path = ['../../themes']
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -99,10 +99,10 @@ html_theme_path = ['../../themes']
 # documentation.
 html_theme_options = {
   #'sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
-  'is_community': True, # Community Docs flag for Suite component docs
-  'display_zendesk': True, # Display link to report doc bugs to Suite Zendesk
+  'is_community': True, # Community Docs flag for Boundless Server component docs
+  'display_zendesk': True, # Display link to report doc bugs to Zendesk
   'display_version': True,  # Whether to show version number
-  'suite_url': 'geoserver' # the url path within Suite e.g. geoserver for suite-docs/geoserver
+  'server_url': 'geoserver' # the url path within Server e.g. geoserver for server-docs/geoserver
 
 }
 
@@ -190,7 +190,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '../../themes/suite_rtd_theme/static/img/geoserver-logo-only.png'
+latex_logo = '../../themes/server_rtd_theme/static/img/geoserver-logo-only.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -226,11 +226,11 @@ latex_elements = {
 extlinks = { 
     'wiki': ('https://github.com/geoserver/geoserver/wiki/%s',''),
     'website': ('http://geoserver.org/%s',''),
-    'user': ('/suite-docs/geoserver/%s',''),
+    'user': ('/server-docs/geoserver/%s',''),
     'developer': ('http://docs.geoserver.org/latest/en/developer/%s',''),
     'geos': ('https://jira.codehaus.org/browse/GEOS-%s','GEOS-'),
     'geot': ('https://jira.codehaus.org/browse/GEOT-%s','GEOT-'),
-    'api': ('/suite-docs/geoserver/api/#1.0.0/%s','')
+    'api': ('/server-docs/geoserver/api/#1.0.0/%s','')
 }
 
 # Common substitutions

@@ -29,9 +29,9 @@ QuickView Installation
 
 Please choose the appropriate installation method for your platform:
 
-* **RedHat Package**: Install the :file:`server-quickview` package. For details, see :ref:`RedHat Packages <install.redhat.packages>`.
+* **RedHat Package**: Install the :file:`boundless-server-quickview` package. For details, see :ref:`RedHat Packages <install.redhat.packages>`.
 
-* **Ubuntu Package**: Install the :file:`server-quickview` package. For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
+* **Ubuntu Package**: Install the :file:`boundless-server-quickview` package. For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
 
 * **RedHat WAR**: See QuickView in :ref:`install.redhat.tomcat.otherapps`.
 

@@ -27,7 +27,7 @@ WAR bundle
       
       Boundless WAR bundle
 
-#. In addition to web applications, a sample GeoServer data directory in the file :file:`server-data-dir.zip` is included for the GeoServer installation.
+#. In addition to web applications, a sample GeoServer data directory in the file :file:`boundless-server-data-dir.zip` is included for the GeoServer installation.
 
 Extension bundle
 ----------------

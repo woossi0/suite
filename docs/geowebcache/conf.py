@@ -94,7 +94,7 @@ pygments_style = 'sphinx'
 
 html_style = 'css/theme.css'
 
-html_theme = 'suite_rtd_theme'
+html_theme = 'server_rtd_theme'
 html_theme_path = ['../../themes']
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -102,8 +102,8 @@ html_theme_path = ['../../themes']
 # documentation.
 html_theme_options = {
   #'sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
-  'is_community': True, # Community Docs flag for Suite component docs
-  'display_zendesk': True, # Display link to report doc bugs to Suite Zendesk
+  'is_community': True, # Community Docs flag for Boundless Server component docs
+  'display_zendesk': True, # Display link to report doc bugs to Zendesk
   'display_version': True  # Whether to show version number
 }
 
@@ -121,7 +121,7 @@ html_short_title = "GeoWebCache"
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = '../../themes/suite_rtd_theme/static/img/geowebcache.ico'
+html_favicon = '../../themes/server_rtd_theme/static/img/geowebcache.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -187,7 +187,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '../../themes/suite_rtd_theme/static/img/geowebcache-logo-only.png'
+latex_logo = '../../themes/server_rtd_theme/static/img/geowebcache-logo-only.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.

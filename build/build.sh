@@ -5,7 +5,7 @@
 
 set -x
 
-DIST_ROOT=/var/www/suite
+DIST_ROOT=/var/www/server
 
 # build category
 build_cat=`init_build_cat $CAT`
@@ -85,7 +85,7 @@ dist_alias=$DIST_ROOT/$build_cat/$build_name
 [ -e $dist_alias ] && [ rm -rf $dist_alias ]
 mkdir -p $dist_alias
 for f in `ls $dist`; do
-  g=`echo $f | sed "s/\(opengeosuite-\)[0-9a-z]\+\(-.*\)/\1$build_name\2/g"`
+  g=`echo $f | sed "s/\(boundlessserver-\)[0-9a-z]\+\(-.*\)/\1$build_name\2/g"`
   ln -sf $dist/$f $dist_alias/$g
 done
 

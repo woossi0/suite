@@ -54,7 +54,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      apt-cache search server-
+      apt-cache search boundless-server-
 
    If the command does not return any results, examine the output of the ``apt-cache`` command for any errors or warnings.
 
@@ -64,23 +64,23 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
      .. code-block:: bash
 
-        apt-get install server-geoserver server-docs server-dashboard
+        apt-get install boundless-server-geoserver boundless-server-docs boundless-server-dashboard
 
    * A more complete install, including all the web applications, PostGIS, GDAL, and NetCDF:
 
      .. code-block:: bash
 
-        apt-get install server-dashboard \
-                        server-geoserver \
-                        server-geowebcache \
-                        server-composer \
-                        server-docs \
-                        server-quickview  \
-                        server-wpsbuilder \
+        apt-get install boundless-server-dashboard \
+                        boundless-server-geoserver \
+                        boundless-server-geowebcache \
+                        boundless-server-composer \
+                        boundless-server-docs \
+                        boundless-server-quickview  \
+                        boundless-server-wpsbuilder \
                         postgresql-9.6-postgis-2.3 \
-                        server-gs-gdal \
-                        server-gs-netcdf \
-                        server-gs-netcdf-out
+                        boundless-server-gs-gdal \
+                        boundless-server-gs-netcdf \
+                        boundless-server-gs-netcdf-out
 
    .. note::  See the :ref:`install.ubuntu.packages.list` for details of individual packages.
 
@@ -123,7 +123,7 @@ This section describes how to upgrade Boundless Server 4.9.0 to |version| on Ubu
 
    .. code-block:: bash
 
-      apt-get remove server-*
+      apt-get remove boundless-server-*
 
    Make note of which packages were removed this way.
 
@@ -149,11 +149,11 @@ This section describes how to upgrade Boundless Server 4.9.0 to |version| on Ubu
 
       apt-get update
 
-#. Install all Boundless Server 4.9.1 packages corresponding to the ``server-*`` packages which were removed in step 1. For example:
+#. Install all Boundless Server 4.9.1 packages corresponding to the ``boundless-server-*`` packages which were removed in step 1. For example:
 
    .. code-block:: bash
 
-      apt-get install server-geoserver server-docs server-dashboard
+      apt-get install boundless-server-geoserver boundless-server-docs boundless-server-dashboard
 
 
 Upgrading from 4.8 and older
@@ -252,21 +252,21 @@ Boundless Server web applications
 
    * - Package
      - Description
-   * - ``server-composer``
+   * - ``boundless-server-composer``
      - :ref:`Composer application <webmaps.composer>`
-   * - ``server-dashboard``
+   * - ``boundless-server-dashboard``
      - :ref:`Boundless Server Dashboard <intro.dashboard>`
-   * - ``server-docs``
+   * - ``boundless-server-docs``
      - Boundless Server documentation
-   * - ``server-geoserver``
+   * - ``boundless-server-geoserver``
      - GeoServer application
-   * - ``server-geowebcache``
+   * - ``boundless-server-geowebcache``
      - GeoWebCache application
-   * - ``server-quickview``
+   * - ``boundless-server-quickview``
      - QuickView application showcasing the :ref:`WebSDK <webapps.sdk>`
-   * - ``server-wpsbuilder``
+   * - ``boundless-server-wpsbuilder``
      - :ref:`Graphical utility <processing.wpsbuilder>` for executing WPS processes
-   * - ``server-tomcat8``
+   * - ``boundless-server-tomcat8``
      - Apache Tomcat application server (automatically installed by these packages)
 
 Boundless Server GeoServer extensions

@@ -13,8 +13,8 @@
 [submodule "geoserver/externals/geoscript/py"]
 	path = geoserver/externals/geoscript/py
 	url = git://github.com/geoscript/geoscript-py.git
-[submodule "geoserver/data_dir/externals/suite-data"]
-	path = geoserver/data_dir/externals/suite-data
+[submodule "geoserver/data_dir/externals/server-data"]
+	path = geoserver/data_dir/externals/server-data
 	url = https://github.com/boundlessgeo/suite-data.git
 [submodule "composer/composer"]
 	path = composer/composer

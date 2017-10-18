@@ -40,7 +40,7 @@ Documentation
 
 #. If needed, install Java and Tomcat (see :ref:`install` for more details).
 
-#. Copy the :file:`server-docs.war` file to your webapps directory (:file:`$CATALINA_HOME/webapps`).
+#. Copy the :file:`boundless-server-docs.war` file to your webapps directory (:file:`$CATALINA_HOME/webapps`).
 
 #. Restart Tomcat.
 

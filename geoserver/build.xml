@@ -1,4 +1,4 @@
-<project name="geoserver-suite" default="build">
+<project name="geoserver-server" default="build">
   <import file="../build/common.xml"/>
 
   <property name="geoserver.modules" value="geotools,geowebcache,geoserver,data_dir,externals,geoserver-community,webapp"/>

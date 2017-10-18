@@ -5,10 +5,10 @@ Common build targets.
 
     <!-- handle environment variable overrides -->
     <property environment="env"/>
-    <condition property="suite.build_cat" value="${env.BUILD_CAT}">
+    <condition property="server.build_cat" value="${env.BUILD_CAT}">
       <isset property="env.BUILD_CAT"/>
     </condition>
-    <condition property="suite.build_name" value="${env.BUILD_NAME}">
+    <condition property="server.build_name" value="${env.BUILD_NAME}">
       <isset property="env.BUILD_NAME"/>
     </condition>
 
@@ -28,9 +28,9 @@ Common build targets.
     <property file="${common.basedir}/build.properties"/>
 
     <!-- Set up gt/gwc/gs versions based on majer version and suffix -->
-    <property name="gt.version" value="${gt.major_version}${suite.minor_version}"/>
-    <property name="gwc.version" value="${gwc.major_version}${suite.minor_version}"/>
-    <property name="gs.version" value="${gs.major_version}${suite.minor_version}"/>
+    <property name="gt.version" value="${gt.major_version}${server.minor_version}"/>
+    <property name="gwc.version" value="${gwc.major_version}${server.minor_version}"/>
+    <property name="gs.version" value="${gs.major_version}${server.minor_version}"/>
 
     <taskdef resource="net/sf/antcontrib/antlib.xml">
       <classpath>
@@ -52,9 +52,9 @@ Common build targets.
     -->
     <target name="init-time">
         <tstamp>
-          <format property="suite.build_date" pattern="yyyy-MM-dd'T'hh:mm:ssZ"/>
-          <format property="suite.build_prettydate" pattern="E MMM dd, yyyy @ HH:mm z"/>
-          <format property="suite.build_shortdate" pattern="E MMM dd, yyyy"/>
+          <format property="server.build_date" pattern="yyyy-MM-dd'T'hh:mm:ssZ"/>
+          <format property="server.build_prettydate" pattern="E MMM dd, yyyy @ HH:mm z"/>
+          <format property="server.build_shortdate" pattern="E MMM dd, yyyy"/>
         </tstamp>
     </target>
 
@@ -62,7 +62,7 @@ Common build targets.
     Initializes git revision info.
     -->
     <target name="init-git">
-         <exec executable="git" outputproperty="suite.build_rev"
+         <exec executable="git" outputproperty="server.build_rev"
             failifexecutionfails="false">
             <arg line="rev-parse --short HEAD"/>
         </exec>
@@ -73,28 +73,28 @@ Common build targets.
           <isset property="env.GIT_BRANCH"/>
           <then>
             <!-- hack to strip off origin prefix -->
-            <propertyregex property="suite.build_branch"
+            <propertyregex property="server.build_branch"
               input="${env.GIT_BRANCH}" regexp=".*/(.*)" select="\1"/>
               <echo message="env.GIT_BRANCH = ${env.GIT_BRANCH}"/>
           </then>
         </if>
 
-        <condition property="suite.build_branch" value="${env.GIT_BRANCH}">
+        <condition property="server.build_branch" value="${env.GIT_BRANCH}">
           <isset property="env.GIT_BRANCH"/>
         </condition>
         <if>
           <not>
-            <isset property="suite.build_branch"/>
+            <isset property="server.build_branch"/>
           </not>
           <then>
-            <exec executable="git" outputproperty="suite.build_branch"
+            <exec executable="git" outputproperty="server.build_branch"
               failifexecutionfails="false">
               <arg line="rev-parse --abbrev-ref HEAD"/>
             </exec>
           </then>
         </if>
-        <echo message="suite.build_rev = ${suite.build_rev}"/>
-        <echo message="suite.build_branch = ${suite.build_branch}"/>
+        <echo message="server.build_rev = ${server.build_rev}"/>
+        <echo message="server.build_branch = ${server.build_branch}"/>
     </target>
 
       <!--
@@ -126,17 +126,17 @@ Common build targets.
     Creates the target/version.ini file.
     -->
     <target name="init-buildinfo" depends="init-time,init-target,init-git">
-      <echo message="suite_version=${suite.version}${line.separator}" 
+      <echo message="server_version=${server.version}${line.separator}" 
           file="target/version.ini"/>
-      <echo message="build_branch=${suite.build_branch}${line.separator}" 
+      <echo message="build_branch=${server.build_branch}${line.separator}" 
           file="target/version.ini" append="true"/>
-      <echo message="build_rev=${suite.build_rev}${line.separator}" 
+      <echo message="build_rev=${server.build_rev}${line.separator}" 
           file="target/version.ini" append="true"/>
-                <echo message="build_shortdate=${suite.build_shortdate}${line.separator}" 
+                <echo message="build_shortdate=${server.build_shortdate}${line.separator}" 
           file="target/version.ini" append="true"/>
-      <echo message="build_date=${suite.build_date}${line.separator}" 
+      <echo message="build_date=${server.build_date}${line.separator}" 
           file="target/version.ini" append="true"/>
-      <echo message="build_prettydate=${suite.build_prettydate}${line.separator}" 
+      <echo message="build_prettydate=${server.build_prettydate}${line.separator}" 
             file="target/version.ini" append="true"/>
     </target>
 
@@ -169,7 +169,7 @@ Common build targets.
         <property name="excludes" value=""/>
 
         <property name="artifact_file" 
-            value="target/suite-${name}-${suite.build_rev}.zip"/>
+            value="target/boundless-server-${name}-${server.build_rev}.zip"/>
 
         <delete file="${artifact_file}"/>
         <zip destfile="${artifact_file}">
@@ -189,7 +189,7 @@ Common build targets.
       <property name="dir" value="target"/>
       <property name="name" value="${ant.project.name}"/>
 
-      <property name="ext_file" value="target/suite-geoserver-${name}-${suite.build_rev}.zip"/>
+      <property name="ext_file" value="target/boundless-server-geoserver-${name}-${server.build_rev}.zip"/>
 
       <zip destfile="${ext_file}">
         <fileset dir="${dir}/${name}"/>
@@ -209,11 +209,11 @@ Common build targets.
         <property name="path" value="${name}"/>
 
         <property name="artifact_dir" 
-          value="${suite.build_root}/${suite.build_branch}/${suite.build_cat}/${path}"/>
+          value="${server.build_root}/${server.build_branch}/${server.build_cat}/${path}"/>
         <property name="artifact_file" 
-            value="suite-${name}-${suite.build_rev}.zip"/>
+            value="boundless-server-${name}-${server.build_rev}.zip"/>
         <property name="artifact_link" 
-            value="suite-${name}-${suite.build_name}.zip"/>
+            value="boundless-server-${name}-${server.build_name}.zip"/>
 
         <mkdir dir="${artifact_dir}"/>
         <copy file="target/${artifact_file}" todir="${artifact_dir}" overwrite="true"/>  
@@ -226,11 +226,11 @@ Common build targets.
         -->
         <if>
           <not>
-            <equals arg1="${suite.build_cat}" arg2="release"/>
+            <equals arg1="${server.build_cat}" arg2="release"/>
           </not>
           <then>
             <sort id="all_artifacts">
-              <fileset dir="${artifact_dir}" includes="suite-${name}-*.zip"/>
+              <fileset dir="${artifact_dir}" includes="boundless-server-${name}-*.zip"/>
               <date/>
             </sort>
             <last id="new_artifacts" count="6">
@@ -259,7 +259,7 @@ Common build targets.
         <property name="path" value="geoserver-extensions"/>
 
         <property name="extensions_dir" 
-          value="${suite.build_root}/${suite.build_branch}/${suite.build_cat}/${path}"/>
+          value="${server.build_root}/${server.build_branch}/${server.build_cat}/${path}"/>
 
         <antcall target="publish-artifact">
           <param name="artifact_dir" value="${extensions_dir}/"/>
@@ -290,11 +290,11 @@ Common build targets.
      <echo message="${mvn.exe} ${mvn.flags} ${mvn_settings} ${mvn_offline} ${flags} ${goals}"/>
      <exec executable="${mvn.exe}" dir="${dir}" failonerror="true">
         <arg line="${mvn_settings} ${mvn_offline} ${mvn.flags} ${flags} ${goals}"/>
-        <arg line="-Dsuite.version=${suite.version}"/>
-        <arg line="-Dsuite.build_branch=${suite.build_branch}"/>
-        <arg line="-Dsuite.build_rev=${suite.build_rev}"/>
-        <arg line="-Dsuite.build_date='${suite.build_date}'"/>
-        <arg line="-Dsuite.build_prettydate='${suite.build_prettydate}'"/>
+        <arg line="-Dserver.version=${server.version}"/>
+        <arg line="-Dserver.build_branch=${server.build_branch}"/>
+        <arg line="-Dserver.build_rev=${server.build_rev}"/>
+        <arg line="-Dserver.build_date='${server.build_date}'"/>
+        <arg line="-Dserver.build_prettydate='${server.build_prettydate}'"/>
      </exec>
   </target>
 
@@ -314,9 +314,9 @@ Common build targets.
       <property name="outdir" value="${basedir}/target/${builder}"/>
       <property name="flags" value=""/>
       
-      <echo message="sphinx-build -A suite_version=${suite.version} ${sphinx.flags} ${flags} -b ${builder} -d ${doctrees} ${srcdir} ${outdir}"/>
+      <echo message="sphinx-build -A server_version=${server.version} ${sphinx.flags} ${flags} -b ${builder} -d ${doctrees} ${srcdir} ${outdir}"/>
       <exec executable="sphinx-build" dir="${dir}" failonerror="true">
-        <arg line="-A suite_version=${suite.version} ${sphinx.flags} ${flags} -b ${builder} -d ${doctrees} ${srcdir} ${outdir}"/>
+        <arg line="-A server_version=${server.version} ${sphinx.flags} ${flags} -b ${builder} -d ${doctrees} ${srcdir} ${outdir}"/>
       </exec>
   </target>
 
