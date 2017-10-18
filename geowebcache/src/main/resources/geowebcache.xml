@@ -7,7 +7,7 @@
 <layers>
 
   <wmsLayer>
-    <name>world</name>
+    <name>opengeo:countries</name>
     <gridSubsets> <!-- Use two of the predefined gridsets -->
       <gridSubset>
         <gridSetName>GoogleCRS84Quad</gridSetName>
@@ -17,7 +17,7 @@
       </gridSubset>
     </gridSubsets>
     <mimeFormats><string>image/png</string></mimeFormats>
-    <wmsUrl><string>http://suite.opengeo.org/geoserver/wms</string></wmsUrl>
+    <wmsUrl><string>http://demo.boundlessgeo.com/geoserver/wms</string></wmsUrl>
   </wmsLayer>
 
 </layers>
