@@ -1,17 +1,17 @@
 <Context docBase="geoserver.war">
   <Parameter name="GEOSERVER_DATA_DIR"
-             value="/var/opt/boundless/suite/geoserver/data"
+             value="/var/opt/boundless/server/geoserver/data"
              override="false"/>
   <Parameter name="GEOSERVER_REQUIRE_FILE"
-             value="/var/opt/boundless/suite/geoserver/data/global.xml"
+             value="/var/opt/boundless/server/geoserver/data/global.xml"
              override="false"/>
   <Parameter name="GEOSERVER_LOG_LOCATION"
-             value="/var/opt/boundless/suite/geoserver/data/logs"
+             value="/var/opt/boundless/server/geoserver/data/logs"
             override="false"/> -->
   <Parameter name="GEOSERVER_GWC_CONFIG_DIR"
-             value="/var/opt/boundless/suite/geoserver/gwc"
+             value="/var/opt/boundless/server/geoserver/gwc"
              override="false"/>
   <Parameter name="GEOWEBCACHE_CACHE_DIR"
-             value="/var/opt/boundless/suite/geoserver/tilecache"
+             value="/var/opt/boundless/server/geoserver/tilecache"
              override="false"/>
 </Context>

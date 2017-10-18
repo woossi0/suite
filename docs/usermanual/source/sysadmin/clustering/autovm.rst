@@ -1,6 +1,6 @@
 .. _sysadmin.clustering.autovm:
 
-How to set up a Boundless Suite cluster in a virtual environment
+How to set up a Boundless Server cluster in a virtual environment
 =================================================================
 
 This page will show how to automatically set up and configure a cluster of servers on `VMware <http://vmware.com>`_ or other virtual environment.

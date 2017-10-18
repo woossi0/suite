@@ -3,7 +3,7 @@
 YSLD tutorial
 =============
 
-This tutorial provides a set of steps that users can follow to style layers and compose a map using :ref:`Suite Composer <webmaps.composer>`.
+This tutorial provides a set of steps that users can follow to style layers and compose a map using :ref:`Composer <webmaps.composer>`.
 
 For this tutorial, you will need to download the following files from the `Natural Earth dataset <http://www.naturalearthdata.com/>`_:
 

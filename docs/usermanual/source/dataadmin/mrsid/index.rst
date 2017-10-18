@@ -3,9 +3,9 @@
 Enabling MrSID image support
 ============================
 
-Boundless Suite comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL). These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
+Boundless Server comes with support for publishing data from many formats supported by the `Geospatial Data Abstraction Library <http://gdal.org>`_ (GDAL). These formats include DTED, EHdr, AIG, ENVIHdr, and much more.
 
-`MrSID <http://www.gdal.org/frmt_mrsid.html>`_ is available as an optional extension as well, but due to licensing issues, it is not enabled by default. The steps to enable support will differ depending on how Boundless Suite is installed, and on what platform.
+`MrSID <http://www.gdal.org/frmt_mrsid.html>`_ is available as an optional extension as well, but due to licensing issues, it is not enabled by default. The steps to enable support will differ depending on how Boundless Server is installed, and on what platform.
 
 Find the method of installation below and continue there.
 
@@ -17,7 +17,7 @@ Installation instructions are dependent on your operating system and method of i
 * **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.geoserver.binary>`, :ref:`Red Hat <install.redhat.tomcat.geoserver.binary>`, :ref:`Windows <install.windows.tomcat.extensions.gdal>`
 * **Packages**: Install the ``gdal-mrsid`` package: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
 
-.. note:: The Boundless Suite virtual machine has most extensions pre-installed.
+.. note:: The Boundless Server virtual machine has most extensions pre-installed.
 
 
 Verification

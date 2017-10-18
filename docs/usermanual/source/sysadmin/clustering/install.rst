@@ -3,14 +3,14 @@
 Installing the clustering extension
 ===================================
 
-The clustering extension is not installed by default in :ref:`installations <install>` of Boundless Suite. It must be installed separately and then later :ref:`enabled <sysadmin.clustering.setup>`.
+The clustering extension is not installed by default in :ref:`installations <install>` of Boundless Server. It must be installed separately and then later :ref:`enabled <sysadmin.clustering.setup>`.
 
 .. note:: Prior to installation of the clustering extension, it is important to ensure that you have set up an external data directory, located in a shared location that all GeoServer instances will be able to access.
 
 Install
 -------
 
-Installing the clustering extension is the similar to most :ref:`Boundless Suite Extensions <intro.extensions>`. One notable exception is that clustering consists of multiple extensions which must be installed seperately.
+Installing the clustering extension is the similar to most :ref:`Boundless Server Extensions <intro.extensions>`. One notable exception is that clustering consists of multiple extensions which must be installed seperately.
 
 Installation instructions are dependent on your operating system and method of install. The JDBCConfig and Clustering extensions are both **required**. JDBCStore is **optional**.
 

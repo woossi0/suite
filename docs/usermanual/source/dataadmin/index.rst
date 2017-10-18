@@ -3,7 +3,7 @@
 Working with your data 
 ======================
 
-This section describes some strategies on how to work with your data using Boundless Suite, including connecting from databases and using the GeoServer Layer Importer.
+This section describes some strategies on how to work with your data using Boundless Server, including connecting from databases and using the GeoServer Layer Importer.
 
 Working with PostGIS
 --------------------

@@ -3,9 +3,9 @@
 Virtual machine install on Windows
 ==================================
 
-.. warning:: The virtual machine install of Suite is **not** recommended for production.
+.. warning:: The virtual machine install of Server is **not** recommended for production.
 
-This section will install the Boundless Suite virtual machine on a Windows host.
+This section will install the Boundless Server virtual machine on a Windows host.
 
 Installation
 ------------
@@ -81,16 +81,16 @@ It is important to test that the virtual machine installed in the previous exerc
 
       * If you ever lose your mouse or are unable to type, press the :kbd:`Right Ctrl` key to reclaim focus back from the virtual machine.
     
-#. Once you see the above screen, open a browser and navigate to http://localhost:8080/dashboard. You should see the Boundless Suite Dashboard.
+#. Once you see the above screen, open a browser and navigate to http://localhost:8080/dashboard. You should see the Boundless Server Dashboard.
 
    .. figure:: /intro/img/dashboard.png
 
-      Boundless Suite Dashboard
+      Boundless Server Dashboard
 
 Terminal setup
 ^^^^^^^^^^^^^^
 
-Most interaction with Boundless Suite will be done through a browser, but occasionally we will want to run commands directly on the virtual machine. To do this, we will use a terminal client.
+Most interaction with Boundless Server will be done through a browser, but occasionally we will want to run commands directly on the virtual machine. To do this, we will use a terminal client.
 
 .. note:: Use :guilabel:`Headless Start` to prevent the virtual machine console from even being shown.
 

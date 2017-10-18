@@ -3,7 +3,7 @@
 Working with JPEG 2000 (JP2K) data
 ==================================
 
-Boundless Suite supports data saved in `JPEG 2000 <https://jpeg.org/jpeg2000/index.html>`_ format. This image format utilizes wavelet compression for more efficient storage.
+Boundless Server supports data saved in `JPEG 2000 <https://jpeg.org/jpeg2000/index.html>`_ format. This image format utilizes wavelet compression for more efficient storage.
 
 This data can be loaded and published through GeoServer.
 

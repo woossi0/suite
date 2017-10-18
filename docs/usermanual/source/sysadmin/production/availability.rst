@@ -42,7 +42,7 @@ A watchdog can be implemented using a full-featured monitoring application such 
    # Set up script variables
    PID_FILE=/var/run/tomcat8.pid
    HTTP_URL=http://localhost:8080/geoserver
-   GeoServer_LOG=/var/opt/boundless/suite/geoserver/data/logs/geoserver.log
+   GeoServer_LOG=/var/opt/boundless/server/geoserver/data/logs/geoserver.log
    CATALINA_LOG=/usr/share/tomcat8/logs/catalina.out
    LOG_COPY=/home/tomcat
    PID=`cat $PID_FILE`
@@ -115,7 +115,7 @@ In this deployment, the network router sends the request to one of the VRRPd rou
 Summary
 -------
 
-Availability is the amount of uptime during which a system is able to service client requests.  Techniques to increase the availability of Boundless Suite deployments include:
+Availability is the amount of uptime during which a system is able to service client requests.  Techniques to increase the availability of Boundless Server deployments include:
 
 * Use a watchdog process to detect server responsiveness and restart it if necessary
 * Use load balancing to distribute request load across a pool of servers

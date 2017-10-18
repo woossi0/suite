@@ -6,7 +6,7 @@ The following Windows operating systems are supported:
 * Windows Server 2012 (Recommended)
 * Windows 10
 
-Boundless Suite for Windows has the following system requirements:
+Boundless Server for Windows has the following system requirements:
 
 * Memory: 1GB minimum (2GB recommended)
 * Disk space: 750MB minimum (plus extra space for any loaded data)

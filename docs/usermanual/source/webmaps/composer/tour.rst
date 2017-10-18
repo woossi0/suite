@@ -54,7 +54,7 @@ Toolbar
 
 When logged in, the top of the application will always contain four links:
 
-* Composer Home, accessible by clicking the :guilabel:`Suite Composer` logo and title on the left
+* Composer Home, accessible by clicking the :guilabel:`Composer` logo and title on the left
 * :guilabel:`Help`, to bring up this documentation
 * :guilabel:`Recent Alerts`, to display a list of recent errors and other messages
 * User settings, usually noted with the user name :guilabel:`admin`, links to the GeoServer Admin interface and logout

@@ -3,7 +3,7 @@
 Working with Oracle data
 ========================
 
-Boundless Suite can read and publish data from an Oracle Spatial database. Any table that has a valid geometry column can be published as a layer in GeoServer.
+Boundless Server can read and publish data from an Oracle Spatial database. Any table that has a valid geometry column can be published as a layer in GeoServer.
 
 Installing Oracle support
 -------------------------

@@ -1,4 +1,4 @@
-Most interaction with Boundless Suite will be done through a browser, but occasionally we will want to run commands directly on the virtual machine. To do this, we will use a terminal client.
+Most interaction with Boundless Server will be done through a browser, but occasionally we will want to run commands directly on the virtual machine. To do this, we will use a terminal client.
 
 .. note:: Use :guilabel:`Headless Start` to prevent the virtual machine console from even being shown.
 

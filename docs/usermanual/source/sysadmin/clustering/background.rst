@@ -3,7 +3,7 @@
 Background
 ==========
 
-This page will discuss the theory and technology underlying the clustering extension for GeoServer in Boundless Suite.
+This page will discuss the theory and technology underlying the clustering extension for GeoServer in Boundless Server.
 
 What is clustering?
 -------------------

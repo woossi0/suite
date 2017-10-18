@@ -10,7 +10,7 @@ If you are upgrading from a previous version, please be aware that you must **lo
 Upgrading from OpenGeo Suite 4.8 or earlier
 -------------------------------------------
 
-.. warning:: PostGIS is not available with the application server-based installation of Boundless Suite. These installation instructions do not cover the migration of PostGIS databases at this time.
+.. warning:: PostGIS is not available with the application server-based installation of Boundless Server. These installation instructions do not cover the migration of PostGIS databases at this time.
 
 #. Please make a backup of all your data and configuration prior to upgrading.
 
@@ -30,20 +30,20 @@ Upgrading from OpenGeo Suite 4.8 or earlier
 
 #. Uninstalling will not delete your settings and data, which by default is located at :file:`C:\\ProgramData\\Boundless\\OpenGeo`
 
-   .. note:: Your existing data directory can be used with Boundless Suite as-is. The default location will be at :file:`C:\\ProgramData\\Boundless\\geoserver\\data`, though this can be change. If you copy your existing data directory to this new directory, please review and correct any references to spatial data stored in your data directory.
+   .. note:: Your existing data directory can be used with Boundless Server as-is. The default location will be at :file:`C:\\ProgramData\\Boundless\\geoserver\\data`, though this can be change. If you copy your existing data directory to this new directory, please review and correct any references to spatial data stored in your data directory.
 
-Upgrading from Boundless Suite 4.9 and above
---------------------------------------------
+Upgrading from Boundless Server 4.9 and above
+---------------------------------------------
 
 When upgrading from a **prior version**, your GeoServer data directory can be used as-is, without migration. The configuration files will be updated in place the first time GeoServer runs.
 
 However, we advise making a backup of all your data and configuration prior to upgrading:
 
-#. Using :guilabel:`Windows Explorer` navigate to your Boundless Suite data directory (usually :file:`C:\\ProgramData\\Boundless\\geoserver`) to show your :file:`data` directory, which is the GeoServer data directory.
+#. Using :guilabel:`Windows Explorer` navigate to your Boundless Server data directory (usually :file:`C:\\ProgramData\\Boundless\\geoserver`) to show your :file:`data` directory, which is the GeoServer data directory.
 
    .. figure:: img/upgrade_data.png
       
-      Boundless Suite data directory
+      Boundless Server data directory
 
 #. Select the :file:`data` folder and right click to :menuselection:`Send to --> Compressed (zipped) folder`.
 

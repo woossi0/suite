@@ -5,13 +5,13 @@ Installing Java
 
 This page will show how to install the proper version of Java on your system.
 
-#. Boundless Suite on Windows requires a 32-bit Java Runtime Environment, available from the `Oracle Java download page <https://java.com/en/download/manual.jsp>`__.
+#. Boundless Server on Windows requires a 32-bit Java Runtime Environment, available from the `Oracle Java download page <https://java.com/en/download/manual.jsp>`__.
 
    .. figure:: img/java_download.png
       
       Java 32-bit Windows download
    
-   .. note:: Boundless Suite requires Java 8, and is no longer compatible with Java 7.
+   .. note:: Boundless Server requires Java 8, and is no longer compatible with Java 7.
    
    .. warning:: While some functionality will work with a 64-bit Java, use of GDAL and NetCDF binaries requires 32-bit Java.
 

@@ -3,7 +3,7 @@
 Working with GRIB data
 ======================
 
-Boundless Suite supports data saved in `GRIB <https://en.wikipedia.org/wiki/GRIB>`_ format. GRIB is a data format commonly used in meteorology to store weather data, both historical and predicted.
+Boundless Server supports data saved in `GRIB <https://en.wikipedia.org/wiki/GRIB>`_ format. GRIB is a data format commonly used in meteorology to store weather data, both historical and predicted.
 
 This data can be loaded and published through GeoServer. Both GRIB 1 and GRIB 2 formats are supported.
 

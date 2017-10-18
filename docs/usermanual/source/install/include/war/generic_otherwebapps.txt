@@ -7,8 +7,8 @@ GeoWebCache
 
    .. code-block:: bash
 
-      mkdir -p /var/opt/boundless/suite/geowebcache/config
-      mkdir -p /var/opt/boundless/suite/geowebcache/tilecache
+      mkdir -p /var/opt/boundless/server/geowebcache/config
+      mkdir -p /var/opt/boundless/server/geowebcache/tilecache
 
 #. Copy the :file:`geowebcache.war` file to your webapps directory (:file:`$CATALINA_HOME/webapps`).
 
@@ -40,11 +40,11 @@ Documentation
 
 #. If needed, install Java and Tomcat (see :ref:`install` for more details).
 
-#. Copy the :file:`suite-docs.war` file to your webapps directory (:file:`$CATALINA_HOME/webapps`).
+#. Copy the :file:`server-docs.war` file to your webapps directory (:file:`$CATALINA_HOME/webapps`).
 
 #. Restart Tomcat.
 
-#. Navigate to `<http://localhost:8080/suite-docs>`__ to verify that the application deployed successfully.
+#. Navigate to `<http://localhost:8080/server-docs>`__ to verify that the application deployed successfully.
 
 
 WPS Builder

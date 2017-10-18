@@ -6,7 +6,7 @@ Loading data into PostGIS from the Command Line
 
 PostGIS includes the ``shp2pgsql`` tool for converting a single or multiple shapefiles into database tables.
 
-.. note:: This section uses the command line utility ``shp2pgsql`` and optionally the graphical utility :command:`pgAdmin`. ``shp2pgsql`` is included with the Boundless Suite PostGIS package. ``pgAdmin`` is provided as part of :desktop:`Boundless Desktop <what_is_bd.html>`.
+.. note:: This section uses the command line utility ``shp2pgsql`` and optionally the graphical utility :command:`pgAdmin`. ``shp2pgsql`` is included with the Boundless Server PostGIS package. ``pgAdmin`` is provided as part of :desktop:`Boundless Desktop <what_is_bd.html>`.
 
 .. note:: If you would prefer to use a graphical application to load shapefiles into PostGIS, :desktop:`Boundless Desktop <what_is_bd.html>` includes QGIS, which can be used for this purpose.
 
@@ -125,7 +125,7 @@ Create a batch file, for example :file:`loadfiles.cmd`, in the same directory as
 
 Run this batch file to load all the selected shapefiles into the database.
 
-.. note:: If you are running the Boundless Suite virtual machine on Windows, connect to the virtual machine and follow the Bash instructions.
+.. note:: If you are running the Boundless Server virtual machine on Windows, connect to the virtual machine and follow the Bash instructions.
 
 Bash
 ~~~~

@@ -3,7 +3,7 @@
 Installation
 ============
 
-This section describes how to install Boundless Suite for your platform. Both new installations and upgrades are covered in the sections below.
+This section describes how to install Boundless Server for your platform. Both new installations and upgrades are covered in the sections below.
 
 .. toctree::
    :maxdepth: 2

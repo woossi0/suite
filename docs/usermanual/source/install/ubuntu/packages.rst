@@ -3,7 +3,7 @@
 Package install on Ubuntu
 =========================
 
-This page describes how to perform a package installation of **Boundless Suite** |version| on Ubuntu Linux.
+This page describes how to perform a package installation of **Boundless Server** |version| on Ubuntu Linux.
 
 .. note:: For upgrades, see the section on :ref:`Upgrading <install.ubuntu.packages.upgrade>` below.
 
@@ -14,11 +14,11 @@ This page describes how to perform a package installation of **Boundless Suite**
 New installation
 ----------------
 
-This section describes how to perform a clean package installation of **Boundless Suite** |version| on Ubuntu Linux.
+This section describes how to perform a clean package installation of **Boundless Server** |version| on Ubuntu Linux.
 
 See the :ref:`install.ubuntu.packages.list` for details about the possible packages to install.
 
-.. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of Boundless Suite (such as PostgreSQL) please remove them before installing Boundless Suite.
+.. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of Boundless Server (such as PostgreSQL) please remove them before installing Boundless Server.
 
 #. Change to the ``root`` user:
 
@@ -36,13 +36,13 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.9.1/ubuntu trusty main" > /etc/apt/sources.list.d/boundless.list
+      echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/4.9.1/ubuntu trusty main" > /etc/apt/sources.list.d/boundless.list
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
    .. note:: Your username is your email address. When entering your username into the ``boundless.list`` file, replace the ``@`` in your username with ``%40``.
 
-   .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/>`__ if you have purchased Boundless Suite and do not have a user name and password.
+   .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/>`__ if you have purchased Boundless Server and do not have a user name and password.
 
 #. Update the repository list:
 
@@ -54,7 +54,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      apt-cache search suite-
+      apt-cache search server-
 
    If the command does not return any results, examine the output of the ``apt-cache`` command for any errors or warnings.
 
@@ -64,23 +64,23 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
      .. code-block:: bash
 
-        apt-get install suite-geoserver suite-docs suite-dashboard
+        apt-get install server-geoserver server-docs server-dashboard
 
    * A more complete install, including all the web applications, PostGIS, GDAL, and NetCDF:
 
      .. code-block:: bash
 
-        apt-get install suite-dashboard \
-                        suite-geoserver \
-                        suite-geowebcache \
-                        suite-composer \
-                        suite-docs \
-                        suite-quickview  \
-                        suite-wpsbuilder \
+        apt-get install server-dashboard \
+                        server-geoserver \
+                        server-geowebcache \
+                        server-composer \
+                        server-docs \
+                        server-quickview  \
+                        server-wpsbuilder \
                         postgresql-9.6-postgis-2.3 \
-                        suite-gs-gdal \
-                        suite-gs-netcdf \
-                        suite-gs-netcdf-out
+                        server-gs-gdal \
+                        server-gs-netcdf \
+                        server-gs-netcdf-out
 
    .. note::  See the :ref:`install.ubuntu.packages.list` for details of individual packages.
 
@@ -107,7 +107,7 @@ Upgrade
 Upgrading from 4.9.0 to |version|
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubuntu Linux.
+This section describes how to upgrade Boundless Server 4.9.0 to |version| on Ubuntu Linux.
 
 .. note::
 
@@ -123,7 +123,7 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
 
    .. code-block:: bash
 
-      apt-get remove suite-*
+      apt-get remove server-*
 
    Make note of which packages were removed this way.
 
@@ -137,7 +137,7 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
 
    .. code-block:: none
 
-      deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.9.1/ubuntu trusty main
+      deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/4.9.1/ubuntu trusty main
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
@@ -149,19 +149,19 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Ubun
 
       apt-get update
 
-#. Install all Boundless Suite 4.9.1 packages corresponding to the ``suite-*`` packages which were removed in step 1. For example:
+#. Install all Boundless Server 4.9.1 packages corresponding to the ``server-*`` packages which were removed in step 1. For example:
 
    .. code-block:: bash
 
-      apt-get install suite-geoserver suite-docs suite-dashboard
+      apt-get install server-geoserver server-docs server-dashboard
 
 
 Upgrading from 4.8 and older
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes how to upgrade Boundless Suite 4.8 and earlier to |version| on Ubuntu Linux.
+This section describes how to upgrade Boundless Server 4.8 and earlier to |version| on Ubuntu Linux.
 
-.. warning:: We do **not** recommend upgrading Boundless Suite on a production server. Instead, do a new install on new machine, then transfer your data and settings to the new machine.
+.. warning:: We do **not** recommend upgrading Boundless Server on a production server. Instead, do a new install on new machine, then transfer your data and settings to the new machine.
 
 .. warning::
 
@@ -226,7 +226,7 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 
 #. Continue above in the :ref:`install.ubuntu.packages.install` section. When finished, change your :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to the correct location.
 
-   .. note:: A default installation of Boundless Suite, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory, if desired.
+   .. note:: A default installation of Boundless Server, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory, if desired.
 
 
 .. _install.ubuntu.packages.list:
@@ -234,7 +234,7 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 Package list
 ------------
 
-Boundless Suite is broken up into a number of discrete packages. This section describes all of the available packages.
+Boundless Server is broken up into a number of discrete packages. This section describes all of the available packages.
 
 The packages are managed through the standard package management system for Ubuntu called `apt <https://help.ubuntu.com/community/AptGet/Howto>`_. All packages can be installed with the following command::
 
@@ -242,8 +242,8 @@ The packages are managed through the standard package management system for Ubun
 
 where ``<package>`` is any one of the package names listed below.
 
-Boundless Suite web applications
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Boundless Server web applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -252,25 +252,25 @@ Boundless Suite web applications
 
    * - Package
      - Description
-   * - ``suite-composer``
+   * - ``server-composer``
      - :ref:`Composer application <webmaps.composer>`
-   * - ``suite-dashboard``
-     - :ref:`Boundless Suite Dashboard <intro.dashboard>`
-   * - ``suite-docs``
-     - Boundless Suite documentation
-   * - ``suite-geoserver``
+   * - ``server-dashboard``
+     - :ref:`Boundless Server Dashboard <intro.dashboard>`
+   * - ``server-docs``
+     - Boundless Server documentation
+   * - ``server-geoserver``
      - GeoServer application
-   * - ``suite-geowebcache``
+   * - ``server-geowebcache``
      - GeoWebCache application
-   * - ``suite-quickview``
+   * - ``server-quickview``
      - QuickView application showcasing the :ref:`WebSDK <webapps.sdk>`
-   * - ``suite-wpsbuilder``
+   * - ``server-wpsbuilder``
      - :ref:`Graphical utility <processing.wpsbuilder>` for executing WPS processes
-   * - ``suite-tomcat8``
+   * - ``server-tomcat8``
      - Apache Tomcat application server (automatically installed by these packages)
 
-Boundless Suite GeoServer extensions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Boundless Server GeoServer extensions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following packages add additional functionality to GeoServer. After installing any of these packages, you will need to restart Tomcat:
 
@@ -280,7 +280,7 @@ The following packages add additional functionality to GeoServer. After installi
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
-.. include:: /install/include/suite-gs-packages.txt
+.. include:: /install/include/server-gs-packages.txt
 
 
 Binary packages

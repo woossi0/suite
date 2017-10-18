@@ -3,7 +3,7 @@
 Deployment
 ==========
 
-In addition to being available through packages, Boundless Suite web applications are available individually for use in a custom deployment or on your own application server.
+In addition to being available through packages, Boundless Server web applications are available individually for use in a custom deployment or on your own application server.
 
 The main benefit of using individual application server bundle is its flexibility. This section will cover installation requirements needed for each application, and explore some common deployment scenarios.
 
@@ -21,7 +21,7 @@ If your application server is configured to sandbox web applications, you will n
 
 #. For Tomcat, open the :file:`$CATALINA_BASE/conf/catalina.policy` file and add::
 
-      # Boundless Suite permissions used to access Env Variables and GEOSERVER_DATA_DIRECTORY
+      # Boundless Server permissions used to access Env Variables and GEOSERVER_DATA_DIRECTORY
       grant codeBase "file:${catalina.base}/webapps/geoserver/WEB-INF/libs/-" {
          permission java.security.AllPermission;
       };

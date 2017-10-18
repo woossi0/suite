@@ -1,15 +1,15 @@
 Standard installation
 ---------------------
 
-.. note:: Boundless Suite requires Java 1.8 and Tomcat 8.
+.. note:: Boundless Server requires Java 1.8 and Tomcat 8.
 
 .. note:: See the :ref:`sysadmin` section for installation and administration help.
 
-#. If you have an existing OpenGeo Suite, Boundless Suite, or GeoServer install, backup your configuration (specifically your GeoServer data directory) and data.
+#. If you have an existing OpenGeo Suite, Boundless Suite, Boundless Server, or GeoServer install, backup your configuration (specifically your GeoServer data directory) and data.
 
 #. Uninstall any old versions.
 
-#. Install Java 1.8. (Boundless Suite requires Java 1.8)
+#. Install Java 1.8. (Boundless Server requires Java 1.8)
 
    .. note:: We recommend downloading from `Oracle <https://java.com/en/download/manual.jsp>`__.
    .. note:: See :ref:`sysadmin.jvm` for dealing with multiple versions of java on your machine.
@@ -27,14 +27,14 @@ Standard installation
    * ``-Dorg.geotools.referencing.forceXY=true``
    * ``-Dorg.geotoools.render.lite.scale.unitCompensation=true``
 
-#. If you don't have an existing GeoServer data directory, you can use the :file:`suite-data-dir.zip` inside the Boundless WAR bundle :file:`BoundlessSuite-war.zip`. 
+#. If you don't have an existing GeoServer data directory, you can use the :file:`server-data-dir.zip` inside the Boundless WAR bundle :file:`BoundlessSuite-war.zip`. 
 
-   .. note:: A suggested location would be :file:`/var/opt/boundless/suite/geoserver/data`:
+   .. note:: A suggested location would be :file:`/var/opt/boundless/server/geoserver/data`:
 
    .. code-block:: none
 
-      mkdir -p /var/opt/boundless/suite/geoserver/data
-      unzip suite-data-dir.zip -d /var/opt/boundless/suite/geoserver/data
+      mkdir -p /var/opt/boundless/server/geoserver/data
+      unzip server-data-dir.zip -d /var/opt/boundless/server/geoserver/data
 
 #. Add a GeoServer context file (:file:`geoserver.xml`) to :file:`$CATALINA_HOME/conf/Catalina/localhost/` with the following content:
 
@@ -43,12 +43,12 @@ Standard installation
       <Context docBase="geoserver.war">
         <!-- The location of the GeoServer configuration directory -->
         <Parameter name="GEOSERVER_DATA_DIR"
-                   value="/var/opt/boundless/suite/geoserver/data"
+                   value="/var/opt/boundless/server/geoserver/data"
                    override="false"/> 
       
         <!-- The default location of the GWC tile cache -->
         <Parameter name="GEOWEBCACHE_CACHE_DIR"
-                   value="/var/opt/boundless/suite/geoserver/tilecache"
+                   value="/var/opt/boundless/server/geoserver/tilecache"
                    override="false"/>
       </Context>
 

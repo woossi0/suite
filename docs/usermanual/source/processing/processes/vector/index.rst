@@ -3,7 +3,7 @@
 Vector processes
 ================
 
-This section describes some of the vector processes available with Boundless Suite.
+This section describes some of the vector processes available with Boundless Server.
 
 .. toctree::
    :maxdepth: 2

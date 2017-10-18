@@ -3,18 +3,18 @@
 Administration on Red Hat
 =========================
 
-This document contains information about various tasks specific to Boundless Suite for Red Hat Linux-based systems. For more details, please see the :ref:`sysadmin` section.
+This document contains information about various tasks specific to Boundless Server for Red Hat Linux-based systems. For more details, please see the :ref:`sysadmin` section.
 
-Starting and stopping Boundless Suite services
-----------------------------------------------
+Starting and stopping Boundless Server services
+-----------------------------------------------
 
-Boundless Suite is comprised of two main services:
+Boundless Server is comprised of two main services:
 
 #. The `Tomcat <http://tomcat.apache.org/>`_ web server that contains all the web applications such as GeoServer and GeoWebCache. 
 
 #. The `PostgreSQL <http://www.postgresql.org/>`_ database server with the PostGIS spatial extensions.
 
-.. note:: The Tomcat service used by Boundless Suite is pulled in from standard repository sources, and is not specific to Boundless Suite.
+.. note:: The Tomcat service used by Boundless Server is pulled in from standard repository sources, and is not specific to Boundless Server.
 
 Controlling the Tomcat service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -106,14 +106,14 @@ You can add other system or application-specific parameters that will be picked 
 
 * To provide an environmental variable, open :file:`/etc/tomcat8/tomcat8.conf` in a text editor, add the desired parameters to the bottom of the file, such as ``GDAL_DATA=/usr/share/gdal``.
    
-* System properties are read in from the files in :file:`/etc/tomcat8/suite-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``. See the section on :ref:`sysadmin.startup`.
+* System properties are read in from the files in :file:`/etc/tomcat8/server-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``. See the section on :ref:`sysadmin.startup`.
 
 * Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag. For example, the GeoServer data directory context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml` looks like this:
 
   .. code-block:: xml
 
      <Parameter name="GEOSERVER_DATA_DIR" 
-          value="/var/opt/boundless/suite/geoserver/data" override="false"/>
+          value="/var/opt/boundless/server/geoserver/data" override="false"/>
 
 After making any changes, be sure to restart Tomcat.
 
@@ -123,7 +123,7 @@ Working with GeoServer
 GeoServer data directory
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The **GeoServer data directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/opt/boundless/suite/geoserver/data`.
+The **GeoServer data directory** is the location on the file system where GeoServer stores all of its configuration, and (optionally) file-based data. By default, this directory is located at: :file:`/var/opt/boundless/server/geoserver/data`.
 
 To point GeoServer to an alternate location:
 
@@ -134,7 +134,7 @@ To point GeoServer to an alternate location:
    .. code-block:: xml
       
       <Parameter name="GEOSERVER_DATA_DIR" 
-        value="/var/opt/boundless/suite/geoserver/data" override="false"/>
+        value="/var/opt/boundless/server/geoserver/data" override="false"/>
 
 #. Restart Tomcat.
 
@@ -145,9 +145,9 @@ A fix is available for spatial reference systems measured in Imperial units (fee
 
 To enable this fix:
 
-#. Add a system properties definition to the :file:`/etc/tomcat8/suite-opts/` folder.
+#. Add a system properties definition to the :file:`/etc/tomcat8/server-opts/` folder.
 
-#. Create the file :file:`/etc/tomcat8/suite-opts/units`::
+#. Create the file :file:`/etc/tomcat8/server-opts/units`::
       
       -Dorg.geotoools.render.lite.scale.unitCompensation=true
 

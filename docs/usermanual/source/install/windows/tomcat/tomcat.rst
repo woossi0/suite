@@ -5,7 +5,7 @@ Installing Tomcat
 
 .. note:: During installation we will be editing text files that require Administrator access to modify. We recommend using `Notepad++ <https://notepad-plus-plus.org/>`__, though any text editor will do.
 
-The Apache Tomcat application server is used to host the Boundless Suite web applications. Tomcat itself is a Java application, and some care will be required to configure it appropriately for use.
+The Apache Tomcat application server is used to host the Boundless Server web applications. Tomcat itself is a Java application, and some care will be required to configure it appropriately for use.
 
 #. Download the :guilabel:`32-bit/64-bit Windows Service Installer` from the `Tomcat website <http://tomcat.apache.org/download-80.cgi>`_:
    
@@ -13,7 +13,7 @@ The Apache Tomcat application server is used to host the Boundless Suite web app
       
       Tomcat Service Installer download
    
-   .. warning: Boundless Suite requires Tomcat version 7 or above. It must support "Servlet Spec 3.0".
+   .. warning: Boundless Server requires Tomcat version 7 or above. It must support "Servlet Spec 3.0".
    
 #. Run the Tomcat installer:
 
@@ -39,7 +39,7 @@ The Apache Tomcat application server is used to host the Boundless Suite web app
    
       User Name and Password configuration
    
-   .. note:: The account will be given the Tomcat administrator role ``manager-gui``, which is required to interact with the :guilabel:`Tomcat Manager` application, used to monitor Boundless Suite web applications and the Tomcat server.
+   .. note:: The account will be given the Tomcat administrator role ``manager-gui``, which is required to interact with the :guilabel:`Tomcat Manager` application, used to monitor Boundless Server web applications and the Tomcat server.
 
 #. If requested, browse to the location of the Java 8 JRE installed previously.
 

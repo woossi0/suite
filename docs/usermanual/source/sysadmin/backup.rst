@@ -4,7 +4,7 @@
 Backing up
 ==========
 
-Backing up is a vital task of any system administrator.  It should be done on a regular basis, and especially before doing any in-place upgrades.  This section discusses how to backup the various components of Boundless Suite.
+Backing up is a vital task of any system administrator.  It should be done on a regular basis, and especially before doing any in-place upgrades.  This section discusses how to backup the various components of Boundless Server.
 
 .. _sysadmin.backup.geoserver:
 
@@ -21,7 +21,7 @@ The GeoServer data directory (:guilabel:`GEOSERVER_DATA_DIR`) is located by defa
    * - Windows
      - ``C:\ProgramData\Boundless\geoserver\data``
    * - Linux
-     - ``/var/opt/boundless/suite/geoserver/data``
+     - ``/var/opt/boundless/server/geoserver/data``
 
 In general, the directory can safely be copied or archived to another location, and can be restored by reversing the process.  Please be sure to shut down GeoServer before making any backups or restores.
 
@@ -30,7 +30,7 @@ In general, the directory can safely be copied or archived to another location, 
 Backing up the PostGIS database system
 --------------------------------------
 
-.. note:: Please see the :ref:`install` section for your particular operating system if backing up in preparation for an upgrade to Boundless Suite 4.x.
+.. note:: Please see the :ref:`install` section for your particular operating system if backing up in preparation for an upgrade to Boundless Server 4.x.
 
 The PostGIS databases can be backed up with the built-in utilities `pg_dump <http://www.postgresql.org/docs/9.6/static/app-pgdump.html>`_ (for a single database) and `pg_dumpall <http://www.postgresql.org/docs/9.6/static/app-pg-dumpall.html>`_ (for multiple databases).
 

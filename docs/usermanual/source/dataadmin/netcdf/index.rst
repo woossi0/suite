@@ -3,7 +3,7 @@
 Working with NetCDF data
 ========================
 
-Boundless Suite supports data saved in `NetCDF <http://www.unidata.ucar.edu/software/netcdf/>`_ format. NetCDF is a community standard for sharing scientific data.
+Boundless Server supports data saved in `NetCDF <http://www.unidata.ucar.edu/software/netcdf/>`_ format. NetCDF is a community standard for sharing scientific data.
 
 This data can be loaded and published through GeoServer. Both NetCDF 3 and NetCDF 4 formats are supported.
 
@@ -21,9 +21,9 @@ NetCDF support isn't enabled by default, so it must be separately installed thro
 Installation instructions are dependent on your operating system and method of install:
 
 * **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.geoserver.binary>`, :ref:`Red Hat <install.redhat.tomcat.geoserver.binary>`, :ref:`Windows <install.windows.tomcat.extensions.netcdf>`
-* **Packages**: Install the :file:`suite-gs-netcdf` and :file:`suite-gs-netcdf-out` packages: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
+* **Packages**: Install the :file:`server-gs-netcdf` and :file:`server-gs-netcdf-out` packages: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
 
-.. note:: The Boundless Suite virtual machine has most extensions pre-installed.
+.. note:: The Boundless Server virtual machine has most extensions pre-installed.
 
 Verifying installation
 ----------------------

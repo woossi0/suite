@@ -1,9 +1,9 @@
 .. _intro.whatis:
 
-What is Boundless Suite?
-========================
+What is Boundless Server?
+=========================
 
-Boundless Suite is a complete web-based geospatial software stack. The applications contained are: 
+Boundless Server is a complete web-based geospatial software stack. The applications contained are: 
 
 * **PostGIS** - Spatially enabled object-relational database.
 * **GeoServer** - Software server for loading and sharing geospatial data

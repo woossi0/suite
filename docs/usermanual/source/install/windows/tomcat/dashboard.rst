@@ -3,7 +3,7 @@
 Dashboard install
 =================
 
-The :ref:`Boundless Suite Dashboard <intro.dashboard>` contains links and tips to working with Boundless Suite.
+The :ref:`Boundless Server Dashboard <intro.dashboard>` contains links and tips to working with Boundless Server.
 
 #. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
@@ -15,4 +15,4 @@ The :ref:`Boundless Suite Dashboard <intro.dashboard>` contains links and tips t
    
    .. figure:: /intro/img/dashboard.png
       
-      Boundless Suite Dashboard
+      Boundless Server Dashboard

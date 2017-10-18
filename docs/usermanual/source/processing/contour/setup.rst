@@ -5,7 +5,7 @@ Contour map setup
 
 A contour map is a vector map formed by linestring features which describe areas of similar or equal value. The contour map is most commonly generated from raster topographic or digital elevation model data (to show height), but can also be used on weather maps or other datasets where bands of common value are desired.
 
-There are two methods of creating a contour map from raster data using Boundless Suite.
+There are two methods of creating a contour map from raster data using Boundless Server.
 
 * **Statically**, using the Web Processing Service (WPS)
 * **Dynamically**, using map styles and :ref:`rendering transformations <cartography.rt>`

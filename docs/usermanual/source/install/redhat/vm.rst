@@ -3,7 +3,7 @@
 Virtual machine install on Red Hat
 ==================================
 
-This section will install the Boundless Suite virtual machine on a Red Hat-based Linux host.
+This section will install the Boundless Server virtual machine on a Red Hat-based Linux host.
 
 Installation
 ------------
@@ -39,7 +39,7 @@ Installation
 
       Import Appliance link
 
-#. Select the Boundless Suite virtual machine file.
+#. Select the Boundless Server virtual machine file.
 
 #. Details about the virtual machine will be displayed. Click :guilabel:`Import`.
 
@@ -47,17 +47,17 @@ Installation
 
       Import Appliance menu
 
-#. The Boundless Suite license agreement will display. Click :guilabel:`Agree` to accept.
+#. The Boundless Server license agreement will display. Click :guilabel:`Agree` to accept.
    
    .. figure:: img/vb_license_centos.png
 
-      Boundless Suite license
+      Boundless Server license
 
-#. You will now see the :guilabel:`Boundless Suite` entry in the list of virtual machines in VirtualBox.
+#. You will now see the :guilabel:`Boundless Server` entry in the list of virtual machines in VirtualBox.
 
    .. figure:: img/vb_centos.png
 
-      VirtualBox Manager showing Boundless Suite virtual machine
+      VirtualBox Manager showing Boundless Server virtual machine
 
 #. Click to select the virtual machine and then click :guilabel:`Shared Folders`.
 

@@ -1,19 +1,19 @@
 
-Boundless Suite is a full geospatial software stack that helps you compose, style, publish, and manage maps and data with ease.
+Boundless Server is a full geospatial software stack that helps you compose, style, publish, and manage maps and data with ease.
 
-Boundless Suite User Manual
----------------------------
+Boundless Server User Manual
+----------------------------
 
-This User Manual will help you get the most out of Boundless Suite.
+This User Manual will help you get the most out of Boundless Server.
 
 :ref:`whatsnew`
-  See what's new in Boundless Suite |version|.
+  See what's new in Boundless Server |version|.
 
 :ref:`intro`
-  Introduction and tour of Boundless Suite.
+  Introduction and tour of Boundless Server.
 
 :ref:`install`
-  Installation of Boundless Suite.
+  Installation of Boundless Server.
   
 :ref:`webmaps`
   Publish your maps and data on the web.
@@ -31,7 +31,7 @@ This User Manual will help you get the most out of Boundless Suite.
   Load and manage your data.
 
 :ref:`sysadmin`
-  Manage and optimize your Boundless Suite installation.
+  Manage and optimize your Boundless Server installation.
 
 **Additional Documentation**
 

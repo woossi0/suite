@@ -3,7 +3,7 @@
 Working with GeoPackage data
 ============================
 
-Boundless Suite supports data saved in the OGC `GeoPackage <http://www.geopackage.com>`_ specification.
+Boundless Server supports data saved in the OGC `GeoPackage <http://www.geopackage.com>`_ specification.
 
 .. todo:: Say more about what this is.
 

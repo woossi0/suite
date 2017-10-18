@@ -3,7 +3,7 @@
 More Information
 ================
 
-Below are links to various resources to help you learn more about Boundless Suite.
+Below are links to various resources to help you learn more about Boundless Server.
 
 Component details
 -----------------

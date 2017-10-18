@@ -3,7 +3,7 @@
 Package install on Red Hat
 ==========================
 
-This page describes how to perform a package installation of **Boundless Suite** |version| on Red hat-based Linux distributions.
+This page describes how to perform a package installation of **Boundless Server** |version| on Red hat-based Linux distributions.
 
 .. note:: For upgrades, see the below section on :ref:`Upgrading <install.redhat.packages.upgrade>`.
 
@@ -14,11 +14,11 @@ This page describes how to perform a package installation of **Boundless Suite**
 New installation
 ----------------
 
-This section describes how to perform a clean package installation of **Boundless Suite** |version| on Red hat-based Linux distributions.
+This section describes how to perform a clean package installation of **Boundless Server** |version| on Red hat-based Linux distributions.
 
 See the :ref:`install.redhat.packages.list` for details about the possible packages to install.
 
-.. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of Boundless Suite (such as PostgreSQL) please remove them before installing Boundless Suite.
+.. warning:: Mixing repositories is not recommended. If you already have a community (non-Boundless) repository that contains some of the components of Boundless Server (such as PostgreSQL) please remove them before installing Boundless Server.
 
 #. Change to the ``root`` user:
 
@@ -33,13 +33,13 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
       mkdir -p /etc/pki/boundless
       wget -O /etc/pki/boundless/GPG-KEY-Boundless https://downloads-repo.boundlessgeo.com/GPG-KEY-Boundless
 
-#. Add the Boundless Suite repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents:
+#. Add the Boundless Server repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents:
 
    .. code-block:: none
 
-      [boundless-suite]
-      name=Boundless Suite Repository
-      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.9.1/el/6/x86_64
+      [boundless-server]
+      name=Boundless Server Repository
+      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/4.9.1/el/6/x86_64
       enabled=1
       gpgcheck=1
       gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
@@ -48,13 +48,13 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
    .. note:: Your username is your email address. When entering your username into the ``Boundless.repo`` file, replace the ``@`` in your username with ``%40``.
 
-   .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/>`__ if you have purchased Boundless Suite and do not have a user name and password.
+   .. note:: Please `contact us <http://boundlessgeo.com/about/contact-us/>`__ if you have purchased Boundless Server and do not have a user name and password.
 
 #. Search for Boundless packages to verify that the repository list is correct.
 
    .. code-block:: bash
 
-      yum list suite-*
+      yum list server-*
 
    If the command does not return any results, examine the output of the ``yum`` command for any errors or warnings.
 
@@ -64,23 +64,23 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
      .. code-block:: bash
 
-        yum install suite-geoserver suite-docs suite-dashboard
+        yum install server-geoserver server-docs server-dashboard
 
    * A more complete install, including all the web applications, PostGIS, GDAL, and NetCDF:
 
      .. code-block:: bash
 
-        yum install suite-dashboard \
-                    suite-geoserver \
-                    suite-geowebcache \
-                    suite-composer \
-                    suite-docs \
-                    suite-quickview  \
-                    suite-wpsbuilder \
+        yum install server-dashboard \
+                    server-geoserver \
+                    server-geowebcache \
+                    server-composer \
+                    server-docs \
+                    server-quickview  \
+                    server-wpsbuilder \
                     postgis23-postgresql96 \
-                    suite-gs-gdal \
-                    suite-gs-netcdf \
-                    suite-gs-netcdf-out
+                    server-gs-gdal \
+                    server-gs-netcdf \
+                    server-gs-netcdf-out
 
    .. note::  See the :ref:`install.redhat.packages.list` for details of individual packages.
 
@@ -108,7 +108,7 @@ Upgrade
 Upgrading from 4.9.0 to |version|
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red Hat-based Linux distributions.
+This section describes how to upgrade Boundless Server 4.9.0 to |version| on Red Hat-based Linux distributions.
 
 .. note::
 
@@ -124,7 +124,7 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red 
 
    .. code-block:: bash
 
-      yum remove suite-*
+      yum remove server-*
 
    Make note of which packages were removed this way.
 
@@ -138,9 +138,9 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red 
 
    .. code-block:: none
 
-      [boundless-suite]
-      name=Boundless Suite Repository
-      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/suite-repo/4.9.1/el/6/x86_64
+      [boundless-server]
+      name=Boundless Server Repository
+      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/4.9.1/el/6/x86_64
       enabled=1
       gpgcheck=1
       gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
@@ -155,19 +155,19 @@ This section describes how to upgrade Boundless Suite 4.9.0 to |version| on Red 
 
       yum clean all
 
-#. Install all Boundless Suite 4.9.1 packages corresponding to the ``suite-*`` packages which were removed in step 1. For example:
+#. Install all Boundless Server 4.9.1 packages corresponding to the ``server-*`` packages which were removed in step 1. For example:
 
    .. code-block:: bash
 
-      yum install suite-geoserver suite-docs suite-dashboard
+      yum install server-geoserver server-docs server-dashboard
 
 
 Upgrading from 4.8 and older
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes how to upgrade Boundless Suite 4.8 and earlier to |version| on Red Hat-based Linux distributions.
+This section describes how to upgrade Boundless Server 4.8 and earlier to |version| on Red Hat-based Linux distributions.
 
-.. warning:: We do **not** recommend upgrading Boundless Suite on a production server. Instead, do a new install on new machine, then transfer your data and settings to the new machine.
+.. warning:: We do **not** recommend upgrading Boundless Server on a production server. Instead, do a new install on new machine, then transfer your data and settings to the new machine.
 
 .. warning::
 
@@ -233,7 +233,7 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 
 #. Continue above in the :ref:`install.redhat.packages.install` section. When finished, change your :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to the correct location.
 
-   .. note:: A default installation of Boundless Suite, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory, if desired.
+   .. note:: A default installation of Boundless Server, will install a sample GeoServer data directory. Make sure to update the :guilabel:`GEOSERVER_DATA_DIR` environment variable to point to your old data directory, if desired.
 
 
 .. _install.redhat.packages.list:
@@ -241,7 +241,7 @@ This section describes how to upgrade Boundless Suite 4.8 and earlier to |versio
 Package list
 ------------
 
-Boundless Suite is broken up into a number of discrete packages. This section describes all of the available packages.
+Boundless Server is broken up into a number of discrete packages. This section describes all of the available packages.
 
 The packages use the standard `RPM format <http://www.rpm.org/>`_ used in Red Hat-based systems. All packages can be installed with the following command::
 
@@ -249,8 +249,8 @@ The packages use the standard `RPM format <http://www.rpm.org/>`_ used in Red Ha
 
 where ``<package>`` is any one of the package names listed below.
 
-Boundless Suite web applications
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Boundless Server web applications
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -259,25 +259,25 @@ Boundless Suite web applications
 
    * - Package
      - Description
-   * - ``suite-composer``
+   * - ``server-composer``
      - :ref:`Composer application <webmaps.composer>`
-   * - ``suite-dashboard``
-     - :ref:`Boundless Suite Dashboard <intro.dashboard>`
-   * - ``suite-docs``
-     - Boundless Suite documentation
-   * - ``suite-geoserver``
+   * - ``server-dashboard``
+     - :ref:`Boundless Server Dashboard <intro.dashboard>`
+   * - ``server-docs``
+     - Boundless Server documentation
+   * - ``server-geoserver``
      - GeoServer application
-   * - ``suite-geowebcache``
+   * - ``server-geowebcache``
      - GeoWebCache application
-   * - ``suite-quickview``
+   * - ``server-quickview``
      - QuickView application showcasing the :ref:`WebSDK <webapps.sdk>`
-   * - ``suite-wpsbuilder``
+   * - ``server-wpsbuilder``
      - :ref:`Graphical utility <processing.wpsbuilder>` for executing WPS processes
-   * - ``suite-tomcat8``
+   * - ``server-tomcat8``
      - Apache Tomcat application server (automatically installed by these packages)
 
-Boundless Suite GeoServer extensions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Boundless Server GeoServer extensions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following packages add additional functionality to GeoServer. After installing any of these packages, you will need to restart Tomcat:
 
@@ -287,7 +287,7 @@ The following packages add additional functionality to GeoServer. After installi
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 
-.. include:: /install/include/suite-gs-packages.txt
+.. include:: /install/include/server-gs-packages.txt
 
 Binary packages
 ~~~~~~~~~~~~~~~

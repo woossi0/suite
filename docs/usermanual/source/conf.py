@@ -41,8 +41,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-#project = u'Boundless Suite User Manual'
-project = u'Boundless Suite'
+#project = u'Boundless Server User Manual'
+project = u'Boundless Server'
 manual = u'User Manual'
 copyright = u'© ' + str(date.today().year) + u' <a href="http://boundlessgeo.com" class="normal-text">Boundless</a>'
 
@@ -94,7 +94,7 @@ extlinks = {
 
 # Common substitutions
 # rst_prolog = """
-# .. |suite| replace:: `http://priv-repo.boundlessgeo.com/ <
+# .. |server| replace:: `http://priv-repo.boundlessgeo.com/ <
 # """
 
 # -- Options for HTML output ---------------------------------------------------
@@ -106,7 +106,7 @@ html_style = 'css/theme.css'
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.
-html_theme = 'suite_rtd_theme'
+html_theme = 'server_rtd_theme'
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -114,8 +114,8 @@ html_theme = 'suite_rtd_theme'
 # documentation.
 html_theme_options = {
   #'sticky_navigation' : True  # Set to False to disable the sticky nav while scrolling.
-  'is_community': False, # Community Docs flag for Suite component docs
-  'display_zendesk': True, # Display link to report doc bugs to Suite Zendesk
+  'is_community': False, # Community Docs flag for Boundless Server component docs
+  'display_zendesk': True, # Display link to report doc bugs to Zendesk
   'display_version': True  # Whether to show version number
 }
 
@@ -139,7 +139,7 @@ html_short_title = project + " " + manual
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-html_favicon = 'suite.ico'
+html_favicon = 'server.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -199,13 +199,13 @@ htmlhelp_basename = 'BoundlessSuitedoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'BoundlessSuiteUserManual.tex', u'Boundless Suite User Manual',
+  ('index', 'BoundlessSuiteUserManual.tex', u'Boundless Server User Manual',
    u'Boundless', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = "../../themes/suite_rtd_theme/static/img/suite-logo-only-color.png"
+latex_logo = "../../themes/suite_rtd_theme/static/img/server-logo-only-color.png"
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -234,7 +234,7 @@ latex_show_urls = 'inline'
 #      Accomplished by renewing the \includegraphics command, and creating an
 #      if/then statement saying to resize to 4in if large than 4in, otherwise
 #      leave alone
-#      (The Suite logo on the title page is not given a dropshadow.)
+#      (The Server logo on the title page is not given a dropshadow.)
 # 2. Add drop shadow to images
 #      Accomplished by wrapping the above imcludegraphics commands with a
 #      \shadowbox.  Default border and spacing are changed in the \setlength
@@ -255,7 +255,7 @@ latex_show_urls = 'inline'
 #      \lstset
 # 7. Remove blank pages
 #    \let\cleardoublepage\clearpage
-# 8. Add Boundless Suite logo to some headers
+# 8. Add Boundless Server logo to some headers
 #    \fancyhead
 # 9. Remove headers in 8. from the title page
 #    \pagestyle{empty}
@@ -280,7 +280,7 @@ latex_elements = {
       \\newlength{\\somewidth}
       \\renewcommand{\\includegraphics}[1]{
         \\settowidth{\\somewidth}{\\OLDincludegraphics{#1}}
-        \\ifnum\\pdfstrcmp{#1}{suite-logo-only-color.png}=0
+        \\ifnum\\pdfstrcmp{#1}{server-logo-only-color.png}=0
           \\OLDincludegraphics{#1}
         \\else
           \\ifthenelse{\\lengthtest{\\somewidth>4in}}{
@@ -315,7 +315,7 @@ latex_elements = {
       \\usepackage{fancyhdr}
       \\fancypagestyle{plain}{
           \\fancyhead{}
-          \\fancyhead[R]{Boundless Suite User Manual}
+          \\fancyhead[R]{Boundless Server User Manual}
       }
       \\pagestyle{plain}
 

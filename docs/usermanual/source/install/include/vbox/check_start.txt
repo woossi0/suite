@@ -22,11 +22,11 @@ It is important to test that the virtual machine installed in the previous exerc
 
       * If you ever lose your mouse or are unable to type, press the :kbd:`Right Ctrl` key to reclaim focus back from the virtual machine.
     
-#. Once you see the above screen, open a browser and navigate to http://localhost:8080/dashboard. You should see the Boundless Suite Dashboard.
+#. Once you see the above screen, open a browser and navigate to http://localhost:8080/dashboard. You should see the Boundless Server Dashboard.
 
    .. figure:: /intro/img/dashboard.png
 
-      Boundless Suite Dashboard
+      Boundless Server Dashboard
 
    .. note:: 
 

@@ -9,7 +9,7 @@ WPS Builder install
 
 #. From :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` navigate to the :file:`webapps` folder.
 
-#. Copy the :file:`suite-docs.war` file from the Boundless WAR bundle into the :file:`webapps` directory.
+#. Copy the :file:`server-docs.war` file from the Boundless WAR bundle into the :file:`webapps` directory.
 
    .. note:: It will take a few moments for Tomcat to deploy the web application.
 

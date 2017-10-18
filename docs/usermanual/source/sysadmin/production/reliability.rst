@@ -212,7 +212,7 @@ The following is an example of a typical ``controlflow.properties`` file for a s
 Summary
 -------
 
-There are a number of strategies that can be used to increase the reliability of Boundless Suite instances in production environments.  The following checklist summarizes the strategies discussed in this section:
+There are a number of strategies that can be used to increase the reliability of Boundless Server instances in production environments.  The following checklist summarizes the strategies discussed in this section:
   
 * Disable unused services to simplify the instance and reduce demand on the server
 * Set WMS rendering memory allocation and processing time limits

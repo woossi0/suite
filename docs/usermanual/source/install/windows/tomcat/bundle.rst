@@ -1,9 +1,9 @@
 .. _install.windows.tomcat.bundle:
 
-Boundless Suite bundles
-=======================
+Boundless Server bundles
+========================
 
-There are two bundles (files) that comprise a Boundless Suite installation for an application server:
+There are two bundles (files) that comprise a Boundless Server installation for an application server:
 
 * **WAR bundle**, containing applications and a sample GeoServer data directory
 * **Extension bundle**, containing optional extensions to add functionality to GeoServer
@@ -27,7 +27,7 @@ WAR bundle
       
       Boundless WAR bundle
 
-#. In addition to web applications, a sample GeoServer data directory in the file :file:`suite-data-dir.zip` is included for the GeoServer installation.
+#. In addition to web applications, a sample GeoServer data directory in the file :file:`server-data-dir.zip` is included for the GeoServer installation.
 
 Extension bundle
 ----------------

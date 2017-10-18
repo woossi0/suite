@@ -54,7 +54,7 @@ The next step is to install the GeoServer web application.
        
       Deploy of GeoServer
    
-   .. note:: The :file:`geoserver.war` file is included in the Boundless Suite WAR bundle (see :ref:`install.windows.tomcat.bundle`).
+   .. note:: The :file:`geoserver.war` file is included in the Boundless Server WAR bundle (see :ref:`install.windows.tomcat.bundle`).
 
 #. Change to the :guilabel:`General` tab and start the service using the :guilabel:`Start` button.
    

@@ -36,13 +36,13 @@ The following paths will be referenced on multiple occasions:
 
   .. code-block:: console
 
-     /var/opt/boundless/suite/geoserver/data/
+     /var/opt/boundless/server/geoserver/data/
 
 * **GeoServer application directory**
 
   .. code-block:: console
 
-     /opt/boundless/suite/geoserver/
+     /opt/boundless/server/geoserver/
 
 * **Shared VM directory (default)**
 

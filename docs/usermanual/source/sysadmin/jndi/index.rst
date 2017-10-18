@@ -12,7 +12,7 @@ These instructions will set up a JNDI connection pool on the Tomcat application 
 
    .. note:: The PostgreSQL JDBC Driver can be found at the `PostgreSQL web site <http://jdbc.postgresql.org/>`_ or in the :file:`geoserver/WEB-INF/lib` directory.
 
-#. Remove the JDBC Driver from the :file:`WEB-INF/lib` directory (typically :file:`/opt/boundless/suite/geoserver/WEB-INF/lib`) inside the GeoServer webapps directory. It should be named :file:`postgresql-X.X-XXX.jdbc3.jar`.
+#. Remove the JDBC Driver from the :file:`WEB-INF/lib` directory (typically :file:`/opt/boundless/server/geoserver/WEB-INF/lib`) inside the GeoServer webapps directory. It should be named :file:`postgresql-X.X-XXX.jdbc3.jar`.
 
 #. Register the connection pool with the Tomcat Java Naming and Directory Interface (JNDI). This is done by adding a ``<Resource\>`` entry to the :file:`$TOMCAT_HOME/conf/context.xml` (typically :file:`/etc/tomcat8/context.xml`) configuration file. For example, given a PostgreSQL database named ``test`` with a user name and password of ``admin``, the configuration would look like this:
 

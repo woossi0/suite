@@ -3,7 +3,7 @@
 Creating web apps with Web SDK
 ==============================
 
-Web SDK is used to create JavaScript-based web mapping applications backed by Boundless Suite.
+Web SDK is used to create JavaScript-based web mapping applications backed by Boundless Server.
 It makes use of the `JavaScript React framework <https://facebook.github.io/react/>`_ to provide modular components, which can be used to create complete web mapping applications with only a few lines of code.
 
 Install Web SDK
@@ -20,7 +20,7 @@ To install WEB SDK using npm, run:
 Demo Applications
 -----------------
 
-Boundless Suite includes Web SDK QuickView, a demo application built using Web SDK. QuickView is a basic map viewer that can be used to view and modify layers and maps. QuickView is accessible at ``http://localhost:8080/quickview/``.  
+Boundless Server includes Web SDK QuickView, a demo application built using Web SDK. QuickView is a basic map viewer that can be used to view and modify layers and maps. QuickView is accessible at ``http://localhost:8080/quickview/``.  
 
 For more information about using quickview, see :ref:`webapps.sdk.quickview`.
 
@@ -29,9 +29,9 @@ QuickView Installation
 
 Please choose the appropriate installation method for your platform:
 
-* **RedHat Package**: Install the :file:`suite-quickview` package. For details, see :ref:`RedHat Packages <install.redhat.packages>`.
+* **RedHat Package**: Install the :file:`server-quickview` package. For details, see :ref:`RedHat Packages <install.redhat.packages>`.
 
-* **Ubuntu Package**: Install the :file:`suite-quickview` package. For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
+* **Ubuntu Package**: Install the :file:`server-quickview` package. For details, see :ref:`Ubuntu Packages <install.ubuntu.packages>`.
 
 * **RedHat WAR**: See QuickView in :ref:`install.redhat.tomcat.otherapps`.
 

@@ -2,7 +2,7 @@
 
 #. Run the :file:`vcredist_x86.exe` file, accepting all defaults.
 
-#. Inside the same directory, there is a file named :file:`GDAL-suite-windows.zip`. Extract the contents of this archive to an appropriate directory such as :file:`C:\\GDAL`.
+#. Inside the same directory, there is a file named :file:`GDAL-server-windows.zip`. Extract the contents of this archive to an appropriate directory such as :file:`C:\\GDAL`.
 
 #. Add :file:`C:\\GDAL` to your path:
 
@@ -33,7 +33,7 @@
 
         -Djava.library.path=C:\libjpeg-turbo\bin;C:\GDAL
 
-#. Inside the Boundless Suite extensions bundle, navigate to the :file:`gdal` directory.
+#. Inside the Boundless Server extensions bundle, navigate to the :file:`gdal` directory.
 
 #. Copy the contents of the :file:`gdal` directory into the library directory (:file:`WEB-INF\\lib`) of your GeoServer instance. For example, if your GeoServer application is located at :file:`C:\\Program Files\\Tomcat\\webapps\\geoserver`, copy the files to :file:`C:\\Program Files\\Tomcat\\webapps\\geoserver\\WEB-INF\\lib`.
 

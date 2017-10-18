@@ -1,9 +1,9 @@
 .. _intro.extensions:
 
-Boundless Suite extensions
-==========================
+Boundless Server extensions
+===========================
 
-Boundless Suite comes with a number of optional extensions or "add-ons". These add functionality to Boundless Suite, but may not be needed by most users. We recommend that you choose only the extensions that you need.
+Boundless Server comes with a number of optional extensions or "add-ons". These add functionality to Boundless Server, but may not be needed by most users. We recommend that you choose only the extensions that you need.
 
 These optional components can be installed in different ways depending on your operating system. Please see the appropriate :ref:`installation <install>` section.
 
@@ -58,7 +58,7 @@ The CSW extension adds the ability for GeoServer to publish information conformi
 
 For more information about CSW in GeoServer, please see the `GeoServer CSW documentation <../geoserver/services/csw/>`_.
 
-.. warning:: The installation instructions in the `GeoServer documentation <../geoserver/services/csw/installing.html>`_ do not apply to users of Boundless Suite. Users of Boundless Suite can install the extension in the standard way as indicated above.
+.. warning:: The installation instructions in the `GeoServer documentation <../geoserver/services/csw/installing.html>`_ do not apply to users of Boundless Server. Users of Boundless Server can install the extension in the standard way as indicated above.
 
 
 .. _intro.extensions.db2:
@@ -211,4 +211,4 @@ WPS
 
 The WPS extension adds the ability for GeoServer to support and publish the Web Processing Service (WPS). WPS is a protocol for hosting and executing geospatial processes, bringing geospatial analysis to the client/server model.
 
-For more information on WPS in Boundless Suite, please see the :ref:`processing` section.
+For more information on WPS in Boundless Server, please see the :ref:`processing` section.

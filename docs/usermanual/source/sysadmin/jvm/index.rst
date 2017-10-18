@@ -3,9 +3,9 @@
 Setting the JVM
 ======================
 
-This section will discuss JVM (Java) settings for use with Boundless Suite.
+This section will discuss JVM (Java) settings for use with Boundless Server.
 
-We recommend using the Oracle JVM with Boundless Suite, as testing has shown that the Oracle JVM is significantly faster than other JVM implementations.
+We recommend using the Oracle JVM with Boundless Server, as testing has shown that the Oracle JVM is significantly faster than other JVM implementations.
 
 Specifically, we recommend using **Oracle JRE 8**. The current GeoServer release requires a Java 8 JVM.
 
@@ -14,7 +14,7 @@ Determining the current Java version
 
 You may wish the verify the version of Java you are currently using.
 
-.. warning:: It is possible to have multiple versions of the JRE installed, so just running ``java -version`` may not accurately reflect the version of the JRE being used by Boundless Suite.
+.. warning:: It is possible to have multiple versions of the JRE installed, so just running ``java -version`` may not accurately reflect the version of the JRE being used by Boundless Server.
 
 To confirm the version of Java used:
 
@@ -62,7 +62,7 @@ Linux
       
 #. Ensure your application server is using this new Java. Many application servers will pick up the system ``JAVA_HOME`` environment variable or require that their service definition be modified.
 
-#. If using Boundless Suite packages (or just using Tomcat) open :file:`/etc/tomcat8/tomcat8.conf` in a text editor.
+#. If using Boundless Server packages (or just using Tomcat) open :file:`/etc/tomcat8/tomcat8.conf` in a text editor.
 
 #. Near the top of the file, the ``JAVA_HOME`` variable is set. Change it to:
 
@@ -79,7 +79,7 @@ Linux
 
 #. Restart Tomcat. 
 
-#. Boundless Suite should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
+#. Boundless Server should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
 
    .. figure:: img/jvm_serverstatusoracle.png
 
@@ -87,12 +87,12 @@ Linux
 
 #. On the line named :guilabel:`JVM Version`, you should see the Oracle JRE. (For historical reasons, it will be shown as "Java HotSpot.")
 
-.. note:: Read more about :ref:`running Boundless Suite in Production <sysadmin.production>`.
+.. note:: Read more about :ref:`running Boundless Server in Production <sysadmin.production>`.
 
 Windows application servers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If running Boundless Suite in an application server on a Windows system:
+If running Boundless Server in an application server on a Windows system:
 
 #. Download the Oracle JRE. In your browser, navigate to `Oracle's download page for JRE 8 <http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html>`_.
 
@@ -119,7 +119,7 @@ If running Boundless Suite in an application server on a Windows system:
 
 #. Make sure that your application server is using this new Java. It may be reading the ``JAVA_HOME`` environment variable, or you may need to consult your application server documentation.
 
-#. Boundless Suite should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
+#. Boundless Server should now be using the new version of Java. Verify in GeoServer by navigating to the Server Status page.
 
    .. figure:: img/jvm_serverstatuswindows.png
       
@@ -127,7 +127,7 @@ If running Boundless Suite in an application server on a Windows system:
 
 #. On the line named :guilabel:`JVM Version`, you should see the Oracle JRE. (For historical reasons, it will be shown as "Java HotSpot.")
 
-.. note:: Read more about :ref:`running Boundless Suite in Production <sysadmin.production>`.
+.. note:: Read more about :ref:`running Boundless Server in Production <sysadmin.production>`.
 
 .. note:: Read more about :ref:`installing Java on Windows <install.windows.tomcat.java>`.
 
@@ -136,7 +136,7 @@ If running Boundless Suite in an application server on a Windows system:
 Setting the default JVM using *update-alternatives*
 ---------------------------------------------------
 
-If you used linux packages to install different versions of java and are using the Boundless Suite packages you can use the *update-alternatives* command to set the *default* java for your system.  
+If you used linux packages to install different versions of java and are using the Boundless Server packages you can use the *update-alternatives* command to set the *default* java for your system.  
 
 .. note:: This method may change the java version other applications are using on your server.  This may cause issues.
 

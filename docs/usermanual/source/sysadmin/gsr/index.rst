@@ -9,7 +9,7 @@ Installation
 ------------
 
 The GeoServices REST API is not installed by default and is installed similarly to most
-:ref:`Boundless Suite Extensions <intro.extensions>`.
+:ref:`Boundless Server Extensions <intro.extensions>`.
 
 Usage
 -----

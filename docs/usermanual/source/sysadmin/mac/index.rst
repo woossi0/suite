@@ -3,12 +3,12 @@
 Administration on Mac OS X
 ==========================
 
-This document contains information about various tasks specific to Boundless Suite for Mac OS X. 
+This document contains information about various tasks specific to Boundless Server for Mac OS X. 
 
 Boundless services
 ------------------
 
-Boundless Suite is comprised of two services:
+Boundless Server is comprised of two services:
 
 #. The `Tomcat <http://tomcat.apache.org/>`_ web server that contains all the web applications such as GeoServer and GeoWebCache.
 
@@ -40,12 +40,12 @@ To change the Tomcat port after installation:
 
 #. Restart Tomcat.
 
-.. note:: To change the port on the Boundless Suite virtual machine, connect to the virtual machine with a Terminal, and follow the :ref:`Ubuntu <sysadmin.ubuntu>` instructions.
+.. note:: To change the port on the Boundless Server virtual machine, connect to the virtual machine with a Terminal, and follow the :ref:`Ubuntu <sysadmin.ubuntu>` instructions.
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. note:: The Boundless PostgreSQL service is only available through the :ref:`virtual machine <install.mac.vm>`. To change the port on the Boundless Suite Virtual Machine, connect to the virtual machine with a Terminal, and follow the :ref:`Ubuntu <sysadmin.ubuntu>` instructions. 
+.. note:: The Boundless PostgreSQL service is only available through the :ref:`virtual machine <install.mac.vm>`. To change the port on the Boundless Server Virtual Machine, connect to the virtual machine with a Terminal, and follow the :ref:`Ubuntu <sysadmin.ubuntu>` instructions. 
 
 GeoServer data directory
 ------------------------

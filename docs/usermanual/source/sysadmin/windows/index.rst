@@ -3,12 +3,12 @@
 Administration on Windows
 =========================
 
-This document contains information about various tasks specific to Boundless Suite for Windows. 
+This document contains information about various tasks specific to Boundless Server for Windows. 
 
 Boundless services
 ------------------
 
-Boundless Suite is comprised of two services:
+Boundless Server is comprised of two services:
 
 #. The `Tomcat <http://tomcat.apache.org/>`_ web server that contains all the web applications such as GeoServer and GeoWebCache. The service can be started / stopped from the :command:`Tomcat Configuration Manager` application which can be found by :menuselection:`Start --> Configure Tomcat`.
 
@@ -40,7 +40,7 @@ To change the Tomcat port after installation:
 
 #. Restart Tomcat.
 
-.. note:: To change the port on the Boundless Suite virtual machine, connect to the virtual machine with a Terminal, and follow the  :ref:`Ubuntu <sysadmin.ubuntu>` instructions.
+.. note:: To change the port on the Boundless Server virtual machine, connect to the virtual machine with a Terminal, and follow the  :ref:`Ubuntu <sysadmin.ubuntu>` instructions.
 
 Changing the PostgreSQL port
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -6,7 +6,7 @@ The following distributions are supported:
 * CentOS 6 (64-bit)
 * RHEL 6 (64-bit)
 
-Boundless Suite for Red Hat has the following system requirements:
+Boundless Server for Red Hat has the following system requirements:
 
 * Memory: 1GB minimum (2GB recommended)
 * Disk space: 750MB minimum (plus extra space for any loaded data)

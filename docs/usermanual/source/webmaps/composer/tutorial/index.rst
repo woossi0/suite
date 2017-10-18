@@ -3,7 +3,7 @@
 Composer tutorial
 =================
 
-This tutorial will show the basic uses of Suite Composer. In this tutorial you will:
+This tutorial will show the basic uses of Composer. In this tutorial you will:
 
 * :ref:`Create a new project workspace <webmaps.composer.tutorial.workspace>`
 * :ref:`Add data and publish layers <webmaps.composer.tutorial.layers>`

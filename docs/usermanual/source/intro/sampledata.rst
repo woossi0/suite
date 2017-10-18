@@ -3,7 +3,7 @@
 Sample Data
 ===========
 
-Boundless Suite comes with some preloaded sample layers that may be viewed and restyled as required.
+Boundless Server comes with some preloaded sample layers that may be viewed and restyled as required.
 
 .. note:: The sample layers are provided for demonstration purposes only. No assurances are provided with respect to the currency or accuracy of the data.
 

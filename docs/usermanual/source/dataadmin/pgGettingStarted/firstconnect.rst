@@ -3,11 +3,11 @@
 Connecting to PostgreSQL on Linux for the first time
 ====================================================
 
-.. note:: This section uses the command line utility ``psql`` and optionally the graphical utility ``pgAdmin``.  ``psql`` is included with the Boundless Suite PostgreSQL package. ``pgAdmin`` is provided as part of :desktop:`Boundless Desktop <what_is_bd.html>`.
+.. note:: This section uses the command line utility ``psql`` and optionally the graphical utility ``pgAdmin``.  ``psql`` is included with the Boundless Server PostgreSQL package. ``pgAdmin`` is provided as part of :desktop:`Boundless Desktop <what_is_bd.html>`.
 
 on Linux, both on Ubuntu and Red Hat-based systems, the default PostgreSQL configuration has connections turned off for the ``postgres`` user by default.
 
-So after install of Boundless Suite, if you try to connect to PostgreSQL via the :command:`psql` command-line utility or through :command:`pgAdmin`, you will get the following connection error::
+So after install of Boundless Server, if you try to connect to PostgreSQL via the :command:`psql` command-line utility or through :command:`pgAdmin`, you will get the following connection error::
 
   psql: FATAL:  peer authentication failed for user "postgres"
 

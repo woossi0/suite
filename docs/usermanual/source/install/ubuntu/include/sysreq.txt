@@ -5,7 +5,7 @@ The following Ubuntu versions are supported:
 
 * `Trusty Tahr <http://releases.ubuntu.com/trusty/>`_ (14.04 LTS)
 
-Boundless Suite for Ubuntu Linux has the following system requirements:
+Boundless Server for Ubuntu Linux has the following system requirements:
 
 * Memory: 1G minimum (2GB recommended)
 * Disk space: 750MB minimum (plus extra space for any loaded data)
