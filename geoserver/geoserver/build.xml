@@ -123,6 +123,10 @@
         <exclude name="joda-time-*.jar"/>
         <exclude name="json-simple-*.jar"/>
         <exclude name="sqlite-jdbc-*.jar"/>
+        <!-- wps is now getting pulled in as a dependency via mbtiles -->
+        <exclude name="gs-wps-core-*.jar"/>
+        <exclude name="gt-xsd-wps-*.jar"/>
+        <exclude name="net.opengis.wps-*.jar"/>
       </patternset>
     </unzip>
   </target>
