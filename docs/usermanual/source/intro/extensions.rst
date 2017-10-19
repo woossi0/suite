@@ -84,8 +84,6 @@ The instructions for enabling these formats may require a few additional steps f
 GeoPackage
 ----------
 
-.. note:: This extension also install the WPS extension.
-
 The GeoPackage extension adds the ability for GeoServer to publish data from `GeoPackage <http://www.geopackage.org/>`_ sources (a data format based on `SQLite <http://www.sqlite.org/>`_). Once this extension is added, GeoServer will show GeoPackage as one of its available data sources when adding a new store.
 
 
@@ -130,15 +128,6 @@ JPEG 2000
 
 The JPEG 2000 extension adds the ability for GeoServer to publish data from `JPEG 2000 <https://jpeg.org/jpeg2000/index.html>`_ sources. This image format utilizes wavelet compression for more efficient storage. Once this extension is added, GeoServer will show JPEG 2000 ("JP2K") as one of its available data sources when adding a new store.
 
-.. _intro.extensions.mbtiles:
-
-MBTiles
--------
-
-.. note:: This extension also install the WPS extension.
-
-The MBTiles extension add the ability for GeoServer to publish data saved in `MBTiles <https://www.mapbox.com/help/an-open-platform/#mbtiles>`_ format, which is an efficient format for storing millions of tiles in a single SQLite database.
-
 .. _intro.extensions.mongodb:
 
 MongoDB
@@ -179,8 +168,6 @@ The :ref:`Oracle extension <dataadmin.oracle>` adds the ability for GeoServer to
 Scripting
 ---------
 
-.. note:: This extension also install the WPS extension.
-
 The scripting extension provides a number of extension points called “hooks” throughout GeoServer. Each hook provides a way to plug in functionality via a script.
 
 For more information on scripting, please see the :ref:`processing.scripting` section, and the `GeoServer scripting documentation <../geoserver/community/scripting/>`_.
@@ -202,13 +189,3 @@ Vector Tiles
 The Vector Tiles extension adds a number of output formats to GeoServer that deliver geographic data to a browser or other client application in tiles which using a vector representation of the features in the tile. Vector tiles improve the performance of maps fast while offering full client-side design flexibility. 
 
 For more information on Vector Tiles, please see the :ref:`dataadmin.vectortiles` section.
-
-
-.. _intro.extensions.wps:
-
-WPS
----
-
-The WPS extension adds the ability for GeoServer to support and publish the Web Processing Service (WPS). WPS is a protocol for hosting and executing geospatial processes, bringing geospatial analysis to the client/server model.
-
-For more information on WPS in Boundless Server, please see the :ref:`processing` section.

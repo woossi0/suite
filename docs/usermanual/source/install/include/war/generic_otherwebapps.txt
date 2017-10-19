@@ -50,7 +50,7 @@ Documentation
 WPS Builder
 -----------
 
-.. note:: Make sure you have installed the WPS extension in GeoServer and GeoServer is running in the same web application server.
+.. note:: Make sure you have enabled WPS in GeoServer and GeoServer is running in the same web application server.
 
 #. If needed, install Java and Tomcat (see :ref:`install` for more details).
 

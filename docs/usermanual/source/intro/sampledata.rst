@@ -129,8 +129,6 @@ A variety of world wide datasets compiled from a number of sources.
 
 .. note:: To install the data download `world.zip <http://data.boundlessgeo.com/world.zip>`_ and unpack it into the root of the GeoServer data directory.
 
-.. note:: The world data bundle contains styles that require the GeoServer WPS extensions.
-
 The world layers include:
 
 .. tabularcolumns:: |p{5.5cm}|p{5.5cm}|p{4cm}|

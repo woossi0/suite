@@ -20,7 +20,7 @@
    * - ``boundless-server-gs-gdal``
      - GDAL extension
    * - ``boundless-server-gs-geopkg``
-     - GeoPackage extension  (**NOTE:** Also installs WPS)
+     - GeoPackage extension
    * - ``boundless-server-gs-grib``
      - GRIB data format extension
    * - ``boundless-server-gs-inspire``
@@ -31,8 +31,6 @@
      - JDBCStore extension
    * - ``boundless-server-gs-jp2k``
      - JPEG2000 extension
-   * - ``boundless-server-gs-mbtiles``
-     - MBTiles extension (**NOTE:** Also installs WPS)
    * - ``boundless-server-gs-mongodb``
      - MongoDB data format extension
    * - ``boundless-server-gs-netcdf``
@@ -42,10 +40,8 @@
    * - ``boundless-server-gs-oracle``
      - Oracle database extension
    * - ``boundless-server-gs-script``
-     - Scripting (Python) extension  (**NOTE:** Also installs WPS)
+     - Scripting (Python) extension
    * - ``boundless-server-gs-sqlserver``
      - SQL Server database extension
    * - ``boundless-server-gs-vectortiles``
      - Vector tiles extension
-   * - ``boundless-server-gs-wps``
-     - Web Processing Service (WPS) extension

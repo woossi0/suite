@@ -32,6 +32,8 @@ Spatial Processing in Boundless Server
 
 Spatial processing is available through a variety of tools in Boundless Server.
 
+.. _processing.intro.wps:
+
 Web Processing Service
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -42,6 +44,17 @@ Processes fall into three categories:  vector, raster, and geometry, referring t
 WPS is a `service published by GeoServer <../geoserver/extensions/wps/>`_ and so is an integral part of Boundless Server. It provides a collection of many standard processes along with the ability to add additional ones.
 
 For example, one can run the ``geo:union`` process on a collection of geometries to output a single geometry that is the union of them. Processes can be chained, so one can run the ``vec:Reproject`` process to reproject a raster image to a different SRS, then take the output of that and run ``ras:CropCoverage`` to crop the raster down to a certain bounds. The result can be fed into the ``gs:Import`` process to save the resulting coverage as a new layer in GeoServer, for use by other clients.
+
+.. _processing.intro.wps.enable:
+
+Enabling WPS
+============
+
+WPS is included in GeoServer by default, but disabled. To enable WPS:
+
+#. In the GeoServer web interface, click :guilabel:`WPS` under :guilabel:`Services`.
+
+#. Check :guilabel:`Enable WPS`, then click :guilabel:`Submit`.
 
 SQL Views
 ~~~~~~~~~

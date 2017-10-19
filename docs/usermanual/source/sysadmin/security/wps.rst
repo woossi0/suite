@@ -3,11 +3,11 @@
 Restricting access to WPS processes
 ===================================
 
-The Web Processing Service (WPS) is a very powerful geospatial analysis platform. That said, by default, the WPS service is open to receiving requests from any user (anonymous access). As processes can add, edit, and delete data on the server, this is generally inadvisable.
+The Web Processing Service (WPS) is a very powerful geospatial analysis platform. That said, by default, when the WPS Service is enabled it is open to receiving requests from any user (anonymous access). As processes can add, edit, and delete data on the server, this is generally inadvisable.
 
 This section will show how to restrict WPS for optimal usage in most environments.
 
-.. note:: WPS is an optional extension and needs to be :ref:`installed separately <intro.extensions>`.
+.. note:: WPS is disabled by default, and needs to be :ref:`enabled <processing.intro.wps.enable>` to be used.
 
 Restricting processes that can add layers
 -----------------------------------------

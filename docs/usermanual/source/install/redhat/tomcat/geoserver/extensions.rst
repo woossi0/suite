@@ -137,16 +137,6 @@ JPEG 2000 extension
 .. include:: /install/include/ext/jp2k_verify.txt
 
 
-.. _install.redhat.tomcat.extensions.mbtiles:
-
-MBTiles extension
------------------
-
-.. include:: /install/include/ext/mbtiles_install.txt
-
-.. include:: /install/include/ext/mbtiles_verify.txt
-
-
 .. _install.redhat.tomcat.extensions.mongodb:
 
 MongoDB extension
@@ -224,12 +214,3 @@ Vector tiles extension
 .. include:: /install/include/ext/vectortiles_install.txt
 
 .. include:: /install/include/ext/vectortiles_verify.txt
-
-.. _install.redhat.tomcat.extensions.wps:
-
-WPS extension
--------------
-
-.. include:: /install/include/ext/wps_install.txt
-
-.. include:: /install/include/ext/wps_verify.txt
