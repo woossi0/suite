@@ -48,7 +48,7 @@ For example, one can run the ``geo:union`` process on a collection of geometries
 .. _processing.intro.wps.enable:
 
 Enabling WPS
-============
+^^^^^^^^^^^^
 
 WPS is included in GeoServer by default, but disabled. To enable WPS:
 
