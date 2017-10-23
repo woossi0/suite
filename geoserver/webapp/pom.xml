@@ -266,22 +266,23 @@
       <artifactId>gs-wps-core</artifactId>
       <version>${gs.version}</version>
     </dependency>
-      <dependency>
-          <groupId>org.geoserver.extension</groupId>
-          <artifactId>gs-web-wps</artifactId>
-          <version>${gs.version}</version>
-      </dependency>
+    <dependency>
+      <groupId>org.geoserver.extension</groupId>
+      <artifactId>gs-web-wps</artifactId>
+      <version>${gs.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.geotools</groupId>
       <artifactId>gt-geopkg</artifactId>
       <version>${gt.version}</version>
     </dependency>
+
+    <!-- Shared extension dependencies -->
     <dependency>
       <groupId>org.geotools</groupId>
       <artifactId>gt-process-geometry</artifactId>
       <version>${gt.version}</version>
     </dependency>
-    <!-- Shared extension dependencies -->
     <dependency>
       <groupId>it.geosolutions.imageio-ext</groupId>
       <artifactId>imageio-ext-imagereadmt</artifactId>

@@ -117,6 +117,7 @@
         <exclude name="imageio-ext-gdal-bindings-1.9.2.jar"/>
         <exclude name="imageio-ext-geocore-*.jar"/>
         <exclude name="imageio-ext-imagereadmt-*.jar"/>
+        <exclude name="jcommander-*.jar"/>
         <exclude name="jackson-annotations-*.jar"/>
         <exclude name="jackson-core-*.jar"/>
         <exclude name="jackson-databind-*.jar"/>
