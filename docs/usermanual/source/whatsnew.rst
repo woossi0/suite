@@ -5,23 +5,23 @@ What's new in |version|
 
 This version contains numerous component upgrades and bug fixes. Highlights include:
 
-* The **WebSDK** is now released, available now from `npm <https://www.npmjs.com/package/boundless-sdk>`_ and `GitHub <https://github.com/boundlessgeo/sdk>`_.
+* **Boundless Suite** has been renamed to **Boundless Server**.
 
-* **New GeoServer style editor**, which comes with a `live preview function <geoserver/styling/webadmin/index.html>`_.
+* The GeoServer REST API has been updated, and includes improved `documentation <geoserver/rest/index.html>`_. The updated API should still be backwards-compatible.
 
-* Added **support for MBstyle** `markup language <geoserver/styling/mbstyle/index.html>`_.
+* The :ref:`WPS <processing.intro.wps>` and :ref:`MBTiles <dataadmin.mbtiles>` extensions have been removed, and are instead included by default.
 
-* **Layer groups have a new mode** called `"opaque container" mode <geoserver/data/webadmin/layergroups.html>`_ for preventing component layers from showing up in the root level, as well as **enhanced integration with the existing security subsystem**.
+* The :ref:`Printing <intro.extensions.printng>` extension has been added. It provides a REST API for rendering documents as images or PDFs.
 
-* **GeoServer catalog optimizations** for faster startup, faster runtime, and better scalability for servers with large numbers of layers.
+* Improved **support for MBstyle** `markup language <geoserver/styling/mbstyle/index.html>`_, including a new tutorial.
 
-* New **module status page** in the UI for showing information and status about installed GeoServer extensions. Find it at the new :guilabel:`Modules` tab on the :guilabel:`Server Status` page.
+* **Layer groups have a new entry type** called `"style group" <geoserver/data/webadmin/layergroups.html>`_ for defining a layer group based on the contents of a style document.
 
 **Components included:**
 
-* GeoServer 2.11
-* GeoWebCache 1.11
-* GeoTools 17
+* GeoServer 2.12
+* GeoWebCache 1.12
+* GeoTools 18
 * PostgreSQL 9.6
 * PostGIS 2.3
 * GDAL 1.11.5
