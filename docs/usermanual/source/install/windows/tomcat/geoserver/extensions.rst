@@ -186,6 +186,14 @@ Oracle extension
 .. include:: /install/include/ext/oracle_verify.txt
 
 
+.. _install.windows.tomcat.extensions.printng:
+
+Printing extension
+------------------
+
+.. include:: /install/include/ext/printng_install_win.txt
+
+
 .. _install.windows.tomcat.extensions.script:
 
 Scripting extension

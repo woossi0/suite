@@ -44,7 +44,7 @@ Documentation
 
 #. Restart Tomcat.
 
-#. Navigate to `<http://localhost:8080/server-docs>`__ to verify that the application deployed successfully.
+#. Navigate to `<http://localhost:8080/boundless-server-docs>`__ to verify that the application deployed successfully.
 
 
 WPS Builder

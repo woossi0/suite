@@ -11,8 +11,8 @@ Boundless Server comes with documentation that can be deployed just like an appl
 
    .. note:: It will take a few moments for Tomcat to deploy the web application.
 
-#. Navigate to http://localhost:8080/server-docs to verify that the documentation deployed successfully.
+#. Navigate to http://localhost:8080/boundless-server-docs to verify that the documentation deployed successfully.
 
-   .. figure:: /install/include/war/img/server-docs.png
+   .. figure:: /install/include/war/img/boundless-server-docs.png
       
       Boundless Server User Manual

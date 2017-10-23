@@ -39,6 +39,8 @@
      - NetCDF data format support (output)
    * - ``boundless-server-gs-oracle``
      - Oracle database extension
+   * - ``boundless-server-gs-printng``
+     - Printing Extension
    * - ``boundless-server-gs-script``
      - Scripting (Python) extension
    * - ``boundless-server-gs-sqlserver``

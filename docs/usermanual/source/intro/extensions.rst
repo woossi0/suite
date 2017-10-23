@@ -162,6 +162,12 @@ Oracle
 
 The :ref:`Oracle extension <dataadmin.oracle>` adds the ability for GeoServer to publish data from Oracle Spatial databases. Once this extension is added, GeoServer will show Oracle as one of its available data sources when adding a new vector store.
 
+.. _intro.extensions.printng:
+
+Printing
+--------
+
+The printing extension provides REST endpoints for rendering HTML and Freemarker documents as images or PDF files.
 
 .. _intro.extensions.script:
 

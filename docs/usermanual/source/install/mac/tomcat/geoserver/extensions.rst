@@ -176,6 +176,14 @@ Oracle extension
 .. include:: /install/include/ext/oracle_verify.txt
 
 
+.. _install.mac.tomcat.extensions.printng:
+
+Printing extension
+------------------
+
+.. include:: /install/include/ext/printng_install.txt
+
+
 .. _install.mac.tomcat.extensions.script:
 
 Scripting extension

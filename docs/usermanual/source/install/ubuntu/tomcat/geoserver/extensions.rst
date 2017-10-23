@@ -186,6 +186,15 @@ Oracle extension
 .. include:: /install/include/ext/oracle_verify.txt
 
 
+.. _install.ubuntu.tomcat.extensions.printng:
+
+Printing extension
+------------------
+
+.. include:: /install/include/ext/printng_install.txt
+
+
+
 .. _install.ubuntu.tomcat.extensions.script:
 
 Scripting extension
