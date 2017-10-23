@@ -14,8 +14,8 @@
   </organization>
   <licenses>
     <license>
-      <name>OpenGeo Suite End User License Agreement</name>
-      <url>http://boundlessgeo.com/site-map/legal/opengeo-suite-eula/</url>
+      <name>Boundless Server End User License Agreement</name>
+      <url>https://boundlessgeo.com/legal/</url>
       <distribution>manual</distribution>
     </license>
   </licenses>
