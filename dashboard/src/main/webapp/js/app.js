@@ -61,7 +61,7 @@ function onLoad() {
     setUpTabsForIndex('.homelink');
     setUpTabsForIndex('.aboutlink');
     var docs_link = $('#_documentationlink');
-    docs_link.attr('href', '/suite-docs/');
+    docs_link.attr('href', '/boundless-server-docs/');
   }
 
   $('.nav a').click(function(e) {
