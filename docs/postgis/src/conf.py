@@ -103,7 +103,7 @@ html_theme_options = {
   'is_community': True, # Community Docs flag for Boundless Server component docs
   'display_zendesk': True, # Display link to report doc bugs to Zendesk
   'display_version': True,  # Whether to show version number
-  'server_url': 'postgis' # the url path within Server e.g. sdk-api for server-docs/sdk-api
+  'server_url': 'postgis' # the url path within Server e.g. sdk-api for boundless-server-docs/sdk-api
 
 }
 

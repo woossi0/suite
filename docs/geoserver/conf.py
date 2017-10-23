@@ -102,7 +102,7 @@ html_theme_options = {
   'is_community': True, # Community Docs flag for Boundless Server component docs
   'display_zendesk': True, # Display link to report doc bugs to Zendesk
   'display_version': True,  # Whether to show version number
-  'server_url': 'geoserver' # the url path within Server e.g. geoserver for server-docs/geoserver
+  'server_url': 'geoserver' # the url path within Server e.g. geoserver for boundless-server-docs/geoserver
 
 }
 
@@ -226,11 +226,11 @@ latex_elements = {
 extlinks = { 
     'wiki': ('https://github.com/geoserver/geoserver/wiki/%s',''),
     'website': ('http://geoserver.org/%s',''),
-    'user': ('/server-docs/geoserver/%s',''),
+    'user': ('/boundless-server-docs/geoserver/%s',''),
     'developer': ('http://docs.geoserver.org/latest/en/developer/%s',''),
     'geos': ('https://jira.codehaus.org/browse/GEOS-%s','GEOS-'),
     'geot': ('https://jira.codehaus.org/browse/GEOT-%s','GEOT-'),
-    'api': ('/server-docs/geoserver/api/#1.0.0/%s','')
+    'api': ('/boundless-server-docs/geoserver/api/#1.0.0/%s','')
 }
 
 # Common substitutions
