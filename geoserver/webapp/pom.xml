@@ -7,7 +7,7 @@
   <artifactId>web-app</artifactId>
   <packaging>war</packaging>
   <version>4.11-SNAPSHOT</version>
-  <name>OpenGeo Suite GeoServer Web App</name>
+  <name>Boundless Server GeoServer Web App</name>
   <organization>
     <name>Boundless</name>
     <url>http://http://boundlessgeo.com</url>
@@ -281,10 +281,16 @@
       <artifactId>gt-process-geometry</artifactId>
       <version>${gt.version}</version>
     </dependency>
+    <!-- Shared extension dependencies -->
     <dependency>
       <groupId>it.geosolutions.imageio-ext</groupId>
       <artifactId>imageio-ext-imagereadmt</artifactId>
       <version>${imageio.ext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.beust</groupId>
+      <artifactId>jcommander</artifactId>
+      <version>1.48</version>
     </dependency>
 
     <!-- Test dependencies -->
