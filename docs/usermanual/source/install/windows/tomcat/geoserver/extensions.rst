@@ -87,6 +87,16 @@ GeoPackage extension
 
 .. include:: /install/include/ext/geopackage_verify.txt
 
+.. _install.windows.tomcat.extensions.geomesa:
+
+GeoMesa extension
+-----------------
+
+.. include:: /install/include/ext/geomesa_install_win.txt
+
+.. include:: /install/include/ext/geomesa_verify.txt
+
+
 .. _install.windows.tomcat.extensions.grib:
 
 GRIB extension

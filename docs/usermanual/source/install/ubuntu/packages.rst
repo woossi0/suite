@@ -282,7 +282,6 @@ For more information, please see the section on :ref:`GeoServer extensions <intr
 
 .. include:: /install/include/server-gs-packages.txt
 
-
 Binary packages
 ~~~~~~~~~~~~~~~
 

@@ -87,6 +87,16 @@ GeoPackage extension
 
 .. include:: /install/include/ext/geopackage_verify.txt
 
+.. _install.ubuntu.tomcat.extensions.geomesa:
+
+GeoMesa extension
+-----------------
+
+.. include:: /install/include/ext/geomesa_install.txt
+
+.. include:: /install/include/ext/geomesa_verify.txt
+
+
 .. _install.ubuntu.tomcat.extensions.grib:
 
 GRIB extension
