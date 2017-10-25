@@ -11,11 +11,13 @@ This version contains numerous component upgrades and bug fixes. Highlights incl
 
 * The :ref:`WPS <processing.intro.wps>` and :ref:`MBTiles <dataadmin.mbtiles>` extensions have been removed, and are instead included by default.
 
+* The :ref:`GeoServices REST API <intro.extensions.gsr>` extension has been added. It adds a REST API which allows limited compatiblity with ArcGIS clients.
+
 * The :ref:`Printing <intro.extensions.printng>` extension has been added. It provides a REST API for rendering documents as images or PDFs.
 
-* Improved **support for MBstyle** `markup language <geoserver/styling/mbstyle/index.html>`_, including a new tutorial.
+* Improved **support for MBstyle** `markup language <geoserver/styling/mbstyle/index.html>`_, including a new :ref:`tutorial <cartography.mbstyle.tutorial>`.
 
-* **Layer groups have a new entry type** called `"style group" <geoserver/data/webadmin/layergroups.html>`_ for defining a layer group based on the contents of a style document.
+* **Layer groups have a new entry type** called `style group <geoserver/data/webadmin/layergroups.html>`_ for defining a layer group based on the contents of a style document.
 
 **Components included:**
 

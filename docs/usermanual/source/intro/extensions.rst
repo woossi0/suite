@@ -105,6 +105,16 @@ GRIB
 The GRIB extension adds support for GeoServer to publish data in `GRIB <https://en.wikipedia.org/wiki/GRIB>`_ format. GRIB is a data format commonly used in meteorology to store weather data, both historical and predicted. This version includes support for reading data in GRIB 1 and GRIB 2 formats.
 
 
+.. _intro.extensions.gsr:
+
+GeoServices REST API
+--------------------
+
+The GeoServices REST API extension allows limited compatiblity with ArcGIS clients.
+
+For more information, please see the :ref:`sysadmin.gsr` section.
+
+
 .. _intro.extensions.inspire:
 
 INSPIRE
