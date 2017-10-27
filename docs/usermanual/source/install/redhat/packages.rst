@@ -153,7 +153,7 @@ This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundle
 
       cp -p geoserver.xml.new geoserver.xml
 
-#. If you had previously made any changes to the context files, copy these changes from the ".rpmsave" file into the corresponding ".xml" file.
+#. If you had previously made any changes to the context files, copy these changes from the ".orig" file into the corresponding ".xml" file.
 
 #. Restart the server.
 

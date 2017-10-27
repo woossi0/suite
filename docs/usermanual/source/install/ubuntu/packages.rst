@@ -111,7 +111,7 @@ This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundle
 
 .. note::
 
-   If you made changes to the suite-docs tomcat context file located in ``/etc/tomcat8/Catalina/localhost/suite-docs.xml``, please back it up now or your changes will be lost (The other context files will be preserved).
+   If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the relevant portions of the backed up files.
 
 #. Change to the ``root`` user:
 
@@ -140,14 +140,6 @@ This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundle
    .. code-block:: bash
 
       apt-get install boundless-server-geoserver boundless-server-docs boundless-server-dashboard
-
-#. Update the tomcat context files. For each file ending in ".new" in ``/etc/tomcat8/Catalina/localhost/``, copy it to a ".xml" file. For example:
-
-   .. code-block:: bash
-
-      cp -p geoserver.xml.new geoserver.xml
-
-#. If you had previously made any changes to the context files, copy these changes from the ".rpmsave" file into the corresponding ".xml" file.
 
 #. Restart the server.
 
