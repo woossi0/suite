@@ -5,7 +5,7 @@ What's new in |version|
 
 This version contains numerous component upgrades and bug fixes. Highlights include:
 
-* **Boundless Suite** has been renamed to **Boundless Server**.
+* **Boundless Suite** has been renamed to **Boundless Server**, and the version has been reset to |version|. This follows from **Boundless Suite 4.10.0**.
 
 * The GeoServer REST API has been updated, and includes improved `documentation <geoserver/rest/index.html>`_. The updated API should still be backwards-compatible.
 
