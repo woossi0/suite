@@ -16,7 +16,7 @@ This version is a bugfix release, and includes various fixes for GeoWebCache and
 * And more!
 
 What's new in 1.0.0
-===================
+-------------------
 
 This version contains numerous component upgrades and bug fixes. Highlights include:
 
