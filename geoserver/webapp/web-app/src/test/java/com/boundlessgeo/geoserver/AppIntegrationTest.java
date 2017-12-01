@@ -31,12 +31,14 @@ import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.StyleInfo;
 import org.geoserver.config.GeoServer;
 import org.geoserver.config.GeoServerInfo;
+import org.geoserver.config.GeoServerPropertyConfigurer;
 import org.geoserver.config.SettingsInfo;
 import org.geoserver.data.test.SystemTestData;
 import org.geoserver.importer.Importer;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.rest.util.RESTUtils;
+import org.geoserver.security.ResourceAccessManager;
 import org.geoserver.test.GeoServerSystemTestSupport;
 import org.geoserver.web.GeoServerApplication;
 import org.geoserver.ysld.YsldHandler;
@@ -51,25 +53,31 @@ import org.junit.Before;
 import org.junit.Test;
 import org.opengis.feature.Feature;
 import org.opengis.feature.Property;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.mail.internet.InternetHeaders;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpServletRequest;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -82,13 +90,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 public class AppIntegrationTest extends GeoServerSystemTestSupport {
 
+    protected final String adminAuthHeader;
+
+    public AppIntegrationTest() throws UnsupportedEncodingException {
+        adminAuthHeader = "Basic " + Base64.getEncoder().encodeToString("admin:geoserver".getBytes("UTF-8"));
+    }
+
     @Override
     protected void setUpTestData(SystemTestData testData) throws Exception {
         super.setUpTestData(testData);
         testData.setUpWcs10RasterLayers();
     }
 
-    @Before
     public void removeMaps() {
         removeLayerGroup("sf", "map1");
         removeLayerGroup("sf", "map2");
@@ -97,7 +110,6 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         removeLayerGroup("cgf", "map2");
     }
     
-    @Before
     public void removeLayers() {
         removeLayer("gs", "foo");
         removeLayer("sf", "foo");
@@ -112,7 +124,6 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         removeLayer("cgf", "Lines-map");
     }
     
-    @Before
     public void removeFiles() {
         removeStore("gs","point");
         new File(getCatalog().getResourceLoader().getBaseDirectory(), "data/gs/point/point.shp").delete();
@@ -132,6 +143,15 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point_space/point space.prj").delete();
         new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point_space/point space.shx").delete();
         new File(getCatalog().getResourceLoader().getBaseDirectory(), "uploads/gs/point_space/point space.dbf").delete();
+    }
+
+    @Before
+    public void setUp() {
+        login("admin", "geoserver", "ROLE_ADMINISTRATOR");
+
+        removeMaps();
+        removeLayers();
+        removeFiles();
     }
 
     @Test
@@ -203,6 +223,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/hello");
         request.setMethod("get");
+        request.addHeader("Authorization", adminAuthHeader);
         
         StoreController ctrl = new StoreController(getGeoServer());
         JSONObj obj = ctrl.attributes("sf", "sf", "PrimitiveGeoFeature", 10, request);
@@ -252,6 +273,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/hello");
         request.setMethod("post");
+        request.addHeader("Authorization", adminAuthHeader);
 
         createMultiPartFormContent(request, "form-data; name=\"upload\"; filename=\"point.zip\"", "application/zip",
                 IOUtils.toByteArray(getClass().getResourceAsStream("point.shp.zip")));
@@ -314,6 +336,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/hello");
         request.setMethod("post");
+        request.addHeader("Authorization", adminAuthHeader);
         
         //Import as separate files
         MimeMultipart body = initMultiPartFormContent(request);
@@ -366,6 +389,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         deleteRequest.setContextPath("/geoserver");
         deleteRequest.setRequestURI("/geoserver/hello");
         deleteRequest.setMethod("delete");
+        deleteRequest.addHeader("Authorization", adminAuthHeader);
         storeCtrl.delete("gs", "point", true, deleteRequest);
         assertFalse(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").exists());
         result = ctrl.importFile("gs", request);
@@ -397,7 +421,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/hello");
         request.setMethod("post");
-        
+        request.addHeader("Authorization", adminAuthHeader);
         //Import as separate files
         MimeMultipart body = initMultiPartFormContent(request);
 
@@ -453,6 +477,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             request.setContextPath("/geoserver");
             request.setRequestURI("/geoserver/hello");
             request.setMethod("post");
+            request.addHeader("Authorization", adminAuthHeader);
+            RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request, null));
             
             JSONObj result = data.createConnectionParameters();
             result = ctrl.importDb("gs", result, request);
@@ -517,6 +543,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
             }
             
             //Try to reimport the same store - should fail and return existing store
+
             result = data.createConnectionParameters();
             result = ctrl.importDb("gs", result, request);
             
@@ -537,6 +564,8 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/hello");
         request.setMethod("post");
+        request.addHeader("Authorization", adminAuthHeader);
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request, null));
         
         createMultiPartFormContent(request, "form-data; name=\"upload\"; filename=\"point.json\"", "application/json",
                 IOUtils.toByteArray(getClass().getResourceAsStream("point.json")));
@@ -545,10 +574,11 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         Long id = Long.parseLong(result.str("id"));
         
         //Wait for the import to complete
-        result = pollImport(ctrl, "gs", id, "pending", request);
+        result = pollImport(ctrl, "sf", id, "pending", request);
         assertNotNull(result);
-        result = ctrl.update("gs", id, getUpdateTasks(result), request);
-        result = pollImport(ctrl, "gs", id, "complete", request);
+
+        result = ctrl.update("sf", id, getUpdateTasks(result), request);
+        result = pollImport(ctrl, "sf", id, "complete", request);
         assertNotNull(result);
         
         assertEquals(1, result.array("tasks").size());
@@ -616,6 +646,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/hello");
         request.setMethod("post");
+        request.addHeader("Authorization", adminAuthHeader);
         
         JSONObj obj = ctrl.info("sf");
         
@@ -634,6 +665,9 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/api/icons/cite");
         request.setMethod("post");
+        request.addHeader("Authorization", adminAuthHeader);
+
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request, null));
 
         createMultiPartFormContent(request, "form-data; name=\"icon\"; filename=\"STYLE.PROPERTIES\"",
             "text/x-java-properties", "square=LINESTRING((0 0,0 1,1 1,1 0,0 0))".getBytes() );
@@ -658,6 +692,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/api/icons");
         request.setMethod("post");
+        request.addHeader("Authorization", adminAuthHeader);
 
         createMultiPartFormContent(request, "form-data; name=\"icon\"; filename=\"STYLE.PROPERTIES\"",
             "text/x-java-properties", "square=LINESTRING((0 0,0 1,1 1,1 0,0 0))".getBytes() );
@@ -722,6 +757,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         InternetHeaders headers = new InternetHeaders();
         headers.setHeader("Content-Disposition", contentDisposition);
         headers.setHeader("Content-Type", contentType);
+        headers.setHeader("Authorization", adminAuthHeader);
         body.addBodyPart(new MimeBodyPart(headers, content ));
 
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
@@ -917,6 +953,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/hello");
         request.setMethod("get");
+        request.addHeader("Authorization", adminAuthHeader);
         
         //Test initial get
         assertFalse(config.cacheFile(ThumbnailController.thumbnailFilename(layer)).exists());
@@ -966,6 +1003,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         request.setContextPath("/geoserver");
         request.setRequestURI("/geoserver/hello");
         request.setMethod("put");
+        request.addHeader("Authorization", adminAuthHeader);
         
         layerCtrl.put("sf", "PrimitiveGeoFeature", new JSONObj().put("title", layer.getTitle()), request);
         

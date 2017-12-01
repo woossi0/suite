@@ -1,6 +1,9 @@
 <project name="geoserver" default="build">
   <import file="../../build/common.xml"/>
 
+  <condition property="war.flags" value="-Pgeonode" else="">
+    <equals arg1="${geonode}" arg2="true"/>
+  </condition>
   <property name="data.dir" value="../data_dir/target"/>
   <property name="war.dir" value="web-app/target/geoserver"/>
   <property name="war.file" value="${war.dir}.war"/>
@@ -10,7 +13,7 @@
   <target name="build-server" description="builds and installs server">
     <antcall target="mvn">
       <param name="goals" value="install"/>
-      <param name="flags" value="-DskipTests"/>
+      <param name="flags" value="-DskipTests ${war.flags}"/>
     </antcall>
   </target>
 

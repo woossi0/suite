@@ -56,12 +56,16 @@ import org.geotools.util.logging.Logging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.vfny.geoserver.util.DataStoreUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -1017,7 +1021,7 @@ public class ImportController extends ApiController {
                 throw new NullPointerException("Initial task cannot be null");
             }
             currentTask = initTask;
-            new Thread(new TaskListener(initTask)).start();
+            new Thread(taskListener(initTask)).start();
         }
         
         public ImportContext getContext() {
@@ -1049,7 +1053,7 @@ public class ImportController extends ApiController {
          */
         public void setTask(Task<ImportContext> t) throws RuntimeException, InterruptedException, ExecutionException {
             if (t != null) {
-                new Thread(new TaskListener(t)).start();
+                new Thread(taskListener(t)).start();
             }
             if (getTask() == null) {
                 currentTask = t;
@@ -1058,23 +1062,28 @@ public class ImportController extends ApiController {
             }
         }
     }
-    
+
     /**
-     * Utility class which blocks on a running Task, and updates the location of any Imported files 
+     * Utility method which blocks on a running Task, and updates the location of any Imported files
      * when that task completes.
+     *
      */
-    private class TaskListener implements Runnable {
-        Task<ImportContext> task;
-        public TaskListener(Task<ImportContext> task) {
-            this.task = task;
-        }
-        
-        public void run() {
+    private Runnable taskListener(final Task<ImportContext> task) {
+        final RequestAttributes parentRequestAttributes = RequestContextHolder.getRequestAttributes();
+        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Thread parentThread = Thread.currentThread();
+
+        return () -> {
+            final Authentication oldAuth = SecurityContextHolder.getContext().getAuthentication();
             try {
+                // set the parent request spring context, some interceptors like the security ones
+                // for example may need to have access to the original request attributes
+                RequestContextHolder.setRequestAttributes(parentRequestAttributes);
+                SecurityContextHolder.getContext().setAuthentication(auth);
                 ImportContext context = task.get();
-                List<File> importFiles = new ArrayList<File>();
+                List<File> importFiles = new ArrayList<>();
                 for (ImportTask t : context.getTasks()) {
-                    if (t.getState() == State.COMPLETE) {
+                    if (t.getState() == State.COMPLETE && t.getData() instanceof FileData) {
                         importFiles.add(((FileData)t.getData()).getFile());
                     }
                 }
@@ -1082,7 +1091,7 @@ public class ImportController extends ApiController {
                     if (t.getState() == State.COMPLETE) {
                         //Clean up names
                         Catalog catalog = ImportController.this.geoServer.getCatalog();
-                        
+
                         StoreInfo store = catalog.getStore(t.getStore().getId(), StoreInfo.class);
                         store.setName(NameUtil.sanitizeEnsureUnique(store.getName(), StoreInfo.class, catalog));
                         LayerInfo layer = catalog.getLayer(t.getLayer().getId());
@@ -1091,14 +1100,14 @@ public class ImportController extends ApiController {
                         //resource.setName(NameUtil.sanitizeEnsureUnique(resource.getName(), ResourceInfo.class, catalog));
                         StyleInfo style = catalog.getStyle(layer.getDefaultStyle().getId());
                         style.setName(NameUtil.sanitizeEnsureUnique(style.getName(), StyleInfo.class, catalog));
-                        
+
                         catalog.save(store);
                         catalog.save(layer);
                         catalog.save(style);
-                        
+
                         t.setStore(store);
                         t.setLayer(layer);
-                        
+
                         moveFile(t, importFiles);
                         //Set created date
                         store = t.getStore();
@@ -1109,7 +1118,13 @@ public class ImportController extends ApiController {
                 }
             } catch (InterruptedException | ExecutionException e) {
                 LOG.log(Level.WARNING, "Failed to move imported files", e);
+            } finally {
+                if (Thread.currentThread() != parentThread) {
+                    // cleaning request spring context for the current thread
+                    RequestContextHolder.resetRequestAttributes();
+                    SecurityContextHolder.getContext().setAuthentication(oldAuth);
+                }
             }
-        }
+        };
     }
 }
