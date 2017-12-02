@@ -6,7 +6,7 @@
   </condition>
   <property name="data.dir" value="../data_dir/target"/>
   <property name="war.dir" value="web-app/target/geoserver"/>
-  <property name="war.file" value="${war.dir}.war"/>
+  <property name="war.file" value="target/geoserver.war"/>
 
   <target name="build" depends="init,build-server" description="Builds project" />
 
@@ -29,6 +29,8 @@
         <!-- Exclude these jars which contain a security vulnerability. We are still pulling in the fixed / hacked versions from gs-main-->
         <exclude name="**/lib/commons-beanutils-1.7.0.jar"/>
         <exclude name="**/lib/org.restlet-1.0.8.jar"/>
+        <!-- Exclude web-app, it is basically a duplicate war-->
+        <exclude name="**/lib/gs-web-app-*.jar"/>
       </fileset>
     </jar>
     <antcall target="assemble-artifact">
