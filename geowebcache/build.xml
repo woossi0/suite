@@ -25,7 +25,7 @@
     </copy>
     <mkdir dir="${webinf.dir}/classes/com/boundlessgeo/geowebcache/web"/>
     <copy todir="${webinf.dir}/classes/com/boundlessgeo/geowebcache/web" overwrite="true">
-      <fileset dir="../geoserver/webapp/target/classes/com/boundlessgeo/geowebcache/web/"/>
+      <fileset dir="../geoserver/webapp/web/target/classes/com/boundlessgeo/geowebcache/web/"/>
     </copy>
     <jar destfile="${basedir}/target/geowebcache.war" basedir="${war.dir}"
         includes="**/*" excludes="**/imageio-ext-*.jar"/>
