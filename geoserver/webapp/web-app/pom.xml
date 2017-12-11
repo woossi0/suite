@@ -307,6 +307,21 @@
       <id>geonode</id>
       <dependencies>
         <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
+          <version>4.5.3</version>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
+          <version>4.4.8</version>
+        </dependency>
+        <dependency>
+          <groupId>com.h2database</groupId>
+          <artifactId>h2</artifactId>
+          <version>1.4.196</version>
+        </dependency>
+        <dependency>
           <groupId>org.geoserver.extension</groupId>
           <artifactId>gs-printing</artifactId>
           <version>${gs.version}</version>
