@@ -224,11 +224,11 @@ latex_elements = {
 extlinks = { 
     'wiki': ('https://github.com/geoserver/geoserver/wiki/%s',''),
     'website': ('http://geoserver.org/%s',''),
-    'user': ('/boundless-server-docs/geoserver/%s',''),
+    'user': ("javascript:pathToGeoServerDocs('%s');",""),
     'developer': ('http://docs.geoserver.org/latest/en/developer/%s',''),
     'geos': ('https://jira.codehaus.org/browse/GEOS-%s','GEOS-'),
     'geot': ('https://jira.codehaus.org/browse/GEOT-%s','GEOT-'),
-    'api': ('/boundless-server-docs/geoserver/api/#1.0.0/%s','')
+    'api': ("javascript:pathToGeoServerDocs('api/#1.0.0/%s');","")
 }
 
 # Common substitutions
