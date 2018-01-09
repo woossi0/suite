@@ -9,7 +9,7 @@
   <description>Boundless GeoExplorer WAR Distrobution</description>
 
   <properties>
-    <gwc.version>1.12-SNAPSHOT</gwc.version>
+    <gwc.version>1.13-SNAPSHOT</gwc.version>
   </properties>
 
   <dependencies>

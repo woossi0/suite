@@ -181,6 +181,12 @@ If this release includes a change to the geoserver major version (For example, f
 * `gwc.major_version`
 * `gs.major_version`
 
+Additionally, you will need to update the GeoTools, GeoWebcache, and GeoServer versions in the following files:
+
+* geoserver/webapp/pom.xml
+* geowebcache/pom.xml
+
+
 ## Update Submodules
 
 [Update any submodules](#submodules) that have changed since the last release. For a minor release, this is usually just [geotools](geoserver/geotools), [geowebcache](geoserver/geowebcache), and [geoserver](geoserver/geoserver). This should typically be updated to the latest commit in the stable branch.
