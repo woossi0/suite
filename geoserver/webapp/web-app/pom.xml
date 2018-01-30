@@ -311,6 +311,11 @@
           <artifactId>httpclient</artifactId>
           <version>4.5.3</version>
         </dependency>
+	<dependency>
+	  <groupId>org.apache.commons</groupId>
+	  <artifactId>commons-math3</artifactId>
+	  <version>${math3.version}</version>
+	</dependency>
         <dependency>
           <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpcore</artifactId>
@@ -433,6 +438,10 @@
               <groupId>org.apache.logging.log4j</groupId>
               <artifactId>log4j-slf4j-impl</artifactId>
             </exclusion>
+	    <exclusion>
+	      <groupId>cglib</groupId>
+	      <artifactId>cglib</artifactId>
+	    </exclusion>
           </exclusions>
         </dependency>
         <dependency>
