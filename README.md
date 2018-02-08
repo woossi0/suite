@@ -183,7 +183,7 @@ If this release includes a change to the geoserver major version (For example, f
 
 ## Update Submodules
 
-[Update any submodules](#submodules) that have changed since the last release. For a minor release, this is usually just [geotools](geoserver/geotools), [geowebcache](geoserver/geowebcache), and [geoserver](geoserver/geoserver). This should typically be updated to the latest commit in the stable branch.
+[Update any submodules](#submodules) that have changed since the last release. For a minor release, this is usually just [geotools](geoserver/geotools), [geowebcache](geoserver/geowebcache), and [geoserver](geoserver/geoserver). This should typically be updated to the latest commit in the stable branch, or the commit of the last stable release.
 
 For a major release, also be sure to update [geomesa](geoserver/externals/geomesa) and [geoserver-exts](geoserver/externals/geoserver-exts) to a version that supports the new geotools/geoserver major versions.
 
@@ -191,7 +191,11 @@ For a major release, also be sure to update [geomesa](geoserver/externals/geomes
 
 Update the [What's new](docs/usermanual/source/whatsnew.rst) page with a short, user-friendly list of the highlights of the current release.
 
-If there have been any changes in the packaging or install procedures, update the [installation instructions](docs/usermanual/source/install) accordingly. This is usually only necessary for major releases.
+Update the repo url for the packages with the new release version. For example:
+
+    https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.0.0/ubuntu
+
+If there have been any other changes in the packaging or install procedures, update the [installation instructions](docs/usermanual/source/install) accordingly. This is usually only necessary for major releases.
 
 ### Versioned build
 

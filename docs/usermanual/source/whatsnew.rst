@@ -7,11 +7,9 @@ This version is a bugfix release, and includes various fixes for GeoWebCache and
 
 * Fixed errors in the GWC Seed endpoints.
 
-* GWC FullWMS mode works again.
+* Fixed errors with Multipart requests when the GeoGig plugin is installed.
 
-* The :ref:`GeoServices REST API <intro.extensions.gsr>` extension has many improvements in compatibility with the latest official client API
-
-* Several rendering errors in the `MBStyle <geoserver/styling/mbstyle/index.html>`_ extension have been fixed.
+* Style REST API supports Content-type with charset.
 
 * And more!
 

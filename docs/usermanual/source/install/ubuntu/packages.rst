@@ -36,7 +36,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.0.0/ubuntu trusty main" > /etc/apt/sources.list.d/boundless.list
+      echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.0.2/ubuntu trusty main" > /etc/apt/sources.list.d/boundless.list
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
@@ -123,7 +123,7 @@ This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundle
 
    .. code-block:: none
 
-      deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.0.0/ubuntu trusty main
+      deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.0.2/ubuntu trusty main
 
    Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
 
