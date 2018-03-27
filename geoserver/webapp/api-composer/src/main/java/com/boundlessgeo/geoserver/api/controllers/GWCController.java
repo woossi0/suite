@@ -1,6 +1,7 @@
 package com.boundlessgeo.geoserver.api.controllers;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +42,7 @@ public class GWCController extends ApiController {
      */
     @RequestMapping(value = "/gridsets", method = RequestMethod.GET)
     public @ResponseBody JSONArr list(HttpServletRequest request) throws IOException {
-        List<GridSet> gridsets = mediator.getGridSetBroker().getGridSets();
+        Collection<GridSet> gridsets = mediator.getGridSetBroker().getGridSets();
         
         JSONArr arr = new JSONArr();
         for (GridSet gridset: gridsets) {
