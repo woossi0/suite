@@ -13,6 +13,11 @@
   </target>
 
   <target name="build" unless="skip.geomesa" description="Build GeoMesa">
+    <!-- Copy CCRI license into build -->
+    <copy todir="build/copyright" overwrite="true">
+      <fileset dir="${geomesa.dir}/build/copyright"/>
+    </copy>
+    <!-- Construct plugin jar via maven -->
      <antcall target="mvn">
         <param name="dir" value="."/>
         <param name="flags" value="-DskipTests"/>
@@ -54,7 +59,7 @@
         <exclude name="json-simple-*.jar"/>
         <exclude name="sqlite-jdbc-*.jar"/>
         <!-- exclude conflicting jars between geomesa and other extensions -->
-        <exclude name="gt-imageio-ext-gdal-*.jar"/>
+        <exclude name="gt-imageio-ext-gdal*.jar"/>
         <exclude name="core-*.jar"/>
         <exclude name="gson-*.jar"/>
         <exclude name="jts-core-*.jar"/>
@@ -67,15 +72,21 @@
     <antcall target="assemble-extension" inheritAll="false">
       <param name="name" value="geomesa-accumulo"/>
     </antcall>
+
     <!-- Distributed Runtime -->
     <delete dir="target/geomesa-accumulo-distributed-runtime"/>
     <mkdir dir="target/geomesa-accumulo-distributed-runtime"/>
     <copy todir="target/geomesa-accumulo-distributed-runtime" overwrite="true">
       <fileset dir="${geomesa.dir}/geomesa-accumulo/geomesa-accumulo-distributed-runtime/target"
-               includes="geomesa-accumulo-distributed-runtime-*.jar"/>
+               includes="geomesa-accumulo-distributed-runtime*.jar"/>
     </copy>
+
+    <!-- include GeoMesa license file -->
+    <copy todir="target" file="${geomesa.dir}/LICENSE.txt"/>
+
     <antcall target="assemble-artifact" inheritAll="false">
       <param name="name" value="geomesa-accumulo-distributed-runtime"/>
+      <param name="excludes" value="archive-tmp,checkstyle*,*.zip"/>
     </antcall>
   </target>
 
