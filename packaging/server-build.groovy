@@ -553,6 +553,7 @@ def packageWars() {
 
   sh """
     zip -r ${EXT_ARCHIVE}.zip $EXT_ARCHIVE
+    rm -rf ${EXT_ARCHIVE}/
     mv -f ${EXT_ARCHIVE}.zip $WARS_DIR/
   """
 
@@ -568,7 +569,7 @@ def packageWars() {
   makeDir("$WORKSPACE/repack")
   makeDir("$WORKSPACE/repack/doc")
   sh """
-    cp $ARTIFACT_ROOT/boundless-server-data-dir-${SERVER_HEAD}.zip ./$WAR_ARCHIVE/boundless-server-data-dir.zip
+    cp $ARTIFACT_ROOT/boundless-server-data-dir-${SERVER_HEAD}.zip $WAR_ARCHIVE/boundless-server-data-dir.zip
     wget https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt -O $LICENSE_DIR/LGPLv2.1
     wget https://www.gnu.org/licenses/old-licenses/lgpl-2.0.txt -O $LICENSE_DIR/LGPLv2
     wget https://www.gnu.org/licenses/lgpl.txt -O $LICENSE_DIR/LGPLv3
