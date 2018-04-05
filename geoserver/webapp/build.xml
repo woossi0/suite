@@ -13,7 +13,7 @@
   <target name="build-server" description="builds and installs server">
     <antcall target="mvn">
       <param name="goals" value="install"/>
-      <param name="flags" value="-DskipTests ${war.flags}"/>
+      <param name="flags" value="-U -DskipTests ${war.flags}"/>
     </antcall>
   </target>
 
