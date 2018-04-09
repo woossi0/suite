@@ -61,6 +61,7 @@ pipeline {
       parallel {
         stage('Build-Composer') {
           steps {
+            sleep(time: 3, unit:'MINUTES')
             antBuild('suite/composer/build.xml','clean build assemble publish')
             archiveBuildZip('composer')
           }
@@ -81,7 +82,6 @@ pipeline {
         }
         stage('Build-GeoTools') {
           steps {
-            sleep(time: 3, unit:'MINUTES')
             antBuild('suite/geoserver/geotools/build.xml','clean build assemble publish')
           }
         }
@@ -216,7 +216,7 @@ pipeline {
     stage('Archive-WARs') {
       steps {
         packageWars()
-        archiveArtifacts artifacts: "archive/war/BoundlessServer-${SERVER_HEAD}-*.zip", fingerprint: true
+        archiveArtifacts artifacts: "archive/war/${ARCHIVE_BASENAME}-${SERVER_HEAD}-*.zip", fingerprint: true
       }
     }
 
@@ -301,7 +301,7 @@ pipeline {
         // Note- no EL7 unique RPMs, reusing EL6
         script {
           sh """
-            scp archive/war/BoundlessServer-${SERVER_HEAD}-*.zip root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/war/
+            scp archive/war/${ARCHIVE_BASENAME}-${SERVER_HEAD}-*.zip root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/war/
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/6/
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/7/
             scp archive/ubuntu/14/*.deb root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/
@@ -427,9 +427,8 @@ def setEnvs() {
   env.LICENSE_DIR = "$WORKSPACE/suite/packaging/licenses"
   env.ARTIFACT_ROOT = "$WORKSPACE/archive/zip"
   env.WARS_DIR = "$WORKSPACE/archive/war"
-  //env.WAR_ARCHIVE = "${ARCHIVE_BASENAME}-${SERVER_HEAD}-war"
   env.DATE_TIME_STAMP = sh (script: "date +%Y%m%d%H%M", returnStdout:true).trim()
-  env.VER = sh (script: "cat $WORKSPACE/suite/packaging/version.txt", returnStdout:true).trim()
+  env.VER = sh (script: "grep server.version= $WORKSPACE/suite/build/build.properties | sed 's:server.version=::'", returnStdout:true).trim()
   env.ARTIFACT_DIR = "/var/www/server/core/${BUILD_TYPE}/HEAD"
   env.SUITE_BUILD_CAT = 'HEAD'
   env.SERVER_BUILD_CAT = 'HEAD'
@@ -494,16 +493,16 @@ def archiveBuildZip(def component) {
 
 def explodeSources() {
   sh """
-    unzip archive/war/BoundlessServer-${SERVER_HEAD}-ext.zip -d $WORKSPACE/SRC
-    mv $WORKSPACE/SRC/BoundlessServer-${SERVER_HEAD}-ext $WORKSPACE/SRC/BoundlessServer-ext
-    unzip archive/war/BoundlessServer-${SERVER_HEAD}-war.zip -d $WORKSPACE/SRC
-    mv $WORKSPACE/SRC/BoundlessServer-${SERVER_HEAD}-war $WORKSPACE/SRC/BoundlessServer-war
+    unzip archive/war/${ARCHIVE_BASENAME}-${SERVER_HEAD}-ext.zip -d $WORKSPACE/SRC
+    mv $WORKSPACE/SRC/${ARCHIVE_BASENAME}-${SERVER_HEAD}-ext $WORKSPACE/SRC/${ARCHIVE_BASENAME}-ext
+    unzip archive/war/${ARCHIVE_BASENAME}-${SERVER_HEAD}-war.zip -d $WORKSPACE/SRC
+    mv $WORKSPACE/SRC/${ARCHIVE_BASENAME}-${SERVER_HEAD}-war $WORKSPACE/SRC/${ARCHIVE_BASENAME}-war
   """
   sourceWar = ['boundless-server-docs.war', 'composer.war', 'dashboard.war', 'geoserver.war', 'geowebcache.war', 'wpsbuilder.war']
   for (int i = 0; i < sourceWar.size(); i++) {
     echo "DEBUG: Exploding ${sourceWar[i]}"
     sourceWarName = sh (script: "echo ${sourceWar[i]} | rev | cut -d / -f 1 | rev", returnStdout:true).trim()
-    sh "unzip $WORKSPACE/SRC/BoundlessServer-war/${sourceWar[i]} -d $WORKSPACE/SRC/${sourceWarName}"
+    sh "unzip $WORKSPACE/SRC/${ARCHIVE_BASENAME}-war/${sourceWar[i]} -d $WORKSPACE/SRC/${sourceWarName}"
   }
 }
 
@@ -616,6 +615,8 @@ def packageWars() {
     zip -r ${WAR_ARCHIVE}.zip $WAR_ARCHIVE
     mv -f ${WAR_ARCHIVE}.zip $WARS_DIR/
     mv -f "$WAR_ARCHIVE/"*.war $WARS_DIR/
+    rm -rf $WAR_ARCHIVE/
+    rm -rf repack
   """
 }
 

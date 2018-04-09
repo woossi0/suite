@@ -17,9 +17,11 @@
     </antcall>
   </target>
 
-  <target name="clean" depends="destroy" />
+  <target name="clean">
+    <delete dir="web-app/target/"/>
+  </target>
 
-  <target name="assemble"> 
+  <target name="assemble">
     <delete dir="${war.dir}/data"/>
 
     <delete file="${war.file}"/>
