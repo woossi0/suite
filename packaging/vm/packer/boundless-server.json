@@ -18,7 +18,7 @@
       "ssh_password": "boundless123",
       "ssh_wait_timeout": "20m",
       "disk_size": "20000",
-      "vm_name": "BoundlessServer_VirtualBox_1.0.2",
+      "vm_name": "BoundlessServer_VirtualBox_{{user `server_version`}}",
       "headless": true,
       "boot_wait": "20s",
       "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
@@ -51,8 +51,8 @@
         "--producturl", "http://server.boundlessgeo.com",
         "--vendor", "Boundless Spatial, Inc.",
         "--vendorurl", "http://boundlessgeo.com/",
-        "--version", "1.0.2",
-        "--eulafile", "boundless-license.txt"
+        "--version", "{{user `server_version`}}",
+        "--eulafile", "../../licenses/license.txt"
       ]
     }
   ],
@@ -65,7 +65,7 @@
     {
       "type": "shell",
       "script": "scripts/vm_deploy.sh",
-      "execute_command": "echo '{{user `ssh_pass`}}' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
+      "execute_command": "chmod +x {{ .Path }}; sudo '{{ .Path }}' {{user `server_version`}} {{user `repo_login`}} {{user `repo_password`}}"
     },
     {
       "type": "shell",
@@ -74,4 +74,3 @@
     }
   ]
 }
-

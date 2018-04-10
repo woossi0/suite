@@ -78,7 +78,7 @@ def makeDir(def dir) {
 
 def setEnvs() {
   env.GS_MAJOR_VERSION = sh (script: "grep gs.major_version suite/build/build.properties | sed 's|gs.major_version=||'", returnStdout: true).trim()
-  env.SERVER_VERSION = sh (script: "cat suite/packaging/version.txt", returnStdout: true).trim()
+  env.SERVER_VERSION = sh (script: "grep server.version= $WORKSPACE/suite/build/build.properties | sed 's:server.version=::'", returnStdout: true).trim()
   env.DATE_TIME_STAMP = sh (script: "date +%Y%m%d%H%M", returnStdout: true).trim()
   env.MINOR_VERSION = "SNAPSHOT${DATE_TIME_STAMP}-${BUILD_NUMBER}"
   env.ARTIFACT_VERSION = "${GS_MAJOR_VERSION}-${SERVER_VERSION}"
