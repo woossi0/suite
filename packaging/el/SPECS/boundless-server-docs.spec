@@ -10,7 +10,7 @@ URL: https://boundlessgeo.com/boundless-gis-platform/
 BuildRoot: %{_WORKSPACE}/boundless-server-docs/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, boundless-server-tomcat8 >= 8.0.42, boundless-server-tomcat8 < 8.1
+Requires:  unzip, boundless-server-tomcat8 >= 8.5.32, boundless-server-tomcat8 < 8.6
 Conflicts: opengeo-docs, suite-docs
 Obsoletes: suite-docs
 AutoReqProv: no

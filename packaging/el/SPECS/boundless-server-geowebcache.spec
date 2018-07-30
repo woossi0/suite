@@ -10,7 +10,7 @@ URL: http://geowebcache.org
 BuildRoot: %{_WORKSPACE}/boundless-server-geowebcache/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, boundless-server-tomcat8 >= 8.0.42, boundless-server-tomcat8 < 8.1
+Requires:  unzip, boundless-server-tomcat8 >= 8.5.32, boundless-server-tomcat8 < 8.6
 Conflicts: geowebcache, suite-geowebcache
 Obsoletes: suite-geowebcache
 AutoReqProv: no

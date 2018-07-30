@@ -10,7 +10,7 @@ URL: https://boundlessgeo.com/boundless-gis-platform/
 BuildRoot: %{_WORKSPACE}/boundless-server-geoserver/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, boundless-server-tomcat8 >= 8.0.42, boundless-server-tomcat8 < 8.1, libjpeg-turbo-official = 1.4.2, dejavu-sans-mono-fonts
+Requires:  unzip, boundless-server-tomcat8 >= 8.5.32, boundless-server-tomcat8 < 8.6, libjpeg-turbo-official = 1.4.2, dejavu-sans-mono-fonts
 Conflicts: geoserver, suite-geoserver, suite-gs-mbtiles, suite-gs-wps
 Obsoletes: suite-geoserver, suite-gs-mbtiles, suite-gs-wps
 AutoReqProv: no
