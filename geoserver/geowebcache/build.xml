@@ -17,12 +17,12 @@
     </exec>
     <antcall target="mvn">
       <param name="dir" value="${gwc.dir}/geowebcache"/>
-      <param name="flags" value="-DskipTests -Dgt.version=${gt.version} -Dbuild.branch=${gwc.branch} -Dbuild.commit.id=${gwc.rev}"/>
+      <param name="flags" value="-DskipTests -Dgt.version=${gt.version} -Dbuild.branch=${gwc.branch} -Dbuild.commit.id=${gwc.rev} -Dspring.version=${spring.version} -Dspring.security.version=${spring.security.version} ${gwc.flags}"/>
       <param name="goals" value="clean install"/>
     </antcall>
     <antcall target="mvn">
       <param name="dir" value="${gwc.dir}/geowebcache"/>
-      <param name="flags" value="-DgroupId=org.geowebcache -DartifactId=geowebcache -Dgt.version=${gt.version} -Dversion=${gwc.version} -Dpackaging=war -Dfile=web/target/geowebcache.war ${gwc.flags}"/>
+      <param name="flags" value="-DgroupId=org.geowebcache -DartifactId=geowebcache -Dgt.version=${gt.version} -Dversion=${gwc.version} -Dpackaging=war -Dfile=web/target/geowebcache.war -Dspring.version=${spring.version} -Dspring.security.version=${spring.security.version} ${gwc.flags}"/>
       <param name="goals" value="install:install-file"/>
     </antcall>
  </target>
