@@ -25,11 +25,11 @@ Compatible
 
 - MapServer: export, identify, generateKml, layerOrTable, legend
 - FeatureServer: query, feature, identify
+- Non-geospatial filters
 
 Incompatible
 ------------
 Notable features currently unsupported:
 
-- Non-geospatial filters
 - Identify feature
 - Dynamic layer definitions
