@@ -29,6 +29,8 @@ else
 fi
 
 # Training support
+apt-get -qq update
+apt-get install -qq --allow-unauthenticated unzip
 chmod 755 /root/training.sh
 wget http://training-files.boundlessgeo.com/server/training_data_directory.zip
 mkdir /var/opt/boundless/server/geoserver/training-data
