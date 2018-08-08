@@ -39,7 +39,7 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
       [boundless-server]
       name=Boundless Server Repository
-      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.0.0/el/6/x86_64
+      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.1.0/el/6/x86_64
       enabled=1
       gpgcheck=1
       gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
@@ -126,7 +126,7 @@ This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundle
 
       [boundless-server]
       name=Boundless Server Repository
-      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.0.0/el/6/x86_64
+      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.1.0/el/6/x86_64
       enabled=1
       gpgcheck=1
       gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
