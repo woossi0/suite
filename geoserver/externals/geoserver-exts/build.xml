@@ -2,6 +2,9 @@
 
   <import file="../../../build/common.xml"/>
 
+  <!-- the -pl flag works as long as the module names are exactly the same as their directories. -am ensures dependencies are built -->
+  <property name="gs-exts.module-select" value="-pl ${gs-exts.exts} -am"/>
+  
   <property name="gs-exts.flags" value=""/>
   <property name="gs-exts.dir" value="geoserver-exts"/>
 
@@ -16,7 +19,7 @@
   <target name="build" unless="skip.gs-exts" description="Build GeoServer Exts">
     <antcall target="mvn">
       <param name="dir" value="${gs-exts.dir}"/>
-      <param name="flags" value="-DskipTests -Dgs.version=${gs.version} -Dgt.version=${gt.version} ${gs-exts.flags}"/>
+      <param name="flags" value="-DskipTests -Dgs.version=${gs.version} -Dgt.version=${gt.version} ${gs-exts.module-select} ${gs-exts.flags}"/>
       <param name="goals" value="install assembly:attached"/>
     </antcall>
   </target>
