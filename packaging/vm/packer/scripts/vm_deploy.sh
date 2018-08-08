@@ -28,6 +28,13 @@ else
   REPO_PASSWORD=$3
 fi
 
+# Training support
+chmod 755 /root/training.sh
+wget http://training-files.boundlessgeo.com/server/training_data_directory.zip
+mkdir /var/opt/boundless/server/geoserver/training-data
+unzip training_data_directory.zip -d /var/opt/boundless/server/geoserver/training-data
+rm -f training_data_directory.zip
+
 wget -qO- https://apt.boundlessgeo.com/gpg.key | apt-key add -
 
 echo "Adding Boundless Test repo..."
@@ -117,13 +124,15 @@ echo "==========================================================================
 Welcome to the Boundless Server $SERVER_VERSION virtual machine!
 
 Useful commands:
-sudo service tomcat8 start      (start Tomcat)
-sudo service tomcat8 stop       (stop Tomcat)
-sudo poweroff                   (shut down the virtual machine)
-sudo apt-get install <package>  (install a package)
+sudo service tomcat8 start         (start Tomcat)
+sudo service tomcat8 stop          (stop Tomcat)
+sudo poweroff                      (shut down the virtual machine)
+sudo apt-get install <package>     (install a package)
+sudo /root/training.sh <on/off>    (toggle training mode on/off)
 
 Useful directories:
-/var/opt/boundless/server/geoserver/data  (GeoServer data directory)
+/var/opt/boundless/server/geoserver/data (GeoServer training data directory)
+/var/opt/boundless/server/geoserver/default-data (GeoServer data directory)
 /media/sf_share                    (share directory between host and guest)
 
 Complete documentation can be found at:
@@ -143,3 +152,10 @@ history -w
 for log in `find /var/log/ -type f` /root/.bash_history ; do
   echo "" > $log
 done
+
+# Additional training support
+mv /var/opt/boundless/server/geoserver/data /var/opt/boundless/server/geoserver/default-data
+mv /var/opt/boundless/server/geoserver/training-data /var/opt/boundless/server/geoserver/data
+sed -i 's:"/var/opt/boundless/server/geoserver/data":"/var/opt/boundless/server/geoserver/default-data":' /etc/tomcat8/Catalina/localhost/geoserver.xml
+sed -i 's:"/var/opt/boundless/server/geoserver/data/global.xml":"/var/opt/boundless/server/geoserver/default-data/global.xml":' /etc/tomcat8/Catalina/localhost/geoserver.xml
+

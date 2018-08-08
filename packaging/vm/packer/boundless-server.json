@@ -63,6 +63,11 @@
       "destination": "/tmp/common.sh"
     },
     {
+      "type": "file",
+      "source": "scripts/training.sh",
+      "destination": "/root/training.sh"
+    },
+    {
       "type": "shell",
       "script": "scripts/vm_deploy.sh",
       "execute_command": "chmod +x {{ .Path }}; sudo '{{ .Path }}' {{user `server_version`}} {{user `repo_login`}} {{user `repo_password`}}"
