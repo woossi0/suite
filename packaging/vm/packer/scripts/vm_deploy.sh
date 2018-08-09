@@ -155,3 +155,4 @@ chmod 755 /root/training.sh
 wget http://training-files.boundlessgeo.com/server/training_data_directory.zip
 unzip training_data_directory.zip -d /var/opt/boundless/server/geoserver/
 rm -f training_data_directory.zip
+chown -R tomcat8:tomcat8 /var/opt/boundless/server/geoserver/data
