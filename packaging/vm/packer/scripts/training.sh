@@ -20,10 +20,12 @@ function pause(){
  read -p "$*"
 }
 
+pkill -9 -U tomcat8
+
 if [ "$TRAINING_MODE" == "on" ]; then
   echo "Enabling training mode..."
   
-  if psql -lqt | cut -d \| -f 1 | grep -qw training; then
+  if psql -lqt -U postgres | cut -d \| -f 1 | grep -qw training; then
     echo "Training DB found, skipping..."
   else
     echo "Creating training DB..."
@@ -35,7 +37,7 @@ if [ "$TRAINING_MODE" == "on" ]; then
   sed -i 's:"/var/opt/boundless/server/geoserver/default-data":"/var/opt/boundless/server/geoserver/data":' /etc/tomcat8/Catalina/localhost/geoserver.xml
   sed -i 's:"/var/opt/boundless/server/geoserver/default-data/global.xml":"/var/opt/boundless/server/geoserver/data/global.xml":' /etc/tomcat8/Catalina/localhost/geoserver.xml
 elif [ "$TRAINING_MODE" == "off" ]; then
-  if psql -lqt | cut -d \| -f 1 | grep -qw training; then
+  if psql -lqt -U postgres | cut -d \| -f 1 | grep -qw training; then
     echo "Training DB found, deleting..."
     dropdb -U postgres training
   else
@@ -46,4 +48,4 @@ elif [ "$TRAINING_MODE" == "off" ]; then
   sed -i 's:"/var/opt/boundless/server/geoserver/data/global.xml":"/var/opt/boundless/server/geoserver/default-data/global.xml":' /etc/tomcat8/Catalina/localhost/geoserver.xml
 fi
 
-service tomcat8 restart
+service tomcat8 start

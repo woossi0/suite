@@ -28,15 +28,6 @@ else
   REPO_PASSWORD=$3
 fi
 
-# Training support
-apt-get -qq update
-apt-get install -qq --allow-unauthenticated unzip
-chmod 755 /root/training.sh
-wget http://training-files.boundlessgeo.com/server/training_data_directory.zip
-mkdir /var/opt/boundless/server/geoserver/training-data
-unzip training_data_directory.zip -d /var/opt/boundless/server/geoserver/training-data
-rm -f training_data_directory.zip
-
 wget -qO- https://apt.boundlessgeo.com/gpg.key | apt-key add -
 
 echo "Adding Boundless Test repo..."
@@ -155,9 +146,12 @@ for log in `find /var/log/ -type f` /root/.bash_history ; do
   echo "" > $log
 done
 
-# Additional training support
+# Training support
 mv /var/opt/boundless/server/geoserver/data /var/opt/boundless/server/geoserver/default-data
-mv /var/opt/boundless/server/geoserver/training-data /var/opt/boundless/server/geoserver/data
 sed -i 's:"/var/opt/boundless/server/geoserver/data":"/var/opt/boundless/server/geoserver/default-data":' /etc/tomcat8/Catalina/localhost/geoserver.xml
 sed -i 's:"/var/opt/boundless/server/geoserver/data/global.xml":"/var/opt/boundless/server/geoserver/default-data/global.xml":' /etc/tomcat8/Catalina/localhost/geoserver.xml
-
+apt-get install -qq --allow-unauthenticated unzip
+chmod 755 /root/training.sh
+wget http://training-files.boundlessgeo.com/server/training_data_directory.zip
+unzip training_data_directory.zip -d /var/opt/boundless/server/geoserver/
+rm -f training_data_directory.zip
