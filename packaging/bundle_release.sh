@@ -32,7 +32,6 @@ gs-db2 \
 gs-gdal \
 gs-geogig \
 gs-geomesa-accumulo \
-gs-geopkg \
 gs-grib \
 gs-gsr \
 gs-inspire \

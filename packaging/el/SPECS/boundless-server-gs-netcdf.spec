@@ -53,7 +53,9 @@ fi
 
 %postun
 if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
-  sed -i '\|/usr/lib/x86_64-linux-gnu|d' /etc/tomcat8/java-libs
+  if [ -f /etc/tomcat8/java-libs ]; then
+    sed -i '\|/usr/lib/x86_64-linux-gnu|d' /etc/tomcat8/java-libs
+  fi
 fi
 
 %files
