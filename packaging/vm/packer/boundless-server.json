@@ -52,7 +52,7 @@
         "--vendor", "Boundless Spatial, Inc.",
         "--vendorurl", "http://boundlessgeo.com/",
         "--version", "{{user `server_version`}}",
-        "--eulafile", "../../licenses/license.txt"
+        "--eulafile", "../../licenses/EULA"
       ]
     }
   ],
