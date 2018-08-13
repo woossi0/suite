@@ -1,7 +1,7 @@
 boundless-server-composer=suite-composer
 boundless-server-dashboard=opengeo-dashboard, suite-dashboard
 boundless-server-docs=opengeo-docs, suite-docs
-boundless-server-geoserver=geoserver, suite-geoserver, suite-gs-mbtiles, suite-gs-wps
+boundless-server-geoserver=geoserver, suite-geoserver, suite-gs-mbtiles, suite-gs-wps, boundless-server-gs-geopkg, suite-gs-geopkg
 boundless-server-geowebcache=geowebcache, suite-geowebcache
 boundless-server-gs-appschema=suite-gs-appschema
 boundless-server-gs-arcsde=suite-gs-arcsde
@@ -12,7 +12,6 @@ boundless-server-gs-db2=suite-gs-db2
 boundless-server-gs-gdal=suite-gs-gdal
 boundless-server-gs-geogig=suite-gs-geogig
 boundless-server-gs-geomesa-accumulo=suite-gs-geomesa-accumulo
-boundless-server-gs-geopkg=suite-gs-geopkg
 boundless-server-gs-geoservice-rest=suite-gs-geoservice-rest
 boundless-server-gs-grib=suite-gs-grib
 boundless-server-gs-gsr=suite-gs-gsr

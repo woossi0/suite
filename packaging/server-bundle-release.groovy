@@ -30,7 +30,7 @@ pipeline {
     stage('Bundle') {
       steps {
         script {
-          productPackages = ['composer', 'dashboard', 'docs', 'geoserver', 'geowebcache', 'gs-appschema', 'gs-arcsde', 'gs-cloudwatch', 'gs-cluster', 'gs-csw', 'gs-db2', 'gs-gdal', 'gs-geogig', 'gs-geomesa-accumulo', 'gs-geopkg', 'gs-grib', 'gs-gsr', 'gs-inspire', 'gs-jdbcconfig', 'gs-jdbcstore', 'gs-jp2k', 'gs-mongodb', 'gs-netcdf', 'gs-netcdf-out', 'gs-oracle', 'gs-printng', 'gs-script', 'gs-sqlserver', 'gs-vectortiles', 'wpsbuilder', 'quickview']
+          productPackages = ['composer', 'dashboard', 'docs', 'geoserver', 'geowebcache', 'gs-appschema', 'gs-arcsde', 'gs-cloudwatch', 'gs-cluster', 'gs-csw', 'gs-db2', 'gs-gdal', 'gs-geogig', 'gs-geomesa-accumulo', 'gs-grib', 'gs-gsr', 'gs-inspire', 'gs-jdbcconfig', 'gs-jdbcstore', 'gs-jp2k', 'gs-mongodb', 'gs-netcdf', 'gs-netcdf-out', 'gs-oracle', 'gs-printng', 'gs-script', 'gs-sqlserver', 'gs-vectortiles', 'wpsbuilder', 'quickview']
           for (int i = 0; i < productPackages.size(); i++) {
             gatherProduct("${productPackages[i]}")
           }

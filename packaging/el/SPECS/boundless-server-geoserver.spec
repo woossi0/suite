@@ -11,8 +11,8 @@ BuildRoot: %{_WORKSPACE}/boundless-server-geoserver/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
 Requires:  unzip, boundless-server-tomcat8 >= 8.5.32, boundless-server-tomcat8 < 8.6, libjpeg-turbo-official = 1.4.2, dejavu-sans-mono-fonts
-Conflicts: geoserver, suite-geoserver, suite-gs-mbtiles, suite-gs-wps
-Obsoletes: suite-geoserver, suite-gs-mbtiles, suite-gs-wps
+Conflicts: geoserver, suite-geoserver, suite-gs-mbtiles, suite-gs-wps, boundless-server-gs-geopkg, suite-gs-geopkg
+Obsoletes: suite-geoserver, suite-gs-mbtiles, suite-gs-wps, boundless-server-gs-geopkg, suite-gs-geopkg
 AutoReqProv: no
 
 %define _rpmdir archive/el/6/
