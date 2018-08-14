@@ -21,8 +21,6 @@
      - GDAL extension
    * - ``boundless-server-gs-geomesa-accumulo``
      - :ref:`GeoMesa <dataadmin.geomesa>` data source support
-   * - ``boundless-server-gs-geopkg``
-     - GeoPackage extension
    * - ``boundless-server-gs-grib``
      - GRIB data format extension
    * - ``boundless-server-gs-gsr``

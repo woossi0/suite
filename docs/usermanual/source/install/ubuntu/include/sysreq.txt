@@ -4,6 +4,7 @@ System requirements
 The following Ubuntu versions are supported:
 
 * `Trusty Tahr <http://releases.ubuntu.com/trusty/>`_ (14.04 LTS)
+* `Xenial Xerus <http://releases.ubuntu.com/xenial/>`_ (16.04 LTS)
 
 Boundless Server for Ubuntu Linux has the following system requirements:
 

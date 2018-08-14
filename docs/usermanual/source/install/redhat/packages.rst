@@ -35,11 +35,22 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
 #. Add the Boundless Server repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents:
 
+  (Enterprise Linux 6)
    .. code-block:: none
 
       [boundless-server]
       name=Boundless Server Repository
       baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.1.0/el/6/x86_64
+      enabled=1
+      gpgcheck=1
+      gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
+
+  (Enterprise Linux 7)
+   .. code-block:: none
+
+      [boundless-server]
+      name=Boundless Server Repository
+      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.1.0/el/7/x86_64
       enabled=1
       gpgcheck=1
       gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
