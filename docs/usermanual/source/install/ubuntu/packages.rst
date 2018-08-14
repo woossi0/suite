@@ -33,12 +33,12 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
       wget -qO- https://downloads-repo.boundlessgeo.com/GPG-KEY-Boundless | apt-key add -
 
 #. Add the Boundless repository:
-  (Ubuntu 14)
+Ubuntu 14
    .. code-block:: bash
 
       echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.1.0/ubuntu/14 trusty main" > /etc/apt/sources.list.d/boundless.list
 
-  (Ubuntu 16)
+Ubuntu 16
   .. code-block:: bash
 
      echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.1.0/ubuntu/16 xenial main" > /etc/apt/sources.list.d/boundless.list
