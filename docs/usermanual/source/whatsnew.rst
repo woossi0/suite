@@ -1,5 +1,7 @@
 .. _whatsnew:
 
+.. _whatsnew.1.1.x:
+
 What's new in |version|
 =======================
 
@@ -27,13 +29,15 @@ This version contains numerous enhancements, component upgrades and bug fixes. H
 * PostGIS 2.3
 * GDAL 1.11.5
 
+.. _whatsnew.1.0.x:
+
 What's new in 1.0.2
-=======================
+-------------------
 
 This version fixes an issue with cancelling GeoWebCache tasks through the web interface.
 
 What's new in 1.0.1
-=======================
+-------------------
 
 This version is a bugfix release, and includes various fixes for GeoWebCache and GeoServer:
 
