@@ -121,6 +121,7 @@
         <exclude name="jackson-annotations-*.jar"/>
         <exclude name="jackson-core-*.jar"/>
         <exclude name="jackson-databind-*.jar"/>
+        <exclude name="jdom2-*.jar"/>
         <exclude name="joda-time-*.jar"/>
         <exclude name="json-simple-*.jar"/>
         <exclude name="sqlite-jdbc-*.jar"/>
