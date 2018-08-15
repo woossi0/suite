@@ -42,7 +42,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    (Ubuntu 16)
 
-  .. code-block:: bash
+   .. code-block:: bash
 
      echo "deb [arch=amd64] https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.1.0/ubuntu/16 xenial main" > /etc/apt/sources.list.d/boundless.list
 
