@@ -29,7 +29,6 @@ NetCDF plugin for Boundless Server.
 
 %install
 mkdir -p %{buildroot}/opt/boundless/server/geoserver/WEB-INF/lib
-cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/netcdf/jdom2-*.jar %{buildroot}/opt/boundless/server/geoserver/WEB-INF/lib
 cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/netcdf/opendap-*.jar %{buildroot}/opt/boundless/server/geoserver/WEB-INF/lib
 cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/netcdf/cdm-*.jar %{buildroot}/opt/boundless/server/geoserver/WEB-INF/lib
 cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/netcdf/gs-netcdf-*.jar %{buildroot}/opt/boundless/server/geoserver/WEB-INF/lib
