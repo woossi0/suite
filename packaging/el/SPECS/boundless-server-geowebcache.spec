@@ -54,6 +54,9 @@ fi
 if [ ! -d /var/opt/boundless/server/geowebcache/tilecache/ ]; then
   mkdir -p /var/opt/boundless/server/geowebcache/tilecache/
 fi
+if [ -f /var/lib/dpkg/info/ca-certificates-java.postinst ]; then
+  /var/lib/dpkg/info/ca-certificates-java.postinst configure
+fi
 chown -R root:root /opt/boundless/
 chown -R tomcat8:tomcat8 /var/opt/boundless/
 
