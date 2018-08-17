@@ -7,6 +7,8 @@ What's new in |version|
 
 This version contains numerous enhancements, component upgrades and bug fixes. Highlights include:
 
+* Packages for Ubuntu 16 and CentOS 7 are now available.
+
 * The version of Tomcat has been upgraded to 8.5 from 8.0.
 
 * The Mapbox styling module has been updated to `support expressions <geoserver/styling/mbstyle/index.html>`_.
