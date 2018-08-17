@@ -88,15 +88,6 @@ The GeoMesa extension allows GeoServer to publish data from GeoMesa data stores.
 
 For more information, please see the :ref:`dataadmin.geomesa` section.
 
-
-.. _intro.extensions.geopackage:
-
-GeoPackage
-----------
-
-The GeoPackage extension adds the ability for GeoServer to publish data from `GeoPackage <http://www.geopackage.org/>`_ sources (a data format based on `SQLite <http://www.sqlite.org/>`_). Once this extension is added, GeoServer will show GeoPackage as one of its available data sources when adding a new store.
-
-
 .. _intro.extensions.grib:
 
 GRIB

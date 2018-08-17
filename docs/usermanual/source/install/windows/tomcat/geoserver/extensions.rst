@@ -78,15 +78,6 @@ GDAL extension
 .. include:: /install/include/ext/gdal_verify.txt
 
 
-.. _install.windows.tomcat.extensions.geopackage:
-
-GeoPackage extension
---------------------
-
-.. include:: /install/include/ext/geopackage_install_win.txt
-
-.. include:: /install/include/ext/geopackage_verify.txt
-
 .. _install.windows.tomcat.extensions.geomesa:
 
 GeoMesa extension

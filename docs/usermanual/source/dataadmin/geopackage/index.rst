@@ -7,16 +7,6 @@ Boundless Server supports data saved in the OGC `GeoPackage <http://www.geopacka
 
 .. todo:: Say more about what this is.
 
-Installing GeoPackage support
------------------------------
-
-GeoPackage support isn't enabled by default, so it must be separately installed through an extension.
-
-.. include:: ../include/ext_install_links.txt
-
-Verifying installation
-----------------------
-
-.. include:: ../../install/include/ext/geopackage_verify.txt
+GeoPackage support is enabled by default in Boundless Server 1.0.0 and newer.
 
 For more information on GeoPackage, please see the `GeoServer documentation for GeoPackage <../../geoserver/community/geopkg/>`_.
