@@ -12,6 +12,8 @@ Installing GeoMesa support
 
 GeoMesa support isn't enabled by default, so it must be separately installed through an extension.
 
+The GeoMesa extension depends upon the :ref:`GDAL extension <dataadmin.gdal>`.
+
 .. include:: ../include/ext_install_links.txt
 
 Verifying installation
