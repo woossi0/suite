@@ -48,7 +48,7 @@ The style can be given a ``name`` parameter, and layers within the style can be 
 
 #. Modify the name and id elements in the default style:
 
-   .. code-block:: yaml
+   .. code-block:: json
       :emphasize-lines: 3, 6-7
 
       {
@@ -194,7 +194,7 @@ Labels can be applied to any layer using a `symbol layer <https://www.mapbox.com
                   "id": "countries-symbol",
                   "source-layer": "countries",
                   "layout": {
-                      "text-field": "{name}"
+                      "text-field": "{NAME}"
                   }
               }
           ]
@@ -224,8 +224,8 @@ The default labeling parameters are not ideal, but a number of styling options a
         - Change the label text to uppercase
       * - ``"text-size": 14``
         - Change the font size to 14
-      * - ``"text-font": ["Padauk"]``
-        - Change the font to Padauk
+      * - ``"text-font": ["DejaVu Sans Bold"]``
+        - Change the font to DejaVu Sans Bold
       * - ``"text-max-width": 100``
         - Wrap any labels wider than 100 pixels
 
@@ -278,10 +278,10 @@ The default labeling parameters are not ideal, but a number of styling options a
                   "id": "countries-symbol",
                   "source-layer": "countries",
                   "layout": {
-                      "text-field": "{name}",
+                      "text-field": "{NAME}",
                       "text-transform": "uppercase",
                       "text-size": 14,
-                      "text-font": ["Padauk"],
+                      "text-font": ["DejaVu Sans Bold"],
                       "text-max-width": 100
                   },
                   "paint": {
@@ -300,9 +300,9 @@ The default labeling parameters are not ideal, but a number of styling options a
 Adding filters
 --------------
 
-Suppose we wish to display different colors for each country. The countries layer contains an attribute called ``mapcolor7``, which assigns each country a number from 1 to 7, such that no adjacent countries have the same number. We can use this attribute to control what color a country is using `filters <https://www.mapbox.com/mapbox-gl-js/style-spec/#types-filter>`_. Filters apply a condition to a layer, so that the layer is only drawn if the filter evaluates to true.
+Suppose we wish to display different colors for each country. The countries layer contains an attribute called ``MAPCOLOR7``, which assigns each country a number from 1 to 7, such that no adjacent countries have the same number. We can use this attribute to control what color a country is using `filters <https://www.mapbox.com/mapbox-gl-js/style-spec/#types-filter>`_. Filters apply a condition to a layer, so that the layer is only drawn if the filter evaluates to true.
 
-#. Replace the rule containing the polygon symbolizer with seven rules, corresponding to the seven possibilities of values for ``mapcolor7``. For each value, set the ``fill-color`` to the following:
+#. Replace the rule containing the polygon symbolizer with seven rules, corresponding to the seven possibilities of values for ``MAPCOLOR7``. For each value, set the ``fill-color`` to the following:
 
    .. list-table::
       :class: non-responsive
@@ -311,19 +311,19 @@ Suppose we wish to display different colors for each country. The countries laye
 
       * - Filter
         - Parameter
-      * - ``mapcolor7 = 1``
+      * - ``MAPCOLOR7 = 1``
         - ``"fill-color": "#FFC3C3"``
-      * - ``mapcolor7 = 2``
+      * - ``MAPCOLOR7 = 2``
         - ``"fill-color": "#FFE3C3"``
-      * - ``mapcolor7 = 3``
+      * - ``MAPCOLOR7 = 3``
         - ``"fill-color": "#FFFFC3"``
-      * - ``mapcolor7 = 4``
+      * - ``MAPCOLOR7 = 4``
         - ``"fill-color": "#C3FFE3"``
-      * - ``mapcolor7 = 5``
+      * - ``MAPCOLOR7 = 5``
         - ``"fill-color": "#C3FFFF"``
-      * - ``mapcolor7 = 6``
+      * - ``MAPCOLOR7 = 6``
         - ``"fill-color": "#C3C3FF"``
-      * - ``mapcolor7 = 7``
+      * - ``MAPCOLOR7 = 7``
         - ``"fill-color": "#FFC3FF"``
 
 #. After adding the filters, the style will look like:
@@ -337,7 +337,7 @@ Suppose we wish to display different colors for each country. The countries laye
           "layers": [
               {
                   "type": "fill",
-                  "filter": ["==", "mapcolor7", 1],
+                  "filter": ["==", "MAPCOLOR7", 1],
                   "id": "countries-fill-1",
                   "source-layer": "countries",
                   "paint": {
@@ -347,7 +347,7 @@ Suppose we wish to display different colors for each country. The countries laye
               },
               {
                   "type": "fill",
-                  "filter": ["==", "mapcolor7", 2],
+                  "filter": ["==", "MAPCOLOR7", 2],
                   "id": "countries-fill-2",
                   "source-layer": "countries",
                   "paint": {
@@ -357,7 +357,7 @@ Suppose we wish to display different colors for each country. The countries laye
               },
               {
                   "type": "fill",
-                  "filter": ["==", "mapcolor7", 3],
+                  "filter": ["==", "MAPCOLOR7", 3],
                   "id": "countries-fill-3",
                   "source-layer": "countries",
                   "paint": {
@@ -367,7 +367,7 @@ Suppose we wish to display different colors for each country. The countries laye
               },
               {
                   "type": "fill",
-                  "filter": ["==", "mapcolor7", 4],
+                  "filter": ["==", "MAPCOLOR7", 4],
                   "id": "countries-fill-4",
                   "source-layer": "countries",
                   "paint": {
@@ -377,7 +377,7 @@ Suppose we wish to display different colors for each country. The countries laye
               },
               {
                   "type": "fill",
-                  "filter": ["==", "mapcolor7", 5],
+                  "filter": ["==", "MAPCOLOR7", 5],
                   "id": "countries-fill-5",
                   "source-layer": "countries",
                   "paint": {
@@ -387,7 +387,7 @@ Suppose we wish to display different colors for each country. The countries laye
               },
               {
                   "type": "fill",
-                  "filter": ["==", "mapcolor7", 6],
+                  "filter": ["==", "MAPCOLOR7", 6],
                   "id": "countries-fill-6",
                   "source-layer": "countries",
                   "paint": {
@@ -397,7 +397,7 @@ Suppose we wish to display different colors for each country. The countries laye
               },
               {
                   "type": "fill",
-                  "filter": ["==", "mapcolor7", 7],
+                  "filter": ["==", "MAPCOLOR7", 7],
                   "id": "countries-fill-7",
                   "source-layer": "countries",
                   "paint": {
@@ -420,10 +420,10 @@ Suppose we wish to display different colors for each country. The countries laye
                   "id": "countries-symbol",
                   "source-layer": "countries",
                   "layout": {
-                      "text-field": "{name}",
+                      "text-field": "{NAME}",
                       "text-transform": "uppercase",
                       "text-size": 14,
-                      "text-font": ["Padauk"],
+                      "text-font": ["DejaVu Sans Bold"],
                       "text-max-width": 100
                   },
                   "paint": {
@@ -476,10 +476,10 @@ While filters are very useful, the required syntax is still quite long, and much
                   "id": "countries-symbol",
                   "source-layer": "countries",
                   "layout": {
-                      "text-field": "{name}",
+                      "text-field": "{NAME}",
                       "text-transform": "uppercase",
                       "text-size": 14,
-                      "text-font": ["Padauk"],
+                      "text-font": ["DejaVu Sans Bold"],
                       "text-max-width": 100
                   },
                   "paint": {
@@ -500,7 +500,7 @@ While filters are very useful, the required syntax is still quite long, and much
           "source-layer": "countries",
           "paint": {
               "fill-color": {
-                  "property": "mapcolor7",
+                  "property": "MAPCOLOR7",
                   "type": "categorical",
                   "stops": [
                       [1, "#FFC3C3"],
@@ -516,7 +516,7 @@ While filters are very useful, the required syntax is still quite long, and much
           }
       }
 
-This sets the ``fill-color`` based on the value of ``mapcolor7``, according to the key-value pairs in the ``recode`` function: if ``mapcolor7 = 1``, set to ``'#FFC3C3'``, if ``mapcolor7 = 2`` set to ``'#FFE3E3'``, etc.
+This sets the ``fill-color`` based on the value of ``MAPCOLOR7``, according to the key-value pairs in the ``recode`` function: if ``MAPCOLOR7 = 1``, set to ``'#FFC3C3'``, if ``MAPCOLOR7 = 2`` set to ``'#FFE3E3'``, etc.
 
 It should be noted that this will produce the *exact same output* as in the previous section.
 

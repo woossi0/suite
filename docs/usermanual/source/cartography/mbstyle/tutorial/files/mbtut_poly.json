@@ -8,7 +8,7 @@
             "source-layer": "countries",
             "paint": {
                 "fill-color": {
-                    "property": "mapcolor7",
+                    "property": "MAPCOLOR7",
                     "type": "categorical",
                     "stops": [
                         [1, "#FFC3C3"],
@@ -38,10 +38,10 @@
             "id": "countries-symbol",
             "source-layer": "countries",
             "layout": {
-                "text-field": "{name}",
+                "text-field": "{NAME}",
                 "text-transform": "uppercase",
                 "text-size": 14,
-                "text-font": ["Padauk"],
+                "text-font": ["DejaVu Sans Bold"],
                 "text-max-width": 100
             },
             "paint": {

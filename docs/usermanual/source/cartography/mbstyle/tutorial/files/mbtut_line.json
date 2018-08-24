@@ -45,7 +45,7 @@
             "type": "line",
             "paint": {
                 "line-color": "#000000",
-                "line-width": 6,
+                "line-width": 1,
                 "line-gap-width": 4,
                 "line-cap": "round"
             }

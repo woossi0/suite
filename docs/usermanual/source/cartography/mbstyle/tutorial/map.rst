@@ -63,7 +63,7 @@ MBStyle supports styling multiple layers with a single style document. Copy the 
                     "text-field": "{name}",
                     "text-transform": "uppercase",
                     "text-size": 14,
-                    "text-font": ["Padauk"],
+                    "text-font": ["DejaVu Sans Bold"],
                     "text-max-width": 100
                 },
                 "paint": {
@@ -113,7 +113,7 @@ MBStyle supports styling multiple layers with a single style document. Copy the 
                 "type": "line",
                 "paint": {
                     "line-color": "#000000",
-                    "line-width": 6,
+                    "line-width": 1,
                     "line-gap-width": 4,
                     "line-cap": "round"
                 }

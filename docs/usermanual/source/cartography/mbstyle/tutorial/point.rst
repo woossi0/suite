@@ -47,7 +47,7 @@ The style can be given a ``name`` parameter, and layers within the style can be 
 
 #. Modify the name and id elements in the default style:
 
-   .. code-block::json
+   .. code-block:: json
       :emphasize-lines: 3, 6-7, 9-12
 
       {

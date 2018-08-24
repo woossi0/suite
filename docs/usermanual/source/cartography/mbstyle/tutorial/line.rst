@@ -47,12 +47,12 @@ The style can be given a ``name`` parameter, and layers within the style can be 
 
 #. Modify the name and id elements in the default style:
 
-   .. code-block:: yaml
+   .. code-block:: json
       :emphasize-lines: 3, 6-7
 
       {
           "version": 8,
-          "name": roads,
+          "name": "roads",
           "layers": [
               {
                   "id": "roads"
@@ -210,7 +210,7 @@ On the smaller scales, we want some differentiation between roads based on the f
 #. Further modify this rule to use a dashed line. Add the following ``line-width`` and ``line-dasharray`` lines:
 
    .. code-block:: json
-      :emphasize-lines: 7-8
+      :emphasize-lines: 9-10
 
       {
           "id": "ferry",
@@ -236,7 +236,7 @@ Adding road casing
 
 The ``line-gap-width`` property can be used to draw a line casing.
 
-#. Add a new layer to draw expressways (``${expressway = 1}``) using 6 pixel black lines with a gap of 4 pixels. This will be our outline:
+#. Add a new layer to draw expressways (``${expressway = 1}``) using 1 pixel black lines with a gap of 4 pixels. This will be our outline:
 
    .. code-block:: json
 
@@ -248,7 +248,7 @@ The ``line-gap-width`` property can be used to draw a line casing.
           "type": "line",
           "paint": {
               "line-color": "#000000",
-              "line-width": 6,
+              "line-width": 1,
               "line-gap-width": 4,
               "line-cap": "round"
           }
