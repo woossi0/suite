@@ -18,6 +18,18 @@ But if you want your GeoServer to be usable outside of your own domain, you will
       <filter>
         <filter-name>CorsFilter</filter-name>
         <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+      <init-param>
+          <param-name>cors.allowed.origins</param-name>
+          <param-value>*</param-value>
+        </init-param>
+        <init-param>
+          <param-name>cors.allowed.methods</param-name>
+          <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
+        </init-param>
+        <init-param>
+          <param-name>cors.exposed.headers</param-name>
+          <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Methods</param-value>
+        </init-param>
       </filter>
       <filter-mapping>
         <filter-name>CorsFilter</filter-name>
