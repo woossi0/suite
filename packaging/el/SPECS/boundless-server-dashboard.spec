@@ -64,5 +64,6 @@ fi
 %defattr(-,root,root,-)
 %config(noreplace) /etc/tomcat8/Catalina/localhost/dashboard.xml
 %docdir /usr/share/doc/boundless-server-dashboard
+/usr/share/doc/boundless-server-dashboard
 /opt/boundless/server/dashboard
 /etc/tomcat8/Catalina/localhost/dashboard.xml.new

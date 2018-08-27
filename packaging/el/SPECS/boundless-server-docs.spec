@@ -65,5 +65,6 @@ fi
 %defattr(-,root,root,-)
 %config(noreplace) /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml
 %docdir /usr/share/doc/boundless-server-docs
+/usr/share/doc/boundless-server-docs
 /opt/boundless/server/docs
 /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml.new

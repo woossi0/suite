@@ -93,6 +93,7 @@ fi
 %defattr(-,root,root,-)
 %config(noreplace) /etc/tomcat8/Catalina/localhost/geoserver.xml
 %docdir /usr/share/doc/boundless-server-geoserver
+/usr/share/doc/boundless-server-geoserver
 /opt/boundless/server/geoserver
 /etc/tomcat8/Catalina/localhost/geoserver.xml.new
 /var/opt/boundless/server/geoserver/data-dir.zip
