@@ -8,6 +8,19 @@ PostGIS includes the ``shp2pgsql`` tool for converting a single or multiple shap
 
 .. note:: This section uses the command line utility ``shp2pgsql`` and optionally the graphical utility :command:`pgAdmin`. ``shp2pgsql`` is included with the Boundless Server PostGIS package. ``pgAdmin`` is provided as part of :desktop:`Boundless Desktop <what_is_bd.html>`.
 
+.. warning:: The latest versions of the Ubuntu PostGIS + PostgreSQL package does **not** include ``shp2pgsql``. If you are using Ubuntu and get the error:
+
+   .. code-block:: console
+   
+      The program 'shp2pgsql' is currently not installed. 
+      To run 'shp2pgsql' please ask your administrator to install the package 'postgis'
+
+   Then you should install it using:
+
+   .. code-block:: console
+
+      sudo apt-get install postgis --no-install-recommends
+
 .. note:: If you would prefer to use a graphical application to load shapefiles into PostGIS, :desktop:`Boundless Desktop <what_is_bd.html>` includes QGIS, which can be used for this purpose.
 
 How It Works
