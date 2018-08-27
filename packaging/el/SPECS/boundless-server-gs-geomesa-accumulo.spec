@@ -11,6 +11,7 @@ BuildRoot: %{_WORKSPACE}/boundless-server-gs-geomesa-accumulo/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
 Requires:  unzip, boundless-server-geoserver >= CURRENT_VER, boundless-server-geoserver < NEXT_VER
+Requires:  boundless-server-gs-gdal >= CURRENT_VER, boundless-server-gs-gdal < NEXT_VER
 Obsoletes: suite-gs-geomesa-accumulo
 Conflicts: suite-gs-geomesa-accumulo
 AutoReqProv: no
