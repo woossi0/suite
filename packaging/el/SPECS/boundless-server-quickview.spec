@@ -72,7 +72,6 @@ fi
 %files
 %defattr(-,root,root,-)
 %config(noreplace) /etc/tomcat8/Catalina/localhost/quickview.xml
-%docdir /usr/share/doc/boundless-server-quickview
 /usr/share/doc/boundless-server-quickview
 /opt/boundless/server/quickview
 /etc/tomcat8/Catalina/localhost/quickview.xml.new

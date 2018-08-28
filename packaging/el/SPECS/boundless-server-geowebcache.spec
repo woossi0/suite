@@ -78,7 +78,6 @@ fi
 %files
 %defattr(-,root,root,-)
 %config(noreplace) /etc/tomcat8/Catalina/localhost/geowebcache.xml
-%docdir /usr/share/doc/boundless-server-geowebcache
 /usr/share/doc/boundless-server-geowebcache
 /opt/boundless/server/geowebcache
 /etc/tomcat8/Catalina/localhost/geowebcache.xml.new

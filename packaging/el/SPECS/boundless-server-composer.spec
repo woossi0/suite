@@ -68,7 +68,6 @@ fi
 %files
 %defattr(-,root,root,-)
 %config(noreplace) /etc/tomcat8/Catalina/localhost/composer.xml
-%docdir /usr/share/doc/boundless-server-composer
 /usr/share/doc/boundless-server-composer
 /opt/boundless/server/composer
 /etc/tomcat8/Catalina/localhost/composer.xml.new

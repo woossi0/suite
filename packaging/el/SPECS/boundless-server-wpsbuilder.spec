@@ -63,7 +63,6 @@ fi
 %files
 %defattr(-,root,root,-)
 %config(noreplace) /etc/tomcat8/Catalina/localhost/wpsbuilder.xml
-%docdir /usr/share/doc/boundless-server-wpsbuilder
 /usr/share/doc/boundless-server-wpsbuilder
 /opt/boundless/server/wpsbuilder
 /etc/tomcat8/Catalina/localhost/wpsbuilder.xml.new
