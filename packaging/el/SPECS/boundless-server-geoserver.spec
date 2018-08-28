@@ -73,6 +73,7 @@ fi
 chown -R root:root /opt/boundless/
 chown -R tomcat8:tomcat8 /var/opt/boundless/
 chown -R tomcat8:tomcat8 /var/log/boundless/
+gunzip /usr/share/doc/boundless-server-geoserver/*.gz
 
 %preun
 

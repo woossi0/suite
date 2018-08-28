@@ -48,7 +48,7 @@ fi
 
 %post
 chown -R root:root /opt/boundless/
-
+gunzip /usr/share/doc/boundless-server-composer/*.gz
 
 %preun
 
