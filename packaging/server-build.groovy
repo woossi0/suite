@@ -585,19 +585,19 @@ def packageWars() {
       rm -f $WAR_ARCHIVE/${THIS_WAR}.war
     """
     if ( THIS_WAR.equals('composer') ) {
-      sh "cp -f $LICENSE_DIR/BSD $WORKSPACE/repack/doc/LICENSE.txt"
+      sh "cp -f $LICENSE_DIR/BSD $WORKSPACE/repack/doc/LICENSE"
     } else if ( THIS_WAR.equals('dashboard') ) {
-      sh "cp -f $LICENSE_DIR/BSD $WORKSPACE/repack/doc/LICENSE.txt"
+      sh "cp -f $LICENSE_DIR/BSD $WORKSPACE/repack/doc/LICENSE"
     } else if ( THIS_WAR.equals('geoserver') ) {
-      sh "cp -f $LICENSE_DIR/GPL $WORKSPACE/repack/doc/LICENSE.txt"
+      sh "cp -f $LICENSE_DIR/GPL $WORKSPACE/repack/doc/LICENSE"
     } else if ( THIS_WAR.equals('geowebcache') ) {
-      sh "cp -f $LICENSE_DIR/LGPLv3 $WORKSPACE/repack/doc/LICENSE.txt"
+      sh "cp -f $LICENSE_DIR/LGPLv3 $WORKSPACE/repack/doc/LICENSE"
     } else if ( THIS_WAR.equals('boundless-server-docs') ) {
       echo "No additional license for docs needed."
     } else if ( THIS_WAR.equals('wpsbuilder') ) {
-      sh "cp -f $LICENSE_DIR/APACHEv2.0 $WORKSPACE/repack/doc/LICENSE.txt"
+      sh "cp -f $LICENSE_DIR/APACHEv2.0 $WORKSPACE/repack/doc/LICENSE"
     } else if ( THIS_WAR.equals('quickview') ) {
-      sh "cp -f $LICENSE_DIR/APACHEv2.0 $WORKSPACE/repack/doc/LICENSE.txt"
+      sh "cp -f $LICENSE_DIR/APACHEv2.0 $WORKSPACE/repack/doc/LICENSE"
     }
     sh """
       cp -f $LICENSE_DIR/EULA $WORKSPACE/repack/doc/
