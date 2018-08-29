@@ -216,7 +216,7 @@ pipeline {
     stage('Archive-WARs') {
       steps {
         packageWars()
-        archiveArtifacts artifacts: "archive/war/${ARCHIVE_BASENAME}-${SERVER_HEAD}-*.zip", fingerprint: true
+        archiveArtifacts artifacts: "archive/war/${ARCHIVE_BASENAME}-*.zip", fingerprint: true
       }
     }
 
@@ -493,10 +493,10 @@ def archiveBuildZip(def component) {
 
 def explodeSources() {
   sh """
-    unzip archive/war/${ARCHIVE_BASENAME}-${SERVER_HEAD}-ext.zip -d $WORKSPACE/SRC
-    mv $WORKSPACE/SRC/${ARCHIVE_BASENAME}-${SERVER_HEAD}-ext $WORKSPACE/SRC/${ARCHIVE_BASENAME}-ext
-    unzip archive/war/${ARCHIVE_BASENAME}-${SERVER_HEAD}-war.zip -d $WORKSPACE/SRC
-    mv $WORKSPACE/SRC/${ARCHIVE_BASENAME}-${SERVER_HEAD}-war $WORKSPACE/SRC/${ARCHIVE_BASENAME}-war
+    unzip archive/war/${ARCHIVE_BASENAME}-*-ext.zip -d $WORKSPACE/SRC
+    mv $WORKSPACE/SRC/${ARCHIVE_BASENAME}-*-ext $WORKSPACE/SRC/${ARCHIVE_BASENAME}-ext
+    unzip archive/war/${ARCHIVE_BASENAME}-*-war.zip -d $WORKSPACE/SRC
+    mv $WORKSPACE/SRC/${ARCHIVE_BASENAME}-*-war $WORKSPACE/SRC/${ARCHIVE_BASENAME}-war
   """
   sourceWar = ['boundless-server-docs.war', 'composer.war', 'dashboard.war', 'geoserver.war', 'geowebcache.war', 'wpsbuilder.war']
   for (int i = 0; i < sourceWar.size(); i++) {
