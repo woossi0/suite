@@ -34,7 +34,7 @@ cp %{buildroot}/etc/tomcat8/Catalina/localhost/quickview.xml %{buildroot}/etc/to
 
 mkdir -p %{buildroot}/usr/share/doc/boundless-server-quickview
 cp %{_WORKSPACE}/suite/packaging/licenses/EULA %{buildroot}/usr/share/doc/boundless-server-quickview
-wget http://www.apache.org/licenses/LICENSE-2.0.txt -O %{buildroot}/usr/share/doc/boundless-server-quickview/LICENSE.txt
+wget http://www.apache.org/licenses/LICENSE-2.0.txt -O %{buildroot}/usr/share/doc/boundless-server-quickview/LICENSE
 
 mkdir -p %{_WORKSPACE}/suite/quickview/sdk-apps/archive/tmp/doc
 cd %{_WORKSPACE}/suite/quickview/sdk-apps/quickview
