@@ -301,7 +301,7 @@ pipeline {
         // Note- no EL7 unique RPMs, reusing EL6
         script {
           sh """
-            scp archive/war/${ARCHIVE_BASENAME}-${SERVER_HEAD}-*.zip root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/war/
+            scp archive/war/${ARCHIVE_BASENAME}-*.zip root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/war/
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/6/
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/7/
             scp archive/ubuntu/14/*.deb root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/
