@@ -94,6 +94,7 @@ def prepStage() {
       mkdir -p ${EL6_STAGE}
       mkdir -p ${EL7_STAGE}
       mkdir -p ${TRUSTY_STAGE}
+      mkdir -p ${XENIAL_STAGE}
       mkdir -p ${WAR_STAGE}
     '
   """
@@ -103,11 +104,13 @@ def gatherProduct(def product) {
   packageFileEL6 = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/el/6/${BRANDING}-${product}-${SERVER_VERSION}* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileEL7 = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/el/7/${BRANDING}-${product}-${SERVER_VERSION}* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileTrusty = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/ubuntu/14/${BRANDING}-${product}_${SERVER_VERSION}* | sort -rV | head -1'", returnStdout:true).trim()
+  packageFileXenial = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/ubuntu/16/${BRANDING}-${product}_${SERVER_VERSION}* | sort -rV | head -1'", returnStdout:true).trim()
   sh """
     ssh root@priv-repo.boundlessgeo.com '
       cp -p ${packageFileEL6} ${EL6_STAGE}
       cp -p ${packageFileEL7} ${EL7_STAGE}
       cp -p ${packageFileTrusty} ${TRUSTY_STAGE}
+      cp -p ${packageFileXenial} ${XENIAL_STAGE}
     '
   """
 }
@@ -116,11 +119,13 @@ def gatherTomcat(def tomcat) {
   packageFileEL6 = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/el/6/${BRANDING}-${tomcat}-[0-9]* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileEL7 = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/el/7/${BRANDING}-${tomcat}-[0-9]* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileTrusty = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/ubuntu/14/${BRANDING}-${tomcat}_[0-9]* | sort -rV | head -1'", returnStdout:true).trim()
+  packageFileXenial = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/ubuntu/16/${BRANDING}-${tomcat}_[0-9]* | sort -rV | head -1'", returnStdout:true).trim()
   sh """
     ssh root@priv-repo.boundlessgeo.com '
       cp -p ${packageFileEL6} ${EL6_STAGE}
       cp -p ${packageFileEL7} ${EL7_STAGE}
       cp -p ${packageFileTrusty} ${TRUSTY_STAGE}
+      cp -p ${packageFileXenial} ${XENIAL_STAGE}
     '
   """
 }
@@ -132,6 +137,7 @@ def gatherDependencies() {
       cp -p ${SOURCE_ROOT}/el/6/!(${BRANDING}*) ${EL6_STAGE}
       cp -p ${SOURCE_ROOT}/el/7/!(${BRANDING}*) ${EL7_STAGE}
       cp -p ${SOURCE_ROOT}/ubuntu/14/!(${BRANDING}*) ${TRUSTY_STAGE}
+      cp -p ${SOURCE_ROOT}/ubuntu/16/!(${BRANDING}*) ${XENIAL_STAGE}
     '
   """
 }
