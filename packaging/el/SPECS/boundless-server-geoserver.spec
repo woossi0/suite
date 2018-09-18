@@ -54,6 +54,13 @@ mv %{buildroot}/opt/boundless/server/geoserver/doc %{buildroot}/usr/share/doc/bo
 if [ -f /etc/tomcat8/Catalina/localhost/geoserver.xml ]; then
   cp -pf /etc/tomcat8/Catalina/localhost/geoserver.xml /etc/tomcat8/Catalina/localhost/geoserver.xml.orig
 fi
+# Cleanup old license files
+if [ -f /usr/share/doc/boundless-server-geoserver/EULA ]; then
+  rm -f /usr/share/doc/boundless-server-geoserver/EULA
+fi
+if [ -f /usr/share/doc/boundless-server-geoserver/LICENSE ]; then
+  rm -f /usr/share/doc/boundless-server-geoserver/LICENSE
+fi
 
 %post
 if [ ! -d /var/opt/boundless/server/geoserver/data/ ]; then

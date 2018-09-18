@@ -45,6 +45,13 @@ mv %{buildroot}/opt/boundless/server/composer/doc %{buildroot}/usr/share/doc/bou
 if [ -f /etc/tomcat8/Catalina/localhost/composer.xml ]; then
   cp -pf /etc/tomcat8/Catalina/localhost/composer.xml /etc/tomcat8/Catalina/localhost/composer.xml.orig
 fi
+# Cleanup old license files
+if [ -f /usr/share/doc/boundless-server-composer/EULA ]; then
+  rm -f /usr/share/doc/boundless-server-composer/EULA
+fi
+if [ -f /usr/share/doc/boundless-server-composer/LICENSE ]; then
+  rm -f /usr/share/doc/boundless-server-composer/LICENSE
+fi
 
 %post
 chown -R root:root /opt/boundless/

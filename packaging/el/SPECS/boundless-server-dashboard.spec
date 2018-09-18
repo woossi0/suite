@@ -41,6 +41,13 @@ mv %{buildroot}/opt/boundless/server/dashboard/doc %{buildroot}/usr/share/doc/bo
 if [ -f /etc/tomcat8/Catalina/localhost/dashboard.xml ]; then
   cp -pf /etc/tomcat8/Catalina/localhost/dashboard.xml /etc/tomcat8/Catalina/localhost/dashboard.xml.orig
 fi
+# Cleanup old license files
+if [ -f /usr/share/doc/boundless-server-dashboard/EULA ]; then
+  rm -f /usr/share/doc/boundless-server-dashboard/EULA
+fi
+if [ -f /usr/share/doc/boundless-server-dashboard/LICENSE ]; then
+  rm -f /usr/share/doc/boundless-server-dashboard/LICENSE
+fi
 
 %post
 chown -R root:root /opt/boundless/

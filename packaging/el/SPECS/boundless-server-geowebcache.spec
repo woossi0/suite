@@ -46,6 +46,13 @@ mv %{buildroot}/opt/boundless/server/geowebcache/doc %{buildroot}/usr/share/doc/
 if [ -f /etc/tomcat8/Catalina/localhost/geowebcache.xml ]; then
   cp -pf /etc/tomcat8/Catalina/localhost/geowebcache.xml /etc/tomcat8/Catalina/localhost/geowebcache.xml.orig
 fi
+# Cleanup old license files
+if [ -f /usr/share/doc/boundless-server-geowebcache/EULA ]; then
+  rm -f /usr/share/doc/boundless-server-geowebcache/EULA
+fi
+if [ -f /usr/share/doc/boundless-server-geowebcache/LICENSE ]; then
+  rm -f /usr/share/doc/boundless-server-geowebcache/LICENSE
+fi
 
 %post
 if [ ! -d /var/opt/boundless/server/geowebcache/config/ ]; then

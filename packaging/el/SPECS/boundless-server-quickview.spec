@@ -50,6 +50,13 @@ unzip %{_WORKSPACE}/archive/war/quickview.war -d %{buildroot}/opt/boundless/serv
 if [ -f /etc/tomcat8/Catalina/localhost/quickview.xml ]; then
   cp -pf /etc/tomcat8/Catalina/localhost/quickview.xml /etc/tomcat8/Catalina/localhost/quickview.xml.orig
 fi
+# Cleanup old license files
+if [ -f /usr/share/doc/boundless-server-quickview/EULA ]; then
+  rm -f /usr/share/doc/boundless-server-quickview/EULA
+fi
+if [ -f /usr/share/doc/boundless-server-quickview/LICENSE ]; then
+  rm -f /usr/share/doc/boundless-server-quickview/LICENSE
+fi
 
 %post
 chown -R root:root /opt/boundless/

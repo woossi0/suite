@@ -42,6 +42,13 @@ mv %{buildroot}/opt/boundless/server/docs/doc %{buildroot}/usr/share/doc/boundle
 if [ -f /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml ]; then
   cp -pf /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml.orig
 fi
+# Cleanup old license files
+if [ -f /usr/share/doc/boundless-server-docs/EULA ]; then
+  rm -f /usr/share/doc/boundless-server-docs/EULA
+fi
+if [ -f /usr/share/doc/boundless-server-docs/LICENSE ]; then
+  rm -f /usr/share/doc/boundless-server-docs/LICENSE
+fi
 
 %post
 chown -R root:root /opt/boundless/

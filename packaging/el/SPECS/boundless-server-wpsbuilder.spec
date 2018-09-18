@@ -41,6 +41,13 @@ mv %{buildroot}/opt/boundless/server/wpsbuilder/doc %{buildroot}/usr/share/doc/b
 if [ -f /etc/tomcat8/Catalina/localhost/wpsbuilder.xml ]; then
   cp -pf /etc/tomcat8/Catalina/localhost/wpsbuilder.xml /etc/tomcat8/Catalina/localhost/wpsbuilder.xml.orig
 fi
+# Cleanup old license files
+if [ -f /usr/share/doc/boundless-server-wpsbuilder/EULA ]; then
+  rm -f /usr/share/doc/boundless-server-wpsbuilder/EULA
+fi
+if [ -f /usr/share/doc/boundless-server-wpsbuilder/LICENSE ]; then
+  rm -f /usr/share/doc/boundless-server-wpsbuilder/LICENSE
+fi
 
 %post
 chown -R root:root /opt/boundless/
