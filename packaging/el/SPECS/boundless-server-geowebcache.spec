@@ -66,7 +66,9 @@ if [ -f /var/lib/dpkg/info/ca-certificates-java.postinst ]; then
 fi
 chown -R root:root /opt/boundless/
 chown -R tomcat8:tomcat8 /var/opt/boundless/
-gunzip /usr/share/doc/boundless-server-geowebcache/*.gz
+for i in `find /usr/share/doc/boundless-server-geowebcache/ -name *.gz`; do
+  gunzip $i
+done
 
 %preun
 

@@ -80,7 +80,9 @@ fi
 chown -R root:root /opt/boundless/
 chown -R tomcat8:tomcat8 /var/opt/boundless/
 chown -R tomcat8:tomcat8 /var/log/boundless/
-gunzip /usr/share/doc/boundless-server-geoserver/*.gz
+for i in `find /usr/share/doc/boundless-server-geoserver/ -name *.gz`; do
+  gunzip $i
+done
 
 %preun
 

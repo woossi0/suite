@@ -51,7 +51,9 @@ fi
 
 %post
 chown -R root:root /opt/boundless/
-gunzip /usr/share/doc/boundless-server-dashboard/*.gz
+for i in `find /usr/share/doc/boundless-server-dashboard/ -name *.gz`; do
+  gunzip $i
+done
 
 %preun
 
