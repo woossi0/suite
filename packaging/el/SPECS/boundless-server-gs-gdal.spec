@@ -11,8 +11,8 @@ BuildRoot: %{_WORKSPACE}/boundless-server-gs-gdal/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
 Requires:  unzip, boundless-server-geoserver >= CURRENT_VER, boundless-server-geoserver < NEXT_VER
-Requires:  gdal >= 1.11.5, gdal < 2.0.0, gdal-devel >= 1.11.5, gdal-devel < 2.0.0
-Requires:  gdal-java >= 1.11.5, gdal-java < 2.0.0, gdal-python >= 1.11.5, gdal-python < 2.0.0
+Requires:  gdal >= 2.3.1, gdal < 2.4.0, gdal-devel >= 2.3.1, gdal-devel < 2.4.0
+Requires:  gdal-java >= 2.3.1, gdal-java < 2.4.0, gdal-python >= 2.3.1, gdal-python < 2.4.0
 Requires:  proj-devel >= 4.8.0, proj-devel < 4.9
 Obsoletes: suite-gs-gdal
 Conflicts: suite-gs-gdal
