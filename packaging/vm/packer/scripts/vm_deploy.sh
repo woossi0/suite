@@ -124,8 +124,11 @@ sudo apt-get install <package>     (install a package)
 sudo /root/training.sh <on/off>    (toggle training mode on/off)
 
 Useful directories:
+/etc/tomcat8                       (tomcat config)
+/opt/boundless/server              (server application)
 /var/opt/boundless/server/geoserver/data (GeoServer training data directory)
 /var/opt/boundless/server/geoserver/default-data (GeoServer data directory)
+/var/log/tomcat8                   (tomcat logs)
 /media/sf_share                    (share directory between host and guest)
 
 Complete documentation can be found at:
@@ -155,4 +158,4 @@ chmod 755 /root/training.sh
 wget http://training-files.boundlessgeo.com/server/training_data_directory.zip
 unzip training_data_directory.zip -d /var/opt/boundless/server/geoserver/
 rm -f training_data_directory.zip
-chown -R tomcat8:tomcat8 /var/opt/boundless/server/geoserver/data
+chown -R tomcat8:tomcat8 /var/opt/boundless/server/geoserver
