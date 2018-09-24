@@ -35,7 +35,7 @@ echo "deb http://$REPO_LOGIN:$REPO_PASSWORD@priv-repo.boundlessgeo.com/suite/sta
 
 echo "Installing core products..."
 apt-get -qq update
-apt-get install -qq --allow-unauthenticated boundless-server-geoserver boundless-server-geowebcache boundless-server-dashboard boundless-server-quickview boundless-server-composer boundless-server-wpsbuilder boundless-server-docs boundless-server-gs-gdal boundless-server-gs-netcdf-out
+apt-get install -qq --allow-unauthenticated boundless-server-geoserver boundless-server-geowebcache boundless-server-dashboard boundless-server-quickview boundless-server-composer boundless-server-wpsbuilder boundless-server-docs boundless-server-gs-gdal boundless-server-gs-netcdf-out unzip
 sleep 2
 /etc/init.d/tomcat8 restart
 update-rc.d tomcat8 defaults
@@ -149,13 +149,47 @@ for log in `find /var/log/ -type f` /root/.bash_history ; do
   echo "" > $log
 done
 
+###################################################################################
 # Training support
+###################################################################################
+echo "Moving data dir to /default-data in support of training material..."
 mv /var/opt/boundless/server/geoserver/data /var/opt/boundless/server/geoserver/default-data
 sed -i 's:"/var/opt/boundless/server/geoserver/data":"/var/opt/boundless/server/geoserver/default-data":' /etc/tomcat8/Catalina/localhost/geoserver.xml
 sed -i 's:"/var/opt/boundless/server/geoserver/data/global.xml":"/var/opt/boundless/server/geoserver/default-data/global.xml":' /etc/tomcat8/Catalina/localhost/geoserver.xml
-apt-get install -qq --allow-unauthenticated unzip
+
+echo "Seeding training data-dir..."
 chmod 755 /root/training.sh
 wget http://training-files.boundlessgeo.com/server/training_data_directory.zip
 unzip training_data_directory.zip -d /var/opt/boundless/server/geoserver/
 rm -f training_data_directory.zip
+
+echo "Updating legacy security dir..."
+cp -pR /var/opt/boundless/server/geoserver/default-data/security /var/opt/boundless/server/geoserver/data/
 chown -R tomcat8:tomcat8 /var/opt/boundless/server/geoserver
+
+echo "Creating toggle for CORS..."
+cp -p /etc/tomcat8/web.xml /etc/tomcat8/web.xml.default
+cp -p /etc/tomcat8/web.xml /etc/tomcat8/web.xml.cors
+echo "
+<filter>
+  <filter-name>CorsFilter</filter-name>
+  <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+<init-param>
+    <param-name>cors.allowed.origins</param-name>
+    <param-value>*</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
+  </init-param>
+  <init-param>
+    <param-name>cors.exposed.headers</param-name>
+    <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Methods</param-value>
+  </init-param>
+</filter>
+<filter-mapping>
+  <filter-name>CorsFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>" >> /etc/tomcat8/web.xml.cors
+
+echo "Finished vm_deploy."
