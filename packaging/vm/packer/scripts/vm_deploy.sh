@@ -163,8 +163,8 @@ wget https://s3.amazonaws.com/training-ova/training_data_directory.zip
 unzip training_data_directory.zip -d /var/opt/boundless/server/geoserver/
 rm -f training_data_directory.zip
 
-echo "Updating legacy security dir..."
-cp -pR /var/opt/boundless/server/geoserver/default-data/security /var/opt/boundless/server/geoserver/data/
+# echo "Updating legacy security dir..."
+# cp -pR /var/opt/boundless/server/geoserver/default-data/security /var/opt/boundless/server/geoserver/data/
 chown -R tomcat8:tomcat8 /var/opt/boundless/server/geoserver
 
 echo "Creating toggle for CORS..."
