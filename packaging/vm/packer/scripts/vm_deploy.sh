@@ -170,7 +170,7 @@ chown -R tomcat8:tomcat8 /var/opt/boundless/server/geoserver
 echo "Creating toggle for CORS..."
 cp -p /etc/tomcat8/web.xml /etc/tomcat8/web.xml.default
 cp -p /etc/tomcat8/web.xml /etc/tomcat8/web.xml.cors
-sed '|</web-app>|d' /etc/tomcat8/web.xml.cors
+sed -i '\|</web-app>|d' /etc/tomcat8/web.xml.cors
 echo "
 <filter>
   <filter-name>CorsFilter</filter-name>
