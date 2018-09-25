@@ -159,7 +159,7 @@ sed -i 's:"/var/opt/boundless/server/geoserver/data/global.xml":"/var/opt/boundl
 
 echo "Seeding training data-dir..."
 chmod 755 /root/training.sh
-wget http://training-files.boundlessgeo.com/server/training_data_directory.zip
+wget https://s3.amazonaws.com/training-ova/training_data_directory.zip
 unzip training_data_directory.zip -d /var/opt/boundless/server/geoserver/
 rm -f training_data_directory.zip
 
