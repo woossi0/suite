@@ -35,8 +35,8 @@ if [ "$TRAINING_MODE" == "on" ]; then
   
   psql -U postgres -c 'CREATE EXTENSION postgis;' training
   
-  sed -i 's:"/var/opt/boundless/server/geoserver/default-data":"/var/opt/boundless/server/geoserver/data":' /etc/tomcat8/Catalina/localhost/geoserver.xml
-  sed -i 's:"/var/opt/boundless/server/geoserver/default-data/global.xml":"/var/opt/boundless/server/geoserver/data/global.xml":' /etc/tomcat8/Catalina/localhost/geoserver.xml
+  unlink /var/opt/boundless/server/geoserver/data
+  ln -s /var/opt/boundless/server/geoserver/training-data /var/opt/boundless/server/geoserver/data
 elif [ "$TRAINING_MODE" == "off" ]; then
   echo "Disabling training mode..."
   cat /etc/tomcat8/web.xml.default > /etc/tomcat8/web.xml
@@ -48,8 +48,8 @@ elif [ "$TRAINING_MODE" == "off" ]; then
     echo "No training DB found, skipping..."
   fi
   
-  sed -i 's:"/var/opt/boundless/server/geoserver/data":"/var/opt/boundless/server/geoserver/default-data":' /etc/tomcat8/Catalina/localhost/geoserver.xml
-  sed -i 's:"/var/opt/boundless/server/geoserver/data/global.xml":"/var/opt/boundless/server/geoserver/default-data/global.xml":' /etc/tomcat8/Catalina/localhost/geoserver.xml
+  unlink /var/opt/boundless/server/geoserver/data
+  ln -s /var/opt/boundless/server/geoserver/default-data /var/opt/boundless/server/geoserver/data
 fi
 
 service tomcat8 start

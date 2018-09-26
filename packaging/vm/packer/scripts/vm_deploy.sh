@@ -161,6 +161,8 @@ echo "Seeding training data-dir..."
 chmod 755 /root/training.sh
 wget https://s3.amazonaws.com/training-ova/training_data_directory.zip
 unzip -o training_data_directory.zip -d /var/opt/boundless/server/geoserver/
+mv /var/opt/boundless/server/geoserver/data /var/opt/boundless/server/geoserver/training-data
+ln -s /var/opt/boundless/server/geoserver/training-data /var/opt/boundless/server/geoserver/data
 rm -f training_data_directory.zip
 
 # echo "Updating legacy security dir..."
