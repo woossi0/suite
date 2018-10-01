@@ -5,7 +5,7 @@ boundless-server-gs-cloudwatch=boundless-server-geoserver (>= CURRENT_VER), boun
 boundless-server-gs-cluster=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
 boundless-server-gs-csw=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
 boundless-server-gs-db2=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
-boundless-server-gs-gdal=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER), libgeos-3.5.0, libgdal2 (>= 2.3.2), libgdal1h (<< 3.0.0)
+boundless-server-gs-gdal=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER), libgeos-3.5.0, libgdal2 (>= 2.3.2), libgdal2 (<< 3.0.0)
 boundless-server-gs-grib=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER), boundless-server-gs-netcdf (>= CURRENT_VER), boundless-server-gs-netcdf (<< NEXT_VER)
 boundless-server-gs-geogig=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
 boundless-server-gs-geomesa-accumulo=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER), boundless-server-gs-gdal (>= CURRENT_VER), boundless-server-gs-gdal (<< NEXT_VER)
