@@ -154,8 +154,6 @@ done
 ###################################################################################
 echo "Moving data dir to /default-data in support of training material..."
 mv /var/opt/boundless/server/geoserver/data /var/opt/boundless/server/geoserver/default-data
-sed -i 's:"/var/opt/boundless/server/geoserver/data":"/var/opt/boundless/server/geoserver/default-data":' /etc/tomcat8/Catalina/localhost/geoserver.xml
-sed -i 's:"/var/opt/boundless/server/geoserver/data/global.xml":"/var/opt/boundless/server/geoserver/default-data/global.xml":' /etc/tomcat8/Catalina/localhost/geoserver.xml
 
 echo "Seeding training data-dir..."
 chmod 755 /root/training.sh
