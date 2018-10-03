@@ -5,6 +5,24 @@ Virtual machine install on Mac OS X
 
 This section will install the Boundless Server virtual machine on a Mac OS X host.
 
+Before expanding the Boundless Server virtual machine zip file ie. ``BoundlessServer_VirtualBox_1.1.0.ova.zip`` be sure to change the settings for the default ``Archive Utility`` so that "Keep Expanding if Possible" is unchecked to prevent the necessary ``.ova`` file from expanding after the zip file is unpacked.
+
+.. figure:: img/mac_archive_setting.png
+
+   Uncheck "Keep Expanding if Possible"
+
+You can now double click or use the Archive Utility to unzip ``BoundlessServer_VirtualBox_1.1.0.ova.zip``.
+
+Alternatively the Boundless Server virtual machine ``.zip`` file can be unzipped using the command line when using Mac OS X.
+
+Navigate to the directory where the zip was downloaded to and run:
+
+   .. code-block:: bash
+
+    unzip BoundlessServer_VirtualBox_1.1.0.ova.zip
+
+Where ``1.1.0`` is the Boundless Server version. The result should be a single ``BoundlessServer_VirtualBox_1.1.0.ova`` file, with intended version, which you can import with VirtualBox.
+
 Installation
 ------------
 
@@ -31,7 +49,7 @@ Installation
       Import Appliance menu
 
 #. The Boundless Server license agreement will display. Click :guilabel:`Agree` to accept.
-   
+
    .. figure:: img/vbox_license_mac.png
 
       Boundless Server license
@@ -57,7 +75,7 @@ Installation
 #. Fill out the form:
 
    * For :guilabel:`Folder Path`, select a directory on the host machine that will serve as the shared folder. One good option for this directory would be the Desktop.
-   * For :guilabel:`Folder Name`, enter :kbd:`share`. 
+   * For :guilabel:`Folder Name`, enter :kbd:`share`.
    * Check :guilabel:`Auto-mount`.
 
    .. figure:: img/vbox_sharedfolder_mac.png
