@@ -117,22 +117,21 @@ echo "==========================================================================
 Welcome to the Boundless Server $SERVER_VERSION virtual machine!
 
 Useful commands:
-sudo service tomcat8 start         (start Tomcat)
-sudo service tomcat8 stop          (stop Tomcat)
-sudo poweroff                      (shut down the virtual machine)
-sudo apt-get install <package>     (install a package)
-sudo /root/training.sh <on/off>    (toggle training mode on/off)
+sudo service tomcat8 start               (start Tomcat)
+sudo service tomcat8 stop                (stop Tomcat)
+sudo poweroff                            (shut down the virtual machine)
+sudo apt-get install <package>           (install a package)
+sudo /root/training.sh <on/off>          (toggle training mode on/off)
 
 Useful directories:
-/etc/tomcat8                       (tomcat config)
-/opt/boundless/server              (server application)
-/var/opt/boundless/server/geoserver/data (GeoServer training data directory)
-/var/opt/boundless/server/geoserver/default-data (GeoServer data directory)
-/var/log/tomcat8                   (tomcat logs)
-/media/sf_share                    (share directory between host and guest)
+/etc/tomcat8                             (tomcat config)
+/opt/boundless/server                    (server application)
+/var/opt/boundless/server/geoserver/data (GeoServer data directory)
+/var/log/tomcat8                         (tomcat logs)
+/media/sf_share                          (share directory between host and guest)
 
 Complete documentation can be found at:
-http://localhost:8080/boundless-docs
+http://localhost:8080/oundless-server-docs
 OR
 http://server.boundlessgeo.com/docs/$SERVER_VERSION
 
