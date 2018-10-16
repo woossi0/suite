@@ -131,7 +131,7 @@ Useful directories:
 /media/sf_share                          (share directory between host and guest)
 
 Complete documentation can be found at:
-http://localhost:8080/oundless-server-docs
+http://localhost:8080/boundless-server-docs
 OR
 http://server.boundlessgeo.com/docs/$SERVER_VERSION
 
