@@ -2,6 +2,7 @@
 
   <import file="../build/common.xml"/>
 
+  <property name="source.dir" value="./"/>
   <property name="docs.modules" value="usermanual,geowebcache,geoserver,postgis,openlayers"/>
 
   <target name="clean" depends="destroy-target" unless="skip.docs"

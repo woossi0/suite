@@ -3,6 +3,7 @@
 
   <property name="gs.flags" value=""/>
   <property name="gs.dir" value="geoserver"/>
+  <property name="source.dir" value="geoserver"/>
   <property name="gs-core.ext.dir" value="geoserver/src/target/release"/>
   <property name="gs-comm.ext.dir" value="geoserver/src/community/target/release"/>
 

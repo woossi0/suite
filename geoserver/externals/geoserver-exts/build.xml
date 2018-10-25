@@ -7,6 +7,7 @@
   
   <property name="gs-exts.flags" value=""/>
   <property name="gs-exts.dir" value="geoserver-exts"/>
+  <property name="source.dir" value="geoserver-exts"/>
 
   <target name="clean" unless="skip.gs-exts">
     <delete dir="target"/>

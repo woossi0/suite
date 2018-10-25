@@ -3,6 +3,7 @@
   <import file="../build/common.xml"/>
 
   <property name="war.src" value="src/main/webapp"/>
+  <property name="source.dir" value="src/main/webapp"/>
 
   <target name="clean" depends="destroy"  description="Clean project"/>
 

@@ -1,5 +1,7 @@
 <project name="composer" default="build">
   <import file="../build/common.xml"/>
+  
+  <property name="source.dir" value="composer"/>
 
   <target name="clean" depends="destroy">
     <ant antfile="composer/build.xml" target="clean" useNativeBasedir="true" />

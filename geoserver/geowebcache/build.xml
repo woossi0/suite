@@ -3,6 +3,7 @@
 
   <property name="gwc.flags" value=""/>
   <property name="gwc.dir" value="geowebcache"/>
+  <property name="source.dir" value="geowebcache"/>
  
   <target name="clean" unless="skip.gwc" description="Clean GeoWebCache">
     <delete dir="target"/>

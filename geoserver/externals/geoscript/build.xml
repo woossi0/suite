@@ -3,6 +3,7 @@
    <import file="../../../build/common.xml"/>
 
    <property name="geoscript-py.dir" value="py"/>
+   <property name="source.dir" value="py"/>
    <property name="geoscript-py.flags" value=""/>
 
    <target name="clean" unless="skip.geoscript-py">

@@ -38,7 +38,7 @@ Common build targets.
       </classpath>
     </taskdef>
 
-    <!-- SonarQube properties for sonar.boundlessgeo.com -->
+    <!-- SonarQube sonar.boundlessgeo.com -->
     <property name="sonar.host.url" value="http://sonar.boundlessgeo.com:9000" />
     <condition property="sonar.login" value="${env.SONAR_QUBE_TOKEN}">
       <isset property="env.SONAR_QUBE_TOKEN"/>
@@ -49,6 +49,14 @@ Common build targets.
     <property name="sonar.sources" value="src" />
     <property name="sonar.java.binaries" value="build" />
     <property name="sonar.java.libraries" value="lib/*.jar" />
+    
+    <target name="sonar" description="Sonar ${ant.project.name}">
+      <antcall target="mvn">
+        <param name="dir" value="${source.dir}"/>
+        <param name="flags" value="-Dsonar.host.url=${sonar.host.url} -Dsonar.login=${sonar.login}"/>
+        <param name="goals" value="sonar:sonar"/>
+      </antcall>
+    </target>
     
     <!-- OWASP Dependency-Check -->
     <property name="dependency-check.home" value="/opt/dependency-check-ant/"/>

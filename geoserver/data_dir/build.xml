@@ -2,6 +2,7 @@
   <import file="../../build/common.xml"/>
 
   <property name="datapack.dir" value="externals/server-data/default"/>
+  <property name="source.dir" value="externals/server-data/default"/>
 
   <target name="clean" depends="destroy">
     <ant dir="${datapack.dir}" target="clean"/>

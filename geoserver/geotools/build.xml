@@ -3,6 +3,7 @@
  
   <property name="gt.flags" value=""/>
   <property name="gt.dir" value="geotools"/>
+  <property name="source.dir" value="geotools"/>
 
   <target name="clean" unless="skip.gt" description="Clean GeoTools">
     <delete dir="target"/>

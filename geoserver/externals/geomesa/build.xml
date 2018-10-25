@@ -3,6 +3,7 @@
   <import file="../../../build/common.xml"/>
 
   <property name="geomesa.dir" value="geomesa"/>
+  <property name="source.dir" value="geomesa"/>
   <property name="geomesa.gs-plugin-dist.dir" value="accumulo-gs-plugin-dist"/>
 
   <target name="clean" unless="skip.geomesa" description="Clean GeoMesa">

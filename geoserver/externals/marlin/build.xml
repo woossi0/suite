@@ -1,5 +1,6 @@
 <project name="marlin" default="build">
   <import file="../../../build/common.xml"/>
+  <property name="source.dir" value="./"/>
   <target name="clean">
     <antcall target="mvn">
       <param name="goals" value="clean"/>

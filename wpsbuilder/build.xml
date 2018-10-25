@@ -1,6 +1,8 @@
 <project name="wpsbuilder" default="build">
   <import file="../build/common.xml"/>
 
+  <property name="source.dir" value="wps-gui"/>
+
   <target name="clean" unless="skip.wps-gui"
       description="Clean WPS GUI">
     <ant antfile="build.xml" dir="wps-gui" target="clean"/>

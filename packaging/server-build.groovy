@@ -62,27 +62,27 @@ pipeline {
         stage('Build-Composer') {
           steps {
             sleep(time: 3, unit:'MINUTES')
-            antBuild('suite/composer/build.xml','clean build assemble publish')
+            antBuild('suite/composer/build.xml','clean build sonar assemble publish')
             archiveBuildZip('composer')
           }
         }
         stage('Build-Dashboard') {
           steps {
             sleep(time: 1, unit:'MINUTES')
-            antBuild('suite/dashboard/build.xml','clean build assemble publish')
+            antBuild('suite/dashboard/build.xml','clean build sonar assemble publish')
             archiveBuildZip('dashboard')
           }
         }
         stage('Build-WPSBuilder') {
           steps {
             sleep(time: 2, unit:'MINUTES')
-            antBuild('suite/wpsbuilder/build.xml','clean build assemble publish')
+            antBuild('suite/wpsbuilder/build.xml','clean build sonar assemble publish')
             archiveBuildZip('wpsbuilder')
           }
         }
         stage('Build-GeoTools') {
           steps {
-            antBuild('suite/geoserver/geotools/build.xml','clean build assemble publish')
+            antBuild('suite/geoserver/geotools/build.xml','clean build sonar assemble publish')
           }
         }
       }
@@ -100,13 +100,13 @@ pipeline {
 
     stage('Build-GeoWebCache') {
       steps {
-        antBuild('suite/geoserver/geowebcache/build.xml','clean build assemble publish')
+        antBuild('suite/geoserver/geowebcache/build.xml','clean build sonar assemble publish')
       }
     }
 
     stage('Build-GeoServer') {
       steps {
-        antBuild('suite/geoserver/geoserver/build.xml','clean build assemble publish')
+        antBuild('suite/geoserver/geoserver/build.xml','clean build sonar assemble publish')
         script {
           geoServerExtensions = ['app-schema', 'arcsde', 'csw', 'db2', 'gdal', 'grib', 'inspire', 'jp2k', 'netcdf', 'netcdf-out', 'oracle', 'sqlserver', 'vectortiles']
           for (int i = 0; i < geoServerExtensions.size(); i++) {
@@ -121,42 +121,42 @@ pipeline {
         stage('Build-DataDir') {
           steps {
             sleep(time: 6, unit:'MINUTES')
-            antBuild('suite/geoserver/data_dir/build.xml','clean build assemble publish')
+            antBuild('suite/geoserver/data_dir/build.xml','clean build sonar assemble publish')
             archiveBuildZip('data-dir')
           }
         }
         stage('Build-Docs') {
           steps {
             sleep(time: 1, unit:'MINUTES')
-            antBuild('suite/docs/build.xml','clean build assemble publish')
+            antBuild('suite/docs/build.xml','clean build sonar assemble publish')
             archiveBuildZip('docs-war')
           }
         }
         stage('Build-GeoMesa') {
           steps {
             sleep(time: 2, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/geomesa/build.xml','clean build assemble publish')
+            antBuild('suite/geoserver/externals/geomesa/build.xml','clean build sonar assemble publish')
             archiveBuildZip('geomesa-accumulo-distributed-runtime')
           }
         }
         stage('Build-GeoScript') {
           steps {
             sleep(time: 3, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/geoscript/build.xml','clean build assemble publish')
+            antBuild('suite/geoserver/externals/geoscript/build.xml','clean build sonar assemble publish')
             archiveBuildZip('geoscript-py')
           }
         }
         stage('Build-Marlin') {
           steps {
             sleep(time: 4, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/marlin/build.xml','clean build assemble publish')
+            antBuild('suite/geoserver/externals/marlin/build.xml','clean build sonar assemble publish')
             archiveBuildZip('marlin')
           }
         }
         stage('Build-GSR') {
           steps {
             sleep(time: 5, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/gsr/build.xml','clean build dependency-check sonar assemble publish')
+            antBuild('suite/geoserver/externals/gsr/build.xml','clean build sonar assemble publish')
             archiveBuildZip('gsr')
           }
         }
@@ -192,7 +192,7 @@ pipeline {
 
     stage('Build-GSExts') {
       steps {
-        antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build assemble publish')
+        antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build sonar assemble publish')
         archiveBuildZip('cloudwatch')
         archiveBuildZip('mongodb')
         archiveBuildZip('printng')

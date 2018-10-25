@@ -3,6 +3,7 @@
   <import file="../../../build/common.xml"/>
 
   <property name="gsr.dir" value="gsr"/>
+  <property name="source.dir" value="gsr"/>
 
   <target name="clean" unless="skip.gsr" description="Clean GSR">
     <delete dir="target"/>
@@ -17,14 +18,6 @@
       <param name="dir" value="${gsr.dir}"/>
       <param name="flags" value="-DskipTests"/>
       <param name="goals" value="install"/>
-    </antcall>
-  </target>
-  
-  <target name="sonar" unless="skip.gsr" description="Sonar GSR">
-    <antcall target="mvn">
-      <param name="dir" value="${gsr.dir}"/>
-      <param name="flags" value="-Dsonar.host.url=${sonar.host.url} -Dsonar.login=${sonar.login}"/>
-      <param name="goals" value="sonar:sonar"/>
     </antcall>
   </target>
 
