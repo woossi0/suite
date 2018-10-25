@@ -156,7 +156,7 @@ pipeline {
         stage('Build-GSR') {
           steps {
             sleep(time: 5, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/gsr/build.xml','clean build assemble publish')
+            antBuild('suite/geoserver/externals/gsr/build.xml','clean build sonar assemble publish')
             archiveBuildZip('gsr')
           }
         }
@@ -467,21 +467,23 @@ def captureHead() {
 }
 
 def antBuild(def buildFile, def antTargets) {
-  workingDir = sh (script: "echo ${buildFile} | rev | cut -d / -f2- | rev", returnStdout:true).trim()
-  antBuildFile = sh (script: "echo ${buildFile} | rev | cut -d / -f 1 | rev", returnStdout:true).trim()
-  echo "workingDir = ${workingDir}"
-  echo "antBuildFile = ${antBuildFile}"
-  sh """
-    cd $WORKSPACE/${workingDir}
-    ant -file ${antBuildFile} \
-    -Dserver.minor_version=-$MINOR_VERSION \
-    -Dsuite.build_cat=$SERVER_BUILD_CAT \
-    -Dserver.build_cat=$SERVER_BUILD_CAT \
-    -Dsuite.version=$SUITE_VERSION \
-    -Dserver.version=$SERVER_VERSION \
-    -Dserver.build_branch=$BUILD_TYPE \
-    $antTargets
-  """
+  withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
+    workingDir = sh (script: "echo ${buildFile} | rev | cut -d / -f2- | rev", returnStdout:true).trim()
+    antBuildFile = sh (script: "echo ${buildFile} | rev | cut -d / -f 1 | rev", returnStdout:true).trim()
+    echo "workingDir = ${workingDir}"
+    echo "antBuildFile = ${antBuildFile}"
+    sh """
+      cd $WORKSPACE/${workingDir}
+      ant -file ${antBuildFile} \
+      -Dserver.minor_version=-$MINOR_VERSION \
+      -Dsuite.build_cat=$SERVER_BUILD_CAT \
+      -Dserver.build_cat=$SERVER_BUILD_CAT \
+      -Dsuite.version=$SUITE_VERSION \
+      -Dserver.version=$SERVER_VERSION \
+      -Dserver.build_branch=$BUILD_TYPE \
+      $antTargets
+    """
+  }
 }
 
 def archiveBuildZip(def component) {

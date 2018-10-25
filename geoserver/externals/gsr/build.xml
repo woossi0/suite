@@ -19,6 +19,14 @@
       <param name="goals" value="install"/>
     </antcall>
   </target>
+  
+  <target name="sonar" unless="skip.gsr" description="Sonar GSR">
+    <antcall target="mvn">
+      <param name="dir" value="${gsr.dir}"/>
+      <param name="flags" value="-Dsonar.host.url=${sonar.host.url} -Dsonar.login=${sonar.login}"/>
+      <param name="goals" value="sonar:sonar"/>
+    </antcall>
+  </target>
 
   <target name="assemble" unless="skip.gsr" description="Assemble GSR">
     <copy todir="target/gsr" flatten="true">
