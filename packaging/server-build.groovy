@@ -156,7 +156,7 @@ pipeline {
         stage('Build-GSR') {
           steps {
             sleep(time: 5, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/gsr/build.xml','clean build sonar assemble publish')
+            antBuild('suite/geoserver/externals/gsr/build.xml','clean build dependency-check sonar assemble publish')
             archiveBuildZip('gsr')
           }
         }

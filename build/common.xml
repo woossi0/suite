@@ -44,11 +44,33 @@ Common build targets.
       <isset property="env.SONAR_QUBE_TOKEN"/>
     </condition>
     <property name="sonar.projectKey" value="org.sonarqube:sonarqube-scanner-ant" />
-    <property name="sonar.projectName" value="Example of SonarQube Scanner for Ant Usage" />
+    <property name="sonar.projectName" value="${ant.project.name}" />
     <property name="sonar.projectVersion" value="1.0" />
     <property name="sonar.sources" value="src" />
     <property name="sonar.java.binaries" value="build" />
     <property name="sonar.java.libraries" value="lib/*.jar" />
+    
+    <!-- OWASP Dependency-Check -->
+    <property name="dependency-check.home" value="/opt/dependency-check-ant/"/>
+    <path id="dependency-check.path">
+       <pathelement location="${dependency-check.home}/dependency-check-ant.jar"/>
+        <fileset dir="${dependency-check.home}/lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <taskdef resource="dependency-check-taskdefs.properties">
+       <classpath refid="dependency-check.path" />
+    </taskdef>
+    
+    <target name="dependency-check" description="Dependency-Check Analysis">
+      <dependency-check projectname="${ant.project.name}"
+                        reportoutputdirectory="${basedir}"
+                        reportformat="ALL">
+          <fileset dir="lib">
+              <include name="**/*.jar"/>
+          </fileset>
+      </dependency-check>
+    </target>
     
     <!--
       Help task. 
