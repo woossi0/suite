@@ -89,7 +89,7 @@ pipeline {
       steps {
         script {
           packageRPMs("quickview")
-          sonarScan('suite/quickview','quickview')
+          //sonarScan('suite/quickview','quickview')
           sh "suite/packaging/el/rpm-resign.exp archive/el/6/*.rpm || true"
         }
         archiveArtifacts artifacts: "archive/el/6/${BRANDING}-quickview-*.rpm", fingerprint: true
