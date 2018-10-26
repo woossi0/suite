@@ -57,37 +57,31 @@ pipeline {
       }
     }
 
-    stage('Build-IndApps') {
-      parallel {
-        stage('Build-Composer') {
-          steps {
-            sleep(time: 3, unit:'MINUTES')
-            sonarScan('suite/composer/composer','composer')
-            antBuild('suite/composer/build.xml','clean build assemble publish')
-            archiveBuildZip('composer')
-          }
-        }
-        stage('Build-Dashboard') {
-          steps {
-            sleep(time: 1, unit:'MINUTES')
-            sonarScan('suite/dashboard/src/main/webapp','dashboard')
-            antBuild('suite/dashboard/build.xml','clean build assemble publish')
-            archiveBuildZip('dashboard')
-          }
-        }
-        stage('Build-WPSBuilder') {
-          steps {
-            sleep(time: 2, unit:'MINUTES')
-            sonarScan('suite/wpsbuilder/wps-gui','wpsbuilder')
-            antBuild('suite/wpsbuilder/build.xml','clean build assemble publish')
-            archiveBuildZip('wpsbuilder')
-          }
-        }
-        stage('Build-GeoTools') {
-          steps {
-            antBuild('suite/geoserver/geotools/build.xml','clean build sonar assemble publish')
-          }
-        }
+
+    stage('Build-Composer') {
+      steps {
+        sonarScan('suite/composer/composer','composer')
+        antBuild('suite/composer/build.xml','clean build assemble publish')
+        archiveBuildZip('composer')
+      }
+    }
+    stage('Build-Dashboard') {
+      steps {
+        sonarScan('suite/dashboard/src/main/webapp','dashboard')
+        antBuild('suite/dashboard/build.xml','clean build assemble publish')
+        archiveBuildZip('dashboard')
+      }
+    }
+    stage('Build-WPSBuilder') {
+      steps {
+        sonarScan('suite/wpsbuilder/wps-gui','wpsbuilder')
+        antBuild('suite/wpsbuilder/build.xml','clean build assemble publish')
+        archiveBuildZip('wpsbuilder')
+      }
+    }
+    stage('Build-GeoTools') {
+      steps {
+        antBuild('suite/geoserver/geotools/build.xml','clean build sonar assemble publish')
       }
     }
 
@@ -122,67 +116,57 @@ pipeline {
       }
     }
 
-    stage('Build-ExtBundle') {
-      parallel {
-        stage('Build-DataDir') {
-          steps {
-            sleep(time: 6, unit:'MINUTES')
-            sonarScan('suite/geoserver/data_dir','data_dir')
-            antBuild('suite/geoserver/data_dir/build.xml','clean build assemble publish')
-            archiveBuildZip('data-dir')
-          }
-        }
-        stage('Build-Docs') {
-          steps {
-            sleep(time: 1, unit:'MINUTES')
-            sonarScan('suite/docs','server_docs')
-            antBuild('suite/docs/build.xml','clean build assemble publish')
-            archiveBuildZip('docs-war')
-          }
-        }
-        stage('Build-GeoMesa') {
-          steps {
-            sleep(time: 2, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/geomesa/build.xml','clean build sonar assemble publish')
-            archiveBuildZip('geomesa-accumulo-distributed-runtime')
-          }
-        }
-        stage('Build-GeoScript') {
-          steps {
-            sleep(time: 3, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/geoscript/build.xml','clean build sonar assemble publish')
-            archiveBuildZip('geoscript-py')
-          }
-        }
-        stage('Build-Marlin') {
-          steps {
-            sleep(time: 4, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/marlin/build.xml','clean build sonar assemble publish')
-            archiveBuildZip('marlin')
-          }
-        }
-        stage('Build-GSR') {
-          steps {
-            sleep(time: 5, unit:'MINUTES')
-            antBuild('suite/geoserver/externals/gsr/build.xml','clean build sonar assemble publish')
-            archiveBuildZip('gsr')
-          }
-        }
-        stage('Build-GeoGig') {
-          steps {
-            sonarScan('suite/geoserver/geoserver/geoserver/src/community/geogig/','geogig')
-            script {
-              sh """
-                cd ${WORKSPACE}/suite/geoserver/geoserver/geoserver
-                mvn -f src/community/geogig/pom.xml clean install -Dcucumber.options="--monochrome --plugin json:target/cucumber.json" -Dtest.maxHeapSize=1G
-                mvn clean install -DskipTests -f src/community/pom.xml -P communityRelease assembly:attached
-              """
-              geoGigZip = sh (script: "find ${WORKSPACE}/suite/geoserver/geoserver/geoserver/src/community/target/release/ \
-              -name *geogig-plugin.zip", returnStdout:true).trim()
-              sh "cp -p $geoGigZip $WORKSPACE/archive/zip/${BRANDING}-geoserver-geogig-${SERVER_HEAD}.zip"
-              archiveArtifacts artifacts: "archive/zip/${BRANDING}-geoserver-geogig-${SERVER_HEAD}.zip", fingerprint: true
-            }
-          }
+    stage('Build-DataDir') {
+      steps {
+        sonarScan('suite/geoserver/data_dir','data_dir')
+        antBuild('suite/geoserver/data_dir/build.xml','clean build assemble publish')
+        archiveBuildZip('data-dir')
+      }
+    }
+    stage('Build-Docs') {
+      steps {
+        sonarScan('suite/docs','server_docs')
+        antBuild('suite/docs/build.xml','clean build assemble publish')
+        archiveBuildZip('docs-war')
+      }
+    }
+    stage('Build-GeoMesa') {
+      steps {
+        antBuild('suite/geoserver/externals/geomesa/build.xml','clean build sonar assemble publish')
+        archiveBuildZip('geomesa-accumulo-distributed-runtime')
+      }
+    }
+    stage('Build-GeoScript') {
+      steps {
+        antBuild('suite/geoserver/externals/geoscript/build.xml','clean build sonar assemble publish')
+        archiveBuildZip('geoscript-py')
+      }
+    }
+    stage('Build-Marlin') {
+      steps {
+        antBuild('suite/geoserver/externals/marlin/build.xml','clean build sonar assemble publish')
+        archiveBuildZip('marlin')
+      }
+    }
+    stage('Build-GSR') {
+      steps {
+        antBuild('suite/geoserver/externals/gsr/build.xml','clean build sonar assemble publish')
+        archiveBuildZip('gsr')
+      }
+    }
+    stage('Build-GeoGig') {
+      steps {
+        sonarScan('suite/geoserver/geoserver/geoserver/src/community/geogig/','geogig')
+        script {
+          sh """
+            cd ${WORKSPACE}/suite/geoserver/geoserver/geoserver
+            mvn -f src/community/geogig/pom.xml clean install -Dcucumber.options="--monochrome --plugin json:target/cucumber.json" -Dtest.maxHeapSize=1G
+            mvn clean install -DskipTests -f src/community/pom.xml -P communityRelease assembly:attached
+          """
+          geoGigZip = sh (script: "find ${WORKSPACE}/suite/geoserver/geoserver/geoserver/src/community/target/release/ \
+          -name *geogig-plugin.zip", returnStdout:true).trim()
+          sh "cp -p $geoGigZip $WORKSPACE/archive/zip/${BRANDING}-geoserver-geogig-${SERVER_HEAD}.zip"
+          archiveArtifacts artifacts: "archive/zip/${BRANDING}-geoserver-geogig-${SERVER_HEAD}.zip", fingerprint: true
         }
       }
     }
