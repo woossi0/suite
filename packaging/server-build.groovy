@@ -502,9 +502,9 @@ def sonarScan(def targetDir, def projectName) {
       sonar-scanner \
         -Dsonar.sources=${targetDir} \
         -Dsonar.projectName=${projectName} \
-        -Dsonar.projectKey=org.boundlessgeo:${projectName}
+        -Dsonar.projectKey=org.boundlessgeo:${projectName} \
         -Dsonar.host.url=${SONAR_HOST_URL} \
-        -Dsonar.login=${SONAR_QUBE_TOKEN} \
+        -Dsonar.login=${SONAR_QUBE_TOKEN}
     """
   }
 }
