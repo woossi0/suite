@@ -39,7 +39,7 @@ Common build targets.
     </taskdef>
 
     <!-- SonarQube sonar.boundlessgeo.com -->
-    <property name="sonar.host.url" value="http://sonar.boundlessgeo.com:9000" />
+    <property name="sonar.host.url" value="${env.SONAR_HOST_URL}" />
     <condition property="sonar.login" value="${env.SONAR_QUBE_TOKEN}">
       <isset property="env.SONAR_QUBE_TOKEN"/>
     </condition>

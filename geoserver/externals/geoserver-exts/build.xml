@@ -1,6 +1,7 @@
 <project name="geoserver.geoserver-exts" default="build">
 
   <import file="../../../build/common.xml"/>
+  <property name="source.dir" value="geoserver-exts"/>
 
   <!-- the -pl flag works as long as the module names are exactly the same as their directories. -am ensures dependencies are built -->
   <property name="gs-exts.module-select" value="-pl ${gs-exts.exts} -am"/>

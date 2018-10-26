@@ -62,21 +62,24 @@ pipeline {
         stage('Build-Composer') {
           steps {
             sleep(time: 3, unit:'MINUTES')
-            antBuild('suite/composer/build.xml','clean build sonar assemble publish')
+            sonarScan('suite/composer/composer','composer')
+            antBuild('suite/composer/build.xml','clean build assemble publish')
             archiveBuildZip('composer')
           }
         }
         stage('Build-Dashboard') {
           steps {
             sleep(time: 1, unit:'MINUTES')
-            antBuild('suite/dashboard/build.xml','clean build sonar assemble publish')
+            sonarScan('suite/dashboard/src/main/webapp','dashboard')
+            antBuild('suite/dashboard/build.xml','clean build assemble publish')
             archiveBuildZip('dashboard')
           }
         }
         stage('Build-WPSBuilder') {
           steps {
             sleep(time: 2, unit:'MINUTES')
-            antBuild('suite/wpsbuilder/build.xml','clean build sonar assemble publish')
+            sonarScan('suite/wpsbuilder/wps-gui','wpsbuilder')
+            antBuild('suite/wpsbuilder/build.xml','clean build assemble publish')
             archiveBuildZip('wpsbuilder')
           }
         }
@@ -92,6 +95,7 @@ pipeline {
       steps {
         script {
           packageRPMs("quickview")
+          sonarScan('suite/quickview','quickview')
           sh "suite/packaging/el/rpm-resign.exp archive/el/6/*.rpm || true"
         }
         archiveArtifacts artifacts: "archive/el/6/${BRANDING}-quickview-*.rpm", fingerprint: true
@@ -100,13 +104,15 @@ pipeline {
 
     stage('Build-GeoWebCache') {
       steps {
-        antBuild('suite/geoserver/geowebcache/build.xml','clean build sonar assemble publish')
+        sonarScan('suite/geoserver/geowebcache/geowebcache','geowebcache')
+        antBuild('suite/geoserver/geowebcache/build.xml','clean build assemble publish')
       }
     }
 
     stage('Build-GeoServer') {
       steps {
-        antBuild('suite/geoserver/geoserver/build.xml','clean build sonar assemble publish')
+        sonarScan('suite/geoserver/geoserver','geoserver')
+        antBuild('suite/geoserver/geoserver/build.xml','clean build assemble publish')
         script {
           geoServerExtensions = ['app-schema', 'arcsde', 'csw', 'db2', 'gdal', 'grib', 'inspire', 'jp2k', 'netcdf', 'netcdf-out', 'oracle', 'sqlserver', 'vectortiles']
           for (int i = 0; i < geoServerExtensions.size(); i++) {
@@ -121,14 +127,16 @@ pipeline {
         stage('Build-DataDir') {
           steps {
             sleep(time: 6, unit:'MINUTES')
-            antBuild('suite/geoserver/data_dir/build.xml','clean build sonar assemble publish')
+            sonarScan('suite/geoserver/data_dir','data_dir')
+            antBuild('suite/geoserver/data_dir/build.xml','clean build assemble publish')
             archiveBuildZip('data-dir')
           }
         }
         stage('Build-Docs') {
           steps {
             sleep(time: 1, unit:'MINUTES')
-            antBuild('suite/docs/build.xml','clean build sonar assemble publish')
+            sonarScan('suite/docs','server_docs')
+            antBuild('suite/docs/build.xml','clean build assemble publish')
             archiveBuildZip('docs-war')
           }
         }
@@ -162,6 +170,7 @@ pipeline {
         }
         stage('Build-GeoGig') {
           steps {
+            sonarScan('suite/geoserver/geoserver/geoserver/src/community/geogig/','geogig')
             script {
               sh """
                 cd ${WORKSPACE}/suite/geoserver/geoserver/geoserver
@@ -201,7 +210,7 @@ pipeline {
 
     stage('Build-WebApp') {
       steps {
-        antBuild('suite/geoserver/webapp/build.xml','clean build assemble publish')
+        antBuild('suite/geoserver/webapp/build.xml','clean build sonar assemble publish')
         archiveBuildZip('geoserver')
       }
     }
@@ -434,6 +443,7 @@ def setEnvs() {
   env.SERVER_BUILD_CAT = 'HEAD'
   env.SUITE_VERSION = "$VER"
   env.SERVER_VERSION = "$VER"
+  env.SONAR_HOST_URL = "http://sonar.boundlessgeo.com:9000"
   if ( BUILD_TYPE.equals('master') ) {
     env.SERVER_BRANCH = "master"
     env.MINOR_VERSION = "SNAPSHOT${DATE_TIME_STAMP}-${BUILD_NUMBER}"
@@ -482,6 +492,19 @@ def antBuild(def buildFile, def antTargets) {
       -Dserver.version=$SERVER_VERSION \
       -Dserver.build_branch=$BUILD_TYPE \
       $antTargets
+    """
+  }
+}
+
+def sonarScan(def targetDir, def projectName) {
+  withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
+    sh """
+      sonar-scanner \
+        -Dsonar.sources=${targetDir} \
+        -Dsonar.projectName=${projectName} \
+        -Dsonar.projectKey=org.boundlessgeo:${projectName}
+        -Dsonar.host.url=${SONAR_HOST_URL} \
+        -Dsonar.login=${SONAR_QUBE_TOKEN} \
     """
   }
 }

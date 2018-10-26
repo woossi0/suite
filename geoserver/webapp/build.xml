@@ -7,6 +7,7 @@
   <property name="data.dir" value="../data_dir/target"/>
   <property name="war.dir" value="web-app/target/geoserver"/>
   <property name="war.file" value="target/geoserver.war"/>
+  <property name="source.dir" value="./"/>
 
   <target name="build" depends="init,build-server" description="Builds project" />
 
