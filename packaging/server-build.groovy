@@ -99,7 +99,7 @@ pipeline {
     stage('Build-GeoWebCache') {
       steps {
         antBuild('suite/geoserver/geowebcache/build.xml','clean build assemble publish')
-        sonarScan('suite/geoserver/geowebcache/geowebcache','geowebcache')
+        sonarScan('suite/geoserver/geowebcache/geowebcache','geowebcache','geowebcache')
       }
     }
 
@@ -480,7 +480,7 @@ def antBuild(def buildFile, def antTargets) {
   }
 }
 
-def sonarScan(def targetDir, def projectName) {
+def sonarScan(def targetDir, def projectName, def binary=null) {
   withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
     sh """
       sonar-scanner \
@@ -488,7 +488,8 @@ def sonarScan(def targetDir, def projectName) {
         -Dsonar.projectName=${projectName} \
         -Dsonar.projectKey=org.boundlessgeo:${projectName} \
         -Dsonar.host.url=${SONAR_HOST_URL} \
-        -Dsonar.login=${SONAR_QUBE_TOKEN}
+        -Dsonar.login=${SONAR_QUBE_TOKEN} \
+        -Dsonar.java.binaries=${binary}
     """
   }
 }
