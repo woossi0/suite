@@ -156,7 +156,7 @@ pipeline {
     }
     stage('Build-GeoGig') {
       steps {
-        sonarScan('suite/geoserver/geoserver/geoserver/src/community/geogig/','geogig')
+        sonarScan('suite/geoserver/geoserver/geoserver/src/community/geogig/','geogig',true)
         script {
           sh """
             cd ${WORKSPACE}/suite/geoserver/geoserver/geoserver
