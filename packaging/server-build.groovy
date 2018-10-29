@@ -105,7 +105,7 @@ pipeline {
 
     stage('Build-GeoServer') {
       steps {
-        sonarScan('suite/geoserver/geoserver','geoserver')
+        sonarScan('suite/geoserver/geoserver','geoserver',true)
         antBuild('suite/geoserver/geoserver/build.xml','clean build assemble publish')
         script {
           geoServerExtensions = ['app-schema', 'arcsde', 'csw', 'db2', 'gdal', 'grib', 'inspire', 'jp2k', 'netcdf', 'netcdf-out', 'oracle', 'sqlserver', 'vectortiles']
