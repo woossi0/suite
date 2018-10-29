@@ -482,7 +482,7 @@ def antBuild(def buildFile, def antTargets) {
 
 def sonarScan(def targetDir, def projectName, def binary=false) {
   withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
-    if ( env.binary = true ) {
+    if ( env.binary == true ) {
       sh """
         sonar-scanner \
           -Dsonar.sources=${targetDir} \
