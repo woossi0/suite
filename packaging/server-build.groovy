@@ -99,7 +99,7 @@ pipeline {
     stage('Build-GeoWebCache') {
       steps {
         antBuild('suite/geoserver/geowebcache/build.xml','clean build assemble publish')
-        sonarScan('suite/geoserver/geowebcache','geowebcache','geowebcache')
+        sonarScan('suite/geoserver/geowebcache','geowebcache',true)
       }
     }
 
@@ -480,17 +480,28 @@ def antBuild(def buildFile, def antTargets) {
   }
 }
 
-def sonarScan(def targetDir, def projectName, def binary=null) {
+def sonarScan(def targetDir, def projectName, def binary=false) {
   withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
-    sh """
-      sonar-scanner \
-        -Dsonar.sources=${targetDir} \
-        -Dsonar.projectName=${projectName} \
-        -Dsonar.projectKey=org.boundlessgeo:${projectName} \
-        -Dsonar.host.url=${SONAR_HOST_URL} \
-        -Dsonar.login=${SONAR_QUBE_TOKEN} \
-        -Dsonar.java.binaries=${binary}
-    """
+    if ( env.binary = true ) {
+      sh """
+        sonar-scanner \
+          -Dsonar.sources=${targetDir} \
+          -Dsonar.projectName=${projectName} \
+          -Dsonar.projectKey=org.boundlessgeo:${projectName} \
+          -Dsonar.host.url=${SONAR_HOST_URL} \
+          -Dsonar.login=${SONAR_QUBE_TOKEN} \
+          -Dsonar.java.binaries=${targetDir}
+      """
+    } else {
+      sh """
+        sonar-scanner \
+          -Dsonar.sources=${targetDir} \
+          -Dsonar.projectName=${projectName} \
+          -Dsonar.projectKey=org.boundlessgeo:${projectName} \
+          -Dsonar.host.url=${SONAR_HOST_URL} \
+          -Dsonar.login=${SONAR_QUBE_TOKEN}
+      """
+    }
   }
 }
 
