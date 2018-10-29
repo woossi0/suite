@@ -98,8 +98,8 @@ pipeline {
 
     stage('Build-GeoWebCache') {
       steps {
-        sonarScan('suite/geoserver/geowebcache/geowebcache','geowebcache')
         antBuild('suite/geoserver/geowebcache/build.xml','clean build assemble publish')
+        sonarScan('suite/geoserver/geowebcache/geowebcache','geowebcache')
       }
     }
 
