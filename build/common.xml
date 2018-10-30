@@ -59,7 +59,7 @@ Common build targets.
     </target>
     
     <!-- OWASP Dependency-Check -->
-    <property name="dependency-check.home" value="/opt/dependency-check-ant/"/>
+    <!-- <property name="dependency-check.home" value="/opt/dependency-check-ant/"/>
     <path id="dependency-check.path">
        <pathelement location="${dependency-check.home}/dependency-check-ant.jar"/>
         <fileset dir="${dependency-check.home}/lib">
@@ -78,7 +78,7 @@ Common build targets.
               <include name="**/*.jar"/>
           </fileset>
       </dependency-check>
-    </target>
+    </target> -->
     
     <!--
       Help task. 
