@@ -60,28 +60,29 @@ pipeline {
 
     stage('Build-Composer') {
       steps {
-        sonarScan('suite/composer/composer/app','composer')
+        sonarScan('suite/composer/composer/app','Composer')
         antBuild('suite/composer/build.xml','clean build assemble publish')
         archiveBuildZip('composer')
       }
     }
     stage('Build-Dashboard') {
       steps {
-        sonarScan('suite/dashboard/src/main/webapp','dashboard')
+        sonarScan('suite/dashboard/src/main/webapp','Dashboard')
         antBuild('suite/dashboard/build.xml','clean build assemble publish')
         archiveBuildZip('dashboard')
       }
     }
     stage('Build-WPSBuilder') {
       steps {
-        sonarScan('suite/wpsbuilder/wps-gui/src','wpsbuilder')
+        sonarScan('suite/wpsbuilder/wps-gui/src','WPSBuilder')
         antBuild('suite/wpsbuilder/build.xml','clean build assemble publish')
         archiveBuildZip('wpsbuilder')
       }
     }
     stage('Build-GeoTools') {
       steps {
-        antBuild('suite/geoserver/geotools/build.xml','clean build sonar assemble publish')
+        sonarScan('suite/geoserver/geotools/','GeoTools')
+        antBuild('suite/geoserver/geotools/build.xml','clean build assemble publish')
       }
     }
 
@@ -98,14 +99,14 @@ pipeline {
 
     stage('Build-GeoWebCache') {
       steps {
-        sonarScan('suite/geoserver/geowebcache','geowebcache',true)
+        sonarScan('suite/geoserver/geowebcache','GeoWebCache',true)
         antBuild('suite/geoserver/geowebcache/build.xml','clean build assemble publish')
       }
     }
 
     stage('Build-GeoServer') {
       steps {
-        sonarScan('suite/geoserver/geoserver','geoserver',true)
+        sonarScan('suite/geoserver/geoserver','GeoServer',true)
         antBuild('suite/geoserver/geoserver/build.xml','clean build assemble publish')
         script {
           geoServerExtensions = ['app-schema', 'arcsde', 'csw', 'db2', 'gdal', 'grib', 'inspire', 'jp2k', 'netcdf', 'netcdf-out', 'oracle', 'sqlserver', 'vectortiles']
@@ -118,46 +119,49 @@ pipeline {
 
     stage('Build-DataDir') {
       steps {
-        sonarScan('suite/geoserver/data_dir','data_dir')
+        sonarScan('suite/geoserver/data_dir','DataDir')
         antBuild('suite/geoserver/data_dir/build.xml','clean build assemble publish')
         archiveBuildZip('data-dir')
       }
     }
     stage('Build-Docs') {
       steps {
-        sonarScan('suite/docs','server_docs')
+        sonarScan('suite/docs','Docs')
         antBuild('suite/docs/build.xml','clean build assemble publish')
         archiveBuildZip('docs-war')
       }
     }
     stage('Build-GeoMesa') {
       steps {
-        sonarScan('suite/geoserver/externals/geomesa/','geomesa',true)
+        sonarScan('suite/geoserver/externals/geomesa/','GeoMesa',true)
         antBuild('suite/geoserver/externals/geomesa/build.xml','clean build assemble publish')
         archiveBuildZip('geomesa-accumulo-distributed-runtime')
       }
     }
     stage('Build-GeoScript') {
       steps {
-        antBuild('suite/geoserver/externals/geoscript/build.xml','clean build sonar assemble publish')
+        sonarScan('suite/geoserver/externals/geoscript/','GeoScript',true)
+        antBuild('suite/geoserver/externals/geoscript/build.xml','clean build assemble publish')
         archiveBuildZip('geoscript-py')
       }
     }
     stage('Build-Marlin') {
       steps {
-        antBuild('suite/geoserver/externals/marlin/build.xml','clean build sonar assemble publish')
+        sonarScan('suite/geoserver/externals/marlin/','Marlin',true)
+        antBuild('suite/geoserver/externals/marlin/build.xml','clean build assemble publish')
         archiveBuildZip('marlin')
       }
     }
     stage('Build-GSR') {
       steps {
-        antBuild('suite/geoserver/externals/gsr/build.xml','clean build sonar assemble publish')
+        sonarScan('suite/geoserver/externals/gsr/','GSR',true)
+        antBuild('suite/geoserver/externals/gsr/build.xml','clean build assemble publish')
         archiveBuildZip('gsr')
       }
     }
     stage('Build-GeoGig') {
       steps {
-        sonarScan('suite/geoserver/geoserver/geoserver/src/community/geogig/','geogig',true)
+        sonarScan('suite/geoserver/geoserver/geoserver/src/community/geogig/','GeoGig',true)
         script {
           sh """
             cd ${WORKSPACE}/suite/geoserver/geoserver/geoserver
@@ -186,7 +190,7 @@ pipeline {
 
     stage('Build-GSExts') {
       steps {
-        sonarScan('suite/geoserver/externals/geoserver-exts/','geoserver-exts',true)
+        sonarScan('suite/geoserver/externals/geoserver-exts/','GeoServer-Exts',true)
         antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build assemble publish')
         archiveBuildZip('cloudwatch')
         archiveBuildZip('mongodb')
@@ -196,7 +200,8 @@ pipeline {
 
     stage('Build-WebApp') {
       steps {
-        antBuild('suite/geoserver/webapp/build.xml','clean build sonar assemble publish')
+        sonarScan('suite/geoserver/webapp/','WebApp',true)
+        antBuild('suite/geoserver/webapp/build.xml','clean build assemble publish')
         archiveBuildZip('geoserver')
       }
     }
@@ -488,8 +493,8 @@ def sonarScan(def targetDir, def projectName, def binary=false) {
       sh """
         sonar-scanner \
           -Dsonar.sources=${targetDir} \
-          -Dsonar.projectName=${projectName} \
-          -Dsonar.projectKey=org.boundlessgeo:${projectName} \
+          -Dsonar.projectName="[Server] ${projectName}" \
+          -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
           -Dsonar.host.url=${SONAR_HOST_URL} \
           -Dsonar.login=${SONAR_QUBE_TOKEN} \
           -Dsonar.java.binaries=${targetDir}
@@ -498,8 +503,8 @@ def sonarScan(def targetDir, def projectName, def binary=false) {
       sh """
         sonar-scanner \
           -Dsonar.sources=${targetDir} \
-          -Dsonar.projectName=${projectName} \
-          -Dsonar.projectKey=org.boundlessgeo:${projectName} \
+          -Dsonar.projectName="[Server] ${projectName}" \
+          -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
           -Dsonar.host.url=${SONAR_HOST_URL} \
           -Dsonar.login=${SONAR_QUBE_TOKEN}
       """
