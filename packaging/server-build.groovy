@@ -60,7 +60,7 @@ pipeline {
 
     stage('Build-Composer') {
       steps {
-        sonarScan('suite/composer/composer','composer')
+        sonarScan('suite/composer/composer/app','composer')
         antBuild('suite/composer/build.xml','clean build assemble publish')
         archiveBuildZip('composer')
       }
@@ -74,7 +74,7 @@ pipeline {
     }
     stage('Build-WPSBuilder') {
       steps {
-        sonarScan('suite/wpsbuilder/wps-gui','wpsbuilder')
+        sonarScan('suite/wpsbuilder/wps-gui/src','wpsbuilder')
         antBuild('suite/wpsbuilder/build.xml','clean build assemble publish')
         archiveBuildZip('wpsbuilder')
       }
@@ -98,8 +98,8 @@ pipeline {
 
     stage('Build-GeoWebCache') {
       steps {
-        antBuild('suite/geoserver/geowebcache/build.xml','clean build assemble publish')
         sonarScan('suite/geoserver/geowebcache','geowebcache',true)
+        antBuild('suite/geoserver/geowebcache/build.xml','clean build assemble publish')
       }
     }
 
@@ -132,7 +132,8 @@ pipeline {
     }
     stage('Build-GeoMesa') {
       steps {
-        antBuild('suite/geoserver/externals/geomesa/build.xml','clean build sonar assemble publish')
+        sonarScan('suite/geoserver/externals/geomesa/','geomesa',true)
+        antBuild('suite/geoserver/externals/geomesa/build.xml','clean build assemble publish')
         archiveBuildZip('geomesa-accumulo-distributed-runtime')
       }
     }
@@ -185,7 +186,8 @@ pipeline {
 
     stage('Build-GSExts') {
       steps {
-        antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build sonar assemble publish')
+        sonarScan('suite/geoserver/externals/geoserver-exts/','geoserver-exts',true)
+        antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build assemble publish')
         archiveBuildZip('cloudwatch')
         archiveBuildZip('mongodb')
         archiveBuildZip('printng')
@@ -482,7 +484,7 @@ def antBuild(def buildFile, def antTargets) {
 
 def sonarScan(def targetDir, def projectName, def binary=false) {
   withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
-    if ( binary == true ) {
+    if ( params.binary ) {
       sh """
         sonar-scanner \
           -Dsonar.sources=${targetDir} \
