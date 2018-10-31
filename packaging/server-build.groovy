@@ -81,7 +81,7 @@ pipeline {
     }
     stage('Build-GeoTools') {
       steps {
-        sonarScan('suite/geoserver/geotools/','GeoTools')
+        sonarScan('suite/geoserver/geotools/','GeoTools',true)
         antBuild('suite/geoserver/geotools/build.xml','clean build assemble publish')
       }
     }
