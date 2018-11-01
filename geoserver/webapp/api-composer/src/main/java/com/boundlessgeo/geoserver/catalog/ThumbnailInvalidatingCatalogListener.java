@@ -3,26 +3,12 @@
  */
 package com.boundlessgeo.geoserver.catalog;
 
-import javax.annotation.PostConstruct;
-
-import org.geoserver.catalog.Catalog;
-import org.geoserver.catalog.CatalogException;
-import org.geoserver.catalog.CatalogInfo;
-import org.geoserver.catalog.LayerGroupInfo;
-import org.geoserver.catalog.LayerInfo;
-import org.geoserver.catalog.MetadataMap;
-import org.geoserver.catalog.StyleInfo;
-import org.geoserver.catalog.event.CatalogAddEvent;
-import org.geoserver.catalog.event.CatalogListener;
-import org.geoserver.catalog.event.CatalogModifyEvent;
-import org.geoserver.catalog.event.CatalogPostModifyEvent;
-import org.geoserver.catalog.event.CatalogRemoveEvent;
-import org.geoserver.platform.GeoServerExtensions;
+import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
+import org.geoserver.catalog.*;
+import org.geoserver.catalog.event.*;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.boundlessgeo.geoserver.api.controllers.Metadata;
-import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
 
 /**
  * Removes thumbnail metadata from LayerInfo and LayerGroupInfo objects when those objects or any
@@ -30,7 +16,7 @@ import com.boundlessgeo.geoserver.api.controllers.ThumbnailController;
  * is always up to date.
  */
 @Component
-public class ThumbnailInvalidatingCatalogListener implements CatalogListener {
+public class ThumbnailInvalidatingCatalogListener implements CatalogListener, InitializingBean {
     @Autowired
     Catalog catalog;
     @Autowired
@@ -40,9 +26,9 @@ public class ThumbnailInvalidatingCatalogListener implements CatalogListener {
     private boolean modifying = false;
     
     public ThumbnailInvalidatingCatalogListener() { }
-    
-    @PostConstruct
-    private void addListener() {
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
         catalog.addListener(this);
     }
     
