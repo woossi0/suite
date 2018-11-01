@@ -106,7 +106,6 @@ import com.boundlessgeo.geoserver.json.JSONObj;
 import com.google.common.base.Function;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Iterables;
-import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 
@@ -411,7 +410,7 @@ public class IO {
      * {@link #layerDetails(JSONObj, LayerInfo, HttpServletRequest)} and 
      * {@link #layerDetails(JSONObj, LayerGroupInfo, HttpServletRequest)}.
      * 
-     * @param json The object to encode within.
+     * @param obj The object to encode within.
      * @param layer The layer or layer group to encode
      * @param req The HTTP request
      * @return The encoded object
@@ -829,7 +828,7 @@ public class IO {
 
     /**
      * Encode a detailed store description into the passed object
-     * @param obj the bject to encode
+     * @param json the bject to encode
      * @param store the store
      * @param req HTTP request
      * @param geoServer GeoServer instance
@@ -904,7 +903,7 @@ public class IO {
     
     /**
      * Encode a list of layers into the passed object
-     * @param r The store containing the layers to list
+     * @param store The store containing the layers to list
      * @param list the object to encode
      * @param geoServer GeoServer instance
      * @return The encoded object

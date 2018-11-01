@@ -3,44 +3,26 @@
  */
 package com.boundlessgeo.geoserver;
 
-import com.boundlessgeo.geoserver.api.controllers.IO;
-import com.boundlessgeo.geoserver.api.controllers.IconController;
-import com.boundlessgeo.geoserver.api.controllers.ImportController;
-import com.boundlessgeo.geoserver.api.controllers.StoreController;
-import com.boundlessgeo.geoserver.api.controllers.WorkspaceController;
+import com.boundlessgeo.geoserver.api.controllers.*;
 import com.boundlessgeo.geoserver.catalog.UploadDeleteCatalogListener;
 import com.boundlessgeo.geoserver.json.JSONArr;
 import com.boundlessgeo.geoserver.json.JSONObj;
 import com.boundlessgeo.geoserver.util.NameUtil;
 import com.boundlessgeo.geoserver.util.RecentObjectCache;
-
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
 import org.apache.commons.io.IOUtils;
-import org.geoserver.catalog.Catalog;
-import org.geoserver.catalog.CatalogBuilder;
-import org.geoserver.catalog.DataStoreInfo;
-import org.geoserver.catalog.FeatureTypeInfo;
-import org.geoserver.catalog.LayerGroupInfo;
-import org.geoserver.catalog.LayerInfo;
-import org.geoserver.catalog.ResourcePool;
-import org.geoserver.catalog.SLDHandler;
-import org.geoserver.catalog.StoreInfo;
-import org.geoserver.catalog.StyleInfo;
+import org.geoserver.catalog.*;
 import org.geoserver.config.GeoServer;
 import org.geoserver.config.GeoServerInfo;
-import org.geoserver.config.GeoServerPropertyConfigurer;
 import org.geoserver.config.SettingsInfo;
 import org.geoserver.data.test.SystemTestData;
 import org.geoserver.importer.Importer;
 import org.geoserver.platform.GeoServerExtensions;
 import org.geoserver.platform.resource.Resource;
 import org.geoserver.rest.util.RESTUtils;
-import org.geoserver.security.ResourceAccessManager;
 import org.geoserver.test.GeoServerSystemTestSupport;
-import org.geoserver.web.GeoServerApplication;
 import org.geoserver.ysld.YsldHandler;
 import org.geotools.data.DataAccess;
 import org.geotools.data.FeatureSource;
@@ -53,15 +35,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.opengis.feature.Feature;
 import org.opengis.feature.Property;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -69,10 +46,8 @@ import javax.mail.internet.InternetHeaders;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpServletRequest;
-
 import java.io.*;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,12 +55,7 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 
 public class AppIntegrationTest extends GeoServerSystemTestSupport {
@@ -719,7 +689,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertEquals("attachment; filename=\"sf.zip\"", response.getHeader("Content-Disposition"));
 
         Path tmp = Files.createTempDirectory(Paths.get("target"), "export");
-        org.geoserver.data.util.IOUtils.decompress(
+        org.geoserver.util.IOUtils.decompress(
             new ByteArrayInputStream(response.getContentAsByteArray()), tmp.toFile());
 
         assertTrue(tmp.resolve("bundle.json").toFile().exists());

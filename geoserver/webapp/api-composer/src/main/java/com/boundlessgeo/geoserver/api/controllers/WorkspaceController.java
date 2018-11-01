@@ -21,8 +21,7 @@ import org.geoserver.catalog.StoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.catalog.util.CloseableIterator;
 import org.geoserver.config.GeoServer;
-import org.geoserver.data.util.IOUtils;
-
+import org.geoserver.util.IOUtils;
 import com.boundlessgeo.geoserver.bundle.BundleExporter;
 import com.boundlessgeo.geoserver.bundle.BundleImporter;
 import com.boundlessgeo.geoserver.bundle.ExportOpts;
