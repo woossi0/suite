@@ -96,7 +96,7 @@ public class ServerInfoController extends ApiController {
                 Class<?> returnType = resultInfo.get("result").getType();
                 
                 //Only include processes that return a geometry or a raster
-                if (com.vividsolutions.jts.geom.Geometry.class.isAssignableFrom(returnType) || 
+                if (org.locationtech.jts.geom.Geometry.class.isAssignableFrom(returnType) ||
                         org.geotools.data.simple.SimpleFeatureCollection.class.isAssignableFrom(returnType) ||
                         org.geotools.coverage.grid.GridCoverage2D.class.isAssignableFrom(returnType)) {
                     JSONObj process = arr.addObject();

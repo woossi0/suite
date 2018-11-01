@@ -24,7 +24,7 @@ import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 
 import com.boundlessgeo.geoserver.json.JSONObj;
-import com.vividsolutions.jts.io.WKTReader;
+import org.locationtech.jts.io.WKTReader;
 
 public class H2TestData implements AutoCloseable {
 

@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.opengis.feature.simple.SimpleFeatureType;
 import com.boundlessgeo.geoserver.Proj;
 import com.boundlessgeo.geoserver.json.JSONObj;
-import com.vividsolutions.jts.geom.Point;
+import org.locationtech.jts.geom.Point;
 
 public class IOTest {
 

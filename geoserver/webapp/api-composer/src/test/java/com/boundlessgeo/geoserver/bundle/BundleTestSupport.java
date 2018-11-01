@@ -1,13 +1,13 @@
 package com.boundlessgeo.geoserver.bundle;
 
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
+import org.geoserver.config.GeoServerConfigPersister;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.ParseException;
+import org.locationtech.jts.io.WKTReader;
 import org.apache.commons.io.FileUtils;
 import org.geoserver.catalog.Catalog;
 import org.geoserver.catalog.impl.CatalogImpl;
-import org.geoserver.config.GeoServerPersister;
 import org.geoserver.config.util.XStreamPersisterFactory;
 import org.geoserver.platform.GeoServerResourceLoader;
 import org.geotools.util.logging.Logging;
@@ -61,7 +61,7 @@ public class BundleTestSupport {
 
         Catalog cat = new CatalogImpl();
         cat.setResourceLoader(resourceLoader);
-        cat.addListener(new GeoServerPersister(resourceLoader, new XStreamPersisterFactory().createXMLPersister()));
+        cat.addListener(new GeoServerConfigPersister(resourceLoader, new XStreamPersisterFactory().createXMLPersister()));
         return cat;
     }
 

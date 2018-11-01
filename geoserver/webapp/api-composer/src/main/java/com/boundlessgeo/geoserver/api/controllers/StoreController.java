@@ -31,23 +31,18 @@ import org.geoserver.catalog.WMSStoreInfo;
 import org.geoserver.catalog.WorkspaceInfo;
 import org.geoserver.catalog.util.CloseableIterator;
 import org.geoserver.config.GeoServer;
-import org.geoserver.platform.resource.Files;
 import org.geotools.data.DataAccess;
 import org.geotools.data.DataAccessFinder;
 import org.geotools.data.DataStore;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.Query;
-import org.geotools.data.simple.SimpleFeatureSource;
-import org.geotools.data.wms.WebMapServer;
+import org.geotools.data.util.NullProgressListener;
 import org.geotools.feature.FeatureCollection;
-import org.geotools.feature.FeatureIterator;
 import org.geotools.feature.NameImpl;
-import org.geotools.util.NullProgressListener;
+import org.geotools.ows.wms.WebMapServer;
 import org.geotools.util.logging.Logging;
 import org.opengis.coverage.grid.Format;
 import org.opengis.coverage.grid.GridCoverageReader;
-import org.opengis.feature.Feature;
-import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -259,7 +254,6 @@ import com.boundlessgeo.geoserver.json.JSONObj;
     /**
      * API endpoint to create a new store
      * @param wsName The workspace to create the store in
-     * @param name The name of the new store
      * @param obj The connection parameters for the store
      * @param req The HTTP request
      * @return The description of the newly created store

@@ -443,7 +443,7 @@ public class BundleExporter {
                 if (geom != null) {
                     fe.setGeometryColumn(geom.getLocalName());
                     fe.setGeometryType(Geometries.getForBinding(
-                        (Class<? extends com.vividsolutions.jts.geom.Geometry>) geom.getType().getBinding()));
+                        (Class<? extends org.locationtech.jts.geom.Geometry>) geom.getType().getBinding()));
                 }
 
                 gpkg.add(fe, (SimpleFeatureSource) ft.getFeatureSource(null, null), Filter.INCLUDE);

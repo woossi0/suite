@@ -67,7 +67,7 @@ import com.boundlessgeo.geoserver.json.JSONObj;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.vividsolutions.jts.geom.Envelope;
+import org.locationtech.jts.geom.Envelope;
 
 @Controller("apiMapController")
 @RequestMapping(API_PATH+"/maps")
