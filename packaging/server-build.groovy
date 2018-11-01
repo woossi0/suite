@@ -15,6 +15,9 @@ Build requirements:
 ** 3.3.9
 * rpmbuild
 * docker
+* bouncy-castle (for OWASP dep-checker)
+** (ref) https://stackoverflow.com/questions/31971499/ecdhe-cipher-suites-not-supported-on-openjdk-8-installed-on-ec2-linux-machine/33521718#33521718
+** https://www.bouncycastle.org/download/bcprov-jdk15on-160.jar /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/lib/ext
 
 Source repos:
 * https://github.com/boundlessgeo/suite
@@ -46,6 +49,7 @@ pipeline {
         makeDir("$WORKSPACE/archive/ubuntu/16/")
         makeDir("$WORKSPACE/archive/war/")
         makeDir("$WORKSPACE/archive/zip/")
+        makeDir("$WORKSPACE/archive/owasp")
 
         gitCheckoutRecursive()
 
@@ -217,6 +221,47 @@ pipeline {
       steps {
         packageWars()
         archiveArtifacts artifacts: "archive/war/${ARCHIVE_BASENAME}-*.zip", fingerprint: true
+      }
+    }
+    
+    stage('OWASP-DepCheck') {
+      steps {
+        makeDir("$WORKSPACE/tmp/zip/")
+        makeDir("$WORKSPACE/tmp/jar/")
+        withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
+          sh """
+            unzip archive/war/BoundlessServer-*ext.zip -d tmp/zip/
+            unzip archive/war/BoundlessServer-*war.zip -d tmp/zip/
+            find archive/war/ -type l -delete
+            cd tmp/zip/BoundlessServer-*-war
+            
+            for i in `ls`; do
+              j=`echo \$i | awk -F. '{print \$1}'`
+              unzip \$i -d \$j
+            done
+            
+            cd $WORKSPACE
+            for i in `find tmp/zip/ -name *.jar`; do
+              mv \$i tmp/jar/
+            done
+            
+            cd archive/owasp/
+            owasp-dependency-check \
+              --project "[Server] OWASP Dependency Checker" \
+              --scan "/var/jenkins/workspace/Server-pipeline/tmp/jar/" \
+              --format ALL
+            cd $WORKSPACE
+            
+            sonar-scanner \
+              -Dsonar.sources=$WORKSPACE/archive/owasp/ \
+              -Dsonar.projectName="[Server] OWASP Dependency Checker" \
+              -Dsonar.projectKey=org.boundlessgeo:owasp-all \
+              -Dsonar.host.url=${SONAR_HOST_URL} \
+              -Dsonar.login=${SONAR_QUBE_TOKEN} \
+              -Dsonar.dependencyCheck.reportPath=$WORKSPACE/archive/owasp/dependency-check-report.xml \
+              -Dsonar.dependencyCheck.htmlReportPath=$WORKSPACE/archive/owasp/dependency-check-report.html
+          """
+        }
       }
     }
 
