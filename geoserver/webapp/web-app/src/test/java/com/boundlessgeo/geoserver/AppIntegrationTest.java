@@ -302,25 +302,7 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         ImportController ctrl = new ImportController(getGeoServer(), applicationContext);
         StoreController storeCtrl = new StoreController(getGeoServer());
 
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        request.setContextPath("/geoserver");
-        request.setRequestURI("/geoserver/hello");
-        request.setMethod("post");
-        request.addHeader("Authorization", adminAuthHeader);
-        
-        //Import as separate files
-        MimeMultipart body = initMultiPartFormContent(request);
-
-        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.dbf\"", "application/octet-stream",
-                IOUtils.toByteArray(getClass().getResourceAsStream("point.dbf")));
-        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.prj\"", "application/octet-stream",
-                IOUtils.toByteArray(getClass().getResourceAsStream("point.prj")));
-        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.shp\"", "application/octet-stream",
-                IOUtils.toByteArray(getClass().getResourceAsStream("point.shp")));
-        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.shx\"", "application/octet-stream",
-                IOUtils.toByteArray(getClass().getResourceAsStream("point.shx")));
-        
-        createMultiPartFormContent(body, request);
+        MockHttpServletRequest request = createShapefileUpload();
 
 
         JSONObj result = ctrl.importFile("gs", request);
@@ -362,6 +344,9 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         deleteRequest.addHeader("Authorization", adminAuthHeader);
         storeCtrl.delete("gs", "point", true, deleteRequest);
         assertFalse(new File(catalog.getResourceLoader().getBaseDirectory(), "uploads/gs/point/point.shp").exists());
+        //recreate the request so that the stream isn't already read
+        request = createShapefileUpload();
+
         result = ctrl.importFile("gs", request);
         id = Long.parseLong(result.str("id"));
         //Wait for the import to complete
@@ -372,6 +357,30 @@ public class AppIntegrationTest extends GeoServerSystemTestSupport {
         assertNotNull(result);
         assertEquals(1, result.array("tasks").size());
         assertEquals("COMPLETE", result.array("tasks").object(0).get("status"));
+    }
+
+    private MockHttpServletRequest createShapefileUpload() throws Exception {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setContextPath("/geoserver");
+        request.setRequestURI("/geoserver/hello");
+        request.setMethod("post");
+        request.addHeader("Authorization", adminAuthHeader);
+
+        //Import as separate files
+        MimeMultipart body = initMultiPartFormContent(request);
+
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.dbf\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.dbf")));
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.prj\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.prj")));
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.shp\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.shp")));
+        appendMultiPartFormContent(body, "form-data; name=\"upload\"; filename=\"point.shx\"", "application/octet-stream",
+                IOUtils.toByteArray(getClass().getResourceAsStream("point.shx")));
+
+        createMultiPartFormContent(body, request);
+
+        return request;
     }
     
     @Test
