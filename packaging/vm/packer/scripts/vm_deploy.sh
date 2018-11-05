@@ -28,6 +28,7 @@ else
   REPO_PASSWORD=$3
 fi
 
+echo 'LC_ALL="en_US.UTF-8"' >> /etc/environment
 wget -qO- https://apt.boundlessgeo.com/gpg.key | apt-key add -
 
 echo "Adding Boundless Test repo..."
