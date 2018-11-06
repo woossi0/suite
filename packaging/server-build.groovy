@@ -51,7 +51,7 @@ pipeline {
         makeDir("$WORKSPACE/archive/war/")
         makeDir("$WORKSPACE/archive/zip/")
 
-        gitCheckoutRecursive()
+        gitCheckoutRecursive('suite','$BRANCH_NAME')
 
         // Store short SHA of repo into variable
         // Used for artifact capture
@@ -411,10 +411,12 @@ def gitCheckout(def repo, def branch) {
   """
 }
 
-def gitCheckoutRecursive() {
+def gitCheckoutRecursive(def repo, def branch) {
   sh """
-    cd $WORKSPACE/suite
-    git reset --hard HEAD
+    rm -rf $repo
+    git clone "git@github.com:boundlessgeo/${repo}.git"
+    cd $repo
+    git checkout $branch
     git submodule foreach git reset --hard HEAD || true
     git submodule update --init --recursive
   """
