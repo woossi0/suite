@@ -1,0 +1,22 @@
+Boundless Server build complete! Username and password can be found pinned in Slack.
+
+Docker:
+```docker run quay.io/boundlessgeo/server:REPLACE_BRANCH```
+
+WARs:
+http://<userName>:<password>@priv-repo.boundlessgeo.com/suite/REPLACE_BRANCH/war/
+
+
+CentOS 6:
+```echo -e "[boundless-private]\nname=Boundless Private Repo\nbaseurl=http://<userName>:<password>@priv-repo.boundlessgeo.com/suite/REPLACE_BRANCH/el/6/\nenabled=1\ngpgcheck=0" > /etc/yum.repos.d/boundless.repo```
+
+
+CentOS 7:
+```echo -e "[boundless-private]\nname=Boundless Private Repo\nbaseurl=http://<userName>:<password>@priv-repo.boundlessgeo.com/suite/REPLACE_BRANCH/el/7/\nenabled=1\ngpgcheck=0" > /etc/yum.repos.d/boundless.repo```
+
+
+Ubuntu 14:
+```echo "deb http://<userName>:<password>@priv-repo.boundlessgeo.com/suite/REPLACE_BRANCH/ubuntu/14 ./" > /etc/apt/sources.list.d/boundless.list```
+
+Ubuntu 16 (unstable):
+```echo "deb http://<userName>:<password>@priv-repo.boundlessgeo.com/suite/REPLACE_BRANCH/ubuntu/16 ./" > /etc/apt/sources.list.d/boundless.list```
