@@ -29,6 +29,10 @@ pipeline {
   agent {
     label 'jenkins-slave-01.boundlessgeo.com'
   }
+  
+  options {
+        disableConcurrentBuilds()
+    }
 
   stages {
   	stage('Init') {
@@ -334,6 +338,8 @@ pipeline {
             '
           """
         }
+        
+        trimRepo()
       }
     }
 
@@ -373,19 +379,12 @@ pipeline {
     stage('Slack-Notif') {
       steps {
         script {
-          if ( BUILD_TYPE.equals('master') ) {
-            sh """
-              cd suite/packaging/slack_notif
-              cat nightly-message.txt | bash slacktee.sh -n -p
-              exit 0
-            """
-          } else if ( BUILD_TYPE.equals('stable') ) {
-            sh """
-              cd suite/packaging/slack_notif
-              cat release-message.txt | bash slacktee.sh -n -p
-              exit 0
-            """
-          }
+          sh """
+            cd suite/packaging/slack_notif
+            sed -i 's/REPLACE_BRANCH/${BRANCH_NAME}/g' bots-message.txt
+            cat bots-message.txt | bash slacktee.sh -n -p
+            exit 0
+          """
         }
       }
     }
@@ -422,6 +421,7 @@ def gitCheckoutRecursive() {
 }
 
 def setEnvs() {
+  env.BUILD_TYPE = "$BRANCH_NAME"
   env.BRANDING = 'boundless-server'
   env.ARCHIVE_BASENAME = 'BoundlessServer'
   env.LICENSE_DIR = "$WORKSPACE/packaging/licenses"
@@ -440,12 +440,12 @@ def setEnvs() {
     env.PACKAGE_VERSION = "$DATE_TIME_STAMP"
     env.NEXT_VER= sh ( script: "echo \$((PACKAGE_VERSION+1))", returnStdout:true).trim()
     env.DOCKER_VER = "nightly"
-  } else if ( BUILD_TYPE.equals('stable') ) {
+  } else {
     env.SERVER_BRANCH = "$VER"
     env.MINOR_VERSION = "server-${VER}"
     env.PACKAGE_VERSION = "$VER"
     env.NEXT_VER = "${PACKAGE_VERSION}.1"
-    env.DOCKER_VER = "$VER"
+    env.DOCKER_VER = "$BRANCH_NAME"
   }
   echo "DEBUG: PACKAGE_VERSION is ${PACKAGE_VERSION}"
   echo "DEBUG: NEXT_VER is ${NEXT_VER}"
@@ -682,4 +682,13 @@ def debConvert(def component, def ubuntuVer) {
       mv /tmp/convert-${BUILD_TYPE}/${ubuntuVer}/${component}/*.deb $DEST_DIR
     '
   """
+}
+
+def trimRepo() {
+  productPackages = ['composer', 'dashboard', 'docs', 'geoserver', 'geowebcache', 'gs-appschema', 'gs-arcsde', 'gs-cloudwatch', 'gs-cluster', 'gs-csw', 'gs-db2', 'gs-gdal', 'gs-geogig', 'gs-geomesa-accumulo', 'gs-grib', 'gs-gsr', 'gs-inspire', 'gs-jdbcconfig', 'gs-jdbcstore', 'gs-jp2k', 'gs-mongodb', 'gs-netcdf', 'gs-netcdf-out', 'gs-oracle', 'gs-printng', 'gs-script', 'gs-sqlserver', 'gs-vectortiles', 'wpsbuilder', 'quickview']
+  for (int i = 0; i < productPackages.size(); i++) {
+    sh """
+      ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/el/6/${BRANDING}-${productPackages[i]}-*.rpm | tail -n +3 | xargs rm -- || true'
+    """
+  }
 }
