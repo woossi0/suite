@@ -696,6 +696,9 @@ def trimRepo() {
   for (int i = 0; i < productPackages.size(); i++) {
     sh """
       ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/el/6/${BRANDING}-${productPackages[i]}-*.rpm | tail -n +3 | xargs rm -- || true'
+      ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/el/7/${BRANDING}-${productPackages[i]}-*.rpm | tail -n +3 | xargs rm -- || true'
+      ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/ubuntu/14/${BRANDING}-${productPackages[i]}_*.deb | tail -n +3 | xargs rm -- || true'
+      ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/ubuntu/16/${BRANDING}-${productPackages[i]}_*.deb | tail -n +3 | xargs rm -- || true'
     """
   }
 }
