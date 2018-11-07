@@ -248,8 +248,8 @@ pipeline {
         // Replace versions in dependencies
         script {
           sh """
-            sed -i "s:CURRENT_VER:${VER}:g" ${WORKSPACE}/suite/packaging/ubuntu/14/depends.esv
-            sed -i "s:CURRENT_VER:${VER}:g" ${WORKSPACE}/suite/packaging/ubuntu/16/depends.esv
+            sed -i "s:CURRENT_VER:${PACKAGE_VERSION}:g" ${WORKSPACE}/suite/packaging/ubuntu/14/depends.esv
+            sed -i "s:CURRENT_VER:${PACKAGE_VERSION}:g" ${WORKSPACE}/suite/packaging/ubuntu/16/depends.esv
             sed -i "s:NEXT_VER:${NEXT_VER}:g" ${WORKSPACE}/suite/packaging/ubuntu/14/depends.esv
             sed -i "s:NEXT_VER:${NEXT_VER}:g" ${WORKSPACE}/suite/packaging/ubuntu/16/depends.esv
           """
@@ -388,7 +388,12 @@ pipeline {
         }
       }
     }
-
+  }
+  
+  post {
+    always {
+      cleanWs()
+    }
   }
 }
 
@@ -440,7 +445,7 @@ def setEnvs() {
     env.SERVER_BRANCH = "master"
     env.MINOR_VERSION = "SNAPSHOT${DATE_TIME_STAMP}-${BUILD_NUMBER}"
     env.PACKAGE_VERSION = "$DATE_TIME_STAMP"
-    env.NEXT_VER= sh ( script: "echo \$((PACKAGE_VERSION+1))", returnStdout:true).trim()
+    env.NEXT_VER = sh ( script: "echo \$((PACKAGE_VERSION+1))", returnStdout:true).trim()
     env.DOCKER_VER = "nightly"
   } else {
     env.SERVER_BRANCH = "$VER"
