@@ -476,11 +476,11 @@ def setEnvs() {
   env.BUILD_TYPE = "$BRANCH_NAME"
   env.BRANDING = 'boundless-server'
   env.ARCHIVE_BASENAME = 'BoundlessServer'
-  env.LICENSE_DIR = "$WORKSPACE/suite/packaging/licenses"
+  env.LICENSE_DIR = "$WORKSPACE/packaging/licenses"
   env.ARTIFACT_ROOT = "$WORKSPACE/archive/zip"
   env.WARS_DIR = "$WORKSPACE/archive/war"
   env.DATE_TIME_STAMP = sh (script: "date +%Y%m%d%H%M", returnStdout:true).trim()
-  env.VER = sh (script: "grep server.version= $WORKSPACE/suite/build/build.properties | sed 's:server.version=::'", returnStdout:true).trim()
+  env.VER = sh (script: "grep server.version= $WORKSPACE/build/build.properties | sed 's:server.version=::'", returnStdout:true).trim()
   env.ARTIFACT_DIR = "/var/www/server/core/${BUILD_TYPE}/HEAD"
   env.SUITE_BUILD_CAT = 'HEAD'
   env.SERVER_BUILD_CAT = 'HEAD'
