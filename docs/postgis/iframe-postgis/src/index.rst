@@ -1,2 +1,0 @@
-PostGIS Documentation
-=====================
