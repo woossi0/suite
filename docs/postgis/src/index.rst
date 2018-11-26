@@ -16,6 +16,7 @@ PostGIS Documentation
     reference_raster
     faq_raster
     topology
+    address_standardizer
     extras
     postgis_aggs_mm
     reporting

@@ -10,10 +10,9 @@
             <param name="flags" value="-q"/>
         </antcall>
 
-        <get src="http://data.boundlessgeo.com/server/postgis-docs-${pg.version}.zip" dest="doc.zip"
-             skipexisting="true"/>
         <mkdir dir="${doc.dir}"/>
-        <unzip src="doc.zip" dest="${doc.dir}"/>
+        <gunzip src="doc-html-${pg.version}.tar.gz"/>
+        <untar src="doc-html-${pg.version}.tar" dest="${doc.dir}"/>
         <copy file="style.css" todir="${doc.dir}/html" overwrite="true"/>
     </target>
 
