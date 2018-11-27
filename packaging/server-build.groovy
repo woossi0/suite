@@ -362,11 +362,11 @@ pipeline {
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/7/
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/'
-            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/ubuntu/14/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/*.deb'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/ubuntu/14/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/'
             scp archive/ubuntu/14/*.deb root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/'
-            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/ubuntu/16/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/*.deb'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/ubuntu/16/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/'
             scp archive/ubuntu/16/*.deb root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/
           """
         }
