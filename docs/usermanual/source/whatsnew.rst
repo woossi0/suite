@@ -5,6 +5,18 @@
 What's new in |version|
 =======================
 
+This version is a bugfix release, and primarily fixes some issues with MapBox Vector tiles:
+
+* Fixes an issue with vector tiles that would cause point features to jump around when zooming in.
+* Adds support for the ``application/vnd.mapbox-vector-tile`` Mapbox Vector Tiles mime type. The legacy mime type of ``application/x-protobuf;type=mapbox-vector`` is still supported for backwards compatibility
+
+If you are using OpenLayers to render the vector tiles returned from GeoServer we recommend using the latest version of OpenLayers. Old versions (e.g. OpenLayers 3) may show rendering errors with this Boundless Server version.
+
+There are also various other bugfixes included.
+
+What's new in 1.1.0
+===================
+
 This version contains numerous enhancements, component upgrades and bug fixes. Highlights include:
 
 * Packages for Ubuntu 16 and CentOS 7 are now available.
