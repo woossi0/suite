@@ -13,7 +13,7 @@ RUN apt-get -y update \
        unzip vim nano wget git ca-certificates apt-transport-https libyajl2
 
 # Add Boundless gpg.key and customized repo source, then update repos
-RUN echo "deb http://suite:B0und1e55%2123@priv-repo.boundlessgeo.com/suite/REPLACE_VERSION/ubuntu/14/ ./" > \
+RUN echo "deb http://server:PRIV_REPO_PASSWORD@priv-repo.boundlessgeo.com/suite/REPLACE_VERSION/ubuntu/14/ ./" > \
    /etc/apt/sources.list.d/boundless.list
 
 

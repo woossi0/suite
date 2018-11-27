@@ -307,16 +307,27 @@ pipeline {
           sh """
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/war/'
             scp archive/war/${ARCHIVE_BASENAME}-*.zip root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/war/
+            
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/el/6/'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -rf /var/www/repo/third-party/el/6/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/6/'
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/6/
+            
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/el/7/'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -rf /var/www/repo/third-party/el/7/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/7/'
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/7/
+            
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -rf /var/www/repo/third-party/ubuntu/14/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/*.deb'
             scp archive/ubuntu/14/*.deb root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/
+            
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -rf /var/www/repo/third-party/ubuntu/16/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/*.deb'
             scp archive/ubuntu/16/*.deb root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/
           """
         }
+        
+        trimRepo()
+        
         // Resign 3rd party RPMs
         script {
           sh """
@@ -343,21 +354,22 @@ pipeline {
             '
           """
         }
-        
-        trimRepo()
       }
     }
 
     stage('Build-Docker') {
       steps {
-        script{
-          sh """
-            cd $WORKSPACE/suite/packaging/docker
-            echo "Building version: ${DOCKER_VER}"
-            sed -i "s/REPLACE_VERSION/${BUILD_TYPE}/g" Dockerfile
-            docker build -t quay.io/boundlessgeo/server:$DOCKER_VER .
-            docker push quay.io/boundlessgeo/server:$DOCKER_VER
-          """
+        withCredentials([string(credentialsId: 'PRIV_REPO_PASSWORD', variable: 'PRIV_REPO_PASSWORD')]) {
+          script{
+            sh """
+              cd $WORKSPACE/suite/packaging/docker
+              echo "Building version: ${DOCKER_VER}"
+              sed -i "s/REPLACE_VERSION/${BUILD_TYPE}/g" Dockerfile
+              sed -i "s/PRIV_REPO_PASSWORD/${PRIV_REPO_PASSWORD}/" Dockerfile
+              docker build -t quay.io/boundlessgeo/server:$DOCKER_VER .
+              docker push quay.io/boundlessgeo/server:$DOCKER_VER
+            """
+          }
         }
       }
     }
