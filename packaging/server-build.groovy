@@ -309,19 +309,19 @@ pipeline {
             scp archive/war/${ARCHIVE_BASENAME}-*.zip root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/war/
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/el/6/'
-            ssh root@priv-repo.boundlessgeo.com '/bin/cp -rf /var/www/repo/third-party/el/6/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/6/'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/6/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/6/'
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/6/
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/el/7/'
-            ssh root@priv-repo.boundlessgeo.com '/bin/cp -rf /var/www/repo/third-party/el/7/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/7/'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/7/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/7/'
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/7/
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/'
-            ssh root@priv-repo.boundlessgeo.com '/bin/cp -rf /var/www/repo/third-party/ubuntu/14/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/*.deb'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/ubuntu/14/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/*.deb'
             scp archive/ubuntu/14/*.deb root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/'
-            ssh root@priv-repo.boundlessgeo.com '/bin/cp -rf /var/www/repo/third-party/ubuntu/16/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/*.deb'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/ubuntu/16/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/*.deb'
             scp archive/ubuntu/16/*.deb root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/ubuntu/16/
           """
         }
