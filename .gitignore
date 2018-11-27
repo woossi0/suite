@@ -17,6 +17,7 @@ jetty/lib
 /docs/install/mac/source/img/
 /docs/install/windows/source/README-windows.rst
 /docs/install/windows/source/img/
+docs/postgis/doc-html-*.tar
 /geoserver/web/app/src/main/
 /data_dir
 geoserver/webapp/proxy.json
