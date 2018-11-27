@@ -54,13 +54,14 @@ import org.geoserver.platform.resource.Files;
 import org.geoserver.platform.resource.Paths;
 import org.geotools.coverage.grid.io.AbstractGridFormat;
 import org.geotools.coverage.grid.io.GridCoverage2DReader;
+import org.geotools.coverage.util.FeatureUtilities;
 import org.geotools.data.DataAccess;
 import org.geotools.data.DataAccessFactory;
 import org.geotools.data.DataStore;
 import org.geotools.data.FileDataStoreFactorySpi;
 import org.geotools.data.DataAccessFactory.Param;
-import org.geotools.data.ows.Layer;
 import org.geotools.data.Parameter;
+import org.geotools.data.util.NullProgressListener;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.feature.FeatureIterator;
 import org.geotools.feature.FeatureTypes;
@@ -70,11 +71,10 @@ import org.geotools.filter.visitor.DuplicatingFilterVisitor;
 import org.geotools.geometry.jts.Geometries;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.jdbc.JDBCDataStoreFactory;
+import org.geotools.ows.wms.Layer;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
-import org.geotools.resources.coverage.FeatureUtilities;
 import org.geotools.util.Converters;
-import org.geotools.util.NullProgressListener;
 import org.geotools.util.logging.Logging;
 import org.ocpsoft.pretty.time.PrettyTime;
 import org.opengis.coverage.grid.Format;
@@ -106,9 +106,8 @@ import com.boundlessgeo.geoserver.json.JSONObj;
 import com.google.common.base.Function;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Iterables;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
 
 /**
  * Helper for encoding/decoding objects to/from JSON.
@@ -411,7 +410,7 @@ public class IO {
      * {@link #layerDetails(JSONObj, LayerInfo, HttpServletRequest)} and 
      * {@link #layerDetails(JSONObj, LayerGroupInfo, HttpServletRequest)}.
      * 
-     * @param json The object to encode within.
+     * @param obj The object to encode within.
      * @param layer The layer or layer group to encode
      * @param req The HTTP request
      * @return The encoded object
@@ -829,7 +828,7 @@ public class IO {
 
     /**
      * Encode a detailed store description into the passed object
-     * @param obj the bject to encode
+     * @param json the bject to encode
      * @param store the store
      * @param req HTTP request
      * @param geoServer GeoServer instance
@@ -904,7 +903,7 @@ public class IO {
     
     /**
      * Encode a list of layers into the passed object
-     * @param r The store containing the layers to list
+     * @param store The store containing the layers to list
      * @param list the object to encode
      * @param geoServer GeoServer instance
      * @return The encoded object

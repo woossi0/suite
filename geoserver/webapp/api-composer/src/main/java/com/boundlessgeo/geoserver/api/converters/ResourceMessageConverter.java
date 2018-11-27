@@ -10,7 +10,6 @@ import org.geoserver.rest.converters.BaseMessageConverter;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.AbstractHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.stereotype.Component;
@@ -39,12 +38,8 @@ public class ResourceMessageConverter extends BaseMessageConverter<Resource> {
 
     @Override
     protected void writeInternal(Resource resource, HttpOutputMessage msg) throws IOException, HttpMessageNotWritableException {
-        InputStream in = resource.in();
-        try {
+        try (InputStream in = resource.in()) {
             IOUtils.copy(in, msg.getBody());
-        }
-        finally {
-            IOUtils.closeQuietly(in);
         }
     }
 

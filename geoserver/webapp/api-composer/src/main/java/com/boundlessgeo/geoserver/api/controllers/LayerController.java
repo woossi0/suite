@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -335,10 +336,10 @@ public class LayerController extends ApiController {
             FeatureTypeInfo ft = null;
             try {
                 ft = builder.buildFeatureType(resourceName);
-            }
-            catch(Exception e) {
-                Throwables.propagateIfInstanceOf(e, IOException.class);
-                Throwables.propagate(e);
+            } catch (IOException ie) {
+                throw ie;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
 
             DataAccess data = dataStore.getDataStore(null);
@@ -355,9 +356,10 @@ public class LayerController extends ApiController {
             CoverageInfo cov = null;
             try {
                 cov = builder.buildCoverage(resourceName.getLocalPart());
+            } catch (IOException ie) {
+                throw ie;
             } catch (Exception e) {
-                Throwables.propagateIfInstanceOf(e, IOException.class);
-                Throwables.propagate(e);
+                throw new RuntimeException(e);
             }
 
             return builder.buildLayer(cov);
@@ -385,7 +387,7 @@ public class LayerController extends ApiController {
         try (
             BufferedReader reader = cat.getResourcePool().readStyle(orig);
         ) {
-            cat.getResourcePool().writeStyle(dup, new ByteArrayInputStream(IOUtils.toByteArray(reader)));
+            cat.getResourcePool().writeStyle(dup, new ByteArrayInputStream(IOUtils.toByteArray(reader, Charset.defaultCharset())));
         }
 
         return dup;

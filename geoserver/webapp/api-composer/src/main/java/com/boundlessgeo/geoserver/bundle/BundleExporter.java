@@ -26,8 +26,7 @@ import org.geoserver.catalog.util.CloseableIterator;
 import org.geoserver.config.GeoServerDataDirectory;
 import org.geoserver.config.util.XStreamPersister;
 import org.geoserver.config.util.XStreamPersisterFactory;
-import org.geoserver.data.util.IOUtils;
-import org.geoserver.ows.util.OwsUtils;
+import org.geoserver.util.IOUtils;import org.geoserver.ows.util.OwsUtils;
 import org.geoserver.platform.GeoServerResourceLoader;
 import org.geotools.data.DataAccessFactory;
 import org.geotools.data.DataAccessFactory.Param;
@@ -39,6 +38,7 @@ import org.geotools.geometry.jts.Geometries;
 import org.geotools.geopkg.FeatureEntry;
 import org.geotools.geopkg.GeoPackage;
 import org.geotools.geopkg.GeoPkgDataStoreFactory;
+import org.geotools.util.URLs;
 import org.geotools.util.logging.Logging;
 import org.opengeo.GeoServerInfo;
 import org.opengis.feature.simple.SimpleFeatureType;
@@ -364,7 +364,7 @@ public class BundleExporter {
             if (str.startsWith("file:")) {
                 // turn into a url first
                 try {
-                    return DataUtilities.urlToFile(new URL(str));
+                    return URLs.urlToFile(new URL(str));
                 } catch (MalformedURLException e) {
                     // ignore
                 }
@@ -372,11 +372,11 @@ public class BundleExporter {
             return new File(str);
         }
         else if (obj instanceof URL) {
-            return DataUtilities.urlToFile((URL)obj);
+            return URLs.urlToFile((URL)obj);
         }
         else if (obj instanceof URI) {
             try {
-                return DataUtilities.urlToFile(((URI)obj).toURL());
+                return URLs.urlToFile(((URI)obj).toURL());
             } catch (MalformedURLException e) {
                 LOG.log(Level.WARNING, "Unable to turn: " + obj + " into file", e);
             }
@@ -443,7 +443,7 @@ public class BundleExporter {
                 if (geom != null) {
                     fe.setGeometryColumn(geom.getLocalName());
                     fe.setGeometryType(Geometries.getForBinding(
-                        (Class<? extends com.vividsolutions.jts.geom.Geometry>) geom.getType().getBinding()));
+                        (Class<? extends org.locationtech.jts.geom.Geometry>) geom.getType().getBinding()));
                 }
 
                 gpkg.add(fe, (SimpleFeatureSource) ft.getFeatureSource(null, null), Filter.INCLUDE);

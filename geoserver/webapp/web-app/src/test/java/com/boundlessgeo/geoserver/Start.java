@@ -48,7 +48,6 @@ public class Start {
             conn.setPort(port);
             conn.setAcceptQueueSize(100);
             conn.setIdleTimeout(1000 * 60 * 60);
-            conn.setSoLingerTime(-1);
             jettyServer.setConnectors(new Connector[] { conn });
 
             WebAppContext wah = new WebAppContext();
