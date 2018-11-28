@@ -310,10 +310,12 @@ pipeline {
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/el/6/'
             ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/6/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/6/'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/6/*.xml /var/www/repo/suite/${BUILD_TYPE}/el/6/'
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/6/
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/el/7/'
             ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/7/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/7/'
+            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/7/*.xml /var/www/repo/suite/${BUILD_TYPE}/el/7/'
             scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/7/
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/'
