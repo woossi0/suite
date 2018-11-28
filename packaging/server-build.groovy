@@ -566,7 +566,8 @@ def sonarScan(def targetDir, def projectName, def binary=false) {
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
           -Dsonar.host.url=${SONAR_HOST_URL} \
           -Dsonar.login=${SONAR_QUBE_TOKEN} \
-          -Dsonar.java.binaries=${targetDir}
+          -Dsonar.java.binaries=${targetDir} \
+          -X
       """
     } else {
       sh """
@@ -575,7 +576,8 @@ def sonarScan(def targetDir, def projectName, def binary=false) {
           -Dsonar.projectName="[Server] ${projectName}" \
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
           -Dsonar.host.url=${SONAR_HOST_URL} \
-          -Dsonar.login=${SONAR_QUBE_TOKEN}
+          -Dsonar.login=${SONAR_QUBE_TOKEN} \
+          -X
       """
     }
   }
