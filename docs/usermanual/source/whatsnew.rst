@@ -15,7 +15,7 @@ If you are using OpenLayers to render the vector tiles returned from GeoServer w
 There are also various other bugfixes included.
 
 What's new in 1.1.0
-===================
+-------------------
 
 This version contains numerous enhancements, component upgrades and bug fixes. Highlights include:
 
