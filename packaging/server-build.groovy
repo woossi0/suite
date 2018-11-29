@@ -562,7 +562,7 @@ def sonarScan(def targetDir, def projectName, def binary=false) {
   withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
     if ( binary ) {
       sh """
-        SONAR_SCANNER_OPTS="-Xss2m" sonar-scanner \
+        SONAR_SCANNER_OPTS="-Xss4m" sonar-scanner \
           -Dsonar.sources=${targetDir} \
           -Dsonar.projectName="[Server] ${projectName}" \
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
@@ -573,7 +573,7 @@ def sonarScan(def targetDir, def projectName, def binary=false) {
       """
     } else {
       sh """
-        SONAR_SCANNER_OPTS="-Xss2m" sonar-scanner \
+        SONAR_SCANNER_OPTS="-Xss4m" sonar-scanner \
           -Dsonar.sources=${targetDir} \
           -Dsonar.projectName="[Server] ${projectName}" \
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
