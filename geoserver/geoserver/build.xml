@@ -52,6 +52,7 @@
     <!-- modify artifacts -->
 
     <!-- copy the ogr jars into the gdal ext directory -->
+    <!-- Add back if gt-ogr is ever restored
     <copy todir="target/gdal" flatten="true">
       <fileset dir="../geotools/geotools/modules/plugin/ogr">
         <include name="**/gt-ogr-core-*.jar"/>
@@ -60,6 +61,7 @@
         <exclude name="**/*-tests.jar"/>
       </fileset>
     </copy>
+    -->
 
     <!-- add back when netcdf-out C-lib is supported; combines both netcdf exts
     <move todir="target/netcdf" flatten="true">
