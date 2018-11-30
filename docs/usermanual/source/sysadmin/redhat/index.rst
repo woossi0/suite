@@ -42,9 +42,10 @@ Before PostgreSQL service can be started it must first be initialized:
 
    service postgresql-9.6 initdb
 
-.. note:: For Red Hat 7 and above, if the previous command didn't work, instead use:
-
+.. note:: For Red Hat 7 and above, if the previous command didn't work, instead use::
+   
        /usr/pgsql-9.6/bin/postgresql96-setup initdb
+
 
 To start|stop|restart the PostgreSQL service:
 
