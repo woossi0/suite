@@ -32,6 +32,7 @@ pipeline {
   
   options {
         disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '5'))
     }
 
   stages {
