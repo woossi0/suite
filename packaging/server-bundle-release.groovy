@@ -79,7 +79,7 @@ def setEnvs() {
   env.BRANDING = 'boundless-server'
   env.ARCHIVE_BASENAME = 'BoundlessServer'
   env.SERVER_VERSION = sh (script: "grep server.version= $WORKSPACE/suite/build/build.properties | sed 's:server.version=::'", returnStdout: true).trim()
-  env.SOURCE_ROOT = "/var/www/repo/suite/stable"
+  env.SOURCE_ROOT = "/var/www/repo/suite/1.1.x"
   env.STAGE = "${ARCHIVE_BASENAME}-${SERVER_VERSION}-${DATE_TIME_STAMP}"
   env.EL6_STAGE = "/tmp/${STAGE}/el/6/x86_64"
   env.EL7_STAGE = "/tmp/${STAGE}/el/7/x86_64"
