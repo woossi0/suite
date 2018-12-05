@@ -6,7 +6,7 @@
 
 if [ -z "$1" ]; then
   echo "Incorrect arguements provided."
-  echo "Proper use is: vm_deploy.sh <version> <repo_login> <repo_password>"
+  echo "Proper use is: vm_deploy.sh <version> <repo_login> <repo_password> <repo_dir>"
   exit 1
 else
   SERVER_VERSION=$1
@@ -14,7 +14,7 @@ fi
 
 if [ -z "$2" ]; then
   echo "Incorrect arguements provided."
-  echo "Proper use is: vm_deploy.sh <version> <repo_login> <repo_password>"
+  echo "Proper use is: vm_deploy.sh <version> <repo_login> <repo_password> <repo_dir>"
   exit 1
 else
   REPO_LOGIN=$2
@@ -22,17 +22,25 @@ fi
 
 if [ -z "$3" ]; then
   echo "Incorrect arguements provided."
-  echo "Proper use is: vm_deploy.sh <version> <repo_login> <repo_password>"
+  echo "Proper use is: vm_deploy.sh <version> <repo_login> <repo_password> <repo_dir>"
   exit 1
 else
   REPO_PASSWORD=$3
+fi
+
+if [ -z "$3" ]; then
+  echo "Incorrect arguements provided."
+  echo "Proper use is: vm_deploy.sh <version> <repo_login> <repo_password> <repo_dir>"
+  exit 1
+else
+  REPO_DIR=$4
 fi
 
 echo 'LC_ALL="en_US.UTF-8"' >> /etc/environment
 wget -qO- https://apt.boundlessgeo.com/gpg.key | apt-key add -
 
 echo "Adding Boundless Test repo..."
-echo "deb http://$REPO_LOGIN:$REPO_PASSWORD@priv-repo.boundlessgeo.com/suite/stable/ubuntu/14 ./" > /etc/apt/sources.list.d/boundless.list
+echo "deb http://$REPO_LOGIN:$REPO_PASSWORD@priv-repo.boundlessgeo.com/suite/$REPO_DIR/ubuntu/14 ./" > /etc/apt/sources.list.d/boundless.list
 
 echo "Installing core products..."
 apt-get -qq update

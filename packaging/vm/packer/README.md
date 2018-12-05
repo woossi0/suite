@@ -23,7 +23,7 @@ usermod -a -G vboxusers root
 5. Start build: (replace version/login as needed)
 
 ```bash
-packer build -var 'server_version=1.0.2' -var 'repo_login=someuser' -var 'repo_password=somepass' boundless-server.json
+packer build -var 'server_version=1.1.1' -var 'repo_login=someuser' -var 'repo_password=somepass' -var 'repo_dir=1.1.x' boundless-server.json
 ```
 
 6. Compress build image. (replace version as needed)  
