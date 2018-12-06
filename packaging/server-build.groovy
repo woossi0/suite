@@ -90,7 +90,9 @@ pipeline {
     }
     stage('Build-GeoTools') {
       steps {
-        sonarScan('suite/geoserver/geotools/','GeoTools',true)
+        sonarScan('suite/geoserver/geotools/','GeoTools',true, 
+          // This file causes a stackoverflow when scanning; skip it
+          "geotools/modules/unsupported/arcgis-rest/src/main/java/org/geotools/data/arcgisrest/schema/webservice/Attributes.java")
         antBuild('suite/geoserver/geotools/build.xml','clean build assemble publish')
       }
     }
@@ -174,7 +176,6 @@ pipeline {
         script {
           sh """
             cd ${WORKSPACE}/suite/geoserver/geoserver/geoserver
-            mvn -f src/community/geogig/pom.xml clean install -Dcucumber.options="--monochrome --plugin json:target/cucumber.json" -Dtest.maxHeapSize=1G
             mvn clean install -DskipTests -f src/community/pom.xml -P communityRelease assembly:attached
           """
           geoGigZip = sh (script: "find ${WORKSPACE}/suite/geoserver/geoserver/geoserver/src/community/target/release/ \
@@ -559,28 +560,28 @@ def antBuild(def buildFile, def antTargets) {
   }
 }
 
-def sonarScan(def targetDir, def projectName, def binary=false) {
+def sonarScan(def targetDir, def projectName, def binary=false, def exclusions="") {
   withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
     if ( binary ) {
       sh """
-        SONAR_SCANNER_OPTS="-Xss16m" sonar-scanner \
+        sonar-scanner \
           -Dsonar.sources=${targetDir} \
           -Dsonar.projectName="[Server] ${projectName}" \
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
           -Dsonar.host.url=${SONAR_HOST_URL} \
           -Dsonar.login=${SONAR_QUBE_TOKEN} \
           -Dsonar.java.binaries=${targetDir} \
-          -X
+          -Dsonar.exclusions=${exclusions} \
       """
     } else {
       sh """
-        SONAR_SCANNER_OPTS="-Xss16m" sonar-scanner \
+        sonar-scanner \
           -Dsonar.sources=${targetDir} \
           -Dsonar.projectName="[Server] ${projectName}" \
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
           -Dsonar.host.url=${SONAR_HOST_URL} \
           -Dsonar.login=${SONAR_QUBE_TOKEN} \
-          -X
+          -Dsonar.exclusions=${exclusions} \
       """
     }
   }
