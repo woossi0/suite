@@ -92,7 +92,7 @@ pipeline {
       steps {
         sonarScan('suite/geoserver/geotools/','GeoTools',true, 
           // This file causes a stackoverflow when scanning; skip it
-          "geotools/modules/unsupported/arcgis-rest/src/main/java/org/geotools/data/arcgisrest/schema/webservice/Attributes.java")
+          "suite/geoserver/geotools/geotools/modules/unsupported/arcgis-rest/src/main/java/org/geotools/data/arcgisrest/schema/webservice/Attributes.java")
         antBuild('suite/geoserver/geotools/build.xml','clean build assemble publish')
       }
     }
