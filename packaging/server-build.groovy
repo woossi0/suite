@@ -92,7 +92,7 @@ pipeline {
       steps {
         sonarScan('suite/geoserver/geotools/','GeoTools',true, 
           // This file causes a stackoverflow when scanning; skip it
-          "geotools/modules/unsupported/arcgis-rest/src/main/java/org/geotools/data/arcgisrest/schema/webservice/Attributes.java")
+          "suite/geoserver/geotools/geotools/modules/unsupported/arcgis-rest/src/main/java/org/geotools/data/arcgisrest/schema/webservice/Attributes.java")
         antBuild('suite/geoserver/geotools/build.xml','clean build assemble publish')
       }
     }
@@ -565,7 +565,7 @@ def sonarScan(def targetDir, def projectName, def binary=false, def exclusions="
   withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
     if ( binary ) {
       sh """
-        SONAR_SCANNER_OPTS="-Xss4m" sonar-scanner \
+        sonar-scanner \
           -Dsonar.sources=${targetDir} \
           -Dsonar.projectName="[Server] ${projectName}" \
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
@@ -573,18 +573,16 @@ def sonarScan(def targetDir, def projectName, def binary=false, def exclusions="
           -Dsonar.login=${SONAR_QUBE_TOKEN} \
           -Dsonar.java.binaries=${targetDir} \
           -Dsonar.exclusions=${exclusions} \
-          -X
       """
     } else {
       sh """
-        SONAR_SCANNER_OPTS="-Xss4m" sonar-scanner \
+        sonar-scanner \
           -Dsonar.sources=${targetDir} \
           -Dsonar.projectName="[Server] ${projectName}" \
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
           -Dsonar.host.url=${SONAR_HOST_URL} \
           -Dsonar.login=${SONAR_QUBE_TOKEN} \
           -Dsonar.exclusions=${exclusions} \
-          -X
       """
     }
   }
