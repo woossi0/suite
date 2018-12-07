@@ -92,7 +92,7 @@ pipeline {
       steps {
         sonarScan('suite/geoserver/geotools/','GeoTools',true, 
           // This file causes a stackoverflow when scanning; skip it
-          "suite/geoserver/geotools/geotools/modules/unsupported/arcgis-rest/src/main/java/org/geotools/data/arcgisrest/schema/webservice/Attributes.java")
+          "geotools/modules/unsupported/arcgis-rest/src/main/java/org/geotools/data/arcgisrest/schema/webservice/Attributes.java")
         antBuild('suite/geoserver/geotools/build.xml','clean build assemble publish')
       }
     }
@@ -170,27 +170,28 @@ pipeline {
         archiveBuildZip('gsr')
       }
     }
-    stage('Build-GeoGig') {
-      steps {
-        sonarScan('suite/geoserver/geoserver/geoserver/src/community/geogig/','GeoGig',true)
-        script {
-          sh """
-            cd ${WORKSPACE}/suite/geoserver/geoserver/geoserver
-            mvn clean install -DskipTests -f src/community/pom.xml -P communityRelease assembly:attached
-          """
-          geoGigZip = sh (script: "find ${WORKSPACE}/suite/geoserver/geoserver/geoserver/src/community/target/release/ \
-          -name *geogig-plugin.zip", returnStdout:true).trim()
-          sh "cp -p $geoGigZip $WORKSPACE/archive/zip/${BRANDING}-geoserver-geogig-${SERVER_HEAD}.zip"
-          archiveArtifacts artifacts: "archive/zip/${BRANDING}-geoserver-geogig-${SERVER_HEAD}.zip", fingerprint: true
-        }
-      }
-    }
+    // stage('Build-GeoGig') {
+    //   steps {
+    //     sonarScan('suite/geoserver/geoserver/geoserver/src/community/geogig/','GeoGig',true)
+    //     script {
+    //       sh """
+    //         cd ${WORKSPACE}/suite/geoserver/geoserver/geoserver
+    //         mvn -f src/community/geogig/pom.xml clean install -Dcucumber.options="--monochrome --plugin json:target/cucumber.json" -Dtest.maxHeapSize=1G
+    //         mvn clean install -DskipTests -f src/community/pom.xml -P communityRelease assembly:attached
+    //       """
+    //       geoGigZip = sh (script: "find ${WORKSPACE}/suite/geoserver/geoserver/geoserver/src/community/target/release/ \
+    //       -name *geogig-plugin.zip", returnStdout:true).trim()
+    //       sh "cp -p $geoGigZip $WORKSPACE/archive/zip/${BRANDING}-geoserver-geogig-${SERVER_HEAD}.zip"
+    //       archiveArtifacts artifacts: "archive/zip/${BRANDING}-geoserver-geogig-${SERVER_HEAD}.zip", fingerprint: true
+    //     }
+    //   }
+    // }
 
     stage('Build-Community') {
       steps {
         antBuild('suite/geoserver/geoserver-community/build.xml','clean build assemble publish')
         script {
-          geoServerExtensions = ['geopkg', 'hz-cluster', 'jdbcconfig', 'jdbcstore', 'python']
+          geoServerExtensions = ['geopkg', 'jdbcconfig', 'jdbcstore', 'python']
           for (int i = 0; i < geoServerExtensions.size(); i++) {
             archiveBuildZip("${geoServerExtensions[i]}")
           }
@@ -564,7 +565,7 @@ def sonarScan(def targetDir, def projectName, def binary=false, def exclusions="
   withCredentials([string(credentialsId: 'sonarQubeToken', variable: 'SONAR_QUBE_TOKEN')]) {
     if ( binary ) {
       sh """
-        sonar-scanner \
+        SONAR_SCANNER_OPTS="-Xss4m" sonar-scanner \
           -Dsonar.sources=${targetDir} \
           -Dsonar.projectName="[Server] ${projectName}" \
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
@@ -572,16 +573,18 @@ def sonarScan(def targetDir, def projectName, def binary=false, def exclusions="
           -Dsonar.login=${SONAR_QUBE_TOKEN} \
           -Dsonar.java.binaries=${targetDir} \
           -Dsonar.exclusions=${exclusions} \
+          -X
       """
     } else {
       sh """
-        sonar-scanner \
+        SONAR_SCANNER_OPTS="-Xss4m" sonar-scanner \
           -Dsonar.sources=${targetDir} \
           -Dsonar.projectName="[Server] ${projectName}" \
           -Dsonar.projectKey=org.boundlessgeo:${projectName.toLowerCase()} \
           -Dsonar.host.url=${SONAR_HOST_URL} \
           -Dsonar.login=${SONAR_QUBE_TOKEN} \
           -Dsonar.exclusions=${exclusions} \
+          -X
       """
     }
   }
