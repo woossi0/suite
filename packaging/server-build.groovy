@@ -199,15 +199,15 @@ pipeline {
       }
     }
 
-    stage('Build-GSExts') {
-      steps {
-        sonarScan('suite/geoserver/externals/geoserver-exts/','GeoServer-Exts',true)
-        antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build assemble publish')
-        archiveBuildZip('cloudwatch')
-        archiveBuildZip('mongodb')
-        archiveBuildZip('printng')
-      }
-    }
+    // stage('Build-GSExts') {
+    //   steps {
+    //     sonarScan('suite/geoserver/externals/geoserver-exts/','GeoServer-Exts',true)
+    //     antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build assemble publish')
+    //     archiveBuildZip('cloudwatch')
+    //     archiveBuildZip('mongodb')
+    //     archiveBuildZip('printng')
+    //   }
+    // }
 
     stage('Build-WebApp') {
       steps {
