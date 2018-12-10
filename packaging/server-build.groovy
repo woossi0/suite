@@ -120,7 +120,7 @@ pipeline {
         sonarScan('suite/geoserver/geoserver','GeoServer',true)
         antBuild('suite/geoserver/geoserver/build.xml','clean build assemble publish')
         script {
-          geoServerExtensions = ['app-schema', 'arcsde', 'csw', 'db2', 'gdal', 'grib', 'inspire', 'jp2k', 'netcdf', 'netcdf-out', 'oracle', 'sqlserver', 'vectortiles']
+          geoServerExtensions = ['app-schema', 'arcsde', 'csw', 'db2', 'gdal', 'grib', 'inspire', 'jp2k', 'mongodb', 'netcdf', 'netcdf-out', 'oracle', 'sqlserver', 'vectortiles']
           for (int i = 0; i < geoServerExtensions.size(); i++) {
             archiveBuildZip("${geoServerExtensions[i]}")
           }
