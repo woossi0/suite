@@ -254,7 +254,7 @@ pipeline {
             cd archive/owasp/
             owasp-dependency-check \
               --project "[Server] OWASP Dependency Checker" \
-              --scan "/var/jenkins/workspace/Server-pipeline/tmp/jar/" \
+              --scan "$WORKSPACE/tmp/jar/" \
               --format ALL
             cd $WORKSPACE
             
