@@ -26,6 +26,7 @@ Source repos:
 Artifacts out:
 WORKSPACE/archive/
 */
+import groovy.json.JsonSlurper
 
 pipeline {
 
