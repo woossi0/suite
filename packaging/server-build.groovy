@@ -496,22 +496,26 @@ def gitCheckoutRecursive(def repo, def branch) {
 }
 
 def readBuildProperties() {
-  def properties = new Properties()
-  def propertiesFile = new File('$WORKSPACE/build/build.properties')
-  propertiesFile.withInputStream {
-      properties.load(it)
-  }
 
-  env.VER = properties."server.version"
+  //This implementation is asinine, but jenkins groovy has unusual security restrictions around java.util.properties
+  env.VER = sh (script: "grep server.version= $WORKSPACE/build/build.properties | sed 's:server.version=::'", returnStdout:true).trim()
+
+  def gs_exts_core = sh (script: "grep gs.exts_core= $WORKSPACE/build/build.properties | sed 's:gs.exts_core=::'", returnStdout:true).trim()
+  def gs_exts_comm = sh (script: "grep gs.exts_comm= $WORKSPACE/build/build.properties | sed 's:gs.exts_comm=::'", returnStdout:true).trim()
+  def gs_exts_exts = sh (script: "grep gs-exts.exts= $WORKSPACE/build/build.properties | sed 's:gs-exts.exts=::'", returnStdout:true).trim()
+  def external_exts = sh (script: "grep external.exts= $WORKSPACE/build/build.properties | sed 's:external.exts=::'", returnStdout:true).trim()
+
+  def server_components = sh (script: "grep server.components= $WORKSPACE/build/build.properties | sed 's:server.components=::'", returnStdout:true).trim()
+
 
   env.SERVER_PACKAGES=[]
   env.SERVER_EXTENSIONS=[]
-  env.SERVER_EXTENSIONS.addAll(properties."gs.exts_core".split(","))
-  env.SERVER_EXTENSIONS.addAll(properties."gs.exts_comm".split(","))
-  env.SERVER_EXTENSIONS.addAll(properties."gs-exts.exts".split(","))
-  env.SERVER_EXTENSIONS.addAll(properties."external.exts".split(","))
+  env.SERVER_EXTENSIONS.addAll(gs_exts_core.split(","))
+  env.SERVER_EXTENSIONS.addAll(gs_exts_comm.split(","))
+  env.SERVER_EXTENSIONS.addAll(gs_exts_exts.split(","))
+  env.SERVER_EXTENSIONS.addAll(external_exts.split(","))
 
-  env.SERVER_PACKAGES.addAll(properties."server.components".split(","))
+  env.SERVER_PACKAGES.addAll(server_components.split(","))
   env.SERVER_PACKAGES.addAll(env.SERVER_EXTENSIONS.collect{ "gs-"+it })
 }
 
