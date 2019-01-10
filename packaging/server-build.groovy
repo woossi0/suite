@@ -496,7 +496,6 @@ def gitCheckoutRecursive(def repo, def branch) {
 }
 
 def readBuildProperties() {
-
   //This implementation is asinine, but jenkins groovy has unusual security restrictions around java.util.properties
   env.VER = sh (script: "grep server.version= $WORKSPACE/build/build.properties | sed 's:server.version=::'", returnStdout:true).trim()
 
@@ -516,7 +515,9 @@ def readBuildProperties() {
   env.SERVER_EXTENSIONS.addAll(external_exts.split(","))
 
   env.SERVER_PACKAGES.addAll(server_components.split(","))
-  env.SERVER_PACKAGES.addAll(env.SERVER_EXTENSIONS.collect{ "gs-"+it })
+  for (int i = 0; i < env.SERVER_EXTENSIONS.size(); i++) {
+    env.SERVER_PACKAGES.add("gs-"+env.SERVER_EXTENSIONS[i])
+  }
 }
 
 def setEnvs() {
