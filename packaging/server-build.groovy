@@ -26,7 +26,6 @@ Source repos:
 Artifacts out:
 WORKSPACE/archive/
 */
-import groovy.json.JsonSlurper
 
 pipeline {
 
@@ -123,7 +122,7 @@ pipeline {
         sonarScan('suite/geoserver/geoserver','GeoServer',true)
         antBuild('suite/geoserver/geoserver/build.xml','clean build assemble publish')
         script {
-          geoServerExtensions = new JsonSlurper().parseText(env.SERVER_EXTENSIONS_CORE)
+          geoServerExtensions = readEnvArr(env.SERVER_EXTENSIONS_CORE)
           for (int i = 0; i < geoServerExtensions.size(); i++) {
             archiveBuildZip("${geoServerExtensions[i]}")
           }
@@ -200,7 +199,7 @@ pipeline {
       steps {
         antBuild('suite/geoserver/geoserver-community/build.xml','clean build assemble publish')
         script {
-          geoServerExtensions = new JsonSlurper().parseText(env.SERVER_EXTENSIONS_COMM)
+          geoServerExtensions = readEnvArr(env.SERVER_EXTENSIONS_COMM)
           for (int i = 0; i < geoServerExtensions.size(); i++) {
             archiveBuildZip("${geoServerExtensions[i]}")
           }
@@ -213,7 +212,7 @@ pipeline {
         sonarScan('suite/geoserver/externals/geoserver-exts/','GeoServer-Exts',true)
         antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build assemble publish')
         script {
-          geoServerExtensions = new JsonSlurper().parseText(env.SERVER_EXTENSIONS_GSEXTS)
+          geoServerExtensions = readEnvArr(env.SERVER_EXTENSIONS_GSEXTS)
           for (int i = 0; i < geoServerExtensions.size(); i++) {
             archiveBuildZip("${geoServerExtensions[i]}")
           }
@@ -289,7 +288,7 @@ pipeline {
         explodeSources()
         // Build RPMs then cleanup
         script {
-          serverRPMs = new JsonSlurper().parseText(env.SERVER_PACKAGES)
+          serverRPMs = readEnvArr(env.SERVER_PACKAGES)
           for (int i = 0; i < serverRPMs.size(); i++) {
             packageRPMs("${serverRPMs[i]}")
           }
@@ -327,7 +326,7 @@ pipeline {
         }
         // Build Ubuntu 14 Debs
         script {
-          serverUbuntu14Debs = new JsonSlurper().parseText(env.SERVER_PACKAGES)
+          serverUbuntu14Debs = readEnvArr(env.SERVER_PACKAGES)
           for (int i = 0; i < serverUbuntu14Debs.size(); i++) {
             debConvert("${serverUbuntu14Debs[i]}",'14')
           }
@@ -345,7 +344,7 @@ pipeline {
         }
         // Reuse Ubuntu 14 Debs as able
         script {
-          clonedDebs = new JsonSlurper().parseText(env.SERVER_PACKAGES)
+          clonedDebs = readEnvArr(env.SERVER_PACKAGES)
           for (int i = 0; i < clonedDebs.size(); i++) {
             sh "cp -p ${WORKSPACE}/archive/ubuntu/14/${BRANDING}-${clonedDebs[i]}_${PACKAGE_VERSION}-*.deb ${WORKSPACE}/archive/ubuntu/16/"
           }
@@ -545,6 +544,14 @@ def readBuildProperties() {
   env.SERVER_EXTENSIONS_GSEXTS=server_extensions_gsexts
 }
 
+def readEnvArr(arr) {
+  def list = arr
+  if (list.startsWith("[")) {
+    list = list.substring(1, list.length()-1)
+  }
+  return list.split(',').collect{it.trim()}
+}
+
 def setEnvs() {
   env.BUILD_TYPE = "$BRANCH_NAME"
   env.BRANDING = 'boundless-server'
@@ -665,7 +672,7 @@ def packageWars() {
   makeDir("$WAR_ARCHIVE")
   sh "ln -s $ARTIFACT_ROOT/${BRANDING}-geomesa-accumulo-distributed-runtime-${SERVER_HEAD}.zip $ARTIFACT_ROOT/${BRANDING}-geoserver-geomesa-accumulo-${SERVER_HEAD}.zip"
 
-  zip = new JsonSlurper().parseText(env.SERVER_EXTENSIONS)
+  zip = readEnvArr(env.SERVER_EXTENSIONS)
   for (int i = 0; i < zip.size(); i++) {
     echo "DEBUG: Processing ${zip[i]}"
     makeDir("${zip[i]}")
@@ -838,7 +845,7 @@ def debConvert(def component, def ubuntuVer) {
 }
 
 def trimRepo() {
-  productPackages = new JsonSlurper().parseText(env.SERVER_PACKAGES)
+  productPackages = readEnvArr(env.SERVER_PACKAGES)
   for (int i = 0; i < productPackages.size(); i++) {
     sh """
       ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/el/6/${BRANDING}-${productPackages[i]}-*.rpm | tail -n +3 | xargs rm -- || true'
