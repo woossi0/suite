@@ -496,8 +496,8 @@ def gitCheckoutRecursive(def repo, def branch) {
 }
 
 def readBuildProperties() {
-  Properties properties = new Properties()
-  File propertiesFile = new File('$WORKSPACE/build/build.properties')
+  def properties = new Properties()
+  def propertiesFile = new File('$WORKSPACE/build/build.properties')
   propertiesFile.withInputStream {
       properties.load(it)
   }
