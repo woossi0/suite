@@ -496,7 +496,7 @@ def gitCheckoutRecursive(def repo, def branch) {
 }
 
 def readBuildProperties() {
-  //This implementation is asinine, but jenkins groovy has unusual security restrictions around java.util.properties
+  //This implementation is asinine, but jenkins groovy has unusual security restrictions around java.util.properties and a whole bunch of other things
   env.VER = sh (script: "grep server.version= $WORKSPACE/build/build.properties | sed 's:server.version=::'", returnStdout:true).trim()
 
   def gs_exts_core = sh (script: "grep gs.exts_core= $WORKSPACE/build/build.properties | sed 's:gs.exts_core=::'", returnStdout:true).trim()
@@ -509,14 +509,20 @@ def readBuildProperties() {
 
   env.SERVER_PACKAGES=[]
   env.SERVER_EXTENSIONS=[]
-  env.SERVER_EXTENSIONS.addAll(gs_exts_core.split(","))
-  env.SERVER_EXTENSIONS.addAll(gs_exts_comm.split(","))
-  env.SERVER_EXTENSIONS.addAll(gs_exts_exts.split(","))
-  env.SERVER_EXTENSIONS.addAll(external_exts.split(","))
+  addAll(env.SERVER_EXTENSIONS, gs_exts_core.split(","))
+  addAll(env.SERVER_EXTENSIONS, gs_exts_comm.split(","))
+  addAll(env.SERVER_EXTENSIONS, gs_exts_exts.split(","))
+  addAll(env.SERVER_EXTENSIONS, external_exts.split(","))
 
-  env.SERVER_PACKAGES.addAll(server_components.split(","))
+  addAll(env.SERVER_PACKAGES, server_components.split(","))
   for (int i = 0; i < env.SERVER_EXTENSIONS.size(); i++) {
     env.SERVER_PACKAGES.add("gs-"+env.SERVER_EXTENSIONS[i])
+  }
+}
+
+def addAll(dest, source) {
+  for (int i = 0; i < source.size; i++) {
+    dest.add(source[i])
   }
 }
 
