@@ -9,18 +9,19 @@ The following base software packages are required.
 
 * Java 8 - [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index.html) - 1.8+ or [Open JDK](http://openjdk.java.net/install/)
 * [Apache Ant](http://ant.apache.org/bindownload.cgi) - 1.8+
-* [Apache Ivy](http://ant.apache.org/ivy/download.cgi) - 2.3+
 * [Git](http://git-scm.com/) - 1.7.10+*
 
 Some modules require additional packages:
 
 * [Apache Maven](http://maven.apache.org/download.html) - 3.0+
+* [Python 2](https://www.python.org/downloads/)
 * [JSTools](https://github.com/whitmo/jstools) - Latest
 * [Sphinx](http://sphinx.pocoo.org/) - 1.0+ (the full build requires LaTeX support)
 * [NodeJS](http://nodejs.org/) - Latest version
   * [Bower](http://bower.io/) - `npm install -g bower`
   * [Grunt](http://gruntjs.com/) - `npm install -g grunt-cli`
   * [Gulp](http://gulpjs.com/) - `npm install -g gulp`
+* [GDAL](https://trac.osgeo.org/gdal/wiki/DownloadingGdalBinaries) - 1.9.1 or newer, must include ogr2ogr
 
 Ensure that all the above are installed so that the associated executables are on the 
 `PATH` of the user building the server. 

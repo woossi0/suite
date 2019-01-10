@@ -1,0 +1,130 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+######################################
+#
+# Boundless Server build and packaging environment
+#
+# Prerequesites: The ssh key you have registered with GitHub should be 
+# available from the host ssh user agent
+# 
+# You can add it (on the host machine) via `ssh-add -K /path/to/id_rsa`
+#
+os = 'centos' #'ubuntu'
+ver = 7
+######################################
+
+
+Vagrant.configure(2) do |config|
+
+  config.vm.provider :virtualbox do |vb, override|
+    vb.memory = '2048'
+    case os
+    when 'centos'
+      case ver
+      when 6
+        override.vm.box = 'bento/centos-6.7'
+      when 7
+        override.vm.box = 'bento/centos-7.3'
+      end
+    when 'ubuntu'
+      override.vm.network :forwarded_port, guest: 22, host: 2222, id: 'ssh', auto_correct: true
+
+      case ver
+      when 14
+        override.vm.box = 'ubuntu/trusty64'
+      when 16
+        override.vm.box = 'ubuntu/xenial64'
+      end
+    end
+  end
+
+  config.vm.network 'forwarded_port', guest: 8080, host: 8080
+  config.vm.network 'forwarded_port', guest: 8000, host: 8000
+
+  config.ssh.forward_agent = true
+
+  config.vm.provision :shell do |s|
+    case os
+    when 'centos'
+      s.inline = <<-SHELL
+        set -ex
+
+        sudo yum update -y
+        sudo yum -y groupinstall "Desktop" "Fonts"
+        sudo yum install git -y
+        SHELL
+    when 'ubuntu'
+      s.inline = <<-SHELL
+        set -ex
+        DEBIAN_FRONTEND=noninteractive
+
+        sudo apt-get update -qqy
+        sudo apt-get install git -y
+        SHELL
+    end
+  end
+
+  config.vm.provision :shell, inline: <<-SHELL
+    set -ex
+
+    # EPEL
+    wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    rpm -ivh epel-release-latest-7.noarch.rpm
+
+    sudo yum update -y
+
+    sudo yum install git unzip java-1.8.0-openjdk-devel python-setuptools gdal rpmdevtools -y
+
+    # setup java build environment
+    export JAVA_HOME=$(readlink -f /bin/java | sed "s:bin/java::")
+
+    wget http://apache.mirror.gtcomm.net/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+    sudo tar xzf apache-maven-3.5.4-bin.tar.gz -C /usr/local
+
+    export M2_HOME=/usr/local/apache-maven-3.5.4
+
+    wget http://apache.mirror.gtcomm.net//ant/binaries/apache-ant-1.9.13-bin.zip
+    unzip apache-ant-1.9.13-bin.zip -d /usr/local
+
+    export ANT_HOME=/usr/local/apache-ant-1.9.13
+
+    # setup python build environment
+    easy_install pip
+    easy_install jstools
+    pip install -U Sphinx
+
+    # setup JS build environment
+    export NODEJS_VERSION=v8.9.1
+    wget https://nodejs.org/dist/$NODEJS_VERSION/node-$NODEJS_VERSION-linux-x64.tar.xz
+    mkdir /usr/local/lib/nodejs
+    tar -xJvf node-$NODEJS_VERSION-linux-x64.tar.xz -C /usr/local/lib/nodejs 
+    mv /usr/local/lib/nodejs/node-$NODEJS_VERSION-linux-x64 /usr/local/lib/nodejs/node-$NODEJS_VERSION
+
+    export NODEJS_HOME=/usr/local/lib/nodejs/node-$NODEJS_VERSION
+    PATH=$PATH:$NODEJS_HOME/bin
+
+    npm install -g bower
+    npm install -g grunt-cli
+    npm install -g gulp
+
+    #export environement variables
+    echo "export JAVA_HOME=$JAVA_HOME" >> /home/vagrant/.bash_profile
+    echo "export M2_HOME=$M2_HOME" >> /home/vagrant/.bash_profile
+    echo "export ANT_HOME=$ANT_HOME" >> /home/vagrant/.bash_profile
+    echo "export NODEJS_HOME=$NODEJS_HOME" >> /home/vagrant/.bash_profile
+    echo "export PATH=\$PATH:\$M2_HOME/bin:\$ANT_HOME/bin:\$NODEJS_HOME/bin" >> /home/vagrant/.bash_profile
+
+    sudo su vagrant
+    source /home/vagrant/.bash_profile
+
+
+    git clone https://github.com/boundlessgeo/suite.git
+    cd suite
+    git checkout master
+    git submodule update --init --recursive
+
+    sudo chown -R vagrant:vagrant .
+    
+  SHELL
+end
