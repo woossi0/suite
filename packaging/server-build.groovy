@@ -122,7 +122,7 @@ pipeline {
         sonarScan('suite/geoserver/geoserver','GeoServer',true)
         antBuild('suite/geoserver/geoserver/build.xml','clean build assemble publish')
         script {
-          geoServerExtensions = ['app-schema', 'arcsde', 'csw', 'db2', 'gdal', 'grib', 'inspire', 'jp2k', 'mongodb', 'netcdf', 'netcdf-out', 'oracle', 'sqlserver', 'vectortiles']
+          geoServerExtensions = env.SERVER_EXTENSIONS_CORE
           for (int i = 0; i < geoServerExtensions.size(); i++) {
             archiveBuildZip("${geoServerExtensions[i]}")
           }
@@ -193,7 +193,7 @@ pipeline {
       steps {
         antBuild('suite/geoserver/geoserver-community/build.xml','clean build assemble publish')
         script {
-          geoServerExtensions = ['geopkg', 'jdbcconfig', 'jdbcstore']
+          geoServerExtensions = env.SERVER_EXTENSIONS_COMM
           for (int i = 0; i < geoServerExtensions.size(); i++) {
             archiveBuildZip("${geoServerExtensions[i]}")
           }
@@ -201,14 +201,18 @@ pipeline {
       }
     }
 
-    // stage('Build-GSExts') {
-    //   steps {
-    //     sonarScan('suite/geoserver/externals/geoserver-exts/','GeoServer-Exts',true)
-    //     antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build assemble publish')
-    //     archiveBuildZip('cloudwatch')
-    //     archiveBuildZip('printng')
-    //   }
-    // }
+    stage('Build-GSExts') {
+      steps {
+        sonarScan('suite/geoserver/externals/geoserver-exts/','GeoServer-Exts',true)
+        antBuild('suite/geoserver/externals/geoserver-exts/build.xml','clean build assemble publish')
+        script {
+          geoServerExtensions = env.SERVER_EXTENSIONS_GSEXTS
+          for (int i = 0; i < geoServerExtensions.size(); i++) {
+            archiveBuildZip("${geoServerExtensions[i]}")
+          }
+        }
+      }
+    }
 
     stage('Build-WebApp') {
       steps {
@@ -509,10 +513,17 @@ def readBuildProperties() {
   //need to def these so they are dynamic
   def server_packages = []
   def server_extensions = []
+  def server_extensions_core = []
+  def server_extensions_comm = []
+  def server_extensions_gsexts =[]
   
-  server_extensions.addAll(gs_exts_core.split(","))
-  server_extensions.addAll(gs_exts_comm.split(","))
-  server_extensions.addAll(gs_exts_exts.split(","))
+  server_extensions_core.addAll(gs_exts_core.split(","))
+  server_extensions_comm.addAll(gs_exts_comm.split(","))
+  server_extensions_gsexts.addAll(gs_exts_exts.split(","))
+
+  server_extensions.addAll(server_extensions_core)
+  server_extensions.addAll(server_extensions_comm)
+  server_extensions.addAll(server_extensions_gsexts)
   server_extensions.addAll(external_exts.split(","))
 
   server_packages.addAll(server_components.split(","))
@@ -521,6 +532,10 @@ def readBuildProperties() {
   }
   env.SERVER_PACKAGES=server_packages
   env.SERVER_EXTENSIONS=server_extensions
+
+  env.SERVER_EXTENSIONS_CORE=server_extensions_core
+  env.SERVER_EXTENSIONS_COMM=server_extensions_comm
+  env.SERVER_EXTENSIONS_GSEXTS=server_extensions_gsexts
 }
 
 def setEnvs() {
