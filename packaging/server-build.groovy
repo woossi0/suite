@@ -43,7 +43,9 @@ pipeline {
       steps {
         // Set variables for build types (master/stable)
         // Variables below called through legacy maven/ant build definitions
+        readBuildProperties()
         setEnvs()
+        
 
         // Clean workspace
         makeDir("$ARTIFACT_DIR")
@@ -276,7 +278,7 @@ pipeline {
         explodeSources()
         // Build RPMs then cleanup
         script {
-          serverRPMs = ['composer', 'dashboard', 'docs', 'geoserver', 'geowebcache', 'gs-appschema', 'gs-arcsde', 'gs-csw', 'gs-db2', 'gs-gdal', 'gs-geomesa-accumulo', 'gs-grib', 'gs-gsr', 'gs-inspire', 'gs-jdbcconfig', 'gs-jdbcstore', 'gs-jp2k', 'gs-mongodb', 'gs-netcdf', 'gs-netcdf-out', 'gs-oracle', 'gs-sqlserver', 'gs-vectortiles', 'wpsbuilder']
+          serverRPMs = env.SERVER_PACKAGES
           for (int i = 0; i < serverRPMs.size(); i++) {
             packageRPMs("${serverRPMs[i]}")
           }
@@ -314,7 +316,7 @@ pipeline {
         }
         // Build Ubuntu 14 Debs
         script {
-          serverUbuntu14Debs = ['composer', 'dashboard', 'docs', 'geoserver', 'geowebcache', 'gs-appschema', 'gs-arcsde', 'gs-csw', 'gs-db2', 'gs-gdal', 'gs-geomesa-accumulo', 'gs-grib', 'gs-gsr', 'gs-inspire', 'gs-jdbcconfig', 'gs-jdbcstore', 'gs-jp2k', 'gs-mongodb', 'gs-netcdf', 'gs-netcdf-out', 'gs-oracle', 'gs-sqlserver', 'gs-vectortiles', 'wpsbuilder', 'quickview']
+          serverUbuntu14Debs = env.SERVER_PACKAGES
           for (int i = 0; i < serverUbuntu14Debs.size(); i++) {
             debConvert("${serverUbuntu14Debs[i]}",'14')
           }
@@ -332,7 +334,7 @@ pipeline {
         }
         // Reuse Ubuntu 14 Debs as able
         script {
-          clonedDebs = ['composer', 'dashboard', 'docs', 'geoserver', 'geowebcache', 'gs-appschema', 'gs-arcsde', 'gs-csw', 'gs-db2', 'gs-geomesa-accumulo', 'gs-grib', 'gs-gsr', 'gs-inspire', 'gs-jdbcconfig', 'gs-jdbcstore', 'gs-jp2k', 'gs-mongodb', 'gs-netcdf', 'gs-netcdf-out', 'gs-oracle', 'gs-sqlserver', 'gs-vectortiles', 'wpsbuilder', 'quickview']
+          clonedDebs = env.SERVER_PACKAGES
           for (int i = 0; i < clonedDebs.size(); i++) {
             sh "cp -p ${WORKSPACE}/archive/ubuntu/14/${BRANDING}-${clonedDebs[i]}_${PACKAGE_VERSION}-*.deb ${WORKSPACE}/archive/ubuntu/16/"
           }
@@ -493,6 +495,26 @@ def gitCheckoutRecursive(def repo, def branch) {
   """
 }
 
+def readBuildProperties() {
+  Properties properties = new Properties()
+  File propertiesFile = new File('$WORKSPACE/build/build.properties')
+  propertiesFile.withInputStream {
+      properties.load(it)
+  }
+
+  env.VER = properties."server.version"
+
+  env.SERVER_PACKAGES=[]
+  env.SERVER_EXTENSIONS=[]
+  env.SERVER_EXTENSIONS.addAll(properties."gs.exts_core".split(","))
+  env.SERVER_EXTENSIONS.addAll(properties."gs.exts_comm".split(","))
+  env.SERVER_EXTENSIONS.addAll(properties."gs-exts.exts".split(","))
+  env.SERVER_EXTENSIONS.addAll(properties."external.exts".split(","))
+
+  env.SERVER_PACKAGES.addAll(properties."server.components".split(","))
+  env.SERVER_PACKAGES.addAll(env.SERVER_EXTENSIONS.collect{ "gs-"+it })
+}
+
 def setEnvs() {
   env.BUILD_TYPE = "$BRANCH_NAME"
   env.BRANDING = 'boundless-server'
@@ -501,7 +523,6 @@ def setEnvs() {
   env.ARTIFACT_ROOT = "$WORKSPACE/archive/zip"
   env.WARS_DIR = "$WORKSPACE/archive/war"
   env.DATE_TIME_STAMP = sh (script: "date +%Y%m%d%H%M", returnStdout:true).trim()
-  env.VER = sh (script: "grep server.version= $WORKSPACE/build/build.properties | sed 's:server.version=::'", returnStdout:true).trim()
   env.ARTIFACT_DIR = "/var/www/server/core/${BUILD_TYPE}/HEAD"
   env.SUITE_BUILD_CAT = 'HEAD'
   env.SERVER_BUILD_CAT = 'HEAD'
@@ -614,7 +635,7 @@ def packageWars() {
   makeDir("$WAR_ARCHIVE")
   sh "ln -s $ARTIFACT_ROOT/${BRANDING}-geomesa-accumulo-distributed-runtime-${SERVER_HEAD}.zip $ARTIFACT_ROOT/${BRANDING}-geoserver-geomesa-accumulo-${SERVER_HEAD}.zip"
 
-  zip = ['app-schema', 'arcsde', 'csw', 'db2', 'gdal', 'geomesa-accumulo', 'grib', 'gsr', 'inspire', 'jdbcconfig', 'jdbcstore', 'jp2k', 'marlin', 'mongodb', 'netcdf', 'netcdf-out', 'oracle', 'sqlserver', 'vectortiles']
+  zip = env.SERVER_EXTENSIONS
   for (int i = 0; i < zip.size(); i++) {
     echo "DEBUG: Processing ${zip[i]}"
     makeDir("${zip[i]}")
@@ -623,11 +644,10 @@ def packageWars() {
     """
   }
 
-  EE_EXTS = ['app-schema', 'arcsde', 'csw', 'db2', 'gdal', 'geomesa-accumulo', 'grib', 'gsr', 'inspire', 'jdbcconfig', 'jdbcstore', 'jp2k', 'marlin', 'mongodb', 'netcdf', 'netcdf-out', 'oracle', 'sqlserver', 'vectortiles']
-  for (int i = 0; i < EE_EXTS.size(); i++) {
+  for (int i = 0; i < zip.size(); i++) {
     sh """
       cd $EXT_ARCHIVE
-      mv ../${EE_EXTS[i]}/ ${EE_EXTS[i]}
+      mv ../${zip[i]}/ ${zip[i]}
     """
   }
 
@@ -788,7 +808,7 @@ def debConvert(def component, def ubuntuVer) {
 }
 
 def trimRepo() {
-  productPackages = ['composer', 'dashboard', 'docs', 'geoserver', 'geowebcache', 'gs-appschema', 'gs-arcsde', 'gs-csw', 'gs-db2', 'gs-gdal', 'gs-geomesa-accumulo', 'gs-grib', 'gs-gsr', 'gs-inspire', 'gs-jdbcconfig', 'gs-jdbcstore', 'gs-jp2k', 'gs-mongodb', 'gs-netcdf', 'gs-netcdf-out', 'gs-oracle', 'gs-sqlserver', 'gs-vectortiles', 'wpsbuilder', 'quickview']
+  productPackages = env.SERVER_PACKAGES
   for (int i = 0; i < productPackages.size(); i++) {
     sh """
       ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/el/6/${BRANDING}-${productPackages[i]}-*.rpm | tail -n +3 | xargs rm -- || true'
