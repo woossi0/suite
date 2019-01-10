@@ -521,7 +521,7 @@ def readBuildProperties() {
 }
 
 def addAll(dest, source) {
-  for (int i = 0; i < source.size; i++) {
+  for (int i = 0; i < source.length; i++) {
     dest.add(source[i])
   }
 }
