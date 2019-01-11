@@ -38,7 +38,7 @@
     </exec>
     <antcall target="mvn">
       <param name="dir" value="${gs.dir}/src/community"/>
-      <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -Dbuild.commit.id=${gs.rev} -Pcommunity-release-module,communityRelease,${gs.exts_comm} ${gs.flags} -Dgwc.version=${gwc.version} -Dspring.version=${spring.version} -Dspring.security.version=${spring.security.version}"/>
+      <param name="flags" value="-DskipTests -DconfigDirectory=${basedir}/${gs.dir}/data -Dbuild.commit.id=${gs.rev} -Pcommunity-release-module,communityRelease,${gs.exts_comm},${gs.profile_comm} ${gs.flags} -Dgwc.version=${gwc.version} -Dspring.version=${spring.version} -Dspring.security.version=${spring.security.version}"/>
       <param name="goals" value="clean install assembly:attached"/>
     </antcall>
   </target>
