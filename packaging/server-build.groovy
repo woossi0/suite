@@ -541,7 +541,7 @@ def readBuildProperties() {
       server_packages.add("gs-appschema")
     } else if (server_extensions[i].equals("python")) {
       server_packages.add("gs-script")
-    } else {}
+    } else {
       server_packages.add("gs-"+server_extensions[i])
     }
   }
