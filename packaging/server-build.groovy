@@ -169,6 +169,7 @@ pipeline {
       steps {
         sonarScan('suite/geoserver/externals/spatialstatistics/','SpatialStatistics',true)
         antBuild('suite/geoserver/externals/spatialstatistics/build.xml','clean build assemble publish')
+        archiveBuildZip('spatialstatistics')
       }
     }
     stage('Build-GSR') {
