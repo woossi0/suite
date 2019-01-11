@@ -22,6 +22,7 @@ boundless-server-gs-oracle=boundless-server-geoserver (>= CURRENT_VER), boundles
 boundless-server-gs-printng=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
 boundless-server-gs-geoservice-rest=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
 boundless-server-gs-scripting=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
+boundless-server-gs-spatialstatistics=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER), boundless-server-gs-gdal (>= CURRENT_VER), boundless-server-gs-gdal (<< NEXT_VER)
 boundless-server-gs-sqlserver=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
 boundless-server-gs-vectortiles=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
 boundless-server-gs-wps=boundless-server-geoserver (>= CURRENT_VER), boundless-server-geoserver (<< NEXT_VER)
