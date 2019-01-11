@@ -534,7 +534,16 @@ def readBuildProperties() {
 
   server_packages.addAll(server_components.split(","))
   for (int i = 0; i < server_extensions.size(); i++) {
-    server_packages.add("gs-"+server_extensions[i])
+    // Some special cases for extension package names
+    if (server_extensions[i].equals("hz-cluster")) {
+      server_packages.add("gs-cluster")
+    } else if (server_extensions[i].equals("app-schema")) {
+      server_packages.add("gs-appschema")
+    } else if (server_extensions[i].equals("python")) {
+      server_packages.add("gs-script")
+    } else {}
+      server_packages.add("gs-"+server_extensions[i])
+    }
   }
   env.SERVER_PACKAGES=server_packages
   env.SERVER_EXTENSIONS=server_extensions
