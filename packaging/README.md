@@ -1,4 +1,4 @@
-#Boundless Server Packaging
+# Boundless Server Packaging
 
 Scripts and configuration used to build the packages for Boundless Server
 
