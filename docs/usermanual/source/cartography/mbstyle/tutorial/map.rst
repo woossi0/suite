@@ -249,7 +249,7 @@ To do so:
 
 #. `Install <../geoserver/extensions/vectortiles/install.html#vectortiles-install>`_ the Vector Tiles extension.
 
-#. Publish the ``tutorial`` layer group as ``application/x-protobuf;type=mapbox-vector``:
+#. Publish the ``tutorial`` layer group as ``application/vnd.mapbox-vector-tile``:
 
    i. Navigate to the ``Tile Layers`` page.
 
@@ -263,7 +263,7 @@ To do so:
 
       * application/json;type=geojson
       * application/json;type=topojson
-      * application/x-protobuf;type=mapbox-vector
+      * application/vnd.mapbox-vector-tile
 
       .. figure:: img/vectortiles_tileformats.png
 
@@ -281,7 +281,7 @@ To do so:
           "tutorial": {
               "type": "vector",
               "tiles": [
-                "http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=tutorial&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=application/x-protobuf;type=mapbox-vector&TILECOL={x}&TILEROW={y}"
+                "http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&LAYER=tutorial&STYLE=&TILEMATRIX=EPSG:900913:{z}&TILEMATRIXSET=EPSG:900913&FORMAT=application/vnd.mapbox-vector-tile&TILECOL={x}&TILEROW={y}"
               ],
               "minZoom": 0,
               "maxZoom": 14
