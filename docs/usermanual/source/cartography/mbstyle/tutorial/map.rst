@@ -237,6 +237,8 @@ This will produce a map that looks like the following at various zoom levels:
 
    Map at city scale
 
+.. _cartography.mbstyle.tutorial.map.client:
+
 Client-side styling
 -------------------
 
