@@ -16,6 +16,7 @@ Processes can operate on different input formats—**vector**, **raster**, and *
 
    formats
    vector/index
+   spatialstatistics/index
 
 .. todo::
 

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  GeoTools Function list generation utility
+
+  Generates an RST-format function list when invoked via 
+
+  mvn exec:exec
+
+  Optionally includes all spatial statistitics processes with the 
+  spatial-statistics profile
+
+  The geotools docs jar and the spatial statistics jars should be 
+  available in your local maven repository.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.boundlessgeo</groupId>
+  <artifactId>bse-wps-docgen</artifactId>
+  <name>WPS Docgen</name>
+  <description>WPS and Spatial Statistics documentation generation</description>
+  <version>1.0.0</version>
+
+  <build>
+    <plugins>
+      <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>exec-maven-plugin</artifactId>
+      <version>1.2.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+              <mainClass>org.geotools.main.FilterExamples</mainClass>
+              <executable>java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <classpath/>
+                <argument>org.geotools.main.FilterExamples</argument>
+              </arguments>
+              <includePluginDependencies>true</includePluginDependencies>
+              <includeProjectDependencies>true</includeProjectDependencies>
+            </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>docs</artifactId>
+            <version>21-SNAPSHOT</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>boundless-snapshot</id>
+      <name>Boundless Snapshots Repository</name>
+      <url>https://repo.boundlessgeo.com/snapshot/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+
+    <repository>
+      <id>boundless-main</id>
+      <name>Boundless Main Repository</name>
+      <url>https://repo.boundlessgeo.com/main/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+
+    <repository>
+      <id>geosolutions</id>
+      <name>GeoSolutions Repository</name>
+      <url>http://maven.geo-solutions.it/</url>
+    </repository>
+
+    <repository>
+      <id>osgeo</id>
+      <name>Open Source Geospatial Foundation Repository</name>
+      <url>http://download.osgeo.org/webdav/geotools/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>docs</artifactId>
+      <version>21-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>spatial-statistics</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.geotools</groupId>
+          <artifactId>gt-process-spatialstatistics</artifactId>
+          <version>21-SNAPSHOT-BOUNDLESS-001</version>
+        </dependency>
+        <dependency>
+          <groupId>org.geoserver</groupId>
+          <artifactId>gs-wps-spatialstatistics</artifactId>
+          <version>2.15-SNAPSHOT-BOUNDLESS-001</version>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+</project>

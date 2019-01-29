@@ -216,6 +216,16 @@ Scripting extension
 .. include:: /install/include/ext/script_verify.txt
 
 
+.. _install.ubuntu.tomcat.extensions.spatialstatistics:
+
+Spatial Statistics extension
+----------------------------
+
+.. include:: /install/include/ext/spatialstatistics_install.txt
+
+.. include:: /install/include/ext/spatialstatistics_verify.txt
+
+
 .. _install.ubuntu.tomcat.extensions.sqlserver:
 
 SQL Server extension

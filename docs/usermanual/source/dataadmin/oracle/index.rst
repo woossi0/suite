@@ -21,6 +21,14 @@ Verifying installation
 
 For more information on adding a store and publishing layers, please see the `GeoServer documentation for Oracle <../../geoserver/data/database/oracle.html>`_.
 
+.. note:: If you encounter the error::
+
+       Error creating data store, check the parameters. Error message: Unable to obtain 
+       connection: Cannot create PoolableConnectionFactory (ORA-00604: error occurred at 
+       recursive SQL level 1 ORA-01882: timezone region not found )
+
+   Add the :ref:`startup parameter <sysadmin.startup>` ``-Duser.timezone=PDT``. This should resolve the issue.
+
 Caveats
 -------
 

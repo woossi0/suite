@@ -215,6 +215,16 @@ Scripting extension
 .. include:: /install/include/ext/script_verify.txt
 
 
+.. _install.redhat.tomcat.extensions.spatialstatistics:
+
+Spatial Statistics extension
+----------------------------
+
+.. include:: /install/include/ext/spatialstatistics_install.txt
+
+.. include:: /install/include/ext/spatialstatistics_verify.txt
+
+
 .. _install.redhat.tomcat.extensions.sqlserver:
 
 SQL Server extension

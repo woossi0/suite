@@ -1,0 +1,1926 @@
+AttributeJoin(inputFeatures, primaryKey, joinFeatures, foreignKey, joinType): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* primaryKey: String 1:1 required
+
+* joinFeatures: SimpleFeatureCollection 1:1 required
+
+* foreignKey: String 1:1 required
+
+* joinType: Type 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+BufferFeatures(inputFeatures, distance, distanceUnit, quadrantSegments): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* distance: Expression 1:1 required
+
+* distanceUnit: DistanceUnit 0:1 optional
+
+* quadrantSegments: Integer 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+BufferPointStatistics(inputFeatures, distance, pointFeatures, countField, statisticsFields): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* distance: Double 1:1 required
+
+* pointFeatures: SimpleFeatureCollection 1:1 required
+
+* countField: String 0:1 optional
+
+* statisticsFields: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+CalculateArea(inputFeatures, areaField, areaUnit, perimeterField, perimeterUnit): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* areaField: String 0:1 optional
+
+* areaUnit: AreaUnit 0:1 optional
+
+* perimeterField: String 0:1 optional
+
+* perimeterUnit: DistanceUnit 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+CalculateField(inputFeatures, expression, fieldName): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* expression: Expression 1:1 required
+
+* fieldName: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+CalculateLength(inputFeatures, lengthField, lengthUnit): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* lengthField: String 0:1 optional
+
+* lengthUnit: DistanceUnit 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+CalculateXYCoordinate(inputFeatures, xField, yField, inside, targetCRS): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* xField: String 0:1 optional
+
+* yField: String 0:1 optional
+
+* inside: Boolean 0:1 optional
+
+* targetCRS: CoordinateReferenceSystem 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+CentralFeature(inputFeatures, distanceMethod, weightField, selfPotentialWeightField, caseField): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* weightField: String 0:1 optional
+
+* selfPotentialWeightField: String 0:1 optional
+
+* caseField: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+CircularBinning(features, weight, bbox, radius, validGrid): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* features: SimpleFeatureCollection 1:1 required
+
+* weight: Expression 0:1 optional
+
+* bbox: ReferencedEnvelope 0:1 optional
+
+* radius: Double 1:1 required
+
+* validGrid: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+CircularGrid(extent, boundsSource, radius, circularType): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* extent: ReferencedEnvelope 1:1 required
+
+* boundsSource: SimpleFeatureCollection 0:1 optional
+
+* radius: Double 1:1 required
+
+* circularType: CircularType 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+ClipWithFeatures(inputFeatures, clipFeatures): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* clipFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+ClipWithGeometry(inputFeatures, clipGeometry): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* clipGeometry: Geometry 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+CollectEvents(inputFeatures, countField, tolerance): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* countField: String 0:1 optional
+
+* tolerance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+CountFeatures(inputFeatures, filter): result
+''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* filter: Filter 0:1 optional
+
+* result: Integer 1:1 required
+
+DelaunayTriangulation(inputFeatures, clipArea): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* clipArea: Geometry 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+DeleteDuplicates(inputFeatures): result
+'''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+Densify(inputFeatures, tolerance): result
+'''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* tolerance: Expression 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+Difference(inputFeatures, differenceFeatures): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* differenceFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+Dissolve(inputFeatures, dissolveField, statisticsFields, useMultiPart): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* dissolveField: String 1:1 required
+
+* statisticsFields: String 0:1 optional
+
+* useMultiPart: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+Eliminate(inputFeatures, option, exception): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* option: EliminateOption 0:1 optional
+
+* exception: Filter 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+EuclideanDistance(inputFeatures, maximumDistance, cellSize, extent): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* maximumDistance: Double 0:1 optional
+
+* cellSize: Double 0:1 optional
+
+* extent: ReferencedEnvelope 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+ExtendLine(lineFeatures, length, extendTo): result
+''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* lineFeatures: SimpleFeatureCollection 1:1 required
+
+* length: Double 1:1 required
+
+* extendTo: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+ExtractValuesToPoints(pointFeatures, valueField, valueCoverage, valueType): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* pointFeatures: SimpleFeatureCollection 1:1 required
+
+* valueField: String 0:1 optional
+
+* valueCoverage: GridCoverage2D 1:1 required
+
+* valueType: ExtractionType 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FeatureEnvelopeToPolygon(inputFeatures, singleEnvelope): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* singleEnvelope: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FeatureToConvexHull(inputFeatures, singlePart): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* singlePart: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FeatureToLine(inputFeatures, preserveAttributes): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* preserveAttributes: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FeatureToMinimumBoundingCircle(inputFeatures, singlePart): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* singlePart: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FeatureToMinimumRectangle(inputFeatures, singlePart): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* singlePart: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FeatureToOctagonalEnvelope(inputFeatures, singlePart): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* singlePart: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FeatureToPoint(inputFeatures, inside, singlePart): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inside: Boolean 0:1 optional
+
+* singlePart: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FeatureToPolygon(inputFeatures, tolerance, labelFeatures): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* tolerance: Double 0:1 optional
+
+* labelFeatures: SimpleFeatureCollection 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FeaturesToRaster(inputFeatures, inputField, cellSize, extent): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 0:1 optional
+
+* cellSize: Double 0:1 optional
+
+* extent: ReferencedEnvelope 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+FishnetCount(extent, boundsSource, boundaryInside, columns, rows): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* extent: ReferencedEnvelope 1:1 required
+
+* boundsSource: SimpleFeatureCollection 0:1 optional
+
+* boundaryInside: Boolean 0:1 optional
+
+* columns: Integer 1:1 required
+
+* rows: Integer 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+FishnetSize(extent, boundsSource, boundaryInside, width, height): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* extent: ReferencedEnvelope 1:1 required
+
+* boundsSource: SimpleFeatureCollection 0:1 optional
+
+* boundaryInside: Boolean 0:1 optional
+
+* width: Double 1:1 required
+
+* height: Double 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+FlipLine(lineFeatures): result
+''''''''''''''''''''''''''''''
+
+* lineFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+FlowMap(lineFeatures, odValue, doValue, maxSize): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* lineFeatures: SimpleFeatureCollection 1:1 required
+
+* odValue: Expression 1:1 required
+
+* doValue: Expression 0:1 optional
+
+* maxSize: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+FocalLQ(inputFeatures, xField, yField, spatialConcept, distanceMethod, searchDistance): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* xField: Expression 1:1 required
+
+* yField: Expression 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+GeometryToFeatures(geometry, crs, typeName, singlePart): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* geometry: Geometry 1:1 required
+
+* crs: CoordinateReferenceSystem 0:1 optional
+
+* typeName: String 0:1 optional
+
+* singlePart: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+GeometryToRaster(inputGeometry, forcedCRS, defaultValue, pixelType, cellSize, extent): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputGeometry: Geometry 1:1 required
+
+* forcedCRS: CoordinateReferenceSystem 0:1 optional
+
+* defaultValue: Number 0:1 optional
+
+* pixelType: RasterPixelType 0:1 optional
+
+* cellSize: Double 0:1 optional
+
+* extent: ReferencedEnvelope 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+GlobalGStatistics(inputFeatures, inputField, spatialConcept, distanceMethod, standardization, searchDistance): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* result: GStatisticsProcessResult 1:1 required
+
+GlobalGearysC(inputFeatures, inputField, spatialConcept, distanceMethod, standardization, searchDistance): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* result: GearysCProcessResult 1:1 required
+
+GlobalLeesL(inputFeatures, xField, yField, spatialConcept, distanceMethod, standardization, searchDistance, selfNeighbors): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* xField: String 1:1 required
+
+* yField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* selfNeighbors: Boolean 0:1 optional
+
+* result: LeesLProcessResult 1:1 required
+
+GlobalLeesS(inputFeatures, inputField, spatialConcept, distanceMethod, standardization, searchDistance, selfNeighbors): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* selfNeighbors: Boolean 0:1 optional
+
+* result: LeesSProcessResult 1:1 required
+
+GlobalMoransI(inputFeatures, inputField, spatialConcept, distanceMethod, standardization, searchDistance): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* result: MoransIProcessResult 1:1 required
+
+GlobalRogersonR(inputFeatures, xField, yField, distanceMethod, kappa): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* xField: String 1:1 required
+
+* yField: String 1:1 required
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* kappa: Double 0:1 optional
+
+* result: RogersonRProcessResult 1:1 required
+
+Hexagon(extent, boundsSource, sideLen, orientation): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* extent: ReferencedEnvelope 1:1 required
+
+* boundsSource: SimpleFeatureCollection 0:1 optional
+
+* sideLen: Double 1:1 required
+
+* orientation: HexagonOrientation 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+HexagonalBinning(features, weight, bbox, size, validGrid): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* features: SimpleFeatureCollection 1:1 required
+
+* weight: Expression 0:1 optional
+
+* bbox: ReferencedEnvelope 0:1 optional
+
+* size: Double 1:1 required
+
+* validGrid: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+HistogramGridCoverage(inputCoverage, bandIndex, cropShape): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* cropShape: Geometry 0:1 optional
+
+* result: HistogramProcessResult 1:1 required
+
+HubLinesByDistance(hubFeatures, hubIdField, spokeFeatures, preserveAttributes, useCentroid, useBezierCurve, maximumDistance): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* hubFeatures: SimpleFeatureCollection 1:1 required
+
+* hubIdField: String 0:1 optional
+
+* spokeFeatures: SimpleFeatureCollection 1:1 required
+
+* preserveAttributes: Boolean 0:1 optional
+
+* useCentroid: Boolean 0:1 optional
+
+* useBezierCurve: Boolean 0:1 optional
+
+* maximumDistance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+HubLinesByID(hubFeatures, hubIdField, spokeFeatures, spokeIdField, preserveAttributes, useCentroid, useBezierCurve, maximumDistance): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* hubFeatures: SimpleFeatureCollection 1:1 required
+
+* hubIdField: String 1:1 required
+
+* spokeFeatures: SimpleFeatureCollection 1:1 required
+
+* spokeIdField: String 1:1 required
+
+* preserveAttributes: Boolean 0:1 optional
+
+* useCentroid: Boolean 0:1 optional
+
+* useBezierCurve: Boolean 0:1 optional
+
+* maximumDistance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+IDW(inputFeatures, inputField, power, radiusType, numberOfPoints, distance, cellSize, extent): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* power: Double 0:1 optional
+
+* radiusType: RadiusType 0:1 optional
+
+* numberOfPoints: Integer 0:1 optional
+
+* distance: Double 0:1 optional
+
+* cellSize: Double 0:1 optional
+
+* extent: ReferencedEnvelope 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+Identity(inputFeatures, identityFeatures): result
+'''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* identityFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+Intersect(inputFeatures, overlayFeatures): result
+'''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* overlayFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+IntersectionPoints(inputFeatures, intersectFeatures, intersectIDField): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* intersectFeatures: SimpleFeatureCollection 1:1 required
+
+* intersectIDField: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+JoinCount(inputFeatures, blackExpression, contiguityType): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* blackExpression: Filter 1:1 required
+
+* contiguityType: ContiguityType 0:1 optional
+
+* result: JoinCountProcessResult 1:1 required
+
+KMeansClustering(inputFeatures, targetField, numberOfClusters, asCircle): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* targetField: String 1:1 required
+
+* numberOfClusters: Integer 1:1 required
+
+* asCircle: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+KNearestNeighborMap(inputFeatures, neighbor, convexHull): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* neighbor: Integer 1:1 required
+
+* convexHull: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+KernelDensity(inputFeatures, kernelType, populationField, searchRadius, cellSize, extent): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* kernelType: KernelType 0:1 optional
+
+* populationField: String 0:1 optional
+
+* searchRadius: Double 0:1 optional
+
+* cellSize: Double 0:1 optional
+
+* extent: ReferencedEnvelope 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+LineDensity(inputFeatures, populationField, searchRadius, cellSize, extent): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* populationField: String 0:1 optional
+
+* searchRadius: Double 0:1 optional
+
+* cellSize: Double 0:1 optional
+
+* extent: ReferencedEnvelope 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+LinearDirectionalMean(inputFeatures, orientationOnly, caseField): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* orientationOnly: Boolean 0:1 optional
+
+* caseField: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+LinearLineOfSight(inputCoverage, observerPoint, observerOffset, targetPoint, useCurvature, useRefraction, refractionFactor): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* observerPoint: Geometry 1:1 required
+
+* observerOffset: Double 1:1 required
+
+* targetPoint: Geometry 1:1 required
+
+* useCurvature: Boolean 0:1 optional
+
+* useRefraction: Boolean 0:1 optional
+
+* refractionFactor: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+LocalGStatistics(inputFeatures, inputField, spatialConcept, distanceMethod, standardization, searchDistance): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+LocalGearysC(inputFeatures, inputField, spatialConcept, distanceMethod, standardization, searchDistance): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+LocalLeesL(inputFeatures, xField, yField, spatialConcept, distanceMethod, standardization, searchDistance, selfNeighbors): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* xField: String 1:1 required
+
+* yField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* selfNeighbors: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+LocalLeesS(inputFeatures, inputField, spatialConcept, distanceMethod, standardization, searchDistance, selfNeighbors): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* selfNeighbors: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+LocalMoransI(inputFeatures, inputField, spatialConcept, distanceMethod, standardization, searchDistance): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* spatialConcept: SpatialConcept 0:1 optional
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* standardization: StandardizationMethod 0:1 optional
+
+* searchDistance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+LocalRogersonR(inputFeatures, xField, yField, distanceMethod, kappa): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* xField: String 1:1 required
+
+* yField: String 1:1 required
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* kappa: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+MeanCenter(inputFeatures, weightField, caseField, dimensionField): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* weightField: String 0:1 optional
+
+* caseField: String 0:1 optional
+
+* dimensionField: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+MedianCenter(inputFeatures, weightField, caseField, attributeFields): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* weightField: String 0:1 optional
+
+* caseField: String 0:1 optional
+
+* attributeFields: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+MergeFeatures(features): result
+'''''''''''''''''''''''''''''''
+
+* features: SimpleFeatureCollection 1:unbounded required
+
+* result: SimpleFeatureCollection 1:1 required
+
+MultipartToSinglepart(inputFeatures): result
+''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+MultipleRingBuffer(inputFeatures, distances, distanceUnit, outsideOnly, dissolve): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* distances: String 1:1 required
+
+* distanceUnit: DistanceUnit 0:1 optional
+
+* outsideOnly: Boolean 0:1 optional
+
+* dissolve: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+Near(inputFeatures, nearFeatures, nearIdField, maximumDistance): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* nearFeatures: SimpleFeatureCollection 1:1 required
+
+* nearIdField: String 0:1 optional
+
+* maximumDistance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+NearestNeighborCount(inputFeatures, countField, nearFeatures, searchRadius, radiusUnit): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* countField: String 0:1 optional
+
+* nearFeatures: SimpleFeatureCollection 1:1 required
+
+* searchRadius: Double 1:1 required
+
+* radiusUnit: DistanceUnit 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+NearestNeighborIndex(inputFeatures, distanceMethod, area): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* distanceMethod: DistanceMethod 0:1 optional
+
+* area: Double 0:1 optional
+
+* result: NearestNeighborResult 1:1 required
+
+OffsetFeatures(inputFeatures, offsetX, offsetY): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* offsetX: Double 0:1 required
+
+* offsetY: Double 0:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+OrdinaryLeastSquares(inputFeatures, dependentVariable, explanatoryVariables): report
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* dependentVariable: String 1:1 required
+
+* explanatoryVariables: String 1:1 required
+
+* report: OLSResult 1:1 required
+
+Pearson(inputFeatures, inputFields): result
+'''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputFields: String 1:1 required
+
+* result: PearsonResult 1:1 required
+
+PointDensity(inputFeatures, populationField, neighborhood, cellSize, extent): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* populationField: String 0:1 optional
+
+* neighborhood: String 0:1 optional
+
+* cellSize: Double 0:1 optional
+
+* extent: ReferencedEnvelope 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+PointStatistics(polygonFeatures, pointFeatures, countField, statisticsFields): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* polygonFeatures: SimpleFeatureCollection 1:1 required
+
+* pointFeatures: SimpleFeatureCollection 1:1 required
+
+* countField: String 0:1 optional
+
+* statisticsFields: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+PointsAlongLines(lineFeatures, distance): result
+''''''''''''''''''''''''''''''''''''''''''''''''
+
+* lineFeatures: SimpleFeatureCollection 1:1 required
+
+* distance: Expression 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+PointsToLine(inputFeatures, lineField, sortField, useBezierCurve, closeLine): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* lineField: String 0:1 optional
+
+* sortField: String 0:1 optional
+
+* useBezierCurve: Boolean 0:1 optional
+
+* closeLine: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+PointsToRaster(inputFeatures, inputField, cellAssignment, cellSize, extent): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* cellAssignment: PointAssignmentType 0:1 optional
+
+* cellSize: Double 0:1 optional
+
+* extent: ReferencedEnvelope 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+PolarGridsFromFeatures(origin, radius, radialType, sides): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* origin: SimpleFeatureCollection 1:1 required
+
+* radius: String 1:1 required
+
+* radialType: RadialType 0:1 optional
+
+* sides: Integer 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+PolarGridsFromGeometry(origin, radius, radialType, sides): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* origin: Geometry 1:1 required
+
+* radius: String 1:1 required
+
+* radialType: RadialType 0:1 optional
+
+* sides: Integer 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+QuadratAnalysis(inputFeatures, cellSize): result
+''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* cellSize: Double 0:1 optional
+
+* result: QuadratResult 1:1 required
+
+RadialLineOfSight(inputCoverage, observerPoint, observerOffset, radius, sides, useCurvature, useRefraction, refractionFactor): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* observerPoint: Geometry 1:1 required
+
+* observerOffset: Double 1:1 required
+
+* radius: Double 1:1 required
+
+* sides: Integer 0:1 optional
+
+* useCurvature: Boolean 0:1 optional
+
+* useRefraction: Boolean 0:1 optional
+
+* refractionFactor: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+RandomPoints(extent, polygonFeatures, pointCount): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* extent: ReferencedEnvelope 1:1 required
+
+* polygonFeatures: SimpleFeatureCollection 0:1 optional
+
+* pointCount: Integer 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+RandomPointsPerFeatures(polygonFeatures, expression): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* polygonFeatures: SimpleFeatureCollection 1:1 required
+
+* expression: Expression 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+RasterAspect(inputCoverage): result
+'''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterClipByCircle(inputCoverage, center, radius, inside): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* center: Geometry 1:1 required
+
+* radius: Double 1:1 required
+
+* inside: Boolean 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterClipByExtent(inputCoverage, cropShape): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* cropShape: ReferencedEnvelope 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterClipByFeatures(inputCoverage, cropFeatures): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* cropFeatures: SimpleFeatureCollection 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterClipByGeometry(inputCoverage, cropShape): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* cropShape: Geometry 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterCon(inputCoverage, bandIndex, filter, trueValue, falseValue): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* filter: Filter 1:1 required
+
+* trueValue: Integer 1:1 required
+
+* falseValue: Integer 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterCurvature(inputCoverage, zFactor): result
+'''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* zFactor: Double 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterDescribe(inputCoverage, detailed): result
+'''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* detailed: Boolean 0:1 optional
+
+* result: RasterDescribeResult 1:1 required
+
+RasterExtraction(inputCoverage, bandIndex, filter): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* filter: Filter 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterFlip(inputCoverage): result
+'''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterForceCRS(inputCoverage, forcedCRS): result
+''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* forcedCRS: CoordinateReferenceSystem 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterHighLowPoints(inputCoverage, bandIndex, cropShape, valueType): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* cropShape: Geometry 0:1 optional
+
+* valueType: HighLowType 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+RasterHillshade(inputCoverage, azimuth, altitude, zFactor): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* azimuth: Double 0:1 optional
+
+* altitude: Double 0:1 optional
+
+* zFactor: Double 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterMath(inputCoverage, bandIndex, expression): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* expression: Expression 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterMirror(inputCoverage): result
+'''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterNDVI(nirCoverage, nirIndex, redCoverage, redIndex): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* nirCoverage: GridCoverage2D 1:1 required
+
+* nirIndex: Integer 1:1 required
+
+* redCoverage: GridCoverage2D 1:1 required
+
+* redIndex: Integer 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterProfile(inputCoverage, userLine, interval): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* userLine: Geometry 1:1 required
+
+* interval: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+RasterReclass(inputCoverage, bandIndex, ranges, retainMissingValues): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* ranges: String 1:1 required
+
+* retainMissingValues: Boolean 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterReproject(inputCoverage, targetCRS, resamplingType, cellSize, forcedCRS): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* targetCRS: CoordinateReferenceSystem 1:1 required
+
+* resamplingType: ResampleType 0:1 optional
+
+* cellSize: Double 0:1 optional
+
+* forcedCRS: CoordinateReferenceSystem 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterResample(inputCoverage, cellSize, resamplingType): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* cellSize: Double 1:1 required
+
+* resamplingType: ResampleType 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterRescale(inputCoverage, xScale, yScale): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* xScale: Double 0:1 optional
+
+* yScale: Double 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterRotate(inputCoverage, anchorPoint, angle, interpolation): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* anchorPoint: Point 0:1 optional
+
+* angle: Double 1:1 required
+
+* interpolation: ResampleType 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterRoughness(inputCoverage): result
+''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterSetNull(inputCoverage, bandIndex, filter, replaceNoData, newValue): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* filter: Filter 1:1 required
+
+* replaceNoData: Boolean 0:1 optional
+
+* newValue: Double 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterShift(inputCoverage, xShift, yShift): result
+''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* xShift: Double 0:1 optional
+
+* yShift: Double 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterSlope(inputCoverage, slopeType, zFactor): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* slopeType: SlopeType 0:1 optional
+
+* zFactor: Double 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+RasterTPI(inputCoverage): result
+''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterTRI(inputCoverage): result
+''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* result: GridCoverage2D 1:1 required
+
+RasterToGridPolygon(inputCoverage, bandIndex, valueField, retainNoData): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* valueField: String 0:1 optional
+
+* retainNoData: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+RasterToImage(coverage, bbox, crs, style, width, height, format, transparent, bgColor): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* coverage: GridCoverage2D 1:1 required
+
+* bbox: String 0:1 optional
+
+* crs: CoordinateReferenceSystem 0:1 optional
+
+* style: Style 0:1 optional
+
+* width: Integer 1:1 required
+
+* height: Integer 1:1 required
+
+* format: String 0:1 optional
+
+* transparent: Boolean 0:1 optional
+
+* bgColor: String 0:1 optional
+
+* result: MapToImageParam 1:1 required
+
+RasterToPoint(inputCoverage, bandIndex, valueField, retainNoData): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* valueField: String 0:1 optional
+
+* retainNoData: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+RasterToPolygon(inputCoverage, bandIndex, weeding, valueField): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* weeding: Boolean 0:1 optional
+
+* valueField: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+RectangularBinning(features, weight, bbox, width, height, validGrid): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* features: SimpleFeatureCollection 1:1 required
+
+* weight: Expression 0:1 optional
+
+* bbox: ReferencedEnvelope 0:1 optional
+
+* width: Double 1:1 required
+
+* height: Double 1:1 required
+
+* validGrid: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+RemoveHoles(inputFeatures, minimumArea): result
+'''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* minimumArea: Expression 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+RemoveParts(inputFeatures, minimumArea): result
+'''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* minimumArea: Expression 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+RepairGeometry(inputFeatures): result
+'''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+Reproject(inputFeatures, forcedCRS, targetCRS): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* forcedCRS: CoordinateReferenceSystem 0:1 optional
+
+* targetCRS: CoordinateReferenceSystem 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+RingMap(inputFeatures, fields, targetField, ringGap): anchor
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* fields: String 1:1 required
+
+* targetField: String 0:1 optional
+
+* ringGap: Integer 0:1 optional
+
+* anchor: SimpleFeatureCollection 1:1 required
+
+SelectFeatures(inputFeatures, filter, attributes): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* filter: Filter 1:1 required
+
+* attributes: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+Simplify(inputFeatures, tolerance, preserveTopology): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* tolerance: Expression 1:1 required
+
+* preserveTopology: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+SingleSidedBuffer(inputFeatures, distance, distanceUnit, quadrantSegments): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* distance: Expression 1:1 required
+
+* distanceUnit: DistanceUnit 0:1 optional
+
+* quadrantSegments: Integer 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+SinglepartToMultipart(inputFeatures, caseField, dissolve): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* caseField: String 1:1 required
+
+* dissolve: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+SnapPointsToLines(pointFeatures, lineFeatures, tolerance): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* pointFeatures: SimpleFeatureCollection 1:1 required
+
+* lineFeatures: SimpleFeatureCollection 1:1 required
+
+* tolerance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+SpatialClumpMap(inputFeatures, radius, radiusUnit, quadrantSegments): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* radius: Expression 1:1 required
+
+* radiusUnit: DistanceUnit 0:1 optional
+
+* quadrantSegments: Integer 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+SpatialJoin(inputFeatures, joinFeatures, joinType, searchRadius, radiusUnit): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* joinFeatures: SimpleFeatureCollection 1:1 required
+
+* joinType: SpatialJoinType 0:1 optional
+
+* searchRadius: Double 0:1 optional
+
+* radiusUnit: DistanceUnit 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+SplitLineAtPoint(lineFeatures, pointFeatures, tolerance): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* lineFeatures: SimpleFeatureCollection 1:1 required
+
+* pointFeatures: SimpleFeatureCollection 1:1 required
+
+* tolerance: Double 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+SplitLineAtVertices(lineFeatures): result
+'''''''''''''''''''''''''''''''''''''''''
+
+* lineFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+SplitLineByDistance(lineFeatures, distance): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* lineFeatures: SimpleFeatureCollection 1:1 required
+
+* distance: Expression 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+StandardDeviationalEllipse(inputFeatures, ellipseSize, weightField, caseField): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* ellipseSize: String 0:1 optional
+
+* weightField: String 0:1 optional
+
+* caseField: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+StandardDistance(inputFeatures, circleSize, weightField, caseField): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* circleSize: String 0:1 optional
+
+* weightField: String 0:1 optional
+
+* caseField: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+StandardizedScores(inputFeatures, xField, yField, targetField): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* xField: Expression 1:1 required
+
+* yField: Expression 1:1 required
+
+* targetField: String 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+StatisticsFeatures(inputFeatures, inputFields, caseField): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputFields: String 1:1 required
+
+* caseField: String 0:1 optional
+
+* result: DataStatisticsResult 1:1 required
+
+StatisticsGridCoverage(inputCoverage, cropShape, bandIndex): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputCoverage: GridCoverage2D 1:1 required
+
+* cropShape: Geometry 0:1 optional
+
+* bandIndex: Integer 0:1 optional
+
+* result: DataStatisticsResult 1:1 required
+
+SumAreas(inputFeatures, filter, areaUnit): result
+'''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* filter: Filter 0:1 optional
+
+* areaUnit: AreaUnit 0:1 optional
+
+* result: Double 1:1 required
+
+SumLineLength(polygons, lengthField, countField, lines): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* polygons: SimpleFeatureCollection 1:1 required
+
+* lengthField: String 1:1 required
+
+* countField: String 0:1 optional
+
+* lines: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+SymDifference(inputFeatures, differenceFeatures): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* differenceFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+TPS(inputFeatures, inputField, cellSize, extent): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* inputField: String 1:1 required
+
+* cellSize: Double 0:1 optional
+
+* extent: ReferencedEnvelope 0:1 optional
+
+* result: GridCoverage2D 1:1 required
+
+ThiessenPolygon(inputFeatures, attributes, clipArea): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* attributes: ThiessenAttributeMode 0:1 optional
+
+* clipArea: Geometry 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+TriangularGrid(extent, boundsSource, size, orientation): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* extent: ReferencedEnvelope 1:1 required
+
+* boundsSource: SimpleFeatureCollection 0:1 optional
+
+* size: Double 1:1 required
+
+* orientation: HexagonOrientation 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+TrimLine(lineFeatures, dangleLength, deleteShort): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* lineFeatures: SimpleFeatureCollection 1:1 required
+
+* dangleLength: Double 1:1 required
+
+* deleteShort: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+Union(inputFeatures, overlayFeatures): result
+'''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* overlayFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+UnionPolygon(polygonFeatures, preserveHole): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* polygonFeatures: SimpleFeatureCollection 1:1 required
+
+* preserveHole: Boolean 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+Update(inputFeatures, updateFeatures): result
+'''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* updateFeatures: SimpleFeatureCollection 1:1 required
+
+* result: SimpleFeatureCollection 1:1 required
+
+VerticesToPoints(inputFeatures, location): result
+'''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* location: PointLocationType 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+WedgeBuffer(pointFeatures, azimuth, wedgeAngle, innerRadius, outerRadius, radiusUnit): result
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* pointFeatures: SimpleFeatureCollection 1:1 required
+
+* azimuth: Expression 1:1 required
+
+* wedgeAngle: Expression 1:1 required
+
+* innerRadius: Expression 0:1 optional
+
+* outerRadius: Expression 1:1 required
+
+* radiusUnit: DistanceUnit 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+WindRoseMap(inputFeatures, weightField, center): anchor
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* inputFeatures: SimpleFeatureCollection 1:1 required
+
+* weightField: String 0:1 optional
+
+* center: Geometry 0:1 optional
+
+* anchor: SimpleFeatureCollection 1:1 required
+
+ZonalStatistics(zoneFeatures, targetField, valueCoverage, bandIndex, statisticsType): result
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* zoneFeatures: SimpleFeatureCollection 1:1 required
+
+* targetField: String 0:1 optional
+
+* valueCoverage: GridCoverage2D 1:1 required
+
+* bandIndex: Integer 0:1 optional
+
+* statisticsType: ZonalStatisticsType 0:1 optional
+
+* result: SimpleFeatureCollection 1:1 required
+
+isInstanceOf(class): isInstanceOf
+'''''''''''''''''''''''''''''''''
+
+* class: Class 1:1 required
+
+* isInstanceOf: Boolean 1:1 required
