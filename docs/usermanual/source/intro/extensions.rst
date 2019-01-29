@@ -189,6 +189,17 @@ The scripting extension provides a number of extension points called “hooks”
 
 For more information on scripting, please see the :ref:`processing.scripting` section, and the `GeoServer scripting documentation <../geoserver/community/scripting/>`_.
 
+.. _intro.extensions.spatialstatistics:
+
+Spatial Statistics
+------------------
+
+The Spatial Statistics extension adds many new WPS Processes. 
+
+For more details, and a full list of these processes, refer to the :ref:`processing.proccesses.spatialstatistics` section.
+
+Spatial Statistics requires :ref:`intro.extensions.gdal`.
+
 
 .. _intro.extensions.sqlserver:
 

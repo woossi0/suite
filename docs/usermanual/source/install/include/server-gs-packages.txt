@@ -45,6 +45,8 @@
      - Printing Extension
    * - ``boundless-server-gs-script``
      - Scripting (Python) extension
+   * - ``boundless-server-gs-spatialstatistics``
+     - Spatial Statistics extension
    * - ``boundless-server-gs-sqlserver``
      - SQL Server database extension
    * - ``boundless-server-gs-vectortiles``

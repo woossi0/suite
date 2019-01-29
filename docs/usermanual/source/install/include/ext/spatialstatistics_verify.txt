@@ -1,0 +1,5 @@
+To verify that the extension has been installed properly:
+
+#. :ref:`Enable WPS <processing.intro.wps.enable>`.
+
+#. Navigate to the WPS capabilities document: ``http://localhost:8080/geoserver/wps?request=GetCapabilities``. It should include Spatial Statistics processes such as ``statistics:FishnetSize``.
