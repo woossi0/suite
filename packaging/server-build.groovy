@@ -702,12 +702,12 @@ def packageWars() {
     cd $EXT_ARCHIVE
 
     # renaming
-    #mv hz-cluster cluster
+    mv hz-cluster cluster
 
     # Rename app schema to make consistent with agreed upon naming conventions
     mv app-schema appschema
 
-    #mv python/ script/
+    mv python/ script/
 
     mkdir windows/
     cp "${WORKSPACE}/suite/packaging/windows/"* windows/
