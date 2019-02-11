@@ -28,9 +28,9 @@ Boundless Server WebSDK demo application
 
 %install
 source ~/.bashrc
-mkdir -p %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/quickview.xml %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{buildroot}/etc/tomcat8/Catalina/localhost/quickview.xml %{buildroot}/etc/tomcat8/Catalina/localhost/quickview.xml.new
+mkdir -p %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/quickview.xml %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{buildroot}/etc/tomcat9/Catalina/localhost/quickview.xml %{buildroot}/etc/tomcat9/Catalina/localhost/quickview.xml.new
 
 mkdir -p %{buildroot}/usr/share/doc/boundless-server-quickview
 cp %{_WORKSPACE}/suite/packaging/licenses/EULA %{buildroot}/usr/share/doc/boundless-server-quickview
@@ -47,8 +47,8 @@ mkdir -p %{buildroot}/opt/boundless/server
 unzip %{_WORKSPACE}/archive/war/quickview.war -d %{buildroot}/opt/boundless/server/quickview
 
 %pre
-if [ -f /etc/tomcat8/Catalina/localhost/quickview.xml ]; then
-  cp -pf /etc/tomcat8/Catalina/localhost/quickview.xml /etc/tomcat8/Catalina/localhost/quickview.xml.orig
+if [ -f /etc/tomcat9/Catalina/localhost/quickview.xml ]; then
+  cp -pf /etc/tomcat9/Catalina/localhost/quickview.xml /etc/tomcat9/Catalina/localhost/quickview.xml.orig
 fi
 # Cleanup old license files
 if [ -f /usr/share/doc/boundless-server-quickview/EULA ]; then
@@ -68,8 +68,8 @@ done
 
 %postun
 if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
-  if [ -f /etc/tomcat8/Catalina/localhost/quickview.xml ]; then
-    rm -f /etc/tomcat8/Catalina/localhost/quickview.xml
+  if [ -f /etc/tomcat9/Catalina/localhost/quickview.xml ]; then
+    rm -f /etc/tomcat9/Catalina/localhost/quickview.xml
   fi
   if [ -d /opt/boundless/server/quickview ]; then
     for dir in `find /opt/boundless/server/quickview -type d -exec bash -c '[ "x\`find "{}" -maxdepth 1 -type f\`" = x ] && echo "{}"' \; | sort -r`; do
@@ -81,7 +81,7 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%config(noreplace) /etc/tomcat8/Catalina/localhost/quickview.xml
+%config(noreplace) /etc/tomcat9/Catalina/localhost/quickview.xml
 /usr/share/doc/boundless-server-quickview
 /opt/boundless/server/quickview
-/etc/tomcat8/Catalina/localhost/quickview.xml.new
+/etc/tomcat9/Catalina/localhost/quickview.xml.new

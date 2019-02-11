@@ -10,7 +10,7 @@ URL: https://boundlessgeo.com/boundless-gis-platform/
 BuildRoot: %{_WORKSPACE}/boundless-server-geoserver/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, boundless-server-tomcat8 >= 8.5.32, boundless-server-tomcat8 < 8.6, libjpeg-turbo-official = 1.4.2, dejavu-sans-mono-fonts
+Requires:  unzip, boundless-server-tomcat9 >= 8.5.32, boundless-server-tomcat9 < 8.6, libjpeg-turbo-official = 1.4.2, dejavu-sans-mono-fonts
 Conflicts: geoserver, suite-geoserver, suite-gs-mbtiles, suite-gs-wps, boundless-server-gs-geopkg, suite-gs-geopkg
 Obsoletes: suite-geoserver, suite-gs-mbtiles, suite-gs-wps, boundless-server-gs-geopkg, suite-gs-geopkg
 AutoReqProv: no
@@ -42,17 +42,17 @@ mkdir -p %{buildroot}/var/opt/boundless/server/geoserver/data/
 cp %{_WORKSPACE}/SRC/BoundlessServer-war/boundless-server-data-dir.zip %{buildroot}/var/opt/boundless/server/geoserver/data-dir.zip
 
 # Add tomcat context description files
-mkdir -p %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/geoserver.xml %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/geoserver.xml %{buildroot}/etc/tomcat8/Catalina/localhost/geoserver.xml.new
+mkdir -p %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/geoserver.xml %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/geoserver.xml %{buildroot}/etc/tomcat9/Catalina/localhost/geoserver.xml.new
 
 # Move docs
 mkdir -p %{buildroot}/usr/share/doc/
 mv %{buildroot}/opt/boundless/server/geoserver/doc %{buildroot}/usr/share/doc/boundless-server-geoserver
 
 %pre
-if [ -f /etc/tomcat8/Catalina/localhost/geoserver.xml ]; then
-  cp -pf /etc/tomcat8/Catalina/localhost/geoserver.xml /etc/tomcat8/Catalina/localhost/geoserver.xml.orig
+if [ -f /etc/tomcat9/Catalina/localhost/geoserver.xml ]; then
+  cp -pf /etc/tomcat9/Catalina/localhost/geoserver.xml /etc/tomcat9/Catalina/localhost/geoserver.xml.orig
 fi
 # Cleanup old license files
 if [ -f /usr/share/doc/boundless-server-geoserver/EULA ]; then
@@ -70,16 +70,16 @@ fi
 if [ ! -d /var/opt/boundless/server/geoserver/tilecache/ ]; then
   mkdir -p /var/opt/boundless/server/geoserver/tilecache/
 fi
-if [ ! -f /etc/tomcat8/server-opts/geoserver ]; then
-  echo "-Dorg.geotools.referencing.forceXY=true -XX:SoftRefLRUPolicyMSPerMB=36000 -Dorg.geotools.coverage.jaiext.enabled=true" > /etc/tomcat8/server-opts/geoserver
+if [ ! -f /etc/tomcat9/server-opts/geoserver ]; then
+  echo "-Dorg.geotools.referencing.forceXY=true -XX:SoftRefLRUPolicyMSPerMB=36000 -Dorg.geotools.coverage.jaiext.enabled=true" > /etc/tomcat9/server-opts/geoserver
 fi
 if [ ! -L /var/log/boundless/server/geoserver/logs ]; then
   mkdir -p /var/log/boundless/server/geoserver/
   ln -s /var/opt/boundless/server/geoserver/data/logs /var/log/boundless/server/geoserver/
 fi
 chown -R root:root /opt/boundless/
-chown -R tomcat8:tomcat8 /var/opt/boundless/
-chown -R tomcat8:tomcat8 /var/log/boundless/
+chown -R tomcat9:tomcat9 /var/opt/boundless/
+chown -R tomcat9:tomcat9 /var/log/boundless/
 for i in `find /usr/share/doc/boundless-server-geoserver/ -name *.gz`; do
   gunzip $i
 done
@@ -93,16 +93,16 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
       rm -rf $dir
     done
   fi
-  if [ -f /etc/tomcat8/Catalina/localhost/geoserver.xml ]; then
-    rm -f /etc/tomcat8/Catalina/localhost/geoserver.xml
+  if [ -f /etc/tomcat9/Catalina/localhost/geoserver.xml ]; then
+    rm -f /etc/tomcat9/Catalina/localhost/geoserver.xml
   fi
   rm -f /var/lib/dpkg/info/boundless-server-geoserver.* 2>&1 > /dev/null
 fi
 
 %files
 %defattr(-,root,root,-)
-%config(noreplace) /etc/tomcat8/Catalina/localhost/geoserver.xml
+%config(noreplace) /etc/tomcat9/Catalina/localhost/geoserver.xml
 /usr/share/doc/boundless-server-geoserver
 /opt/boundless/server/geoserver
-/etc/tomcat8/Catalina/localhost/geoserver.xml.new
+/etc/tomcat9/Catalina/localhost/geoserver.xml.new
 /var/opt/boundless/server/geoserver/data-dir.zip

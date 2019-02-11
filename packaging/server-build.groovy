@@ -445,7 +445,7 @@ pipeline {
                   yum clean all
                   rm -rf /var/cache/yum
                   yum update -y boundless-server-*
-                  service tomcat8 restart
+                  service tomcat9 restart
                 '
               """
           } else {

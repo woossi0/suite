@@ -10,7 +10,7 @@ URL: https://boundlessgeo.com/boundless-gis-platform/
 BuildRoot: %{_WORKSPACE}/boundless-server-docs/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, boundless-server-tomcat8 >= 8.5.32, boundless-server-tomcat8 < 8.6
+Requires:  unzip, boundless-server-tomcat9 >= 8.5.32, boundless-server-tomcat9 < 8.6
 Conflicts: opengeo-docs, suite-docs
 Obsoletes: suite-docs
 AutoReqProv: no
@@ -31,16 +31,16 @@ Boundless Server documentation.
 mkdir -p %{buildroot}/opt/boundless/server/docs/
 unzip %{_WORKSPACE}/SRC/BoundlessServer-war/boundless-server-docs.war -d %{buildroot}/opt/boundless/server/docs/
 
-mkdir -p %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/boundless-server-docs.xml %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/boundless-server-docs.xml %{buildroot}/etc/tomcat8/Catalina/localhost/boundless-server-docs.xml.new
+mkdir -p %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/boundless-server-docs.xml %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/boundless-server-docs.xml %{buildroot}/etc/tomcat9/Catalina/localhost/boundless-server-docs.xml.new
 
 mkdir -p %{buildroot}/usr/share/doc/
 mv %{buildroot}/opt/boundless/server/docs/doc %{buildroot}/usr/share/doc/boundless-server-docs
 
 %pre
-if [ -f /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml ]; then
-  cp -pf /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml.orig
+if [ -f /etc/tomcat9/Catalina/localhost/boundless-server-docs.xml ]; then
+  cp -pf /etc/tomcat9/Catalina/localhost/boundless-server-docs.xml /etc/tomcat9/Catalina/localhost/boundless-server-docs.xml.orig
 fi
 # Cleanup old license files
 if [ -f /usr/share/doc/boundless-server-docs/EULA ]; then
@@ -65,15 +65,15 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
       rm -rf $dir
     done
   fi
-  if [ -f /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml ]; then
-    rm -f /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml
+  if [ -f /etc/tomcat9/Catalina/localhost/boundless-server-docs.xml ]; then
+    rm -f /etc/tomcat9/Catalina/localhost/boundless-server-docs.xml
   fi
   rm -f /var/lib/dpkg/info/boundless-server-docs.* 2>&1 > /dev/null
 fi
 
 %files
 %defattr(-,root,root,-)
-%config(noreplace) /etc/tomcat8/Catalina/localhost/boundless-server-docs.xml
+%config(noreplace) /etc/tomcat9/Catalina/localhost/boundless-server-docs.xml
 /usr/share/doc/boundless-server-docs
 /opt/boundless/server/docs
-/etc/tomcat8/Catalina/localhost/boundless-server-docs.xml.new
+/etc/tomcat9/Catalina/localhost/boundless-server-docs.xml.new

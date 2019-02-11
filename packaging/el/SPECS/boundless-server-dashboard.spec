@@ -9,7 +9,7 @@ License: GPLv2
 BuildRoot: %{_WORKSPACE}/boundless-server-dashboard/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, boundless-server-tomcat8 >= 8.5.32, boundless-server-tomcat8 < 8.6
+Requires:  unzip, boundless-server-tomcat9 >= 8.5.32, boundless-server-tomcat9 < 8.6
 Conflicts: opengeo-dashboard, suite-dashboard
 Obsoletes: suite-dashboard
 AutoReqProv: no
@@ -30,16 +30,16 @@ The dashboard is the starting point for getting started with Boundless Server.
 mkdir -p %{buildroot}/opt/boundless/server
 unzip %{_WORKSPACE}/SRC/BoundlessServer-war/dashboard.war -d %{buildroot}/opt/boundless/server/dashboard
 
-mkdir -p %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/dashboard.xml %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/dashboard.xml %{buildroot}/etc/tomcat8/Catalina/localhost/dashboard.xml.new
+mkdir -p %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/dashboard.xml %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/dashboard.xml %{buildroot}/etc/tomcat9/Catalina/localhost/dashboard.xml.new
 
 mkdir -p %{buildroot}/usr/share/doc/
 mv %{buildroot}/opt/boundless/server/dashboard/doc %{buildroot}/usr/share/doc/boundless-server-dashboard
 
 %pre
-if [ -f /etc/tomcat8/Catalina/localhost/dashboard.xml ]; then
-  cp -pf /etc/tomcat8/Catalina/localhost/dashboard.xml /etc/tomcat8/Catalina/localhost/dashboard.xml.orig
+if [ -f /etc/tomcat9/Catalina/localhost/dashboard.xml ]; then
+  cp -pf /etc/tomcat9/Catalina/localhost/dashboard.xml /etc/tomcat9/Catalina/localhost/dashboard.xml.orig
 fi
 # Cleanup old license files
 if [ -f /usr/share/doc/boundless-server-dashboard/EULA ]; then
@@ -64,15 +64,15 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
       rm -rf $dir
     done
   fi
-  if [ -f /etc/tomcat8/Catalina/localhost/dashboard.xml ]; then
-    rm -f /etc/tomcat8/Catalina/localhost/dashboard.xml
+  if [ -f /etc/tomcat9/Catalina/localhost/dashboard.xml ]; then
+    rm -f /etc/tomcat9/Catalina/localhost/dashboard.xml
   fi
   rm -f /var/lib/dpkg/info/boundless-server-dashboard.* 2>&1 > /dev/null
 fi
 
 %files
 %defattr(-,root,root,-)
-%config(noreplace) /etc/tomcat8/Catalina/localhost/dashboard.xml
+%config(noreplace) /etc/tomcat9/Catalina/localhost/dashboard.xml
 /usr/share/doc/boundless-server-dashboard
 /opt/boundless/server/dashboard
-/etc/tomcat8/Catalina/localhost/dashboard.xml.new
+/etc/tomcat9/Catalina/localhost/dashboard.xml.new

@@ -34,8 +34,8 @@ docker run --name suite-pgsql -p 5432:5432 -e POSTGRES_PASSWORD=suitepostgres -d
 ### (Optional) Change location of data dir  
 Modify line 6 to change location of data dir  
 ```bash
-docker exec -it suite vim /etc/tomcat8/Catalina/localhost/geoserver.xml  
-docker exec -it suite service tomcat8 restart
+docker exec -it suite vim /etc/tomcat9/Catalina/localhost/geoserver.xml  
+docker exec -it suite service tomcat9 restart
 ```
 
 ----

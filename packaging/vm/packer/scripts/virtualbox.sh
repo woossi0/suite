@@ -49,7 +49,7 @@ ln -s /opt/VBoxGuestAdditions-5.0.28/init/vboxadd-service /etc/init.d/
 update-rc.d vboxadd-service defaults
 ln -s /opt/VBoxGuestAdditions-5.0.28/init/vboxadd /etc/init.d/
 update-rc.d vboxadd defaults
-usermod -G vboxsf -a tomcat8
+usermod -G vboxsf -a tomcat9
 
 #echo "Cleaning up logs and bash history..."
 history -c

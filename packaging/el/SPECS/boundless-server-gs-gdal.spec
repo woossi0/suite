@@ -42,8 +42,8 @@ if [ -f /usr/share/java/gdal.jar ]; then
   chown root:root /opt/boundless/server/geoserver/WEB-INF/lib/gdal.jar
 fi
 if [ -f /etc/os-release ]; then
-  if ! grep -q '/usr/lib/jni' /etc/tomcat8/java-libs ; then
-    echo "/usr/lib/jni" >> /etc/tomcat8/java-libs
+  if ! grep -q '/usr/lib/jni' /etc/tomcat9/java-libs ; then
+    echo "/usr/lib/jni" >> /etc/tomcat9/java-libs
   fi
 fi
 
@@ -54,8 +54,8 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
   rm -f /opt/boundless/server/geoserver/WEB-INF/lib/gdal.jar
   if [ -f /etc/os-release ]; then
     if [ `gawk -F= '/^NAME/{print $2}' /etc/os-release | sed 's/"//g'` = "Ubuntu" ]; then
-      if [ -f /etc/tomcat8/java-libs ]; then
-        sed -i '\|/usr/lib/jni|d' /etc/tomcat8/java-libs
+      if [ -f /etc/tomcat9/java-libs ]; then
+        sed -i '\|/usr/lib/jni|d' /etc/tomcat9/java-libs
       fi
     fi
   fi

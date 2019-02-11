@@ -2,7 +2,7 @@
 
 set -e
 
-TC_ETC_DIR=/etc/tomcat8
+TC_ETC_DIR=/etc/tomcat9
 
 
 # Configure SSL/wildcard for Tomcat
@@ -11,7 +11,7 @@ pushd /tmp/tomcat
   cat server.xml > $TC_ETC_DIR/server.xml
   cp boundless-test-wildcard.jks $TC_ETC_DIR/
   chmod 0640 $TC_ETC_DIR/boundless-test-wildcard.jks
-  chgrp tomcat8 $TC_ETC_DIR/boundless-test-wildcard.jks
+  chgrp tomcat9 $TC_ETC_DIR/boundless-test-wildcard.jks
 
 popd
 
