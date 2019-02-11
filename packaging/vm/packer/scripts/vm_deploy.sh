@@ -46,8 +46,8 @@ echo "Installing core products..."
 apt-get -qq update
 apt-get install -qq --allow-unauthenticated boundless-server-geoserver boundless-server-geowebcache boundless-server-dashboard boundless-server-quickview boundless-server-composer boundless-server-wpsbuilder boundless-server-docs boundless-server-gs-gdal boundless-server-gs-netcdf-out unzip
 sleep 2
-/etc/init.d/tomcat8 restart
-update-rc.d tomcat8 defaults
+/etc/init.d/tomcat9 restart
+update-rc.d tomcat9 defaults
 
 echo "Installing DB components..."
 apt-get install -qq --allow-unauthenticated postgresql-9.6-postgis-2.3
@@ -126,17 +126,17 @@ echo "==========================================================================
 Welcome to the Boundless Server $SERVER_VERSION virtual machine!
 
 Useful commands:
-sudo service tomcat8 start               (start Tomcat)
-sudo service tomcat8 stop                (stop Tomcat)
+sudo service tomcat9 start               (start Tomcat)
+sudo service tomcat9 stop                (stop Tomcat)
 sudo poweroff                            (shut down the virtual machine)
 sudo apt-get install <package>           (install a package)
 sudo /root/training.sh <on/off>          (toggle training mode on/off)
 
 Useful directories:
-/etc/tomcat8                             (tomcat config)
+/etc/tomcat9                             (tomcat config)
 /opt/boundless/server                    (server application)
 /var/opt/boundless/server/geoserver/data (GeoServer data directory)
-/var/log/tomcat8                         (tomcat logs)
+/var/log/tomcat9                         (tomcat logs)
 /media/sf_share                          (share directory between host and guest)
 
 Complete documentation can be found at:
@@ -173,12 +173,12 @@ rm -f training_data_directory.zip
 
 # echo "Updating legacy security dir..."
 # cp -pR /var/opt/boundless/server/geoserver/default-data/security /var/opt/boundless/server/geoserver/data/
-chown -R tomcat8:tomcat8 /var/opt/boundless/server/geoserver
+chown -R tomcat9:tomcat9 /var/opt/boundless/server/geoserver
 
 echo "Creating toggle for CORS..."
-cp -p /etc/tomcat8/web.xml /etc/tomcat8/web.xml.default
-cp -p /etc/tomcat8/web.xml /etc/tomcat8/web.xml.cors
-sed -i '\|</web-app>|d' /etc/tomcat8/web.xml.cors
+cp -p /etc/tomcat9/web.xml /etc/tomcat9/web.xml.default
+cp -p /etc/tomcat9/web.xml /etc/tomcat9/web.xml.cors
+sed -i '\|</web-app>|d' /etc/tomcat9/web.xml.cors
 echo "
 <filter>
   <filter-name>CorsFilter</filter-name>
@@ -200,6 +200,6 @@ echo "
   <filter-name>CorsFilter</filter-name>
   <url-pattern>/*</url-pattern>
 </filter-mapping>
-</web-app>" >> /etc/tomcat8/web.xml.cors
+</web-app>" >> /etc/tomcat9/web.xml.cors
 
 echo "Finished vm_deploy."

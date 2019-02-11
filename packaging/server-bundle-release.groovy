@@ -37,7 +37,7 @@ pipeline {
         }
 
         script {
-          tomcatPackages = ['tomcat8', 'tomcat8-manager']
+          tomcatPackages = ['tomcat9', 'tomcat9-manager']
           for (int i = 0; i < tomcatPackages.size(); i++) {
             gatherTomcat("${tomcatPackages[i]}")
           }
