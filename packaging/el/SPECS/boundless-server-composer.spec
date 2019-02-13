@@ -34,16 +34,16 @@ code-completion and sample code.
 mkdir -p %{buildroot}/opt/boundless/server
 unzip %{_WORKSPACE}/SRC/BoundlessServer-war/composer.war -d %{buildroot}/opt/boundless/server/composer
 
-mkdir -p %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/composer.xml %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/composer.xml %{buildroot}/etc/tomcat8/Catalina/localhost/composer.xml.new
+mkdir -p %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/composer.xml %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/composer.xml %{buildroot}/etc/tomcat9/Catalina/localhost/composer.xml.new
 
 mkdir -p %{buildroot}/usr/share/doc/
 mv %{buildroot}/opt/boundless/server/composer/doc %{buildroot}/usr/share/doc/boundless-server-composer
 
 %pre
-if [ -f /etc/tomcat8/Catalina/localhost/composer.xml ]; then
-  cp -pf /etc/tomcat8/Catalina/localhost/composer.xml /etc/tomcat8/Catalina/localhost/composer.xml.orig
+if [ -f /etc/tomcat9/Catalina/localhost/composer.xml ]; then
+  cp -pf /etc/tomcat9/Catalina/localhost/composer.xml /etc/tomcat9/Catalina/localhost/composer.xml.orig
 fi
 # Cleanup old license files
 if [ -f /usr/share/doc/boundless-server-composer/EULA ]; then
@@ -68,15 +68,15 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
       rm -rf $dir
     done
   fi
-  if [ -f /etc/tomcat8/Catalina/localhost/composer.xml ]; then
-    rm -f /etc/tomcat8/Catalina/localhost/composer.xml
+  if [ -f /etc/tomcat9/Catalina/localhost/composer.xml ]; then
+    rm -f /etc/tomcat9/Catalina/localhost/composer.xml
   fi
     rm -f /var/lib/dpkg/info/boundless-server-composer.* 2>&1 > /dev/null
 fi
 
 %files
 %defattr(-,root,root,-)
-%config(noreplace) /etc/tomcat8/Catalina/localhost/composer.xml
+%config(noreplace) /etc/tomcat9/Catalina/localhost/composer.xml
 /usr/share/doc/boundless-server-composer
 /opt/boundless/server/composer
-/etc/tomcat8/Catalina/localhost/composer.xml.new
+/etc/tomcat9/Catalina/localhost/composer.xml.new

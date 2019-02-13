@@ -60,7 +60,7 @@ for PACKAGE in $PKGS; do
 done
 
 # Grab tomcat
-TOMCATS="tomcat8 tomcat8-manager"
+TOMCATS="tomcat9 tomcat9-manager"
 for PACKAGE in $TOMCATS; do
   PKG_FILE_EL6=`ls /var/www/repo/suite/stable/el/6/${BRANDING}-${PACKAGE}-${TOMCAT_VERSION}* | sort -rV | head -1`
   PKG_FILE_EL7=`ls /var/www/repo/suite/stable/el/7/${BRANDING}-${PACKAGE}-${TOMCAT_VERSION}* | sort -rV | head -1`

@@ -84,9 +84,9 @@
     <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
                maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
                clientAuth="true" sslProtocol="TLS"
-               keystoreFile="/etc/tomcat8/boundless-test-wildcard.jks"
+               keystoreFile="/etc/tomcat9/boundless-test-wildcard.jks"
                keystoreType="JKS" keystorePass="password"
-               truststoreFile="/etc/tomcat8/boundless-test-wildcard.jks"
+               truststoreFile="/etc/tomcat9/boundless-test-wildcard.jks"
                truststoreType="JKS" truststorePass="password"
      />
 

@@ -10,7 +10,7 @@ URL: http://geowebcache.org
 BuildRoot: %{_WORKSPACE}/boundless-server-geowebcache/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, boundless-server-tomcat8 >= 8.5.32, boundless-server-tomcat8 < 8.6
+Requires:  unzip, boundless-server-tomcat9 >= 8.5.32, boundless-server-tomcat9 < 8.6
 Conflicts: geowebcache, suite-geowebcache
 Obsoletes: suite-geowebcache
 AutoReqProv: no
@@ -35,16 +35,16 @@ clients.
 mkdir -p %{buildroot}/opt/boundless/server
 unzip %{_WORKSPACE}/SRC/BoundlessServer-war/geowebcache.war -d %{buildroot}/opt/boundless/server/geowebcache
 
-mkdir -p %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/geowebcache.xml %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/geowebcache.xml %{buildroot}/etc/tomcat8/Catalina/localhost/geowebcache.xml.new
+mkdir -p %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/geowebcache.xml %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/geowebcache.xml %{buildroot}/etc/tomcat9/Catalina/localhost/geowebcache.xml.new
 
 mkdir -p %{buildroot}/usr/share/doc/
 mv %{buildroot}/opt/boundless/server/geowebcache/doc %{buildroot}/usr/share/doc/boundless-server-geowebcache
 
 %pre
-if [ -f /etc/tomcat8/Catalina/localhost/geowebcache.xml ]; then
-  cp -pf /etc/tomcat8/Catalina/localhost/geowebcache.xml /etc/tomcat8/Catalina/localhost/geowebcache.xml.orig
+if [ -f /etc/tomcat9/Catalina/localhost/geowebcache.xml ]; then
+  cp -pf /etc/tomcat9/Catalina/localhost/geowebcache.xml /etc/tomcat9/Catalina/localhost/geowebcache.xml.orig
 fi
 # Cleanup old license files
 if [ -f /usr/share/doc/boundless-server-geowebcache/EULA ]; then
@@ -65,7 +65,7 @@ if [ -f /var/lib/dpkg/info/ca-certificates-java.postinst ]; then
   /var/lib/dpkg/info/ca-certificates-java.postinst configure
 fi
 chown -R root:root /opt/boundless/
-chown -R tomcat8:tomcat8 /var/opt/boundless/
+chown -R tomcat9:tomcat9 /var/opt/boundless/
 for i in `find /usr/share/doc/boundless-server-geowebcache/ -name *.gz`; do
   gunzip $i
 done
@@ -79,15 +79,15 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
       rm -rf $dir
     done
   fi
-  if [ -f /etc/tomcat8/Catalina/localhost/geowebcache.xml ]; then
-    rm -f /etc/tomcat8/Catalina/localhost/geowebcache.xml
+  if [ -f /etc/tomcat9/Catalina/localhost/geowebcache.xml ]; then
+    rm -f /etc/tomcat9/Catalina/localhost/geowebcache.xml
   fi
   rm -f /var/lib/dpkg/info/boundless-server-geowebcache.* 2>&1 > /dev/null
 fi
 
 %files
 %defattr(-,root,root,-)
-%config(noreplace) /etc/tomcat8/Catalina/localhost/geowebcache.xml
+%config(noreplace) /etc/tomcat9/Catalina/localhost/geowebcache.xml
 /usr/share/doc/boundless-server-geowebcache
 /opt/boundless/server/geowebcache
-/etc/tomcat8/Catalina/localhost/geowebcache.xml.new
+/etc/tomcat9/Catalina/localhost/geowebcache.xml.new

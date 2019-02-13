@@ -44,16 +44,16 @@ cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/netcdf-out/jna-*.jar %{buildroot}/op
 %pre
 
 %post
-if ! grep -q '/usr/lib/x86_64-linux-gnu' /etc/tomcat8/java-libs ; then
-  echo "/usr/lib/x86_64-linux-gnu" >> /etc/tomcat8/java-libs
+if ! grep -q '/usr/lib/x86_64-linux-gnu' /etc/tomcat9/java-libs ; then
+  echo "/usr/lib/x86_64-linux-gnu" >> /etc/tomcat9/java-libs
 fi
 
 %preun
 
 %postun
 if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
-  if [ -f /etc/tomcat8/java-libs ]; then
-    sed -i '\|/usr/lib/x86_64-linux-gnu|d' /etc/tomcat8/java-libs
+  if [ -f /etc/tomcat9/java-libs ]; then
+    sed -i '\|/usr/lib/x86_64-linux-gnu|d' /etc/tomcat9/java-libs
   fi
 fi
 

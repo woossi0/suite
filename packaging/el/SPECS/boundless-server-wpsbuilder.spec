@@ -30,16 +30,16 @@ The GeoServer WPS builder adds processing capabilities to GeoServer.
 mkdir -p %{buildroot}/opt/boundless/server
 unzip %{_WORKSPACE}/SRC/BoundlessServer-war/wpsbuilder.war -d %{buildroot}/opt/boundless/server/wpsbuilder/
 
-mkdir -p %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/wpsbuilder.xml %{buildroot}/etc/tomcat8/Catalina/localhost/
-cp %{_WORKSPACE}/suite/packaging/tomcat-context/wpsbuilder.xml %{buildroot}/etc/tomcat8/Catalina/localhost/wpsbuilder.xml.new
+mkdir -p %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/wpsbuilder.xml %{buildroot}/etc/tomcat9/Catalina/localhost/
+cp %{_WORKSPACE}/suite/packaging/tomcat-context/wpsbuilder.xml %{buildroot}/etc/tomcat9/Catalina/localhost/wpsbuilder.xml.new
 
 mkdir -p %{buildroot}/usr/share/doc/
 mv %{buildroot}/opt/boundless/server/wpsbuilder/doc %{buildroot}/usr/share/doc/boundless-server-wpsbuilder
 
 %pre
-if [ -f /etc/tomcat8/Catalina/localhost/wpsbuilder.xml ]; then
-  cp -pf /etc/tomcat8/Catalina/localhost/wpsbuilder.xml /etc/tomcat8/Catalina/localhost/wpsbuilder.xml.orig
+if [ -f /etc/tomcat9/Catalina/localhost/wpsbuilder.xml ]; then
+  cp -pf /etc/tomcat9/Catalina/localhost/wpsbuilder.xml /etc/tomcat9/Catalina/localhost/wpsbuilder.xml.orig
 fi
 # Cleanup old license files
 if [ -f /usr/share/doc/boundless-server-wpsbuilder/EULA ]; then
@@ -64,15 +64,15 @@ if [ "$1" = "0" ] || [ "$1" = "remove" ]; then
       rm -rf $dir
     done
   fi
-  if [ -f /etc/tomcat8/Catalina/localhost/wpsbuilder.xml ]; then
-    rm -f /etc/tomcat8/Catalina/localhost/wpsbuilder.xml
+  if [ -f /etc/tomcat9/Catalina/localhost/wpsbuilder.xml ]; then
+    rm -f /etc/tomcat9/Catalina/localhost/wpsbuilder.xml
   fi
   rm -f /var/lib/dpkg/info/boundless-server-wpsbuilder.* 2>&1 > /dev/null
 fi
 
 %files
 %defattr(-,root,root,-)
-%config(noreplace) /etc/tomcat8/Catalina/localhost/wpsbuilder.xml
+%config(noreplace) /etc/tomcat9/Catalina/localhost/wpsbuilder.xml
 /usr/share/doc/boundless-server-wpsbuilder
 /opt/boundless/server/wpsbuilder
-/etc/tomcat8/Catalina/localhost/wpsbuilder.xml.new
+/etc/tomcat9/Catalina/localhost/wpsbuilder.xml.new

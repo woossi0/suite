@@ -20,11 +20,11 @@ function pause(){
  read -p "$*"
 }
 
-pkill -9 -U tomcat8
+pkill -9 -U tomcat9
 
 if [ "$TRAINING_MODE" == "on" ]; then
   echo "Enabling training mode..."
-  cat /etc/tomcat8/web.xml.cors > /etc/tomcat8/web.xml
+  cat /etc/tomcat9/web.xml.cors > /etc/tomcat9/web.xml
   
   if psql -lqt -U postgres | cut -d \| -f 1 | grep -qw training; then
     echo "Training DB found, skipping..."
@@ -39,7 +39,7 @@ if [ "$TRAINING_MODE" == "on" ]; then
   ln -s /var/opt/boundless/server/geoserver/training-data /var/opt/boundless/server/geoserver/data
 elif [ "$TRAINING_MODE" == "off" ]; then
   echo "Disabling training mode..."
-  cat /etc/tomcat8/web.xml.default > /etc/tomcat8/web.xml
+  cat /etc/tomcat9/web.xml.default > /etc/tomcat9/web.xml
   
   if psql -lqt -U postgres | cut -d \| -f 1 | grep -qw training; then
     echo "Training DB found, deleting..."
@@ -52,4 +52,4 @@ elif [ "$TRAINING_MODE" == "off" ]; then
   ln -s /var/opt/boundless/server/geoserver/default-data /var/opt/boundless/server/geoserver/data
 fi
 
-service tomcat8 start
+service tomcat9 start

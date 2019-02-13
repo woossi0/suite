@@ -20,7 +20,7 @@ RUN echo "deb http://server:PRIV_REPO_PASSWORD@priv-repo.boundlessgeo.com/suite/
 # Install suite
 RUN apt-get -y update && apt-get -y --force-yes install \
         boundless-server-geoserver \
-        boundless-server-tomcat8 \
+        boundless-server-tomcat9 \
         boundless-server-composer \
         boundless-server-quickview \
         boundless-server-geowebcache \
@@ -67,7 +67,7 @@ RUN sed -i '\:</web-app>:i\
     <init-param>\
         <param-name>cors.support.credentials</param-name>\
         <param-value>true</param-value>\
-    </init-param>' /etc/tomcat8/web.xml
+    </init-param>' /etc/tomcat9/web.xml
 
 # Copy supervisord configuration
 ADD resources/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
