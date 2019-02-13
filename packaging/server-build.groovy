@@ -455,7 +455,7 @@ pipeline {
       }
     }
 
-    stage('Slack-Notif') {
+    /*stage('Slack-Notif') {
       steps {
         script {
           sh """
@@ -466,7 +466,7 @@ pipeline {
           """
         }
       }
-    }
+    }*/
   }
   
   post {
