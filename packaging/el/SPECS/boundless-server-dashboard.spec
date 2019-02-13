@@ -9,7 +9,7 @@ License: GPLv2
 BuildRoot: %{_WORKSPACE}/boundless-server-dashboard/BUILDROOT
 Requires(post): bash
 Requires(preun): bash
-Requires:  unzip, boundless-server-tomcat9 >= 8.5.32, boundless-server-tomcat9 < 8.6
+Requires:  unzip, boundless-server-tomcat9 >= 9.0.14, boundless-server-tomcat9 < 9.1
 Conflicts: opengeo-dashboard, suite-dashboard
 Obsoletes: suite-dashboard
 AutoReqProv: no
