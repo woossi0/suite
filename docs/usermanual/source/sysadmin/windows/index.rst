@@ -28,7 +28,7 @@ The Tomcat port can be changed on installation.
 
 To change the Tomcat port after installation:
 
-#. Open the :file:`server.xml` file, typically located in your Tomcat :file:`conf` directory (such as :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8\\conf`).
+#. Open the :file:`server.xml` file, typically located in your Tomcat :file:`conf` directory (such as :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9\\conf`).
 
 #. Search for the following line::
 
@@ -58,7 +58,7 @@ By default, this directory is located at :file:`C:\\ProgramData\\Boundless\\geos
 
 To point GeoServer to an alternate location:
 
-#. Edit the :file:`geoserver.xml` file in your Tomcat configuration directory. This is usually located in :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8\\conf\\Catalina\\localhost`.
+#. Edit the :file:`geoserver.xml` file in your Tomcat configuration directory. This is usually located in :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9\\conf\\Catalina\\localhost`.
 
 #. Define ``GEOSERVER_DATA_DIR`` with an appropriate value accordingly.
 

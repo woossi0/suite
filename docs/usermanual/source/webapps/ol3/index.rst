@@ -56,11 +56,11 @@ To view this example, create a new file called :file:`map.html`, copy the conten
 
 Windows::
 
-  C:\Program Files (x86)\Apache Software Foundation\Tomcat 8.0\webapps
+  C:\Program Files (x86)\Apache Software Foundation\Tomcat 9.0\webapps
 
 Linux::
 
-  /usr/share/tomcat8/webapps
+  /usr/share/tomcat9/webapps
 
 Next, open that file in a browser. Assuming Boundless Server web applications deployed at ``http://localhost:8080``, this file should be viewable at ``http://localhost:8080/apps/map.html``.
 

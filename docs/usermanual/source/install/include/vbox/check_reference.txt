@@ -4,13 +4,13 @@ When connected to your virtual machine, the following commands may be useful:
 
   .. code-block:: console
 
-     $ sudo service tomcat8 start
+     $ sudo service tomcat9 start
 
 * **Stop GeoServer**:
 
   .. code-block:: console
 
-     $ sudo service tomcat8 stop
+     $ sudo service tomcat9 stop
 
 * **Start PostgreSQL/PostGIS**:
 

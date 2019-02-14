@@ -40,21 +40,21 @@ A watchdog can be implemented using a full-featured monitoring application such 
    #!/bin/bash
 
    # Set up script variables
-   PID_FILE=/var/run/tomcat8.pid
+   PID_FILE=/var/run/tomcat9.pid
    HTTP_URL=http://localhost:8080/geoserver
    GeoServer_LOG=/var/opt/boundless/server/geoserver/data/logs/geoserver.log
-   CATALINA_LOG=/usr/share/tomcat8/logs/catalina.out
+   CATALINA_LOG=/usr/share/tomcat9/logs/catalina.out
    LOG_COPY=/home/tomcat
    PID=`cat $PID_FILE`
 
    # Function to kill and restart application server
    function catalinarestart() {
-     service tomcat8 stop
+     service tomcat9 stop
      sleep 5
      kill -9 $PID
      cp $GeoServer_LOG $LOG_COPY
      cp $CATALINA_LOG $LOG_COPY
-     service tomcat8 start
+     service tomcat9 start
    }
 
    if [ -d /proc/$PID ]

@@ -21,11 +21,11 @@ To load a file on your host system into GeoServer:
 
       cp /media/sf_share/data.zip /opt/data/data.zip
 
-#. Make sure that the Tomcat service user (``tomcat8``) has access to the file:
+#. Make sure that the Tomcat service user (``tomcat9``) has access to the file:
 
    .. code-block:: console
 
-      chown tomcat8:tomcat8 /opt/data/data.zip      
+      chown tomcat9:tomcat9 /opt/data/data.zip      
 
 #. Now launch the :ref:`GeoServer Layer Importer <dataadmin.importer>` by logging in to the GeoServer admin interface and clicking :guilabel:`Import Data`.
 

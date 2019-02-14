@@ -3,6 +3,8 @@
 Working with GeoMesa data
 =========================
 
+.. note:: Boundless Server 1.2.0 does not support the GeoMesa extension. It will be reinstated in a future release.
+
 GeoMesa is an open source project which provides an extension to GeoServer which allows it to interact with `Apache Accumulo <https://accumulo.apache.org/>`_ datastores. You can find out more about GeoMesa by visitng the LocationTech project `page <http://www.locationtech.org/projects/technology.geomesa>`_. 
 
 Boundless Suite supports data saved in GeoMesa format.
