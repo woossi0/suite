@@ -35,7 +35,7 @@ The Marlin renderer is an open source Java rendering engine optimized for perfor
 
 #. From the Boundless extension bundle, open the :file:`marlin` folder.
 
-#. Copy the :file:`marlin-0.7.3-Unsafe.jar` to your Tomcat :file:`bin` folder. This file will be located in :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8\\bin\\marlin-0.7.3-Unsafe.jar`.
+#. Copy the :file:`marlin-0.7.3-Unsafe.jar` to your Tomcat :file:`bin` folder. This file will be located in :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9\\bin\\marlin-0.7.3-Unsafe.jar`.
    
    .. figure:: ../img/marlin_install.png
       
@@ -43,7 +43,7 @@ The Marlin renderer is an open source Java rendering engine optimized for perfor
       
 #. Return to :guilabel:`Apache Tomcat Properties`, switch to the :guilabel:`Java` tab, and add the following additional :guilabel:`Java Options`:
    
-   .. warning:: Please adjust the example below to match the location of your version of tomcat (i.e. Tomcat 8.5)
+   .. warning:: Please adjust the example below to match the location of your version of tomcat (i.e. Tomcat 9)
    
    .. literalinclude:: ../include/java_opts.txt
       :language: none

@@ -9,7 +9,7 @@ But if you want your GeoServer to be usable outside of your own domain, you will
 
 .. note:: These instructions will cover Tomcat only.
 
-#. Edit the file :file:`$CATALINA_BASE/conf/web.xml` (typically :file:`/etc/tomcat8/web.xml`) .
+#. Edit the file :file:`$CATALINA_BASE/conf/web.xml` (typically :file:`/etc/tomcat9/web.xml`) .
 
 #. Add the following filter:
    
@@ -40,5 +40,5 @@ But if you want your GeoServer to be usable outside of your own domain, you will
 
 For more information see:
    
-* http://tomcat.apache.org/tomcat-8.0-doc/config/filter.html#CORS_Filter
+* http://tomcat.apache.org/tomcat-9.0-doc/config/filter.html#CORS_Filter
 * http://enable-cors.org/server_tomcat.html

@@ -84,6 +84,8 @@ The instructions for enabling these formats may require a few additional steps f
 GeoMesa
 -------
 
+.. note:: Boundless Server 1.2.0 does not support the GeoMesa extension. It will be reinstated in a future release.
+
 The GeoMesa extension allows GeoServer to publish data from GeoMesa data stores. `GeoMesa <http://geomesa.org>`_ is a database built on top of `Apache Accumulo <https://accumulo.apache.org/>`_. 
 
 For more information, please see the :ref:`dataadmin.geomesa` section.

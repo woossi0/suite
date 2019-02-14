@@ -98,7 +98,7 @@ See the :ref:`install.ubuntu.packages.list` for details about the possible packa
 
    .. code-block:: bash
 
-      service tomcat8 restart
+      service tomcat9 restart
 
 #. Verify that the installation succeeded by opening your browser and navigating to one of the following URLs:
 
@@ -119,7 +119,7 @@ This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundle
 
 .. note::
 
-   If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the relevant portions of the backed up files.
+   If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files to ``/etc/tomcat9/Catalina/localhost/``.
 
 #. Change to the ``root`` user:
 
@@ -153,7 +153,7 @@ This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundle
 
    .. code-block:: bash
 
-      service tomcat8 restart
+      service tomcat9 restart
 
 #. Verify that the installation succeeded by opening your browser and navigating to one of the following URLs:
 
@@ -167,7 +167,7 @@ This section describes how to upgrade Boundless Suite 4.9.0 to Boundless Suite 4
 
 .. note::
 
-   If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files.
+   If you made changes to the tomcat context files located in ``/etc/tomcat8/Catalina/localhost/``, please back them up now or your changes will be lost. After completing the upgrade process, restore the backed up files to ``/etc/tomcat9/Catalina/localhost/``.
 
 #. Change to the ``root`` user:
 
@@ -322,7 +322,7 @@ Boundless Server web applications
      - QuickView application showcasing the :ref:`WebSDK <webapps.sdk>`
    * - ``boundless-server-wpsbuilder``
      - :ref:`Graphical utility <processing.wpsbuilder>` for executing WPS processes
-   * - ``boundless-server-tomcat8``
+   * - ``boundless-server-tomcat9``
      - Apache Tomcat application server (automatically installed by these packages)
 
 Boundless Server GeoServer extensions
@@ -332,7 +332,7 @@ The following packages add additional functionality to GeoServer. After installi
 
 .. code-block:: console
 
-   service tomcat8 restart
+   service tomcat9 restart
 
 For more information, please see the section on :ref:`GeoServer extensions <intro.extensions>`.
 

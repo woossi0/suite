@@ -25,7 +25,7 @@ To start|stop|restart the Tomcat service:
 
 .. code-block:: bash
  
-   service tomcat8 start|stop|restart
+   service tomcat9 start|stop|restart
 
 Other options in addition to the above are ``try-restart``, ``force-restart``, and ``status``.
 
@@ -56,7 +56,7 @@ Changing the Tomcat port
 
 To change the Tomcat port:
 
-#. Edit the file :file:`/etc/tomcat8/server.xml`. 
+#. Edit the file :file:`/etc/tomcat9/server.xml`. 
 
 #. Search for the following line::
 
@@ -93,7 +93,7 @@ If you wish to use the Oracle Java 8 JRE (rather than the OpenJDK 8 installed by
 
 #. Download and install Oracle Java 8 JRE.
 
-#. Open :file:`/etc/tomcat8/tomcat8.conf` and update the ``JAVA_HOME`` environment variable.::
+#. Open :file:`/etc/tomcat9/tomcat9.conf` and update the ``JAVA_HOME`` environment variable.::
       
       export $JAVA_HOME=/usr/lib/jvm/jre1.8.0_77
 
@@ -108,11 +108,11 @@ Adding other system parameters
 
 You can add other system or application-specific parameters that will be picked up upon restart.
 
-* To provide an environmental variable, open :file:`/etc/tomcat8/tomcat8.conf` in a text editor, add the desired parameters to the bottom of the file, such as ``GDAL_DATA=/usr/share/gdal``.
+* To provide an environmental variable, open :file:`/etc/tomcat9/tomcat9.conf` in a text editor, add the desired parameters to the bottom of the file, such as ``GDAL_DATA=/usr/share/gdal``.
    
-* System properties are read in from the files in :file:`/etc/tomcat8/server-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``. See the section on :ref:`sysadmin.startup`.
+* System properties are read in from the files in :file:`/etc/tomcat9/server-opts/`. So you could create a text file named :file:`memory` and populate it with ``-Xmx2G``. See the section on :ref:`sysadmin.startup`.
 
-* Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat8/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag. For example, the GeoServer data directory context parameter in :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml` looks like this:
+* Context Parameters are application-specific, and are read in from the files in :file:`/etc/tomcat9/Catalina/localhost/`. All parameters should be under the top-level ``<Context>`` tag. For example, the GeoServer data directory context parameter in :file:`/etc/tomcat9/Catalina/localhost/geoserver.xml` looks like this:
 
   .. code-block:: xml
 
@@ -131,7 +131,7 @@ The **GeoServer data directory** is the location on the file system where GeoSer
 
 To point GeoServer to an alternate location:
 
-#. Edit the file :file:`/etc/tomcat8/Catalina/localhost/geoserver.xml`.
+#. Edit the file :file:`/etc/tomcat9/Catalina/localhost/geoserver.xml`.
 
    Define ``GEOSERVER_DATA_DIR`` with an appropriate value accordingly.
    
@@ -149,7 +149,7 @@ A fix is available for spatial reference systems measured in Imperial units (fee
 
 To enable this fix:
 
-#. Add the following parameter to :file:`/etc/tomcat8/server-opts/scale`
+#. Add the following parameter to :file:`/etc/tomcat9/server-opts/scale`
    
    .. code-block:: bash
       
@@ -182,7 +182,7 @@ GeoServer GeoJSON output is now provided in x/y/z order as required by the speci
    
 To restore the previous ``crs`` representation for compatibility reasons (especially when working with OpenLayers):
 
-#. Navigate to :file:`/etc/tomcat8/Catalina/localhost/` and edit the file :file:`geoserver.xml`.
+#. Navigate to :file:`/etc/tomcat9/Catalina/localhost/` and edit the file :file:`geoserver.xml`.
 
 #. Add the following context parameter to :file:`geoserver.xml`:
 

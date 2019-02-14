@@ -30,7 +30,7 @@ GDAL
 
 #. In your Tomcat config, make sure that :guilabel:`-Djava.library.path` includes the gdal and gdal-jni libaries - :file:`/usr/lib64`,  :file:`/usr/lib`, :file:`/usr/lib/jni`.
 
-#. In your Tomcat config (:file:`tomcat8.conf`), create a :guilabel:`GDAL_DATA` environment variable that points to :file:`/usr/share/gdal`
+#. In your Tomcat config (:file:`tomcat9.conf`), create a :guilabel:`GDAL_DATA` environment variable that points to :file:`/usr/share/gdal`
 
 Also see :ref:`dataadmin.mrsid`.
 

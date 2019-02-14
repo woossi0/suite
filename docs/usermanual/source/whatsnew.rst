@@ -1,9 +1,42 @@
 .. _whatsnew:
 
-.. _whatsnew.1.1.x:
+.. _whatsnew.1.2.x:
 
 What's new in |version|
 =======================
+
+This version is a major update, with several major component upgrades, as well as enhancements and bugfixes. Highlights include:
+
+* Boundless Server can now be run on **Java 11**. Java 8 is still supported. See the :ref:`installation <install>` and :ref:`jvm <sysadmin.jvm>` sections for more details.
+
+* The version of Tomcat has been updated from Tomcat 8.5 to **Tomcat 9**. If you are using the WAR install, Boundless Server can still run on Tomcat 8, but only if you are using Java 8. Tomcat 8 does not support Java 11.
+
+* PostGIS has been updated from 2.3 to 2.5.
+
+* GDAL has been updated from 1.11.5 to 2.3.2.
+
+* The :ref:`Spatial Statistics extension <intro.extensions.spatialstatistics>` has been added. This extension includes a great many :ref:`new WPS processes <processing.proccesses.spatialstatistics>`.
+
+* The `Mapbox styling <geoserver/styling/mbstyle/index.html>`_ section of the documentation has been updated with more details about MapBox Expressions.
+
+* The :ref:`GeoMesa extension <intro.extensions.geomesa>` is **not included** in this release, due to incompatibilities with GeoServer 2.15 and Java 11. It will be restored in a future release, once these issues have been resolved.
+
+* **Ubuntu 14** is no longer supported.
+
+
+**Components included:**
+
+* GeoServer 2.15
+* GeoWebCache 1.15
+* GeoTools 21
+* PostgreSQL 9.6
+* PostGIS 2.5
+* GDAL 2.3.2
+
+.. _whatsnew.1.1.x:
+
+What's new in 1.1.1
+-------------------
 
 This version is a bugfix release, and primarily fixes some issues with MapBox Vector tiles:
 

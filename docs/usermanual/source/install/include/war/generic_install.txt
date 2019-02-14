@@ -1,7 +1,7 @@
 Standard installation
 ---------------------
 
-.. note:: Boundless Server requires Java 1.8 and Tomcat 8.
+.. note:: Boundless Server requires Java 1.8 and Tomcat 9.
 
 .. note:: See the :ref:`sysadmin` section for installation and administration help.
 
@@ -14,7 +14,7 @@ Standard installation
    .. note:: We recommend downloading from `Oracle <https://java.com/en/download/manual.jsp>`__.
    .. note:: See :ref:`sysadmin.jvm` for dealing with multiple versions of java on your machine.
 
-#. Install `Tomcat 8 <http://tomcat.apache.org/download-80.cgi>`__ and ensure Tomcat is using the Java 8 runtime.
+#. Install `Tomcat 9 <http://tomcat.apache.org/download-80.cgi>`__ and ensure Tomcat is using the Java 8 runtime.
 
    .. note:: We suggest setting up Tomcat as a service. `This guide from Ubuntu <https://help.ubuntu.com/lts/serverguide/tomcat.html>`_ may be helpful here.
 
@@ -83,7 +83,7 @@ The Marlin renderer is an open source Java rendering engine optimized for perfor
 
 #. Add the following options to Tomcat:
 
-   * ``-Xbootclasspath/a:/usr/share/tomcat8/lib/marlin-0.7.3-Unsafe.jar`` (your location maybe slightly different)
+   * ``-Xbootclasspath/a:/usr/share/tomcat9/lib/marlin-0.7.3-Unsafe.jar`` (your location maybe slightly different)
    * ``-Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine``
    * ``-Dsun.java2d.renderer.useThreadLocal=false``
 

@@ -24,7 +24,7 @@ The next step is to install the GeoServer web application.
    
       Java system properties
 
-#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory. You can also use :guilabel:`Windows Explorer` to open the Tomcat Program Directory (such as: :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 8.5`)
+#. Use :menuselection:`Start --> Apache Tomcat --> Tomcat Program Directory` to open the program directory. You can also use :guilabel:`Windows Explorer` to open the Tomcat Program Directory (such as: :file:`C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 9`)
    
    .. figure:: ../img/tomcat_program_directory.png
    
