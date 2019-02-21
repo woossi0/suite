@@ -111,6 +111,11 @@
       <artifactId>gs-web-wps</artifactId>
       <version>${gs.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.geoserver.community</groupId>
+      <artifactId>gs-web-resource</artifactId>
+      <version>${gs.version}</version>
+    </dependency>
     <!-- TODO: Requires GDAL
     <dependency>
       <groupId>org.geotools</groupId>
