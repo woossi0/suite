@@ -134,6 +134,7 @@
         <exclude name="net.opengis.wps-*.jar"/>
         <exclude name="compress-lzf-*.jar"/>
         <exclude name="gson-*.jar"/>
+        <exclude name="protobuf-java-*.jar.jar"/>
       </patternset>
     </unzip>
   </target>
