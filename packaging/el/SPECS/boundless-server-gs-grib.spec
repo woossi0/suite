@@ -37,7 +37,6 @@ cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/grib/gs-grib-*.jar %{buildroot}/opt/
 cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/grib/gt-grib-*.jar %{buildroot}/opt/boundless/server/geoserver/WEB-INF/lib
 cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/grib/jj2000-*.jar %{buildroot}/opt/boundless/server/geoserver/WEB-INF/lib
 cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/grib/jsoup-*.jar %{buildroot}/opt/boundless/server/geoserver/WEB-INF/lib
-cp -p %{_WORKSPACE}/SRC/BoundlessServer-ext/grib/protobuf-java-*.jar %{buildroot}/opt/boundless/server/geoserver/WEB-INF/lib
 
 %pre
 
