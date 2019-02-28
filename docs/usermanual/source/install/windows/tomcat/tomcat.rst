@@ -7,13 +7,13 @@ Installing Tomcat
 
 The Apache Tomcat application server is used to host the Boundless Server web applications. Tomcat itself is a Java application, and some care will be required to configure it appropriately for use.
 
-#. Download the :guilabel:`32-bit/64-bit Windows Service Installer` from the `Tomcat website <http://tomcat.apache.org/download-80.cgi>`_:
+#. Download the :guilabel:`32-bit/64-bit Windows Service Installer` from the `Tomcat website <https://tomcat.apache.org/download-90.cgi>`_:
    
    .. figure:: img/tomcat_download.png
       
       Tomcat Service Installer download
    
-   .. warning: Boundless Server requires Tomcat version 7 or above. It must support "Servlet Spec 3.0".
+   .. warning: If you are using Java 11, Boundless Server requires Tomcat version 9. Otherwise, it requires Tomcat version 8 or above. We recommend using Tomcat 9 in both cases.
    
 #. Run the Tomcat installer:
 

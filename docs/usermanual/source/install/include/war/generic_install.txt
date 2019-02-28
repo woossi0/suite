@@ -1,20 +1,15 @@
 Standard installation
 ---------------------
 
-.. note:: Boundless Server requires Java 1.8 and Tomcat 9.
-
 .. note:: See the :ref:`sysadmin` section for installation and administration help.
 
 #. If you have an existing OpenGeo Suite, Boundless Suite, Boundless Server, or GeoServer install, backup your configuration (specifically your GeoServer data directory) and data.
 
 #. Uninstall any old versions.
 
-#. Install Java 1.8. (Boundless Server requires Java 1.8)
+#. Select :ref:`which version of Java <sysadmin.jvm>` to install (Java 1.8 or Java 11).
 
-   .. note:: We recommend downloading from `Oracle <https://java.com/en/download/manual.jsp>`__.
-   .. note:: See :ref:`sysadmin.jvm` for dealing with multiple versions of java on your machine.
-
-#. Install `Tomcat 9 <http://tomcat.apache.org/download-80.cgi>`__ and ensure Tomcat is using the Java 8 runtime.
+#. Install `Tomcat 9 <https://tomcat.apache.org/download-90.cgi>`__ and ensure Tomcat is using the selected Java runtime.
 
    .. note:: We suggest setting up Tomcat as a service. `This guide from Ubuntu <https://help.ubuntu.com/lts/serverguide/tomcat.html>`_ may be helpful here.
 
@@ -78,6 +73,8 @@ Marlin Renderer
 ~~~~~~~~~~~~~~~
 
 The Marlin renderer is an open source Java rendering engine optimized for performance, based on OpenJDK’s Pisces implementation. With this, vector rendering in GeoServer is much improved over the standard engine.
+
+.. note:: If you are using Java 11, Marlin is installed by default and you can skip this section.
 
 #. Copy the :file:`marlin-0.7.3-Unsafe.jar` file inside the :file:`marlin` directory in the Boundless extension bundle (:file:`BoundlessSuite-ext.zip`) to your Tomcat :file:`$CATALINA_HOME/lib` directory.
 

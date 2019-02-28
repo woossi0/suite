@@ -14,7 +14,7 @@ Installation
 
 Installation instructions are dependent on your operating system and method of install:
 
-* **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.geoserver.binary>`, :ref:`Red Hat <install.redhat.tomcat.geoserver.binary>`, :ref:`Windows <install.windows.tomcat.extensions.gdal>`
+* **Tomcat**: :ref:`Ubuntu <install.ubuntu.tomcat.geoserver.binary>`, :ref:`Red Hat <install.redhat.tomcat.geoserver.binary>`.
 * **Packages**: Install the ``boundless-server-gs-gdal`` package: :ref:`Ubuntu <install.ubuntu.packages.list>`, :ref:`Red Hat <install.redhat.packages.list>` 
 
 .. note:: The Boundless Server virtual machine has most extensions pre-installed.

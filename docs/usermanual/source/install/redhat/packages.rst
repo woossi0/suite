@@ -35,24 +35,13 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 
 #. Add the Boundless Server repository by creating the file :file:`/etc/yum.repos.d/Boundless.repo` and adding the following contents:
 
-   (Enterprise Linux 6)
-
-   .. code-block:: none
-
-      [boundless-server]
-      name=Boundless Server Repository
-      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.1.0/el/6/x86_64
-      enabled=1
-      gpgcheck=1
-      gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
-
    (Enterprise Linux 7)
    
    .. code-block:: none
 
       [boundless-server]
       name=Boundless Server Repository
-      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.1.0/el/7/x86_64
+      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.2.0/el/7/x86_64
       enabled=1
       gpgcheck=1
       gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
@@ -90,14 +79,18 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
                     boundless-server-docs \
                     boundless-server-quickview  \
                     boundless-server-wpsbuilder \
-                    postgis23-postgresql96 \
+                    postgis25-postgresql96 \
                     boundless-server-gs-gdal \
                     boundless-server-gs-netcdf \
                     boundless-server-gs-netcdf-out
 
    .. note::  See the :ref:`install.redhat.packages.list` for details of individual packages.
 
-   .. note::  If you already have an existing JVM installed, you may need to change the *default* java. Run ``java -version`` to check the default java version. If it is less than 1.8, use :ref:`update-alternatives<sysadmin.jvm.alternatives>` to change the default to the newly installed java 8 JVM.
+   .. note:: Boundless Server installs Java 8 by default for backwards compatibility with older installations.
+
+             For a new installation of Boundless Server, we recommend :ref:`using Java 11 <sysadmin.jvm.openjdk11>`.
+
+             If you already have an existing JVM installed, you may also need to change the *default* java. Run ``java -version`` to check the default java version. If it is not the expected version, use :ref:`update-alternatives<sysadmin.jvm.alternatives>` to change the default.
 
 #. Restart the server.
 
@@ -118,10 +111,99 @@ See the :ref:`install.redhat.packages.list` for details about the possible packa
 Upgrade
 -------
 
-Upgrading from 4.9.1 or 4.10.0 to |version|
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Upgrading from 1.0.0 or 1.1.0 to 1.2.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundless Server |version| on Red Hat-based Linux distributions.
+This section describes how to upgrade Boundless Suite 1.0.0 or 1.1.0 to Boundless Server 1.2.0 on Red Hat-based Linux distributions.
+
+#. Change to the ``root`` user:
+
+   .. code-block:: bash
+
+      sudo su -
+
+#. Stop the server:
+
+   .. code-block:: bash
+
+      service tomcat8 stop
+
+#. Backup the contents of ``/etc/tomcat8``.
+
+#. Generate a list of boundless-server packages you currently have installed:
+
+   .. code-block:: bash
+
+      yum list installed | grep boundless-server
+
+#. Replace the 1.1.0 repo definition with the new repo definition. Open ``/etc/yum.repos.d/Boundless.repo`` and replace the contents with:
+
+   .. code-block:: none
+
+      [boundless-server]
+      name=Boundless Server Repository
+      baseurl=https://<username>:<password>@downloads-repo.boundlessgeo.com/server-repo/1.2.0/el/6/x86_64
+      enabled=1
+      gpgcheck=1
+      gpgkey=file:///etc/pki/boundless/GPG-KEY-Boundless
+
+   Make sure to replace each instance of ``<username>`` and ``<password>`` with the user name and password supplied to you.
+
+   .. note:: Your username is your email address. When entering your username into the ``Boundless.repo`` file, replace the ``@`` in your username with ``%40``.
+
+#. Refresh the yum repo data:
+
+   .. code-block:: bash
+
+      yum clean all
+
+#. Remove the old version of Tomcat:
+
+   .. code-block:: bash
+
+      yum remove boundless-server-tomcat8
+
+#. Remove the old version of PostGIS:
+
+   .. note: If you are not using PostGIS, you can skip this step. However, if you are using PostGIS, you **must** upgrade, for compatibility with the latest version of GDAL.
+
+   .. code-block:: bash
+
+      yum remove postgis23 postgis23-postgresql96
+
+#. Install the new version of PostGIS:
+
+   .. code-block:: bash
+
+      yum install postgis25-postgresql96
+
+#. Using the list of boundless-server packages you generated above, re-install Boundless Server. This will also install the new version of Tomcat.
+
+   For example:
+
+   .. code-block:: bash
+
+      yum install boundless-server-geoserver boundless-server-docs boundless-server-dashboard
+
+#. If you had previously made any changes to the context or configuration files in ``/etc/tomcat8``, copy these changes into the corresponding files in ``/etc/tomcat9``.
+
+#. If you are using the :ref:`Clustering <sysadmin.clustering>` extension, follow the :ref:`steps to upgrade it <sysadmin.clustering.install.upgrade>` now.
+
+#. Start the server.
+
+   .. code-block:: bash
+
+      service tomcat9 start
+
+#. Verify that the installation succeeded by opening your browser and navigating to one of the following URLs:
+
+   * http://localhost:8080/dashboard
+   * http://localhost:8080/geoserver
+
+Upgrading from Suite 4.9.1 or 4.10.0 to Server 1.0.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundless Server 1.0.0 on Red Hat-based Linux distributions.
 
 .. note::
 
@@ -160,13 +242,13 @@ This section describes how to upgrade Boundless Suite 4.9.1 or 4.10.0 to Boundle
 
       yum install boundless-server-geoserver boundless-server-docs boundless-server-dashboard
 
-#. If you had previously made any changes to the context files in ``/etc/tomcat8/Catalina/localhost/``, copy these changes into the corresponding ".xml" files in ``/etc/tomcat9/Catalina/localhost/``.
+#. If you had previously made any changes to the context files in ``/etc/tomcat8/Catalina/localhost/``, copy these changes into the corresponding ".xml" files in ``/etc/tomcat8/Catalina/localhost/``.
 
 #. Restart the server.
 
    .. code-block:: bash
 
-      service tomcat9 restart
+      service tomcat8 restart
 
 #. Verify that the installation succeeded by opening your browser and navigating to one of the following URLs:
 
@@ -383,7 +465,7 @@ The following major binary packages are available:
      - NetCDF Binary packages
    * - ``netcdf-devel``
      - Development support for the NetCDF Binary
-   * - ``postgis23-postgresql96``
+   * - ``postgis25-postgresql96``
      - Postgresql and PostGIS
    * - ``proj``
      - PROJ.4 libary

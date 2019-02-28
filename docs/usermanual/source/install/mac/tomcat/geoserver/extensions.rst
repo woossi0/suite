@@ -68,14 +68,14 @@ DB2 extension
 .. .. include:: /install/include/ext/gdal_verify.txt
 
 
-.. _install.mac.tomcat.extensions.geomesa:
+..  .. _install.mac.tomcat.extensions.geomesa:
 
-GeoMesa extension
------------------
+    GeoMesa extension
+    -----------------
 
-.. include:: /install/include/ext/geomesa_install.txt
+    .. include:: /install/include/ext/geomesa_install.txt
 
-.. include:: /install/include/ext/geomesa_verify.txt
+    .. include:: /install/include/ext/geomesa_verify.txt
 
 
 .. _install.mac.tomcat.extensions.grib:

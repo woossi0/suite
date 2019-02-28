@@ -68,24 +68,24 @@ DB2 extension
 .. include:: /install/include/ext/db2_verify.txt
 
 
-.. _install.windows.tomcat.extensions.gdal:
+..  .. _install.windows.tomcat.extensions.gdal:
 
-GDAL extension
---------------
+    GDAL extension
+    --------------
 
-.. include:: /install/include/ext/gdal_install_win.txt
+    .. include:: /install/include/ext/gdal_install_win.txt
 
-.. include:: /install/include/ext/gdal_verify.txt
+    .. include:: /install/include/ext/gdal_verify.txt
 
 
-.. _install.windows.tomcat.extensions.geomesa:
+..  .. _install.windows.tomcat.extensions.geomesa:
 
-GeoMesa extension
------------------
+    GeoMesa extension
+    -----------------
 
-.. include:: /install/include/ext/geomesa_install_win.txt
+    .. include:: /install/include/ext/geomesa_install_win.txt
 
-.. include:: /install/include/ext/geomesa_verify.txt
+    .. include:: /install/include/ext/geomesa_verify.txt
 
 
 .. _install.windows.tomcat.extensions.grib:

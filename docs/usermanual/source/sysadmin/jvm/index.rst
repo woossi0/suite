@@ -102,6 +102,8 @@ Linux
 
 .. note:: Read more about :ref:`running Boundless Server in Production <sysadmin.production>`.
 
+.. _sysadmin.jvm.openjdk11.windows:
+
 Windows application servers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -199,6 +201,8 @@ Linux
       JVM Version showing AdoptOpenJDK 8
 
 .. note:: Read more about :ref:`running Boundless Server in Production <sysadmin.production>`.
+
+.. _sysadmin.jvm.openjdk8.windows:
 
 Windows application servers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
