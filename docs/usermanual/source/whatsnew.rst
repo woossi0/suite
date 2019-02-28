@@ -21,7 +21,7 @@ This version is a major update, with several major component upgrades, as well a
 
 * The :ref:`GeoMesa extension <intro.extensions.geomesa>` is **not included** in this release, due to incompatibilities with GeoServer 2.15 and Java 11. It will be restored in a future release, once these issues have been resolved.
 
-* **Ubuntu 14** is no longer supported.
+* **CentOS / RHEL 6** is no longer supported.
 
 
 **Components included:**
