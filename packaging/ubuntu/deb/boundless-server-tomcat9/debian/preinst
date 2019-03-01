@@ -1,0 +1,3 @@
+#!/bin/bash
+getent group tomcat9 >/dev/null || groupadd -r tomcat9
+getent passwd tomcat9 >/dev/null || /usr/sbin/useradd --comment "Tomcat Daemon User" --shell /bin/bash -M -r -g tomcat9 --home /opt/tomcat9 tomcat9

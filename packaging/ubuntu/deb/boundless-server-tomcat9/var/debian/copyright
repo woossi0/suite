@@ -1,0 +1,34 @@
+This package was debianized by the alien program by converting
+a binary .rpm package on Tue, 26 Feb 2019 21:54:44 +0000
+
+Copyright: Apache Software License
+
+Information from the binary package:
+Name        : boundless-server-tomcat9
+Version     : 9.0.14
+Release     : 1
+Architecture: x86_64
+Install Date: (not installed)
+Group       : Networking/Daemons
+Size        : 14738184
+License     : Apache Software License
+Signature   : (none)
+Source RPM  : boundless-server-tomcat9-9.0.14-1.src.rpm
+Build Date  : Tue 26 Feb 2019 05:55:05 PM UTC
+Build Host  : ip-10-0-12-214.ec2.internal
+Relocations : (not relocatable)
+URL         : http://tomcat.apache.org/
+Summary     : Apache Servlet/JSP Engine, RI for Servlet 3.1/JSP 2.3 API
+Description :
+Tomcat is the servlet container that is used in the official Reference
+Implementation for the Java Servlet and JavaServer Pages technologies.
+The Java Servlet and JavaServer Pages specifications are developed by
+Sun under the Java Community Process.
+Tomcat is developed in an open and participatory environment and
+released under the Apache Software License. Tomcat is intended to be
+a collaboration of the best-of-breed developers from around the world.
+We invite you to participate in this open development project. To
+learn more about getting involved, click here.
+This package contains the base tomcat installation that depends on Sun's JDK and not
+on JPP packages.
+
