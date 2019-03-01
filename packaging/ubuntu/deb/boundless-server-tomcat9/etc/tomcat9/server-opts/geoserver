@@ -1,0 +1,1 @@
+-Dorg.geotools.referencing.forceXY=true -XX:SoftRefLRUPolicyMSPerMB=36000 -Dorg.geotools.coverage.jaiext.enabled=true
