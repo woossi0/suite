@@ -57,6 +57,15 @@ install -m 644 %_sourcedir/%{tomcat_var} %{buildroot}/%{_sysconfdir}/init.d/%{to
 # Drop logrotate script
 install -d -m 755 %{buildroot}/%{_sysconfdir}/logrotate.d
 install -m 644 %_sourcedir/%{tomcat_var}.logrotate %{buildroot}/%{_sysconfdir}/logrotate.d/%{tomcat_var}
+# Drop java-libs file
+install -d -m 755 %{buildroot}/%{_sysconfdir}/%{tomcat_var}
+install -m 644 %_sourcedir/java-libs %{buildroot}/%{_sysconfdir}/%{tomcat_var}/java-libs
+# Drop tomcat9 sbin script
+install -d -m 755 %{buildroot}/usr/sbin/
+install -m 644 %_sourcedir/%{tomcat_var}.script %{buildroot}/usr/sbin/%{tomcat_var}
+# Drop geoserver config file
+install -d -m 755 %{buildroot}/%{_sysconfdir}/%{tomcat_var}/server-opts
+install -m 644 %_sourcedir/geoserver %{buildroot}/%{_sysconfdir}/%{tomcat_var}/server-opts/geoserver
 # Drop tomcat sysconfig file
 #install -d -m 755 %{buildroot}/%{_sysconfdir}/sysconfig
 install -d -m 755 %{buildroot}/%{_sysconfdir}/%{tomcat_var}
@@ -85,8 +94,11 @@ getent passwd %{tomcat_user} >/dev/null || /usr/sbin/useradd --comment "Tomcat D
 /opt/%{tomcat_var}/work
 %{_sysconfdir}/init.d/%{tomcat_var}
 %{_sysconfdir}/logrotate.d/%{tomcat_var}
+%{_sysconfdir}/%{tomcat_var}/server-opts/geoserver
 %{_sysconfdir}/%{tomcat_var}/%{tomcat_var}.conf
 %{_sysconfdir}/%{tomcat_var}
+%{_sysconfdir}/%{tomcat_var}/java-libs
+/usr/sbin/%{tomcat_var}
 #%doc /usr/share/doc/%{tomcat_var}-%{version}
 #%files admin-webapps
 %defattr(0644,root,root,0755)
@@ -103,6 +115,7 @@ getent passwd %{tomcat_user} >/dev/null || /usr/sbin/useradd --comment "Tomcat D
 /opt/%{tomcat_var}/webapps/ROOT
 %post
 chmod +x /etc/init.d/%{tomcat_var}
+chmod +x /usr/sbin/%{tomcat_var}
 chkconfig --add %{tomcat_var}
 chkconfig %{tomcat_var} on
 %preun
