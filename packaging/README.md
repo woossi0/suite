@@ -93,7 +93,7 @@ If you need to permanently delete an extension package:
 
 1. To build Tomcat, this step is done manually, outside of the pipeline build job. To build the tomcat rpm, use the [tomcat9.spec file](el/SPECS/boundless-server-tomcat9.spec). The required configuration files are located under [SOURCES](el/SOURCES/)
 
-    * Run `rpmbuild -v -bb --clean tomcat9.spec`
+    * Run `rpmbuild -v -bb --clean tomcat9.spec` to create the rpm package
 
 2. To build deb packages, use the files located under [ubuntu/deb/boundless-server-tomcat9](ubuntu/deb/boundless-server-tomcat9).
 
