@@ -37,31 +37,14 @@ else
 fi
 
 echo 'LC_ALL="en_US.UTF-8"' >> /etc/environment
-wget -qO- https://apt.boundlessgeo.com/gpg.key | apt-key add -
 
 echo "Adding Boundless Test repo..."
-echo "deb http://$REPO_LOGIN:$REPO_PASSWORD@priv-repo.boundlessgeo.com/suite/$REPO_DIR/ubuntu/14 ./" > /etc/apt/sources.list.d/boundless.list
-
-echo "Installing core products..."
+echo "deb http://$REPO_LOGIN:$REPO_PASSWORD@priv-repo.boundlessgeo.com/suite/$REPO_DIR/ubuntu/16 ./" > /etc/apt/sources.list.d/boundless.list
 apt-get -qq update
-apt-get install -qq --allow-unauthenticated boundless-server-geoserver boundless-server-geowebcache boundless-server-dashboard boundless-server-quickview boundless-server-composer boundless-server-wpsbuilder boundless-server-docs boundless-server-gs-gdal boundless-server-gs-netcdf-out unzip
-sleep 2
-/etc/init.d/tomcat9 restart
-update-rc.d tomcat9 defaults
-
-echo "Installing DB components..."
-apt-get install -qq --allow-unauthenticated postgresql-9.6-postgis-2.3
-sleep 10
-sudo -u postgres psql postgres -c "alter user postgres password 'postgres'"
-sed -i 's/postgres                                peer/postgres                                trust/' /etc/postgresql/9.6/main/pg_hba.conf
-sed -i 's|local   all             all                                     peer|host    all             all             0.0.0.0/0               trust|' /etc/postgresql/9.6/main/pg_hba.conf
-sed -i "s|#listen_addresses = 'localhost'|listen_addresses = '*'|" /etc/postgresql/9.6/main/postgresql.conf
-service postgresql restart
-sleep 1
 
 echo "Seeding local repository..."
 mkdir /opt/boundless-repo
-apt-get install -qq -d -o=dir::cache=/opt/boundless-repo --allow-unauthenticated -y boundless-server-gs-* gdal-mrsid laszip-dev libgdal1-dev libgeos-dev libgeos-doc libgeotiff-dev libght libnetcdf-dev libproj-dev netcdf-dbg netcdf-doc pgadmin3 pgadmin3-data pgdg-keyring postgis-2.3 postgresql-9.6 postgresql-client-9.6 postgresql-client-common postgresql-common proj proj-bin
+DEBIAN_FRONTEND=noninteractive apt-get install -qq -d -o=dir::cache=/opt/boundless-repo --allow-unauthenticated -y boundless-server-* gdal gdal-mrsid gdal-devel libgeos-dev libgeos-doc libgeotiff-dev libnetcdf-dev libproj-dev netcdf-dbg netcdf-doc pgadmin3 pgadmin3-data pgdg-keyring postgresql-9.6-postgis-2.5 postgis-2.5 postgresql-9.6 postgresql-client-9.6 postgresql-client-common postgresql-common proj proj-bin
 sleep 2
 
 echo "Installing local repository tools..."
@@ -80,6 +63,23 @@ sed -i 's|Listen 80|Listen 127.0.0.1:80|' /etc/apache2/ports.conf
 echo "deb http://127.0.0.1/ amd64/" > /etc/apt/sources.list.d/boundless.list
 apt-get -qq update
 sleep 2
+
+echo "Installing core products..."
+apt-get -qq update
+apt-get install -qq --allow-unauthenticated boundless-server-geoserver boundless-server-geowebcache boundless-server-dashboard boundless-server-quickview boundless-server-composer boundless-server-wpsbuilder boundless-server-docs boundless-server-gs-gdal boundless-server-gs-netcdf-out unzip
+sleep 2
+/etc/init.d/tomcat9 restart
+update-rc.d tomcat9 defaults
+
+echo "Installing DB components..."
+apt-get install -qq --allow-unauthenticated postgresql-9.6-postgis-2.5
+sleep 10
+sudo -u postgres psql postgres -c "alter user postgres password 'postgres'"
+sed -i 's/postgres                                peer/postgres                                trust/' /etc/postgresql/9.6/main/pg_hba.conf
+sed -i 's|local   all             all                                     peer|host    all             all             0.0.0.0/0               trust|' /etc/postgresql/9.6/main/pg_hba.conf
+sed -i "s|#listen_addresses = 'localhost'|listen_addresses = '*'|" /etc/postgresql/9.6/main/postgresql.conf
+service postgresql restart
+sleep 1
 
 # Set login banner
 # Note- Docs URL to change to http://connect.boundlessgeo.com/docs/suite/latest/
