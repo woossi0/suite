@@ -71,6 +71,14 @@ sleep 2
 /etc/init.d/tomcat9 restart
 update-rc.d tomcat9 defaults
 
+#remove installed packages to cut down the size
+cd /var/www/repo/amd64
+rm boundless-server-geoserver*.deb boundless-server-geowebcache*.deb boundless-server-dashboard*.deb boundless-server-quickview*.deb boundless-server-composer*.deb boundless-server-wpsbuilder*.deb boundless-server-docs*.deb
+cd ..
+sudo dpkg-scanpackages amd64 | gzip -9c > amd64/Packages.gz
+apt-get -qq update
+sleep 2
+
 echo "Installing DB components..."
 apt-get install -qq --allow-unauthenticated postgresql-9.6-postgis-2.5
 sleep 10

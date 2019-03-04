@@ -67,3 +67,8 @@ elif [ -f /etc/debian_version ] ; then
     $apt autoremove
 fi
 
+echo "Freeing space"
+touch /bigemptyfile
+dd if=/dev/zero of=/bigemptyfile
+rm -rf /bigemptyfile
+
