@@ -4,4 +4,4 @@
 
 Also download the following file, originally taken from the `Natural Earth III extra data <http://www.shadedrelief.com/natural3/pages/extra.html>`_:
 
-* `Large grayscale DEM <http://data.boundlessgeo.com/dem_large.zip>`_
+* :download:`Large grayscale DEM <../../../include/dem_large.zip>`
