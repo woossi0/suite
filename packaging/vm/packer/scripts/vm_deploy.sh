@@ -68,6 +68,10 @@ echo "Installing core products..."
 apt-get -qq update
 apt-get install -qq --allow-unauthenticated boundless-server-geoserver boundless-server-geowebcache boundless-server-dashboard boundless-server-quickview boundless-server-composer boundless-server-wpsbuilder boundless-server-docs boundless-server-gs-gdal boundless-server-gs-netcdf-out unzip
 sleep 2
+# Marlin hotfix for 1.2.0
+mkdir -p /usr/share/tomcat9/lib
+cp /opt/boundless/server/geoserver/WEB-INF/lib/marlin-0.9.3.jar /usr/share/tomcat9/lib/
+
 /etc/init.d/tomcat9 restart
 update-rc.d tomcat9 defaults
 
