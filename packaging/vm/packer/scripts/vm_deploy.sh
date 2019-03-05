@@ -151,6 +151,9 @@ Useful directories:
 /var/log/tomcat9                         (tomcat logs)
 /media/sf_share                          (share directory between host and guest)
 
+Boundless Server landing page can be found at:
+http://localhost:8080/dashboard
+
 Complete documentation can be found at:
 http://localhost:8080/boundless-server-docs
 OR
