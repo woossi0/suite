@@ -321,7 +321,7 @@ pipeline {
               rm -rf /tmp/convert-${BUILD_TYPE}
               mkdir -p /tmp/convert-${BUILD_TYPE}/rpms-in
               '
-            scp ${WORKSPACE}/archive/7/*.rpm root@priv-repo.boundlessgeo.com:/tmp/convert-${BUILD_TYPE}/rpms-in/
+            scp ${WORKSPACE}/archive/el/7/*.rpm root@priv-repo.boundlessgeo.com:/tmp/convert-${BUILD_TYPE}/rpms-in/
           """
         }
         // Build Ubuntu 14 Debs
