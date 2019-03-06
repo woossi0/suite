@@ -50,7 +50,6 @@ pipeline {
         // Clean workspace
         makeDir("$ARTIFACT_DIR")
         makeDir("$WORKSPACE/SRC")
-        makeDir("$WORKSPACE/archive/el/6/")
         makeDir("$WORKSPACE/archive/el/7/")
         makeDir("$WORKSPACE/archive/ubuntu/14/")
         makeDir("$WORKSPACE/archive/ubuntu/16/")
@@ -104,9 +103,9 @@ pipeline {
         script {
           packageRPMs("quickview")
           //sonarScan('suite/quickview','quickview')
-          sh "suite/packaging/el/rpm-resign.exp archive/el/6/*.rpm || true"
+          sh "suite/packaging/el/rpm-resign.exp archive/el/7/*.rpm || true"
         }
-        archiveArtifacts artifacts: "archive/el/6/${BRANDING}-quickview-*.rpm", fingerprint: true
+        archiveArtifacts artifacts: "archive/el/7/${BRANDING}-quickview-*.rpm", fingerprint: true
       }
     }
 
@@ -297,9 +296,9 @@ pipeline {
         }
         script {
           // Sign RPMs
-          sh "suite/packaging/el/rpm-resign.exp archive/el/6/*.rpm || true"
+          sh "suite/packaging/el/rpm-resign.exp archive/el/7/*.rpm || true"
         }
-        archiveArtifacts artifacts: "archive/el/6/*.rpm", fingerprint: true
+        archiveArtifacts artifacts: "archive/el/7/*.rpm", fingerprint: true
       }
     }
 
@@ -322,7 +321,7 @@ pipeline {
               rm -rf /tmp/convert-${BUILD_TYPE}
               mkdir -p /tmp/convert-${BUILD_TYPE}/rpms-in
               '
-            scp ${WORKSPACE}/archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/tmp/convert-${BUILD_TYPE}/rpms-in/
+            scp ${WORKSPACE}/archive/7/*.rpm root@priv-repo.boundlessgeo.com:/tmp/convert-${BUILD_TYPE}/rpms-in/
           """
         }
         // Build Ubuntu 14 Debs
@@ -362,21 +361,15 @@ pipeline {
           sh "ssh root@priv-repo.boundlessgeo.com rm -rf /var/www/repo/suite/${BUILD_TYPE}/war/*"
         }
         // Send artifacts
-        // Note- no EL7 unique RPMs, reusing EL6
         script {
           sh """
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/war/'
             scp archive/war/${ARCHIVE_BASENAME}-*.zip root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/war/
             
-            ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/el/6/'
-            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/6/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/6/'
-            ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/6/*.xml /var/www/repo/suite/${BUILD_TYPE}/el/6/'
-            scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/6/
-            
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/el/7/'
             ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/7/*.rpm /var/www/repo/suite/${BUILD_TYPE}/el/7/'
             ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/el/7/*.xml /var/www/repo/suite/${BUILD_TYPE}/el/7/'
-            scp archive/el/6/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/7/
+            scp archive/el/7/*.rpm root@priv-repo.boundlessgeo.com:/var/www/repo/suite/${BUILD_TYPE}/el/7/
             
             ssh root@priv-repo.boundlessgeo.com 'mkdir -p /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/'
             ssh root@priv-repo.boundlessgeo.com '/bin/cp -f /var/www/repo/third-party/ubuntu/14/*.deb /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14/'
@@ -394,8 +387,6 @@ pipeline {
         script {
           sh """
             ssh root@priv-repo.boundlessgeo.com '
-              /root/rpm-resign.exp /var/www/repo/suite/${BUILD_TYPE}/el/6/[!boundless-server-]*.rpm
-              /root/rpm-resign.exp /var/www/repo/suite/${BUILD_TYPE}/el/6/boundless-server-tomcat*.rpm
               /root/rpm-resign.exp /var/www/repo/suite/${BUILD_TYPE}/el/7/[!boundless-server-]*.rpm
               /root/rpm-resign.exp /var/www/repo/suite/${BUILD_TYPE}/el/7/boundless-server-tomcat*.rpm
             '
@@ -405,8 +396,6 @@ pipeline {
         script {
           sh """
             ssh root@priv-repo.boundlessgeo.com '
-              cd /var/www/repo/suite/${BUILD_TYPE}/el/6/
-              createrepo -g server-groups.xml .
               cd /var/www/repo/suite/${BUILD_TYPE}/el/7/
               createrepo -g server-groups.xml .
               cd /var/www/repo/suite/${BUILD_TYPE}/ubuntu/14
@@ -858,7 +847,6 @@ def trimRepo() {
   productPackages = readEnvArr(env.SERVER_PACKAGES)
   for (int i = 0; i < productPackages.size(); i++) {
     sh """
-      ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/el/6/${BRANDING}-${productPackages[i]}-*.rpm | tail -n +3 | xargs rm -- || true'
       ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/el/7/${BRANDING}-${productPackages[i]}-*.rpm | tail -n +3 | xargs rm -- || true'
       ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/ubuntu/14/${BRANDING}-${productPackages[i]}_*.deb | tail -n +3 | xargs rm -- || true'
       ssh root@priv-repo.boundlessgeo.com 'ls -t /var/www/repo/suite/${BRANCH_NAME}/ubuntu/16/${BRANDING}-${productPackages[i]}_*.deb | tail -n +3 | xargs rm -- || true'
