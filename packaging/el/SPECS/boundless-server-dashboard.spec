@@ -14,7 +14,7 @@ Conflicts: opengeo-dashboard, suite-dashboard
 Obsoletes: suite-dashboard
 AutoReqProv: no
 
-%define _rpmdir archive/el/6/
+%define _rpmdir archive/el/7/
 %define _rpmfilename %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 %define _unpackaged_files_terminate_build 0
 # Don't waste time re-packing jars (http://makewhatis.com/2011/12/remove-unwanted-commpression-in-during-rpmbuild-for-jar-files)
