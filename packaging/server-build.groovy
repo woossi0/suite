@@ -436,24 +436,24 @@ pipeline {
       }
     }
 
-    stage('Update-Demo') {
-      steps {
-        script {
-          if ( BUILD_TYPE.equals('master') ) {
-              sh """
-                ssh root@demo-master.boundlessgeo.com '
-                  yum clean all
-                  rm -rf /var/cache/yum
-                  yum update -y boundless-server-*
-                  service tomcat9 restart
-                '
-              """
-          } else {
-            echo "Demo update for release is a manual task, skipping..."
-          }
-        }
-      }
-    }
+    // stage('Update-Demo') {
+    //   steps {
+    //     script {
+    //       if ( BUILD_TYPE.equals('master') ) {
+    //           sh """
+    //             ssh root@demo-master.boundlessgeo.com '
+    //               yum clean all
+    //               rm -rf /var/cache/yum
+    //               yum update -y boundless-server-*
+    //               service tomcat9 restart
+    //             '
+    //           """
+    //       } else {
+    //         echo "Demo update for release is a manual task, skipping..."
+    //       }
+    //     }
+    //   }
+    // }
 
     /*stage('Slack-Notif') {
       steps {
