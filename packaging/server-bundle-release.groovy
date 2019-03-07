@@ -104,7 +104,6 @@ def gatherProduct(def product) {
   packageFileXenial = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/ubuntu/16/${BRANDING}-${product}_${SERVER_VERSION}* | sort -rV | head -1'", returnStdout:true).trim()
   sh """
     ssh root@priv-repo.boundlessgeo.com '
-      cp -p ${packageFileEL6} ${EL6_STAGE}
       cp -p ${packageFileEL7} ${EL7_STAGE}
       cp -p ${packageFileTrusty} ${TRUSTY_STAGE}
       cp -p ${packageFileXenial} ${XENIAL_STAGE}
