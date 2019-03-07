@@ -51,6 +51,10 @@ echo "Installing local repository tools..."
 apt-get install -qq apache2 dpkg-dev
 sleep 2
 
+echo "Upgrading packages..."
+apt-get upgrade -qq
+sleep 2
+
 echo "Configuring local repository..."
 mkdir -p /var/www/repo/
 ln -s /opt/boundless-repo/archives/ /var/www/repo/amd64
@@ -71,7 +75,7 @@ sleep 2
 # Marlin hotfix for 1.2.0
 mkdir -p /usr/share/tomcat9/lib
 cp /opt/boundless/server/geoserver/WEB-INF/lib/marlin-0.9.3.jar /usr/share/tomcat9/lib/
-sed -i 's/marlin-0.7.3-Unsafe/marlin-0.9.3/g' /ext/tomcat9/tomcat9.conf
+sed -i 's/marlin-0.7.3-Unsafe/marlin-0.9.3/g' /etc/tomcat9/tomcat9.conf
 
 /etc/init.d/tomcat9 restart
 update-rc.d tomcat9 defaults
