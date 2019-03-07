@@ -30,14 +30,14 @@ pipeline {
     stage('Bundle') {
       steps {
         script {
-          productPackages = ['composer', 'dashboard', 'docs', 'geoserver', 'geowebcache', 'gs-appschema', 'gs-arcsde', 'gs-cloudwatch', 'gs-cluster', 'gs-csw', 'gs-db2', 'gs-gdal', 'gs-geogig', 'gs-geomesa-accumulo', 'gs-grib', 'gs-gsr', 'gs-inspire', 'gs-jdbcconfig', 'gs-jdbcstore', 'gs-jp2k', 'gs-mongodb', 'gs-netcdf', 'gs-netcdf-out', 'gs-oracle', 'gs-printng', 'gs-script', 'gs-spatialstatistics', 'gs-sqlserver', 'gs-vectortiles', 'wpsbuilder', 'quickview']
+          productPackages = ['composer', 'dashboard', 'docs', 'geoserver', 'geowebcache', 'gs-appschema', 'gs-arcsde', 'gs-cloudwatch', 'gs-cluster', 'gs-csw', 'gs-db2', 'gs-gdal', 'gs-grib', 'gs-gsr', 'gs-inspire', 'gs-jdbcconfig', 'gs-jdbcstore', 'gs-jp2k', 'gs-mongodb', 'gs-netcdf', 'gs-netcdf-out', 'gs-oracle', 'gs-printng', 'gs-script', 'gs-spatialstatistics', 'gs-sqlserver', 'gs-vectortiles', 'wpsbuilder', 'quickview']
           for (int i = 0; i < productPackages.size(); i++) {
             gatherProduct("${productPackages[i]}")
           }
         }
 
         script {
-          tomcatPackages = ['tomcat9', 'tomcat9-manager']
+          tomcatPackages = ['tomcat9']
           for (int i = 0; i < tomcatPackages.size(); i++) {
             gatherTomcat("${tomcatPackages[i]}")
           }
@@ -79,9 +79,8 @@ def setEnvs() {
   env.BRANDING = 'boundless-server'
   env.ARCHIVE_BASENAME = 'BoundlessServer'
   env.SERVER_VERSION = sh (script: "grep server.version= $WORKSPACE/suite/build/build.properties | sed 's:server.version=::'", returnStdout: true).trim()
-  env.SOURCE_ROOT = "/var/www/repo/suite/1.1.x"
+  env.SOURCE_ROOT = "/var/www/repo/suite/1.2.x"
   env.STAGE = "${ARCHIVE_BASENAME}-${SERVER_VERSION}-${DATE_TIME_STAMP}"
-  env.EL6_STAGE = "/tmp/${STAGE}/el/6/x86_64"
   env.EL7_STAGE = "/tmp/${STAGE}/el/7/x86_64"
   env.TRUSTY_STAGE = "/tmp/${STAGE}/ubuntu/deb/14"
   env.XENIAL_STAGE = "/tmp/${STAGE}/ubuntu/deb/16"
@@ -91,7 +90,6 @@ def setEnvs() {
 def prepStage() {
   sh """
     ssh root@priv-repo.boundlessgeo.com '
-      mkdir -p ${EL6_STAGE}
       mkdir -p ${EL7_STAGE}
       mkdir -p ${TRUSTY_STAGE}
       mkdir -p ${XENIAL_STAGE}
@@ -101,7 +99,6 @@ def prepStage() {
 }
 
 def gatherProduct(def product) {
-  packageFileEL6 = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/el/6/${BRANDING}-${product}-${SERVER_VERSION}* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileEL7 = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/el/7/${BRANDING}-${product}-${SERVER_VERSION}* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileTrusty = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/ubuntu/14/${BRANDING}-${product}_${SERVER_VERSION}* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileXenial = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/ubuntu/16/${BRANDING}-${product}_${SERVER_VERSION}* | sort -rV | head -1'", returnStdout:true).trim()
@@ -116,13 +113,11 @@ def gatherProduct(def product) {
 }
 
 def gatherTomcat(def tomcat) {
-  packageFileEL6 = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/el/6/${BRANDING}-${tomcat}-[0-9]* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileEL7 = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/el/7/${BRANDING}-${tomcat}-[0-9]* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileTrusty = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/ubuntu/14/${BRANDING}-${tomcat}_[0-9]* | sort -rV | head -1'", returnStdout:true).trim()
   packageFileXenial = sh (script: "ssh root@priv-repo.boundlessgeo.com 'ls ${SOURCE_ROOT}/ubuntu/16/${BRANDING}-${tomcat}_[0-9]* | sort -rV | head -1'", returnStdout:true).trim()
   sh """
     ssh root@priv-repo.boundlessgeo.com '
-      cp -p ${packageFileEL6} ${EL6_STAGE}
       cp -p ${packageFileEL7} ${EL7_STAGE}
       cp -p ${packageFileTrusty} ${TRUSTY_STAGE}
       cp -p ${packageFileXenial} ${XENIAL_STAGE}
@@ -134,7 +129,6 @@ def gatherDependencies() {
   sh """
     ssh root@priv-repo.boundlessgeo.com '
       shopt -s extglob
-      cp -p ${SOURCE_ROOT}/el/6/!(${BRANDING}*) ${EL6_STAGE}
       cp -p ${SOURCE_ROOT}/el/7/!(${BRANDING}*) ${EL7_STAGE}
       cp -p ${SOURCE_ROOT}/ubuntu/14/!(${BRANDING}*) ${TRUSTY_STAGE}
       cp -p ${SOURCE_ROOT}/ubuntu/16/!(${BRANDING}*) ${XENIAL_STAGE}
@@ -146,7 +140,6 @@ def gatherGroupDescriptors() {
   sh """
     ssh root@priv-repo.boundlessgeo.com '
       shopt -s extglob
-      cp -p ${SOURCE_ROOT}/el/6/*.xml $EL6_STAGE
       cp -p ${SOURCE_ROOT}/el/7/*.xml $EL7_STAGE
     '
   """
