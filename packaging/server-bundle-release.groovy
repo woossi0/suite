@@ -82,8 +82,8 @@ def setEnvs() {
   env.SOURCE_ROOT = "/var/www/repo/suite/1.2.x"
   env.STAGE = "${ARCHIVE_BASENAME}-${SERVER_VERSION}-${DATE_TIME_STAMP}"
   env.EL7_STAGE = "/tmp/${STAGE}/el/7/x86_64"
-  env.TRUSTY_STAGE = "/tmp/${STAGE}/ubuntu/deb/14"
-  env.XENIAL_STAGE = "/tmp/${STAGE}/ubuntu/deb/16"
+  env.TRUSTY_STAGE = "/tmp/${STAGE}/ubuntu/14/deb"
+  env.XENIAL_STAGE = "/tmp/${STAGE}/ubuntu/16/deb"
   env.WAR_STAGE = "/tmp/${STAGE}/wars"
 }
 
