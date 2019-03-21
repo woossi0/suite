@@ -41,7 +41,7 @@ pipeline {
   stages {
   	stage('Init') {
       steps {
-        // Set variables for build types (master/stable)
+        // Set variables for build types (master/{BRANCH_NAME})
         // Variables below called through legacy maven/ant build definitions
         readBuildProperties()
         setEnvs()
@@ -704,7 +704,7 @@ def packageWars() {
     cp $LICENSE_DIR/EULA ./
   """
 
-  if ( BUILD_TYPE.equals('stable') ) {
+  if ( !BUILD_TYPE.equals('master') ) {
     sh "mv $EXT_ARCHIVE ${ARCHIVE_BASENAME}-${PACKAGE_VERSION}-ext"
     env.EXT_ARCHIVE = "${ARCHIVE_BASENAME}-${PACKAGE_VERSION}-ext"
   }
@@ -765,7 +765,7 @@ def packageWars() {
     """
   }
 
-  if ( BUILD_TYPE.equals('stable') ) {
+  if ( !BUILD_TYPE.equals('master') ) {
     sh "mv $WORKSPACE/$WAR_ARCHIVE $WORKSPACE/${ARCHIVE_BASENAME}-${PACKAGE_VERSION}-war"
     env.WAR_ARCHIVE = "${ARCHIVE_BASENAME}-${PACKAGE_VERSION}-war"
   }
