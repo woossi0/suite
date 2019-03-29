@@ -228,7 +228,7 @@ extlinks = {
     'developer': ('http://docs.geoserver.org/latest/en/developer/%s',''),
     'geos': ('https://jira.codehaus.org/browse/GEOS-%s','GEOS-'),
     'geot': ('https://jira.codehaus.org/browse/GEOT-%s','GEOT-'),
-    'api': ("javascript:pathToGeoServerDocs('api/#1.0.0/%s');","")
+    'api': ("javascript:pathToGeoServerDocs('api/index.html#1.0.0/%s');","")
 }
 
 # Common substitutions
